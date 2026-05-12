@@ -67,3 +67,20 @@ L'AIS participe à la sécurité au quotidien en administrant correctement les s
 Il applique les bonnes pratiques : mises à jour, gestion des droits, mots de passe solides, sauvegardes, surveillance des logs et limitation des services inutiles.
 
 Il n'est pas forcément celui qui attaque ou analyse toutes les failles en profondeur, mais il doit savoir repérer un comportement anormal, réagir proprement et transmettre les bonnes informations en cas d'incident.
+
+## Les principales menaces et attaques
+
+les menaces :
+
+- L'hameçonnage ou phishing est une forme d'escroquerie sur internet. Le fraudeur se fait passer pour un organisme que vous connaissez (banque, service des impôts, CAF, etc.), en utilisant le logo et le nom de cet organisme.
+- un malware  est un programme développé dans le but de nuire à un système informatique, sans le consentement de l'utilisateur dont l'ordinateur est infecté.
+- Les rançongiciels, ou ransomware en anglais, désignent des programmes informatiques malveillants. Il s'agit de mettre votre ordinateur ou votre système d'information hors d'état de fonctionner de manière réversible en chiffrant vos données.
+
+les attaques :
+
+- **Attaques physiques** : elles visent directement le matériel ou les accès locaux. Exemple : vol d'un ordinateur, clé USB piégée, accès non autorisé à une salle serveur.
+- **Attaques humaines** : elles exploitent surtout la confiance ou l'erreur humaine. Exemple : phishing, appel frauduleux, usurpation d'identité, mot de passe donné trop facilement.
+- **Attaques réseau** : elles passent par les communications entre machines. Exemple : scan de ports, interception de données, attaque par déni de service, exploitation d'un service mal sécurisé, faille de sécurité logiciel.
+
+!!! tip "À retenir"
+    La sécurité ne concerne pas seulement les logiciels : elle dépend aussi des personnes, du matériel et du réseau.
