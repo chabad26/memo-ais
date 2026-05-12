@@ -1,0 +1,42 @@
+site_name: Mémo AIS
+site_description: Notes de formation AIS
+site_author: Olivier
+repo_name: memo-ais
+
+theme:
+  name: material
+  language: fr
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+
+nav:
+  - Accueil: index.md
+  - Intro à l'AIS:
+      - Présentation: intro-ais/index.md
+      - Matériel: intro-ais/materiel.md
+      - Système et Linux: intro-ais/systeme-linux.md
+      - Réseau: intro-ais/reseau.md
+      - Commandes Linux: intro-ais/commandes-linux.md
+      - Sécurité: intro-ais/securite.md
+  - Pense-bête: pense-bete.md
