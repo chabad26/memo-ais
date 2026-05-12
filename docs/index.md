@@ -1,22 +1,23 @@
 # Mémo AIS
 
-Bienvenue dans ce petit **wiki personnel de formation AIS**.
+Bienvenue dans ce **mémo personnel de formation AIS**.
 
-L'idée est simple :
+Il sert à garder au même endroit les notions importantes vues pendant la formation.
 
-- garder les notions importantes au propre,
-- retrouver rapidement une commande ou une définition,
-- avoir un support plus clair qu'un bloc de notes brut.
+L'idée est simple : pouvoir relire rapidement une définition, une commande ou un rappel utile.
 
 ## Organisation du mémo
 
 Ce mémo est découpé en plusieurs parties :
 
-- **Intro a l'ais** pour les bases de linux et cybersécurité.
+- **Intro AIS** : bases du matériel, de Linux, du réseau et de la cybersécurité.
+- **Pense-bête** : rappels rapides et commandes utiles au quotidien.
 
 ## Objectif
 
-Ce support ne remplace pas un cours complet. Il sert surtout à :
+Ce support ne remplace pas un cours complet.
+
+Il sert surtout à :
 
 - mémoriser les notions essentielles,
 - réviser rapidement,

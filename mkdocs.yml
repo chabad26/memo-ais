@@ -2,6 +2,8 @@ site_name: Mémo AIS
 site_description: Notes de formation AIS
 site_author: Olivier
 repo_name: memo-ais
+docs_dir: docs
+site_dir: site
 
 theme:
   name: material
@@ -38,5 +40,5 @@ nav:
       - Système et Linux: intro-ais/systeme-linux.md
       - Réseau: intro-ais/reseau.md
       - Commandes Linux: intro-ais/commandes-linux.md
-      - Sécurité: intro-ais/securite.md
+      - Cybersécurité: intro-ais/securite.md
   - Pense-bête: pense-bete.md
