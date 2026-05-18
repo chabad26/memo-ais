@@ -12,6 +12,8 @@ Ce mémo est découpé en plusieurs parties :
 
 - **Intro AIS** : bases du matériel, de Linux, du réseau et de la cybersécurité.
 - **Pense-bête** : rappels rapides et commandes utiles au quotidien.
+- **Schémas de l'AIS** : des schémas pour donner des exemples plus concret
+- **Liens utiles** : Des ressources utiles pour la veille technologique
 
 ## Objectif
 

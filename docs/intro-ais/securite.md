@@ -68,6 +68,34 @@ Il applique les bonnes pratiques : mises à jour, gestion des droits, mots de pa
 
 Il n'est pas forcément celui qui attaque ou analyse toutes les failles en profondeur, mais il doit savoir repérer un comportement anormal, réagir proprement et transmettre les bonnes informations en cas d'incident.
 
+### Les rôles défensifs après une attaque
+
+Après une attaque, plusieurs rôles interviennent pour limiter les dégâts, comprendre ce qui s'est passé et éviter que cela recommence.
+
+- **Utilisateur final** : il doit signaler rapidement un comportement suspect, ne pas cacher l'erreur, ne pas redémarrer ou manipuler la machine sans consigne, et suivre les procédures données.
+- **AIS** : il isole les postes touchés, vérifie les sauvegardes, applique les correctifs, contrôle les comptes et aide à remettre les services en état.
+- **RSSI** : il pilote la stratégie de sécurité, coordonne la réponse à incident, décide des priorités et fait le lien avec la direction.
+- **SOC** : il surveille les alertes, analyse les logs, détecte les comportements anormaux et suit la propagation de l'attaque.
+- **CERT** : il apporte une expertise technique, aide à qualifier l'incident, partage des indicateurs de compromission et conseille sur les mesures de remédiation.
+- **ANSSI** : elle accompagne les organisations lors des incidents importants, publie des alertes et donne des recommandations nationales de cybersécurité.
+
+### Les 5 métiers défensifs et leur rôle
+
+- **AIS** : administre les systèmes et les réseaux, applique les mesures de sécurité et réagit aux premiers signes d'incident.
+- **RSSI** : définit la politique de sécurité et organise la protection globale de l'entreprise.
+- **Analyste SOC** : surveille les événements de sécurité et détecte les attaques en cours.
+- **Expert CERT** : analyse les incidents, identifie les méthodes des attaquants et conseille les équipes techniques.
+- **Auditeur ou consultant cybersécurité** : vérifie le niveau de sécurité, cherche les faiblesses et propose des améliorations.
+
+### Ma place d'AIS dans cet écosystème
+
+L'AIS est au contact direct des systèmes, des réseaux, des utilisateurs et des incidents du quotidien.
+Il applique concrètement les règles de cybersécurité : mises à jour, sauvegardes, droits d'accès, supervision et réaction rapide.
+Il fait le lien entre l'administration technique et les équipes spécialisées comme le RSSI, le SOC ou le CERT.
+
+!!! tip "Triptyque à retenir"
+    L'AIS administre les systèmes et les réseaux. La cybersécurité irrigue les deux : elle influence la manière de configurer, surveiller, corriger et protéger l'ensemble de l'infrastructure.
+
 ## Les principales menaces et attaques
 
 les menaces :
@@ -138,10 +166,25 @@ Le CHU de Rouen a indiqué qu'aucune fuite de données médicales ou personnelle
 !!! tip "À retenir"
     Un rançongiciel ne se déclenche pas toujours dès l'entrée dans le réseau. Il peut y avoir une phase silencieuse où l'attaquant explore, se déplace et prépare le chiffrement. Les sauvegardes, les logs, la segmentation réseau et la réaction rapide sont donc essentiels.
 
+### Autre exemple : WannaCry
+
+WannaCry, aussi appelé WannaCrypt, est un rançongiciel qui s'est propagé massivement en mai 2017.
+Il ciblait principalement des systèmes Windows qui n'avaient pas reçu le correctif de sécurité `MS17-010`.
+
+Contrairement à certains rançongiciels qui demandent surtout une action humaine, WannaCry pouvait aussi se propager automatiquement sur le réseau en exploitant une faille du protocole SMB.
+Une machine vulnérable pouvait donc infecter d'autres machines connectées au même réseau.
+
+Les conséquences ont été importantes : fichiers chiffrés, postes bloqués, services perturbés et demande de rançon pour récupérer les données.
+Cette attaque montre l'importance des mises à jour de sécurité, de la désactivation des services inutiles comme SMBv1, de la segmentation réseau et des sauvegardes isolées.
+
+!!! tip "À retenir"
+    WannaCry est un bon exemple d'attaque qui combine rançongiciel et propagation réseau automatique. Une seule machine non corrigée peut devenir un point d'entrée pour contaminer rapidement d'autres postes.
+
 Sources :
 
 - CHU de Rouen : [Le point sur l'attaque informatique du 15 novembre 2019](https://www.chu-rouen.fr/le-point-sur-lattaque-informatique-du-15-novembre-2019/)
 - CERT-FR / ANSSI : [Informations concernant le rançongiciel Clop](https://cert.ssi.gouv.fr/cti/CERTFR-2019-CTI-009/)
+- CERT-FR / ANSSI : [Propagation d'un rançongiciel exploitant les vulnérabilités MS17-010](https://www.cert.ssi.gouv.fr/alerte/CERTFR-2017-ALE-010/)
 - Document apprenant : `cyberattaques_apprenant.pdf`
 
 ## Hygiène numérqiue
