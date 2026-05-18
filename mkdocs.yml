@@ -46,7 +46,12 @@ nav:
       - Système et Linux: intro-ais/systeme-linux.md
       - Réseau: intro-ais/reseau.md
       - Commandes Linux: intro-ais/commandes-linux.md
-      - Cybersécurité: intro-ais/securite.md
+      - Cybersécurité:
+          - Bases: intro-ais/securite.md
+          - Acteurs et rôles: intro-ais/securite-acteurs.md
+          - Menaces et attaques: intro-ais/securite-menaces.md
+          - Hygiène numérique: intro-ais/hygiene-numerique.md
+          - Chiffrement: intro-ais/chiffrement.md
   - Pense-bête: pense-bete.md
   - Schéma de l'AIS: schema-ais.md
   - Liens utiles: liens-utiles.md
