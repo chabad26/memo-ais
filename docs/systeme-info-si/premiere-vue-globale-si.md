@@ -36,6 +36,15 @@ flowchart TD
     CRIT["Services critiques<br/>urgences, soins,<br/>laboratoire, imagerie, pharmacie"]
     TOIP["Réseau ToIP isolé<br/>téléphones internes"]
 
+    subgraph LEG["Légende des flèches"]
+        LBLUE["Bleu : externe / périmètre"]
+        LGRAY["Gris : réseau interne"]
+        LGREEN["Vert : flux métier"]
+        LYELLOW["Jaune : données / sauvegardes"]
+        LPURPLE["Violet : administration / identité"]
+        LRED["Rouge : crise"]
+    end
+
     EXT -->|"échanges externes"| PERIM
     WEB <--> PERIM
     PERIM -->|"flux autorisés"| INT
@@ -62,12 +71,24 @@ flowchart TD
     classDef app fill:#ecfccb,stroke:#4d7c0f,stroke-width:1px,color:#111827;
     classDef data fill:#fef3c7,stroke:#b45309,stroke-width:1px,color:#111827;
     classDef user fill:#ede9fe,stroke:#6d28d9,stroke-width:1px,color:#111827;
+    classDef legendBlue fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#111827;
+    classDef legendGray fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#111827;
+    classDef legendGreen fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#111827;
+    classDef legendYellow fill:#fef3c7,stroke:#ca8a04,stroke-width:2px,color:#111827;
+    classDef legendPurple fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#111827;
+    classDef legendRed fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#111827;
 
     class CRIT critical;
     class PERIM,INT,TOIP network;
     class APPS,TECH,ADMIN app;
     class DATA data;
     class USERS,EXT,WEB user;
+    class LBLUE legendBlue;
+    class LGRAY legendGray;
+    class LGREEN legendGreen;
+    class LYELLOW legendYellow;
+    class LPURPLE legendPurple;
+    class LRED legendRed;
 
     linkStyle 0,1,2 stroke:#2563eb,stroke-width:2px;
     linkStyle 3,4,5 stroke:#64748b,stroke-width:2px;

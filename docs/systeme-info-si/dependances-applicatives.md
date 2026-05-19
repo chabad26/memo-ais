@@ -86,6 +86,14 @@ flowchart LR
     BACKUP["Sauvegardes"]
     SUP["Supervision"]
 
+    subgraph LEG["Légende des flèches"]
+        LGREEN["Vert : usage métier"]
+        LPURPLE["Violet : identité / droits"]
+        LYELLOW["Jaune : données / sauvegardes"]
+        LBLUE["Bleu : API / middleware"]
+        LGRAY["Gris : supervision"]
+    end
+
     USER -->|"utilise"| POSTE
     POSTE -->|"authentification"| AD
     POSTE -->|"résolution"| DNS
@@ -104,12 +112,22 @@ flowchart LR
     classDef app fill:#ecfccb,stroke:#4d7c0f,stroke-width:1px,color:#111827;
     classDef data fill:#fef3c7,stroke:#b45309,stroke-width:1px,color:#111827;
     classDef critical fill:#ffe0e0,stroke:#b91c1c,stroke-width:2px,color:#111827;
+    classDef legendGreen fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#111827;
+    classDef legendPurple fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#111827;
+    classDef legendYellow fill:#fef3c7,stroke:#ca8a04,stroke-width:2px,color:#111827;
+    classDef legendBlue fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#111827;
+    classDef legendGray fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#111827;
 
     class USER,POSTE user;
     class AD,DNS,SUP infra;
     class APP,MW,LAB,IMG,PHARMA app;
     class DB,BACKUP data;
     class AD,DNS,APP,DB critical;
+    class LGREEN legendGreen;
+    class LPURPLE legendPurple;
+    class LYELLOW legendYellow;
+    class LBLUE legendBlue;
+    class LGRAY legendGray;
 
     linkStyle 0,3 stroke:#16a34a,stroke-width:2px;
     linkStyle 1,2,11 stroke:#7c3aed,stroke-width:2px;

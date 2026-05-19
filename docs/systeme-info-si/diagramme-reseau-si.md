@@ -48,6 +48,15 @@ flowchart LR
     TOIP["Réseau ToIP isolé<br/>téléphones internes"]
     CRISIS["Mode dégradé<br/>papier, téléphone,<br/>résultats récupérés physiquement"]
 
+    subgraph LEG["Légende des flèches"]
+        LRED["Rouge : attaque / risque"]
+        LBLUE["Bleu : externe / périmètre"]
+        LPURPLE["Violet : identité / administration"]
+        LGREEN["Vert : flux métier"]
+        LYELLOW["Jaune : données / sauvegardes"]
+        LGRAY["Gris : continuité de crise"]
+    end
+
     ATT -->|"1. phishing / pièce jointe"| USERS
     ATT -->|"1 bis. accès distant compromis"| REMOTE
     INTERNET --> PERIM
@@ -76,12 +85,24 @@ flowchart LR
     classDef critical fill:#fef3c7,stroke:#b45309,stroke-width:2px,color:#111827;
     classDef safety fill:#dcfce7,stroke:#15803d,stroke-width:1px,color:#111827;
     classDef crisis fill:#f3f4f6,stroke:#4b5563,stroke-width:1px,color:#111827;
+    classDef legendRed fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#111827;
+    classDef legendBlue fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#111827;
+    classDef legendPurple fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#111827;
+    classDef legendGreen fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#111827;
+    classDef legendYellow fill:#fef3c7,stroke:#ca8a04,stroke-width:2px,color:#111827;
+    classDef legendGray fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#111827;
 
     class ATT entry;
     class INTERNET,REMOTE,PERIM,USERS,BIOMED,TOIP network;
     class SERVERS,DATA,ADMIN critical;
     class BACKUP safety;
     class CRISIS crisis;
+    class LRED legendRed;
+    class LBLUE legendBlue;
+    class LPURPLE legendPurple;
+    class LGREEN legendGreen;
+    class LYELLOW legendYellow;
+    class LGRAY legendGray;
 
     linkStyle 0,1,12,13,14 stroke:#dc2626,stroke-width:2.5px;
     linkStyle 2,3,4,5 stroke:#2563eb,stroke-width:2px;
