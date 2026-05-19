@@ -1,5 +1,16 @@
 # Chiffrement
 
+Le chiffrement consiste à transformer une information lisible en information illisible sans la bonne clé.
+
+Il sert à protéger les données, par exemple pendant leur stockage ou pendant leur transmission sur un réseau.
+
+Il existe deux grandes familles de chiffrement :
+
+- le chiffrement **symétrique**, où la même clé sert à chiffrer et déchiffrer. Il est rapide et adapté aux gros volumes de données. Exemple : **AES**, utilisé pour protéger des fichiers, des connexions Wi-Fi ou des VPN.
+- le chiffrement **asymétrique**, où deux clés différentes sont utilisées : une clé publique et une clé privée. Il est utile pour sécuriser les échanges sur Internet. Exemples : **RSA** et **ECC**.
+
+![Types de chiffrement](../assets/img/intro-ais/type_chiffrement.png)
+
 ## Cryptographie
 
 La cryptographie est l'ensemble des techniques qui permettent de protéger une information.
@@ -11,19 +22,6 @@ Elle sert notamment à assurer :
 - l'authentification.
 
 Le chiffrement fait partie de la cryptographie.
-
-## Chiffrement
-
-Le chiffrement consiste à transformer une information lisible en information illisible sans la bonne clé.
-
-Il sert à protéger les données, par exemple pendant leur stockage ou pendant leur transmission sur un réseau.
-
-Il existe deux grandes familles de chiffrement :
-
-- le chiffrement **symétrique**, où la même clé sert à chiffrer et déchiffrer. Il est rapide et adapté aux gros volumes de données. Exemple : **AES**, utilisé pour protéger des fichiers, des connexions Wi-Fi ou des VPN.
-- le chiffrement **asymétrique**, où deux clés différentes sont utilisées : une clé publique et une clé privée. Il est utile pour sécuriser les échanges sur Internet. Exemples : **RSA** et **ECC**.
-
-![Types de chiffrement](../assets/img/type_chiffrement.png)
 
 ## Autres notions liées
 

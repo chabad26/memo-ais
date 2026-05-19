@@ -54,8 +54,7 @@ nav:
           - Chiffrement: intro-ais/chiffrement.md
   - Système d’info & archi SI:
       - Présentation: systeme-info-si/index.md
-      - Système d’information: systeme-info-si/systeme-info.md
-      - Architecture SI: systeme-info-si/ archi-si.md
+      - Cas concret SI: systeme-info-si/cas-concret-si.md
   - Pense-bête: pense-bete.md
   - Schéma Réseaux & AIS: schema-ais.md
   - Liens utiles: liens-utiles.md
