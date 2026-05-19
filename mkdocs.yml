@@ -1,5 +1,5 @@
 site_name: Mémo AIS
-site_description: Notes de formation AIS
+site_description: Mémo formation AIS
 site_author: Olivier
 repo_name: memo-ais
 docs_dir: docs
@@ -26,13 +26,19 @@ plugins:
 extra_css:
   - assets/stylesheets/custom.css
 
+extra_javascript:
+  - assets/javascripts/mermaid-zoom.js
+
 markdown_extensions:
   - admonition
   - tables
   - toc:
       permalink: true
   - pymdownx.highlight
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.tabbed:
@@ -55,6 +61,15 @@ nav:
   - Système d’info & archi SI:
       - Présentation: systeme-info-si/index.md
       - Cas concret SI: systeme-info-si/cas-concret-si.md
-  - Pense-bête: pense-bete.md
+      - Première vue globale du SI: systeme-info-si/premiere-vue-globale-si.md
+      - Diagramme réseau du SI: systeme-info-si/diagramme-reseau-si.md
+      - Modèles d'architecture applicative: systeme-info-si/modeles-architecture-applicative.md
+  - Pense-bête:
+      - Vue d'ensemble: pense-bete/index.md
+      - Intro AIS: pense-bete/intro-ais.md
+      - Linux et commandes: pense-bete/linux.md
+      - Réseau: pense-bete/reseau.md
+      - Cybersécurité: pense-bete/cybersecurite.md
+      - Système d’info & archi SI: pense-bete/systeme-info-si.md
   - Schéma Réseaux & AIS: schema-ais.md
   - Liens utiles: liens-utiles.md

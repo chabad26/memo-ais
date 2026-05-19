@@ -1,35 +1,147 @@
-# Cas concret SI (Système d'information)
+# Cas concret SI
 
 ## Cyberattaque du CHU de Rouen, novembre 2019
 
-Le CHU de Rouen a subi le 15 novembre 2019 une cyberattaque de type rançongiciel, publiquement associée à Clop / CryptoMix Clop. L’incident a rendu indisponible une large partie du système d’information : applications métiers, postes de travail, serveurs et usages critiques comme admissions, prescriptions, analyses, radiologie, urgences et comptes rendus. L’établissement a basculé en mode dégradé, avec arrêt des ordinateurs, usage du papier, transmissions téléphoniques et ralentissement de plusieurs services. Les sources disponibles confirment une tentative d’extorsion et une plainte contre X, mais ne permettent pas d’affirmer avec certitude le point d’entrée exact, l’étendue complète du chiffrement, l’identité des auteurs ou l’absence définitive d’exfiltration de données.
+Le CHU de Rouen a subi le 15 novembre 2019 une cyberattaque de type rançongiciel, publiquement associée à Clop / CryptoMix Clop.
 
-### Éléments factuels structurants
+L'incident a rendu indisponible une partie importante du système d'information : applications métiers, postes de travail, serveurs et usages critiques comme les admissions, prescriptions, analyses, radiologie, urgences et comptes rendus.
 
-| Point | Faits vérifiables |
+Ce cas montre qu'une cyberattaque n'est pas seulement un problème informatique : elle touche directement les activités métier d'un hôpital.
+
+## Ressources utilisées
+
+- [Le Monde - Cyberattaque du CHU de Rouen](https://www.lemonde.fr/pixels/article/2019/11/18/frappe-par-une-cyberattaque-massive-le-chu-de-rouen-force-de-tourner-sans-ordinateurs_6019650_4408996.html)
+- [LeMagIT - CHU de Rouen : autopsie d'une cyberattaque](https://www.lemagit.fr/etude/CHU-de-Rouen-autopsie-dune-cyberattaque)
+- [L'Usine Digitale - Origine criminelle de la cyberattaque](https://www.usine-digitale.fr/article/la-cyberattaque-du-chu-de-rouen-serait-bien-d-origine-criminelle.N908519)
+- [CERT-FR / ANSSI - Rançongiciel Clop](https://www.cert.ssi.gouv.fr/uploads/CERTFR-2019-CTI-009.pdf)
+- [ANSSI - Cartographie du système d'information](https://messervices.cyber.gouv.fr/documents-guides/20181213_anssi_guide_cartographie_v1b.pdf)
+- [ANSSI - Architectures de systèmes d'information sensibles](https://messervices.cyber.gouv.fr/documents-guides/anssi-guide-recommandations_architectures_systemes_information_sensibles_ou_diffusion_restreinte-v1.2.pdf)
+
+## 1. Partir des activités réelles
+
+Avant de parler serveurs, applications ou réseau, il faut regarder ce que fait réellement l'hôpital.
+
+Activités principales :
+
+- admission et identification des patients ;
+- accueil et orientation aux urgences ;
+- soins médicaux et suivi patient ;
+- prescriptions de médicaments et d'examens ;
+- laboratoire et résultats d'analyses ;
+- imagerie médicale : radio, scanner, IRM ;
+- pharmacie hospitalière ;
+- bloc opératoire et stérilisation ;
+- dossier patient et comptes rendus ;
+- communication entre services ;
+- facturation, RH, logistique et maintenance biomédicale.
+
+Même en crise, certaines missions doivent continuer : urgences, soins, prescriptions vitales, examens indispensables et coordination entre services.
+
+## 2. Regrouper en couches fonctionnelles
+
+| Couche fonctionnelle | Exemples d'activités |
 | --- | --- |
-| Date de l’incident | L’attaque est signalée le vendredi 15 novembre 2019, vers 19 h / 19 h 45 selon les sources. Le CHU indique une attaque « vers 19 heures » ; un retour d’expérience évoque un appel au support vers 19 h 45. |
-| Établissement touché | Le CHU de Rouen, réparti sur cinq sites, avec plus de 10 000 salariés et près de 2 500 lits selon Le Monde. |
-| Nature de l’attaque | Attaque par rançongiciel / cryptovirus : chiffrement de fichiers sur le système d’information. Le CHU parle de chiffrement de fichiers sur des ordinateurs et serveurs ; Le Monde et L’Usine Digitale identifient le rançongiciel Clop / CryptoMix Clop. |
-| Mode opératoire général de Clop | L’ANSSI indique que Clop chiffre les documents présents sur les SI, ajoute une extension de type .CIop ou .Clop, et que le chiffrement peut être précédé d’une propagation manuelle dans le réseau victime pendant plusieurs jours. |
-| Vecteur probable général | L’ANSSI rattache les attaques Clop observées en France à une vaste campagne d’hameçonnage autour du 16 octobre 2019, liée au groupe cybercriminel TA505. |
-| Systèmes impactés | Le CHU indique que l’attaque a rendu inaccessible la plupart des applications métiers, infecté une partie des postes de travail, et chiffré des fichiers sur des ordinateurs et serveurs. |
-| Applications / usages touchés | Les admissions, prescriptions, analyses, comptes rendus, gestion des urgences, imagerie médicale, analyses, pharmacie et gestion des blocs sont cités comme touchés ou perturbés selon Le Monde et L’Usine Digitale. |
-| Mesure de crise | Pour éviter la propagation, l’arrêt de tous les ordinateurs a été décidé rapidement ; le CHU a fonctionné en mode dégradé. |
-| Conséquences opérationnelles | Retour au papier et au téléphone : observations médicales sur papier, transmissions papier, admissions et prescriptions en mode dégradé, résultats d’examens récupérés physiquement, laboratoire et radiologie ralentis. |
-| Continuité des soins | Le CHU affirme qu’à ce stade les difficultés n’ont eu aucune conséquence directe sur le suivi des patients, et qu’une reprise progressive a permis une prise en charge quasi normale. |
-| Données personnelles / médicales | Le CHU indique qu’aucune fuite de données médicales ou personnelles n’a été constatée à la date de son communiqué. |
-| Suites judiciaires | Le CHU a porté plainte contre X pour accès frauduleux dans un système de traitement automatisé de données et tentative d’extorsion de fonds auprès du parquet de Paris. |
+| Administration patient | admissions, identité patient, rendez-vous |
+| Urgences | accueil, orientation, priorisation |
+| Soins | observations, suivi patient, traitements |
+| Prescriptions / pharmacie | médicaments, examens, délivrance |
+| Laboratoire | prélèvements, analyses, résultats |
+| Imagerie | radios, scanners, IRM, comptes rendus |
+| Dossier patient | historique, allergies, comptes rendus |
+| Support | DSI, RH, logistique, maintenance biomédicale |
 
-### Ce qui est certain / ce qui est inconnu
+Cette vue permet de relier les impacts techniques aux impacts métier.
 
-| Ce qui est certain | Ce qui est inconnu ou non confirmé dans les sources |
+## 3. Identifier les dépendances au SI
+
+| Couche | Applications / données nécessaires | Impact si indisponible |
+| --- | --- | --- |
+| Administration patient | logiciel d'admission, identité patient, dossier administratif | entrées ralenties, risque d'erreur d'identité |
+| Urgences | dossier patient, orientation, prescriptions, résultats | prise en charge plus lente, coordination difficile |
+| Soins | dossier patient, observations, traitements, allergies | suivi perturbé, risque d'erreur ou de retard |
+| Laboratoire | demandes d'analyses, prélèvements, résultats | décisions médicales ralenties |
+| Imagerie | demandes d'examens, images, comptes rendus | diagnostics retardés ou difficiles |
+| Pharmacie | prescriptions, stocks, posologies, allergies | distribution des médicaments perturbée |
+| Dossier patient | historique, comptes rendus, examens, traitements | perte temporaire de l'historique numérique |
+| DSI / support | annuaire, supervision, sauvegardes, comptes | reprise plus difficile, visibilité réduite |
+
+## 4. Décomposer le SI en 4 axes
+
+| Axe | Briques probables ou confirmées | Rôle |
+| --- | --- | --- |
+| Réseau | réseau interne, accès Internet, flux internes, ToIP isolée, cloisonnement | relier les sites, postes, serveurs et services |
+| Applicatif | admissions, DPI, prescriptions, laboratoire, imagerie, pharmacie, messagerie | soutenir les activités métier |
+| Données | identité patient, données médicales, résultats, images, comptes rendus, sauvegardes | permettre le suivi et la continuité des soins |
+| Utilisateurs | médecins, infirmiers, accueil, DSI, direction, prestataires | utiliser, administrer et prioriser le SI |
+
+Hypothèses réalistes :
+
+- présence probable d'un SI patient centralisé ;
+- annuaire central de type Active Directory ;
+- séparation entre certaines applications et bases de données ;
+- cloisonnement réseau partiel ;
+- procédures papier de secours ;
+- connexions avec des partenaires externes.
+
+Ces hypothèses sont cohérentes avec le fonctionnement d'un hôpital et avec les informations publiées sur le cas du CHU de Rouen.
+
+## 5. Retour au cas du CHU de Rouen
+
+| Point | Fait à retenir |
 | --- | --- |
-| Une cyberattaque a touché le CHU de Rouen le 15 novembre 2019. | Le point d’entrée exact dans le SI du CHU n’est pas déterminé avec certitude dans les sources consultées. Le Monde mentionne qu’il n’était pas encore établi. |
-| L’attaque a provoqué le chiffrement de fichiers sur des ordinateurs et serveurs. | L’étendue exacte du chiffrement, machine par machine ou serveur par serveur, n’est pas détaillée publiquement. |
-| Le CHU a fonctionné en mode dégradé, avec recours au papier et au téléphone. | La durée exacte de retour à la normale complète n’est pas précisée dans les sources utilisées ici. |
-| Les applications métiers ont été fortement impactées : admissions, prescriptions, comptes rendus, urgences, analyses, radiologie. | Le niveau précis d’impact sur chaque service hospitalier n’est pas quantifié. |
-| Le rançongiciel identifié publiquement est Clop / CryptoMix Clop. | L’identité exacte des auteurs individuels n’est pas établie publiquement. |
-| L’ANSSI relie les attaques Clop observées à une campagne d’hameçonnage et au groupe cybercriminel TA505. | L’attribution judiciaire définitive de l’attaque du CHU à des personnes précises n’est pas fournie dans les sources. |
-| Aucune fuite de données médicales ou personnelles n’avait été constatée à la date du communiqué du CHU. | L’absence absolue et définitive d’exfiltration ne peut pas être affirmée uniquement à partir de ces sources. |
-| Une plainte contre X a été déposée pour accès frauduleux et tentative d’extorsion. | Le montant exact de la rançon, son éventuel paiement, ou les échanges avec les attaquants ne sont pas confirmés par les sources principales retenues. |
+| Date | 15 novembre 2019, en début de soirée |
+| Type d'attaque | rançongiciel / cryptovirus |
+| Rançongiciel associé | Clop / CryptoMix Clop selon les sources publiques |
+| Établissement | CHU de Rouen, réparti sur cinq sites |
+| Impact technique | postes et serveurs touchés, fichiers chiffrés, applications métiers indisponibles |
+| Mesure de crise | arrêt rapide des ordinateurs pour limiter la propagation |
+| Mode de fonctionnement | mode dégradé, papier, téléphone, récupération physique de certains résultats |
+| Données | aucune fuite de données médicales ou personnelles constatée à la date du communiqué du CHU |
+| Suites | plainte contre X pour accès frauduleux et tentative d'extorsion |
+
+## 6. Couches impactées
+
+| Couche | Impact observé |
+| --- | --- |
+| Administration patient | admissions perturbées |
+| Urgences | gestion plus difficile, coordination ralentie |
+| Soins | observations et transmissions papier |
+| Prescriptions | prescriptions perturbées ou à refaire |
+| Laboratoire | résultats récupérés physiquement, service ralenti |
+| Imagerie | radiologie ralentie |
+| Dossier patient | accès numérique perturbé |
+| Communication interne | retour au téléphone, messagerie perturbée |
+
+## 7. Priorités de reprise
+
+Dans une crise hospitalière, la reprise doit suivre l'importance métier.
+
+| Priorité | À rétablir | Pourquoi |
+| --- | --- | --- |
+| 1 | urgences et admission minimale | identifier les patients et gérer les arrivées |
+| 2 | dossier patient et soins | retrouver les informations médicales essentielles |
+| 3 | prescriptions et pharmacie | éviter les erreurs de traitement |
+| 4 | laboratoire et imagerie | permettre les diagnostics urgents |
+| 5 | communication interne | coordonner les services |
+| 6 | administration, facturation, RH | reprendre le fonctionnement global |
+
+## Ce qui est certain / ce qui reste flou
+
+| Certain | Flou ou non confirmé publiquement |
+| --- | --- |
+| Une cyberattaque a touché le CHU de Rouen le 15 novembre 2019. | Le point d'entrée exact dans le SI. |
+| Des fichiers ont été chiffrés sur des ordinateurs et serveurs. | L'étendue exacte du chiffrement machine par machine. |
+| Le CHU a fonctionné en mode dégradé. | La durée exacte du retour complet à la normale. |
+| Les applications métiers ont été fortement perturbées. | Le niveau précis d'impact service par service. |
+| Clop / CryptoMix Clop est cité publiquement. | L'identité exacte des auteurs individuels. |
+| Une plainte contre X a été déposée. | Le montant de la rançon et les échanges éventuels avec les attaquants. |
+
+## Formulation courte
+
+Le CHU de Rouen a subi le 15 novembre 2019 une cyberattaque de type rançongiciel, publiquement associée à Clop / CryptoMix Clop. L'incident a rendu indisponible une partie importante du système d'information : applications métiers, postes de travail, serveurs, admissions, prescriptions, analyses, radiologie, urgences et comptes rendus. L'établissement a basculé en mode dégradé, avec arrêt des ordinateurs, usage du papier, téléphone et ralentissement de plusieurs services. Les sources confirment une tentative d'extorsion et une plainte contre X, mais ne permettent pas d'affirmer avec certitude le point d'entrée exact, l'étendue complète du chiffrement ou l'identité des auteurs.
+
+## À retenir
+
+Une cyberattaque sur un hôpital touche directement les missions métier.
+
+Pour analyser le SI, il faut partir des activités réelles, identifier les couches fonctionnelles, repérer les dépendances numériques et prioriser la reprise selon l'impact sur les patients.

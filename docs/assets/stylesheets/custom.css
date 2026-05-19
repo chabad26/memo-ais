@@ -20,3 +20,70 @@
 .md-typeset h3 {
   text-decoration-color: color-mix(in srgb, var(--md-primary-fg-color) 65%, transparent);
 }
+
+.md-typeset .mermaid {
+  cursor: zoom-in;
+  position: relative;
+}
+
+.md-typeset .mermaid::after {
+  background: var(--md-primary-fg-color);
+  border-radius: 4px;
+  color: var(--md-primary-bg-color);
+  content: "Cliquer pour agrandir";
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.25rem 0.45rem;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+
+.mermaid-zoom-open {
+  overflow: hidden;
+}
+
+.mermaid-fullscreen,
+.mermaid-fullscreen-fallback {
+  background: var(--md-default-bg-color);
+  cursor: default;
+  overflow: auto;
+  padding: 2rem;
+}
+
+.mermaid-fullscreen {
+  height: 100vh;
+  width: 100vw;
+}
+
+.mermaid-fullscreen-fallback {
+  bottom: 1rem;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 30%);
+  height: calc(100vh - 2rem);
+  left: 1rem;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  width: calc(100vw - 2rem);
+  z-index: 10000;
+}
+
+.mermaid-fullscreen::after,
+.mermaid-fullscreen-fallback::after {
+  display: none;
+}
+
+.mermaid-fullscreen svg,
+.mermaid-fullscreen-fallback svg {
+  display: block;
+  height: auto;
+  max-width: none;
+  min-width: 90rem;
+  width: 100%;
+}
+
+.mermaid-fullscreen code,
+.mermaid-fullscreen-fallback code {
+  color: var(--md-default-fg-color);
+  white-space: pre-wrap;
+}

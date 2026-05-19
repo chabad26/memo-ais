@@ -1,5 +1,9 @@
 # Liens utiles
 
+Apprendre les bases du bash :
+
+- [Teminus](https://frederic-junier.gitlab.io/parc-nsi/chapitre9/terminus/corrige/terminus.html)
+
 Pour avoir les failles de sécurité en temps réel :
 
 - [Alertes CERT-FR / ANSSI](https://www.cert.ssi.gouv.fr/alerte/)
