@@ -68,7 +68,25 @@ flowchart TD
     class APPS,TECH,ADMIN app;
     class DATA data;
     class USERS,EXT,WEB user;
+
+    linkStyle 0,1,2 stroke:#2563eb,stroke-width:2px;
+    linkStyle 3,4,5 stroke:#64748b,stroke-width:2px;
+    linkStyle 6,8,9 stroke:#16a34a,stroke-width:2px;
+    linkStyle 7,11 stroke:#ca8a04,stroke-width:2px;
+    linkStyle 10,12 stroke:#7c3aed,stroke-width:2px;
+    linkStyle 13 stroke:#dc2626,stroke-width:2px;
 ```
+
+### Légende des flèches
+
+| Couleur | Type de flux | Exemple |
+| --- | --- | --- |
+| Bleu | Flux externe / périmètre | partenaires, Internet, flux autorisés vers le SI |
+| Gris | Flux réseau interne | accès aux zones utilisateurs, applications et DSI |
+| Vert | Flux métier | consultation, saisie, activité de soins, support métier |
+| Jaune | Flux données / sauvegardes | lecture, écriture, restauration |
+| Violet | Flux administration / identité | droits, comptes, administration technique |
+| Rouge | Flux de crise | coordination en mode dégradé |
 
 ## Zones principales
 

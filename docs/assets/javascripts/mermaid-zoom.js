@@ -1,78 +1,90 @@
 (function () {
+  if (window.__mermaidZoomInitialized) {
+    return;
+  }
+
+  window.__mermaidZoomInitialized = true;
+
   function fullscreenElement() {
-    return document.fullscreenElement || document.webkitFullscreenElement;
+    return document.fullscreenElement || document.webkitFullscreenElement || null;
   }
 
-  function openFullscreen(element) {
-    element.classList.add("mermaid-fullscreen");
-
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-      return;
-    }
-
-    if (element.webkitRequestFullscreen) {
-      element.webkitRequestFullscreen();
-      return;
-    }
-
-    element.classList.toggle("mermaid-fullscreen-fallback");
+  function cleanup() {
+    document.querySelectorAll(".mermaid-fullscreen, .mermaid-fullscreen-fallback").forEach(function (diagram) {
+      diagram.classList.remove("mermaid-fullscreen");
+      diagram.classList.remove("mermaid-fullscreen-fallback");
+    });
   }
 
-  function closeFallback() {
+  function exitFallback() {
     document.querySelectorAll(".mermaid-fullscreen-fallback").forEach(function (diagram) {
       diagram.classList.remove("mermaid-fullscreen");
       diagram.classList.remove("mermaid-fullscreen-fallback");
     });
   }
 
-  function bindMermaidZoom() {
-    document.querySelectorAll(".mermaid").forEach(function (diagram) {
-      if (diagram.dataset.zoomReady === "true") {
-        return;
-      }
+  function openFullscreen(diagram) {
+    cleanup();
+    diagram.classList.add("mermaid-fullscreen");
 
-      diagram.dataset.zoomReady = "true";
-      diagram.setAttribute("title", "Cliquer pour agrandir");
-      diagram.addEventListener("click", function () {
-        if (fullscreenElement() || diagram.classList.contains("mermaid-fullscreen-fallback")) {
-          return;
-        }
-
-        openFullscreen(diagram);
+    if (diagram.requestFullscreen) {
+      diagram.requestFullscreen().catch(function () {
+        diagram.classList.add("mermaid-fullscreen-fallback");
       });
+      return;
+    }
+
+    if (diagram.webkitRequestFullscreen) {
+      diagram.webkitRequestFullscreen();
+      return;
+    }
+
+    diagram.classList.add("mermaid-fullscreen-fallback");
+  }
+
+  function markDiagrams() {
+    document.querySelectorAll(".mermaid").forEach(function (diagram) {
+      diagram.setAttribute("title", "Cliquer pour agrandir");
     });
   }
 
+  document.addEventListener("click", function (event) {
+    var diagram = event.target.closest(".mermaid");
+
+    if (!diagram || fullscreenElement() || diagram.classList.contains("mermaid-fullscreen-fallback")) {
+      return;
+    }
+
+    event.preventDefault();
+    openFullscreen(diagram);
+  });
+
   document.addEventListener("fullscreenchange", function () {
     if (!fullscreenElement()) {
-      document.querySelectorAll(".mermaid-fullscreen").forEach(function (diagram) {
-        diagram.classList.remove("mermaid-fullscreen");
-      });
+      cleanup();
     }
   });
 
   document.addEventListener("webkitfullscreenchange", function () {
     if (!fullscreenElement()) {
-      document.querySelectorAll(".mermaid-fullscreen").forEach(function (diagram) {
-        diagram.classList.remove("mermaid-fullscreen");
-      });
+      cleanup();
     }
   });
 
   document.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
-      closeFallback();
+      exitFallback();
     }
   });
 
   if (typeof document$ !== "undefined") {
     document$.subscribe(function () {
-      window.setTimeout(bindMermaidZoom, 500);
+      cleanup();
+      window.setTimeout(markDiagrams, 500);
     });
   } else {
     document.addEventListener("DOMContentLoaded", function () {
-      window.setTimeout(bindMermaidZoom, 500);
+      window.setTimeout(markDiagrams, 500);
     });
   }
 })();

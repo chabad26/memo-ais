@@ -39,10 +39,6 @@
   top: 0.5rem;
 }
 
-.mermaid-zoom-open {
-  overflow: hidden;
-}
-
 .mermaid-fullscreen,
 .mermaid-fullscreen-fallback {
   background: var(--md-default-bg-color);

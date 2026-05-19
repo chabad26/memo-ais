@@ -82,7 +82,26 @@ flowchart LR
     class SERVERS,DATA,ADMIN critical;
     class BACKUP safety;
     class CRISIS crisis;
+
+    linkStyle 0,1,12,13,14 stroke:#dc2626,stroke-width:2.5px;
+    linkStyle 2,3,4,5 stroke:#2563eb,stroke-width:2px;
+    linkStyle 6,15 stroke:#dc2626,stroke-width:2.5px;
+    linkStyle 7 stroke:#7c3aed,stroke-width:2px;
+    linkStyle 8,10,11 stroke:#16a34a,stroke-width:2px;
+    linkStyle 9 stroke:#ca8a04,stroke-width:2px;
+    linkStyle 16,17 stroke:#64748b,stroke-width:2px;
 ```
+
+### Légende des flèches
+
+| Couleur | Type de flux | Exemple |
+| --- | --- | --- |
+| Rouge | Chemin d'attaque / risque | phishing, accès distant compromis, rebond, chiffrement |
+| Bleu | Flux externe ou périmètre | Internet, VPN, pare-feu, flux autorisés |
+| Violet | Flux identité / administration | Active Directory, comptes, droits |
+| Vert | Flux métier | accès applications, biomédical, téléphonie |
+| Jaune | Flux données / sauvegardes | lecture-écriture, sauvegardes |
+| Gris | Continuité de crise | ToIP, papier, téléphone, mode dégradé |
 
 ## Lecture côté attaquant
 

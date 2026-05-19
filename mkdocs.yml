@@ -64,6 +64,7 @@ nav:
       - Première vue globale du SI: systeme-info-si/premiere-vue-globale-si.md
       - Diagramme réseau du SI: systeme-info-si/diagramme-reseau-si.md
       - Modèles d'architecture applicative: systeme-info-si/modeles-architecture-applicative.md
+      - Dépendances applicatives: systeme-info-si/dependances-applicatives.md
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
       - Intro AIS: pense-bete/intro-ais.md
