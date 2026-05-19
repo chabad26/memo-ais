@@ -52,6 +52,10 @@ nav:
           - Menaces et attaques: intro-ais/securite-menaces.md
           - Hygiène numérique: intro-ais/hygiene-numerique.md
           - Chiffrement: intro-ais/chiffrement.md
+  - Système d’info & archi SI:
+      - Présentation: systeme-info-si/index.md
+      - Système d’information: systeme-info-si/systeme-info.md
+      - Architecture SI: systeme-info-si/ archi-si.md
   - Pense-bête: pense-bete.md
-  - Schéma de l'AIS: schema-ais.md
+  - Schéma Réseaux & AIS: schema-ais.md
   - Liens utiles: liens-utiles.md

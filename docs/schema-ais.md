@@ -1,4 +1,4 @@
-# Schémas de l'AIS
+# Schémas
 
 ## Réseau
 

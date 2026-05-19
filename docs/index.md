@@ -14,6 +14,7 @@ Ce mémo est découpé en plusieurs parties :
 - **Pense-bête** : rappels rapides et commandes utiles au quotidien.
 - **Schémas de l'AIS** : des schémas pour donner des exemples plus concret
 - **Liens utiles** : Des ressources utiles pour la veille technologique
+- **Système d’info & archi SI** : organisation du SI, des flux et des infrastructures.
 
 ## Objectif
 
