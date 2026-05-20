@@ -20,21 +20,12 @@ Message à défendre :
 
 Les diagrammes sont aussi disponibles au format diagrams.net / draw.io :
 
-- [00 - Schéma complet du SI hospitalier](drawio/00-schema-complet-si-hospitalier.drawio)
-- [01 - Vue réseau simplifiée](drawio/01-vue-reseau-simplifiee.drawio)
-- [02 - Flux de données critiques](drawio/02-flux-donnees-critiques.drawio)
-- [03 - Utilisateurs et autorisations](drawio/03-utilisateurs-autorisations.drawio)
-- [04 - Chemin d'attaque ransomware](drawio/04-chemin-attaque-ransomware.drawio)
-- [05 - Vue hardware simplifiée](drawio/05-vue-hardware-simplifiee.drawio)
-
-## Versions PDF imprimables
-
-- [00 - Schéma complet du SI hospitalier](pdf/00-schema-complet-si-hospitalier.pdf)
-- [01 - Vue réseau simplifiée](pdf/01-vue-reseau-simplifiee.pdf)
-- [02 - Flux de données critiques](pdf/02-flux-donnees-critiques.pdf)
-- [03 - Utilisateurs et autorisations](pdf/03-utilisateurs-autorisations.pdf)
-- [04 - Chemin d'attaque ransomware](pdf/04-chemin-attaque-ransomware.pdf)
-- [05 - Vue hardware simplifiée](pdf/05-vue-hardware-simplifiee.pdf)
+- [00 - Schéma complet du SI hospitalier](drawio/00-schema-complet-si-hospitalier.drawio.png)
+- [01 - Vue réseau simplifiée](drawio/01-vue-reseau-simplifiee.drawio.png)
+- [02 - Flux de données critiques](drawio/02-flux-donnees-critiques.drawio.png)
+- [03 - Utilisateurs et autorisations](drawio/03-utilisateurs-autorisations.drawio.png)
+- [04 - Chemin d'attaque ransomware](drawio/04-chemin-attaque-ransomware.drawio.png)
+- [05 - Vue hardware simplifiée](drawio/05-vue-hardware-simplifiee.drawio.png)
 
 ## Diagramme 1 : vue réseau simplifiée
 
