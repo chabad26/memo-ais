@@ -42,7 +42,10 @@
 .mermaid-fullscreen,
 .mermaid-fullscreen-fallback {
   background: var(--md-default-bg-color);
+  box-sizing: border-box;
   cursor: default;
+  display: grid;
+  place-items: center;
   overflow: auto;
   padding: 2rem;
 }
@@ -73,9 +76,18 @@
 .mermaid-fullscreen-fallback svg {
   display: block;
   height: auto;
-  max-width: none;
-  min-width: 90rem;
-  width: 100%;
+  max-height: calc(100vh - 4rem);
+  max-width: 100%;
+  min-width: 0;
+  width: auto;
+}
+
+.mermaid-fullscreen svg[style],
+.mermaid-fullscreen-fallback svg[style] {
+  height: auto;
+  max-height: calc(100vh - 4rem);
+  max-width: 100%;
+  width: auto;
 }
 
 .mermaid-fullscreen code,

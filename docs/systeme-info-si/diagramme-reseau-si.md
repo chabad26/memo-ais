@@ -162,6 +162,172 @@ L'ANSSI indique que Clop peut chiffrer les documents présents sur les systèmes
 | Applications vers sauvegardes | Sauvegarder les systèmes et données. | Isoler les sauvegardes pour éviter leur chiffrement. |
 | Services critiques vers ToIP | Communiquer en cas de crise. | Garder la téléphonie indépendante du SI principal autant que possible. |
 
+## Cartographie des données
+
+L'objectif est d'identifier les données critiques, leur lieu de stockage et leurs principaux flux.
+
+Pour rester lisible, on peut retenir cinq familles :
+
+| Type de données | Exemples | Stockage principal | Criticité |
+| --- | --- | --- | --- |
+| Données patient | identité, dossier médical, prescriptions, comptes rendus | DPI, bases patient, applications métiers | Très élevée |
+| Données de soins et examens | résultats de laboratoire, imagerie, observations, traitements | laboratoire, PACS/imagerie, DPI | Très élevée |
+| Données administratives | admissions, facturation, RH, planning | applications administratives, bases de gestion | Élevée |
+| Données techniques | journaux, supervision, inventaire, configurations | serveurs techniques, SIEM/supervision, outils d'administration | Élevée |
+| Données d'identité et sauvegardes | comptes, droits, Active Directory, copies de restauration | annuaire, serveurs de sauvegarde, stockage isolé | Critique |
+
+## Diagramme des flux de données
+
+```mermaid
+flowchart TB
+    subgraph LEG["Légende des flèches"]
+        LBLUE["Bleu : flux externes"]
+        LGREEN["Vert : usage métier"]
+        LPURPLE["Violet : identité / droits"]
+        LYELLOW["Jaune : données / sauvegardes"]
+        LGRAY["Gris : données techniques"]
+        LRED["Rouge : cible ransomware"]
+    end
+
+    subgraph ACT["Sources et utilisateurs"]
+        direction LR
+        EXT["Partenaires externes<br/>assurance maladie, fournisseurs,<br/>laboratoires externes"]
+        USERS["Utilisateurs internes<br/>soignants, accueil,<br/>secrétariats, pharmacie"]
+        BIOMED["Équipements biomédicaux<br/>imagerie, automates,<br/>dispositifs connectés"]
+    end
+
+    subgraph SEC["Identité et contrôle d'accès"]
+        direction LR
+        IDENTITY["Annuaire / IAM<br/>comptes, groupes,<br/>droits d'accès"]
+        RISKID["Risque ransomware<br/>prise de droits"]
+    end
+
+    subgraph APPS["Applications"]
+        direction LR
+        ADMINAPP["Applications administratives<br/>admissions, facturation,<br/>RH, planning"]
+        DPI["DPI / applications de soins<br/>dossier patient, prescriptions,<br/>comptes rendus"]
+        TECHAPP["Applications techniques<br/>supervision, inventaire,<br/>administration"]
+    end
+
+    subgraph DATASTORE["Stockages et points de concentration"]
+        direction LR
+        ADMINDB["Bases administratives<br/>facturation, RH,<br/>données de gestion"]
+        PATIENTDB["Bases patient<br/>identité, antécédents,<br/>dossier médical"]
+        EXAMDB["Données examens<br/>labo, imagerie, résultats"]
+        LOGDB["Données techniques<br/>journaux, supervision,<br/>configurations"]
+        RISKDATA["Risque ransomware<br/>blocage des soins<br/>et diagnostics"]
+    end
+
+    subgraph RECOVERY["Restauration"]
+        direction LR
+        BACKUP["Sauvegardes<br/>copies applicatives,<br/>bases, fichiers"]
+        RISKBACKUP["Risque ransomware<br/>attaque des copies"]
+    end
+
+    USERS -->|"authentification"| IDENTITY
+    IDENTITY -->|"droits d'accès"| DPI
+    IDENTITY -->|"droits d'accès"| ADMINAPP
+    IDENTITY -->|"droits d'accès"| TECHAPP
+
+    USERS -->|"consultation / saisie"| DPI
+    USERS -->|"admission / gestion"| ADMINAPP
+    USERS -->|"support / exploitation"| TECHAPP
+    BIOMED -->|"mesures / images / résultats"| EXAMDB
+
+    EXT -->|"échanges contrôlés"| ADMINAPP
+    EXT -->|"résultats / demandes externes"| DPI
+
+    DPI -->|"lecture / écriture dossier"| PATIENTDB
+    DPI -->|"résultats et comptes rendus"| EXAMDB
+    ADMINAPP -->|"données de gestion"| ADMINDB
+    TECHAPP -->|"logs / supervision / configuration"| LOGDB
+
+    PATIENTDB -->|"sauvegarde"| BACKUP
+    EXAMDB -->|"sauvegarde"| BACKUP
+    ADMINDB -->|"sauvegarde"| BACKUP
+    IDENTITY -->|"sauvegarde configuration"| BACKUP
+    LOGDB -->|"sauvegarde"| BACKUP
+
+    RISKID -. "1. prendre les droits" .-> IDENTITY
+    RISKDATA -. "2. bloquer les soins" .-> PATIENTDB
+    RISKDATA -. "3. bloquer diagnostics" .-> EXAMDB
+    RISKBACKUP -. "4. viser les copies" .-> BACKUP
+
+    classDef actor fill:#e0f2fe,stroke:#0369a1,stroke-width:1px,color:#111827;
+    classDef identity fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#111827;
+    classDef app fill:#dcfce7,stroke:#15803d,stroke-width:1px,color:#111827;
+    classDef data fill:#fef3c7,stroke:#b45309,stroke-width:2px,color:#111827;
+    classDef tech fill:#f1f5f9,stroke:#64748b,stroke-width:1px,color:#111827;
+    classDef danger fill:#fee2e2,stroke:#b91c1c,stroke-width:2px,color:#111827;
+    classDef legendBlue fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#111827;
+    classDef legendGreen fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#111827;
+    classDef legendPurple fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#111827;
+    classDef legendYellow fill:#fef3c7,stroke:#ca8a04,stroke-width:2px,color:#111827;
+    classDef legendGray fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#111827;
+    classDef legendRed fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#111827;
+
+    class EXT,USERS,BIOMED actor;
+    class IDENTITY identity;
+    class DPI,ADMINAPP,TECHAPP app;
+    class PATIENTDB,EXAMDB,ADMINDB,BACKUP data;
+    class LOGDB tech;
+    class RISKID,RISKDATA,RISKBACKUP danger;
+    class LBLUE legendBlue;
+    class LGREEN legendGreen;
+    class LPURPLE legendPurple;
+    class LYELLOW legendYellow;
+    class LGRAY legendGray;
+    class LRED legendRed;
+
+    linkStyle 0,1,2,3 stroke:#7c3aed,stroke-width:2px;
+    linkStyle 4,5,6,7 stroke:#16a34a,stroke-width:2px;
+    linkStyle 8,9 stroke:#2563eb,stroke-width:2px;
+    linkStyle 10,11,12,14,15,16,17,18 stroke:#ca8a04,stroke-width:2px;
+    linkStyle 13 stroke:#64748b,stroke-width:2px;
+    linkStyle 19,20,21,22 stroke:#dc2626,stroke-width:2.5px,stroke-dasharray:5 5;
+```
+
+### Légende des flèches
+
+| Couleur | Type de flux | Exemple |
+| --- | --- | --- |
+| Bleu | Flux externes | partenaires vers admissions ou DPI |
+| Vert | Usage métier | soignants vers DPI, accueil vers admissions, biomédical vers examens |
+| Violet | Identité / droits | authentification, droits applicatifs, comptes |
+| Jaune | Données / sauvegardes | lecture-écriture, copie, restauration |
+| Gris | Données techniques | journaux, supervision, configurations |
+| Rouge | Cible ransomware | chiffrement des données, prise de droits, attaque des sauvegardes |
+
+### Lecture du diagramme
+
+| Élément | Ce qu'il concentre | Pourquoi c'est critique |
+| --- | --- | --- |
+| DPI / bases patient | données médicales, prescriptions, comptes rendus | arrêt direct des soins informatisés, forte sensibilité RGPD |
+| Données examens | résultats de laboratoire, imagerie, comptes rendus spécialisés | diagnostic ralenti, perte de disponibilité pour les services de soins |
+| Annuaire / IAM | comptes, groupes, droits, authentification | un compte compromis peut ouvrir l'accès à plusieurs applications |
+| Sauvegardes | copies des bases, fichiers, configurations | dernière ligne de défense après chiffrement |
+| Applications administratives | admissions, facturation, RH, planning | fonctionnement de l'établissement perturbé même si les soins continuent en mode dégradé |
+
+### Données visées en priorité par un ransomware
+
+Un ransomware cherche surtout les données qui donnent un levier fort à l'attaquant :
+
+| Priorité | Données visées | Intérêt pour l'attaquant |
+| --- | --- | --- |
+| 1 | Dossier patient, prescriptions, comptes rendus, résultats | bloquer les soins et créer une pression opérationnelle immédiate |
+| 2 | Identifiants, annuaire, droits administrateurs | se propager, augmenter les privilèges et atteindre plus de systèmes |
+| 3 | Sauvegardes accessibles depuis le SI | empêcher la restauration rapide |
+| 4 | Données administratives et RH | augmenter l'impact métier et la pression de négociation |
+| 5 | Journaux, supervision, configurations | masquer les traces et perturber l'analyse de l'incident |
+
+### Zones critiques à surveiller
+
+- **Concentration des données sensibles** : bases patient, imagerie, laboratoire, DPI.
+- **Concentration des droits** : Active Directory, comptes administrateurs, accès prestataires.
+- **Concentration de restauration** : serveurs et stockages de sauvegarde.
+- **Flux inter-applications** : échanges DPI, laboratoire, imagerie, admissions.
+- **Flux externes** : partenaires, assurance maladie, prestataires et télémaintenance.
+
 ## Enjeux à ajouter au schéma
 
 | Enjeu | Explication |
@@ -199,9 +365,14 @@ Cette représentation reste un brouillon. Il faudrait encore vérifier :
 - quels flux ont été coupés pendant la crise ;
 - quels serveurs étaient Windows, Linux ou Oracle.
 
-## Livrable
+## Livrables
 
-Le livrable attendu est un **diagramme réseau** avec :
+Les livrables attendus sont :
+
+- un **diagramme réseau** avec les zones, points d'entrée et chemins d'attaque ;
+- un **diagramme des flux de données** avec les types de données, lieux de stockage, flux directionnels et points de concentration.
+
+Le diagramme réseau doit montrer :
 
 - les zones réseau,
 - les points d'entrée,
@@ -209,6 +380,13 @@ Le livrable attendu est un **diagramme réseau** avec :
 - les zones critiques,
 - les hypothèses de segmentation,
 - le déplacement possible d'un attaquant.
+
+Le diagramme des flux de données doit montrer :
+
+- les données patient, administratives, techniques, d'identité et de sauvegarde ;
+- où elles sont stockées ;
+- comment elles circulent ;
+- quelles zones sont critiques pour un ransomware.
 
 ## À retenir
 
