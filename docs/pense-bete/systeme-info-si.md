@@ -1,167 +1,172 @@
 # Pense-bête Système d'info & archi SI
 
-## Système d'information
+## Ce que je retiens de la cartographie SI
 
-Un **système d'information** regroupe les personnes, les outils, les données, les procédures et les infrastructures qui permettent à une organisation de fonctionner.
+Cartographier un SI, ce n'est pas dessiner tous les serveurs un par un.
 
-Dans un hôpital, le SI soutient :
+C'est comprendre :
 
-- les admissions,
-- les soins,
-- les prescriptions,
-- le dossier patient,
-- le laboratoire,
-- l'imagerie,
-- la pharmacie,
-- les urgences,
-- la facturation,
-- la RH,
-- la maintenance biomédicale.
+- quelles activités métier dépendent du numérique ;
+- quelles applications, données, réseaux et utilisateurs sont impliqués ;
+- quels flux sont indispensables ;
+- quels points peuvent bloquer toute l'organisation ;
+- quelles hypothèses sont crédibles, et lesquelles doivent être vérifiées.
 
-## Architecture SI
+La cartographie sert à expliquer le SI à quelqu'un d'autre, mais aussi à voir où un incident peut se propager.
 
-L'**architecture SI** décrit comment les composants sont organisés :
+## La démarche en 4 axes
 
-- utilisateurs,
-- applications,
-- données,
-- réseau,
-- serveurs,
-- sécurité,
-- flux,
-- dépendances.
-
-Une bonne architecture facilite :
-
-- l'administration,
-- la supervision,
-- l'évolution,
-- la sécurité,
-- la reprise après incident.
-
-## Méthode de cartographie
-
-Pour analyser un SI, on peut avancer dans cet ordre :
-
-1. Partir des activités réelles de l'organisation.
-2. Regrouper les activités en couches fonctionnelles.
-3. Identifier les dépendances au SI.
-4. Décomposer en 4 axes : réseau, applicatif, données, utilisateurs.
-5. Dessiner une première vue globale.
-6. Produire un diagramme réseau.
-7. Repérer les zones critiques et les zones floues.
-
-## Couches fonctionnelles d'un hôpital
-
-| Couche | Exemples |
-| --- | --- |
-| Administration patient | admissions, identité patient, rendez-vous |
-| Urgences | accueil, orientation, priorisation |
-| Soins | observations, suivi patient, traitements |
-| Prescriptions | médicaments, examens, actes |
-| Laboratoire | analyses, prélèvements, résultats |
-| Imagerie | radio, scanner, IRM, comptes rendus |
-| Pharmacie | stocks, délivrance, validation |
-| Dossier patient | historique, allergies, comptes rendus |
-| Support technique | DSI, supervision, maintenance, sauvegardes |
-
-## Les 4 axes d'analyse
-
-| Axe | Ce qu'on cherche |
-| --- | --- |
-| Réseau | zones, flux, Internet, VPN, segmentation, cloisonnement |
-| Applicatif | applications métiers, DPI, prescriptions, laboratoire, imagerie |
-| Données | identité patient, résultats, images, comptes rendus, sauvegardes |
-| Utilisateurs | soignants, accueil, DSI, direction, prestataires |
-
-## Diagrammes à produire
-
-| Diagramme | Utilité |
-| --- | --- |
-| Vue globale du SI | Comprendre les grandes zones et les interactions principales. |
-| Diagramme réseau | Voir les zones réseau, les flux, les points d'entrée et les chemins d'attaque. |
-| Schéma de crise | Montrer ce qui tombe, ce qui continue et ce qui doit être repris en priorité. |
-
-## Questions importantes
-
-Pour lire un SI côté défense ou côté attaquant :
-
-- Par où un attaquant peut-il entrer ?
-- Quels accès distants existent ?
-- Où sont les applications critiques ?
-- Où sont les données sensibles ?
-- Comment les utilisateurs s'authentifient ?
-- Quels flux sont indispensables ?
-- Quelles zones sont cloisonnées ?
-- Quelles sauvegardes sont protégées ?
-- Que peut-on couper en cas de crise ?
-
-## Cas CHU de Rouen
-
-Le CHU de Rouen a subi le 15 novembre 2019 une cyberattaque de type rançongiciel.
-
-Points importants à retenir :
-
-- attaque associée publiquement à Clop / CryptoMix Clop,
-- chiffrement de fichiers sur des ordinateurs et serveurs,
-- applications métiers fortement perturbées,
-- admissions, prescriptions, analyses, imagerie, urgences et comptes rendus touchés,
-- arrêt rapide des ordinateurs pour éviter la propagation,
-- fonctionnement en mode dégradé,
-- retour au papier et au téléphone,
-- plainte contre X pour accès frauduleux et tentative d'extorsion.
-
-## Priorités de reprise en hôpital
-
-| Priorité | À rétablir |
-| --- | --- |
-| 1 | Urgences et admission minimale |
-| 2 | Dossier patient et soins |
-| 3 | Prescriptions et pharmacie |
-| 4 | Laboratoire et imagerie |
-| 5 | Communication interne |
-| 6 | Administration, facturation, RH |
-
-## Points d'entrée possibles
-
-| Point d'entrée | Exemple |
-| --- | --- |
-| Messagerie | phishing, pièce jointe, lien malveillant |
-| Accès distant | VPN, prestataire, télémaintenance |
-| Service exposé | portail web, messagerie, application publiée |
-| Poste utilisateur | infection initiale puis déplacement interne |
-
-## Déplacement d'un attaquant
-
-Un scénario possible :
-
-1. Compromission d'un poste utilisateur.
-2. Récupération d'identifiants.
-3. Rebond vers l'annuaire ou l'administration.
-4. Propagation vers les serveurs applicatifs.
-5. Chiffrement des fichiers sur postes et serveurs.
-6. Tentative d'atteinte des sauvegardes.
-
-## Segmentation et cloisonnement
+| Axe | Question à poser | Exemples dans un hôpital |
+| --- | --- | --- |
+| Réseau | Quelles zones communiquent entre elles ? | Internet, VPN, postes, serveurs, biomédical, ToIP |
+| Applicatif | Quelles applications soutiennent l'activité ? | DPI, prescriptions, admissions, laboratoire, imagerie |
+| Données | Où sont les données critiques et comment circulent-elles ? | dossier patient, résultats, images, comptes rendus, sauvegardes |
+| Utilisateurs | Qui accède à quoi, comment et pourquoi ? | médecins, infirmiers, DSI, prestataires, administratif |
 
 À retenir :
 
-- séparer les postes utilisateurs et les serveurs,
-- isoler les sauvegardes,
-- protéger les comptes administrateurs,
-- cloisonner les équipements biomédicaux,
-- garder la téléphonie aussi indépendante que possible,
-- limiter les flux entre zones,
-- journaliser les accès importants.
+- le réseau montre les chemins ;
+- l'applicatif montre les services ;
+- les données montrent la valeur à protéger ;
+- les utilisateurs montrent les usages, droits et risques humains.
 
-## À retenir
+## Hypothèses argumentées
 
-Une cartographie SI ne cherche pas la perfection au début.
+Une hypothèse est acceptable si elle est annoncée et justifiée.
 
-Elle sert d'abord à comprendre :
+| Hypothèse | Pourquoi elle est crédible | À vérifier |
+| --- | --- | --- |
+| Le SI utilise un annuaire central | beaucoup d'utilisateurs et de postes à gérer | AD unique ou plusieurs annuaires |
+| Des accès prestataires existent | maintenance applicative et biomédicale fréquente | VPN, comptes, périmètre exact |
+| Le DPI dépend de serveurs et bases centrales | les soins nécessitent un dossier partagé | architecture réelle du DPI |
+| Les sauvegardes sont séparées ou devraient l'être | indispensable après ransomware | isolation, tests, fréquence |
+| Le biomédical devrait être cloisonné | équipements sensibles, parfois anciens | segmentation réelle |
 
-- les activités métier,
-- les dépendances numériques,
-- les zones critiques,
-- les flux,
-- les priorités de reprise.
+Phrase utile :
+
+**Je ne dis pas que c'est certain ; je dis que c'est plausible, justifié, et à vérifier.**
+
+## Les 5 typologies d'architecture
+
+| Modèle | Principe | Avantage | Limite |
+| --- | --- | --- | --- |
+| Centralisée | traitements et données concentrés sur un système principal | simple à piloter, données cohérentes | point unique de panne possible |
+| Décentralisée | plusieurs services ou sites ont leurs propres systèmes | autonomie locale | doublons, cohérence difficile |
+| Distribuée | plusieurs composants coopèrent via le réseau | meilleure répartition et disponibilité | flux et supervision plus complexes |
+| Cloud | applications ou données hébergées chez un fournisseur | élasticité, maintenance déléguée | dépendance réseau/fournisseur, conformité |
+| Hybride | mélange d'interne, cloud, centralisé et distribué | réaliste et flexible | intégration et sécurité plus difficiles |
+
+Dans un hôpital, le modèle est souvent **hybride** :
+
+- certaines données sensibles restent internes ;
+- certaines sauvegardes ou services peuvent être externalisés ;
+- des applications spécialisées existent par métier ;
+- l'identité et les droits sont souvent centralisés.
+
+## Ce qui m'a surpris dans le cas CHU de Rouen
+
+- Un ransomware ne touche pas seulement des fichiers : il désorganise les soins, les admissions, les prescriptions et les résultats.
+- Le mode dégradé papier/téléphone reste indispensable, même dans un hôpital très informatisé.
+- Les sauvegardes sont aussi importantes que les applications : sans restauration, la crise dure.
+- La téléphonie isolée peut devenir un vrai moyen de continuité.
+- Un poste ou un accès prestataire peut devenir critique si les droits ou le cloisonnement sont insuffisants.
+- Le plus dangereux n'est pas toujours le point d'entrée, mais la capacité de rebond vers l'AD, les serveurs et les données.
+
+## Données qu'un ransomware vise en priorité
+
+| Priorité | Données ou systèmes | Pourquoi |
+| --- | --- | --- |
+| 1 | dossier patient, prescriptions, résultats | bloque directement les soins |
+| 2 | comptes, AD/IAM, droits administrateurs | permet la propagation |
+| 3 | sauvegardes | empêche une restauration rapide |
+| 4 | données administratives et RH | augmente l'impact métier |
+| 5 | journaux et configurations | gêne l'analyse et la reprise |
+
+## Utilisateurs et facteurs humains
+
+Un utilisateur n'est pas seulement un risque : c'est un acteur du SI avec des contraintes.
+
+| Profil | Besoin | Risque possible |
+| --- | --- | --- |
+| Médecins | accéder vite au dossier et prescrire | session ouverte, urgence, mobilité |
+| Infirmiers | suivre les soins sur postes partagés | partage de session ou de carte |
+| Administratif | gérer admissions, rendez-vous, messages | phishing, pièce jointe, erreur de saisie |
+| DSI / IT | administrer, dépanner, restaurer | compte admin utilisé trop largement |
+| Prestataires | maintenir à distance | accès VPN trop large ou permanent |
+
+Question clé :
+
+**Dans quelles conditions quelqu'un est-il poussé à contourner la sécurité ?**
+
+Réponses fréquentes :
+
+- urgence ;
+- outil trop lent ;
+- manque de postes ;
+- authentification trop lourde ;
+- droits insuffisants ;
+- procédure de support trop longue.
+
+## Vocabulaire enrichi cette semaine
+
+| Terme | Définition simple | Pourquoi c'est important |
+| --- | --- | --- |
+| SI | système d'information : personnes, outils, données, procédures, infrastructures | dépasse la technique pure |
+| DPI | dossier patient informatisé | coeur des données de soins |
+| SPOF | Single Point of Failure : point unique de panne | un seul composant peut bloquer beaucoup de services |
+| Middleware | couche logicielle qui connecte applications, données et utilisateurs | explique les dépendances entre systèmes |
+| API | interface permettant à deux applications d'échanger | rend les flux applicatifs visibles |
+| Flux | circulation d'une donnée ou demande entre deux éléments | base des diagrammes |
+| Segmentation | découpage réseau en zones ou VLAN | limite les chemins possibles |
+| Cloisonnement | séparation fonctionnelle ou technique des zones | limite la propagation |
+| AD / Active Directory | annuaire central de comptes, groupes et droits | point critique pour l'authentification |
+| IAM | gestion des identités et des accès | répond à qui a droit à quoi |
+| VPN | accès distant sécurisé au SI | utile mais sensible pour prestataires |
+| MFA | authentification multifacteur | réduit l'impact d'un mot de passe volé |
+| PACS | stockage et consultation des images médicales | critique pour l'imagerie |
+| RIS | système de radiologie : demandes, planning, comptes rendus | souvent lié au PACS et au DPI |
+| SIEM | centralisation et corrélation des journaux de sécurité | aide à détecter les incidents |
+| ToIP | téléphonie sur IP | peut aider en crise si isolée |
+| PRA | plan de reprise d'activité | redémarrer après incident |
+| PCA | plan de continuité d'activité | continuer malgré l'incident |
+| Mode dégradé | fonctionnement réduit sans SI complet | papier, téléphone, procédures manuelles |
+
+## Réflexes pour lire un diagramme SI
+
+Se poser toujours les mêmes questions :
+
+- Où sont les données sensibles ?
+- Qui y accède ?
+- Par quels systèmes d'autorisation ?
+- Quels flux sont indispensables ?
+- Quels accès distants existent ?
+- Quels composants sont des SPOF ?
+- Quelles zones sont cloisonnées ?
+- Où sont les sauvegardes ?
+- Que peut-on couper en crise ?
+- Quelles hypothèses doivent être vérifiées ?
+
+## Checklist d'un diagramme finalisé
+
+| Point | À vérifier |
+| --- | --- |
+| Titre | le sujet est clair |
+| Légende | les couleurs et flèches sont expliquées |
+| Lisibilité | le texte reste lisible |
+| Simplicité | peu d'éléments par schéma |
+| Direction | les flux ont un sens |
+| Hypothèses | elles sont indiquées |
+| Défense | je peux expliquer pourquoi c'est crédible |
+
+## À retenir avant l'itération 2
+
+Une bonne cartographie SI ne cherche pas à tout savoir immédiatement.
+
+Elle sert à construire une représentation défendable :
+
+- basée sur les usages réels ;
+- organisée selon les 4 axes ;
+- enrichie par les typologies d'architecture ;
+- claire sur ses hypothèses ;
+- utile pour repérer les points critiques ;
+- compréhensible par un tiers.

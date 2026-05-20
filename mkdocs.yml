@@ -66,7 +66,7 @@ nav:
       - Cartographie des utilisateurs: systeme-info-si/cartographie-utilisateurs.md
       - Modèles d'architecture applicative: systeme-info-si/modeles-architecture-applicative.md
       - Dépendances applicatives: systeme-info-si/dependances-applicatives.md
-      - Finalisation des diagrammes: systeme-info-si/finalisation-diagrammes.md
+      - Diagrammes finaux & résumé: systeme-info-si/finalisation-diagrammes.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md

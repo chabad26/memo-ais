@@ -1,8 +1,8 @@
-# Finalisation des diagrammes
+# Diagrammes finaux et résumé
 
 ## Objectif
 
-Produire des diagrammes propres, lisibles et compréhensibles par une personne qui n'a pas participé au travail.
+Produire des diagrammes propres, lisibles et compréhensibles, puis savoir expliquer pourquoi l'architecture proposée est crédible.
 
 Un bon diagramme doit pouvoir être compris sans explication orale. Il doit donc avoir :
 
@@ -11,6 +11,10 @@ Un bon diagramme doit pouvoir être compris sans explication orale. Il doit donc
 - des flèches directionnelles ;
 - une légende ;
 - des hypothèses explicites.
+
+Message à défendre :
+
+**Le SI hospitalier est critique parce qu'il relie les soins, les utilisateurs, les applications, les données, les droits d'accès et les sauvegardes. Un ransomware devient grave quand il atteint ces points de concentration.**
 
 ## Diagramme 1 : vue réseau simplifiée
 
@@ -252,6 +256,54 @@ flowchart LR
 - Le scénario est volontairement simplifié.
 - L'attaque peut entrer par un poste utilisateur, un accès distant ou un service exposé.
 - Le risque augmente si les droits sont trop larges et si les sauvegardes sont accessibles depuis le SI compromis.
+
+## Résumé de présentation
+
+| Partie | Message à faire passer | Diagramme à utiliser |
+| --- | --- | --- |
+| Structure du SI | Le SI est découpé en zones : utilisateurs, applications, administration, données, sauvegardes. | Vue réseau simplifiée |
+| Données critiques | Les données patient, examens, droits et sauvegardes sont les cibles prioritaires. | Flux de données critiques |
+| Utilisateurs et accès | Les profils métier ont des contraintes réelles et des droits différents. | Utilisateurs et autorisations |
+| Risque ransomware | Une attaque peut partir d'un poste ou d'un accès distant puis se propager. | Chemin d'attaque |
+
+## Points critiques à défendre
+
+| Point critique | Pourquoi c'est important |
+| --- | --- |
+| Active Directory / IAM | concentre l'authentification et les droits |
+| DPI | porte le dossier patient et les soins informatisés |
+| VPN / prestataires | peut devenir une entrée distante vers le SI |
+| Données patient et examens | indispensables aux soins et très sensibles |
+| Sauvegardes | dernière solution pour restaurer après chiffrement |
+| Biomédical | équipements critiques, parfois difficiles à mettre à jour |
+
+## Pourquoi c'est crédible ?
+
+- Les zones retenues correspondent aux usages réels d'un hôpital : soigner, administrer, maintenir, restaurer.
+- Les flux représentés sont les flux essentiels : accès applicatif, droits, données, sauvegardes.
+- Les points critiques sont des points de concentration : comptes, données, applications, accès distant.
+- Les hypothèses sont annoncées comme telles et restent vérifiables.
+- Les limites sont identifiées : droits exacts, segmentation réelle, accès prestataires, isolation des sauvegardes.
+
+## Limites à annoncer
+
+| Limite | À vérifier |
+| --- | --- |
+| Accès distants | quels VPN, quels prestataires, quels droits |
+| Segmentation | quelles zones sont réellement séparées |
+| Droits applicatifs | qui lit, écrit ou administre |
+| Sauvegardes | isolation, fréquence, tests de restauration |
+| Biomédical | équipements connectés et niveau de cloisonnement |
+
+## Questions possibles
+
+| Question | Réponse courte |
+| --- | --- |
+| Pourquoi l'AD/IAM est critique ? | Parce qu'il contrôle les comptes et les droits. |
+| Pourquoi les sauvegardes sont centrales ? | Parce qu'elles conditionnent la reprise après ransomware. |
+| Pourquoi parler des utilisateurs ? | Parce que les accès et contraintes métier influencent la sécurité. |
+| Pourquoi un prestataire est sensible ? | Parce qu'il peut avoir un accès distant et technique. |
+| Pourquoi cette architecture est crédible ? | Elle part des usages réels et identifie clairement les hypothèses. |
 
 ## À retenir
 
