@@ -26,6 +26,7 @@ Les diagrammes sont aussi disponibles au format diagrams.net / draw.io :
 - [03 - Utilisateurs et autorisations](drawio/03-utilisateurs-autorisations.drawio.png)
 - [04 - Chemin d'attaque ransomware](drawio/04-chemin-attaque-ransomware.drawio.png)
 - [05 - Vue hardware simplifiée](drawio/05-vue-hardware-simplifiee.drawio.png)
+- [06 - Cartographie applicative](drawio/06-cartographie-applicative.drawio.png)
 
 ## Diagramme 1 : vue réseau simplifiée
 
