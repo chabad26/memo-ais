@@ -188,14 +188,6 @@ Pour chaque application critique :
 - Que se passe-t-il si le serveur central tombe ?
 - Existe-t-il une procédure papier ou un mode dégradé ?
 
-## Livrable attendu
-
-Le livrable peut prendre la forme :
-
-- d'un tableau applications / dépendances / modèle / SPOF ;
-- d'un schéma de chaînes de dépendance ;
-- d'une liste des composants à rendre redondants ou à mieux cloisonner.
-
 ## À retenir
 
 Une application critique dépend toujours d'autre chose.

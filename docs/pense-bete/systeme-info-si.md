@@ -154,25 +154,6 @@ Un scénario possible :
 - limiter les flux entre zones,
 - journaliser les accès importants.
 
-## Mermaid
-
-**Mermaid** permet d'écrire des schémas avec du texte.
-
-Exemple :
-
-```mermaid
-flowchart LR
-    Utilisateur --> Application
-    Application --> Donnees["Données"]
-```
-
-Dans ce mémo, Mermaid sert surtout pour :
-
-- les vues globales du SI,
-- les diagrammes réseau,
-- les flux entre zones,
-- les chemins d'attaque.
-
 ## À retenir
 
 Une cartographie SI ne cherche pas la perfection au début.

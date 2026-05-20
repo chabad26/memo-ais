@@ -33,22 +33,9 @@ Pour un hôpital, on peut représenter le SI avec des zones simples :
 ## Diagramme réseau brouillon
 
 ```mermaid
-flowchart LR
-    ATT["Attaquant<br/>campagne d'hameçonnage<br/>ou accès exposé"]
-    INTERNET["Internet<br/>web, mail, services externes"]
-    REMOTE["Accès distant<br/>VPN, prestataires,<br/>télémaintenance"]
-    PERIM["Périmètre sécurité<br/>pare-feu, proxy,<br/>filtrage"]
-
-    USERS["Réseau utilisateurs<br/>postes bureautiques,<br/>soignants, accueil"]
-    SERVERS["Réseau serveurs<br/>applications métiers<br/>DPI, prescriptions, labo, imagerie"]
-    DATA["Zone données<br/>bases patient,<br/>résultats, images"]
-    ADMIN["Zone administration<br/>Active Directory,<br/>comptes, droits"]
-    BACKUP["Zone sauvegardes<br/>restauration,<br/>copies protégées"]
-    BIOMED["Zone biomédicale<br/>équipements médicaux<br/>connectés"]
-    TOIP["Réseau ToIP isolé<br/>téléphones internes"]
-    CRISIS["Mode dégradé<br/>papier, téléphone,<br/>résultats récupérés physiquement"]
-
+flowchart TB
     subgraph LEG["Légende des flèches"]
+        direction LR
         LRED["Rouge : attaque / risque"]
         LBLUE["Bleu : externe / périmètre"]
         LPURPLE["Violet : identité / administration"]
@@ -57,28 +44,45 @@ flowchart LR
         LGRAY["Gris : continuité de crise"]
     end
 
-    ATT -->|"1. phishing / pièce jointe"| USERS
-    ATT -->|"1 bis. accès distant compromis"| REMOTE
-    INTERNET --> PERIM
-    REMOTE --> PERIM
-    PERIM -->|"flux autorisés"| USERS
-    PERIM -->|"flux publiés / contrôlés"| SERVERS
+    subgraph NET["Diagramme réseau"]
+        direction LR
+        ATT["Attaquant<br/>campagne d'hameçonnage<br/>ou accès exposé"]
+        INTERNET["Internet<br/>web, mail, services externes"]
+        REMOTE["Accès distant<br/>VPN, prestataires,<br/>télémaintenance"]
+        PERIM["Périmètre sécurité<br/>pare-feu, proxy,<br/>filtrage"]
 
-    USERS -->|"2. rebond interne"| ADMIN
-    ADMIN -->|"3. authentification / droits"| SERVERS
-    USERS -->|"accès applications"| SERVERS
-    SERVERS -->|"lecture / écriture"| DATA
-    SERVERS -->|"flux métier"| BIOMED
-    SERVERS -->|"sauvegardes"| BACKUP
-    USERS -->|"coordination"| TOIP
+        USERS["Réseau utilisateurs<br/>postes bureautiques,<br/>soignants, accueil"]
+        SERVERS["Réseau serveurs<br/>applications métiers<br/>DPI, prescriptions, labo, imagerie"]
+        DATA["Zone données<br/>bases patient,<br/>résultats, images"]
+        ADMIN["Zone administration<br/>Active Directory,<br/>comptes, droits"]
+        BACKUP["Zone sauvegardes<br/>restauration,<br/>copies protégées"]
+        BIOMED["Zone biomédicale<br/>équipements médicaux<br/>connectés"]
+        TOIP["Réseau ToIP isolé<br/>téléphones internes"]
+        CRISIS["Mode dégradé<br/>papier, téléphone,<br/>résultats récupérés physiquement"]
 
-    ADMIN -. "4. déplacement latéral<br/>si comptes compromis" .-> SERVERS
-    ADMIN -. "5. chiffrement<br/>postes et serveurs" .-> USERS
-    ADMIN -. "5. chiffrement<br/>serveurs Windows" .-> SERVERS
-    SERVERS -. "risque si sauvegardes accessibles" .-> BACKUP
+        ATT -->|"1. phishing / pièce jointe"| USERS
+        ATT -->|"1 bis. accès distant compromis"| REMOTE
+        INTERNET --> PERIM
+        REMOTE --> PERIM
+        PERIM -->|"flux autorisés"| USERS
+        PERIM -->|"flux publiés / contrôlés"| SERVERS
 
-    TOIP -->|"continuité communication"| CRISIS
-    USERS -->|"si SI indisponible"| CRISIS
+        USERS -->|"2. rebond interne"| ADMIN
+        ADMIN -->|"3. authentification / droits"| SERVERS
+        USERS -->|"accès applications"| SERVERS
+        SERVERS -->|"lecture / écriture"| DATA
+        SERVERS -->|"flux métier"| BIOMED
+        SERVERS -->|"sauvegardes"| BACKUP
+        USERS -->|"coordination"| TOIP
+
+        ADMIN -. "4. déplacement latéral<br/>si comptes compromis" .-> SERVERS
+        ADMIN -. "5. chiffrement<br/>postes et serveurs" .-> USERS
+        ADMIN -. "5. chiffrement<br/>serveurs Windows" .-> SERVERS
+        SERVERS -. "risque si sauvegardes accessibles" .-> BACKUP
+
+        TOIP -->|"continuité communication"| CRISIS
+        USERS -->|"si SI indisponible"| CRISIS
+    end
 
     classDef entry fill:#fee2e2,stroke:#b91c1c,stroke-width:2px,color:#111827;
     classDef network fill:#e0f2fe,stroke:#0369a1,stroke-width:1px,color:#111827;
@@ -112,17 +116,6 @@ flowchart LR
     linkStyle 9 stroke:#ca8a04,stroke-width:2px;
     linkStyle 16,17 stroke:#64748b,stroke-width:2px;
 ```
-
-### Légende des flèches
-
-| Couleur | Type de flux | Exemple |
-| --- | --- | --- |
-| Rouge | Chemin d'attaque / risque | phishing, accès distant compromis, rebond, chiffrement |
-| Bleu | Flux externe ou périmètre | Internet, VPN, pare-feu, flux autorisés |
-| Violet | Flux identité / administration | Active Directory, comptes, droits |
-| Vert | Flux métier | accès applications, biomédical, téléphonie |
-| Jaune | Flux données / sauvegardes | lecture-écriture, sauvegardes |
-| Gris | Continuité de crise | ToIP, papier, téléphone, mode dégradé |
 
 ## Lecture côté attaquant
 
@@ -181,6 +174,7 @@ Pour rester lisible, on peut retenir cinq familles :
 ```mermaid
 flowchart TB
     subgraph LEG["Légende des flèches"]
+        direction LR
         LBLUE["Bleu : flux externes"]
         LGREEN["Vert : usage métier"]
         LPURPLE["Violet : identité / droits"]
@@ -189,6 +183,23 @@ flowchart TB
         LRED["Rouge : cible ransomware"]
     end
 
+    classDef legendBlue fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#111827;
+    classDef legendGreen fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#111827;
+    classDef legendPurple fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#111827;
+    classDef legendYellow fill:#fef3c7,stroke:#ca8a04,stroke-width:2px,color:#111827;
+    classDef legendGray fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#111827;
+    classDef legendRed fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#111827;
+
+    class LBLUE legendBlue;
+    class LGREEN legendGreen;
+    class LPURPLE legendPurple;
+    class LYELLOW legendYellow;
+    class LGRAY legendGray;
+    class LRED legendRed;
+```
+
+```mermaid
+flowchart TB
     subgraph ACT["Sources et utilisateurs"]
         direction LR
         EXT["Partenaires externes<br/>assurance maladie, fournisseurs,<br/>laboratoires externes"]
@@ -210,7 +221,7 @@ flowchart TB
     end
 
     subgraph DATASTORE["Stockages et points de concentration"]
-        direction LR
+        direction TB
         ADMINDB["Bases administratives<br/>facturation, RH,<br/>données de gestion"]
         PATIENTDB["Bases patient<br/>identité, antécédents,<br/>dossier médical"]
         EXAMDB["Données examens<br/>labo, imagerie, résultats"]
@@ -259,12 +270,6 @@ flowchart TB
     classDef data fill:#fef3c7,stroke:#b45309,stroke-width:2px,color:#111827;
     classDef tech fill:#f1f5f9,stroke:#64748b,stroke-width:1px,color:#111827;
     classDef danger fill:#fee2e2,stroke:#b91c1c,stroke-width:2px,color:#111827;
-    classDef legendBlue fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#111827;
-    classDef legendGreen fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#111827;
-    classDef legendPurple fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#111827;
-    classDef legendYellow fill:#fef3c7,stroke:#ca8a04,stroke-width:2px,color:#111827;
-    classDef legendGray fill:#f1f5f9,stroke:#64748b,stroke-width:2px,color:#111827;
-    classDef legendRed fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#111827;
 
     class EXT,USERS,BIOMED actor;
     class IDENTITY identity;
@@ -272,12 +277,6 @@ flowchart TB
     class PATIENTDB,EXAMDB,ADMINDB,BACKUP data;
     class LOGDB tech;
     class RISKID,RISKDATA,RISKBACKUP danger;
-    class LBLUE legendBlue;
-    class LGREEN legendGreen;
-    class LPURPLE legendPurple;
-    class LYELLOW legendYellow;
-    class LGRAY legendGray;
-    class LRED legendRed;
 
     linkStyle 0,1,2,3 stroke:#7c3aed,stroke-width:2px;
     linkStyle 4,5,6,7 stroke:#16a34a,stroke-width:2px;
@@ -286,17 +285,6 @@ flowchart TB
     linkStyle 13 stroke:#64748b,stroke-width:2px;
     linkStyle 19,20,21,22 stroke:#dc2626,stroke-width:2.5px,stroke-dasharray:5 5;
 ```
-
-### Légende des flèches
-
-| Couleur | Type de flux | Exemple |
-| --- | --- | --- |
-| Bleu | Flux externes | partenaires vers admissions ou DPI |
-| Vert | Usage métier | soignants vers DPI, accueil vers admissions, biomédical vers examens |
-| Violet | Identité / droits | authentification, droits applicatifs, comptes |
-| Jaune | Données / sauvegardes | lecture-écriture, copie, restauration |
-| Gris | Données techniques | journaux, supervision, configurations |
-| Rouge | Cible ransomware | chiffrement des données, prise de droits, attaque des sauvegardes |
 
 ### Lecture du diagramme
 
@@ -364,29 +352,6 @@ Cette représentation reste un brouillon. Il faudrait encore vérifier :
 - quels flux Internet sont indispensables ;
 - quels flux ont été coupés pendant la crise ;
 - quels serveurs étaient Windows, Linux ou Oracle.
-
-## Livrables
-
-Les livrables attendus sont :
-
-- un **diagramme réseau** avec les zones, points d'entrée et chemins d'attaque ;
-- un **diagramme des flux de données** avec les types de données, lieux de stockage, flux directionnels et points de concentration.
-
-Le diagramme réseau doit montrer :
-
-- les zones réseau,
-- les points d'entrée,
-- les flux principaux,
-- les zones critiques,
-- les hypothèses de segmentation,
-- le déplacement possible d'un attaquant.
-
-Le diagramme des flux de données doit montrer :
-
-- les données patient, administratives, techniques, d'identité et de sauvegarde ;
-- où elles sont stockées ;
-- comment elles circulent ;
-- quelles zones sont critiques pour un ransomware.
 
 ## À retenir
 
