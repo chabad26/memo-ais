@@ -40,7 +40,7 @@ Le but n'est pas de faire une analyse juridique détaillée. Il faut comprendre 
 | Obligatoire ? | oui, pour les organismes qui traitent des données personnelles dans le champ du RGPD |
 | Impact admin système | gérer les accès, tracer, sécuriser, limiter les données, appliquer les durées de conservation, aider en cas de fuite |
 
-### Exemple concret
+### Exemple concret RGPD
 
 Un hôpital traite des données de santé. Il doit limiter les accès au DPI, tracer les consultations, protéger les données et pouvoir répondre aux demandes des personnes selon le cadre applicable.
 
@@ -55,7 +55,7 @@ Un hôpital traite des données de santé. Il doit limiter les accès au DPI, tr
 | Obligatoire ? | oui pour les entités entrant dans le périmètre après transposition nationale |
 | Impact admin système | durcir les systèmes, documenter, superviser, remonter les incidents, appliquer les règles de sécurité |
 
-### Exemple concret
+### Exemple concret NIS2
 
 Une organisation critique doit être capable d'identifier ses actifs, protéger ses accès, détecter les incidents et notifier les événements importants.
 
@@ -70,7 +70,7 @@ Une organisation critique doit être capable d'identifier ses actifs, protéger 
 | Obligatoire ? | oui pour les entités financières concernées par le règlement |
 | Impact admin système | documenter les actifs TIC, tester la reprise, suivre les prestataires, préparer les preuves et rapports |
 
-### Exemple concret
+### Exemple concret DORA
 
 Une banque qui dépend d'un fournisseur cloud doit gérer ce risque fournisseur, prévoir des tests, suivre les incidents et prouver sa capacité de reprise.
 
@@ -85,7 +85,7 @@ Une banque qui dépend d'un fournisseur cloud doit gérer ce risque fournisseur,
 | Obligatoire ? | non en général, sauf exigence contractuelle ou sectorielle |
 | Impact admin système | appliquer les contrôles, produire des preuves, gérer les accès, sauvegardes, logs, incidents |
 
-### Exemple concret
+### Exemple concret ISO 27001
 
 Une entreprise veut rassurer ses clients : elle structure ses processus sécurité, documente ses risques et prépare une certification ISO 27001.
 

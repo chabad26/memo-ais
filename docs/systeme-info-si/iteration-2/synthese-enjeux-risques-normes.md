@@ -28,16 +28,6 @@ L'idée est de vérifier que les travaux précédents restent cohérents entre e
 | Sécurité | Phishing via messagerie | ISO 27001 / NIS2 | Vol d'identifiants utilisateur |
 | Conformité | Défaut de notification ou de gestion d'incident | RGPD / NIS2 / DORA | Incident non remonté dans les délais attendus |
 
-## À compléter dans mon mémo
-
-| Enjeu | Risque associé | Norme concernée (option) | Exemple |
-| --- | --- | --- | --- |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-| | | | |
-
 ## Méthode
 
 1. Reprendre les enjeux identifiés : disponibilité, sécurité, évolutivité, intégration, conformité.
@@ -45,22 +35,6 @@ L'idée est de vérifier que les travaux précédents restent cohérents entre e
 3. Ajouter une norme ou un règlement si un lien existe.
 4. Donner un exemple concret.
 5. Supprimer les doublons et garder les lignes les plus claires.
-
-## Questions de cohérence
-
-- Est-ce que chaque risque est bien relié à un enjeu ?
-- Est-ce que la norme citée est vraiment pertinente ?
-- Est-ce que l'exemple est concret ?
-- Est-ce qu'on distingue bien la cause, le risque et l'impact ?
-- Est-ce que le tableau reste lisible ?
-
-## Résultat attendu
-
-Le résultat attendu est un **tableau de synthèse** clair.
-
-Il doit montrer clairement le lien :
-
-**enjeu → risque → norme éventuelle → exemple concret**
 
 ## À retenir
 
