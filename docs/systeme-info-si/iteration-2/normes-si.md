@@ -99,22 +99,22 @@ Une entreprise veut rassurer ses clients : elle structure ses processus sécurit
 | Logique | protéger les personnes | protéger les services essentiels | protéger la continuité financière | structurer la sécurité |
 | Effet sur l'admin | sécurité, accès, traces, conservation | durcissement, supervision, incident | reprise, tests, fournisseurs TIC | preuves, contrôles, amélioration |
 
-## Déroulement de l'activité
+## Mémo de travail
 
-### a) Répartition des normes
+### Choisir un texte à étudier
 
-Chaque groupe choisit une norme ou un règlement :
+Pour me repérer, je peux choisir une norme ou un règlement et le résumer simplement :
 
 - RGPD ;
 - NIS2 ;
 - DORA ;
 - ISO 27001.
 
-### b) Analyse
+### Fiche d'analyse
 
-Pour la norme ou le règlement choisi, compléter la fiche suivante.
+Pour le texte choisi, je complète la fiche suivante.
 
-| Question | Notes du groupe |
+| Question | Notes |
 | --- | --- |
 | Norme / règlement étudié | |
 | Exigences principales | |
@@ -124,41 +124,6 @@ Pour la norme ou le règlement choisi, compléter la fiche suivante.
 | Conditions d'application : obligatoire ? pour qui ? | |
 | Impact sur le travail d'un administrateur système | |
 | Exemple concret lié au module | |
-
-### c) Préparation restitution
-
-Préparer une restitution courte de 5 minutes.
-
-Structure possible :
-
-1. présenter la norme ou le règlement ;
-2. expliquer qui est concerné ;
-3. donner 2 ou 3 exigences principales ;
-4. montrer un exemple concret d'impact sur le SI ;
-5. expliquer ce que cela change pour un administrateur système.
-
-## Conseils
-
-- Rester au niveau global.
-- Éviter le détail juridique.
-- Privilégier des exemples concrets.
-- Relier aux activités vues dans le module : cartographie SI, risques, accès, sauvegardes, conformité.
-
-## Livrables
-
-- présentation orale courte ;
-- notes de groupe.
-
-## Notions acquises
-
-- normes SI : RGPD, NIS2, DORA, ISO 27001 ;
-- gouvernance ;
-- impact organisationnel ;
-- lien entre exigences réglementaires et travail technique.
-
-## Compétence travaillée
-
-Identifier et prioriser les risques d'un SI.
 
 ## À retenir
 

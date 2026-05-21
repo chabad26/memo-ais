@@ -48,7 +48,7 @@ La disponibilité se mesure aussi avec deux notions importantes.
 
 Ces valeurs sont des hypothèses pédagogiques. Dans un vrai SI, elles doivent être validées avec les métiers.
 
-## Exemples à rechercher en groupe
+## Exemples des enjeux
 
 | Enjeu | Exemple personnel possible | Exemple projet connu | Exemple actualité / réel |
 | --- | --- | --- | --- |
@@ -66,75 +66,6 @@ Ces valeurs sont des hypothèses pédagogiques. Dans un vrai SI, elles doivent �
 - Peut-on estimer un RTO ou un RPO ?
 - Quelles données ou quels utilisateurs sont concernés ?
 - Quelle hypothèse faut-il vérifier ?
-
-## Identifier et prioriser les risques d'un SI
-
-Objectif : passer des enjeux généraux à une liste de risques concrets, puis choisir ceux qui méritent le plus d'attention.
-
-Un **risque** combine généralement :
-
-- une cause possible ;
-- un événement redouté ;
-- un impact sur le SI ou l'activité.
-
-Exemple :
-
-| Cause | Événement redouté | Conséquence |
-| --- | --- | --- |
-| Compte prestataire compromis | accès distant utilisé par un attaquant | propagation vers les serveurs et données |
-
-### Types de risques à identifier
-
-| Type de risque | Définition | Exemples |
-| --- | --- | --- |
-| Technique | lié aux systèmes, réseaux, applications ou infrastructures | panne serveur, sauvegarde accessible, faille non corrigée, SPOF |
-| Organisationnel | lié aux procédures, responsabilités ou décisions | absence de PRA, droits non revus, départ prestataire non désactivé |
-| Humain | lié aux usages, contraintes ou erreurs possibles | phishing, partage de compte, contournement, clé USB |
-
-## Liste de risques possibles
-
-| Risque | Type | Enjeu lié | Impact possible |
-| --- | --- | --- | --- |
-| Ransomware sur postes et serveurs | technique / humain | disponibilité, sécurité | arrêt des applications, mode dégradé, perte de temps |
-| Compte administrateur compromis | technique / organisationnel | sécurité | prise de contrôle de serveurs, propagation rapide |
-| Accès VPN prestataire trop large | organisationnel / technique | sécurité, intégration | entrée distante vers plusieurs zones du SI |
-| Sauvegardes accessibles depuis la production | technique | disponibilité, sécurité | restauration impossible ou très lente |
-| DPI indisponible | technique | disponibilité | soins ralentis, accès difficile aux antécédents |
-| Base patient ou examens inaccessible | technique | disponibilité, conformité | diagnostic ralenti, risque sur la continuité des soins |
-| Phishing via messagerie | humain | sécurité | vol d'identifiants, infection initiale |
-| Postes partagés mal maîtrisés | humain / organisationnel | sécurité, conformité | traçabilité faible, accès non attribuable |
-| Middleware ou API indisponible | technique | intégration, disponibilité | labo, imagerie ou pharmacie non synchronisés |
-| Système legacy difficile à connecter | technique / organisationnel | intégration, évolutivité | ressaisie, erreurs, données incohérentes |
-| Pic de charge non supporté | technique | évolutivité, disponibilité | lenteur, blocage des utilisateurs |
-| Non-respect RGPD | organisationnel | conformité, sécurité | sanctions, perte de confiance, correction obligatoire |
-
-## Sélection des 3 risques majeurs
-
-Chaque sous-groupe choisit 3 risques et les décrit.
-
-| Rang | Risque choisi | Type | Cause principale | Impact | Enjeu lié |
-| --- | --- | --- | --- | --- | --- |
-| 1 | Ransomware atteignant le DPI et les serveurs | technique / humain | phishing ou accès distant compromis | arrêt des soins informatisés, mode dégradé | disponibilité, sécurité |
-| 2 | Sauvegardes non isolées ou non testées | technique / organisationnel | sauvegardes accessibles ou restauration non vérifiée | reprise lente ou impossible | disponibilité |
-| 3 | Compte à privilèges compromis | technique / organisationnel | droits trop larges, compte admin mal séparé | propagation, accès aux données, désactivation de protections | sécurité |
-
-Ce tableau est un exemple. Chaque groupe peut choisir d'autres risques si l'argumentation est claire.
-
-## Livrables risques
-
-Les livrables attendus sont :
-
-- une **liste des risques identifiés** ;
-- les **3 risques majeurs** de chaque groupe ;
-- le **résultat du vote collectif** ;
-- une justification courte pour les risques les mieux classés.
-
-## À retenir sur les risques
-
-- Un risque n'est pas seulement une panne : il relie une cause, un événement et un impact.
-- Il faut distinguer **cause** et **conséquence**.
-- Un ransomware est intéressant à analyser car il combine technique, humain et organisationnel.
-- Prioriser sert à choisir où mettre l'effort en premier.
 
 ## À retenir
 

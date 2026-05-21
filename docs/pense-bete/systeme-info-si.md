@@ -158,7 +158,7 @@ Se poser toujours les mêmes questions :
 | Hypothèses | elles sont indiquées |
 | Défense | je peux expliquer pourquoi c'est crédible |
 
-## À retenir avant l'itération 2
+## À retenir de l'itération
 
 Une bonne cartographie SI ne cherche pas à tout savoir immédiatement.
 
@@ -170,3 +170,12 @@ Elle sert à construire une représentation défendable :
 - claire sur ses hypothèses ;
 - utile pour repérer les points critiques ;
 - compréhensible par un tiers.
+
+il faut savoir faire aussi l'analyse des enjeux et des risques. Les 5 enjeux principaux sont **disponibilité**, **sécurité**, **évolutivité**, **intégration** et **conformité**. Pour la disponibilité, il faut savoir raisonner avec le **RTO** (temps maximal acceptable avant reprise) et le **RPO** (perte de données maximale acceptable). Ensuite, les risques doivent être classés par nature : **techniques**, **organisationnels** ou **humains**, puis priorisés par impact. Les normes et règlements comme **RGPD**, **NIS2**, **DORA** et **ISO 27001** aident à relier les risques aux obligations, à la gouvernance et au travail concret d'administration système.
+
+Synthèse à garder :
+
+- un enjeu explique ce qu'on veut protéger ;
+- un risque décrit ce qui peut mal se passer ;
+- une norme donne un cadre ou des exigences ;
+- un exemple réel permet de vérifier que l'analyse reste concrète.

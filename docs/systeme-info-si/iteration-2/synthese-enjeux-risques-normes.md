@@ -28,7 +28,7 @@ L'idée est de vérifier que les travaux précédents restent cohérents entre e
 | Sécurité | Phishing via messagerie | ISO 27001 / NIS2 | Vol d'identifiants utilisateur |
 | Conformité | Défaut de notification ou de gestion d'incident | RGPD / NIS2 / DORA | Incident non remonté dans les délais attendus |
 
-## À compléter en groupe
+## À compléter dans mon mémo
 
 | Enjeu | Risque associé | Norme concernée (option) | Exemple |
 | --- | --- | --- | --- |
@@ -54,9 +54,9 @@ L'idée est de vérifier que les travaux précédents restent cohérents entre e
 - Est-ce qu'on distingue bien la cause, le risque et l'impact ?
 - Est-ce que le tableau reste lisible ?
 
-## Livrable
+## Résultat attendu
 
-Le livrable attendu est un **tableau de synthèse**.
+Le résultat attendu est un **tableau de synthèse** clair.
 
 Il doit montrer clairement le lien :
 

@@ -7,6 +7,7 @@ site_dir: site
 
 theme:
   name: material
+  custom_dir: overrides
   language: fr
   font:
     text: Inter
@@ -72,6 +73,7 @@ nav:
       - Enjeux clés d'un SI:
           - Vue d'ensemble: systeme-info-si/iteration-2/index.md
           - Enjeux d'un SI à partir du réel: systeme-info-si/iteration-2/enjeux-si-reel.md
+          - Identifier et prioriser les risques: systeme-info-si/iteration-2/risques-si.md
           - Introduction aux normes SI: systeme-info-si/iteration-2/normes-si.md
           - Synthèse enjeux, risques et normes: systeme-info-si/iteration-2/synthese-enjeux-risques-normes.md
 

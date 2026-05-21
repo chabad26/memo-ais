@@ -1,0 +1,8 @@
+{#-
+  Override Material for MkDocs' content JavaScript to avoid calling
+  getElementById("") when the page has no URL hash.
+-#}
+{% if "content.tabs.link" in features %}
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+{% endif %}
+<script>if(location.hash.length>1){var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))}</script>
