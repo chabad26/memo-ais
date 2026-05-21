@@ -60,13 +60,20 @@ nav:
           - Chiffrement: intro-ais/chiffrement.md
   - Système d’info & archi SI:
       - Présentation: systeme-info-si/index.md
-      - Cas concret SI: systeme-info-si/cas-concret-si.md
-      - Première vue globale du SI: systeme-info-si/premiere-vue-globale-si.md
-      - Diagramme réseau du SI: systeme-info-si/diagramme-reseau-si.md
-      - Cartographie des utilisateurs: systeme-info-si/cartographie-utilisateurs.md
-      - Modèles d'architecture applicative: systeme-info-si/modeles-architecture-applicative.md
-      - Dépendances applicatives: systeme-info-si/dependances-applicatives.md
-      - Diagrammes finaux & résumé: systeme-info-si/finalisation-diagrammes.md
+      - Le système d'information:
+          - Vue d'ensemble: systeme-info-si/iteration-1/index.md
+          - Cas concret SI: systeme-info-si/iteration-1/cas-concret-si.md
+          - Première vue globale du SI: systeme-info-si/iteration-1/premiere-vue-globale-si.md
+          - Diagramme réseau du SI: systeme-info-si/iteration-1/diagramme-reseau-si.md
+          - Cartographie des utilisateurs: systeme-info-si/iteration-1/cartographie-utilisateurs.md
+          - Modèles d'architecture applicative: systeme-info-si/iteration-1/modeles-architecture-applicative.md
+          - Dépendances applicatives: systeme-info-si/iteration-1/dependances-applicatives.md
+          - Diagrammes finaux & résumé: systeme-info-si/iteration-1/finalisation-diagrammes.md
+      - Enjeux clés d'un SI:
+          - Vue d'ensemble: systeme-info-si/iteration-2/index.md
+          - Enjeux d'un SI à partir du réel: systeme-info-si/iteration-2/enjeux-si-reel.md
+          - Introduction aux normes SI: systeme-info-si/iteration-2/normes-si.md
+          - Synthèse enjeux, risques et normes: systeme-info-si/iteration-2/synthese-enjeux-risques-normes.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md

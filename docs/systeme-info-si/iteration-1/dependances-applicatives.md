@@ -22,7 +22,7 @@ L'objectif est donc de comprendre :
 
 ## Schéma fourni : exemple de SPOF
 
-![Single Point of Failure](../assets/img/systeme-info-si/1bd994ea-1092-49da-a96c-8ed2ea8975fc_800x450.webp)
+![Single Point of Failure](../../assets/img/systeme-info-si/1bd994ea-1092-49da-a96c-8ed2ea8975fc_800x450.webp)
 
 Sur ce schéma, le **load balancer** est entouré comme point critique. Si ce composant unique tombe, les clients peuvent perdre l'accès aux API et aux services derrière lui.
 
