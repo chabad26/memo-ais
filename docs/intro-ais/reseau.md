@@ -351,8 +351,8 @@ Des outils comme les firewalls, les VPN, les VLAN et les systèmes de supervisio
 
 ## IP Privé/publique
 
-![Différence IP public/private](/docs/assets/img/schema/schema-difIP.jpg)
+![Différence IP public/private](../assets/img/schema/schema-difIP.jpg)
 
 ## Masque de sous-réseau
 
-![calcul masque](/docs/assets/img/schema/schema-mask.jpg)
+![calcul masque](../assets/img/schema/schema-mask.jpg)
