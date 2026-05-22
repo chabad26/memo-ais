@@ -3,6 +3,17 @@
   --md-code-font: "JetBrains Mono", "Fira Code", Consolas, monospace;
 }
 
+.md-header__button.md-logo {
+  margin: 0.2rem 0.35rem 0.2rem 0;
+  padding: 0.2rem;
+}
+
+.md-header__button.md-logo img {
+  border-radius: 3px;
+  height: 1.8rem;
+  width: auto;
+}
+
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {

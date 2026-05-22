@@ -8,6 +8,7 @@ site_dir: site
 theme:
   name: material
   custom_dir: overrides
+  logo: assets/img/brand/olidev-logo.png
   language: fr
   font:
     text: Inter

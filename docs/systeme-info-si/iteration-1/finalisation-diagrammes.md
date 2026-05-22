@@ -271,72 +271,137 @@ flowchart LR
 
 ## Diagramme 5 : vue hardware simplifiée
 
-Ce schéma donne une idée matérielle du chemin entre Internet, les équipements réseau, les serveurs et quelques postes représentatifs.
+Ce schéma donne une idée matérielle du chemin entre Internet, les équipements réseau, les serveurs et les postes, en distinguant les grands types de postes.
 
-Il ne cherche pas à montrer tous les postes : les machines dessinées servent seulement d'exemples.
+La segmentation reste simplifiée, mais elle montre les zones attendues dans un SI hospitalier : administratif, soins, imagerie/biomédical, administration IT, impression et Wi-Fi invité.
 
 ```mermaid
 flowchart LR
+    PREST["Prestataire externe"]
+    PATIENT["Patient externe"]
     INTERNET["Internet"]
-    ROUTER["Routeur / box<br/>accès opérateur"]
-    FW["Pare-feu<br/>filtrage"]
-    SWITCH["Switch coeur réseau<br/>réseau local"]
+
+    subgraph INFRA["Infra réseau"]
+        direction LR
+        ROUTER["Routeur / box<br/>accès opérateur"]
+        FW["Pare-feu<br/>filtrage"]
+        CORE["Switch coeur réseau<br/>VLAN / segmentation"]
+    end
 
     subgraph SRV["Salle serveur"]
         direction TB
-        APP["Serveur applicatif<br/>DPI, métiers"]
-        AD["Serveur AD / DNS<br/>comptes, noms"]
-        BACKUP["Serveur sauvegarde<br/>copies"]
+        APP["Serveurs applicatifs<br/>DPI, admissions, métiers"]
+        AD["Serveur annuaire / DNS<br/>comptes, noms"]
+        FILES["Serveur fichiers<br/>partages internes"]
+        PACS["Serveur imagerie<br/>PACS / RIS"]
+        BACKUP["Serveur sauvegarde<br/>copies isolées"]
     end
 
-    subgraph POSTS["Postes / machines"]
+    subgraph ADMIN["VLAN administratif"]
         direction TB
-        P1["Poste soins<br/>exemple"]
-        P2["Poste accueil<br/>exemple"]
-        P3["Poste admin IT<br/>exemple"]
-        PRN["Imprimante / équipement<br/>exemple"]
+        COMPTA["Postes comptabilité<br/>budget, factures"]
+        RH["Postes RH<br/>paie, dossiers agents"]
+        ADM["Postes admissions / accueil<br/>identité patient"]
     end
 
+    subgraph CARE["VLAN personnel soignant"]
+        direction TB
+        DOC["Postes médecins<br/>consultation DPI"]
+        NURSE["Postes infirmiers<br/>soins, prescriptions"]
+        MOBILE["Terminaux mobiles / chariots<br/>au lit du patient"]
+    end
+
+    subgraph IMG["VLAN imagerie / biomédical"]
+        direction TB
+        RADIO["Postes radiologues<br/>lecture imagerie"]
+        MODAL["Modalités imagerie<br/>scanner, radio, IRM"]
+        BIOMED["Équipements biomédicaux<br/>surveillance, dispositifs"]
+    end
+
+    subgraph TECH["VLAN administration IT"]
+        direction TB
+        BASTION["Bastion / console admin"]
+        IT["Postes DSI<br/>administration technique"]
+    end
+
+    subgraph PRINT["VLAN impression"]
+        direction TB
+        PRN["Imprimantes réseau<br/>étiquettes, comptes rendus"]
+    end
+
+    subgraph GUEST["VLAN Wi-Fi invité"]
+        direction TB
+        WIFI["Terminaux visiteurs<br/>Internet uniquement"]
+    end
+
+    PREST -->|"via application"| INTERNET
+    PATIENT -->|"via application"| INTERNET
     INTERNET --> ROUTER
     ROUTER --> FW
-    FW --> SWITCH
-    SWITCH --> APP
-    SWITCH --> AD
-    SWITCH --> BACKUP
-    SWITCH --> P1
-    SWITCH --> P2
-    SWITCH --> P3
-    SWITCH --> PRN
-    P1 -->|"accès applicatif"| APP
-    P2 -->|"accès applicatif"| APP
-    P3 -->|"administration"| AD
+    FW --> CORE
+
+    CORE -->|"VLAN serveurs"| APP
+    CORE -->|"VLAN serveurs"| AD
+    CORE -->|"VLAN serveurs"| FILES
+    CORE -->|"VLAN imagerie"| PACS
+    CORE -->|"VLAN sauvegarde"| BACKUP
+
+    CORE -->|"VLAN admin"| COMPTA
+    COMPTA --- RH
+    RH --- ADM
+    CORE -->|"VLAN soins"| DOC
+    DOC --- NURSE
+    NURSE --- MOBILE
+    CORE -->|"VLAN imagerie / biomédical"| RADIO
+    RADIO --- MODAL
+    MODAL --- BIOMED
+    CORE -->|"VLAN admin IT"| BASTION
+    IT -->|"admin via bastion"| BASTION
+    CORE -->|"VLAN impression"| PRN
+    FW -->|"Internet uniquement"| WIFI
+
+    CORE -->|"via application"| APP
+    ADM -->|"applications administratives"| APP
+    MOBILE -->|"DPI / soins"| APP
+    RADIO -->|"PACS / RIS"| PACS
+    MODAL -->|"images médicales"| PACS
+    BASTION -->|"administration contrôlée"| AD
+    BASTION -->|"administration serveurs"| APP
     APP -->|"authentification"| AD
+    FILES -->|"authentification"| AD
     APP -->|"copies"| BACKUP
+    PACS -->|"copies imagerie"| BACKUP
 
     classDef internet fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#111827;
     classDef network fill:#e0f2fe,stroke:#0369a1,stroke-width:2px,color:#111827;
     classDef server fill:#fef3c7,stroke:#ca8a04,stroke-width:2px,color:#111827;
-    classDef workstation fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#111827;
     classDef admin fill:#ede9fe,stroke:#7c3aed,stroke-width:2px,color:#111827;
+    classDef care fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#111827;
+    classDef imaging fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#111827;
+    classDef tech fill:#f3e8ff,stroke:#9333ea,stroke-width:2px,color:#111827;
+    classDef print fill:#f1f5f9,stroke:#475569,stroke-width:2px,color:#111827;
+    classDef guest fill:#cffafe,stroke:#0891b2,stroke-width:2px,color:#111827;
+    classDef external fill:#e1d5e7,stroke:#9673a6,stroke-width:2px,color:#111827;
 
+    class PREST,PATIENT external;
     class INTERNET internet;
-    class ROUTER,FW,SWITCH network;
-    class APP,AD,BACKUP server;
-    class P1,P2,PRN workstation;
-    class P3 admin;
-
-    linkStyle 0,1,2 stroke:#2563eb,stroke-width:2px;
-    linkStyle 3,4,5,6,7,8,9 stroke:#0369a1,stroke-width:2px;
-    linkStyle 10,11 stroke:#16a34a,stroke-width:2px;
-    linkStyle 12,13 stroke:#7c3aed,stroke-width:2px;
-    linkStyle 14 stroke:#ca8a04,stroke-width:2px;
+    class ROUTER,FW,CORE network;
+    class APP,AD,FILES,PACS,BACKUP server;
+    class COMPTA,RH,ADM admin;
+    class DOC,NURSE,MOBILE care;
+    class RADIO,MODAL,BIOMED imaging;
+    class BASTION,IT tech;
+    class PRN print;
+    class WIFI guest;
 ```
 
 ### Hypothèses sur le hardware
 
 - Le routeur, le pare-feu et le switch représentent les équipements réseau principaux.
 - Les serveurs sont regroupés pour montrer le principe, pas le nombre réel de machines.
-- Les postes affichés sont des exemples : il peut y en avoir beaucoup plus dans un vrai hôpital.
+- Les postes sont regroupés par grands usages : administratif, personnel soignant, imagerie/biomédical et administration IT.
+- Les VLAN indiquent une segmentation logique simplifiée : dans un SI réel, les règles de filtrage seraient plus précises.
+- Le Wi-Fi invité doit sortir vers Internet sans accéder directement aux serveurs internes.
 - Le chemin à retenir est : **Internet -> périmètre réseau -> réseau local -> serveurs et postes**.
 
 ## Résumé de présentation
@@ -347,7 +412,7 @@ flowchart LR
 | Données critiques | Les données patient, examens, droits et sauvegardes sont les cibles prioritaires. | Flux de données critiques |
 | Utilisateurs et accès | Les profils métier ont des contraintes réelles et des droits différents. | Utilisateurs et autorisations |
 | Risque ransomware | Une attaque peut partir d'un poste ou d'un accès distant puis se propager. | Chemin d'attaque |
-| Vue matérielle | Internet arrive sur des équipements réseau, puis dessert les serveurs et quelques postes représentatifs. | Vue hardware simplifiée |
+| Vue matérielle | Internet arrive sur des équipements réseau, puis dessert des segments de postes différents : administratif, soins, imagerie, IT, impression et Wi-Fi invité. | Vue hardware simplifiée |
 
 ## Points critiques à défendre
 
