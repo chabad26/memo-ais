@@ -84,6 +84,12 @@ nav:
           - Analyse des usages et des risques: systeme-info-si/iteration-3/analyse-usages-risques.md
           - Propositions d'amélioration: systeme-info-si/iteration-3/propositions-amelioration.md
           - Préparation de la restitution: systeme-info-si/iteration-3/preparation-restitution.md
+      - Sécurité d'un SI:
+          - Vue d'ensemble: systeme-info-si/iteration-4/index.md
+          - Analyse des incidents et mitigation: systeme-info-si/iteration-4/analyse-incidents-mitigation.md
+          - Amélioration architecture CHU Rouen: systeme-info-si/iteration-4/amelioration-architecture-chu-rouen.md
+          - Mémo personnel final: systeme-info-si/iteration-4/memo-personnel-final.md
+          
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
@@ -91,5 +97,10 @@ nav:
       - Linux et commandes: pense-bete/linux.md
       - Réseau: pense-bete/reseau.md
       - Cybersécurité: pense-bete/cybersecurite.md
-      - Système d’info & archi SI: pense-bete/systeme-info-si.md
+      - Système d’info & archi SI:
+          - Vue d'ensemble: pense-bete/systeme-info-si.md
+          - Cartographie et architecture: pense-bete/systeme-info-si-cartographie.md
+          - Risques, incidents et enjeux: pense-bete/systeme-info-si-risques.md
+          - Vocabulaire SI: pense-bete/systeme-info-si-vocabulaire.md
+          - Diagrammes SI: pense-bete/systeme-info-si-diagrammes.md
   - Liens utiles: liens-utiles.md

@@ -1,0 +1,374 @@
+<mxfile host="65bd71144e">
+    <diagram id="architecture-securisee-chu-rouen" name="Architecture securisee CHU Rouen">
+        <mxGraphModel dx="1414" dy="737" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1700" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" value="Architecture SI CHU Rouen - securisation iteration 4" style="text;html=1;strokeColor=none;fillColor=none;fontSize=22;fontStyle=1;align=center;" parent="1" vertex="1">
+                    <mxGeometry y="130" width="755" height="44" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-external" value="Acces externes" style="swimlane;html=1;rounded=1;fillColor=#eff6ff;strokeColor=#2563eb;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="65" y="279" width="260" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="internet" value="Internet" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#2563eb;strokeWidth=2;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="115" y="329" width="160" height="75" as="geometry"/>
+                </mxCell>
+                <mxCell id="patient" value="Patient externe&lt;br&gt;portail / rendez-vous" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="439" width="110" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="prestataire" value="Prestataire externe&lt;br&gt;maintenance" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="439" width="110" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="vpn" value="VPN&lt;br&gt;MFA + comptes dedies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#2563eb;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="178" y="591" width="150" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-perim" value="Perimetre de securite" style="swimlane;html=1;rounded=1;fillColor=#fff1f2;strokeColor=#dc2626;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="376" y="279" width="350" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="waf" value="Proxy / WAF&lt;br&gt;filtrage applicatif" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;strokeWidth=2;fontSize=13;" parent="zone-perim" vertex="1">
+                    <mxGeometry x="185" y="35" width="165" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fw1" value="Pare-feu principal&lt;br&gt;filtrage + journaux" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;strokeWidth=2;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="392" width="145" height="65" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-infra" value="Infra reseau segmentee" style="swimlane;html=1;rounded=1;fillColor=#f8fafc;strokeColor=#64748b;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="775" y="279" width="480" height="260" as="geometry"/>
+                </mxCell>
+                <mxCell id="acl" value="ACL inter-VLAN&lt;br&gt;moindre acces" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f2fe;strokeColor=#0369a1;strokeWidth=2;fontSize=13;fontStyle=1;" parent="zone-infra" vertex="1">
+                    <mxGeometry x="240" y="160" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="core" value="Switch coeur reseau&lt;br&gt;VLAN / segmentation" style="shape=process;backgroundOutline=1;whiteSpace=wrap;html=1;fillColor=#e0f2fe;strokeColor=#0369a1;strokeWidth=2;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="815" y="339" width="185" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="siem" value="Supervision / SIEM&lt;br&gt;journaux + alertes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f2fe;strokeColor=#0369a1;strokeWidth=2;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="815" y="439" width="170" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-servers" value="Salle serveur / VLAN serveurs" style="swimlane;html=1;rounded=1;fillColor=#fff7ed;strokeColor=#d79b00;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="1435" y="279" width="410" height="390" as="geometry"/>
+                </mxCell>
+                <mxCell id="pacs" value="PACS / RIS&lt;br&gt;imagerie" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#ca8a04;strokeWidth=2;fontSize=13;" parent="zone-servers" vertex="1">
+                    <mxGeometry x="245" y="245" width="130" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="ad2" value="AD secondaire&lt;br&gt;redondance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#ca8a04;strokeWidth=2;fontSize=13;" parent="zone-servers" vertex="1">
+                    <mxGeometry x="245" y="150" width="130" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="app" value="Serveurs applicatifs&lt;br&gt;DPI, admissions, metiers" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#ca8a04;strokeWidth=2;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="1475" y="334" width="185" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="ad" value="AD / IAM&lt;br&gt;comptes, droits" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#ca8a04;strokeWidth=2;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="1680" y="334" width="130" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="db" value="Bases de donnees&lt;br&gt;donnees chiffrees" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#ca8a04;strokeWidth=2;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="1475" y="429" width="185" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="files" value="Serveur fichiers&lt;br&gt;partages internes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#ca8a04;strokeWidth=2;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="1475" y="524" width="185" height="58" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-admin" value="VLAN administratif" style="swimlane;html=1;rounded=1;fillColor=#faf5ff;strokeColor=#7c3aed;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="770" y="24" width="465" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="compta" value="Comptabilite&lt;br&gt;budget, factures" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="800" y="84" width="130" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="rh" value="RH&lt;br&gt;paie, agents" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="945" y="84" width="120" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="admissions" value="Admissions / accueil&lt;br&gt;identite patient" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ede9fe;strokeColor=#7c3aed;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1080" y="84" width="130" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-care" value="VLAN personnel soignant" style="swimlane;html=1;rounded=1;fillColor=#f0fdf4;strokeColor=#16a34a;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="165" y="728" width="465" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="doctor" value="Medecins&lt;br&gt;consultation DPI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="195" y="788" width="130" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="nurse" value="Infirmiers&lt;br&gt;soins, prescriptions" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="788" width="130" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="mobile" value="Terminaux mobiles&lt;br&gt;chariots de soins" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="485" y="788" width="130" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-img" value="VLAN imagerie / biomedical" style="swimlane;html=1;rounded=1;fillColor=#fff1f2;strokeColor=#dc2626;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="1401" y="728" width="575" height="150" as="geometry">
+                        <mxRectangle x="1401" y="728" width="210" height="30" as="alternateBounds"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="radio" value="Radiologues&lt;br&gt;lecture imagerie" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1441" y="788" width="145" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="modal" value="Modalites imagerie&lt;br&gt;scanner, radio, IRM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1606" y="788" width="155" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="biomed" value="Equipements biomedicaux&lt;br&gt;flux limites" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="1781" y="788" width="155" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-it" value="VLAN administration IT" style="swimlane;html=1;rounded=1;fillColor=#faf5ff;strokeColor=#9333ea;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="1285" y="24" width="465" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="adminpc" value="Postes DSI dedies" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e8ff;strokeColor=#9333ea;strokeWidth=2;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="1330" y="84" width="150" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="bastion" value="Bastion admin&lt;br&gt;acces trace" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e8ff;strokeColor=#9333ea;strokeWidth=2;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1525" y="84" width="160" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-backup" value="Zone sauvegardes isolee" style="swimlane;html=1;rounded=1;fillColor=#f0fdf4;strokeColor=#16a34a;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="775" y="730" width="465" height="148.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="backup1" value="Sauvegardes en ligne&lt;br&gt;acces restreint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;strokeWidth=2;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="820" y="798.5" width="165" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="backup2" value="Copie hors ligne / immuable&lt;br&gt;anti-ransomware" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;strokeWidth=2;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="1020" y="798.5" width="185" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="zone-continuity" value="Continuite / mode degrade" style="swimlane;html=1;rounded=1;fillColor=#f8fafc;strokeColor=#64748b;fontStyle=1;fontSize=14;" parent="1" vertex="1">
+                    <mxGeometry x="44" y="915" width="575" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="toip" value="ToIP isolee&lt;br&gt;telephone interne" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#475569;strokeWidth=2;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="99" y="975" width="170" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="paper" value="Mode degrade&lt;br&gt;papier + procedures" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f1f5f9;strokeColor=#475569;strokeWidth=2;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="334" y="975" width="185" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#94a3b8;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="722" y="922.5" width="650" height="125" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-title" value="Legende des ajouts iteration 4" style="text;html=1;strokeColor=none;fillColor=none;fontSize=13;fontStyle=1;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="742" y="932.5" width="230" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-red" value="Firewall / filtrage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;strokeWidth=2;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="742" y="967.5" width="130" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-blue" value="ACL / reseau segmente" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e0f2fe;strokeColor=#0369a1;strokeWidth=2;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="892" y="967.5" width="150" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-green" value="Sauvegarde isolee" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;strokeWidth=2;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1062" y="967.5" width="135" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-yellow" value="Donnees chiffrees" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fef3c7;strokeColor=#ca8a04;strokeWidth=2;fontSize=11;" parent="1" vertex="1">
+                    <mxGeometry x="1217" y="967.5" width="130" height="28" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-note" value="Objectif : bloquer la propagation, reduire les acces inutiles et garder une capacite de reprise." style="text;html=1;strokeColor=none;fillColor=none;fontSize=12;align=left;" parent="1" vertex="1">
+                    <mxGeometry x="742" y="1007.5" width="580" height="24" as="geometry"/>
+                </mxCell>
+                <mxCell id="e1" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#82b366;strokeWidth=2;" parent="1" source="patient" target="internet" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#82b366;strokeWidth=2;" parent="1" source="prestataire" target="internet" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e3" value="VPN MFA" style="endArrow=block;html=1;rounded=0;strokeColor=#2563eb;strokeWidth=2;fontSize=10;" parent="1" source="prestataire" target="vpn" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e4" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#2563eb;strokeWidth=2;" parent="1" source="internet" target="fw1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e5" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#2563eb;strokeWidth=2;" parent="1" source="vpn" target="fw1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e6" value="redondance" style="endArrow=none;html=1;rounded=0;strokeColor=#dc2626;strokeWidth=2;fontSize=10;" parent="1" source="fw1" target="fw2" edge="1">
+                    <mxGeometry x="1" y="21" relative="1" as="geometry">
+                        <mxPoint x="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e7" value="filtrage" style="endArrow=block;html=1;rounded=0;strokeColor=#dc2626;strokeWidth=2;fontSize=10;" parent="1" source="fw1" target="waf" edge="1">
+                    <mxGeometry x="0.1485" y="-12" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e8" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;" parent="1" source="waf" target="core" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e9" value="regles inter-VLAN" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;fontSize=10;" parent="1" source="core" target="acl" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e10" value="journaux" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;fontSize=10;" parent="1" source="fw1" target="siem" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e11" value="VLAN admin" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;fontSize=10;" parent="1" edge="1">
+                    <mxGeometry x="0.2224" y="-4" relative="1" as="geometry">
+                        <mxPoint x="1058.7342657342656" y="439" as="sourcePoint"/>
+                        <mxPoint x="916.0769230769233" y="139" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e12" value="VLAN soins" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;fontSize=10;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1045.2727272727275" y="499" as="sourcePoint"/>
+                        <mxPoint x="343" y="788.6875" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e13" value="VLAN imagerie" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;fontSize=10;" parent="1" source="acl" target="radio" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e14" value="VLAN serveurs" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;fontSize=10;" parent="1" source="acl" target="app" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e15" value="VLAN admin IT" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;fontSize=10;" parent="1" source="acl" target="bastion" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e16" value="VLAN sauvegarde" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;fontSize=10;" parent="1" source="acl" target="backup1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e17" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#7c3aed;strokeWidth=2;" parent="1" source="compta" target="rh" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e18" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#7c3aed;strokeWidth=2;" parent="1" source="rh" target="admissions" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e19" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#16a34a;strokeWidth=2;" parent="1" source="doctor" target="nurse" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e20" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#16a34a;strokeWidth=2;" parent="1" source="nurse" target="mobile" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e21" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#dc2626;strokeWidth=2;" parent="1" source="radio" target="modal" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e22" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#dc2626;strokeWidth=2;" parent="1" source="modal" target="biomed" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e23" value="applications admin" style="endArrow=block;html=1;rounded=0;strokeColor=#7c3aed;strokeWidth=2;fontSize=10;" parent="1" source="admissions" target="app" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e24" value="DPI / soins" style="endArrow=block;html=1;rounded=0;strokeColor=#16a34a;strokeWidth=2;fontSize=10;" parent="1" source="mobile" target="app" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e25" value="PACS / RIS" style="endArrow=block;html=1;rounded=0;strokeColor=#dc2626;strokeWidth=2;fontSize=10;" parent="1" source="radio" target="pacs" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e26" value="images" style="endArrow=block;html=1;rounded=0;strokeColor=#dc2626;strokeWidth=2;fontSize=10;" parent="1" source="modal" target="pacs" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e27" value="auth" style="endArrow=block;html=1;rounded=0;strokeColor=#ca8a04;strokeWidth=2;fontSize=10;" parent="1" source="app" target="ad" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e28" value="donnees chiffrees" style="endArrow=block;html=1;rounded=0;strokeColor=#ca8a04;strokeWidth=2;fontSize=10;" parent="1" source="app" target="db" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e29" value="replication AD" style="endArrow=block;html=1;rounded=0;strokeColor=#ca8a04;strokeWidth=2;fontSize=10;exitX=0.66;exitY=0.988;exitDx=0;exitDy=0;entryX=0.656;entryY=0.026;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="ad" target="ad2" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1792" y="392" as="sourcePoint"/>
+                        <mxPoint x="1792" y="524" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="1765" y="404"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e30" value="via bastion" style="endArrow=block;html=1;rounded=0;strokeColor=#9333ea;strokeWidth=2;fontSize=10;" parent="1" source="adminpc" target="bastion" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e31" value="admin controlee" style="endArrow=block;html=1;rounded=0;strokeColor=#9333ea;strokeWidth=2;fontSize=10;" parent="1" source="bastion" target="ad" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e32" value="admin serveurs" style="endArrow=block;html=1;rounded=0;strokeColor=#9333ea;strokeWidth=2;fontSize=10;" parent="1" source="bastion" target="app" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e33" value="copies" style="endArrow=block;html=1;rounded=0;strokeColor=#16a34a;strokeWidth=2;fontSize=10;" parent="1" source="app" target="backup1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e34" value="copie immuable" style="endArrow=block;html=1;rounded=0;strokeColor=#16a34a;strokeWidth=2;fontSize=10;" parent="1" source="backup1" target="backup2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e35" value="crise" style="endArrow=block;html=1;rounded=0;strokeColor=#64748b;strokeWidth=2;fontSize=10;" parent="1" source="mobile" target="toip" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e36" value="procedure" style="endArrow=block;html=1;rounded=0;strokeColor=#64748b;strokeWidth=2;fontSize=10;" parent="1" source="toip" target="paper" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" style="edgeStyle=none;html=1;entryX=0.728;entryY=0.031;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="backup2" target="zone-backup">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flows-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#94a3b8;strokeWidth=1;fontSize=12;" vertex="1" parent="1">
+                    <mxGeometry x="1397" y="922.5" width="773" height="125" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flows-title" value="Legende couleurs des fleches" style="text;html=1;strokeColor=none;fillColor=none;fontSize=13;fontStyle=1;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1397" y="930" width="230" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flow-external" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#82b366;strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1407" y="965" as="sourcePoint"/>
+                        <mxPoint x="1467" y="965" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-text-external" value="Flux externe / via application" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1477" y="955" width="175" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flow-internet" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#2563eb;strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1407" y="992" as="sourcePoint"/>
+                        <mxPoint x="1467" y="992" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-text-internet" value="Internet / VPN / acces distant" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1477" y="982" width="175" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flow-security" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#dc2626;strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1407" y="1019" as="sourcePoint"/>
+                        <mxPoint x="1467" y="1019" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-text-security" value="Filtrage / redondance securite" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1477" y="1009" width="190" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flow-network" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#0369a1;strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1687" y="965" as="sourcePoint"/>
+                        <mxPoint x="1747" y="965" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-text-network" value="VLAN / ACL / segmentation" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1757" y="955" width="170" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flow-admin" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#7c3aed;strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1687" y="992" as="sourcePoint"/>
+                        <mxPoint x="1747" y="992" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-text-admin" value="Flux administratifs" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1757" y="982" width="150" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flow-care" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#16a34a;strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1687" y="1019" as="sourcePoint"/>
+                        <mxPoint x="1747" y="1019" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-text-care" value="Soins / sauvegardes" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1757" y="1009" width="150" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flow-imaging" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#dc2626;strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1917" y="965" as="sourcePoint"/>
+                        <mxPoint x="1977" y="965" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-text-imaging" value="Imagerie / biomedical" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1987" y="955" width="150" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flow-server" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#ca8a04;strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1917" y="992" as="sourcePoint"/>
+                        <mxPoint x="1977" y="992" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-text-server" value="Serveurs / donnees chiffrees" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1987" y="982" width="170" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend-flow-it" value="" style="endArrow=block;html=1;rounded=0;strokeColor=#9333ea;strokeWidth=2;" edge="1" parent="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="1917" y="1019" as="sourcePoint"/>
+                        <mxPoint x="1977" y="1019" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="legend-text-it" value="Administration IT" style="text;html=1;strokeColor=none;fillColor=none;fontSize=11;align=left;verticalAlign=middle;" vertex="1" parent="1">
+                    <mxGeometry x="1987" y="1009" width="140" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="fw2" value="Pare-feu secours&lt;br&gt;redondance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fee2e2;strokeColor=#dc2626;strokeWidth=2;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="579" y="465" width="145" height="65" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

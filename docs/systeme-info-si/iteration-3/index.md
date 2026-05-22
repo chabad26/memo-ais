@@ -11,4 +11,3 @@ L'objectif est de ne pas seulement décrire les composants, mais de comprendre :
 - les choix techniques qui améliorent la disponibilité, la sécurité ou la maintenance.
 
 Une analyse d'architecture SI permet de repérer ce qui fonctionne bien, ce qui peut devenir fragile, et ce qu'il faut surveiller en priorité.
-
