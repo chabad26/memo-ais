@@ -131,20 +131,6 @@ La PME **AlpesNet** dispose de `192.168.10.0/24` et a besoin de 4 segments isol�
 | Serveurs | 10 équipements |
 | DMZ | 5 équipements |
 
-### Consignes
-
-1. Pour chaque segment, détermine le préfixe CIDR minimal permettant le nombre d'hôtes requis. Justifie chaque choix.
-2. Découpe `192.168.10.0/24` en 4 sous-réseaux non chevauchants.
-3. Vérifie avec `ipcalc` : aucun chevauchement ? Somme des blocs inférieure ou égale à un `/24` ? Capacité supérieure ou égale au besoin ?
-4. Complète le tableau.
-
-| Segment | Adresse réseau | Masque CIDR | 1ère hôte | Dernière hôte | Broadcast | Capacité |
-| --- | --- | --- | --- | --- | --- | --- |
-| Administration |  |  |  |  |  |  |
-| Production |  |  |  |  |  |  |
-| Serveurs |  |  |  |  |  |  |
-| DMZ |  |  |  |  |  |  |
-
 ### Méthode guidée
 
 Pour choisir le bon préfixe, on part du besoin en hôtes. Il faut ajouter 2 adresses au besoin réel : une pour l'adresse réseau et une pour le broadcast.
