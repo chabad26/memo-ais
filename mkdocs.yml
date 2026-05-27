@@ -30,6 +30,7 @@ extra_css:
 
 extra_javascript:
   - assets/javascripts/mermaid-zoom.js
+  - assets/javascripts/image-zoom.js
 
 markdown_extensions:
   - admonition
@@ -97,6 +98,7 @@ nav:
           - Fondations TCP/IP & capture : admin-reseaux/iteration-1/fondations-tcpip-capture.md
           - Exercices Wireshark: admin-reseaux/iteration-1/wireshark.md
           - Adressage IPv4 et subnetting: admin-reseaux/iteration-1/adressage-ipv4-subnetting.md
+          - Schémas réseau L1/L2/L3: "admin-reseaux/iteration-1/ schémas_réseau_L1_L2_L3.md"
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md

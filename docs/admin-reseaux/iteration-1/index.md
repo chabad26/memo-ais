@@ -56,6 +56,13 @@ Dans GNS3, importer les images via **Edit > Preferences > Dynamips > IOS Routers
 
 Pour vérifier que tout fonctionne, créer un projet `test-install`, ajouter un routeur IOSv et un VPCS, les relier avec un câble, puis démarrer les équipements. Si la console du routeur affiche `Router>` en moins de 90 secondes, GNS3 est prêt.
 
+Bien penser à donner les droits à ubridge sinon GNS3 sera en erreur :
+
+```bash
+cd /usr/bin/
+sudo chmod 777 ubridge
+```
+
 > Les images Cisco sont propriétaires et doivent être utilisées uniquement dans le cadre pédagogique prévu.
 
 Ressources utiles :

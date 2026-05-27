@@ -1,6 +1,8 @@
 :root {
   --md-text-font: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --md-code-font: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  /* Custom primary color (less aggressive blue) */
+  --md-primary-fg-color: #00695c;
 }
 
 .md-header__button.md-logo {
@@ -35,6 +37,48 @@
 .md-typeset .mermaid {
   cursor: zoom-in;
   position: relative;
+}
+
+.md-typeset img {
+  cursor: zoom-in;
+}
+
+.image-zoom-overlay {
+  align-items: center;
+  background: rgb(0 0 0 / 82%);
+  bottom: 0;
+  cursor: zoom-out;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: 2rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 10000;
+}
+
+.image-zoom-overlay img {
+  background: var(--md-default-bg-color);
+  border-radius: 4px;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 45%);
+  cursor: default;
+  max-height: calc(100vh - 4rem);
+  max-width: calc(100vw - 4rem);
+  object-fit: contain;
+}
+
+.image-zoom-overlay::after {
+  background: rgb(0 0 0 / 65%);
+  border-radius: 4px;
+  color: #fff;
+  content: "Cliquer hors de l'image ou appuyer sur Échap pour fermer";
+  font-size: 0.7rem;
+  left: 50%;
+  padding: 0.35rem 0.6rem;
+  position: fixed;
+  top: 1rem;
+  transform: translateX(-50%);
 }
 
 .md-typeset .mermaid::after {
@@ -105,4 +149,21 @@
 .mermaid-fullscreen-fallback code {
   color: var(--md-default-fg-color);
   white-space: pre-wrap;
+}
+
+/* Footer: use the primary color as background and ensure readable text */
+.md-footer {
+  background: var(--md-primary-fg-color);
+  color: #ffffff;
+}
+
+.md-footer a,
+.md-footer .md-footer-meta,
+.md-footer .md-footer-meta__inner,
+.md-footer .md-copyright {
+  color: #ffffff;
+}
+
+.md-footer .md-footer-meta__inner {
+  padding: 1rem 0.5rem;
 }
