@@ -14,6 +14,7 @@ L'idée est de pouvoir retrouver vite :
 - [Intro AIS](intro-ais.md) : rappels généraux sur le matériel, le système, Linux et le réseau.
 - [Linux et commandes](linux.md) : commandes utiles pour se repérer, diagnostiquer et administrer.
 - [Réseau](reseau.md) : IP, DNS, DHCP, passerelle, ports et premiers tests.
+- [Administration des réseaux](admin-reseaux.md) : TCP/IP, GNS3, Wireshark, commandes et diagnostic.
 - [Cybersécurité](cybersecurite.md) : réflexes de base, droits, mises à jour et logs.
 - [Système d'info & archi SI](systeme-info-si.md) : entrée vers les fiches SI par thème.
 

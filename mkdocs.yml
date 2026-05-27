@@ -89,7 +89,14 @@ nav:
           - Analyse des incidents et mitigation: systeme-info-si/iteration-4/analyse-incidents-mitigation.md
           - Amélioration architecture CHU Rouen: systeme-info-si/iteration-4/amelioration-architecture-chu-rouen.md
           - Mémo personnel final: systeme-info-si/iteration-4/memo-personnel-final.md
-          
+
+  - Administration des réseaux :
+      - Vue d'ensemble: admin-reseaux/index.md
+      - Fondations TCP/IP et adressage :
+          - Vue d'ensemble: admin-reseaux/iteration-1/index.md
+          - Fondations TCP/IP & capture : admin-reseaux/iteration-1/fondations-tcpip-capture.md
+          - Exercices Wireshark: admin-reseaux/iteration-1/wireshark.md
+          - Adressage IPv4 et subnetting: admin-reseaux/iteration-1/adressage-ipv4-subnetting.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
@@ -103,4 +110,7 @@ nav:
           - Risques, incidents et enjeux: pense-bete/systeme-info-si-risques.md
           - Vocabulaire SI: pense-bete/systeme-info-si-vocabulaire.md
           - Diagrammes SI: pense-bete/systeme-info-si-diagrammes.md
+      - Administration des réseaux: 
+          - Vue d'ensemble: pense-bete/admin-reseaux.md
+          
   - Liens utiles: liens-utiles.md
