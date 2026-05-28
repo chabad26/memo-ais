@@ -297,9 +297,9 @@ Pour anticiper une croissance, il faudrait réserver des blocs plus grands dès 
 
 Ce plan avec marge consomme presque tout le `/24`. Si AlpesNet prévoit beaucoup d'évolution, il serait préférable de réserver une plage plus large, par exemple un second `/24` ou un bloc plus grand.
 
-### Livrable de l'atelier
+### Image pour voir rapidement le masque nécessaire
 
-Tableau de plan d'adressage complété pour les 4 segments AlpesNet, justifiant chaque choix de préfixe. Ce tableau servira directement en séquence 1.6 pour le mini-projet GNS3 et alimentera le schéma annoté de l'autonomie 1.
+![image masque](../../assets/img/admin-reseau/it-1/reseau-adresse-ipv4-calcul-masque-sous-reseau-12.png)
 
 ### Notions acquises
 
@@ -307,10 +307,6 @@ Tableau de plan d'adressage complété pour les 4 segments AlpesNet, justifiant 
 - Justification d'un choix de préfixe à partir du besoin métier.
 - Lecture des bornes d'un sous-réseau : réseau, première hôte, dernière hôte, broadcast.
 - Vérification systématique avec `ipcalc`.
-
-### Compétences
-
-- Calculer un plan d'adressage IPv4 avec découpage CIDR — CA-02.
 
 ## Ressources
 
