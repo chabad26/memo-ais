@@ -112,7 +112,7 @@ nav:
       - Intro AIS: pense-bete/intro-ais/intro-ais.md
       - Linux et commandes: pense-bete/intro-ais/linux.md
       - Réseau: pense-bete/intro-ais/reseau.md
-      - Cybersécurité: pense-bete/cybersecurite.md
+      - Cybersécurité: pense-bete/intro-ais/cybersecurite.md
       - Système d’info & archi SI:
           - Vue d'ensemble: pense-bete/systeme-info/systeme-info-si.md
           - Cartographie et architecture: pense-bete/systeme-info/systeme-info-si-cartographie.md

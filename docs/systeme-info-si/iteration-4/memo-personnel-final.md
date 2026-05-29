@@ -45,14 +45,14 @@ Ma vision du métier d'AIS a évolué : l'AIS n'est pas seulement quelqu'un qui 
 
 | Thème | Notions à garder | Fiche associée |
 | --- | --- | --- |
-| Vocabulaire d'architecture | SI, flux, API, middleware, AD, IAM, SPOF, dépendance critique | [Vocabulaire SI](../../pense-bete/systeme-info-si-vocabulaire.md) |
-| 4 axes de décomposition | réseau, applicatif, données, utilisateurs | [Cartographie et architecture](../../pense-bete/systeme-info-si-cartographie.md) |
-| Typologies SI | centralisée, décentralisée, distribuée, cloud, hybride | [Cartographie et architecture](../../pense-bete/systeme-info-si-cartographie.md) |
-| Enjeux et risques | disponibilité, sécurité, conformité, RTO, RPO, impact, mitigation | [Risques, incidents et enjeux](../../pense-bete/systeme-info-si-risques.md) |
-| Normes | RGPD, NIS2, DORA, ISO 27001 | [Risques, incidents et enjeux](../../pense-bete/systeme-info-si-risques.md) |
+| Vocabulaire d'architecture | SI, flux, API, middleware, AD, IAM, SPOF, dépendance critique | [Vocabulaire SI](../../pense-bete/systeme-info/systeme-info-si-vocabulaire.md) |
+| 4 axes de décomposition | réseau, applicatif, données, utilisateurs | [Cartographie et architecture](../../pense-bete/systeme-info/systeme-info-si-cartographie.md) |
+| Typologies SI | centralisée, décentralisée, distribuée, cloud, hybride | [Cartographie et architecture](../../pense-bete/systeme-info/systeme-info-si-cartographie.md) |
+| Enjeux et risques | disponibilité, sécurité, conformité, RTO, RPO, impact, mitigation | [Risques, incidents et enjeux](../../pense-bete/systeme-info/systeme-info-si-risques.md) |
+| Normes | RGPD, NIS2, DORA, ISO 27001 | [Risques, incidents et enjeux](../../pense-bete/systeme-info/systeme-info-si-risques.md) |
 | Cas étudiés | CHU de Rouen, fuite Free, incident CrowdStrike | [Analyse des incidents et mitigation](analyse-incidents-mitigation.md) |
 | Sécurité SI | segmentation, VLAN, ACL, firewall, chiffrement, redondance, sauvegardes | [Amélioration architecture CHU Rouen](amelioration-architecture-chu-rouen.md) |
-| Diagrammes | légende, hypothèses, lisibilité, direction des flux | [Diagrammes SI](../../pense-bete/systeme-info-si-diagrammes.md) |
+| Diagrammes | légende, hypothèses, lisibilité, direction des flux | [Diagrammes SI](../../pense-bete/systeme-info/systeme-info-si-diagrammes.md) |
 | Posture professionnelle | vérifier, documenter, expliquer, prioriser, rester réaliste | Cette synthèse |
 
 ## Formule à garder

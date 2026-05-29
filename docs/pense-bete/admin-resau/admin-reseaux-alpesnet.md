@@ -5,7 +5,7 @@
 
 ## Topologie réseau
 
-```
+```text
 Internet → R1 (Routeur IOSv) 
          ↙           ↘
       SW1              SW2
@@ -19,6 +19,7 @@ PC-Admin PC-Prod  PC-Serv1 PC-DMZ1
 Un **VLAN** segmente logiquement un switch en domaines isolés. Les machines d'un VLAN ne communiquent qu'à travers le routeur.
 
 **4 VLANs** :
+
 - **VLAN 10** (Admin) : PC-Admin, subnet `/27`
 - **VLAN 20** (Prod) : PC-Prod, subnet `/26`
 - **VLAN 30** (Serveurs) : PC-Serv1, subnet `/28`
@@ -36,16 +37,19 @@ Un **VLAN** segmente logiquement un switch en domaines isolés. Les machines d'u
 ## Configuration appliquée
 
 **SW1** :
+
 - `Gi0/1` : access VLAN 10 → PC-Admin
 - `Gi0/2` : access VLAN 20 → PC-Prod
 - `Gi0/24` : **trunk** → R1 (transporte VLAN 10,20,30,40)
 
 **SW2** :
+
 - `Gi0/1` : access VLAN 30 → PC-Serv1
 - `Gi0/2` : access VLAN 40 → PC-DMZ1
 - `Gi0/24` : **trunk** → R1 (transporte VLAN 10,20,30,40)
 
 **R1** (routeur, L3) :
+
 - `Gi0/0` : `192.168.10.65/27` → Gateway VLAN 10
 - `Gi0/1` : `192.168.10.1/26` → Gateway VLAN 20
 
@@ -65,6 +69,7 @@ Un **VLAN** segmente logiquement un switch en domaines isolés. Les machines d'u
 Fichier complet : `/docs/admin-reseaux/iteration-1/drawio/AlpesNet-L1L2L3.drawio`
 
 Couvre 3 niveaux :
+
 - **L1** (Physique) : équipements et liaisons avec numéros de port
 - **L2** (Liaison) : configuration des VLANs et types de ports
 - **L3** (Réseau) : adressage IP et passerelles
