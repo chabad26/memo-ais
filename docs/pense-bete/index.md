@@ -11,12 +11,12 @@ L'idée est de pouvoir retrouver vite :
 
 ## Organisation
 
-- [Intro AIS](intro-ais.md) : rappels généraux sur le matériel, le système, Linux et le réseau.
-- [Linux et commandes](linux.md) : commandes utiles pour se repérer, diagnostiquer et administrer.
-- [Réseau](reseau.md) : IP, DNS, DHCP, passerelle, ports et premiers tests.
-- [Administration des réseaux](admin-reseaux.md) : TCP/IP, GNS3, Wireshark, commandes et diagnostic.
-- [Cybersécurité](cybersecurite.md) : réflexes de base, droits, mises à jour et logs.
-- [Système d'info & archi SI](systeme-info-si.md) : entrée vers les fiches SI par thème.
+- [Intro AIS](intro-ais/intro-ais.md) : rappels généraux sur le matériel, le système, Linux et le réseau.
+- [Linux et commandes](intro-ais/linux.md) : commandes utiles pour se repérer, diagnostiquer et administrer.
+- [Réseau](intro-ais/reseau.md) : IP, DNS, DHCP, passerelle, ports et premiers tests.
+- [Administration des réseaux](admin-resau/admin-reseaux.md) : TCP/IP, GNS3, Wireshark, commandes et diagnostic.
+- [Cybersécurité](intro-ais/cybersecurite.md) : réflexes de base, droits, mises à jour et logs.
+- [Système d'info & archi SI](systeme-info/systeme-info-si.md) : entrée vers les fiches SI par thème.
 
 !!! info "Phrase à garder en tête"
     Avant de corriger, il faut comprendre. Avant de modifier, il faut vérifier.

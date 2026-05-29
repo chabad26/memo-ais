@@ -12,6 +12,7 @@ Le pense-bête est maintenant divisé en plusieurs fichiers pour meilleure lisib
 | 🌐 [admin-reseaux-protocoles.md](admin-reseaux-protocoles.md) | Protocoles essentiels, TCP/UDP, ports courants |
 | 💻 [admin-reseaux-commandes.md](admin-reseaux-commandes.md) | Commandes réseau, Wireshark, filtres, diagnostics |
 | 📊 [admin-reseaux-niveaux.md](admin-reseaux-niveaux.md) | L1/L2/L3, encapsulation, schémas réseau, réflexes |
+|    [switching-arp-vlans](switching-arp-vlans.md) | switch, arp, vlans |
 
 ---
 

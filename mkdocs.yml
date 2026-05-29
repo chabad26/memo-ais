@@ -103,25 +103,30 @@ nav:
       - Commutation et Vlans:
           - Vue d'ensemble: admin-reseaux/iteration-2/index.md
           - Commutation et VLANs: admin-reseaux/iteration-2/synthese_switching_arp_stp.md
+          - GNS3 tables mac & arp: admin-reseaux/iteration-2/gns3_mac_arp.md
+          - Synthese VLANs: admin-reseaux/iteration-2/synthese_vlans.md
+          - exercice facultatif - STP avancé : admin-reseaux/iteration-2/stp_avance.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
-      - Intro AIS: pense-bete/intro-ais.md
-      - Linux et commandes: pense-bete/linux.md
-      - Réseau: pense-bete/reseau.md
+      - Intro AIS: pense-bete/intro-ais/intro-ais.md
+      - Linux et commandes: pense-bete/intro-ais/linux.md
+      - Réseau: pense-bete/intro-ais/reseau.md
       - Cybersécurité: pense-bete/cybersecurite.md
       - Système d’info & archi SI:
-          - Vue d'ensemble: pense-bete/systeme-info-si.md
-          - Cartographie et architecture: pense-bete/systeme-info-si-cartographie.md
-          - Risques, incidents et enjeux: pense-bete/systeme-info-si-risques.md
-          - Vocabulaire SI: pense-bete/systeme-info-si-vocabulaire.md
-          - Diagrammes SI: pense-bete/systeme-info-si-diagrammes.md
+          - Vue d'ensemble: pense-bete/systeme-info/systeme-info-si.md
+          - Cartographie et architecture: pense-bete/systeme-info/systeme-info-si-cartographie.md
+          - Risques, incidents et enjeux: pense-bete/systeme-info/systeme-info-si-risques.md
+          - Vocabulaire SI: pense-bete/systeme-info/systeme-info-si-vocabulaire.md
+          - Diagrammes SI: pense-bete/systeme-info/systeme-info-si-diagrammes.md
       - Administration des réseaux: 
-          - administration des réseaux - Vue d'ensemble: pense-bete/admin-reseaux.md
-          - administration des réseaux - alpesnet : pense-bete/admin-reseaux-alpesnet.md
-          - administration des réseaux - commandes: pense-bete/admin-reseaux-commandes.md
-          - administration des réseaux - installation: pense-bete/admin-reseaux-installation.md
-          - administration des réseaux - modèles: pense-bete/admin-reseaux-modeles.md
-          - administration des réseaux - niveaux: pense-bete/admin-reseaux-niveaux.md
-          - administration des réseaux - protocoles: pense-bete/admin-reseaux-protocoles.md
+          - administration des réseaux - Vue d'ensemble: pense-bete/admin-resau/admin-reseaux.md
+          - administration des réseaux - alpesnet : pense-bete/admin-resau/admin-reseaux-alpesnet.md
+          - administration des réseaux - commandes: pense-bete/admin-resau/admin-reseaux-commandes.md
+          - administration des réseaux - installation: pense-bete/admin-resau/admin-reseaux-installation.md
+          - administration des réseaux - modèles: pense-bete/admin-resau/admin-reseaux-modeles.md
+          - administration des réseaux - niveaux: pense-bete/admin-resau/admin-reseaux-niveaux.md
+          - administration des réseaux - protocoles: pense-bete/admin-resau/admin-reseaux-protocoles.md
+          - administration des réseaux - Switching, ARP, VLANs & STP : pense-bete/admin-resau/switching-arp-vlans.md
+
   - Liens utiles: liens-utiles.md
