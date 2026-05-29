@@ -114,6 +114,11 @@ nav:
           - Vocabulaire SI: pense-bete/systeme-info-si-vocabulaire.md
           - Diagrammes SI: pense-bete/systeme-info-si-diagrammes.md
       - Administration des réseaux: 
-          - Vue d'ensemble: pense-bete/admin-reseaux.md
-          
+          - administration des réseaux - Vue d'ensemble: pense-bete/admin-reseaux.md
+          - administration des réseaux - alpesnet : pense-bete/admin-reseaux-alpesnet.md
+          - administration des réseaux - commandes: pense-bete/admin-reseaux-commandes.md
+          - administration des réseaux - installation: pense-bete/admin-reseaux-installation.md
+          - administration des réseaux - modèles: pense-bete/admin-reseaux-modeles.md
+          - administration des réseaux - niveaux: pense-bete/admin-reseaux-niveaux.md
+          - administration des réseaux - protocoles: pense-bete/admin-reseaux-protocoles.md
   - Liens utiles: liens-utiles.md
