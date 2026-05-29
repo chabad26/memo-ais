@@ -100,6 +100,9 @@ nav:
           - Adressage IPv4 et subnetting: admin-reseaux/iteration-1/adressage-ipv4-subnetting.md
           - Schémas réseau L1/L2/L3: admin-reseaux/iteration-1/ schémas_réseau_L1_L2_L3.md
           - Schéma réseau annoté : admin-reseaux/iteration-1/schema-reseau-alpesnet-complet.md
+      - Commutation et Vlans:
+          - Vue d'ensemble: admin-reseaux/iteration-2/index.md
+          - Commutation et VLANs: admin-reseaux/iteration-2/synthese_switching_arp_stp.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
