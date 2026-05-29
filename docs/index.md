@@ -29,3 +29,7 @@ Il sert surtout à :
 
 !!! note "Esprit du mémo"
     Le but n'est pas d'écrire comme un manuel ultra académique, mais d'avoir un document clair, utile et facile à relire.
+
+![règle de base](assets/img/brand/règle_expert.jpg)
+
+(source IR Omer-Son)
