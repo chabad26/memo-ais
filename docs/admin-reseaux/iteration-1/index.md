@@ -1,6 +1,6 @@
 # Fondations TCP/IP et adressage
 
-l'itération est coupé en 2 modules distinct:
+L'itération est coupé en 2 modules distinct:
 
 ## bloc 1
 

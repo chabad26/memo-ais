@@ -23,3 +23,13 @@ Pour faire de la veille et progresser en cybersécurité :
 - Pratiquer sur des plateformes d'entraînement :
   - [Root-Me](https://www.root-me.org/)
   - [TryHackMe](https://tryhackme.com/)
+
+## Administration Réseau
+
+- [Cisco - Configuration STP](https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst3560/software/release/15-0_1_se/configuration/guide/scg3560/swstp.html) : comprendre et configurer STP / PVST+ sur switch Cisco.
+- [Cisco - Routage inter-VLAN](https://www.cisco.com/en/US/docs/ios-xml/ios/lanswitch/configuration/15-0sy/lsw-conf-rout-vlan.html) : utile pour VLAN, trunk et routage entre VLANs.
+- [Cloudflare Learning Center - Routage IP](https://www.cloudflare.com/en-gb/learning/network-layer/what-is-routing/) : explication claire du routage, des routes et des protocoles comme OSPF.
+- [Cloudflare Learning Center - Firewall](https://www.cloudflare.com/learning/security/what-is-a-firewall) : bonne introduction aux pare-feu et au filtrage réseau.
+- [ANSSI - Guide d'hygiène informatique](https://cyber.gouv.fr/guide/guide-dhygiene-informatique/) : base solide pour les risques, la sécurité et les bonnes pratiques SI.
+- [ANSSI - Sauvegarde des systèmes d'information](https://cyber.gouv.fr/les-regles-dor-de-la-sauvegarde/) : utile pour RTO/RPO, PRA/PCA et continuité d'activité.
+- [Fortinet Training Institute](https://www.fortinet.com/training) : ressources réseau/sécurité, pare-feu, VPN, segmentation et supervision.

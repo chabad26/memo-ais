@@ -571,7 +571,4 @@ Conclusion : OSPF s'adapte automatiquement en supprimant les routes qui ne sont 
 
 ## Ressource
 
-***[ANSSI — Recommandations sécurité routeurs](ssi.gouv.fr/guide)***
-***[CERT-FR — Bulletins Cisco IOS](cert.ssi.gouv.fr/alerte)***
-***[Cisco OSPF Authentication](https://www.cisco.com/c/en/us/tech/ip/ip-routing/tsd-technology-support-troubleshooting-technotes-list.html)***
-***[RFC 2328 (OSPF v2, 1998)](tools.ietf.org/html/rfc2328)***
+***[Cisco OSPF](https://www.cisco.com/c/en/us/tech/ip/ip-routing/tsd-technology-support-troubleshooting-technotes-list.html)***
