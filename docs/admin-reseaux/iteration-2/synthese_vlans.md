@@ -2,14 +2,14 @@
 
 ---
 
-## 1. Pourquoi les VLANs ?
+## 1. Pourquoi utiliser des VLANs ?
 
 Sans VLANs, tous les équipements d'un switch partagent le même **domaine de broadcast** :
 
 - Un ARP Request touche **toutes** les machines
 - Une machine compromise peut intercepter le trafic de n'importe qui sur le segment
 
-> **Exemple concret :** sur un switch 48 ports sans VLANs, un employé du marketing peut lancer un sniffer et voir les requêtes DNS, les ARP et des données non chiffrées de la comptabilité.
+> **Exemple concret :** sur un switch 48 ports sans VLANs, un poste du service marketing peut voir les requêtes ARP, certaines requêtes DNS et des flux non chiffrés provenant d'autres services.
 
 ### Ce que les VLANs apportent
 
@@ -53,7 +53,7 @@ SW1(config-if)# exit
 
 ## 3. Port Trunk — transport de plusieurs VLANs
 
-Un port **trunk** transporte **plusieurs VLANs simultanément** en taguant chaque trame avec son VLAN ID. Utilisé entre switches, ou entre un switch et un routeur.
+Un port **trunk** transporte **plusieurs VLANs simultanément** en ajoutant un tag 802.1Q aux trames. On l'utilise entre switches, ou entre un switch et un routeur.
 
 ```text
 SW1 ──── port Gi0/0 (trunk, VLANs 10+20) ──── R1 (ou SW2)
@@ -80,7 +80,7 @@ Trame taguée :   [DST MAC][SRC MAC][0x8100][TCI][Type (0x0800)][Données][FCS]
 | **DEI** | 1 bit | Drop Eligible Indicator |
 | **VID** | 12 bits | VLAN ID — de **1 à 4094** |
 
-### Configuration Cisco IOS trunk
+### Configuration Cisco IOS d'un trunk
 
 ```bash
 SW1(config)# interface GigabitEthernet0/0
@@ -147,4 +147,4 @@ Gi0/0       10,20
 
 ---
 
-***Sources : IEEE 802.1Q · Cisco VLAN Configuration Guide · ANSSI — Sécurisation des réseaux locaux***
+***Sources : IEEE 802.1Q · Cisco VLAN Configuration Guide · ANSSI — sécurisation des réseaux locaux***

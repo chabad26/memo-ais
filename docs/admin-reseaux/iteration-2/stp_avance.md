@@ -4,7 +4,7 @@
 
 ---
 
-## 1. Rappel — Pourquoi un anneau pose problème
+## 1. Rappel — pourquoi un anneau pose problème
 
 Avec 3 switches interconnectés en anneau, il existe **plusieurs chemins** entre chaque paire de switches. Sans STP, cela crée une boucle de commutation permanente → tempête de broadcast → réseau inutilisable en quelques secondes.
 
@@ -14,7 +14,7 @@ Avec 3 switches interconnectés en anneau, il existe **plusieurs chemins** entre
      SW2 — SW3
 ```
 
-STP résout cela en **bloquant un port redondant** pour casser la boucle, tout en gardant le lien en veille pour une reprise rapide en cas de panne.
+STP résout cela en **bloquant un port redondant** pour casser la boucle, tout en gardant le lien disponible pour une reprise en cas de panne.
 
 ---
 
@@ -42,13 +42,13 @@ SW2# show spanning-tree vlan 1
 
 SW3# show spanning-tree vlan 1
 
-![spanning sw1](../../assets/img/admin-reseau/it2/sw1.png)
+![spanning sw3](../../assets/img/admin-reseau/it2/sw3.png)
 
 ### Ce qu'il faut identifier
 
 | Information | Où la trouver | Signification |
 | --- | --- | --- |
-| **Root Bridge** | `This bridge is the root` ou Root ID ≠ Bridge ID | Le switch élu comme référence STP |
+| **Root Bridge** | `This bridge is the root` ou Root ID = Bridge ID | Le switch élu comme référence STP |
 | **Root Port** | Rôle `Root` en `FWD` | Port du chemin le moins coûteux vers le root |
 | **Designated Port** | Rôle `Desg` en `FWD` | Port actif sur un segment |
 | **Alternate Port** | Rôle `Altn` en `BLK` | Port bloqué — casse la boucle |
@@ -65,7 +65,7 @@ Exemple :
                               Alternate Port sur Gi0/1 → BLK  ← boucle cassée ici
 ```
 
-> **Le port bloqué se trouve toujours sur le switch le plus éloigné du root bridge**, sur le lien redondant le moins prioritaire.
+> Le port bloqué se trouve sur un lien redondant. En cas d'égalité de coût, STP départage avec les priorités et les identifiants de ports.
 
 ---
 
@@ -82,7 +82,7 @@ SW3(config)# spanning-tree vlan 1 priority 4096
 > La priorité doit être un **multiple de 4096** (valeurs valides : 0, 4096, 8192, 16384…).  
 > Avec `4096 < 32768`, SW3 devient automatiquement le root bridge.
 
-### Ce qui se passe ensuite — Reconvergence STP classique (802.1D)
+### Ce qui se passe ensuite — reconvergence STP classique (802.1D)
 
 ```text
 SW3 envoie des BPDUs avec sa nouvelle priorité
@@ -134,7 +134,7 @@ SW2(config)# spanning-tree mode rapid-pvst
 SW3(config)# spanning-tree mode rapid-pvst
 ```
 
-> Il faut activer Rapid STP **sur tous les switches simultanément** — un seul switch en mode classique suffit à ralentir toute la reconvergence.
+> Il faut activer Rapid STP **sur tous les switches concernés**. Un switch resté en mode classique peut ralentir la reconvergence sur son segment.
 
 ### Différences clés
 
@@ -188,7 +188,7 @@ SW3(config)# spanning-tree mode rapid-pvst
 | Notion | Ce que le TP démontre |
 | --- | --- |
 | Élection du root bridge | Le switch avec la priorité/MAC la plus basse est élu |
-| Port bloqué (Alternate) | Toujours sur le lien redondant, côté switch non-root |
+| Port bloqué (Alternate) | Sur un lien redondant, côté switch non-root |
 | Reconvergence STP classique | ~30-50 s — risque d'indisponibilité réseau |
 | Forcer l'élection | `spanning-tree vlan 1 priority 4096` |
 | Rapid STP | Reconvergence < 5 s grâce à la négociation active |

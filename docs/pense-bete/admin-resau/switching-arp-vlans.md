@@ -1,64 +1,83 @@
-# Pense-bête — Switching, ARP, VLANs & STP
+# Pense-bête Switching, ARP, VLANs et STP
 
 ---
 
-## Switching & Table MAC
+## Switching
 
-- **Hub** → flood tout sur tous les ports · **Switch** → forward uniquement vers la destination
-- Le switch **apprend** la MAC source de chaque trame reçue → CAM Table (TTL ~300s)
-- **MAC inconnue** → flooding · **MAC connue** → unicast · **Broadcast** → toujours floodé
+| Cas | Action du switch |
+|---|---|
+| MAC source vue | Ajout/maj dans la table MAC |
+| MAC destination connue | Unicast vers le bon port |
+| MAC destination inconnue | Flooding sauf port d'entrée |
+| Broadcast | Flooding |
 
 ```bash
 show mac address-table          # lire la table
-clear mac address-table dynamic # vider (force réapprentissage)
+clear mac address-table dynamic # vider et forcer le réapprentissage
 ```
 
 ---
 
 ## ARP
 
-- Résout **IP → MAC** avant toute communication locale (couche 2)
-- **ARP Request** = broadcast `ff:ff:ff:ff:ff:ff` → floodé par le switch
-- **ARP Reply** = unicast vers le demandeur → le switch apprend la MAC au passage
+- Résout **IP -> MAC** sur un réseau local.
+- Request = broadcast `ff:ff:ff:ff:ff:ff`.
+- Reply = unicast vers le demandeur.
 
 ```bash
-ip neigh show   # cache ARP Linux  |  REACHABLE / STALE / FAILED
+ip neigh show   # cache ARP Linux : REACHABLE / STALE / FAILED
 ```
 
 ---
 
-## VLANs (802.1Q)
+## VLANs
 
-- 1 VLAN = 1 domaine de broadcast isolé · inter-VLAN uniquement via routeur ou switch L3
-- **Port Access** → 1 VLAN, trames **non taguées**, pour PC/imprimante
-- **Port Trunk** → plusieurs VLANs, trames **taguées** (4 octets insérés : TPID `0x8100` + VID 12 bits), pour liens switch↔switch ou switch↔routeur
-- VID : valeurs **1 à 4094**
+- 1 VLAN = 1 domaine de broadcast isolé.
+- Inter-VLAN = routeur ou switch L3.
+- Access = 1 VLAN, trames non taguées, port utilisateur.
+- Trunk = plusieurs VLANs, trames taguées 802.1Q, lien switch/switch ou switch/routeur.
+- VID valide : **1 à 4094**.
 
 ```bash
-switchport mode access / switchport access vlan 10
-switchport mode trunk  / switchport trunk allowed vlan 10,20
+switchport mode access
+switchport access vlan 10
+
+switchport mode trunk
+switchport trunk allowed vlan 10,20
 show interfaces trunk
 ```
 
 ---
 
-## STP (802.1D / Rapid 802.1w)
+## STP
 
-- Évite les **boucles de commutation** en bloquant les ports redondants
-- **Root Bridge** = switch avec la priorité la plus basse (défaut `32768`) · ex-æquo → MAC la plus basse gagne
-- **BID** = Priorité + VLAN + MAC · priorité toujours **multiple de 4096**
+- Évite les boucles de commutation en bloquant un lien redondant.
+- Root Bridge = BID le plus bas.
+- BID = priorité + VLAN + MAC.
+- Priorité par défaut Cisco : `32768`, valeurs par multiples de `4096`.
 
-| Rôle port | État | Description |
+| Rôle | État | À retenir |
 |---|---|---|
+| Root | `FWD` | Meilleur chemin vers le root |
 | Designated | `FWD` | Port actif sur le segment |
-| Root | `FWD` | Meilleur chemin vers le root bridge |
-| Alternate | `BLK` | Port bloqué — casse la boucle |
+| Alternate | `BLK` | Port bloqué |
 
-- **STP classique** : reconvergence ~30-50s (Listening 15s + Learning 15s)
-- **Rapid STP** : reconvergence < 5s (négociation active entre switches)
+- STP classique : ~30-50 s.
+- Rapid STP : souvent < 5 s si activé sur les switches concernés.
 
 ```bash
 show spanning-tree vlan 1
-spanning-tree vlan 1 priority 4096   # forcer l'élection d'un root bridge
-spanning-tree mode rapid-pvst        # activer Rapid STP (sur TOUS les switches)
+spanning-tree vlan 1 priority 4096
+spanning-tree mode rapid-pvst
 ```
+
+---
+
+## Réflexes de diagnostic
+
+| Symptôme | Vérifier |
+|---|---|
+| Un poste ne joint pas un autre poste local | IP, masque, cache ARP, table MAC |
+| Trafic visible partout | Table MAC vide, broadcast, hub, mauvaise config |
+| VLAN isolé malgré câblage correct | Mode access/trunk, VLAN autorisés, VLAN actif |
+| Boucle ou réseau instable | `show spanning-tree vlan X`, root bridge, port bloqué |

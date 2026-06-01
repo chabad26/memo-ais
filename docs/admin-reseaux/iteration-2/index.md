@@ -1,8 +1,10 @@
-# Commutation et VLANs
+# Commutation, ARP, VLANs et STP
 
-📌 Au programme de cette itération :
+Cette itération sert à comprendre le comportement d'un switch au niveau 2 : apprentissage des adresses MAC, résolution ARP, segmentation en VLANs et prévention des boucles avec STP.
 
-- Comprendre comment un switch décide où envoyer chaque trame
-- Observer en direct l'apprentissage des tables MAC dans GNS3
-- Découvrir les VLANs (theory + configuration sur équipement physique avec console série RS232)
-- Premier livrable RNCP côté commutation : le fichier .cfg du switch commenté.
+- [Synthèse Switching, ARP & STP](synthese_switching_arp_stp.md)
+- [TP GNS3 : tables MAC, ARP & STP](gns3_mac_arp.md)
+- [Synthèse VLANs](synthese_vlans.md)
+- [STP avancé : root bridge & reconvergence](stp_avance.md)
+
+Le livrable RNCP associé est le fichier `.cfg` du switch, commenté et cohérent avec la topologie étudiée.

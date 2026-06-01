@@ -106,6 +106,10 @@ nav:
           - GNS3 tables mac & arp: admin-reseaux/iteration-2/gns3_mac_arp.md
           - Synthese VLANs: admin-reseaux/iteration-2/synthese_vlans.md
           - exercice facultatif - STP avancé : admin-reseaux/iteration-2/stp_avance.md
+      - Routage:
+          - Vue d'ensemble: admin-reseaux/iteration-3/index.md
+          - Routage statique: admin-reseaux/iteration-3/routage-statique.md
+          - Routage dynamique: admin-reseaux/iteration-3/routage-dynamique-OSPF.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
@@ -119,14 +123,15 @@ nav:
           - Risques, incidents et enjeux: pense-bete/systeme-info/systeme-info-si-risques.md
           - Vocabulaire SI: pense-bete/systeme-info/systeme-info-si-vocabulaire.md
           - Diagrammes SI: pense-bete/systeme-info/systeme-info-si-diagrammes.md
-      - Administration des réseaux: 
-          - administration des réseaux - Vue d'ensemble: pense-bete/admin-resau/admin-reseaux.md
-          - administration des réseaux - alpesnet : pense-bete/admin-resau/admin-reseaux-alpesnet.md
-          - administration des réseaux - commandes: pense-bete/admin-resau/admin-reseaux-commandes.md
-          - administration des réseaux - installation: pense-bete/admin-resau/admin-reseaux-installation.md
-          - administration des réseaux - modèles: pense-bete/admin-resau/admin-reseaux-modeles.md
-          - administration des réseaux - niveaux: pense-bete/admin-resau/admin-reseaux-niveaux.md
-          - administration des réseaux - protocoles: pense-bete/admin-resau/admin-reseaux-protocoles.md
-          - administration des réseaux - Switching, ARP, VLANs & STP : pense-bete/admin-resau/switching-arp-vlans.md
+      - Administration des réseaux:
+          - Vue d'ensemble: pense-bete/admin-resau/admin-reseaux.md
+          - AlpesNet: pense-bete/admin-resau/admin-reseaux-alpesnet.md
+          - Commandes: pense-bete/admin-resau/admin-reseaux-commandes.md
+          - Installation: pense-bete/admin-resau/admin-reseaux-installation.md
+          - Modèles: pense-bete/admin-resau/admin-reseaux-modeles.md
+          - Niveaux: pense-bete/admin-resau/admin-reseaux-niveaux.md
+          - Protocoles: pense-bete/admin-resau/admin-reseaux-protocoles.md
+          - Vocabulaire du routage: pense-bete/admin-resau/routage-vocabulaire.md
+          - Switching, ARP, VLANs et STP: pense-bete/admin-resau/switching-arp-vlans.md
 
   - Liens utiles: liens-utiles.md

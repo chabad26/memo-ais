@@ -1,23 +1,24 @@
 # Pense-bête Administration des réseaux
 
-## 📚 Index
+Cette section regroupe les rappels rapides du module **Administration des réseaux**.
 
-Le pense-bête est maintenant divisé en plusieurs fichiers pour meilleure lisibilité :
+Objectif : retrouver vite une commande, une notion ou un réflexe de diagnostic sans relire les pages de cours.
 
-| Fichier | Contenu |
-| --- | --- |
-| 📋 [admin-reseaux-alpesnet.md](admin-reseaux-alpesnet.md) | **Synthèse AlpesNet** : topologie, VLANs, access/trunk, adressage L3 |
-| 🔧 [admin-reseaux-installation.md](admin-reseaux-installation.md) | Installation GNS3, Wireshark, outils réseau |
-| 📖 [admin-reseaux-modeles.md](admin-reseaux-modeles.md) | Modèle TCP/IP, adressage IPv4, CIDR, subnetting |
-| 🌐 [admin-reseaux-protocoles.md](admin-reseaux-protocoles.md) | Protocoles essentiels, TCP/UDP, ports courants |
-| 💻 [admin-reseaux-commandes.md](admin-reseaux-commandes.md) | Commandes réseau, Wireshark, filtres, diagnostics |
-| 📊 [admin-reseaux-niveaux.md](admin-reseaux-niveaux.md) | L1/L2/L3, encapsulation, schémas réseau, réflexes |
-| [switching-arp-vlans](switching-arp-vlans.md) | switch, arp, vlans |
+| Fiche | Contenu |
+|---|---|
+| [AlpesNet](admin-reseaux-alpesnet.md) | Plan d'adressage et topologie du cas pratique |
+| [Commandes](admin-reseaux-commandes.md) | Commandes Linux, Cisco, GNS3 et diagnostic |
+| [Installation](admin-reseaux-installation.md) | Préparation de l'environnement |
+| [Modèles](admin-reseaux-modeles.md) | Modèles TCP/IP, OSI et encapsulation |
+| [Niveaux](admin-reseaux-niveaux.md) | Couches L1, L2, L3 et rôles associés |
+| [Protocoles](admin-reseaux-protocoles.md) | ARP, ICMP, DNS, TCP, UDP, HTTP |
+| [Vocabulaire du routage](routage-vocabulaire.md) | OSPF, RIP, next-hop, métrique, route par défaut |
+| [Switching, ARP, VLANs et STP](switching-arp-vlans.md) | Commutation, VLANs, trunk/access et anti-boucle |
 
----
+## À retenir
 
-## 🎯 Démarrage rapide
-
-**Si tu dois réviser vite** : commence par [admin-reseaux-alpesnet.md](admin-reseaux-alpesnet.md) pour la topologie générale.
-
-**Pour une révision complète** : suis l'ordre : Installation → Modèles → Protocoles → Niveaux → Commandes.
+- IP + masque = appartenance au réseau.
+- Switch = couche 2, table MAC, VLANs.
+- Routeur = couche 3, passage entre réseaux.
+- ARP fait le lien IP -> MAC sur le LAN.
+- `ping`, `traceroute`, `ip`, `tcpdump` et Wireshark sont les premiers réflexes de diagnostic.

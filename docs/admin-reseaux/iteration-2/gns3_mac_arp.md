@@ -6,7 +6,7 @@
 
 | Équipement | Interface SW1 | Adresse IP | Adresse MAC |
 | --- | --- | --- | --- |
-| PC-1 | Gi0/1 | 192.168.10.1/24 | — (observateur Wireshark) |
+| PC-1 | Gi0/0 | 192.168.10.1/24 | — (observateur Wireshark) |
 | PC-2 | Gi0/1 | 192.168.10.2/24 | `0050.7966.6801` |
 | PC-3 | Gi0/2 | 192.168.10.3/24 | `0050.7966.6802` |
 
@@ -30,12 +30,12 @@ La trame capturée est un **ARP Request** (broadcast) :
 | **Type Ethernet** | `0x0806` — ARP |
 | **Taille** | 64 bytes |
 
-### Interprétation de l'exercice observer arp
+### Interprétation de l'exercice ARP
 
-PC-2 ne connaît pas la MAC de PC-3 → il envoie un **ARP Request en broadcast** sur tout le segment.  
-Le switch **flood** cette trame sur tous ses ports (dont le lien vers PC-1), c'est pourquoi la sonde sur PC-1 la capture — alors que ce message ne lui est pas destiné.
+PC-2 ne connaît pas la MAC de PC-3 : il envoie donc un **ARP Request en broadcast** sur tout le segment.
+Le switch **diffuse** cette trame sur tous ses ports, dont le lien vers PC-1. La sonde placée côté PC-1 la capture donc, même si le message ne lui est pas destiné.
 
-En réponse, PC-3 renvoie un **ARP Reply en unicast** contenant sa propre adresse MAC (`0050.7966.6802`) directement vers PC-2. Le switch apprend au passage les deux MACs et met à jour sa table.
+En réponse, PC-3 renvoie un **ARP Reply en unicast** contenant sa propre adresse MAC (`0050.7966.6802`) directement vers PC-2. Le switch apprend au passage les deux adresses MAC et met à jour sa table.
 
 ---
 
@@ -60,14 +60,14 @@ Vlan    Mac Address         Type      Ports
 Total Mac Addresses : 2
 ```
 
-### Interprétation de l'exercice observer table MAC
+### Interprétation de la table MAC
 
 | Observation | Explication |
 | --- | --- |
 | Les entrées sont de type `DYNAMIC` | Apprises automatiquement par le switch via les trames reçues |
 | PC-2 apparaît sur `Gi0/1` | Le switch a vu une trame venant de `0050.7966.6801` sur ce port |
 | PC-3 apparaît sur `Gi0/2` | Idem lors de l'ARP Reply de PC-3 |
-| La table était vide avant le ping | Aucune trame n'avait encore transité — rien à apprendre |
+| La table était vide avant le ping | Aucune trame utile n'avait encore transité — rien à apprendre |
 
 ---
 
@@ -76,11 +76,11 @@ Total Mac Addresses : 2
 Après `clear mac address-table dynamic`, la table est vidée. Lors du ping suivant de PC-2 vers PC-3 :
 
 1. Le switch reçoit la trame de PC-2 → **MAC destination inconnue**
-2. Il ne sait pas sur quel port se trouve PC-3 → **flooding sur tous les ports**
+2. Il ne sait pas sur quel port se trouve PC-3 → **flooding sur tous les ports sauf le port d'entrée**
 3. La sonde sur le lien PC-1 **capture la trame** alors que PC-1 n'est pas la destination
 
-> C'est exactement ce que montre la capture Wireshark : le trafic entre PC-2 et PC-3 est visible depuis PC-1 **uniquement parce que la table MAC était vide**.  
-> Une fois la table re-peuplée après quelques échanges, le switch repasse en **unicast forwarding** et PC-1 ne voit plus ce trafic.
+> C'est exactement ce que montre la capture Wireshark : le trafic entre PC-2 et PC-3 est visible depuis PC-1 **parce que la table MAC était vide**.
+> Une fois la table repeuplée après quelques échanges, le switch repasse en **unicast forwarding** et PC-1 ne voit plus ce trafic.
 
 ---
 
@@ -94,7 +94,7 @@ Après `clear mac address-table dynamic`, la table est vidée. Lors du ping suiv
 | --- | --- |
 | **Root ID** | Priorité `32769` · MAC `0cb4.e9b1.0000` |
 | **Bridge ID** | Priorité `32769` · MAC `0cb4.e9b1.0000` |
-| **Root Bridge ?** | ✅ **Oui** — *"This bridge is the root"* |
+| **Root Bridge ?** | **Oui** — *"This bridge is the root"* |
 | **État de tous les ports** | `Desg FWD` (Designated Forwarding) |
 
 Tous les ports sont en rôle **Designated** : SW1 étant le root bridge, tous ses ports sont les ports de référence pour chaque segment — aucun n'a besoin d'être bloqué de son côté.
@@ -109,7 +109,7 @@ Tous les ports sont en rôle **Designated** : SW1 étant le root bridge, tous se
 | --- | --- |
 | **Root ID** | Priorité `32769` · MAC `0cb4.e9b1.0000` ← celui de SW1 |
 | **Bridge ID** | Priorité `32769` · MAC `0cbd.baa9.0000` ← propre à SW2 |
-| **Root Bridge ?** | ❌ Non |
+| **Root Bridge ?** | Non |
 | **Port `Gi0/0`** | Rôle `Root FWD` ← port vers le root bridge |
 | **Autres ports** | `Desg FWD` |
 
@@ -122,12 +122,12 @@ SW2 connaît le root bridge (MAC différente du sien) et a désigné `Gi0/0` com
 | Critère | SW1 | SW2 |
 | --- | --- | --- |
 | Rôle | **Root Bridge** | Switch non-root |
-| Root ID = Bridge ID ? | ✅ Oui | ❌ Non |
+| Root ID = Bridge ID ? | Oui | Non |
 | Root Port | — (c'est lui le root) | `Gi0/0` |
 | Ports en Forwarding | Tous (`Desg`) | Tous (`Root` ou `Desg`) |
 | Ports bloqués | Aucun | Aucun (topologie linéaire sans redondance) |
 
-> Dans cette topologie (SW1 → SW2 en cascade sans lien redondant), STP n'a pas besoin de bloquer de port. Les ports bloqués n'apparaissent que s'il existe **plusieurs chemins** entre deux switches — ce qui n'est pas le cas ici.
+> Dans cette topologie en cascade sans lien redondant, STP n'a pas besoin de bloquer de port. Les ports bloqués apparaissent lorsqu'il existe **plusieurs chemins** entre deux switches, ce qui n'est pas le cas ici.
 
 ---
 

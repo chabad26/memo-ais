@@ -30,6 +30,36 @@
 | `ospf` | Routage OSPF |
 | `ip.addr == 192.168.10.1` | Trafic lié à une IP |
 
+À observer avec `ospf` :
+
+- paquets `Hello` vers `224.0.0.5` ;
+- échanges réguliers entre voisins ;
+- changement de trafic lors d'une panne ou d'une reconvergence.
+
+## Commandes Cisco OSPF
+
+| Commande | Usage |
+| --- | --- |
+| `router ospf 1` | Entrer dans la configuration OSPF. |
+| `router-id 1.1.1.1` | Définir l'identifiant OSPF du routeur. |
+| `network 192.168.10.0 0.0.0.255 area 0` | Annoncer un LAN `/24` dans l'area 0. |
+| `network 10.0.1.0 0.0.0.3 area 0` | Annoncer un lien WAN `/30` dans l'area 0. |
+| `show ip ospf neighbor` | Voir les voisins OSPF. Attendu : `Full`. |
+| `show ip route ospf` | Voir les routes apprises par OSPF. |
+| `show ip ospf interface brief` | Voir les interfaces actives dans OSPF. |
+| `show ip ospf database` | Voir la base LSDB. |
+| `show ip protocols` | Vérifier les protocoles de routage actifs. |
+
+Authentification MD5 sur un lien OSPF :
+
+```bash
+R1(config)# interface GigabitEthernet0/1
+R1(config-if)# ip ospf message-digest-key 1 md5 MonMotDePasse
+R1(config-if)# ip ospf authentication message-digest
+```
+
+À faire des deux côtés du lien avec la même clé, sinon l'adjacence tombe.
+
 ## Exercices Wireshark : réponses types
 
 ### ARP

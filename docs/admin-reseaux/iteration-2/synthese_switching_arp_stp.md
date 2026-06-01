@@ -2,7 +2,7 @@
 
 ---
 
-## 1. Hub vs Switch
+## 1. Hub vs switch
 
 | Critère | Hub | Switch |
 |---|---|---|
@@ -16,11 +16,11 @@
 
 ## 2. Table MAC (CAM Table)
 
-Le switch maintient une table qui associe chaque **adresse MAC** à un **port physique**.
+Un switch maintient une table qui associe chaque **adresse MAC** à un **port physique**.
 
 ### Apprentissage dynamique
 
-1. Une trame arrive sur le port 3, avec MAC source `AA:BB:CC:DD:EE:01`
+1. Une trame arrive sur le port 3 avec la MAC source `AA:BB:CC:DD:EE:01`
 2. Le switch enregistre : *"cette MAC est accessible sur le port 3"*
 3. L'entrée a un **TTL ~300 s** — elle expire si la machine ne se manifeste plus
 
@@ -30,7 +30,7 @@ Le switch maintient une table qui associe chaque **adresse MAC** à un **port ph
 |---|---|
 | MAC de destination **connue** | Envoi uniquement sur le port associé (**unicast / forwarding**) |
 | MAC de destination **inconnue** | Envoi sur tous les ports sauf celui d'arrivée (**flooding**) |
-| MAC de destination **broadcast** `FF:FF:FF:FF:FF:FF` | **Toujours floodé** sur tous les ports |
+| MAC de destination **broadcast** `FF:FF:FF:FF:FF:FF` | **Toujours floodée** sur tous les ports |
 
 ### Commandes Cisco IOS utiles
 
@@ -49,7 +49,7 @@ SW1# clear mac address-table dynamic
 
 ## 3. ARP (Address Resolution Protocol)
 
-> **Rôle :** résoudre une adresse IP en adresse MAC avant la première communication locale.  
+> **Rôle :** résoudre une adresse IP en adresse MAC avant une communication locale.
 > **Couche :** Couche 2 (Accès réseau — modèle TCP/IP)
 
 ### Ce que voit le switch
@@ -85,11 +85,11 @@ ip neigh show    # l'entrée passe à REACHABLE
 
 ### Problème : les boucles de commutation
 
-Avec plusieurs switches interconnectés (redondance), il peut exister plusieurs chemins → **boucle de commutation** → tempête de broadcast → réseau saturé en quelques secondes.
+Avec plusieurs switches interconnectés, il peut exister plusieurs chemins entre deux équipements. Sans mécanisme de contrôle, cela crée une **boucle de commutation**, puis une tempête de broadcast qui peut saturer le réseau en quelques secondes.
 
 ### Solution STP en 3 étapes
 
-1. **Élection du Root Bridge** — le switch avec la priorité la plus basse (défaut : `32768` sur Cisco IOS) devient la racine
+1. **Élection du Root Bridge** — le switch avec le BID le plus bas devient la racine
 2. **Calcul du chemin de coût minimal** — chaque switch choisit le chemin le moins coûteux vers le root bridge
 3. **Blocage des ports redondants** — les ports créant des boucles sont mis en état `Blocking`
 
@@ -99,7 +99,7 @@ Avec plusieurs switches interconnectés (redondance), il peut exister plusieurs 
 
 | État | Description | Durée |
 |---|---|---|
-| **Blocking** | N'envoie pas de données, écoute les BPDUs | Jusqu'à panne détectée |
+| **Blocking** | N'envoie pas de données, écoute les BPDUs | Jusqu'à changement de topologie |
 | **Listening** | Prépare la transition, n'apprend pas les MACs | 15 s |
 | **Learning** | Apprend les MACs, n'envoie pas encore de données | 15 s |
 | **Forwarding** | Fonctionnement normal — envoie et reçoit | Indéfini |
@@ -140,4 +140,4 @@ Switch reçoit la trame sur le port d'entrée
 
 ---
 
-*Sources : RFC 826 (ARP) · IEEE 802.1D (STP) · Cisco IOS documentation*
+*Sources : RFC 826 (ARP) · IEEE 802.1D (STP) · documentation Cisco IOS*
