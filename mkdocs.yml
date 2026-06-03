@@ -110,6 +110,12 @@ nav:
           - Vue d'ensemble: admin-reseaux/iteration-3/index.md
           - Routage statique: admin-reseaux/iteration-3/routage-statique.md
           - Routage dynamique: admin-reseaux/iteration-3/routage-dynamique-OSPF.md
+      - Services réseau:
+          - Vue d'ensemble: admin-reseaux/iteration-4/index.md
+          - Synthèse DHCP: admin-reseaux/iteration-4/synthese-dhcp.md
+          - TP DHCP et VLANs: admin-reseaux/iteration-4/dhcp-vlans-gns3.md
+          - Nat et PAT: admin-reseaux/iteration-4/nat-pat.md
+          - DNS interne: admin-reseaux/iteration-4/dns.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md

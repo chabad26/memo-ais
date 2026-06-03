@@ -8,4 +8,4 @@ L'itération est coupé en 2 modules distinct:
 
 ## bloc 2
 
-📌Découvrir OSPF, le protocole de routage dynamique de référence : principe link-state, adjacences, paquets Hello, coût et zones. Configurer OSPF sur l'infrastructure 3 sites du J4, observer la convergence en cas de panne, puis étendre à un 4e site pour démontrer l'auto-apprentissage. Livrable RNCP L2b en fin de journée.
+📌 Découvrir OSPF, le protocole de routage dynamique de référence : principe link-state, adjacences, paquets Hello, coût et zones. Configurer OSPF sur l'infrastructure 3 sites du J4, observer la convergence en cas de panne, puis étendre à un 4e site pour démontrer l'auto-apprentissage. Livrable RNCP L2b en fin de journée.
