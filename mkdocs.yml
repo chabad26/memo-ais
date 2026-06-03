@@ -118,6 +118,9 @@ nav:
           - TP NAT/PAT GNS3: admin-reseaux/iteration-4/tp-nat-pat-gns3.md
           - DNS interne: admin-reseaux/iteration-4/dns.md
           - Finalisation AlpesNet: admin-reseaux/iteration-4/finalisation-infrastructure-alpesnet.md
+      - Analyse de trafic, diagnostic et clôture :
+          - Vue d'ensemble: admin-reseaux/iteration-5/index.md
+          - Méthode de diagnostic OSI: admin-reseaux/iteration-5/methode-diagnostic-osi.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
