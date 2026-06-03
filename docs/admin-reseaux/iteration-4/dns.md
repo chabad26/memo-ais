@@ -58,7 +58,8 @@ Installation sur Debian/Ubuntu :
 
 ```bash
 sudo apt update
-sudo apt install bind9 bind9utils bind9-doc
+sudo apt install bind9 bind9utils bind9-doc dsniff  dnstracer dnstop dnsutils 
+
 ```
 
 Vérifier la version :

@@ -115,7 +115,9 @@ nav:
           - Synthèse DHCP: admin-reseaux/iteration-4/synthese-dhcp.md
           - TP DHCP et VLANs: admin-reseaux/iteration-4/dhcp-vlans-gns3.md
           - Nat et PAT: admin-reseaux/iteration-4/nat-pat.md
+          - TP NAT/PAT GNS3: admin-reseaux/iteration-4/tp-nat-pat-gns3.md
           - DNS interne: admin-reseaux/iteration-4/dns.md
+          - Finalisation AlpesNet: admin-reseaux/iteration-4/finalisation-infrastructure-alpesnet.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
