@@ -121,6 +121,11 @@ nav:
       - Analyse de trafic, diagnostic et clôture :
           - Vue d'ensemble: admin-reseaux/iteration-5/index.md
           - Méthode de diagnostic OSI: admin-reseaux/iteration-5/methode-diagnostic-osi.md
+          - Simulation pannes AlpesNet OSI: admin-reseaux/iteration-5/simulation-pannes-alpesnet-osi.md
+          - Critères fiche dépannage AlpesNet: admin-reseaux/iteration-5/criteres-fiche-depannage-alpesnet.md
+          - TP Wireshark GNS3 et réseau physique: admin-reseaux/iteration-5/tp-wireshark-gns3-reseau-physique.md
+          - Synthèse automatisation Bash: admin-reseaux/iteration-5/synthese-automatisation-bash.md
+          - Automatisation connectivité et sauvegarde: admin-reseaux/iteration-5/automatisation-connectivite-sauvegarde.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
@@ -142,6 +147,7 @@ nav:
           - Modèles: pense-bete/admin-resau/admin-reseaux-modeles.md
           - Niveaux: pense-bete/admin-resau/admin-reseaux-niveaux.md
           - Protocoles: pense-bete/admin-resau/admin-reseaux-protocoles.md
+          - Diagnostic, Wireshark et automatisation: pense-bete/admin-resau/diagnostic-wireshark-automatisation.md
           - Vocabulaire du routage: pense-bete/admin-resau/routage-vocabulaire.md
           - Switching, ARP, VLANs et STP: pense-bete/admin-resau/switching-arp-vlans.md
 

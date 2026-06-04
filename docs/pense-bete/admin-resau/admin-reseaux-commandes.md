@@ -13,6 +13,10 @@
 | `mtr --report 8.8.8.8` | Diagnostic de route continu |
 | `dig google.com A` | Tester le DNS |
 | `ipcalc 192.168.10.0/26` | Vérifier un sous-réseau |
+| `ss -tulnp` | Voir les ports en écoute |
+| `nc -zv 192.168.10.5 443` | Tester l'ouverture d'un port TCP |
+| `curl -v http://192.168.10.5` | Tester un service HTTP |
+| `openssl s_client -connect 192.168.10.5:443` | Tester TLS/HTTPS |
 
 !!! tip "Diagnostic rapide"
     Si `ping 8.8.8.8` fonctionne mais pas `ping google.com`, la connectivité IP est probablement OK et le problème vient plutôt du DNS.
@@ -29,12 +33,32 @@
 | `bootp` | DHCP |
 | `ospf` | Routage OSPF |
 | `ip.addr == 192.168.10.1` | Trafic lié à une IP |
+| `eth.dst == ff:ff:ff:ff:ff:ff` | Broadcast Ethernet |
+| `ip.dst == 224.0.0.251` | mDNS IPv4 |
+| `udp.port == 5353` | mDNS |
 
 À observer avec `ospf` :
 
 - paquets `Hello` vers `224.0.0.5` ;
 - échanges réguliers entre voisins ;
 - changement de trafic lors d'une panne ou d'une reconvergence.
+
+## Lire des fichiers pcapng
+
+| Commande | Usage |
+| --- | --- |
+| `capinfos capture.pcapng` | Métadonnées : durée, nombre de paquets, interface |
+| `tcpdump -nn -r capture.pcapng -c 50` | Lire les 50 premiers paquets |
+| `tcpdump -nn -r capture.pcapng arp` | Lire uniquement ARP |
+| `tcpdump -nn -r capture.pcapng icmp` | Lire uniquement ICMP |
+| `tcpdump -nn -r capture.pcapng port 67 or port 68` | Lire DHCP |
+| `tcpdump -nn -r capture.pcapng udp port 5353` | Lire mDNS |
+
+À retenir :
+
+- `-r` lit un fichier de capture ;
+- `-nn` garde les IP et ports numériques ;
+- `-c` limite le nombre de paquets affichés.
 
 ## Commandes Cisco OSPF
 
@@ -119,6 +143,43 @@ Exemple observé :
 5. Tester une IP externe.
 6. Tester un nom DNS.
 7. Observer les paquets avec Wireshark si le doute reste.
+
+## Diagnostic OSI rapide
+
+| Couche | Test rapide |
+| --- | --- |
+| L1 | `ip link show` : interface UP ? |
+| L2 | `ip neigh show` ou filtre Wireshark `arp` |
+| L3 | `ip addr`, `ip route`, `ping` |
+| L4 | `ss -tulnp`, `nc -zv ip port` |
+| L7 | `curl -v`, `dig`, logs applicatifs |
+
+Méthode : formuler une hypothèse avant chaque test, puis s'arrêter à la première couche qui échoue.
+
+## Bash — automatisation rapide
+
+Tester plusieurs hôtes :
+
+```bash
+for ip in 192.168.10.1 192.168.10.2 192.168.10.3; do
+    ping -c 1 "$ip" && echo "$ip OK" || echo "$ip KO"
+done
+```
+
+Lire un fichier `hosts.txt` :
+
+```bash
+while IFS= read -r line; do
+    [[ -z "$line" || "$line" == \#* ]] && continue
+    ping -c 1 "$line" && echo "$line OK" || echo "$line KO"
+done < hosts.txt
+```
+
+Options pro :
+
+- `set -euo pipefail` : mode strict ;
+- `"$variable"` : toujours protéger les variables ;
+- `tee -a fichier.log` : afficher et journaliser.
 
 ## En-tête des configurations
 

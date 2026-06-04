@@ -1,0 +1,6 @@
+# Equipements AlpesNet - exemple
+# Format: IP NOM
+192.168.10.1 R1
+192.168.20.1 R2
+192.168.30.1 R3
+192.168.40.1 R4

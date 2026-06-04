@@ -12,6 +12,7 @@ Objectif : retrouver vite une commande, une notion ou un réflexe de diagnostic 
 | [Modèles](admin-reseaux-modeles.md) | Modèles TCP/IP, OSI et encapsulation |
 | [Niveaux](admin-reseaux-niveaux.md) | Couches L1, L2, L3 et rôles associés |
 | [Protocoles](admin-reseaux-protocoles.md) | ARP, ICMP, DNS, TCP, UDP, HTTP |
+| [Diagnostic, Wireshark et automatisation](diagnostic-wireshark-automatisation.md) | Méthode OSI, captures pcapng, GNS3 vs physique et Bash |
 | [Vocabulaire du routage](routage-vocabulaire.md) | OSPF, RIP, next-hop, métrique, route par défaut |
 | [Switching, ARP, VLANs et STP](switching-arp-vlans.md) | Commutation, VLANs, trunk/access et anti-boucle |
 
@@ -22,3 +23,4 @@ Objectif : retrouver vite une commande, une notion ou un réflexe de diagnostic 
 - Routeur = couche 3, passage entre réseaux.
 - ARP fait le lien IP -> MAC sur le LAN.
 - `ping`, `traceroute`, `ip`, `tcpdump` et Wireshark sont les premiers réflexes de diagnostic.
+- Un script Bash transforme une vérification répétitive en action fiable, reproductible et traçable.
