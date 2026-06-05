@@ -174,7 +174,7 @@ aucune erreur
 
 ## Sujet B - Sauvegarde de configurations
 
-### Besoin
+### Besoin B
 
 Le script doit :
 
@@ -244,7 +244,7 @@ show running-config
 pip install netmiko --break-system-packages
 ```
 
-### Exécution
+### Exécution B
 
 ```bash
 NET_USER=admin NET_PASSWORD='motdepasse' python3 backup_configs_netmiko.py
