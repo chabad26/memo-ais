@@ -12,7 +12,7 @@ Le but est aussi de comprendre les différences entre une capture propre et cont
 ## Fichiers disponibles dans l'espace de partage
 
 | Fichier | Rôle |
-|---|---|
+| --- | --- |
 | [`res01a_capture1.pcapng`](../../assets/img/admin-reseau/it-5/res01a_capture1.pcapng) | Trafic basique, déjà vu en séquence 1.2 |
 | [`res01a_capture2_AlpesNet.pcapng`](../../assets/img/admin-reseau/it-5/res01a_capture2_AlpesNet.pcapng) | Trafic AlpesNet avancé : OSPF, DHCP, ICMP inter-sites |
 | [`laptop.pcapng`](../../assets/img/admin-reseau/it-5/laptop.pcapng) | Capture physique de salle depuis un poste Ubuntu branché au switch |
@@ -35,7 +35,7 @@ tcpdump -nn -r docs/assets/img/admin-reseau/it-5/laptop.pcapng port 67 or port 6
 Synthèse observée :
 
 | Capture | Volume | Durée | Observations principales |
-|---|---:|---:|---|
+| --- | ---: | ---: | --- |
 | `res01a_capture2_AlpesNet.pcapng` | 874 paquets | 20 min 09 s | Capture GNS3 maîtrisée : DHCP, ARP, ICMP, STP/CDP/DTP Cisco |
 | `res01a_capture2_only_ospf.pcapng` | 138 paquets | 2 min 00 s | Capture OSPF dédiée : Hello vers `224.0.0.5`, lien `10.0.11.1/10.0.11.2` |
 | `laptop.pcapng` | 24 623 paquets | 9 min 37 s | Capture physique sur `wlp14s0` : DHCP, ARP, mDNS, IPv6, HTTPS, IEEE1905.1 |
@@ -52,7 +52,7 @@ Pour chaque protocole :
 4. noter ce que la capture prouve.
 
 | Protocole | Filtre Wireshark | Comment générer le trafic | Points à identifier |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | OSPF Hello | `ospf` | Attendre 30 secondes, trafic automatique | Type 1, router-id, destination `224.0.0.5`, hello/dead timers |
 | DHCP DORA | `bootp` | Faire une demande `ip dhcp` sur un VPCS | 4 messages DORA, options 53, 1, 3, 6, 51 |
 | ICMP inter-sites | `icmp` | Ping depuis le site 1 vers le site 4 | TTL décrémenté à chaque saut |
@@ -102,7 +102,7 @@ La séquence attendue est :
 Options importantes à identifier :
 
 | Option | Signification |
-|---|---|
+| --- | --- |
 | 53 | Type de message DHCP |
 | 1 | Masque de sous-réseau |
 | 3 | Passerelle par défaut |
@@ -178,22 +178,22 @@ Exemple issu de la capture basique :
 
 Procédure :
 
-1. Ouvrir la capture Wireshark sur le lien **R1 ↔ R2**.
-2. Sur R2, couper l'interface vers un autre routeur :
+- Ouvrir la capture Wireshark sur le lien **R1 ↔ R2**.
+- Sur R2, couper l'interface vers un autre routeur
 
 ```text
 R2(config)# interface GigabitEthernet0/2
 R2(config-if)# shutdown
 ```
 
-3. Observer dans Wireshark les paquets OSPF de type **4 LSUpdate** qui propagent le changement de topologie.
-4. Réactiver l'interface :
+- Observer dans Wireshark les paquets OSPF de type **4 LSUpdate** qui propagent le changement de topologie.
+- Réactiver l'interface :
 
 ```text
 R2(config-if)# no shutdown
 ```
 
-5. Observer la reconvergence :
+- Observer la reconvergence :
 
 - nouveaux paquets **Hello** ;
 - échange de LSDB ;
@@ -250,25 +250,3 @@ fe80::...5353 > ff02::fb.5353: mDNS IPv6
 ```
 
 La capture physique montre aussi du trafic HTTPS réel vers Internet, par exemple vers des adresses publiques sur le port `443`. Ce bruit de fond n'existe pas dans une capture GNS3 contrôlée, sauf si on le génère volontairement.
-
-## Comparer GNS3 vs physique
-
-Tableau à remplir à partir de `res01a_capture2_AlpesNet.pcapng` et `laptop.pcapng` :
-
-| Critère | Capture GNS3 | Capture physique |
-|---|---|---|
-| Format des adresses MAC |  |  |
-| Trafic de fond (sans rien faire) |  |  |
-| Latence mesurée |  |  |
-| Checksums Ethernet |  |  |
-| Protocoles non attendus observés |  |  |
-
-## Trace attendue dans le compte rendu
-
-Pour chaque protocole analysé, noter :
-
-- le nom du fichier ou de la capture ;
-- le filtre Wireshark utilisé ;
-- la commande qui a généré le trafic ;
-- les champs identifiés ;
-- la conclusion : ce que la capture prouve réellement.

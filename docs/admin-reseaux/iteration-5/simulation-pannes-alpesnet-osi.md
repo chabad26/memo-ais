@@ -124,13 +124,13 @@ Conclusion : la route vers le site 3 est réapprise par OSPF et le ping initial 
 
 ## Panne B - Les PC du site 1 reçoivent une APIPA
 
-### Symptôme
+### Symptôme B
 
 Les PC du site 1 obtiennent une adresse `169.254.x.x` au lieu d'une IP en `192.168.10.x`.
 
 Rappel : une adresse APIPA signifie que le client n'a reçu aucune réponse DHCP dans le délai attendu.
 
-### Fiche de dépannage
+### Fiche de dépannage B
 
 ```text
 === FICHE DE DÉPANNAGE ===
@@ -154,10 +154,10 @@ Première lecture : le problème concerne DHCP, donc L7 applicatif, mais il faut
 | L1 | Le lien PC-switch ou switch-routeur est coupé. | `show interfaces status` / `show ip interface brief` | Ports en `connected`, interfaces `up/up` | L1 OK |
 | L2 | Le VLAN du port client est mauvais ou le trunk ne transporte pas le VLAN site 1. | `show vlan brief` et `show interfaces trunk` | VLAN site 1 présent et autorisé | L2 OK |
 | L3 | La passerelle du réseau site 1 est absente. | `R1# show ip interface brief` | Interface LAN site 1 en `192.168.10.1` et `up/up` | L3 OK |
-| L7 | Le service DHCP ne propose pas d'adresse pour `192.168.10.0/24`. | `show running-config | section ip dhcp pool` | Pool absent ou mauvais réseau configuré | Cause DHCP |
+| L7 | Le service DHCP ne propose pas d'adresse pour `192.168.10.0/24`. | `show running-config section ip dhcp pool` | Pool absent ou mauvais réseau configuré | Cause DHCP |
 | L7 | Le serveur reçoit les Discover mais ne répond pas. | `show ip dhcp server statistics` | `DHCPDISCOVER` augmente, `DHCPOFFER` reste à `0` | Pool DHCP incorrect |
 
-### Cause identifiée
+### Cause identifiée B
 
 La panne est simulée comme un **pool DHCP manquant ou mal configuré sur R1** pour le site 1.
 
@@ -173,7 +173,7 @@ ip dhcp pool SITE2
 
 Il n'y a aucun pool correspondant au réseau `192.168.10.0/24`.
 
-### Correctif appliqué
+### Correctif appliqué B
 
 ```cisco
 R1(config)# ip dhcp excluded-address 192.168.10.1 192.168.10.20
@@ -183,7 +183,7 @@ R1(dhcp-config)# default-router 192.168.10.1
 R1(dhcp-config)# dns-server 203.0.113.2
 ```
 
-### Vérification
+### Vérification B
 
 Sur un PC du site 1 :
 
@@ -212,11 +212,11 @@ Conclusion : les clients ne reçoivent plus d'APIPA et obtiennent une adresse va
 
 ## Panne C - Les PC internes ne joignent plus le serveur public
 
-### Symptôme
+### Symptôme C
 
 Les PC internes ne peuvent plus accéder au serveur public `203.0.113.2`. Depuis `R1` lui-même, le ping vers `203.0.113.2` fonctionne.
 
-### Fiche de dépannage
+### Fiche de dépannage C
 
 ```text
 === FICHE DE DÉPANNAGE ===
@@ -242,9 +242,9 @@ Première lecture : le chemin externe existe. Le problème se situe entre les r�
 | L3 | R1 n'a pas de route vers `203.0.113.2`. | `R1# ping 203.0.113.2` | Ping OK depuis R1 | L3 externe OK |
 | L3 | Le PC interne n'a pas de passerelle correcte. | `show ip` sur PC interne | Gateway correcte vers R1 | L3 interne OK |
 | L3/NAT | Les paquets privés sortent sans translation. | `R1# show ip nat translations` après ping client | Aucune nouvelle translation | Cause NAT |
-| L3/NAT | L'ACL NAT ne couvre pas les réseaux internes. | `show running-config | include ip nat|access-list` | ACL NAT absente ou trop restrictive | Cause confirmée |
+| L3/NAT | L'ACL NAT ne couvre pas les réseaux internes. | `show running-config include ip nat access-list` | ACL NAT absente ou trop restrictive | Cause confirmée |
 
-### Cause identifiée
+### Cause identifiée C
 
 La panne est simulée comme une **ACL NAT incorrecte sur R1**. `R1` peut joindre le serveur public avec sa propre IP, mais les PC internes en `192.168.x.x` ne sont pas translatés.
 
@@ -257,7 +257,7 @@ ip nat inside source list 1 interface GigabitEthernet0/2 overload
 
 Dans cet exemple, seuls les clients du site 1 sont couverts. Si la panne touche tous les PC internes, l'ACL peut aussi être vide, supprimée, ou associée à la mauvaise interface.
 
-### Correctif appliqué
+### Correctif appliqué C
 
 Correctif large pour couvrir les quatre sites privés AlpesNet :
 
@@ -275,7 +275,7 @@ R1(config)# ip nat inside source list 1 interface GigabitEthernet0/2 overload
 
 Si la topologie utilise des sous-interfaces, le marquage `ip nat inside` doit être posé sur les sous-interfaces internes concernées, par exemple `Gi0/1.10`, `Gi0/1.20`, `Gi0/1.30` et `Gi0/1.40`.
 
-### Vérification
+### Vérification C
 
 Depuis un PC interne :
 
