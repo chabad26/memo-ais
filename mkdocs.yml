@@ -92,6 +92,14 @@ nav:
           - Analyse des incidents et mitigation: systeme-info-si/iteration-4/analyse-incidents-mitigation.md
           - Amélioration architecture CHU Rouen: systeme-info-si/iteration-4/amelioration-architecture-chu-rouen.md
 
+  - RGPD:
+      - Présentation: rgpd/index.md
+      - Définition et enjeux basiques: rgpd/definition-enjeux-basiques.md
+      - Historique du RGPD: rgpd/historique.md
+      - Acteurs du RGPD: rgpd/acteurs.md
+      - Les 8 règles d'or: rgpd/regles-or.md
+      - Enjeux avancés: rgpd/enjeux-avances.md
+
   - Administration des réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
       - Synthèse personnelle CC-01: admin-reseaux/synthese-personnelle-cc01.md

@@ -15,6 +15,7 @@ Ce mémo est découpé en plusieurs parties :
 - **Schémas de l'AIS** : des schémas pour donner des exemples plus concret
 - **Liens utiles** : Des ressources utiles pour la veille technologique
 - **Système d’info & archi SI** : organisation du SI, des flux et des infrastructures.
+- **RGPD** : formation CNIL, notions clés, conformité et protection des données personnelles.
 - **Administration des réseaux — Fondamentaux** : base de gestion d'un réseau d'entreprise.
 
 ## Objectif
