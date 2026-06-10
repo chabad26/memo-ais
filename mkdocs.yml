@@ -31,6 +31,7 @@ extra_css:
 extra_javascript:
   - assets/javascripts/mermaid-zoom.js
   - assets/javascripts/image-zoom.js
+  - assets/javascripts/pdf-viewer.js
 
 markdown_extensions:
   - admonition
@@ -98,6 +99,9 @@ nav:
       - Historique du RGPD: rgpd/historique.md
       - Acteurs du RGPD: rgpd/acteurs.md
       - Les 8 règles d'or: rgpd/regles-or.md
+      - RGPD en collectivité: rgpd/collectivites.md
+      - Travail et données personnelles: rgpd/travail-donnees-personnelles.md
+      - Ressources PDF: rgpd/ressources-pdf.md
       - Enjeux avancés: rgpd/enjeux-avances.md
 
   - Administration des réseaux :

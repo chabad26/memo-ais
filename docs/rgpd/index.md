@@ -12,6 +12,9 @@ Cette partie du mémo sert à comprendre les bases du RGPD, son origine, ses enj
 - [Historique du RGPD](historique.md)
 - [Acteurs du RGPD](acteurs.md)
 - [Les 8 règles d'or](regles-or.md)
+- [RGPD en collectivité](collectivites.md)
+- [Travail et données personnelles](travail-donnees-personnelles.md)
+- [Ressources PDF](ressources-pdf.md)
 - [Enjeux avancés](enjeux-avances.md)
 
 ## L'Atelier RGPD de la CNIL
