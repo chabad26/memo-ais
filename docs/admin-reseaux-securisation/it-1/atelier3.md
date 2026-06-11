@@ -43,6 +43,78 @@ Exemples :
 
 `nftables` sur le routeur Linux filtre donc les flux inter-VLAN, pas les flux internes a un meme VLAN. Pour filtrer les flux locaux d'un VLAN, il faudrait agir sur les postes eux-memes, sur un switch de niveau 3, ou sur un equipement de filtrage place dans le chemin du trafic.
 
+## Preparation de la machine
+
+Avant de configurer les regles de filtrage, il faut verifier que les paquets necessaires sont installes sur les machines utilisees pendant l'atelier.
+
+Sur Debian ou Kali, commencer par mettre a jour la liste des paquets :
+
+```bash
+sudo apt update
+```
+
+### Paquets a installer sur le routeur Linux
+
+La machine qui route entre les VLANs doit disposer de `nftables` et des outils reseau de base :
+
+```bash
+sudo apt install nftables iproute2 iputils-ping tcpdump
+```
+
+| Paquet | Utilisation |
+| --- | --- |
+| `nftables` | Creation des tables, chaines et regles de filtrage |
+| `iproute2` | Commandes `ip addr`, `ip route` et gestion du routage |
+| `iputils-ping` | Tests ICMP avec `ping` |
+| `tcpdump` | Capture rapide de trafic en ligne de commande |
+
+Verifier que la commande `nft` est disponible :
+
+```bash
+nft --version
+```
+
+Activer le service `nftables` pour pouvoir rendre les regles persistantes ensuite :
+
+```bash
+sudo systemctl enable nftables
+sudo systemctl start nftables
+sudo systemctl status nftables
+```
+
+### Paquets utiles sur les machines de test
+
+Sur les postes clients ou sur Kali Linux, installer les outils de test :
+
+```bash
+sudo apt install iproute2 iputils-ping openssh-client netcat-openbsd curl
+```
+
+| Paquet | Utilisation |
+| --- | --- |
+| `openssh-client` | Tester une connexion SSH vers une machine distante |
+| `netcat-openbsd` | Tester rapidement l'ouverture d'un port TCP |
+| `curl` | Tester un service HTTP ou HTTPS |
+
+### Paquets utiles sur une machine cible
+
+Pour tester SSH, la machine destination doit avoir un serveur SSH actif :
+
+```bash
+sudo apt install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo systemctl status ssh
+```
+
+Pour tester un service HTTP temporaire, Python suffit generalement :
+
+```bash
+sudo apt install python3
+```
+
+Ces installations evitent de confondre un flux bloque par le pare-feu avec un service simplement absent sur la machine cible.
+
 ## Mise en place des regles nftables
 
 ### 1. Identifier les interfaces

