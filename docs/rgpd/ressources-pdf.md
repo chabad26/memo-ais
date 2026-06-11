@@ -12,13 +12,13 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
         <a
           class="pdf-viewer-link"
           data-pdf-open
-          href="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_1_VF_05_06_2025.pdf"
+          href="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_1_VF_05_06_2025.pdf"
           target="_blank"
           rel="noopener"
         >Ouvrir</a>
         <a
           class="pdf-viewer-link"
-          href="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_1_VF_05_06_2025.pdf"
+          href="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_1_VF_05_06_2025.pdf"
           download
         >Télécharger</a>
       </div>
@@ -27,7 +27,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
       data-pdf-frame
       class="pdf-frame"
       title="Aperçu PDF"
-      src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_1_VF_05_06_2025.pdf"
+      src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_1_VF_05_06_2025.pdf"
     ></iframe>
   </section>
 
@@ -36,7 +36,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item is-active"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_1_VF_05_06_2025.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_1_VF_05_06_2025.pdf"
       data-pdf-title="Fiche de synthèse 1 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 1</span>
@@ -45,7 +45,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_2_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_2_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 2 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 2</span>
@@ -54,7 +54,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_3P1_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_3P1_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 3 - partie 1 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 3 - partie 1</span>
@@ -63,7 +63,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_3P2_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_3P2_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 3 - partie 2 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 3 - partie 2</span>
@@ -72,7 +72,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_4_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_4_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 4 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 4</span>
@@ -81,7 +81,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_5_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_5_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 5 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 5</span>
@@ -90,7 +90,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_6_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_6_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 6 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 6</span>
@@ -99,7 +99,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_7_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_7_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 7 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 7</span>
@@ -108,7 +108,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_8_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_8_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 8 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 8</span>
@@ -117,7 +117,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_9_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_9_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 9 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 9</span>
@@ -126,7 +126,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_10_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_10_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 10 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 10</span>
@@ -135,7 +135,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_11_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_11_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 11 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 11</span>
@@ -144,7 +144,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_12_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_12_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 12 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 12</span>
@@ -153,7 +153,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_13_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_13_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 13 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 13</span>
@@ -162,7 +162,7 @@ Sélectionne un document dans la liste pour l'afficher dans la visionneuse.
     <button
       class="pdf-list-item"
       type="button"
-      data-pdf-src="../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_14_VF_09_04_2025%20.pdf"
+      data-pdf-src="../../assets/img/RGPD/CNIL_Travail_et_Donn%C3%A9es_Fiches_Synth%C3%A8se_14_VF_09_04_2025%20.pdf"
       data-pdf-title="Fiche de synthèse 14 - Travail et données personnelles"
     >
       <span class="pdf-list-item-title">Fiche de synthèse 14</span>
