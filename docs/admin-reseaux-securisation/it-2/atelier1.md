@@ -1,781 +1,495 @@
-# Atelier 1 - Déploiement de pfSense
+# Atelier 1 - Déploiement de pfSense avec vrais VLANs
 
 ## Objectif de l'atelier
 
-Cet atelier consiste à déployer pfSense dans l'infrastructure du groupe et à préparer le filtrage réseau entre les VLANs. L'objectif n'est pas encore de définir une politique de sécurité complète, mais de placer correctement le pare-feu dans l'architecture, de configurer ses interfaces et de vérifier que les machines passent bien par lui pour communiquer.
+Cet atelier consiste à déployer pfSense comme passerelle et pare-feu central entre trois VLANs réels :
 
-pfSense devient le point de passage entre les VLANs internes et le routeur physique. Cette position permet ensuite d'appliquer des règles de filtrage, de journaliser les flux et de valider le cloisonnement réseau.
+- VLAN 10 : Administration ;
+- VLAN 20 : Production ;
+- VLAN 30 : RH.
 
-## Environnement de départ
+L'objectif est de mettre en place une infrastructure propre avant l'atelier 2, qui portera sur les règles de filtrage et les ACL. Dans cette version, les VLANs sont réellement transportés en 802.1Q entre pfSense et les switches.
 
-Chaque îlot dispose de l'architecture suivante :
+## Principe retenu
 
-| Élément | Rôle |
-| --- | --- |
-| 4 machines Linux | Postes clients, serveurs ou machines de test |
-| 1 machine Kali Linux | Poste de test offensif et de vérification des flux |
-| 1 routeur physique | Sortie réseau ou interconnexion avec le reste de l'infrastructure |
-| VLAN 10 | Réseau déjà configuré lors de l'itération 1 |
-| VLAN 20 | Réseau déjà configuré lors de l'itération 1 |
-| pfSense | Pare-feu placé entre les VLANs et le routeur physique |
-
-Les VLANs et l'adressage configurés lors de l'itération 1 sont réutilisés. Avant de modifier la passerelle des machines, il faut donc relever les adresses existantes, les masques, les VLANs utilisés et l'adresse du routeur physique.
-
-## Position de pfSense dans l'architecture
-
-pfSense doit être placé entre les réseaux internes et le routeur physique :
+La topologie utilise trois switches GNS3, un par VLAN. Chaque switch est relié à pfSense par un lien trunk. Les postes sont branchés sur des ports access.
 
 ```text
-VLAN 10 ----\
-             \ 
-              pfSense ---- Routeur physique ---- Réseau amont
-             /
-VLAN 20 ----/
+                     R1 / réseau amont
+                            |
+                          em0
+                        pfSense
+          em1.10 -------- em2.20 -------- em3.30
+            |               |               |
+        SWVLAN10        SWVLAN20        SWVLAN30
+          ADMIN            PROD             RH
+        /   |   \        /   |   \       /   |   \
+     Kali  D1  D2    D1  D2  Kali   Kali  RH1  RH2
 ```
+
+Le schéma GNS3 suivant sert de référence pour les ateliers 1 et 2. La topologie ne change pas entre le déploiement pfSense et la configuration des ACL.
+
+![Topologie GNS3 pfSense avec VLANs ADMIN, PROD et RH](../../assets/img/admin-reseau-securisation/it-2/GNS3atelier2.png)
 
 Dans cette architecture :
 
-- les machines du VLAN 10 utilisent l'adresse pfSense du VLAN 10 comme passerelle ;
-- les machines du VLAN 20 utilisent l'adresse pfSense du VLAN 20 comme passerelle ;
-- pfSense utilise son interface WAN pour joindre le routeur physique ;
-- le routeur physique ne doit plus être la passerelle directe des machines internes.
+- pfSense route entre les VLANs ;
+- chaque switch transporte un seul VLAN utilisateur ;
+- le port switch vers pfSense est en trunk ;
+- les ports des machines sont en access ;
+- chaque machine utilise pfSense comme passerelle par défaut.
 
-## Rappel important
+## Plan d'adressage
 
-pfSense utilise FreeBSD comme système d'exploitation de base, et non Linux. Les noms d'interfaces ne sont donc pas du type `eth0`, `ens33` ou `enp0s3`.
+| Zone | VLAN | Interface pfSense | Réseau | Passerelle |
+| --- | --- | --- | --- | --- |
+| Administration | 10 | `em1.10` / `ADMIN` | `192.168.10.0/24` | `192.168.10.1` |
+| Production | 20 | `em2.20` / `PROD` | `192.168.20.0/24` | `192.168.20.1` |
+| RH | 30 | `em3.30` / `RH` | `192.168.30.0/24` | `192.168.30.1` |
+| WAN | - | `em0` | réseau amont | selon le routeur |
 
-On peut rencontrer des noms comme :
+Exemple de postes :
+
+| VLAN | Machines |
+| --- | --- |
+| VLAN 10 | `KALI-admin`, `Admin-1`, `Admin-2` |
+| VLAN 20 | `prod-1`, `prod-2`, `KALI-prod` |
+| VLAN 30 | `KALI-RH`, `RH1`, `RH2` |
+
+## Rappel sur les interfaces pfSense
+
+pfSense utilise FreeBSD. Les interfaces ne s'appellent donc pas `eth0` ou `ens33`, mais plutôt :
 
 | Exemple | Signification possible |
 | --- | --- |
-| `em0` | Interface Intel émulée ou physique |
-| `igb0` | Interface Intel Gigabit |
-| `vtnet0` | Interface VirtIO |
-| `re0` | Interface Realtek |
+| `em0` | Interface Intel émulée ou virtuelle |
+| `em1` | Interface physique utilisée comme parent VLAN |
+| `em1.10` | Sous-interface VLAN 10 créée sur `em1` |
+| `em2.20` | Sous-interface VLAN 20 créée sur `em2` |
+| `em3.30` | Sous-interface VLAN 30 créée sur `em3` |
 
-Il faut donc identifier les interfaces à partir de leur adresse MAC, de leur ordre de connexion ou des informations affichées par pfSense.
-
-## Interfaces à configurer
-
-La configuration minimale attendue comporte trois interfaces :
-
-| Interface pfSense | Rôle | Exemple d'adressage |
-| --- | --- | --- |
-| WAN | Liaison vers le routeur physique | Adresse du réseau amont |
-| VLAN 10 | Passerelle du VLAN 10 | `192.168.10.1/24` |
-| VLAN 20 | Passerelle du VLAN 20 | `192.168.20.1/24` |
-
-Les adresses exactes doivent correspondre au plan d'adressage de l'itération 1. Si le routeur Linux ou le routeur physique utilisait déjà `192.168.10.1` et `192.168.20.1`, ces adresses peuvent être reprises par pfSense après adaptation de l'architecture.
-
-## Cas pratique GNS3 - interfaces `em0` à `em6`
-
-Dans GNS3, il est possible que pfSense dispose de plusieurs interfaces visibles :
-
-| Interface | Rôle prévu |
-| --- | --- |
-| `em0` | RI, WAN ou réseau amont |
-| `em1`, `em2`, `em3` | Machines du VLAN 10 Administration |
-| `em4`, `em5`, `em6` | Machines du VLAN 20 Production |
-
-Point important : pfSense ne transforme pas automatiquement plusieurs interfaces en ports de switch. Si `em1`, `em2` et `em3` sont branchées à trois machines différentes, elles ne sont pas dans le même réseau simplement parce qu'on les appelle toutes "VLAN 10". Il faut soit utiliser un switch externe dans GNS3, soit créer un bridge dans pfSense.
-
-### Option recommandée : utiliser deux switches GNS3
-
-La solution la plus simple pour l'atelier consiste à utiliser un switch GNS3 par VLAN :
+Le point important est le suffixe :
 
 ```text
-RI / routeur physique
-        |
-      em0
-     pfSense
-      /   \
-   em1     em4
-    |       |
-Switch    Switch
-VLAN 10   VLAN 20
-  | | |     | | |
-Kali Admin Prod Kali
+em1.10 = VLAN 10 taggé sur em1
+em2.20 = VLAN 20 taggé sur em2
+em3.30 = VLAN 30 taggé sur em3
 ```
 
-Dans ce cas, pfSense n'utilise qu'une interface par réseau :
+## Étape 1 - Câblage GNS3
 
-| Interface pfSense | Rôle | Adresse conseillée |
-| --- | --- | --- |
-| `em0` | WAN / RI | DHCP ou adresse du réseau amont |
-| `em1` | LAN / VLAN 10 | `192.168.10.1/24` |
-| `em4` | OPT1 / VLAN 20 | `192.168.20.1/24` |
+Raccorder les équipements ainsi :
 
-Les machines du VLAN 10 sont toutes reliées au switch VLAN 10. Les machines du VLAN 20 sont toutes reliées au switch VLAN 20. pfSense reste alors dans son rôle principal : routeur, pare-feu et passerelle entre les réseaux.
+| Lien | Rôle |
+| --- | --- |
+| `pfSense em0` -> `R1` | WAN / réseau amont |
+| `pfSense em1` -> `SWVLAN10 Gi0/0` | Trunk VLAN 10 |
+| `pfSense em2` -> `SWVLAN20 Gi0/0` | Trunk VLAN 20 |
+| `pfSense em3` -> `SWVLAN30 Gi0/0` | Trunk VLAN 30 |
+| `SWVLAN10 Gi0/1-3` | Postes Administration |
+| `SWVLAN20 Gi0/1-3` | Postes Production |
+| `SWVLAN30 Gi0/1-3` | Postes RH |
 
-### Option possible : créer des bridges dans pfSense
+## Étape 2 - Configuration des switches
 
-Si l'on veut garder le câblage avec plusieurs interfaces directement connectées à pfSense, il faut créer des bridges :
+Chaque switch transporte un seul VLAN utilisateur. Le port vers pfSense est en trunk, les ports vers les machines sont en access.
 
-| Bridge | Interfaces membres | Adresse du bridge |
-| --- | --- | --- |
-| `BRIDGE10` | `em1`, `em2`, `em3` | `192.168.10.1/24` |
-| `BRIDGE20` | `em4`, `em5`, `em6` | `192.168.20.1/24` |
+### Switch VLAN 10 - ADMIN
 
-Dans ce cas, les adresses IP doivent être configurées sur les bridges, pas sur chaque interface membre. Les interfaces `em1`, `em2`, `em3`, `em4`, `em5` et `em6` jouent seulement le rôle de ports raccordés au bridge.
+```text
+enable
+configure terminal
+
+vlan 10
+ name ADMIN
+
+interface GigabitEthernet0/0
+ description Trunk vers pfSense em1 ADMIN
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10
+ no shutdown
+
+interface range GigabitEthernet0/1 - 3
+ description Postes ADMIN
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast edge
+ no shutdown
+
+end
+write memory
+```
+
+### Switch VLAN 20 - PROD
+
+```text
+enable
+configure terminal
+
+vlan 20
+ name PROD
+
+interface GigabitEthernet0/0
+ description Trunk vers pfSense em2 PROD
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 20
+ no shutdown
+
+interface range GigabitEthernet0/1 - 3
+ description Postes PROD
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast edge
+ no shutdown
+
+end
+write memory
+```
+
+### Switch VLAN 30 - RH
+
+```text
+enable
+configure terminal
+
+vlan 30
+ name RH
+
+interface GigabitEthernet0/0
+ description Trunk vers pfSense em3 RH
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 30
+ no shutdown
+
+interface range GigabitEthernet0/1 - 3
+ description Postes RH
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast edge
+ no shutdown
+
+end
+write memory
+```
+
+Si la commande `switchport mode trunk` est refusée avec un message sur l'encapsulation `Auto`, il faut saisir avant :
+
+```text
+switchport trunk encapsulation dot1q
+```
+
+### Vérification des switches
+
+Sur chaque switch :
+
+```text
+show vlan brief
+show interfaces trunk
+show interfaces status
+```
+
+Résultat attendu :
+
+- `Gi0/0` est en trunk ;
+- le VLAN autorisé correspond au switch ;
+- `Gi0/1`, `Gi0/2`, `Gi0/3` sont en access dans le bon VLAN ;
+- les postes connectés apparaissent en `connected`.
+
+La capture suivante montre un exemple de configuration switch pour un VLAN utilisateur avec un trunk vers pfSense et des ports access vers les postes.
+
+![Exemple de configuration switch VLAN avec trunk vers pfSense](../../assets/img/admin-reseau-securisation/it-2/exemple_SW_VLAN.png)
+
+Dans l'exemple illustré, le VLAN configuré est le VLAN 20. Pour le switch Production, la description attendue du trunk est `Trunk vers pfSense em2 PROD`. Le principe reste identique pour ADMIN et RH en adaptant le VLAN, l'interface pfSense et les descriptions.
+
+## Étape 3 - Création des VLANs dans pfSense
 
 Depuis l'interface Web pfSense :
 
-1. Aller dans `Interfaces > Assignments`.
-2. Ajouter les interfaces optionnelles `em2`, `em3`, `em4`, `em5`, `em6`.
-3. Aller dans `Interfaces > Assignments > Bridges`.
-4. Créer un bridge avec `em1`, `em2`, `em3` pour le VLAN 10.
-5. Créer un bridge avec `em4`, `em5`, `em6` pour le VLAN 20.
-6. Assigner les bridges comme interfaces pfSense.
-7. Configurer `BRIDGE10` en `192.168.10.1/24`.
-8. Configurer `BRIDGE20` en `192.168.20.1/24`.
-
-Pour un premier atelier, l'option avec deux switches GNS3 reste plus lisible et plus proche d'une architecture réseau classique.
-
-## Configuration depuis la console pfSense
-
-Au démarrage, pfSense affiche un menu texte. Les deux entrées les plus utiles au début sont :
-
-| Option | Utilisation |
-| --- | --- |
-| `1) Assign Interfaces` | Associer `em0`, `em1`, `em4`, etc. aux rôles WAN, LAN et OPT |
-| `2) Set interface(s) IP address` | Configurer les adresses IP des interfaces |
-
-### Assignation des interfaces
-
-Pour l'architecture recommandée avec deux switches GNS3 :
-
 ```text
-WAN  -> em0
-LAN  -> em1
-OPT1 -> em4
+Interfaces > Assignments > VLANs
 ```
 
-Pour l'architecture minimale temporaire visible au premier démarrage, pfSense peut proposer :
+Créer les VLANs suivants :
+
+| Parent | Tag VLAN | Description |
+| --- | --- | --- |
+| `em1` | `10` | `VLAN10_ADMIN` |
+| `em2` | `20` | `VLAN20_PROD` |
+| `em3` | `30` | `VLAN30_RH` |
+
+Ensuite aller dans :
 
 ```text
-WAN -> em0
-LAN -> em1
+Interfaces > Assignments
 ```
 
-Il faut ensuite ajouter l'interface du VLAN 20 (`em4` ou le bridge correspondant) depuis l'interface Web, ou réassigner les interfaces depuis le menu console.
+Ajouter les interfaces VLAN créées, puis les renommer :
 
-### Configuration du LAN VLAN 10
+| Interface créée | Nom pfSense | Adresse IPv4 |
+| --- | --- | --- |
+| `em1.10` | `ADMIN` | `192.168.10.1/24` |
+| `em2.20` | `PROD` | `192.168.20.1/24` |
+| `em3.30` | `RH` | `192.168.30.1/24` |
 
-Dans `2) Set interface(s) IP address`, choisir l'interface LAN.
+Pour chaque interface :
 
-Réponses typiques pour le VLAN 10 :
-
-```text
-Configure IPv4 address LAN interface via DHCP? n
-Enter the new LAN IPv4 address: 192.168.10.1
-Enter the new LAN IPv4 subnet bit count: 24
-For a LAN, press <ENTER> for none: [Entrée]
-Configure IPv6 address LAN interface via DHCP6? n
-Enter the new LAN IPv6 address: [Entrée]
-Do you want to enable the DHCP server on LAN? y
-Enter the start address of the IPv4 client address range: 192.168.10.100
-Enter the end address of the IPv4 client address range: 192.168.10.200
-```
-
-Point important : lorsqu'il demande une passerelle amont pour le LAN, il faut appuyer sur `Entrée`. Une interface LAN n'a pas de passerelle amont. C'est elle qui devient la passerelle des machines du VLAN 10.
-
-La plage DHCP `192.168.10.100` à `192.168.10.200` permet de laisser les adresses basses pour les équipements fixes :
-
-| Adresse | Usage possible |
-| --- | --- |
-| `192.168.10.1` | pfSense LAN |
-| `192.168.10.10` | Admin-1 statique |
-| `192.168.10.11` | Admin-2 statique |
-| `192.168.10.100` à `192.168.10.200` | Clients DHCP |
-
-Si pfSense propose de repasser le WebConfigurator en HTTP, garder HTTPS en répondant `n`, sauf consigne contraire du formateur.
-
-### Configuration du VLAN 20
-
-L'interface du VLAN 20 peut être configurée depuis l'interface Web ou depuis la console si elle est déjà assignée.
-
-Exemple de configuration :
-
-```text
-Interface : OPT1 / VLAN 20
-Adresse   : 192.168.20.1
-Masque    : 24
-Passerelle amont : aucune
-DHCP      : optionnel, par exemple 192.168.20.100 à 192.168.20.200
-```
-
-Comme pour le LAN, l'interface VLAN 20 ne doit pas avoir de passerelle amont. Les machines de production utiliseront `192.168.20.1` comme passerelle.
-
-### Configuration du VLAN 30 RH
-
-Pour l'exercice d'approfondissement, un troisième réseau peut être ajouté pour représenter le service RH.
-
-Dans le lab actuel, le VLAN 30 est raccordé à l'interface `em3` de pfSense :
-
-```text
-Interface : OPT2 / VLAN 30 / RH
-Adresse   : 192.168.30.1
-Masque    : 24
-Passerelle amont : aucune
-DHCP      : 192.168.30.10 à 192.168.30.254
-```
+1. cocher `Enable interface` ;
+2. configurer l'adresse IPv4 statique ;
+3. ne pas définir de passerelle amont ;
+4. sauvegarder ;
+5. appliquer les changements.
 
 Depuis la console pfSense, l'état attendu ressemble à ceci :
 
 ```text
-WAN  (wan)  -> em0
-LAN  (lan)  -> em1  -> v4: 192.168.10.1/24
-OPT1 (opt1) -> em2  -> v4: 192.168.20.1/24
-OPT2 (opt2) -> em3  -> v4: 192.168.30.1/24
+WAN   (wan)  -> em0
+ADMIN (lan)  -> em1.10 -> v4: 192.168.10.1/24
+PROD  (opt1) -> em2.20 -> v4: 192.168.20.1/24
+RH    (opt2) -> em3.30 -> v4: 192.168.30.1/24
 ```
 
-![Console pfSense avec WAN, LAN, OPT1 et OPT2 configurés](../../assets/img/admin-reseau-securisation/it-2/pfsense.png)
+![Console pfSense avec interfaces VLAN taggées](../../assets/img/admin-reseau-securisation/it-2/pfsensevlan.png)
 
-Point d'attention : si les machines RH sont reliées à un switch simple GNS3, il faut utiliser `em3` comme interface physique non taggée. Il ne faut pas créer un VLAN taggé 30 sur `em3`, sauf si le switch entre pfSense et les machines transporte réellement des trames taggées.
+## Étape 4 - Configuration DHCP dans pfSense
 
-Symptôme typique d'une erreur de raccordement ou de VLAN taggé : les machines RH se ping entre elles, reçoivent une adresse DHCP en `192.168.30.0/24`, mais ne ping pas `192.168.30.1`. Dans ce cas, vérifier :
+Activer un serveur DHCP par interface interne si les postes doivent recevoir automatiquement leur configuration.
 
-- le câble entre le switch RH et `em3` ;
-- que `em3` est bien assignée à `OPT2` ;
-- que l'interface `OPT2` est activée ;
-- que l'adresse `192.168.30.1/24` est portée par `OPT2` ;
-- qu'aucun VLAN taggé inutile n'a été créé sur `em3`.
-
-### Configuration des machines clientes
-
-Si le DHCP est activé sur pfSense, les machines peuvent récupérer leur configuration automatiquement.
-
-Sinon, configurer les adresses à la main.
-
-Exemple pour une machine du VLAN 10 :
-
-```bash
-sudo ip addr add 192.168.10.10/24 dev eth0
-sudo ip route replace default via 192.168.10.1
-```
-
-Exemple pour une machine du VLAN 20 :
-
-```bash
-sudo ip addr add 192.168.20.10/24 dev eth0
-sudo ip route replace default via 192.168.20.1
-```
-
-Exemple pour une machine du VLAN 30 :
-
-```bash
-sudo ip addr add 192.168.30.10/24 dev eth0
-sudo ip route replace default via 192.168.30.1
-```
-
-Adapter l'adresse IP de chaque machine pour éviter les doublons.
-
-### Désactiver le DHCP sur R1 sous Debian
-
-Si R1 était utilisé comme routeur ou serveur DHCP lors de l'itération précédente, il faut désactiver son service DHCP pour éviter qu'il distribue des adresses à la place de pfSense.
-
-Sur R1, identifier le service DHCP actif :
-
-```bash
-systemctl list-units --type=service | grep -Ei 'dhcp|dnsmasq'
-```
-
-Vérifier aussi les paquets installés :
-
-```bash
-dpkg -l | grep -Ei 'isc-dhcp|kea|dnsmasq'
-```
-
-Cas le plus courant avec `isc-dhcp-server` :
-
-```bash
-sudo systemctl stop isc-dhcp-server
-sudo systemctl disable isc-dhcp-server
-sudo systemctl status isc-dhcp-server
-```
-
-Si le DHCP était fourni par `dnsmasq` :
-
-```bash
-sudo systemctl stop dnsmasq
-sudo systemctl disable dnsmasq
-sudo systemctl status dnsmasq
-```
-
-Si le DHCP était fourni par Kea :
-
-```bash
-sudo systemctl stop kea-dhcp4-server
-sudo systemctl disable kea-dhcp4-server
-sudo systemctl status kea-dhcp4-server
-```
-
-Après désactivation, renouveler l'adresse IP sur une machine cliente ou redémarrer son interface réseau. La passerelle reçue doit être pfSense :
-
-```bash
-ip addr
-ip route
-```
-
-Résultat attendu pour le VLAN 10 :
+Menu :
 
 ```text
-default via 192.168.10.1
+Services > DHCP Server
 ```
 
-Résultat attendu pour le VLAN 20 :
-
-```text
-default via 192.168.20.1
-```
-
-L'objectif est d'avoir un seul serveur DHCP actif par VLAN. Dans cet atelier, pfSense doit devenir la source principale pour les adresses IP, les passerelles et, si configuré, les serveurs DNS.
-
-### Règles firewall pfSense de validation
-
-Par défaut, pfSense filtre les flux à l'entrée de chaque interface. Une règle placée dans l'onglet `ADMIN` concerne donc le trafic qui entre dans pfSense depuis le réseau Administration. Une règle placée dans l'onglet `PROD` concerne le trafic qui entre depuis le réseau Production. Une règle placée dans l'onglet `RH` concerne le trafic qui entre depuis le réseau RH.
-
-Pour valider rapidement la connectivité pendant le TP, on peut créer des règles temporaires simples dans `Firewall > Rules`.
-
-Sur l'interface `ADMIN` :
-
-| Action | Protocole | Source | Destination | Description |
-| --- | --- | --- | --- | --- |
-| Pass | IPv4 ICMP | any | any | `PING EVERYBODY` |
-| Pass | IPv4 any | `ADMIN net` | any | `Default allow LAN to any rule` |
-
-Sur l'interface `PROD` :
-
-| Action | Protocole | Source | Destination | Description |
-| --- | --- | --- | --- | --- |
-| Pass | IPv4 ICMP | any | any | `PING EVERYBODY` |
-
-Sur l'interface `RH` :
-
-| Action | Protocole | Source | Destination | Description |
-| --- | --- | --- | --- | --- |
-| Pass | IPv4 ICMP | any | any | `PING EVERYBODY` |
-
-Paramètres de la règle ICMP :
-
-```text
-Action        : Pass
-Interface     : ADMIN, PROD ou RH selon l'onglet
-Address Family: IPv4
-Protocol      : ICMP
-ICMP Subtypes : any
-Source        : any
-Destination   : any
-Description   : PING EVERYBODY
-```
-
-Ces règles servent uniquement à vérifier que le routage inter-VLAN fonctionne. Une fois les tests terminés, il faut remplacer les règles trop larges par des règles plus restrictives correspondant aux besoins réels.
-
-Exemple de logique de durcissement :
-
-| Besoin | Règle possible |
-| --- | --- |
-| Administration vers tous les réseaux | Autoriser `ADMIN net` vers les destinations nécessaires |
-| Production vers Administration | Bloquer par défaut, sauf besoin explicite |
-| RH vers Production | Autoriser seulement les services nécessaires |
-| Ping de diagnostic | Autoriser ICMP temporairement ou seulement depuis le VLAN Administration |
-
-## Déroulement
-
-### 1. Démarrer pfSense
-
-Démarrer la machine pfSense et accéder à la console. Au premier lancement, pfSense peut demander d'assigner les interfaces réseau.
-
-Avant de valider, relever :
-
-- le nombre d'interfaces détectées ;
-- les noms FreeBSD des interfaces ;
-- les adresses MAC associées ;
-- le lien physique ou virtuel correspondant à chaque réseau.
-
-### 2. Identifier les interfaces disponibles
-
-Depuis la console pfSense, observer la liste des interfaces proposées. L'objectif est d'associer chaque interface à son usage :
-
-| Usage | Interface à identifier |
-| --- | --- |
-| WAN | Interface reliée au routeur physique |
-| VLAN 10 | Interface ou sous-interface reliée au VLAN 10 |
-| VLAN 20 | Interface ou sous-interface reliée au VLAN 20 |
-
-Si les VLANs sont transportés sur un lien trunk, il faut créer des interfaces VLAN dans pfSense à partir de l'interface physique concernée. Si chaque VLAN arrive sur une interface séparée, l'association se fait directement par interface.
-
-### 3. Configurer le WAN
-
-Configurer l'interface WAN vers le routeur physique.
-
-Deux cas sont possibles :
-
-| Cas | Configuration |
-| --- | --- |
-| Réseau amont en DHCP | pfSense reçoit automatiquement son adresse WAN |
-| Réseau amont statique | Saisir l'adresse IP, le masque et la passerelle du routeur physique |
-
-Après configuration, pfSense doit pouvoir joindre sa passerelle WAN.
-
-### 4. Configurer l'interface VLAN 10
-
-Configurer l'interface associée au VLAN 10 avec l'adresse prévue dans le plan d'adressage.
-
-Exemple :
-
-```text
-Interface : VLAN 10
-Adresse   : 192.168.10.1
-Masque    : /24
-```
-
-Cette adresse devient la passerelle par défaut des machines du VLAN 10.
-
-### 5. Configurer l'interface VLAN 20
-
-Configurer l'interface associée au VLAN 20 avec l'adresse prévue dans le plan d'adressage.
-
-Exemple :
-
-```text
-Interface : VLAN 20
-Adresse   : 192.168.20.1
-Masque    : /24
-```
-
-Cette adresse devient la passerelle par défaut des machines du VLAN 20.
-
-### 6. Configurer les passerelles des machines
-
-Sur chaque machine Linux, vérifier l'adresse IP, le masque et la passerelle :
-
-```bash
-ip addr
-ip route
-```
-
-La route par défaut doit pointer vers pfSense.
-
-Exemple pour une machine du VLAN 10 :
-
-```text
-default via 192.168.10.1
-```
-
-Exemple pour une machine du VLAN 20 :
-
-```text
-default via 192.168.20.1
-```
-
-Si besoin, adapter temporairement la passerelle avec :
-
-```bash
-sudo ip route replace default via 192.168.10.1
-```
-
-ou :
-
-```bash
-sudo ip route replace default via 192.168.20.1
-```
-
-La configuration permanente dépend de la distribution et du gestionnaire réseau utilisé.
-
-### 7. Vérifier la connectivité réseau
-
-Tester la connectivité étape par étape afin d'identifier précisément l'origine d'un éventuel problème.
-
-Depuis une machine du VLAN 10 :
-
-```bash
-ping 192.168.10.1
-ping 192.168.20.1
-ping 192.168.20.10
-```
-
-Depuis une machine du VLAN 20 :
-
-```bash
-ping 192.168.20.1
-ping 192.168.10.1
-ping 192.168.10.10
-```
-
-Depuis pfSense, vérifier aussi la connectivité vers le routeur physique et, si disponible, vers une adresse extérieure.
-
-## Accès à l'interface Web pfSense
-
-Depuis une machine placée dans un VLAN interne autorisé, ouvrir un navigateur vers l'adresse de pfSense :
-
-```text
-https://192.168.10.1
-```
-
-ou :
-
-```text
-https://192.168.20.1
-```
-
-Selon la configuration initiale, l'accès Web peut être autorisé seulement depuis certaines interfaces. Pour l'administration, il est préférable d'utiliser le VLAN d'administration si celui-ci existe dans le plan d'adressage.
-
-Après connexion, vérifier :
-
-- les interfaces configurées ;
-- les adresses IP ;
-- la passerelle WAN ;
-- l'état des liens ;
-- les règles de pare-feu par défaut ;
-- les journaux système.
-
-## Vérification des flux avec Kali Linux
-
-Kali Linux sert à observer les flux accessibles avant la mise en place d'un filtrage restrictif.
-
-### Découverte réseau
-
-Identifier le réseau local :
-
-```bash
-ip addr
-ip route
-```
-
-Scanner un VLAN connu :
-
-```bash
-nmap -sn 192.168.10.0/24
-nmap -sn 192.168.20.0/24
-```
-
-### Scan de ports
-
-Tester les ports exposés sur une machine cible :
-
-```bash
-nmap -sV 192.168.20.10
-```
-
-Tester les ports accessibles sur pfSense :
-
-```bash
-nmap -sV 192.168.10.1
-```
-
-Ces tests servent de point de référence. Ils permettront ensuite de comparer l'état du réseau avant et après la mise en place des règles de filtrage.
-
-### Tests simples avec Scapy
-
-Scapy peut être utilisé pour générer des paquets simples et observer les réponses :
-
-```bash
-sudo scapy
-```
-
-Exemple de test ICMP :
-
-```python
-sr1(IP(dst="192.168.20.10")/ICMP())
-```
-
-L'objectif n'est pas d'attaquer l'infrastructure, mais de vérifier quels flux sont possibles avant durcissement.
-
-## Points de contrôle
-
-| Contrôle | Résultat attendu |
-| --- | --- |
-| pfSense démarre correctement | Console accessible |
-| Interfaces identifiées | WAN, VLAN 10, VLAN 20 et VLAN 30 repérés |
-| Adresses IP configurées | Chaque interface possède l'adresse prévue |
-| Passerelles machines | Les machines utilisent pfSense comme passerelle |
-| Ping vers pfSense | Fonctionnel depuis chaque VLAN |
-| Ping inter-VLAN | Fonctionnel avant filtrage restrictif, selon règles par défaut |
-| Interface Web | Accessible depuis le réseau d'administration |
-| Tests Kali | Flux accessibles documentés |
-
-## Documentation attendue
-
-À la fin de l'atelier, chaque groupe doit documenter l'architecture mise à jour avec le plan réellement utilisé pendant le TP.
-
-La documentation doit contenir :
-
-- un schéma réseau indiquant pfSense, R1, les VLANs et les machines ;
-- le plan d'adressage utilisé ;
-- les interfaces pfSense et leur rôle ;
-- les passerelles configurées sur les machines ;
-- l'état du DHCP : pfSense actif, DHCP de R1 désactivé si R1 est sous Debian ;
-- les tests de connectivité réalisés ;
-- les flux observés depuis Kali Linux avant filtrage ;
-- les problèmes rencontrés et les corrections appliquées.
-
-## Plan d'architecture actuel
-
-Dans le plan utilisé pendant l'atelier, pfSense est placé entre R1 et les trois réseaux internes :
-
-![Topologie GNS3 finale avec pfSense, VLAN 10, VLAN 20 et VLAN 30](../../assets/img/admin-reseau-securisation/it-2/GNS3finatelier1.png)
-
-```text
-                              R1 / RI
-                                |
-                             em0 WAN
-                             pfSense
-                  /-------------|-------------\
-              em1 LAN        em2 OPT1       em3 OPT2
-             VLAN 10         VLAN 20        VLAN 30
-          Administration    Production         RH
-              |               |              |
-          SWVLAN10        SWVLAN20       SWVLAN30
-          /   |   \        /   |   \      /   |   \
-   Kali-admin Admin-1 Admin-2 Prod-1 Prod-2 Kali-prod Kali-RH RH1 RH2
-```
-
-Rôle des interfaces :
-
-| Interface pfSense | Zone | Rôle |
-| --- | --- | --- |
-| `em0` | WAN / RI | Liaison vers R1 ou le réseau amont |
-| `em1` | VLAN 10 / ADMIN | Liaison vers le switch Administration |
-| `em2` | VLAN 20 / PROD | Liaison vers le switch Production |
-| `em3` | VLAN 30 / RH | Liaison vers le switch RH |
-
-Chaque VLAN est raccordé à son propre switch GNS3. Les ports des machines sont donc dans le même domaine de niveau 2 que l'interface pfSense correspondante.
-
-| Switch | VLAN | Machines |
-| --- | --- | --- |
-| `SWVLAN10` | 10 / ADMIN | Kali-admin, Admin-1, Admin-2 |
-| `SWVLAN20` | 20 / PROD | Prod-1, Prod-2, Kali-prod |
-| `SWVLAN30` | 30 / RH | Kali-RH, RH1, RH2 |
-
-Dans ce plan, il n'est pas nécessaire de créer des bridges pfSense. Les bridges ne sont utiles que si plusieurs interfaces physiques pfSense doivent appartenir au même réseau.
-
-## Plan d'adressage actuel
-
-| Zone | VLAN | Réseau | Passerelle pfSense | Exemple de machine |
-| --- | --- | --- | --- | --- |
-| Administration | 10 | `192.168.10.0/24` | `192.168.10.1` | Kali-admin, Admin-1, Admin-2 |
-| Production | 20 | `192.168.20.0/24` | `192.168.20.1` | Prod-1, Prod-2, Kali-prod |
-| RH | 30 | `192.168.30.0/24` | `192.168.30.1` | Kali-RH, RH1, RH2 |
-| WAN / RI | - | Réseau amont | R1 / RI | `em0` pfSense |
-
-Exemple d'adressage fixe possible :
-
-| Machine | VLAN | Adresse IP | Passerelle |
-| --- | --- | --- | --- |
-| pfSense VLAN 10 | 10 | `192.168.10.1/24` | Aucune passerelle sur l'interface LAN |
-| Kali-1 | 10 | `192.168.10.10/24` | `192.168.10.1` |
-| Admin-1 | 10 | `192.168.10.11/24` | `192.168.10.1` |
-| Admin-2 | 10 | `192.168.10.12/24` | `192.168.10.1` |
-| pfSense VLAN 20 | 20 | `192.168.20.1/24` | Aucune passerelle sur l'interface LAN |
-| Prod-1 | 20 | `192.168.20.10/24` | `192.168.20.1` |
-| Prod-2 | 20 | `192.168.20.11/24` | `192.168.20.1` |
-| Kali-prod | 20 | `192.168.20.12/24` | `192.168.20.1` |
-| pfSense VLAN 30 | 30 | `192.168.30.1/24` | Aucune passerelle sur l'interface LAN |
-| Kali-RH | 30 | `192.168.30.10/24` | `192.168.30.1` |
-| RH1 | 30 | `192.168.30.11/24` | `192.168.30.1` |
-| RH2 | 30 | `192.168.30.12/24` | `192.168.30.1` |
-
-Exemple de plages DHCP pfSense :
-
-| VLAN | Plage DHCP | Remarque |
-| --- | --- | --- |
-| VLAN 10 | `192.168.10.100` à `192.168.10.200` | Clients du réseau Administration |
-| VLAN 20 | `192.168.20.100` à `192.168.20.200` | Clients du réseau Production |
-| VLAN 30 | `192.168.30.10` à `192.168.30.254` | Clients du réseau RH |
-
-R1 sous Debian ne doit plus distribuer d'adresses DHCP sur les VLANs internes. Le DHCP doit être arrêté sur R1 afin d'éviter qu'une machine reçoive une mauvaise passerelle.
-
-## Règles firewall actuelles
-
-Les règles pfSense se configurent sur l'interface d'entrée du trafic. Par exemple, pour autoriser RH à pinguer les autres réseaux, la règle doit être créée dans l'onglet `RH`.
-
-Règles de validation utilisées pendant l'atelier :
-
-| Onglet pfSense | Action | Protocole | Source | Destination | Description |
-| --- | --- | --- | --- | --- | --- |
-| `ADMIN` | Pass | IPv4 ICMP | any | any | `PING EVERYBODY` |
-| `ADMIN` | Pass | IPv4 any | `ADMIN net` | any | `Default allow LAN to any rule` |
-| `PROD` | Pass | IPv4 ICMP | any | any | `PING EVERYBODY` |
-| `RH` | Pass | IPv4 ICMP | any | any | `PING EVERYBODY` |
-
-![Règles firewall pfSense sur l'interface ADMIN](../../assets/img/admin-reseau-securisation/it-2/pfsenseadmin.png)
-
-![Règles firewall pfSense sur l'interface PROD](../../assets/img/admin-reseau-securisation/it-2/pfsenseprod.png)
-
-![Règles firewall pfSense sur l'interface RH](../../assets/img/admin-reseau-securisation/it-2/pfsenseRH.png)
-
-Cette configuration permet de valider les pings entre les VLANs. Elle n'est pas encore une politique de sécurité finale : ICMP est volontairement large pour faciliter les tests.
-
-Exemple de configuration de la règle ICMP `PING EVERYBODY` :
-
-![Édition d'une règle ICMP pfSense PING EVERYBODY](../../assets/img/admin-reseau-securisation/it-2/pfsensefirewall.png)
+### DHCP ADMIN
 
 | Paramètre | Valeur |
 | --- | --- |
-| Action | `Pass` |
-| Interface | `ADMIN`, `PROD` ou `RH` selon l'onglet |
-| Address Family | `IPv4` |
-| Protocol | `ICMP` |
-| ICMP Subtypes | `any` |
-| Source | `any` |
-| Destination | `any` |
-| Description | `PING EVERYBODY` |
+| Interface | `ADMIN` |
+| Range | `192.168.10.100` à `192.168.10.200` |
+| Gateway | `192.168.10.1` |
+| DNS | `192.168.10.1` ou DNS réel |
 
-Une fois les tests de connectivité validés, la logique attendue est :
+### DHCP PROD
 
-| Flux | Décision de sécurité recommandée |
+| Paramètre | Valeur |
 | --- | --- |
-| ADMIN vers PROD/RH | Autoriser seulement les flux d'administration nécessaires |
-| PROD vers ADMIN | Bloquer par défaut |
-| RH vers ADMIN | Bloquer par défaut, sauf besoin justifié |
-| RH vers PROD | Autoriser uniquement les services nécessaires |
-| ICMP | Garder temporairement pour diagnostic ou limiter au VLAN ADMIN |
+| Interface | `PROD` |
+| Range | `192.168.20.100` à `192.168.20.200` |
+| Gateway | `192.168.20.1` |
+| DNS | `192.168.20.1` ou DNS réel |
 
-## Tests de validation à documenter
+### DHCP RH
 
-| Test | Commande | Résultat attendu |
+| Paramètre | Valeur |
+| --- | --- |
+| Interface | `RH` |
+| Range | `192.168.30.100` à `192.168.30.200` |
+| Gateway | `192.168.30.1` |
+| DNS | `192.168.30.1` ou DNS réel |
+
+Point important : le champ `Gateway` doit être rempli. Sinon les machines reçoivent une adresse IP, mais aucune route par défaut. Elles peuvent alors ping les machines de leur VLAN, mais ne sortent pas vers les autres réseaux.
+
+## Étape 5 - Configuration des machines Debian/Kali
+
+Si le DHCP pfSense est utilisé, renouveler la configuration réseau sur les machines.
+
+Sur Kali avec `dhcpcd` :
+
+```bash
+sudo ip addr flush dev eth0
+sudo ip link set eth0 up
+sudo dhcpcd eth0
+```
+
+Sur Debian selon les outils disponibles :
+
+```bash
+sudo ip addr flush dev eth0
+sudo ip link set eth0 up
+sudo dhclient eth0
+```
+
+Si `dhclient` n'est pas installé, utiliser une configuration IP fixe temporaire.
+
+### Configuration fixe temporaire
+
+Poste ADMIN :
+
+```bash
+sudo ip addr flush dev eth0
+sudo ip addr add 192.168.10.10/24 dev eth0
+sudo ip link set eth0 up
+sudo ip route replace default via 192.168.10.1 dev eth0
+```
+
+Poste PROD :
+
+```bash
+sudo ip addr flush dev eth0
+sudo ip addr add 192.168.20.10/24 dev eth0
+sudo ip link set eth0 up
+sudo ip route replace default via 192.168.20.1 dev eth0
+```
+
+Poste RH :
+
+```bash
+sudo ip addr flush dev eth0
+sudo ip addr add 192.168.30.10/24 dev eth0
+sudo ip link set eth0 up
+sudo ip route replace default via 192.168.30.1 dev eth0
+```
+
+Vérifier :
+
+```bash
+ip -br addr
+ip route
+```
+
+Résultat attendu pour une machine PROD :
+
+```text
+eth0 UP 192.168.20.x/24
+default via 192.168.20.1 dev eth0
+```
+
+## Étape 6 - Règles firewall temporaires de validation
+
+Avant d'appliquer la politique restrictive de l'atelier 2, créer des règles temporaires pour vérifier que le routage inter-VLAN fonctionne.
+
+Menu :
+
+```text
+Firewall > Rules
+```
+
+Sur `ADMIN` :
+
+| Action | Protocole | Source | Destination | Description |
+| --- | --- | --- | --- | --- |
+| Pass | IPv4 ICMP | `ADMIN net` | any | `PING EVERYBODY` |
+
+Sur `PROD` :
+
+| Action | Protocole | Source | Destination | Description |
+| --- | --- | --- | --- | --- |
+| Pass | IPv4 ICMP | `PROD net` | any | `PING EVERYBODY` |
+
+Sur `RH` :
+
+| Action | Protocole | Source | Destination | Description |
+| --- | --- | --- | --- | --- |
+| Pass | IPv4 ICMP | `RH net` | any | `PING EVERYBODY` |
+
+Appliquer les changements avec `Apply Changes`.
+
+Ces règles servent seulement à valider la connectivité. Elles seront remplacées par les ACL restrictives de l'atelier 2.
+
+## Étape 7 - Tests de connectivité
+
+Depuis une machine ADMIN :
+
+```bash
+ping 192.168.10.1
+ping 192.168.20.1
+ping 192.168.30.1
+```
+
+Depuis une machine PROD :
+
+```bash
+ping 192.168.20.1
+ping 192.168.10.1
+ping 192.168.30.1
+```
+
+Depuis une machine RH :
+
+```bash
+ping 192.168.30.1
+ping 192.168.10.1
+ping 192.168.20.1
+```
+
+Interprétation :
+
+| Résultat | Analyse |
+| --- | --- |
+| La machine ping sa passerelle, mais pas les autres VLANs | Règles firewall pfSense à vérifier |
+| La machine ne ping pas sa passerelle | Trunk, VLAN, interface pfSense ou IP client à vérifier |
+| DHCP donne une IP mais pas de route par défaut | Gateway DHCP manquante dans pfSense |
+| Deux IP apparaissent sur la même interface | Mélange DHCP/IP fixe ou service réseau à nettoyer |
+
+La capture suivante montre une machine Kali ayant reçu une adresse DHCP dans le VLAN 10 et un ping réussi vers une machine du VLAN 30. Cela valide que le routage inter-VLAN passe bien par pfSense lorsque les routes et les règles temporaires sont correctes.
+
+![Ping inter-VLAN validé depuis Kali](../../assets/img/admin-reseau-securisation/it-2/pingok.png)
+
+## Étape 8 - Vérifications utiles
+
+### Sur pfSense
+
+Vérifier les interfaces :
+
+```text
+ADMIN -> em1.10 -> 192.168.10.1/24
+PROD  -> em2.20 -> 192.168.20.1/24
+RH    -> em3.30 -> 192.168.30.1/24
+```
+
+Vérifier les logs firewall :
+
+```text
+Status > System Logs > Firewall
+```
+
+### Sur les switches
+
+```text
+show vlan brief
+show interfaces trunk
+show interfaces status
+```
+
+Sur chaque switch :
+
+- `Gi0/0` doit être trunk ;
+- le VLAN autorisé doit être le bon ;
+- les ports `Gi0/1` à `Gi0/3` doivent être en access dans le bon VLAN.
+
+### Sur les machines
+
+```bash
+ip -br addr
+ip route
+ping <passerelle_du_vlan>
+```
+
+## Problèmes fréquents
+
+| Symptôme | Cause probable | Correction |
 | --- | --- | --- |
-| Vérifier l'adresse d'une machine | `ip addr` | Adresse dans le bon réseau |
-| Vérifier la passerelle | `ip route` | Route par défaut vers pfSense |
-| Joindre pfSense depuis le VLAN 10 | `ping 192.168.10.1` | Réponse ICMP |
-| Joindre pfSense depuis le VLAN 20 | `ping 192.168.20.1` | Réponse ICMP |
-| Joindre pfSense depuis le VLAN 30 | `ping 192.168.30.1` | Réponse ICMP |
-| Tester le routage inter-VLAN | `ping 192.168.20.10` depuis le VLAN 10 | Réponse si les règles pfSense l'autorisent |
-| Tester le retour inter-VLAN | `ping 192.168.10.10` depuis le VLAN 20 | Réponse si les règles pfSense l'autorisent |
-| Tester RH vers Administration | `ping 192.168.10.11` depuis le VLAN 30 | Réponse si la règle ICMP RH l'autorise |
-| Accéder à pfSense | `https://192.168.10.1` | Interface Web accessible depuis le VLAN d'administration |
+| DHCP fonctionne mais la machine ne sort pas du VLAN | Gateway DHCP absente | Renseigner `Gateway` dans `Services > DHCP Server` |
+| Les postes se pingent dans leur VLAN, mais pas pfSense | Trunk switch ou VLAN pfSense incorrect | Vérifier `show interfaces trunk` et `emX.VLAN` |
+| pfSense affiche `em3.30`, mais le port switch est en access | Incohérence taggé/non taggé | Mettre le port vers pfSense en trunk |
+| Le switch refuse `switchport mode trunk` | Encapsulation en `Auto` | Saisir `switchport trunk encapsulation dot1q` avant |
+| Une machine a deux IP | Ancienne config IP + DHCP | Nettoyer l'interface ou choisir une seule méthode |
+| Ping inter-VLAN bloqué malgré les routes | Règle firewall manquante | Ajouter une règle ICMP temporaire sur l'interface source |
 
-## Aller plus loin
+## Synthèse
 
-Ajouter un troisième VLAN et configurer son interface dans pfSense.
+À la fin de l'atelier :
 
-Étapes possibles :
+- pfSense est connecté au WAN via `em0` ;
+- le VLAN 10 Administration passe par `em1.10` ;
+- le VLAN 20 Production passe par `em2.20` ;
+- le VLAN 30 RH passe par `em3.30` ;
+- chaque switch a un trunk vers pfSense ;
+- les postes sont sur des ports access ;
+- les machines reçoivent une IP, une passerelle et éventuellement un DNS via pfSense ;
+- le ping entre VLANs fonctionne avec les règles temporaires.
 
-- créer ou raccorder le VLAN supplémentaire ;
-- déclarer l'interface VLAN dans pfSense ;
-- lui attribuer une adresse IP ;
-- configurer une machine de test dans ce VLAN ;
-- vérifier la passerelle et la connectivité ;
-- documenter les flux accessibles.
-
-## Synthèse personnelle
-
-pfSense devient le point central de contrôle entre les VLANs et le routeur physique. Une fois les interfaces correctement associées et les passerelles des machines modifiées, tous les flux inter-VLAN peuvent être observés et filtrés depuis un seul équipement.
-
-La difficulté principale de l'atelier est l'identification des interfaces. Comme pfSense repose sur FreeBSD, les noms d'interfaces diffèrent de ceux rencontrés sous Linux. Il faut donc raisonner à partir des liens réseau, des adresses MAC et du plan d'adressage plutôt qu'à partir des noms habituels comme `eth0`.
-
-## Ressources
-
-- pfSense Documentation : <https://docs.netgate.com/pfsense/>
-- pfSense Interfaces Overview : <https://docs.netgate.com/pfsense/en/latest/interfaces/>
-- Scapy - Simple one-liners : <https://scapy.readthedocs.io/en/latest/usage.html#simple-one-liners>
-
-## Notions acquises
-
-- Rôle de pfSense comme pare-feu inter-VLAN
-- Différence entre interface WAN et interfaces internes
-- Identification des interfaces FreeBSD
-- Configuration des passerelles sur les machines Linux
-- Vérification de la connectivité avant filtrage
-- Utilisation de Kali Linux pour établir un état initial des flux accessibles
+L'infrastructure est alors prête pour l'atelier 2 : mise en place d'une politique restrictive et d'ACL pfSense.

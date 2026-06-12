@@ -9,3 +9,5 @@ Le travail reprend les VLANs et l'adressage de l'itération 1. pfSense est plac�
 L'itération sera segmentée en plusieurs ateliers :
 
 - Déploiement de pfSense
+- Règles de filtrage et ACL avec pfSense
+- Journalisation et analyse des logs pfSense
