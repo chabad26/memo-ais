@@ -112,6 +112,8 @@ Resultat attendu :
 
 Dans les logs pfSense, ces pings apparaissent seulement si les regles ICMP `ADMIN -> PROD` et `ADMIN -> RH` journalisent les paquets.
 
+![Ping inter-VLAN depuis le VLAN Administration](../../assets/img/admin-reseau-securisation/it-2/ping.png)
+
 ### 2. Connexion SSH autorisee
 
 Depuis `KALI-admin` vers une machine PROD :
@@ -134,6 +136,10 @@ Resultat attendu :
 
 La regle responsable est la regle `ADMIN net -> PROD net TCP/22 Pass`.
 
+![Connexion SSH autorisee depuis ADMIN vers PROD](../../assets/img/admin-reseau-securisation/it-2/sshadmintoprod.png)
+
+![Log pfSense du SSH autorise depuis ADMIN vers PROD](../../assets/img/admin-reseau-securisation/it-2/sshadmintoprodfirewall.png)
+
 ### 3. Connexion SSH bloquee
 
 Depuis `KALI-prod` vers une machine ADMIN :
@@ -150,6 +156,10 @@ Resultat attendu :
 
 La regle responsable est la regle `PROD net -> ADMIN net TCP/22 Block`, ou le blocage final `PROD net -> ADMIN net any Block` si aucune regle plus precise ne matche avant.
 
+![Tentative SSH bloquee depuis PROD vers ADMIN](../../assets/img/admin-reseau-securisation/it-2/sshprodtoadmin.png)
+
+![Log pfSense du SSH bloque depuis PROD vers ADMIN](../../assets/img/admin-reseau-securisation/it-2/sshprodtoadminfirewall.png)
+
 ### 4. Connexion HTTP bloquee
 
 Depuis `KALI-RH` vers une machine ADMIN :
@@ -165,6 +175,12 @@ Resultat attendu :
 | `KALI-RH` | Machine ADMIN | TCP/80 | Bloque |
 
 La regle responsable est la regle `RH net -> ADMIN net TCP/80 Block`, ou le blocage final `RH net -> ADMIN net any Block`.
+
+![Test HTTP depuis le VLAN Administration](../../assets/img/admin-reseau-securisation/it-2/httpadmin.png)
+
+![Tentative HTTP bloquee](../../assets/img/admin-reseau-securisation/it-2/httpblock.png)
+
+![Log pfSense du HTTP bloque](../../assets/img/admin-reseau-securisation/it-2/httpblockfirewall.png)
 
 ## Scans Nmap
 
@@ -193,6 +209,8 @@ Visibilite dans pfSense :
 - les ports bloques sont souvent plus visibles si les regles de blocage loguent ;
 - les ports autorises peuvent generer peu de logs si la regle `Pass` ne journalise pas.
 
+![Scan Nmap depuis ADMIN vers PROD](../../assets/img/admin-reseau-securisation/it-2/nmapadmin_prod.png)
+
 ### Scan TCP Connect
 
 Le scan TCP Connect tente une connexion TCP complete. Il peut etre lance sans privileges root.
@@ -214,6 +232,8 @@ Resultat attendu :
 
 Dans les logs pfSense, ce scan doit etre visible si les regles `PROD -> ADMIN` ont le logging active. Les logs peuvent montrer plusieurs tentatives TCP depuis l'adresse de `KALI-prod` vers les ports testes.
 
+![Scan Nmap depuis PROD vers ADMIN](../../assets/img/admin-reseau-securisation/it-2/nmap_prod_admin.png)
+
 ### Scan plus lent pour faciliter l'analyse
 
 Pour eviter de produire trop de logs d'un coup :
@@ -223,6 +243,12 @@ sudo nmap -sS -p 22,80,443,445 -T2 --max-rate 5 192.168.20.12
 ```
 
 Cette commande ralentit le scan et rend les evenements plus faciles a lire dans pfSense.
+
+### Scan dans un meme VLAN
+
+Un scan entre deux machines du meme VLAN reste local au segment. Il ne traverse pas pfSense et ne produit donc pas de log firewall attendu.
+
+![Scan Nmap dans le meme VLAN](../../assets/img/admin-reseau-securisation/it-2/nmap_dans_vlan.png)
 
 ## Tentative simple de VLAN Hopping
 
@@ -255,6 +281,14 @@ Observation attendue :
 | Logs pfSense | Generalement rien de visible |
 
 Explication : le VLAN Hopping se situe au niveau 2. pfSense journalise principalement des paquets IP traites par ses regles firewall. Une trame Ethernet double taguee peut donc etre visible dans Wireshark, mais absente des logs firewall pfSense.
+
+![Execution Scapy de la tentative VLAN Hopping cote ADMIN](../../assets/img/admin-reseau-securisation/it-2/VLAN_Hopping_admin_console.png)
+
+![Capture Wireshark de la tentative VLAN Hopping cote ADMIN](../../assets/img/admin-reseau-securisation/it-2/VLAN_Hopping_admin.png)
+
+![Observation pfSense pendant la tentative VLAN Hopping cote ADMIN](../../assets/img/admin-reseau-securisation/it-2/VLAN_Hopping_admin_firewall.png)
+
+![Capture Wireshark cote PROD pendant la tentative VLAN Hopping](../../assets/img/admin-reseau-securisation/it-2/VLAN%20Hopping_prod_wireshark.png)
 
 ## Evenements observes
 
@@ -389,4 +423,3 @@ En revanche, pfSense ne remplace pas une capture reseau. Les scans dans un meme 
 - pfSense Logging : <https://docs.netgate.com/pfsense/en/latest/monitoring/logs/>
 - Nmap : <https://nmap.org/>
 - Wireshark : <https://www.wireshark.org/>
-
