@@ -116,6 +116,10 @@ Les informations importantes a relever sont :
 
 Dans notre cas, Kali est placee dans le VLAN 10.
 
+La verification de connectivite montre que Kali joint bien une machine du VLAN 10, mais ne joint pas directement une machine du VLAN 20. Cela confirme que la segmentation reste effective avant les tests d'attaque.
+
+![Verification de connectivite depuis Kali avant les tests VLAN Hopping](../../assets/img/admin-reseau-securisation/it-1/pingat4.png)
+
 ### 2. Identification du comportement du switch
 
 Avant les tests, il faut documenter la configuration attendue :
@@ -144,9 +148,11 @@ Wireshark est lance sur Kali pour observer les trames generees pendant les tests
 
 Sur un port access correctement configure, Kali ne doit normalement pas voir de trafic tague provenant de plusieurs VLANs. Les tags VLAN sont attendus sur les trunks, pas sur les ports utilisateurs.
 
-### 4. Test de negociation DTP
+### 4. Tentative de negociation DTP avec Yersinia
 
-Le test consiste a verifier si le port connecte a Kali accepte une negociation de trunk. Si le switch est bien configure, la tentative doit echouer :
+Le test demande consistait a verifier si le port connecte a Kali accepte une negociation de trunk avec Yersinia. Une tentative a ete lancee depuis Kali, mais elle n'a pas permis d'activer un mode trunk ou un mode `desirable`.
+
+Le principe du test DTP est le suivant : si un port utilisateur accepte la negociation automatique, une machine malveillante peut tenter de se faire passer pour un switch et negocier un trunk. Si le switch est bien configure, la tentative doit echouer :
 
 - le port reste en mode access ;
 - aucun trunk n'est negocie ;
@@ -162,13 +168,51 @@ Resultat attendu dans un environnement securise :
 | Acces aux autres VLANs | Non obtenu |
 | Observation Wireshark | Pas de trunk exploitable |
 
+Commande utilisee pour lancer Yersinia en mode interactif :
+
+```bash
+sudo yersinia -I -i eth0
+```
+
+Dans l'interface interactive, le protocole DTP a ete selectionne apres appui sur `g`. La table DTP est restee vide et aucune action exploitable de type `trunking` ou `desirable` n'a pu etre declenchee depuis l'outil.
+
+Filtres Wireshark utiles :
+
+```text
+dtp
+vlan
+eth.type == 0x8100
+```
+
+Observation importante : Wireshark affiche des trames dans la famille `CDP/VTP/DTP/PAgP/UDLD`, mais le detail du paquet indique `PID: CDP (0x2000)`. Il s'agit donc de paquets CDP, pas d'une negociation DTP reussie. Les informations CDP visibles indiquent notamment :
+
+| Champ observe | Valeur |
+| --- | --- |
+| Protocole decode | CDP |
+| Device ID | `Switch` |
+| Port ID | `GigabitEthernet0/1` |
+| Native VLAN | `10` |
+| Duplex | Full |
+
+![Liste de paquets CDP observes dans Wireshark](../../assets/img/admin-reseau-securisation/it-1/wiresharkCDP.png)
+
+Le detail du paquet confirme que Wireshark decode le protocole CDP, avec un PID `CDP (0x2000)`.
+
+![Detail LLC/SNAP montrant le PID CDP](../../assets/img/admin-reseau-securisation/it-1/cdp1.png)
+
+Le detail CDP indique aussi les informations annoncees par le switch, notamment le port, le VLAN natif et le mode duplex.
+
+![Detail CDP avec Native VLAN 10](../../assets/img/admin-reseau-securisation/it-1/cdp2.png)
+
+Conclusion pour notre compte rendu : la tentative DTP avec Yersinia a ete lancee, mais elle n'est pas concluante cote outil. Aucun trunk n'a ete negocie, aucune option `trunking/desirable` exploitable n'a ete disponible, et les paquets observes correspondent a du CDP. Le test ne montre donc pas de VLAN Hopping par DTP.
+
 Dans notre environnement, Yersinia n'etait pas disponible avec l'interface graphique GTK. Le lancement en mode graphique retourne un message indiquant que Yersinia a ete compile avec l'option `--disable-gtk`. Le mode interactif en terminal reste utilisable :
 
 ```bash
 sudo yersinia -I -i eth0
 ```
 
-Cette commande lance une attaque BPDU (Bridge Protocol Data Unit) sur l’interface eth0.
+Cette commande lance une attaque BPDU (Bridge Protocol Data Unit) sur l'interface eth0.
 
 ```bash
 sudo yersinia stp -attack bpdu -interface eth0
@@ -273,7 +317,13 @@ Dans notre observation, le double tag est visible dans Wireshark, mais aucune pr
 
 Une premiere capture Wireshark montre que Kali recoit des trames CDP provenant du switch.
 
-![Capture Wireshark CDP passive depuis Kali](../../assets/img/admin-reseau-securisation/it-1/atelier4-wireshark-cdp-passif.png)
+![Capture Wireshark CDP passive depuis Kali](../../assets/img/admin-reseau-securisation/it-1/wiresharkCDP.png)
+
+Le detail du paquet CDP confirme qu'il ne s'agit pas d'une negociation DTP, meme si Wireshark regroupe l'affichage dans la famille `CDP/VTP/DTP/PAgP/UDLD`.
+
+![Detail du paquet CDP dans Wireshark](../../assets/img/admin-reseau-securisation/it-1/cdp1.png)
+
+![Informations CDP visibles depuis Kali](../../assets/img/admin-reseau-securisation/it-1/cdp2.png)
 
 Les informations visibles sont :
 
@@ -316,7 +366,7 @@ Interpretation :
 | CDP du switch visible | Le port utilisateur recoit des annonces de decouverte Cisco |
 | CDP genere par Kali | Kali peut injecter du trafic de couche 2 sur le segment |
 | Pas de tag 802.1Q observe | Aucun trunk exploitable n'est visible depuis Kali |
-| Pas de DTP exploitable observe | Aucune negociation trunk reussie n'est constatee |
+| Tentative DTP non concluante | Yersinia ne propose pas d'action exploitable et les captures montrent surtout du CDP |
 | Impact VLAN | Le test CDP ne permet pas de sortir du VLAN 10 |
 
 Ce test montre une attaque ou pollution CDP, mais pas une attaque VLAN Hopping reussie. Il sert surtout a montrer que les protocoles de decouverte visibles sur un port utilisateur peuvent etre abuses ou utilises pour collecter des informations.
@@ -341,7 +391,7 @@ Cette observation valide la comprehension du mecanisme : le double tagging consi
 | Observation | Interpretation |
 | --- | --- |
 | Kali communique uniquement dans son VLAN initial | Le port access joue correctement son role |
-| Aucune negociation trunk exploitable | DTP n'est pas utilisable depuis le port utilisateur |
+| Aucune negociation trunk exploitable observee pendant la tentative DTP | Le port ne devient pas trunk et les captures montrent principalement du CDP |
 | Les autres VLANs ne deviennent pas directement accessibles | La segmentation reste effective |
 | Les flux inter-VLAN restent controles par le routeur ou le pare-feu | Le filtrage continue de jouer son role |
 | Les captures Wireshark ne montrent pas d'acces multi-VLAN depuis Kali | Le port n'expose pas de trafic trunk aux postes |
@@ -369,11 +419,11 @@ Si un test donne un resultat inattendu, il faut verifier en priorite :
 | Installer Yersinia | Fait | Utilisation de `yersinia`; interface GTK indisponible, mode terminal utilise |
 | Lancer Wireshark sur Kali | Fait | Captures CDP, STP, VLAN et ARP |
 | Capturer le port connecte au switch | Fait | Captures Wireshark depuis Kali |
-| Tester DTP avec Yersinia | Fait partiellement | Pas de negociation trunk exploitable observee |
+| Tester DTP avec Yersinia | Tente, non concluant | La table DTP est restee vide, aucune action `trunking/desirable` exploitable ; les paquets observes sont du CDP |
 | Observer les paquets generes | Fait | CDP passif et CDP flood observes |
 | Tester le double tagging | Fait | Trame Scapy avec VLAN 10 puis VLAN 20 observee |
 | Analyser le resultat | Fait | Tentative visible, pas d'acces exploitable au VLAN 20 |
-| Identifier les protections | Fait | Ports access, DTP non exploitable, trunks limites, filtrage inter-VLAN |
+| Identifier les protections | Fait | Ports access, trunks limites, filtrage inter-VLAN ; aucune negociation DTP exploitable observee |
 | Documenter les observations | Fait | Tableaux d'observation, captures et synthese |
 
 ## Important
@@ -390,7 +440,7 @@ Les tests ont ete realises uniquement dans l'environnement de TP. Les commandes 
 | --- | --- |
 | Capture CDP passive | CDP visible depuis Kali, avec `Device ID: Switch`, `Port ID: GigabitEthernet1/1`, `Native VLAN: 10` |
 | CDP flood avec Yersinia | Paquets CDP generes depuis Kali et visibles dans Wireshark |
-| Recherche DTP | Pas de negociation trunk exploitable observee |
+| Recherche DTP | Tentative realisee avec Yersinia, mais non concluante ; aucune negociation trunk exploitable observee |
 | Double tagging Scapy | Trame avec deux tags 802.1Q visible : VLAN 10 puis VLAN 20 |
 | Acces VLAN 20 | Aucun acces exploitable au VLAN 20 valide |
 
@@ -399,7 +449,7 @@ Les tests ont ete realises uniquement dans l'environnement de TP. Les commandes 
 | Protection | Role |
 | --- | --- |
 | Port utilisateur en mode access | Evite qu'un poste devienne trunk |
-| DTP non exploitable | Empeche la negociation automatique d'un trunk |
+| DTP non exploitable observe | La tentative Yersinia n'a pas permis de negocier un trunk ; les captures montrent du CDP, pas un trunk DTP reussi |
 | Trunk limite aux VLANs necessaires | Reduit l'exposition des VLANs |
 | Filtrage inter-VLAN | Controle les flux meme si le routage existe |
 | Desactivation de CDP sur ports utilisateurs | Limite la fuite d'informations sur le switch |
@@ -414,20 +464,61 @@ Les tests ont ete realises uniquement dans l'environnement de TP. Les commandes 
 | VLAN natif dedie et non utilise par les postes | Reduit le risque de double tagging |
 | `switchport trunk allowed vlan ...` | Limite les VLANs transportes sur chaque trunk |
 
-## Protections identifiees
+## Liste des protections identifiees contre le VLAN Hopping
 
-Les protections qui empechent ou limitent le VLAN Hopping sont :
+Les protections suivantes ont ete identifiees pendant l'atelier. Elles permettent soit d'empecher directement une attaque de VLAN Hopping, soit de reduire son impact si une tentative est observee.
 
-| Protection | Effet |
-| --- | --- |
-| Ports utilisateurs en mode access | Empeche un poste de negocier ou utiliser un trunk |
-| Desactivation de DTP | Evite la creation automatique d'un trunk |
-| Trunks configures explicitement | Limite les trunks aux liens entre equipements reseau |
-| VLAN natif dedie et non utilise | Reduit le risque lie au double tagging |
-| Liste stricte des VLANs autorises sur les trunks | Evite de transporter des VLANs inutiles |
-| Filtrage inter-VLAN | Controle les flux meme si le routage existe |
-| Journalisation | Permet d'observer les comportements anormaux |
-| Desactivation de CDP sur ports utilisateurs | Evite la fuite d'informations sur le switch |
+### Protections constatees dans le lab
+
+| Protection identifiee | Etat observe | Effet securite |
+| --- | --- | --- |
+| Port de Kali en mode access | Kali reste dans le VLAN 10 | Empeche le poste de recevoir directement plusieurs VLANs |
+| Aucune negociation DTP exploitable | Yersinia DTP affiche une table vide et aucun mode `trunking/desirable` exploitable | Le port utilisateur ne devient pas trunk |
+| Pas de trunk visible depuis Kali | Wireshark ne montre pas de trafic multi-VLAN exploitable | Kali ne gagne pas d'acces direct aux autres VLANs |
+| Double tagging non concluant | La trame double taguee est visible localement, mais aucun acces VLAN 20 n'est valide | La tentative ne permet pas de sortir du VLAN initial |
+| Filtrage inter-VLAN actif | Les flux entre VLANs restent controles par le routeur/pare-feu | Meme si le routage existe, les communications sont limitees par les ACL |
+
+### Protections recommandees sur les switches
+
+| Protection a appliquer | Commande ou principe | Pourquoi c'est important |
+| --- | --- | --- |
+| Forcer les ports utilisateurs en access | `switchport mode access` | Evite qu'un poste negocie ou utilise un trunk |
+| Affecter le bon VLAN utilisateur | `switchport access vlan 10` | Place le poste uniquement dans son VLAN |
+| Desactiver DTP sur les ports utilisateurs | `switchport nonegotiate` | Empeche la negociation automatique d'un trunk |
+| Limiter les VLANs sur les trunks | `switchport trunk allowed vlan 10,20,30` | Evite de transporter des VLANs inutiles |
+| Utiliser un VLAN natif dedie et non utilise par les postes | VLAN natif separe | Reduit le risque de double tagging |
+| Ne pas utiliser le VLAN 1 pour les postes | VLAN 1 reserve ou inutilise | Evite les configurations par defaut dangereuses |
+| Desactiver CDP sur les ports utilisateurs si inutile | `no cdp enable` | Limite la fuite d'informations sur le switch |
+| Desactiver les ports inutilises | `shutdown` | Evite qu'un poste non autorise se connecte |
+| Placer les ports inutilises dans un VLAN parking | VLAN non route | Isole les ports non utilises |
+| Surveiller les logs et captures | Wireshark, logs switch, logs pare-feu | Permet d'identifier les comportements anormaux |
+
+### Exemple de configuration d'un port utilisateur securise
+
+```text
+interface GigabitEthernet1/1
+ description Poste utilisateur VLAN 10
+ switchport mode access
+ switchport access vlan 10
+ switchport nonegotiate
+ spanning-tree portfast
+ no cdp enable
+ no shutdown
+```
+
+### Exemple de configuration d'un trunk maitrise
+
+```text
+interface GigabitEthernet0/1
+ description Trunk vers routeur ou pare-feu
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30
+ switchport nonegotiate
+ no shutdown
+```
+
+Cette liste montre que la protection contre le VLAN Hopping ne repose pas sur une seule commande. Elle combine la configuration des ports access, la maitrise des trunks, la limitation des VLANs transportes, la reduction des protocoles visibles et le filtrage inter-VLAN.
 
 ## Bonnes pratiques
 
