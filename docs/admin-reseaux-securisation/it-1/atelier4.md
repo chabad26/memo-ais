@@ -206,6 +206,76 @@ Le detail CDP indique aussi les informations annoncees par le switch, notamment 
 
 Conclusion pour notre compte rendu : la tentative DTP avec Yersinia a ete lancee, mais elle n'est pas concluante cote outil. Aucun trunk n'a ete negocie, aucune option `trunking/desirable` exploitable n'a ete disponible, et les paquets observes correspondent a du CDP. Le test ne montre donc pas de VLAN Hopping par DTP.
 
+Un second test a ensuite ete realise avec un nouveau switch GNS3 afin d'isoler le probleme de configuration. Dans ce scenario volontairement vulnerable, le port connecte a Kali est `GigabitEthernet0/2` et il est configure en mode `dynamic desirable`.
+
+Extrait de configuration observe :
+
+```text
+interface GigabitEthernet0/0
+ description Trunk vers Debian DHCP/nftables
+ switchport trunk allowed vlan 10,20
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport nonegotiate
+ negotiation auto
+!
+interface GigabitEthernet0/2
+ switchport mode dynamic desirable
+ negotiation auto
+```
+
+Dans cette topologie :
+
+- `Gi0/0` est le trunk legitime vers le serveur Debian DHCP/nftables ;
+- `Gi0/2` est le port connecte a Kali pour le test DTP ;
+- `Gi0/2` ne devrait pas devenir trunk dans une configuration securisee ;
+- le mode `dynamic desirable` laisse le port negocier un trunk.
+
+![Configuration du switch utilise pour le test DTP](../../assets/img/admin-reseau-securisation/it-1/dtpsw1running%20config.png)
+
+La commande `show interfaces trunk` montre que `Gi0/2` est passe en trunk :
+
+```text
+Port        Mode             Encapsulation  Status        Native vlan
+Gi0/0       on               802.1q         trunking      1
+Gi0/2       desirable        n-802.1q       trunking      1
+```
+
+La ligne importante est :
+
+```text
+Gi0/2       desirable        n-802.1q       trunking
+```
+
+Elle prouve que le port connecte a Kali a negocie un trunk. Le VLAN Hopping par DTP est donc considere comme reussi dans ce second test.
+
+![Sortie show interfaces trunk avec Gi0/2 en trunk](../../assets/img/admin-reseau-securisation/it-1/dtp%20trunk%20show.png)
+
+Point de securite important : `Gi0/2` transporte alors les VLANs actifs du switch, notamment les VLANs `10` et `20`. Une machine Kali connectee a ce port peut donc tenter d'utiliser des sous-interfaces VLAN Linux pour communiquer sur plusieurs VLANs.
+
+Exemple de verification possible cote Kali :
+
+```bash
+sudo modprobe 8021q
+sudo ip link add link eth0 name eth0.10 type vlan id 10
+sudo ip link add link eth0 name eth0.20 type vlan id 20
+sudo ip link set eth0.10 up
+sudo ip link set eth0.20 up
+sudo dhclient -v eth0.10
+sudo dhclient -v eth0.20
+```
+
+Correction a appliquer apres demonstration :
+
+```text
+interface GigabitEthernet0/2
+ description Port Kali securise apres test DTP
+ switchport mode access
+ switchport access vlan 10
+ switchport nonegotiate
+ spanning-tree portfast edge
+```
+
 Dans notre environnement, Yersinia n'etait pas disponible avec l'interface graphique GTK. Le lancement en mode graphique retourne un message indiquant que Yersinia a ete compile avec l'option `--disable-gtk`. Le mode interactif en terminal reste utilisable :
 
 ```bash
@@ -390,11 +460,11 @@ Cette observation valide la comprehension du mecanisme : le double tagging consi
 
 | Observation | Interpretation |
 | --- | --- |
-| Kali communique uniquement dans son VLAN initial | Le port access joue correctement son role |
-| Aucune negociation trunk exploitable observee pendant la tentative DTP | Le port ne devient pas trunk et les captures montrent principalement du CDP |
-| Les autres VLANs ne deviennent pas directement accessibles | La segmentation reste effective |
+| Kali communique uniquement dans son VLAN initial lors du premier test | Le port access joue correctement son role |
+| Premier test DTP non concluant | Les captures montrent principalement du CDP et aucun trunk exploitable |
+| Second test DTP concluant sur `Gi0/2` | Le port connecte a Kali passe en trunk avec le mode `dynamic desirable` |
+| `Gi0/2` transporte les VLANs actifs | Les VLANs 10 et 20 deviennent potentiellement accessibles depuis Kali |
 | Les flux inter-VLAN restent controles par le routeur ou le pare-feu | Le filtrage continue de jouer son role |
-| Les captures Wireshark ne montrent pas d'acces multi-VLAN depuis Kali | Le port n'expose pas de trafic trunk aux postes |
 | CDP est visible depuis Kali | Le port expose des informations de decouverte Cisco |
 | CDP flood genere des paquets depuis Kali | Kali peut injecter des trames CDP, sans obtenir d'acces VLAN supplementaire |
 | Double tagging visible dans Wireshark | Scapy genere bien une trame avec VLAN 10 puis VLAN 20 |
@@ -419,11 +489,11 @@ Si un test donne un resultat inattendu, il faut verifier en priorite :
 | Installer Yersinia | Fait | Utilisation de `yersinia`; interface GTK indisponible, mode terminal utilise |
 | Lancer Wireshark sur Kali | Fait | Captures CDP, STP, VLAN et ARP |
 | Capturer le port connecte au switch | Fait | Captures Wireshark depuis Kali |
-| Tester DTP avec Yersinia | Tente, non concluant | La table DTP est restee vide, aucune action `trunking/desirable` exploitable ; les paquets observes sont du CDP |
+| Tester DTP avec Yersinia | Fait | Premier essai non concluant, puis second test concluant avec `Gi0/2` en `dynamic desirable` |
 | Observer les paquets generes | Fait | CDP passif et CDP flood observes |
 | Tester le double tagging | Fait | Trame Scapy avec VLAN 10 puis VLAN 20 observee |
-| Analyser le resultat | Fait | Tentative visible, pas d'acces exploitable au VLAN 20 |
-| Identifier les protections | Fait | Ports access, trunks limites, filtrage inter-VLAN ; aucune negociation DTP exploitable observee |
+| Analyser le resultat | Fait | DTP reussi sur le second test ; double tagging visible, sans preuve d'acces exploitable au VLAN 20 |
+| Identifier les protections | Fait | Ports access fixes, `switchport nonegotiate`, trunks limites et filtrage inter-VLAN |
 | Documenter les observations | Fait | Tableaux d'observation, captures et synthese |
 
 ## Important
@@ -440,16 +510,16 @@ Les tests ont ete realises uniquement dans l'environnement de TP. Les commandes 
 | --- | --- |
 | Capture CDP passive | CDP visible depuis Kali, avec `Device ID: Switch`, `Port ID: GigabitEthernet1/1`, `Native VLAN: 10` |
 | CDP flood avec Yersinia | Paquets CDP generes depuis Kali et visibles dans Wireshark |
-| Recherche DTP | Tentative realisee avec Yersinia, mais non concluante ; aucune negociation trunk exploitable observee |
+| Recherche DTP | Premier essai non concluant, puis second test reussi : `Gi0/2` connecte a Kali apparait en `trunking` |
 | Double tagging Scapy | Trame avec deux tags 802.1Q visible : VLAN 10 puis VLAN 20 |
-| Acces VLAN 20 | Aucun acces exploitable au VLAN 20 valide |
+| Acces VLAN 20 | Potentiellement possible via trunk DTP ; a verifier avec sous-interface VLAN cote Kali et filtrage inter-VLAN |
 
 ### Protections qui limitent l'attaque
 
 | Protection | Role |
 | --- | --- |
 | Port utilisateur en mode access | Evite qu'un poste devienne trunk |
-| DTP non exploitable observe | La tentative Yersinia n'a pas permis de negocier un trunk ; les captures montrent du CDP, pas un trunk DTP reussi |
+| `switchport nonegotiate` | Empeche la negociation DTP automatique |
 | Trunk limite aux VLANs necessaires | Reduit l'exposition des VLANs |
 | Filtrage inter-VLAN | Controle les flux meme si le routage existe |
 | Desactivation de CDP sur ports utilisateurs | Limite la fuite d'informations sur le switch |
@@ -472,9 +542,9 @@ Les protections suivantes ont ete identifiees pendant l'atelier. Elles permetten
 
 | Protection identifiee | Etat observe | Effet securite |
 | --- | --- | --- |
-| Port de Kali en mode access | Kali reste dans le VLAN 10 | Empeche le poste de recevoir directement plusieurs VLANs |
-| Aucune negociation DTP exploitable | Yersinia DTP affiche une table vide et aucun mode `trunking/desirable` exploitable | Le port utilisateur ne devient pas trunk |
-| Pas de trunk visible depuis Kali | Wireshark ne montre pas de trafic multi-VLAN exploitable | Kali ne gagne pas d'acces direct aux autres VLANs |
+| Port de Kali en mode access lors du premier test | Kali reste dans le VLAN 10 | Empeche le poste de recevoir directement plusieurs VLANs |
+| Port `Gi0/2` laisse en `dynamic desirable` lors du second test | `show interfaces trunk` affiche `Gi0/2` en `trunking` | Le port utilisateur devient trunk : configuration vulnerable |
+| Absence de `switchport nonegotiate` sur le port vulnerable | DTP reste actif | Permet la negociation automatique du trunk |
 | Double tagging non concluant | La trame double taguee est visible localement, mais aucun acces VLAN 20 n'est valide | La tentative ne permet pas de sortir du VLAN initial |
 | Filtrage inter-VLAN actif | Les flux entre VLANs restent controles par le routeur/pare-feu | Meme si le routage existe, les communications sont limitees par les ACL |
 

@@ -156,6 +156,11 @@ nav:
         - Règles de filtrage et ACL avec pfSense: admin-reseaux-securisation/it-2/atelier2.md
         - Journalisation et analyse des logs pfSense: admin-reseaux-securisation/it-2/atelier3.md
         - Synthèse pfSense: admin-reseaux-securisation/it-2/synthese-pfsense.md
+    - VPN site-à-site et architecture sécurisée :
+        - Vue d'ensemble: admin-reseaux-securisation/it-3/index.md
+        - Introduction aux VPN et architecture du TP: admin-reseaux-securisation/it-3/atelier1.md
+        - Mise en place d'un VPN OpenVPN site-à-site: admin-reseaux-securisation/it-3/atelier2.md
+        - Analyse Wireshark et logs OpenVPN: admin-reseaux-securisation/it-3/atelier3.md
 
 
   - Pense-bête:
