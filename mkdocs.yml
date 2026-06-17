@@ -170,6 +170,10 @@ nav:
     - Réponse à incident et automatisation sécurité :
         - Vue d'ensemble: admin-reseaux-securisation/it-5/index.md
         - Réponse à incident et sécurisation d'une installation Spark : admin-reseaux-securisation/it-5/atelier1.md
+        - Fail2ban SSH et script de bannissement IP : admin-reseaux-securisation/it-5/atelier2.md
+    - Préparation au challenge final :
+        - Vue d'ensemble: admin-reseaux-securisation/it-6/index.md
+        - Préparation défensive et validation de l'infrastructure : admin-reseaux-securisation/it-6/atelier1.md
         
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md

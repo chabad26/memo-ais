@@ -68,26 +68,16 @@ Dans cet atelier, Spark n'est pas installé dans GNS3. Il est installé sur un P
 Laptop de test  --->  réseau local/lab  --->  PC dédié Spark
 ```
 
-À renseigner avant de commencer :
+Environnement réellement utilisé pendant l'atelier :
 
-| Élément | Valeur |
+| Élément | Valeur observée |
 | --- | --- |
-| PC dédié Spark | À compléter |
-| Adresse IP du PC Spark | `IP_PC_SPARK` |
-| Laptop de test | À compléter |
-| Adresse IP du laptop | `IP_LAPTOP` |
-| Interface Spark Master UI | `http://IP_PC_SPARK:8080` |
-| Port Spark Master | `7077` |
-| REST API Spark | `6066` si activée |
-
-Exemple :
-
-| Élément | Exemple |
-| --- | --- |
-| Adresse IP du PC Spark | `192.168.1.50` |
-| Adresse IP du laptop | `192.168.1.20` |
-
-Le PC Spark ne doit pas être exposé sur Internet. Il ne faut pas configurer de redirection de ports sur la box ou le routeur.
+| Machine victime | PC dédié Spark |
+| Adresse IP de la victime | `172.22.114.126` |
+| Poste de test | Laptop personnel |
+| Version Spark observée | `4.1.2` |
+| Interface réseau utilisée par Spark | `eno1` |
+| Interface Spark accessible | `http://172.22.114.126:4040/jobs/` |
 
 Pour relever les adresses IP :
 
@@ -129,7 +119,7 @@ java -version
 Télécharger Spark depuis le site officiel Apache. Adapter la version selon celle fournie dans le lab :
 
 ```bash
-export SPARK_VERSION=4.1.0
+export SPARK_VERSION=4.1.2
 cd /opt
 sudo curl -LO https://downloads.apache.org/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop3.tgz
 sudo tar -xzf spark-${SPARK_VERSION}-bin-hadoop3.tgz
@@ -151,6 +141,12 @@ spark-shell --version
 ```
 
 Si la version exacte n'est plus disponible sur le miroir Apache, récupérer la version proposée par la page officielle de téléchargement, puis adapter les noms de fichiers.
+
+Dans l'atelier, Spark a été installé sur le PC victime puis ajouté au `PATH` afin de pouvoir lancer les commandes Spark directement depuis le terminal.
+
+![Version Spark installée sur la victime](../../assets/img/admin-reseau-securisation/it-5/spark_installé_victime.png)
+
+La capture montre que Spark `4.1.2` est bien installé. On observe aussi un avertissement important : le nom de machine résout vers `127.0.1.1`, donc Spark choisit l'adresse réseau `172.22.114.126` sur l'interface `eno1`. Ce comportement est pratique pour accéder à Spark depuis le réseau, mais il peut aussi exposer l'interface si aucun filtrage n'est appliqué.
 
 ## 2. Lancer Spark en mode standalone
 
@@ -217,6 +213,47 @@ curl http://IP_PC_SPARK:8080
 
 Si une page HTML Spark est retournée sans authentification, l'interface est exposée.
 
+### Observation réelle sur le lab
+
+Depuis le laptop, les ports Spark classiques ont été testés avec `nc` :
+
+```bash
+nc -vz 172.22.114.126 8080
+nc -vz 172.22.114.126 7077
+nc -vz 172.22.114.126 8081
+nc -vz 172.22.114.126 6066
+```
+
+![Tests réseau depuis le laptop](../../assets/img/admin-reseau-securisation/it-5/nc.png)
+
+Résultat observé :
+
+| Port testé | Service attendu | Résultat | Interprétation |
+| --- | --- | --- | --- |
+| `8080` | Spark Master Web UI | Refusé | Le master standalone n'est pas exposé |
+| `7077` | Spark Master | Refusé | La soumission de jobs au master n'est pas accessible |
+| `8081` | Spark Worker Web UI | Refusé | Le worker standalone n'est pas exposé |
+| `6066` | REST submission API | Refusé | L'API REST de soumission n'est pas accessible |
+| `4040` | Spark Application UI | Accessible via navigateur | Une interface applicative Spark est exposée |
+
+Le constat est donc plus précis qu'une installation Spark totalement ouverte : les ports standalone sensibles sont fermés, mais l'interface applicative `4040` est accessible depuis le laptop.
+
+Depuis le PC victime, le lancement de `spark-shell` ouvre l'interface applicative Spark :
+
+![Commande de lancement Spark Shell](../../assets/img/admin-reseau-securisation/it-5/commande_pour_lancer_interface_victime.png)
+
+Spark indique utiliser l'adresse `172.22.114.126`. Cela explique pourquoi l'interface `4040` est consultable depuis une autre machine du réseau.
+
+Sur le PC victime, l'interface est visible localement :
+
+![Interface Spark locale sur la victime](../../assets/img/admin-reseau-securisation/it-5/spark_victime.png)
+
+Depuis le laptop, la même interface est accessible à distance :
+
+![Interface Spark accessible depuis le laptop](../../assets/img/admin-reseau-securisation/it-5/sparksurlaptop.png)
+
+Cette exposition ne permet pas forcément une exécution distante directe, mais elle constitue une fuite d'informations : nom de l'application, utilisateur, heure de démarrage, jobs, stages, stockage, environnement et executors.
+
 ## 4. Identifier les éléments dangereux
 
 Analyser la configuration Spark :
@@ -273,6 +310,14 @@ http://IP_PC_SPARK:8080
 | Authentification demandée | Oui / Non |
 | Informations visibles | À compléter |
 | Risque | Exposition d'informations |
+
+Dans le cas observé, l'URL exposée n'est pas `8080` mais `4040` :
+
+```text
+http://172.22.114.126:4040/jobs/
+```
+
+Cette page ne demande pas d'authentification. Elle correspond à l'interface d'une application Spark lancée avec `spark-shell`.
 
 ### Soumission distante autorisée
 
@@ -354,6 +399,24 @@ Filtrer les ports Spark :
 sudo ss -tupna | grep -E '7077|8080|8081|6066|4040'
 ```
 
+Dans l'atelier, la commande suivante a confirmé que le port `4040` était en écoute :
+
+```bash
+sudo ss -tulnet | grep 4040
+ps aux | grep -i spark
+```
+
+![Port 4040 et processus Spark sur la victime](../../assets/img/admin-reseau-securisation/it-5/faille_port_4040_victime.png)
+
+On observe :
+
+- un port `4040` en écoute ;
+- un processus `spark-shell` ;
+- un processus Java lancé via `SparkSubmit` ;
+- une écoute compatible IPv4/IPv6, donc visible depuis le réseau si le firewall l'autorise.
+
+Ce point permet de relier l'interface visible dans le navigateur au processus réellement actif sur la machine victime.
+
 ### Logs Spark
 
 ```bash
@@ -384,6 +447,54 @@ find /tmp /var/tmp /opt/spark -type f -mtime -1 2>/dev/null
 | Persistance | Fichiers ou services ajoutés | Redémarrage d'un outil malveillant |
 | Déni de service | Jobs intensifs ou nombreux | Saturation CPU/mémoire |
 | Exploitation d'une CVE | Version obsolète | Compromission ou élévation de privilèges |
+
+Dans le cas réel observé, le risque principal identifié est la fuite d'informations via l'interface applicative `4040`.
+
+Les ports `7077`, `8080`, `8081` et `6066` répondent en refus de connexion depuis le laptop. Le risque d'exécution distante via master standalone ou API REST n'a donc pas été confirmé pendant ce test. En revanche, l'accès non authentifié à `4040` reste problématique, car il donne des informations utiles pour une reconnaissance :
+
+- utilisateur lançant l'application Spark ;
+- heure de démarrage ;
+- jobs et stages ;
+- détails d'environnement ;
+- executors ;
+- comportement de l'application.
+
+### Simulation contrôlée d'impact disponibilité
+
+Pour compléter l'analyse, un ralentissement contrôlé de la victime a été réalisé depuis le laptop. L'objectif est de montrer l'impact qu'une consommation abusive de ressources pourrait avoir sur une machine Spark si un mécanisme d'exécution non autorisée était exposé.
+
+Le script utilisé depuis le laptop exécute une charge limitée sur la victime via SSH :
+
+![Script de charge contrôlée depuis le laptop](../../assets/img/admin-reseau-securisation/it-5/script_charge.png)
+
+Paramètres du test :
+
+| Élément | Valeur |
+| --- | --- |
+| Cible | `172.22.114.126` |
+| Durée | `60` secondes |
+| Charge CPU | `2` workers |
+| Charge mémoire | `512M` |
+| Outil | `stress-ng` |
+| Canal d'exécution | SSH authentifié |
+
+Le lancement depuis le laptop confirme que le script demande le mot de passe SSH, demande une confirmation, puis exécute `stress-ng` pendant une durée limitée.
+
+![Script lancé depuis le laptop](../../assets/img/admin-reseau-securisation/it-5/script lancé.png)
+
+Sur la victime, les consoles de supervision montrent l'effet de la charge :
+
+![Victime observée pendant le test de charge](../../assets/img/admin-reseau-securisation/it-5/Victime_victimisé_avec_consentement.png)
+
+Observations :
+
+- `htop` affiche deux processus `stress-ng-cpu` proches de `100 %` CPU ;
+- un processus `stress-ng-vm` consomme de la mémoire ;
+- `free -h` montre une hausse de la mémoire utilisée ;
+- `uptime` montre une augmentation de la charge moyenne ;
+- le test reste borné dans le temps et limité au laboratoire.
+
+Cette manipulation ne prouve pas une compromission Spark. Elle sert à documenter le risque de disponibilité : si un attaquant pouvait soumettre des jobs ou exécuter du code, il pourrait provoquer une consommation CPU/RAM importante.
 
 ## 8. Démarche de remédiation inspirée ANSSI
 
@@ -459,6 +570,7 @@ Tests :
 curl http://IP_PC_SPARK:8080
 nc -vz IP_PC_SPARK 7077
 nc -vz IP_PC_SPARK 6066
+nc -vz IP_PC_SPARK 4040
 ```
 
 Depuis une machine non autorisée, les accès doivent échouer.
@@ -546,6 +658,20 @@ sudo nft list ruleset
 
 Pour rendre la configuration persistante, intégrer ce fichier à la configuration nftables utilisée par la distribution.
 
+Si l'objectif est de bloquer complètement l'accès distant à l'interface applicative Spark `4040`, il est aussi possible d'ajouter une règle dédiée :
+
+```bash
+sudo nft add rule inet spark_filter input tcp dport 4040 drop
+```
+
+Une autre approche consiste à lancer Spark en limitant l'écoute au loopback lorsque l'interface n'a pas besoin d'être consultée depuis le réseau :
+
+```bash
+SPARK_LOCAL_IP=127.0.0.1 spark-shell
+```
+
+Dans ce cas, l'interface `4040` doit rester accessible localement depuis le PC Spark, mais ne doit plus être accessible depuis le laptop.
+
 ## 11. Limiter SSH
 
 Éditer :
@@ -605,6 +731,7 @@ Depuis une machine non autorisée :
 curl http://IP_PC_SPARK:8080
 nc -vz IP_PC_SPARK 7077
 nc -vz IP_PC_SPARK 6066
+nc -vz IP_PC_SPARK 4040
 ```
 
 Résultat attendu :
@@ -640,25 +767,28 @@ Modèle à compléter :
 
 | Élément | Observation |
 | --- | --- |
-| Date de détection | À compléter |
+| Date de détection | 11h50 |
 | Machine concernée | PC Spark : `IP_PC_SPARK` |
 | Symptômes | Charge CPU, lenteur, interfaces Spark exposées |
-| Ports exposés | À compléter |
-| Interfaces accessibles | À compléter |
-| Accès non authentifié constaté | Oui / Non |
-| Soumission distante possible | Oui / Non |
-| Logs observés | Spark, journalctl, ss, nftables |
-| Mesures de confinement | À compléter |
-| Mesures de correction | À compléter |
-| Mesures de durcissement | À compléter |
-| Risques résiduels | À compléter |
+| Ports exposés | `4040` observé accessible depuis le laptop |
+| Interfaces accessibles | Spark Application UI : `http://172.22.114.126:4040/jobs/` |
+| Accès non authentifié constaté | Oui, sur l'interface `4040` |
+| Soumission distante possible | Non confirmée : `7077` et `6066` refusés |
+| Impact disponibilité testé | Oui, charge contrôlée avec `stress-ng` via SSH |
+| Logs observés | Spark, journalctl, ss, nftables, htop, uptime, free |
+| Mesures de confinement | retirer la machine du réseau |
+| Mesures de correction | nettoyage machine |
+| Mesures de durcissement | blocage port, nettoyage machine |
+| Risques résiduels | autre port exploitable, faille de sécurité sur l'OS |
 
 ### Analyse synthétique
 
 ```text
-L'installation Spark était exposée avec une configuration proche des valeurs par défaut. L'interface Web UI était accessible depuis le réseau sans authentification, et les ports Spark permettaient d'interagir avec le cluster depuis une machine distante.
+L'installation Spark était exposée avec une configuration proche des valeurs par défaut. Les ports Spark standalone 7077, 8080, 8081 et 6066 n'étaient pas accessibles depuis le laptop, mais l'interface applicative 4040 était consultable à distance sans authentification.
 
-Le risque principal identifié est l'exécution non autorisée de jobs Spark, pouvant mener à une consommation abusive des ressources, à une fuite d'informations ou à une compromission plus large selon les droits du processus Spark.
+Le risque principal confirmé est la fuite d'informations via l'interface Web UI d'une application Spark. Le risque d'exécution non autorisée de jobs n'a pas été confirmé pendant ce test, mais il resterait critique si le master 7077 ou l'API REST 6066 étaient exposés.
+
+Un test de charge contrôlé a également été réalisé depuis le laptop via SSH afin d'illustrer l'impact disponibilité. Les captures côté victime montrent une consommation CPU et mémoire mesurable pendant l'exécution de stress-ng, limitée à 60 secondes.
 
 La remédiation a consisté à confiner l'accès réseau, désactiver les services inutiles, activer les protections disponibles, limiter SSH, mettre à jour le système et vérifier que les accès non autorisés échouent.
 ```
