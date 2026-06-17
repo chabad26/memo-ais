@@ -165,6 +165,17 @@ Ou en arrière-plan :
 sudo openvpn --config client1.ovpn --daemon
 ```
 
+Le fichier client contient les éléments nécessaires à l'authentification et au chiffrement :
+
+- adresse du serveur OpenVPN ;
+- port `1194/udp` ;
+- certificat de l'autorité de certification ;
+- certificat et clé du client ;
+- clé TLS supplémentaire ;
+- options de chiffrement.
+
+![Réglage du client OpenVPN](../../assets/img/admin-reseau-securisation/it-3/capture%20réglageopenvpnclient.png)
+
 La connexion est réussie lorsque les logs affichent :
 
 ```text
@@ -223,6 +234,16 @@ Le protocole affiché est OpenVPN, avec des messages de type `P_DATA_V2`. Les pa
 
 ![Capture Wireshark après établissement du VPN](../../assets/img/admin-reseau-securisation/it-3/captureavec%20vpn.png)
 
+Un filtre sur le port OpenVPN permet de confirmer que le trafic réseau visible sur l'interface physique correspond au tunnel :
+
+```text
+udp.port == 1194
+```
+
+La capture montre que les échanges utilisent OpenVPN sur le réseau de transit, entre l'adresse du client et l'adresse de `R2`.
+
+![Filtre Wireshark sur le port OpenVPN](../../assets/img/admin-reseau-securisation/it-3/wiresharkportopenvpn.png)
+
 ### Capture sur `tun0`
 
 Sur `tun0`, on observe le trafic qui circule à l'intérieur du tunnel après déchiffrement local.
@@ -280,6 +301,114 @@ Conclusion attendue :
 ```text
 Après établissement du VPN, l'observateur placé sur le réseau de transit voit surtout un flux OpenVPN entre le client et R2. Il ne voit pas directement les communications applicatives vers les VLANs internes.
 ```
+
+## Tests de chiffrement
+
+Les tests de chiffrement servent à vérifier que le VPN masque les communications applicatives sur le réseau de transit. L'objectif n'est pas de casser ou mesurer mathématiquement le chiffrement, mais de prouver par observation que les échanges internes ne sont plus visibles directement hors du tunnel.
+
+### Méthode utilisée
+
+Trois captures sont comparées :
+
+| Capture | Interface | Ce que l'on cherche |
+| --- | --- | --- |
+| Avant VPN | Interface physique | Trafic non encapsulé ou absence d'accès aux VLANs |
+| Après VPN | Interface physique | Flux OpenVPN chiffré entre client et R2 |
+| Après VPN | `tun0` | Trafic interne visible dans l'interface tunnel |
+
+### Test 1 : observer le port OpenVPN
+
+Sur l'interface physique du client ou de `R2`, appliquer le filtre :
+
+```text
+udp.port == 1194
+```
+
+Observation :
+
+- le trafic visible est identifié comme OpenVPN ;
+- les échanges se font entre les IP physiques du client VPN et de `R2` ;
+- les messages affichés sont de type OpenVPN, par exemple `P_DATA_V2` ;
+- les IP internes `192.168.10.1`, `192.168.20.1` et `192.168.30.1` ne sont pas visibles directement dans cette capture.
+
+Conclusion :
+
+```text
+Sur le réseau de transit, l'observateur voit le tunnel OpenVPN, mais pas les communications applicatives internes en clair.
+```
+
+### Test 2 : comparer avec l'interface `tun0`
+
+Sur `tun0`, appliquer un filtre ICMP :
+
+```text
+icmp
+```
+
+Puis générer du trafic :
+
+```bash
+ping 192.168.10.1
+ping 192.168.20.1
+ping 192.168.30.1
+```
+
+Observation :
+
+- sur `tun0`, les IP internes des VLANs sont visibles ;
+- les paquets ICMP request/reply sont lisibles ;
+- cela correspond au trafic avant encapsulation ou après décapsulation ;
+- la même communication n'apparaît pas en clair sur l'interface physique.
+
+Conclusion :
+
+```text
+Le trafic applicatif existe bien, mais il est visible en clair uniquement dans l'interface tunnel. Sur l'interface physique, il est encapsulé et chiffré par OpenVPN.
+```
+
+### Test 3 : vérifier le chiffrement annoncé dans les logs
+
+Dans les logs OpenVPN côté serveur, relever la ligne du canal de données :
+
+```text
+Data Channel: cipher 'AES-256-GCM'
+```
+
+Les logs montrent aussi le canal de contrôle TLS :
+
+```text
+Control Channel: TLSv1.3
+```
+
+Interprétation :
+
+| Élément | Rôle |
+| --- | --- |
+| `TLSv1.3` | Protège l'établissement et le contrôle de la session |
+| `AES-256-GCM` | Chiffre le canal de données du VPN |
+| `VERIFY OK` | Confirme la validation des certificats |
+| `PUSH_REPLY` | Confirme l'envoi des routes et paramètres au client |
+
+Conclusion :
+
+```text
+Les captures réseau montrent l'encapsulation OpenVPN et les logs confirment le chiffrement utilisé par le tunnel.
+```
+
+### Synthèse des tests de chiffrement
+
+| Point vérifié | Résultat observé | Conclusion |
+| --- | --- | --- |
+| Port OpenVPN visible | `UDP/1194` | Le tunnel est identifiable sur le réseau |
+| Contenu applicatif sur interface physique | Non visible directement | Les échanges internes sont encapsulés |
+| Trafic interne sur `tun0` | ICMP vers VLANs visible | Le trafic existe dans le tunnel |
+| Chiffrement dans les logs | `AES-256-GCM` | Le canal de données est chiffré |
+| Authentification | `VERIFY OK` | Les certificats sont validés |
+
+Le chiffrement est donc validé par deux preuves complémentaires :
+
+- Wireshark montre que le réseau de transit ne voit que du trafic OpenVPN ;
+- les logs OpenVPN indiquent le chiffrement négocié pour le tunnel.
 
 ## Vérification des logs OpenVPN
 
@@ -513,6 +642,8 @@ Captures déjà intégrées dans ce compte rendu :
 | --- | --- |
 | `capture wireshark avant openvpn.png` | Observation du trafic avant tunnel |
 | `captureavec vpn.png` | Observation du flux OpenVPN chiffré après tunnel |
+| `capture réglageopenvpnclient.png` | Configuration client utilisée pour établir le tunnel |
+| `wiresharkportopenvpn.png` | Filtre Wireshark sur le port OpenVPN `UDP/1194` |
 | `capture tun0.png` | Observation du trafic interne visible sur l'interface tunnel |
 | `capture openvpn client.png` | Logs et routes côté client |
 | `logopenvpn.png` | Exemple de logs génériques peu détaillés |
