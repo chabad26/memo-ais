@@ -22,6 +22,10 @@ L'atelier réutilise l'infrastructure complète construite pendant les itératio
 
 La topologie utilisée pour préparer la défense est celle du laboratoire GNS3. pfSense est placé au centre et relie les VLANs internes au réseau OpenVPN.
 
+![Topologie GNS3 de l'atelier IT6](../../assets/img/admin-reseau-securisation/it-6/gns3it-6.png)
+
+La capture montre l'organisation générale du lab : les VLANs Administration, Production et RH sont séparés derrière pfSense, tandis que `R2` et `vpnclient` représentent la zone OpenVPN. Cette vue sert de référence pour vérifier que les règles de filtrage correspondent bien aux chemins réseau réellement utilisés.
+
 ### Zones réseau de la maquette
 
 | Zone | Équipements visibles sur la maquette | Rôle défensif |
@@ -207,6 +211,37 @@ Tableau de validation :
 | `vpnclient` vers VLAN 10 | À compléter | Limité aux flux nécessaires | Oui / Non |
 | `vpnclient` vers VLAN 20 | À compléter | Limité aux flux nécessaires | Oui / Non |
 
+### Règles pfSense validées
+
+Les règles pfSense ont été vérifiées interface par interface afin de confirmer que chaque zone dispose uniquement des flux nécessaires.
+
+#### Interface Administration
+
+![Règles pfSense côté Administration](../../assets/img/admin-reseau-securisation/it-6/firewallAdmin.png)
+
+Sur l'interface Administration, les flux utiles sont autorisés de manière ciblée :
+
+- ICMP vers le réseau VPN `10.8.0.0/24` pour valider le tunnel ;
+- ICMP, SSH `22` et HTTPS `443` vers Production ;
+- ICMP, SSH `22` et HTTPS `443` vers RH ;
+- ICMP et SSH vers le réseau de transit `TO_R2`.
+
+Les règles de blocage placées après les autorisations empêchent les autres flux vers Production et RH. L'ordre des règles est important : les autorisations spécifiques doivent toujours être placées avant le blocage plus large.
+
+#### Interface Production
+
+![Règles pfSense côté Production](../../assets/img/admin-reseau-securisation/it-6/firewallPROD.png)
+
+Sur l'interface Production, l'objectif est de limiter les déplacements latéraux vers Administration et RH. Le DNS est autorisé, l'ICMP sert aux tests de diagnostic, puis les accès sensibles comme SSH, HTTP, HTTPS et SMB vers les autres zones sont bloqués.
+
+Point de vigilance : si un ping Production vers Administration doit être autorisé, la règle ICMP doit être placée avant le blocage global `PROD net -> ADMIN net`. Sinon, elle ne sera jamais atteinte.
+
+#### Interface RH
+
+![Règles pfSense côté RH](../../assets/img/admin-reseau-securisation/it-6/firewallRH.png)
+
+Sur l'interface RH, les règles doivent confirmer l'isolement de la zone métier. Les flux vers Administration et Production doivent rester bloqués sauf besoin précis documenté. Cette interface est importante dans le challenge, car une compromission RH ne doit pas permettre un accès direct aux services d'administration ou de production.
+
 ## 4. Tester les protections
 
 ### Fail2ban
@@ -238,6 +273,34 @@ sudo journalctl -u fail2ban --no-pager -n 50
 - durée du ban ;
 - logs générés.
 
+#### Fail2ban sur R2
+
+![Fail2ban actif sur R2](../../assets/img/admin-reseau-securisation/it-6/fail2banR2.png)
+
+Fail2ban est installé sur `R2` pour protéger l'accès SSH de la machine qui porte OpenVPN. C'est logique car les logs SSH à surveiller sont locaux à `R2`.
+
+À vérifier sur `R2` :
+
+```bash
+sudo fail2ban-client status
+sudo fail2ban-client status sshd
+sudo journalctl -u fail2ban --no-pager -n 50
+```
+
+Le résultat attendu est une jail `sshd` active, avec un nombre de tentatives échouées suivi par Fail2ban et une liste d'IP bannies lorsque le seuil est dépassé.
+
+#### Fail2ban sur le client VPN
+
+![Fail2ban actif sur le client VPN](../../assets/img/admin-reseau-securisation/it-6/fail2banvpnclient.png)
+
+Fail2ban peut aussi être activé sur `vpnclient` si cette machine expose SSH pour l'administration. Ce n'est pas indispensable pour protéger le tunnel OpenVPN sortant, mais c'est pertinent pour durcir les services locaux du client.
+
+Bonne pratique :
+
+- si aucun service entrant n'est nécessaire, bloquer l'entrée avec `nftables` ;
+- si SSH reste ouvert, limiter les sources autorisées et activer Fail2ban ;
+- ajouter l'IP ou le réseau d'administration dans `ignoreip` pour éviter de se bannir pendant les tests.
+
 ### pfSense
 
 Dans les logs firewall, vérifier :
@@ -268,6 +331,33 @@ sudo nft list ruleset
 ```
 
 Vérifier que les règles bloquent réellement les flux non autorisés.
+
+#### nftables sur R2
+
+![Règles nftables sur R2](../../assets/img/admin-reseau-securisation/it-6/nftableR2.png)
+
+Sur `R2`, `nftables` sert à contrôler les flux transférés entre le VPN et les réseaux internes. La chaîne `forward` doit rester restrictive, avec une politique de blocage par défaut et uniquement les flux nécessaires autorisés.
+
+Points à vérifier :
+
+- `ct state established,related accept` pour autoriser les retours de connexions ;
+- ICMP si les tests de diagnostic doivent passer ;
+- règles explicites depuis `10.8.0.0/24` vers les VLANs nécessaires ;
+- absence de règle trop large du type `ip saddr 10.8.0.0/24 accept` si l'objectif est de limiter le client VPN.
+
+#### nftables sur le client VPN
+
+![Règles nftables sur le client VPN](../../assets/img/admin-reseau-securisation/it-6/nftablevpnclient.png)
+
+Sur `vpnclient`, la machine n'a pas vocation à router du trafic. La chaîne `forward` doit donc être bloquée. La chaîne `output` peut rester ouverte pour permettre au client d'initier le tunnel OpenVPN, tandis que la chaîne `input` doit accepter uniquement les retours de connexions et les services réellement nécessaires.
+
+Exemple de logique attendue :
+
+```text
+input  : drop par défaut, loopback, established/related, ICMP ou SSH limité si nécessaire
+forward: drop
+output : accept
+```
 
 ## 5. Observer depuis Kali
 

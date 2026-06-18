@@ -198,5 +198,9 @@ nav:
           - Diagnostic, Wireshark et automatisation: pense-bete/admin-resau/diagnostic-wireshark-automatisation.md
           - Vocabulaire du routage: pense-bete/admin-resau/routage-vocabulaire.md
           - Switching, ARP, VLANs et STP: pense-bete/admin-resau/switching-arp-vlans.md
+      - Administration des réseaux - sécurisation:
+          - Vue d'ensemble: pense-bete/admin-reseaux-securisation/admin-reseaux-securisation.md
+          - Zeek, scans et corrélation: pense-bete/admin-reseaux-securisation/zeek-correlation.md
+          - Réponse à incident, Spark et Fail2ban: pense-bete/admin-reseaux-securisation/incident-spark-fail2ban.md
 
   - Liens utiles: liens-utiles.md

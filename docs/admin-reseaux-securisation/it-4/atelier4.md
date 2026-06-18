@@ -159,7 +159,8 @@ icmp
 
 Pour le déni de service, rechercher :
 
-- une répétition rapide de paquets TCP SYN ;
+- une répétition rapide de paquets TCP SYN ;sudo nft add rule inet filter forward ip saddr 10.8.0.0/24 ip daddr 192.168.10.0/24 accept
+
 - une même adresse source ;
 - une même adresse destination ;
 - un même port destination ;
