@@ -470,7 +470,142 @@ Modèle de tableau final :
 | Risques restants | À compléter |
 | Corrections réalisées | À compléter |
 
-## 9. Checklist avant challenge
+## 9. Résumé opérationnel de validation
+
+Cette synthèse reprend les points validés pendant la préparation défensive de l'atelier.
+
+### Rôles des équipements
+
+| Élément | Rôle validé |
+| --- | --- |
+| pfSense | Pare-feu principal entre Administration, Production, RH et `TO_R2` |
+| R2 | Serveur OpenVPN, passerelle VPN et point de filtrage `nftables` |
+| `vpnclient` | Client VPN durci, sans rôle de routeur |
+| pfSense DHCP | Gestion DHCP des VLANs internes |
+| `isc-dhcp-server` sur R2 | Non nécessaire, à désactiver si pfSense gère le DHCP |
+
+Point important : si le DHCP est géré par pfSense, `isc-dhcp-server` ne doit pas être maintenu actif sur `R2`. Le service peut échouer s'il tente d'écouter sur des interfaces qui ne correspondent plus à la topologie.
+
+### OpenVPN
+
+Le tunnel OpenVPN est considéré comme valide lorsque les logs serveur indiquent :
+
+```text
+Initialization Sequence Completed
+VERIFY OK
+Peer Connection Initiated
+PUSH_REPLY
+Data Channel: cipher 'AES-256-GCM'
+```
+
+Le client VPN doit obtenir une interface `tun0`, une adresse dans `10.8.0.0/24` et des routes vers les réseaux internes nécessaires.
+
+Commandes de vérification :
+
+```bash
+ip -br addr
+ip route
+ping -c 3 10.8.0.1
+sudo journalctl -u openvpn-server@server --no-pager -n 80
+```
+
+### Règles pfSense
+
+Les règles pfSense sont validées interface par interface.
+
+| Interface | Décision retenue |
+| --- | --- |
+| Administration | Autoriser les flux d'administration nécessaires vers Production, RH et R2 |
+| Production | Bloquer les accès vers Administration et RH sauf besoin explicitement prévu |
+| RH | Isoler la zone métier, bloquer les flux non justifiés |
+| `TO_R2` | Autoriser uniquement les flux nécessaires depuis ou vers R2 et le VPN |
+
+Réponse importante : l'ordre des règles pfSense est critique. Une règle d'autorisation placée sous un blocage global ne sera jamais atteinte.
+
+### nftables sur R2
+
+`R2` doit avoir une chaîne `forward` restrictive. Les flux VPN ou NAT ne passent que si une règle les autorise explicitement.
+
+Exemple de logique :
+
+```text
+ct state established,related accept
+ip protocol icmp accept
+10.8.0.0/24 -> VLANs internes : autoriser seulement les flux nécessaires
+policy drop
+```
+
+Pour une publication de service vers `RH1`, le DNAT seul ne suffit pas. Il faut aussi autoriser le forward :
+
+```bash
+sudo nft add rule inet filter forward iifname "ens4" ip daddr 192.168.30.101 tcp dport 22 accept
+```
+
+### Test depuis un PC d'un autre apprenant
+
+Le test d'exposition contrôlée depuis un poste externe est documenté dans une feuille séparée afin de ne pas mélanger la préparation défensive et le scénario d'attaque/test.
+
+Feuille dédiée :
+
+```text
+Test depuis un PC d'un autre apprenant
+```
+
+Objectif du test :
+
+```text
+PC autre apprenant -> R2:2222 -> RH1:22
+```
+
+Cette séparation permet de conserver l'atelier 1 comme document de validation défensive, tout en gardant une procédure complète de test avec toutes les commandes dans une page dédiée.
+
+### nftables sur le client VPN
+
+Le client VPN n'est pas un routeur. Sa posture attendue :
+
+```text
+input  : restrictif
+forward: drop
+output : accept
+```
+
+Il doit pouvoir initier le tunnel OpenVPN, mais ne doit pas servir de rebond réseau.
+
+### Fail2ban
+
+Fail2ban est pertinent sur les machines qui exposent SSH.
+
+| Machine | Intérêt |
+| --- | --- |
+| R2 | Protéger SSH sur la passerelle OpenVPN |
+| `vpnclient` | Durcir le client si SSH reste ouvert |
+| Machines internes | Protéger les services locaux exposés |
+
+Réponse importante : Fail2ban protège les services locaux dont il lit les logs. Il ne protège pas directement le tunnel OpenVPN sortant du client.
+
+### Tests à conserver comme preuves
+
+| Test | Résultat attendu |
+| --- | --- |
+| `ping 10.8.0.1` depuis `vpnclient` | Tunnel joignable |
+| `ssh` depuis Administration vers R2 | Autorisé |
+| Production vers Administration en SSH/HTTP/HTTPS/SMB | Bloqué |
+| Client VPN vers VLANs internes | Limité aux flux prévus |
+| PC autre apprenant vers `R2:2222` | Procédure séparée, redirection SSH vers `RH1` si règle active |
+
+### Conclusion de validation
+
+L'infrastructure est considérée prête lorsque :
+
+- le VPN monte correctement ;
+- pfSense applique les règles attendues par zone ;
+- `R2` filtre les flux transférés avec `nftables` ;
+- le client VPN est durci localement ;
+- Fail2ban protège les accès SSH exposés ;
+- les redirections NAT éventuelles sont limitées à un port et une cible précise ;
+- chaque règle importante a été testée depuis la zone source concernée.
+
+## 10. Checklist avant challenge
 
 Avant le challenge final, vérifier :
 

@@ -174,6 +174,8 @@ nav:
     - Préparation au challenge final :
         - Vue d'ensemble: admin-reseaux-securisation/it-6/index.md
         - Préparation défensive et validation de l'infrastructure : admin-reseaux-securisation/it-6/atelier1.md
+        - Test depuis un PC d'un autre apprenant : admin-reseaux-securisation/it-6/test-pc-autre-apprenant.md
+        - Préparation d'un CTF facile : admin-reseaux-securisation/it-6/preparation-ctf-facile.md
         
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
