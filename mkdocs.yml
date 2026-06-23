@@ -63,7 +63,7 @@ nav:
           - Hygiène numérique: intro-ais/hygiene-numerique.md
           - Chiffrement: intro-ais/chiffrement.md
 
-  - Système d’info & archi SI:
+  - SI & archi:
       - Présentation: systeme-info-si/index.md
       - Mémo personnel : systeme-info-si/synthese-personnel-final.md
       - Le système d'information:
@@ -104,7 +104,17 @@ nav:
       - Ressources PDF: rgpd/ressources-pdf.md
       - Enjeux avancés: rgpd/enjeux-avances.md
 
-  - Administration des réseaux :
+  - Systèmes Linux:
+      - Vue d'ensemble: admin-systemes-linux/index.md
+      - Kit Install - Environnement de travail: admin-systemes-linux/it-1/atelier1-kit-install.md
+      - FHS - Arborescence Linux: admin-systemes-linux/it-1/atelier2-fhs.md
+      - Identités Linux - passwd shadow group: admin-systemes-linux/it-1/atelier3-identites.md
+      - Comptes AlpesNet - utilisateurs et services: admin-systemes-linux/it-1/atelier4-comptes-alpesnet.md
+      - Cycle de vie des comptes Linux: admin-systemes-linux/it-1/atelier5-cycle-vie-comptes.md
+      - Audit des comptes et droits sudo AlpesNet: admin-systemes-linux/it-1/atelier6-audit-comptes-sudo.md
+      - Carnet de bord: admin-systemes-linux/it-1/carnet-bord-fhs-identites.md
+
+  - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
       - Synthèse personnelle CC-01: admin-reseaux/synthese-personnelle-cc01.md
 
@@ -142,7 +152,7 @@ nav:
           - Synthèse automatisation Bash: admin-reseaux/iteration-5/synthese-automatisation-bash.md
           - Automatisation connectivité et sauvegarde: admin-reseaux/iteration-5/automatisation-connectivite-sauvegarde.md
 
-  - Administration des réseaux Sécurisation :
+  - Réseaux sécurisés :
     - Vue d'ensemble: admin-reseaux-securisation/index.md
     - Segmentation sécurisée et filtrage réseau : 
         - Vue d'ensemble: admin-reseaux-securisation/it-1/index.md
@@ -204,5 +214,4 @@ nav:
           - Vue d'ensemble: pense-bete/admin-reseaux-securisation/admin-reseaux-securisation.md
           - Zeek, scans et corrélation: pense-bete/admin-reseaux-securisation/zeek-correlation.md
           - Réponse à incident, Spark et Fail2ban: pense-bete/admin-reseaux-securisation/incident-spark-fail2ban.md
-
-  - Liens utiles: liens-utiles.md
+      - Liens utiles: liens-utiles.md

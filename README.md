@@ -9,6 +9,7 @@ Il sert à garder au propre des rappels sur :
 - les commandes utiles,
 - le réseau,
 - la cybersécurité,
+- l'administration des systèmes Linux,
 - les réflexes de dépannage.
 
 Le site est construit avec **MkDocs** et le thème **Material for MkDocs**.
@@ -93,6 +94,7 @@ docs/index.md
 docs/pense-bete.md
 docs/intro-ais/reseau.md
 docs/intro-ais/commandes-linux.md
+docs/admin-systemes-linux/index.md
 ```
 
 Après modification d'un fichier, MkDocs recharge souvent la page automatiquement.

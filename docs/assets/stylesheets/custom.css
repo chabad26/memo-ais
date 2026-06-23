@@ -16,6 +16,27 @@
   width: auto;
 }
 
+/* Keep the top tab navigation usable when many modules are present. */
+.md-tabs__inner {
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.md-tabs__list {
+  flex-wrap: nowrap;
+  min-width: max-content;
+}
+
+.md-tabs__item {
+  flex-shrink: 0;
+}
+
+.md-tabs__link {
+  font-size: 0.68rem;
+  padding-left: 0.45rem;
+  padding-right: 0.45rem;
+}
+
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {

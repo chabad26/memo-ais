@@ -11,11 +11,11 @@ L'idée est simple : pouvoir relire rapidement une définition, une commande ou 
 Ce mémo est découpé en plusieurs parties :
 
 - **Intro AIS** : bases du matériel, de Linux, du réseau et de la cybersécurité.
-- **Pense-bête** : rappels rapides et commandes utiles au quotidien.
 - **Schémas de l'AIS** : des schémas pour donner des exemples plus concret
-- **Liens utiles** : Des ressources utiles pour la veille technologique
+- **Pense-bête** : rappels rapides, commandes utiles et ressources pour la veille technologique.
 - **Système d’info & archi SI** : organisation du SI, des flux et des infrastructures.
 - **RGPD** : formation CNIL, notions clés, conformité et protection des données personnelles.
+- **Administration des systèmes — Linux** : installation, administration, sécurisation, automatisation et sauvegarde d'une infrastructure Debian.
 - **Administration des réseaux — Fondamentaux** : base de gestion d'un réseau d'entreprise.
 
 ## Objectif
