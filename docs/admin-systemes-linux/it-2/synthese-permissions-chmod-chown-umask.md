@@ -278,23 +278,6 @@ Permission non accordée
 
 Conclusion : `bob.dupont` ne peut pas lire le fichier secret, ce qui respecte le principe du moindre privilège.
 
-## Résultat attendu dans le carnet
-
-Le carnet doit contenir :
-
-- les commandes `mkdir`, `chown`, `chmod` exécutées ;
-- le résultat de `ls -la /srv/alpesnet/` ;
-- la justification de chaque permission ;
-- le test montrant que `bob.dupont` ne peut pas lire le fichier secret ;
-- une conclusion sur le respect du moindre privilège.
-
-Modèle de justification :
-
-```text
-/srv/alpesnet/secrets est configuré en root:root 700.
-Justification : ce répertoire contient des données sensibles. Seul root doit pouvoir entrer, lire ou modifier son contenu. Les autres utilisateurs, y compris bob.dupont, n'ont aucun droit.
-```
-
 ## Ressources
 
 - `man chmod`

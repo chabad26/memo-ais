@@ -106,22 +106,32 @@ nav:
 
   - Systèmes Linux:
       - Vue d'ensemble: admin-systemes-linux/index.md
-      - Kit Install - Environnement de travail: admin-systemes-linux/it-1/atelier1-kit-install.md
-      - FHS - Arborescence Linux: admin-systemes-linux/it-1/atelier2-fhs.md
-      - Identités Linux - passwd shadow group: admin-systemes-linux/it-1/atelier3-identites.md
-      - Comptes AlpesNet - utilisateurs et services: admin-systemes-linux/it-1/atelier4-comptes-alpesnet.md
-      - Cycle de vie des comptes Linux: admin-systemes-linux/it-1/atelier5-cycle-vie-comptes.md
-      - Audit des comptes et droits sudo AlpesNet: admin-systemes-linux/it-1/atelier6-audit-comptes-sudo.md
-      - Carnet de bord: admin-systemes-linux/it-1/carnet-bord-fhs-identites.md
-      - audit alpesnet : admin-systemes-linux/it-1/audit-comptes-sudo-alpesnet.md
-      - Permissions Linux:
+      - Installation Debian 12 & Gestion des comptes utilisateurs :
+          - Kit Install - Environnement de travail: admin-systemes-linux/it-1/atelier1-kit-install.md
+          - FHS - Arborescence Linux: admin-systemes-linux/it-1/atelier2-fhs.md
+          - Identités Linux - passwd shadow group: admin-systemes-linux/it-1/atelier3-identites.md
+          - Comptes AlpesNet - utilisateurs et services: admin-systemes-linux/it-1/atelier4-comptes-alpesnet.md
+          - Cycle de vie des comptes Linux: admin-systemes-linux/it-1/atelier5-cycle-vie-comptes.md
+          - Audit des comptes et droits sudo AlpesNet: admin-systemes-linux/it-1/atelier6-audit-comptes-sudo.md
+          - Carnet de bord: admin-systemes-linux/it-1/carnet-bord-it1.md
+          - audit alpesnet : admin-systemes-linux/it-1/audit-comptes-sudo-alpesnet.md
+      - Permissions et logs Linux:
           - Synthèse chmod, chown et umask: admin-systemes-linux/it-2/synthese-permissions-chmod-chown-umask.md
           - ACL Linux sur AlpesNet: admin-systemes-linux/it-2/atelier-acl-alpesnet.md
+          - Logs système et journalctl AlpesNet: admin-systemes-linux/it-2/atelier-logs-journalctl-alpesnet.md
+          - Rsyslog et logrotate SSH AlpesNet: admin-systemes-linux/it-2/atelier-rsyslog-logrotate-alpesnet.md
+          - Audit des permissions AlpesNet: admin-systemes-linux/it-2/atelier-audit-permissions-alpesnet.md
+          - Rapport audit permissions AlpesNet: admin-systemes-linux/it-2/audit-permissions-alpesnet.md
+          - Carnet de bord : admin-systemes-linux/it-2/carnet-bord-it2.md
+      - Bash & Automatisation :
+          - Fondamentaux Bash et scripts simples: admin-systemes-linux/it-3/atelier1-bash-fondamentaux.md
+          - Scripts d'administration pratiques: admin-systemes-linux/it-3/scripts-administration-pratiques.md
+          - Planification cron AlpesNet: admin-systemes-linux/it-3/planification-cron-alpesnet.md
+          - Carnet de bord : admin-systemes-linux/it-3/carnet-bord-it3.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
       - Synthèse personnelle CC-01: admin-reseaux/synthese-personnelle-cc01.md
-
       - Fondations TCP/IP et adressage :
           - Vue d'ensemble: admin-reseaux/iteration-1/index.md
           - Fondations TCP/IP & capture : admin-reseaux/iteration-1/fondations-tcpip-capture.md

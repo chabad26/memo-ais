@@ -370,32 +370,6 @@ sudo setfacl --restore=/backup/acl-alpesnet-YYYYMMDD.txt
 - le groupe `readonly` ne peut pas écrire dans `/srv/alpesnet/logs` ;
 - un fichier `/backup/acl-alpesnet-[date].txt` est créé.
 
-## À documenter dans le carnet
-
-Pour chaque ACL, écrire :
-
-```text
-Chemin :
-Commande appliquée :
-Utilisateur ou groupe concerné :
-Droits accordés :
-Justification :
-Commande de vérification :
-Résultat observé :
-```
-
-Exemple :
-
-```text
-Chemin : /srv/alpesnet/projets
-Commande appliquée : sudo setfacl -m u:bob.dupont:rx /srv/alpesnet/projets
-Utilisateur concerné : bob.dupont
-Droits accordés : r-x
-Justification : Bob doit pouvoir consulter les projets sans pouvoir les modifier.
-Commande de vérification : getfacl /srv/alpesnet/projets
-Résultat observé : user:bob.dupont:r-x apparaît dans la sortie getfacl.
-```
-
 ## Ressources
 
 - `man setfacl`

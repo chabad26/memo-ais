@@ -1,4 +1,4 @@
-# Carnet de bord - FHS et identités Linux
+# Carnet de bord itération 1
 
 ## Objectif du carnet de bord
 
@@ -104,7 +104,7 @@ Résultats :
 
 ## Partie 2 - Audit des identités Linux
 
-### Commandes utilisées
+### Commandes utilisées partie 2
 
 ```bash
 grep -Ev "nologin|false|sync" /etc/passwd
@@ -292,7 +292,7 @@ oliv appartient au groupe sudo, donc il peut administrer avec sudo, mais il rest
 
 ## Partie 3 - Comptes AlpesNet créés
 
-### Commandes utilisées
+### Commandes utilisées partie 3
 
 ```bash
 id alice.martin
@@ -518,7 +518,7 @@ Bob Dupont quitte AlpesNet. Je verrouille son compte sans le supprimer afin de c
 | Compte concerné | `bob.dupont` |
 | Action | Verrouillage du compte, conservation des fichiers |
 
-### Commandes utilisées
+### Commandes utilisées partie 4
 
 ```bash
 id bob.dupont
