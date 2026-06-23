@@ -113,6 +113,10 @@ nav:
       - Cycle de vie des comptes Linux: admin-systemes-linux/it-1/atelier5-cycle-vie-comptes.md
       - Audit des comptes et droits sudo AlpesNet: admin-systemes-linux/it-1/atelier6-audit-comptes-sudo.md
       - Carnet de bord: admin-systemes-linux/it-1/carnet-bord-fhs-identites.md
+      - audit alpesnet : admin-systemes-linux/it-1/audit-comptes-sudo-alpesnet.md
+      - Permissions Linux:
+          - Synthèse chmod, chown et umask: admin-systemes-linux/it-2/synthese-permissions-chmod-chown-umask.md
+          - ACL Linux sur AlpesNet: admin-systemes-linux/it-2/atelier-acl-alpesnet.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
