@@ -127,6 +127,8 @@ nav:
           - Fondamentaux Bash et scripts simples: admin-systemes-linux/it-3/atelier1-bash-fondamentaux.md
           - Scripts d'administration pratiques: admin-systemes-linux/it-3/scripts-administration-pratiques.md
           - Planification cron AlpesNet: admin-systemes-linux/it-3/planification-cron-alpesnet.md
+          - Script administration robuste AlpesNet: admin-systemes-linux/it-3/script-administration-robuste-alpesnet.md
+          - Fonctions, arguments et trap Bash: admin-systemes-linux/it-3/fonctions-arguments-trap-bash.md
           - Carnet de bord : admin-systemes-linux/it-3/carnet-bord-it3.md
 
   - Réseaux :

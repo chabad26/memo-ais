@@ -343,3 +343,321 @@ Les lignes CRON dans syslog prouvent que le service cron a bien déclenché une 
 Elles indiquent la date, l'heure, l'utilisateur d'exécution et la commande lancée.
 Elles permettent de confirmer que la planification fonctionne réellement.
 ```
+
+## Partie 4 - Fonctions, arguments et trap Bash
+
+### Commandes à copier
+
+```bash
+ls -l /opt/scripts/audit-comptes-arguments.sh
+/opt/scripts/audit-comptes-arguments.sh
+/opt/scripts/audit-comptes-arguments.sh alice.martin bob.dupont
+/opt/scripts/audit-comptes-arguments.sh compte.inexistant
+```
+
+### Preuve 1 - Script avec arguments
+
+Commande :
+
+```bash
+ls -l /opt/scripts/audit-comptes-arguments.sh
+```
+
+À coller ici :
+
+```text
+[Coller ici la sortie de ls -l /opt/scripts/audit-comptes-arguments.sh]
+```
+
+Interprétation :
+
+```text
+Le script audit-comptes-arguments.sh existe et possède le droit d'exécution.
+```
+
+### Preuve 2 - Exécution sans argument
+
+Commande :
+
+```bash
+/opt/scripts/audit-comptes-arguments.sh
+```
+
+À coller ici :
+
+```text
+[Coller ici la sortie sans argument]
+```
+
+Interprétation :
+
+```text
+Sans argument, le script utilise la liste de comptes par défaut et audite les comptes AlpesNet.
+```
+
+### Preuve 3 - Exécution avec arguments
+
+Commande :
+
+```bash
+/opt/scripts/audit-comptes-arguments.sh alice.martin bob.dupont
+```
+
+À coller ici :
+
+```text
+[Coller ici la sortie avec alice.martin et bob.dupont]
+```
+
+Interprétation :
+
+```text
+Avec des arguments, le script audite uniquement les comptes fournis sur la ligne de commande.
+```
+
+### Preuve 4 - Compte inexistant
+
+Commande :
+
+```bash
+/opt/scripts/audit-comptes-arguments.sh compte.inexistant
+```
+
+À coller ici :
+
+```text
+[Coller ici la sortie avec compte.inexistant]
+```
+
+Interprétation :
+
+```text
+Le script affiche une ligne [ERROR] lorsque le compte demandé n'existe pas.
+```
+
+## Explications fonctions, arguments et trap
+
+### Rôle de $#
+
+```text
+$# contient le nombre d'arguments passés au script.
+Il permet de choisir entre le mode par défaut et le mode ciblé.
+Si $# vaut 0, aucun argument n'a été fourni.
+```
+
+### Rôle de "$@"
+
+```text
+"$@" représente tous les arguments passés au script, en conservant chaque argument séparé.
+Il permet de faire une boucle sur tous les comptes fournis par l'utilisateur.
+```
+
+### Rôle de local
+
+```text
+local limite une variable à la fonction dans laquelle elle est déclarée.
+Cela évite qu'une variable interne modifie accidentellement une variable du reste du script.
+```
+
+### Différence entre log_info et log_error
+
+```text
+log_info sert à afficher un message normal avec horodatage.
+log_error sert à afficher une erreur avec horodatage et l'envoie sur la sortie d'erreur avec >&2.
+Les deux rendent les logs plus lisibles.
+```
+
+### Rôle de trap cleanup EXIT
+
+```text
+trap cleanup EXIT exécute la fonction cleanup à la fin du script.
+Cela permet d'afficher un message final ou de nettoyer des fichiers temporaires, même si le script s'arrête après une erreur.
+```
+
+## Partie 5 - Script administration robuste AlpesNet
+
+### Commandes à copier
+
+```bash
+ls -l /opt/scripts/admin-alpesnet.sh
+/opt/scripts/admin-alpesnet.sh --help
+sudo /opt/scripts/admin-alpesnet.sh
+sudo /opt/scripts/admin-alpesnet.sh --compte alice.martin
+sudo bash -c 'tail -n 40 "$(ls -t /var/log/alpesnet/rapport-admin-*.log | head -1)"'
+sudo crontab -l
+```
+
+### Preuve 1 - Script robuste
+
+Commande :
+
+```bash
+ls -l /opt/scripts/admin-alpesnet.sh
+```
+
+À coller ici :
+
+```text
+[Coller ici la sortie de ls -l /opt/scripts/admin-alpesnet.sh]
+```
+
+Interprétation :
+
+```text
+Le script admin-alpesnet.sh existe dans /opt/scripts et possède le droit d'exécution.
+```
+
+### Preuve 2 - Aide du script
+
+Commande :
+
+```bash
+/opt/scripts/admin-alpesnet.sh --help
+```
+
+À coller ici :
+
+```text
+[Coller ici la sortie de l'aide]
+```
+
+Interprétation :
+
+```text
+L'option --help affiche le mode d'utilisation du script et les arguments disponibles.
+```
+
+### Preuve 3 - Exécution sans argument
+
+Commande :
+
+```bash
+sudo /opt/scripts/admin-alpesnet.sh
+```
+
+À coller ici :
+
+```text
+[Coller ici la sortie du mode complet]
+```
+
+Interprétation :
+
+```text
+Sans argument, le script réalise l'audit complet des comptes AlpesNet, lance l'archivage des logs et génère un rapport.
+```
+
+### Preuve 4 - Exécution avec --compte
+
+Commande :
+
+```bash
+sudo /opt/scripts/admin-alpesnet.sh --compte alice.martin
+```
+
+À coller ici :
+
+```text
+[Coller ici la sortie du mode ciblé]
+```
+
+Interprétation :
+
+```text
+Avec --compte alice.martin, le script audite uniquement ce compte pour la partie comptes, tout en conservant les autres actions prévues.
+```
+
+### Preuve 5 - Rapport généré
+
+Commande :
+
+```bash
+sudo bash -c 'tail -n 40 "$(ls -t /var/log/alpesnet/rapport-admin-*.log | head -1)"'
+```
+
+À coller ici :
+
+```text
+[Coller ici les dernières lignes du rapport généré]
+```
+
+Interprétation :
+
+```text
+Le rapport contient les messages INFO et ERROR horodatés, les comptes audités, l'archivage des logs et le chemin du rapport généré.
+```
+
+### Preuve 6 - Planification cron
+
+Commande :
+
+```bash
+sudo crontab -l
+```
+
+À coller ici :
+
+```text
+[Coller ici la crontab contenant admin-alpesnet.sh]
+```
+
+Interprétation :
+
+```text
+La crontab planifie le script admin-alpesnet.sh à la fréquence choisie et redirige sa sortie vers /var/log/alpesnet/cron-admin.log.
+```
+
+## Explications script robuste
+
+### Pourquoi set -euo pipefail est obligatoire
+
+```text
+set -euo pipefail sécurise l'exécution :
+- le script s'arrête si une commande échoue ;
+- le script s'arrête si une variable non définie est utilisée ;
+- les erreurs dans les pipelines sont détectées.
+C'est indispensable pour un script d'administration lancé avec sudo ou cron.
+```
+
+### Rôle de log_info
+
+```text
+log_info écrit un message informatif horodaté.
+Il permet de suivre les étapes normales du script dans le terminal et dans le rapport.
+```
+
+### Rôle de log_error
+
+```text
+log_error écrit un message d'erreur horodaté.
+Il envoie le message sur la sortie d'erreur, ce qui permet de distinguer les anomalies des informations normales.
+```
+
+### Comportement sans argument
+
+```text
+Sans argument, le script fonctionne en mode complet.
+Il audite les comptes définis dans le tableau, archive les logs anciens et produit un rapport.
+```
+
+### Comportement avec --compte
+
+```text
+Avec --compte NOM, le script fonctionne en mode ciblé pour l'audit des comptes.
+Il permet de vérifier rapidement un compte précis sans modifier le script.
+```
+
+### Fréquence cron choisie
+
+```text
+La fréquence choisie est quotidienne à 02h30.
+Ce créneau est adapté car il se situe la nuit, hors période d'activité habituelle, et après les autres tâches d'audit déjà planifiées.
+```
+
+### Intérêt de rediriger la sortie cron vers un log
+
+```text
+cron exécute les scripts sans terminal visible.
+La redirection >> /var/log/alpesnet/cron-admin.log 2>&1 conserve la sortie standard et les erreurs.
+Cela permet de vérifier après coup si le script s'est exécuté correctement.
+```
