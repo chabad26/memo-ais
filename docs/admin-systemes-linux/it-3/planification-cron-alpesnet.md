@@ -74,7 +74,63 @@ Les sorties cron seront redirigées vers :
 /var/log/alpesnet/cron-archive.log
 ```
 
-## Étape 3 - Éditer la crontab root
+## Étape 3 - Ajouter un verrou d'exécution dans `/var/lock`
+
+Une tâche `cron` peut se relancer alors qu'une exécution précédente n'est pas terminée. C'est un risque classique avec les scripts d'administration :
+
+- deux sauvegardes peuvent écrire dans le même dossier ;
+- deux audits peuvent produire des rapports incohérents ;
+- deux rotations ou archivages peuvent manipuler les mêmes fichiers ;
+- une tâche lente peut s'empiler à chaque nouvelle planification.
+
+Pour éviter cela, on ajoute un **verrou**. Le principe est simple : au démarrage, le script crée ou prend un fichier de lock. Si le lock existe déjà et est utilisé, le script s'arrête proprement.
+
+Emplacement conseillé :
+
+```text
+/var/lock/alpesnet-audit.lock
+/var/lock/alpesnet-archive.lock
+```
+
+`/var/lock` est prévu pour ce type de fichiers temporaires de verrouillage. Le lock ne sert pas à stocker des données métier : il sert seulement à empêcher plusieurs instances du même script de tourner en même temps.
+
+### Méthode recommandée avec `flock`
+
+Exemple à placer au début d'un script planifié :
+
+```bash
+LOCK_FILE="/var/lock/alpesnet-audit.lock"
+exec 9>"$LOCK_FILE"
+
+if ! flock -n 9; then
+  echo "$(date --iso-8601=seconds) SKIP audit déjà en cours"
+  exit 0
+fi
+```
+
+Explication :
+
+| Élément | Rôle |
+| --- | --- |
+| `LOCK_FILE="/var/lock/alpesnet-audit.lock"` | Définit le fichier de verrou |
+| `exec 9>"$LOCK_FILE"` | Ouvre le fichier sur le descripteur 9 |
+| `flock -n 9` | Tente de prendre le verrou sans attendre |
+| `exit 0` | Quitte proprement si une autre exécution est déjà active |
+
+Cette sécurité est importante pour `cron`, car `cron` lance les commandes sans vérifier si l'exécution précédente est encore en cours.
+
+### Variante directement dans la crontab
+
+On peut aussi protéger la ligne cron elle-même :
+
+```cron
+0 2 * * * flock -n /var/lock/alpesnet-audit.lock /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
+0 3 * * 1 flock -n /var/lock/alpesnet-archive.lock /opt/scripts/archivage-logs.sh >> /var/log/alpesnet/cron-archive.log 2>&1
+```
+
+Dans ce cas, `flock` refuse de lancer une nouvelle instance si le lock est déjà pris.
+
+## Étape 4 - Éditer la crontab root
 
 Comme les scripts écrivent dans des dossiers système, utiliser la crontab de `root` :
 
@@ -87,8 +143,8 @@ sudo crontab -e
 Ajouter les deux règles finales :
 
 ```cron
-0 2 * * * /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
-0 3 * * 1 /opt/scripts/archivage-logs.sh >> /var/log/alpesnet/cron-archive.log 2>&1
+0 2 * * * flock -n /var/lock/alpesnet-audit.lock /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
+0 3 * * 1 flock -n /var/lock/alpesnet-archive.lock /opt/scripts/archivage-logs.sh >> /var/log/alpesnet/cron-archive.log 2>&1
 ```
 
 ![Étape 3 - Ajout des règles cron finales](../../assets/img/admin-systemes-linux/it-3/cron-planification-etape-03-regles-finales.png)
@@ -99,10 +155,11 @@ Explication :
 | --- | --- |
 | `0 2 * * *` | tous les jours à 02h00 |
 | `0 3 * * 1` | tous les lundis à 03h00 |
+| `flock -n /var/lock/...` | empêche une deuxième exécution simultanée |
 | `>> fichier.log` | ajoute la sortie standard dans le fichier |
 | `2>&1` | ajoute aussi les erreurs dans le même fichier |
 
-## Étape 4 - Vérifier la crontab
+## Étape 5 - Vérifier la crontab
 
 Commande :
 
@@ -113,11 +170,11 @@ sudo crontab -l
 Résultat attendu :
 
 ```cron
-0 2 * * * /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
-0 3 * * 1 /opt/scripts/archivage-logs.sh >> /var/log/alpesnet/cron-archive.log 2>&1
+0 2 * * * flock -n /var/lock/alpesnet-audit.lock /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
+0 3 * * 1 flock -n /var/lock/alpesnet-archive.lock /opt/scripts/archivage-logs.sh >> /var/log/alpesnet/cron-archive.log 2>&1
 ```
 
-## Étape 5 - Ajouter une règle temporaire de test
+## Étape 6 - Ajouter une règle temporaire de test
 
 Pour éviter d'attendre 02h00, ajouter une règle temporaire toutes les 2 minutes.
 
@@ -130,13 +187,13 @@ sudo crontab -e
 Ajouter temporairement :
 
 ```cron
-*/2 * * * * /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
+*/2 * * * * flock -n /var/lock/alpesnet-audit.lock /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
 ```
 
 !!! warning "Règle temporaire"
     Cette règle sert uniquement au test. Elle doit être supprimée après vérification.
 
-## Étape 6 - Attendre et vérifier l'exécution cron
+## Étape 7 - Attendre et vérifier l'exécution cron
 
 Attendre au moins 2 minutes.
 
@@ -181,7 +238,7 @@ Résultat attendu :
 - `syslog` montre une exécution cron ;
 - `/var/log/alpesnet/cron-audit.log` contient au moins une entrée du script d'audit.
 
-## Étape 7 - Supprimer la règle temporaire
+## Étape 8 - Supprimer la règle temporaire
 
 Éditer la crontab :
 
@@ -192,17 +249,17 @@ sudo crontab -e
 Supprimer uniquement cette ligne :
 
 ```cron
-*/2 * * * * /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
+*/2 * * * * flock -n /var/lock/alpesnet-audit.lock /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
 ```
 
 Conserver uniquement les deux règles finales :
 
 ```cron
-0 2 * * * /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
-0 3 * * 1 /opt/scripts/archivage-logs.sh >> /var/log/alpesnet/cron-archive.log 2>&1
+0 2 * * * flock -n /var/lock/alpesnet-audit.lock /opt/scripts/audit-comptes.sh >> /var/log/alpesnet/cron-audit.log 2>&1
+0 3 * * 1 flock -n /var/lock/alpesnet-archive.lock /opt/scripts/archivage-logs.sh >> /var/log/alpesnet/cron-archive.log 2>&1
 ```
 
-## Étape 8 - Vérification finale
+## Étape 9 - Vérification finale
 
 Commande :
 
@@ -230,8 +287,9 @@ Si `cron-archive.log` n'existe pas encore, c'est normal tant que l'archivage heb
 - `sudo crontab -l` montre les deux règles planifiées ;
 - `sudo grep CRON /var/log/syslog` montre au moins une exécution cron ;
 - `/var/log/alpesnet/cron-audit.log` contient au moins une entrée ;
+- les lignes cron utilisent `flock` avec un lock dans `/var/lock` ;
 - la règle temporaire `*/2 * * * *` a été supprimée.
 
 ## Synthèse à retenir
 
-Planifier un script ne suffit pas. Il faut vérifier qu'il s'exécute, que sa sortie est journalisée, et que les règles temporaires de test sont supprimées après validation.
+Planifier un script ne suffit pas. Il faut vérifier qu'il s'exécute, que sa sortie est journalisée, que les règles temporaires de test sont supprimées après validation, et qu'un verrou empêche les exécutions simultanées.

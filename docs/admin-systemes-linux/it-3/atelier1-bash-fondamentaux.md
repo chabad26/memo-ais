@@ -240,6 +240,129 @@ Si le shell est différent, le script doit afficher :
 ALERTE : compte service avec shell actif
 ```
 
+## Étape 6 - Créer des logs avec un nom daté
+
+Un script d'administration doit laisser une trace lisible de ce qu'il a fait. La pratique courante consiste à écrire les sorties importantes dans un fichier de log dont le nom contient :
+
+- le nom du script ou de l'action ;
+- une date ;
+- parfois une heure précise.
+
+Cela évite d'écraser les anciens logs et permet de retrouver rapidement quand une action a été lancée.
+
+### Convention de nommage
+
+Format recommandé :
+
+```text
+nom-action-YYYYMMDD-HHMMSS.log
+```
+
+Exemples :
+
+```text
+audit-comptes-20260625-101530.log
+sauvegarde-configs-20260625-021500.log
+controle-disque-20260625-090000.log
+```
+
+À retenir :
+
+| Élément | Exemple | Rôle |
+| --- | --- | --- |
+| Nom de l'action | `audit-comptes` | Indique ce que le script fait |
+| Date | `20260625` | Permet le tri chronologique |
+| Heure | `101530` | Évite les doublons dans la même journée |
+| Extension | `.log` | Indique un fichier de journalisation |
+
+Le format `YYYYMMDD-HHMMSS` est pratique car le tri alphabétique donne aussi le tri chronologique.
+
+### Exemple Bash simple
+
+```bash
+LOG_DIR="/var/log/alpesnet"
+DATE_LOG="$(date +%Y%m%d-%H%M%S)"
+LOG_FILE="${LOG_DIR}/fondamentaux-${DATE_LOG}.log"
+```
+
+Explication :
+
+| Ligne | Rôle |
+| --- | --- |
+| `LOG_DIR="/var/log/alpesnet"` | Répertoire où ranger les logs du projet |
+| `DATE_LOG="$(date +%Y%m%d-%H%M%S)"` | Date compacte utilisable dans un nom de fichier |
+| `LOG_FILE="..."` | Chemin complet du fichier de log |
+
+Créer le répertoire avant d'écrire :
+
+```bash
+sudo mkdir -p "${LOG_DIR}"
+```
+
+### Fonction `log()`
+
+Une fonction évite de répéter la même commande partout dans le script.
+
+```bash
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | sudo tee -a "${LOG_FILE}" >/dev/null
+}
+```
+
+Utilisation :
+
+```bash
+log "Début du contrôle Bash fondamentaux"
+log "Compte analysé : alice.martin"
+log "Fin du contrôle"
+```
+
+Résultat dans le fichier :
+
+```text
+[2026-06-25 10:15:30] Début du contrôle Bash fondamentaux
+[2026-06-25 10:15:31] Compte analysé : alice.martin
+[2026-06-25 10:15:32] Fin du contrôle
+```
+
+### Exemple intégré
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+LOG_DIR="/var/log/alpesnet"
+DATE_LOG="$(date +%Y%m%d-%H%M%S)"
+LOG_FILE="${LOG_DIR}/fondamentaux-${DATE_LOG}.log"
+
+sudo mkdir -p "${LOG_DIR}"
+
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | sudo tee -a "${LOG_FILE}" >/dev/null
+}
+
+log "Début du script fondamentaux"
+
+if getent passwd alice.martin >/dev/null; then
+    log "OK : alice.martin existe"
+else
+    log "ALERTE : alice.martin est absent"
+fi
+
+log "Fin du script fondamentaux"
+log "Fichier de log : ${LOG_FILE}"
+```
+
+Vérifier les logs créés :
+
+```bash
+sudo ls -lt /var/log/alpesnet/fondamentaux-*.log
+sudo tail -n 20 "$(sudo ls -t /var/log/alpesnet/fondamentaux-*.log | head -1)"
+```
+
+!!! note "Pourquoi ne pas appeler tous les logs `script.log` ?"
+    Un nom fixe comme `script.log` est utile pour une trace continue, mais il peut devenir difficile de retrouver une exécution précise. Pour un audit, une sauvegarde ou un contrôle ponctuel, un fichier daté du type `nom-action-YYYYMMDD-HHMMSS.log` donne une preuve plus claire.
+
 ## Résultat attendu
 
 À la fin de l'exercice :
@@ -249,10 +372,13 @@ ALERTE : compte service avec shell actif
 - les 4 comptes AlpesNet sont testés ;
 - chaque compte existant affiche `OK` ;
 - une alerte apparaît uniquement si `www-nginx` a un shell actif ;
-- le script est exécutable avec `bash`.
+- le script est exécutable avec `bash` ;
+- un log daté peut être produit avec un nom explicite.
 
 ## Synthèse à retenir
 
 Bash sert à automatiser des gestes d'administration. Un bon script doit être compréhensible avant d'être exécutable.
+
+Pour les logs, utiliser un nom explicite et daté : `nom-action-YYYYMMDD-HHMMSS.log`.
 
 La règle : lire, comprendre, exécuter, vérifier.

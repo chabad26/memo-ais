@@ -130,6 +130,10 @@ nav:
           - Script administration robuste AlpesNet: admin-systemes-linux/it-3/script-administration-robuste-alpesnet.md
           - Fonctions, arguments et trap Bash: admin-systemes-linux/it-3/fonctions-arguments-trap-bash.md
           - Carnet de bord : admin-systemes-linux/it-3/carnet-bord-it3.md
+      - Services Linux et durcissement :
+          - Vue d'ensemble: admin-systemes-linux/it-4/index.md
+          - NFS AlpesNet - partage réseau Linux: admin-systemes-linux/it-4/nfs-alpesnet.md
+          - Samba AlpesNet - partage SMB/CIFS: admin-systemes-linux/it-4/samba-alpesnet.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
@@ -205,29 +209,31 @@ nav:
         
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
-      - Intro AIS: pense-bete/intro-ais/intro-ais.md
-      - Linux et commandes: pense-bete/intro-ais/linux.md
-      - Réseau: pense-bete/intro-ais/reseau.md
-      - Cybersécurité: pense-bete/intro-ais/cybersecurite.md
+      - Liens utiles: pense-bete/liens-utiles.md
+      - Commandes Linux PDF: pense-bete/commandes-linux.md
+      - Intro AIS et RGPD:
+          - Intro AIS: pense-bete/glossaire/intro-rgpd/intro-ais.md
+          - RGPD: pense-bete/glossaire/intro-rgpd/rgpd.md
       - Système d’info & archi SI:
-          - Vue d'ensemble: pense-bete/systeme-info/systeme-info-si.md
-          - Cartographie et architecture: pense-bete/systeme-info/systeme-info-si-cartographie.md
-          - Risques, incidents et enjeux: pense-bete/systeme-info/systeme-info-si-risques.md
-          - Vocabulaire SI: pense-bete/systeme-info/systeme-info-si-vocabulaire.md
-          - Diagrammes SI: pense-bete/systeme-info/systeme-info-si-diagrammes.md
+          - Itération 1 - Système d'information: pense-bete/glossaire/systeme-info/iteration-1.md
+          - Itération 2 - Enjeux, risques et normes: pense-bete/glossaire/systeme-info/iteration-2.md
+          - Itération 3 - Analyse d'architecture SI: pense-bete/glossaire/systeme-info/iteration-3.md
+          - Itération 4 - Sécurité d'un SI: pense-bete/glossaire/systeme-info/iteration-4.md
+      - Systèmes Linux:
+          - Itération 1 - Installation et comptes: pense-bete/glossaire/admin-systemes-linux/it-1.md
+          - Itération 2 - Permissions et logs: pense-bete/glossaire/admin-systemes-linux/it-2.md
+          - Itération 3 - Bash et automatisation: pense-bete/glossaire/admin-systemes-linux/it-3.md
+          - Itération 4 - Services Linux et NFS: pense-bete/glossaire/admin-systemes-linux/it-4.md
       - Administration des réseaux:
-          - Vue d'ensemble: pense-bete/admin-resau/admin-reseaux.md
-          - AlpesNet: pense-bete/admin-resau/admin-reseaux-alpesnet.md
-          - Commandes: pense-bete/admin-resau/admin-reseaux-commandes.md
-          - Installation: pense-bete/admin-resau/admin-reseaux-installation.md
-          - Modèles: pense-bete/admin-resau/admin-reseaux-modeles.md
-          - Niveaux: pense-bete/admin-resau/admin-reseaux-niveaux.md
-          - Protocoles: pense-bete/admin-resau/admin-reseaux-protocoles.md
-          - Diagnostic, Wireshark et automatisation: pense-bete/admin-resau/diagnostic-wireshark-automatisation.md
-          - Vocabulaire du routage: pense-bete/admin-resau/routage-vocabulaire.md
-          - Switching, ARP, VLANs et STP: pense-bete/admin-resau/switching-arp-vlans.md
+          - Itération 1 - TCP/IP et adressage: pense-bete/glossaire/admin-reseaux/iteration-1.md
+          - Itération 2 - Switching, ARP et VLANs: pense-bete/glossaire/admin-reseaux/iteration-2.md
+          - Itération 3 - Routage: pense-bete/glossaire/admin-reseaux/iteration-3.md
+          - Itération 4 - Services réseau: pense-bete/glossaire/admin-reseaux/iteration-4.md
+          - Itération 5 - Diagnostic et automatisation: pense-bete/glossaire/admin-reseaux/iteration-5.md
       - Administration des réseaux - sécurisation:
-          - Vue d'ensemble: pense-bete/admin-reseaux-securisation/admin-reseaux-securisation.md
-          - Zeek, scans et corrélation: pense-bete/admin-reseaux-securisation/zeek-correlation.md
-          - Réponse à incident, Spark et Fail2ban: pense-bete/admin-reseaux-securisation/incident-spark-fail2ban.md
-      - Liens utiles: liens-utiles.md
+          - Itération 1 - VLANs sécurisés et nftables: pense-bete/glossaire/admin-reseaux-securisation/it-1.md
+          - Itération 2 - pfSense et ACL: pense-bete/glossaire/admin-reseaux-securisation/it-2.md
+          - Itération 3 - OpenVPN: pense-bete/glossaire/admin-reseaux-securisation/it-3.md
+          - Itération 4 - Zeek et corrélation: pense-bete/glossaire/admin-reseaux-securisation/it-4.md
+          - Itération 5 - Incident, Spark et Fail2ban: pense-bete/glossaire/admin-reseaux-securisation/it-5.md
+          - Itération 6 - Challenge final: pense-bete/glossaire/admin-reseaux-securisation/it-6.md
