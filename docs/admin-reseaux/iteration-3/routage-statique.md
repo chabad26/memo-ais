@@ -1,7 +1,7 @@
 # Routage statique
 
 !!! note "Vocabulaire"
-    Les sigles et termes comme `OSPF`, `RIP`, `next-hop`, `métrique` ou `distance administrative` sont résumés dans le [vocabulaire du routage](../../pense-bete/admin-resau/routage-vocabulaire.md).
+    Les sigles et termes comme `OSPF`, `RIP`, `next-hop`, `métrique` ou `distance administrative` sont résumés dans le [glossaire réseaux - itération 3](../../pense-bete/glossaire/admin-reseaux/iteration-3.md).
 
 ## Pourquoi router ?
 
@@ -32,7 +32,7 @@ S*    0.0.0.0/0 [1/0] via 203.0.113.2
 ```
 
 | Code | Signification | Distance admin. |
-|---|---|---|
+| --- | --- | --- |
 | `C` | Réseau directement connecté | 0 |
 | `L` | Adresse IP locale de l'interface (`/32`) | 0 |
 | `S` | Route statique configurée à la main | 1 |

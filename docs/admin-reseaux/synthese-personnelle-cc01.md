@@ -40,14 +40,14 @@ Par exemple, si des postes obtiennent une APIPA, je chercherai DHCP après avoir
 
 | Thème | Notions à garder | Fiche associée |
 | --- | --- | --- |
-| Modèles réseau | TCP/IP, OSI, encapsulation, rôle des couches | [Modèles TCP/IP et OSI](../pense-bete/admin-resau/admin-reseaux-modeles.md) |
-| AlpesNet | VLANs, plan d'adressage, passerelles, topologie L1/L2/L3 | [AlpesNet](../pense-bete/admin-resau/admin-reseaux-alpesnet.md) |
-| Commandes | `ping`, `show ip route`, `show vlan brief`, OSPF, Bash | [Commandes et diagnostic](../pense-bete/admin-resau/admin-reseaux-commandes.md) |
-| Switching | MAC, ARP, VLAN access/trunk, STP | [Switching, ARP, VLANs et STP](../pense-bete/admin-resau/switching-arp-vlans.md) |
-| Routage | Route statique, next-hop, OSPF, convergence | [Vocabulaire du routage](../pense-bete/admin-resau/routage-vocabulaire.md) |
-| Protocoles | DHCP, DNS, ICMP, TCP/UDP, OSPF | [Protocoles réseau](../pense-bete/admin-resau/admin-reseaux-protocoles.md) |
-| Diagnostic | Méthode OSI, Wireshark, filtres, automatisation Bash | [Diagnostic, Wireshark et automatisation](../pense-bete/admin-resau/diagnostic-wireshark-automatisation.md) |
-| Lecture par couches | Distinguer L1 physique, L2 VLAN/MAC, L3 IP/routage | [Niveaux L1/L2/L3](../pense-bete/admin-resau/admin-reseaux-niveaux.md) |
+| Modèles réseau | TCP/IP, OSI, encapsulation, rôle des couches | [Glossaire réseaux - itération 1](../pense-bete/glossaire/admin-reseaux/iteration-1.md) |
+| AlpesNet | VLANs, plan d'adressage, passerelles, topologie L1/L2/L3 | [Glossaire réseaux - itération 1](../pense-bete/glossaire/admin-reseaux/iteration-1.md) |
+| Commandes | `ping`, `show ip route`, `show vlan brief`, OSPF, Bash | [Glossaire réseaux - itération 5](../pense-bete/glossaire/admin-reseaux/iteration-5.md) |
+| Switching | MAC, ARP, VLAN access/trunk, STP | [Glossaire réseaux - itération 2](../pense-bete/glossaire/admin-reseaux/iteration-2.md) |
+| Routage | Route statique, next-hop, OSPF, convergence | [Glossaire réseaux - itération 3](../pense-bete/glossaire/admin-reseaux/iteration-3.md) |
+| Protocoles | DHCP, DNS, ICMP, TCP/UDP, OSPF | [Glossaire réseaux - itération 4](../pense-bete/glossaire/admin-reseaux/iteration-4.md) |
+| Diagnostic | Méthode OSI, Wireshark, filtres, automatisation Bash | [Glossaire réseaux - itération 5](../pense-bete/glossaire/admin-reseaux/iteration-5.md) |
+| Lecture par couches | Distinguer L1 physique, L2 VLAN/MAC, L3 IP/routage | [Glossaire réseaux - itération 1](../pense-bete/glossaire/admin-reseaux/iteration-1.md) |
 
 ## Formule à garder
 

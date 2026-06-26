@@ -15,8 +15,6 @@ theme:
     code: JetBrains Mono
   features:
     - navigation.tabs
-    - navigation.sections
-    - navigation.expand
     - navigation.top
     - search.suggest
     - search.highlight
@@ -32,6 +30,7 @@ extra_javascript:
   - assets/javascripts/mermaid-zoom.js
   - assets/javascripts/image-zoom.js
   - assets/javascripts/pdf-viewer.js
+  - assets/javascripts/nav-accordion-v2.js
 
 markdown_extensions:
   - admonition
@@ -66,7 +65,7 @@ nav:
   - SI & archi:
       - Présentation: systeme-info-si/index.md
       - Mémo personnel : systeme-info-si/synthese-personnel-final.md
-      - Le système d'information:
+      - Itération 1 - Système d'information:
           - Vue d'ensemble: systeme-info-si/iteration-1/index.md
           - Cas concret SI: systeme-info-si/iteration-1/cas-concret-si.md
           - Première vue globale du SI: systeme-info-si/iteration-1/premiere-vue-globale-si.md
@@ -75,20 +74,20 @@ nav:
           - Modèles d'architecture applicative: systeme-info-si/iteration-1/modeles-architecture-applicative.md
           - Dépendances applicatives: systeme-info-si/iteration-1/dependances-applicatives.md
           - Diagrammes finaux & résumé: systeme-info-si/iteration-1/finalisation-diagrammes.md
-      - Enjeux clés d'un SI:
+      - Itération 2 - Enjeux, risques et normes:
           - Vue d'ensemble: systeme-info-si/iteration-2/index.md
           - Enjeux d'un SI à partir du réel: systeme-info-si/iteration-2/enjeux-si-reel.md
           - Identifier et prioriser les risques: systeme-info-si/iteration-2/risques-si.md
           - Introduction aux normes SI: systeme-info-si/iteration-2/normes-si.md
           - Synthèse enjeux, risques et normes: systeme-info-si/iteration-2/synthese-enjeux-risques-normes.md
-      - Analyse d'une architecture SI:
+      - Itération 3 - Analyse d'architecture SI:
           - Vue d'ensemble: systeme-info-si/iteration-3/index.md
           - Choisir un cas d'étude SI: systeme-info-si/iteration-3/choisir-cas.md
           - Cartographie du SI: systeme-info-si/iteration-3/cartographie-si.md
           - Analyse des usages et des risques: systeme-info-si/iteration-3/analyse-usages-risques.md
           - Propositions d'amélioration: systeme-info-si/iteration-3/propositions-amelioration.md
           - Préparation de la restitution: systeme-info-si/iteration-3/preparation-restitution.md
-      - Sécurité d'un SI:
+      - Itération 4 - Sécurité d'un SI:
           - Vue d'ensemble: systeme-info-si/iteration-4/index.md
           - Analyse des incidents et mitigation: systeme-info-si/iteration-4/analyse-incidents-mitigation.md
           - Amélioration architecture CHU Rouen: systeme-info-si/iteration-4/amelioration-architecture-chu-rouen.md
@@ -106,7 +105,7 @@ nav:
 
   - Systèmes Linux:
       - Vue d'ensemble: admin-systemes-linux/index.md
-      - Installation Debian 12 & Gestion des comptes utilisateurs :
+      - Itération 1 - Installation Debian 12 & comptes:
           - Kit Install - Environnement de travail: admin-systemes-linux/it-1/atelier1-kit-install.md
           - FHS - Arborescence Linux: admin-systemes-linux/it-1/atelier2-fhs.md
           - Identités Linux - passwd shadow group: admin-systemes-linux/it-1/atelier3-identites.md
@@ -115,7 +114,7 @@ nav:
           - Audit des comptes et droits sudo AlpesNet: admin-systemes-linux/it-1/atelier6-audit-comptes-sudo.md
           - Carnet de bord: admin-systemes-linux/it-1/carnet-bord-it1.md
           - audit alpesnet : admin-systemes-linux/it-1/audit-comptes-sudo-alpesnet.md
-      - Permissions et logs Linux:
+      - Itération 2 - Permissions et logs Linux:
           - Synthèse chmod, chown et umask: admin-systemes-linux/it-2/synthese-permissions-chmod-chown-umask.md
           - ACL Linux sur AlpesNet: admin-systemes-linux/it-2/atelier-acl-alpesnet.md
           - Logs système et journalctl AlpesNet: admin-systemes-linux/it-2/atelier-logs-journalctl-alpesnet.md
@@ -123,39 +122,43 @@ nav:
           - Audit des permissions AlpesNet: admin-systemes-linux/it-2/atelier-audit-permissions-alpesnet.md
           - Rapport audit permissions AlpesNet: admin-systemes-linux/it-2/audit-permissions-alpesnet.md
           - Carnet de bord : admin-systemes-linux/it-2/carnet-bord-it2.md
-      - Bash & Automatisation :
+      - Itération 3 - Bash & automatisation:
           - Fondamentaux Bash et scripts simples: admin-systemes-linux/it-3/atelier1-bash-fondamentaux.md
           - Scripts d'administration pratiques: admin-systemes-linux/it-3/scripts-administration-pratiques.md
           - Planification cron AlpesNet: admin-systemes-linux/it-3/planification-cron-alpesnet.md
           - Script administration robuste AlpesNet: admin-systemes-linux/it-3/script-administration-robuste-alpesnet.md
           - Fonctions, arguments et trap Bash: admin-systemes-linux/it-3/fonctions-arguments-trap-bash.md
           - Carnet de bord : admin-systemes-linux/it-3/carnet-bord-it3.md
-      - Services Linux et durcissement :
+      - Itération 4 - Services Linux et durcissement:
           - Vue d'ensemble: admin-systemes-linux/it-4/index.md
           - NFS AlpesNet - partage réseau Linux: admin-systemes-linux/it-4/nfs-alpesnet.md
           - Samba AlpesNet - partage SMB/CIFS: admin-systemes-linux/it-4/samba-alpesnet.md
+          - Durcissement Linux AlpesNet: admin-systemes-linux/it-4/durcissement-linux-alpesnet.md
+          - Rapport de durcissement Linux AlpesNet: admin-systemes-linux/it-4/rapport-durcissement-linux-alpesnet.md
+          - Script automatisation Itération 4: admin-systemes-linux/it-4/script-automatisation-it4.md
+          - Rapport automatique Itération 4: admin-systemes-linux/it-4/rapport-it4-20260626_120855.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
       - Synthèse personnelle CC-01: admin-reseaux/synthese-personnelle-cc01.md
-      - Fondations TCP/IP et adressage :
+      - Itération 1 - TCP/IP et adressage:
           - Vue d'ensemble: admin-reseaux/iteration-1/index.md
           - Fondations TCP/IP & capture : admin-reseaux/iteration-1/fondations-tcpip-capture.md
           - Exercices Wireshark: admin-reseaux/iteration-1/wireshark.md
           - Adressage IPv4 et subnetting: admin-reseaux/iteration-1/adressage-ipv4-subnetting.md
           - Schémas réseau L1/L2/L3: admin-reseaux/iteration-1/ schémas_réseau_L1_L2_L3.md
           - Schéma réseau annoté : admin-reseaux/iteration-1/schema-reseau-alpesnet-complet.md
-      - Commutation et Vlans:
+      - Itération 2 - Switching, ARP et VLANs:
           - Vue d'ensemble: admin-reseaux/iteration-2/index.md
           - Commutation et VLANs: admin-reseaux/iteration-2/synthese_switching_arp_stp.md
           - GNS3 tables mac & arp: admin-reseaux/iteration-2/gns3_mac_arp.md
           - Synthese VLANs: admin-reseaux/iteration-2/synthese_vlans.md
           - exercice facultatif - STP avancé : admin-reseaux/iteration-2/stp_avance.md
-      - Routage:
+      - Itération 3 - Routage:
           - Vue d'ensemble: admin-reseaux/iteration-3/index.md
           - Routage statique: admin-reseaux/iteration-3/routage-statique.md
           - Routage dynamique: admin-reseaux/iteration-3/routage-dynamique-OSPF.md
-      - Services réseau:
+      - Itération 4 - Services réseau:
           - Vue d'ensemble: admin-reseaux/iteration-4/index.md
           - Synthèse DHCP: admin-reseaux/iteration-4/synthese-dhcp.md
           - TP DHCP et VLANs: admin-reseaux/iteration-4/dhcp-vlans-gns3.md
@@ -163,7 +166,7 @@ nav:
           - TP NAT/PAT GNS3: admin-reseaux/iteration-4/tp-nat-pat-gns3.md
           - DNS interne: admin-reseaux/iteration-4/dns.md
           - Finalisation AlpesNet: admin-reseaux/iteration-4/finalisation-infrastructure-alpesnet.md
-      - Analyse de trafic, diagnostic et clôture :
+      - Itération 5 - Diagnostic et automatisation:
           - Vue d'ensemble: admin-reseaux/iteration-5/index.md
           - Méthode de diagnostic OSI: admin-reseaux/iteration-5/methode-diagnostic-osi.md
           - Simulation pannes AlpesNet OSI: admin-reseaux/iteration-5/simulation-pannes-alpesnet-osi.md
@@ -174,34 +177,34 @@ nav:
 
   - Réseaux sécurisés :
     - Vue d'ensemble: admin-reseaux-securisation/index.md
-    - Segmentation sécurisée et filtrage réseau : 
+    - Itération 1 - VLANs sécurisés et nftables:
         - Vue d'ensemble: admin-reseaux-securisation/it-1/index.md
         - Introduction du module et architecture sécurisée: admin-reseaux-securisation/it-1/atelier1.md
         - VLANs sécurisés et préparation du filtrage: admin-reseaux-securisation/it-1/atelier2.md
         - Filtrage réseau avec nftables: admin-reseaux-securisation/it-1/atelier3.md
         - Introduction au VLAN Hopping et tests d'attaque: admin-reseaux-securisation/it-1/atelier4.md
-    - Pare-feu pfSense, journalisation et validation du cloisonnement réseau :
+    - Itération 2 - pfSense et ACL:
         - Vue d'ensemble: admin-reseaux-securisation/it-2/index.md
         - Déploiement de pfSense: admin-reseaux-securisation/it-2/atelier1.md
         - Règles de filtrage et ACL avec pfSense: admin-reseaux-securisation/it-2/atelier2.md
         - Journalisation et analyse des logs pfSense: admin-reseaux-securisation/it-2/atelier3.md
         - Synthèse pfSense: admin-reseaux-securisation/it-2/synthese-pfsense.md
-    - VPN site-à-site et architecture sécurisée :
+    - Itération 3 - OpenVPN:
         - Vue d'ensemble: admin-reseaux-securisation/it-3/index.md
         - Introduction aux VPN et architecture du TP: admin-reseaux-securisation/it-3/atelier1.md
         - Mise en place d'un VPN OpenVPN site-à-site: admin-reseaux-securisation/it-3/atelier2.md
         - Analyse Wireshark et logs OpenVPN: admin-reseaux-securisation/it-3/atelier3.md
-    - Analyse réseau avec Zeek :
+    - Itération 4 - Zeek et corrélation:
         - Vue d'ensemble: admin-reseaux-securisation/it-4/index.md
         - Découverte de Zeek et architecture d'analyse réseau: admin-reseaux-securisation/it-4/atelier1.md
         - Installation et premiers logs Zeek: admin-reseaux-securisation/it-4/atelier2.md
         - Analyse des logs Zeek et détection d'attaques: admin-reseaux-securisation/it-4/atelier3.md
         - Corrélation et analyse forensique réseau: admin-reseaux-securisation/it-4/atelier4.md
-    - Réponse à incident et automatisation sécurité :
+    - Itération 5 - Incident, Spark et Fail2ban:
         - Vue d'ensemble: admin-reseaux-securisation/it-5/index.md
         - Réponse à incident et sécurisation d'une installation Spark : admin-reseaux-securisation/it-5/atelier1.md
         - Fail2ban SSH et script de bannissement IP : admin-reseaux-securisation/it-5/atelier2.md
-    - Préparation au challenge final :
+    - Itération 6 - Challenge final:
         - Vue d'ensemble: admin-reseaux-securisation/it-6/index.md
         - Préparation défensive et validation de l'infrastructure : admin-reseaux-securisation/it-6/atelier1.md
         - Test depuis un PC d'un autre apprenant : admin-reseaux-securisation/it-6/test-pc-autre-apprenant.md

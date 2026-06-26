@@ -45,14 +45,14 @@ Ma vision du métier d'AIS a évolué : l'AIS n'est pas seulement quelqu'un qui 
 
 | Thème | Notions à garder | Fiche associée |
 | --- | --- | --- |
-| Vocabulaire d'architecture | SI, flux, API, middleware, AD, IAM, SPOF, dépendance critique | [Vocabulaire SI](../pense-bete/systeme-info/systeme-info-si-vocabulaire.md) |
-| 4 axes de décomposition | réseau, applicatif, données, utilisateurs | [Cartographie et architecture](../pense-bete/systeme-info/systeme-info-si-cartographie.md) |
-| Typologies SI | centralisée, décentralisée, distribuée, cloud, hybride | [Cartographie et architecture](../pense-bete/systeme-info/systeme-info-si-cartographie.md) |
-| Enjeux et risques | disponibilité, sécurité, conformité, RTO, RPO, impact, mitigation | [Risques, incidents et enjeux](../pense-bete/systeme-info/systeme-info-si-risques.md) |
-| Normes | RGPD, NIS2, DORA, ISO 27001 | [Risques, incidents et enjeux](../pense-bete/systeme-info/systeme-info-si-risques.md) |
+| Vocabulaire d'architecture | SI, flux, API, middleware, AD, IAM, SPOF, dépendance critique | [Glossaire SI - itération 1](../pense-bete/glossaire/systeme-info/iteration-1.md) |
+| 4 axes de décomposition | réseau, applicatif, données, utilisateurs | [Glossaire SI - itération 1](../pense-bete/glossaire/systeme-info/iteration-1.md) |
+| Typologies SI | centralisée, décentralisée, distribuée, cloud, hybride | [Glossaire SI - itération 3](../pense-bete/glossaire/systeme-info/iteration-3.md) |
+| Enjeux et risques | disponibilité, sécurité, conformité, RTO, RPO, impact, mitigation | [Glossaire SI - itération 2](../pense-bete/glossaire/systeme-info/iteration-2.md) |
+| Normes | RGPD, NIS2, DORA, ISO 27001 | [Glossaire SI - itération 2](../pense-bete/glossaire/systeme-info/iteration-2.md) |
 | Cas étudiés | CHU de Rouen, fuite Free, incident CrowdStrike | [Analyse des incidents et mitigation](../systeme-info-si/iteration-4/analyse-incidents-mitigation.md) |
 | Sécurité SI | segmentation, VLAN, ACL, firewall, chiffrement, redondance, sauvegardes | [Amélioration architecture CHU Rouen](../systeme-info-si/iteration-4/amelioration-architecture-chu-rouen.md) |
-| Diagrammes | légende, hypothèses, lisibilité, direction des flux | [Diagrammes SI](../pense-bete/systeme-info/systeme-info-si-diagrammes.md) |
+| Diagrammes | légende, hypothèses, lisibilité, direction des flux | [Glossaire SI - itération 1](../pense-bete/glossaire/systeme-info/iteration-1.md) |
 | Posture professionnelle | vérifier, documenter, expliquer, prioriser, rester réaliste | Cette synthèse |
 
 ## Formule à garder

@@ -2,7 +2,7 @@
 
 ## Sujet
 
-Services Linux et durcissement : partage NFS AlpesNet, partage Samba SMB/CIFS, montage client et sécurité des accès.
+Services Linux et durcissement : partage NFS AlpesNet, partage Samba SMB/CIFS, durcissement SSH, UFW, Fail2ban et sécurité des accès.
 
 ## Termes à retenir
 
@@ -26,6 +26,14 @@ Services Linux et durcissement : partage NFS AlpesNet, partage Samba SMB/CIFS, m
 | `testparm` | Commande qui vérifie la syntaxe de la configuration Samba. |
 | `smbclient` | Client en ligne de commande pour lister ou utiliser un partage SMB. |
 | Sticky bit | Droit spécial empêchant un utilisateur de supprimer les fichiers des autres dans un dossier partagé. |
+| Durcissement | Ensemble de mesures qui réduisent la surface d'attaque d'un serveur. |
+| `PermitRootLogin no` | Paramètre SSH qui interdit la connexion directe du compte `root`. |
+| `PasswordAuthentication no` | Paramètre SSH qui impose l'authentification par clés. |
+| `AllowUsers` | Liste blanche des utilisateurs autorisés en SSH. |
+| UFW | Pare-feu simplifié pour gérer les règles réseau Linux. |
+| Fail2ban | Outil qui bannit automatiquement les IP après trop d'échecs d'authentification. |
+| Jail Fail2ban | Bloc de configuration qui surveille un service précis, par exemple `sshd`. |
+| Surface d'attaque | Ensemble des services, ports et accès exposés à un attaquant. |
 
 ## Manipulations faites
 
@@ -45,6 +53,13 @@ Services Linux et durcissement : partage NFS AlpesNet, partage Samba SMB/CIFS, m
 | Ajouter un utilisateur Samba | `sudo smbpasswd -a alice.martin`. |
 | Tester Samba | `smbclient -L //[IP] -U alice.martin`, puis connexion au partage. |
 | Refuser un utilisateur | Tester `bob.dupont` et vérifier `NT_STATUS_ACCESS_DENIED`. |
+| Capturer l'état avant | `ss -tulnp`, `systemctl list-units --type=service --state=active`. |
+| Durcir SSH | `PermitRootLogin no`, `PasswordAuthentication no`, `AllowUsers adm-[prenom]`. |
+| Vérifier SSH | `sudo sshd -t`, puis test depuis un nouveau terminal. |
+| Filtrer avec UFW | `ufw default deny incoming`, règle SSH limitée au sous-réseau campus. |
+| Protéger avec Fail2ban | jail `sshd`, `maxretry = 3`, test de ban contrôlé. |
+| Comparer avant/après | `diff /tmp/ports-avant.txt /tmp/ports-apres.txt`. |
+| Générer le rapport automatisé | Lancer `alpesnet-it4-exercices.sh` pour produire un log commande/résultat/explication. |
 
 ## Point clé sécurité : `root_squash`
 
@@ -80,8 +95,24 @@ sudo smbpasswd -a alice.martin
 - le partage doit restreindre l'accès avec `valid users = @devops` ;
 - les droits Unix du dossier `/samba/equipe` restent appliqués.
 
+## Point clé durcissement : tester avant de fermer
+
+Avant de recharger SSH ou d'activer UFW, garder la session active ouverte et tester depuis un nouveau terminal.
+
+À retenir :
+
+- `sudo sshd -t` doit ne rien afficher ;
+- `root` doit être refusé ;
+- l'utilisateur `adm-[prenom]` doit passer avec clé SSH ;
+- UFW doit limiter le port 22 au sous-réseau prévu ;
+- Fail2ban doit montrer une IP bannie après les tentatives échouées ;
+- le rapport doit comparer l'état avant et l'état après.
+
 ## Docs associées
 
 - [Vue d'ensemble itération 4](../../../admin-systemes-linux/it-4/index.md)
 - [NFS AlpesNet - partage réseau Linux](../../../admin-systemes-linux/it-4/nfs-alpesnet.md)
 - [Samba AlpesNet - partage SMB/CIFS](../../../admin-systemes-linux/it-4/samba-alpesnet.md)
+- [Durcissement Linux AlpesNet](../../../admin-systemes-linux/it-4/durcissement-linux-alpesnet.md)
+- [Rapport de durcissement Linux AlpesNet](../../../admin-systemes-linux/it-4/rapport-durcissement-linux-alpesnet.md)
+- [Script automatisation Itération 4](../../../admin-systemes-linux/it-4/script-automatisation-it4.md)

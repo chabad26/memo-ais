@@ -18,6 +18,10 @@ Cette itération ouvre la partie **services Linux** du module. L'objectif est de
 | --- | --- | --- |
 | [NFS AlpesNet](nfs-alpesnet.md) | Partage réseau Linux avec NFS | Répertoire exporté, monté depuis un client, droits testés et `root_squash` vérifié |
 | [Samba AlpesNet](samba-alpesnet.md) | Partage SMB/CIFS avec Samba | Partage restreint au groupe `devops`, `alice.martin` autorisée, `bob.dupont` refusé |
+| [Durcissement Linux AlpesNet](durcissement-linux-alpesnet.md) | SSH, UFW, Fail2ban et services inutiles | SSH durci, pare-feu actif, bannissement testé et rapport avant/après produit |
+| [Rapport de durcissement Linux AlpesNet](rapport-durcissement-linux-alpesnet.md) | Rapport RNCP avant/après | Synthèse des mesures, preuves, résultats et points de vigilance production |
+| [Script automatisation Itération 4](script-automatisation-it4.md) | Script Bash de reprise des exercices | Exécution NFS, Samba, durcissement et log final commande/résultat/explication |
+| [Rapport automatique Itération 4](rapport-it4-20260626_120855.md) | Rapport généré par le script | Trace automatique des commandes, résultats et explications |
 
 ## À retenir
 

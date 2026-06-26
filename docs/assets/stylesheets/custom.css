@@ -305,6 +305,81 @@
   margin-top: 0.25rem;
 }
 
+/* Navigation: keep long step-by-step pages usable without endless scrolling. */
+.toc-collapse-toggle {
+  align-items: center;
+  background: var(--md-code-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 4px;
+  color: var(--md-default-fg-color);
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  justify-content: space-between;
+  line-height: 1.35;
+  margin: 0.25rem 0;
+  padding: 0.35rem 0.45rem;
+  text-align: left;
+  width: 100%;
+}
+
+.toc-collapse-toggle::before {
+  color: var(--md-primary-fg-color);
+  content: "▾";
+  font-size: 0.75rem;
+  margin-right: 0.35rem;
+}
+
+.toc-collapse-group.is-collapsed .toc-collapse-toggle::before {
+  content: "▸";
+}
+
+.toc-collapse-count {
+  background: color-mix(in srgb, var(--md-primary-fg-color) 12%, transparent);
+  border-radius: 999px;
+  color: var(--md-primary-fg-color);
+  font-size: 0.62rem;
+  margin-left: 0.4rem;
+  padding: 0.05rem 0.35rem;
+}
+
+.toc-collapse-group.is-collapsed > .toc-collapse-list {
+  display: none;
+}
+
+.toc-collapse-list {
+  margin-left: 0.35rem;
+  padding-left: 0.35rem;
+}
+
+.toc-collapse-child > .md-nav__link {
+  font-size: 0.66rem;
+}
+
+.md-nav--compact-toc .md-nav__list[data-md-component="toc"] {
+  scrollbar-width: thin;
+}
+
+.md-nav--primary .module-accordion > .md-nav__link {
+  cursor: pointer;
+}
+
+.md-nav--primary .module-accordion > .md-nav__link::after {
+  color: var(--md-default-fg-color--light);
+  content: "▾";
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-left: auto;
+  opacity: 0.7;
+  padding-left: 0.4rem;
+}
+
+.md-nav--primary .module-accordion.is-open > .md-nav__link::after {
+  transform: rotate(180deg);
+}
+
 @media (max-width: 60rem) {
   .pdf-library {
     grid-template-columns: 1fr;

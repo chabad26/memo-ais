@@ -15,7 +15,7 @@ Il ne remplace pas les pages de cours : il sert à retrouver rapidement les term
 
 | Module | Fiches |
 | --- | --- |
-| Intro AIS et RGPD | [Intro AIS](glossaire/intro-rgpd/intro-ais.md), [RGPD](glossaire/intro-rgpd/rgpd.md), [Commandes Linux](commandes-linux.md) |
+| Intro AIS et RGPD | [Intro AIS](glossaire/intro-rgpd/intro-ais.md), [RGPD](glossaire/intro-rgpd/rgpd.md) |
 | Système d'information | [Itération 1](glossaire/systeme-info/iteration-1.md), [Itération 2](glossaire/systeme-info/iteration-2.md), [Itération 3](glossaire/systeme-info/iteration-3.md), [Itération 4](glossaire/systeme-info/iteration-4.md) |
 | Systèmes Linux | [Itération 1](glossaire/admin-systemes-linux/it-1.md), [Itération 2](glossaire/admin-systemes-linux/it-2.md), [Itération 3](glossaire/admin-systemes-linux/it-3.md), [Itération 4](glossaire/admin-systemes-linux/it-4.md) |
 | Réseaux | [Itération 1](glossaire/admin-reseaux/iteration-1.md), [Itération 2](glossaire/admin-reseaux/iteration-2.md), [Itération 3](glossaire/admin-reseaux/iteration-3.md), [Itération 4](glossaire/admin-reseaux/iteration-4.md), [Itération 5](glossaire/admin-reseaux/iteration-5.md) |

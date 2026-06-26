@@ -179,6 +179,10 @@ Résultat attendu :
 
 Si `testparm` signale une erreur, corriger `smb.conf` avant de démarrer le service.
 
+![Étape 6 - Validation de la configuration Samba avec testparm](../../assets/img/admin-systemes-linux/it-4/samba-testparm-configuration-valide.png)
+
+Observation : `testparm -s` charge correctement `/etc/samba/smb.conf` et affiche le partage `[equipe-alpesnet]` avec `path = /samba/equipe`, `read only = No` et `valid users = @devops`.
+
 ## Étape 7 - Créer l'utilisateur Samba autorisé
 
 Ajouter `alice.martin` dans la base Samba :
@@ -201,6 +205,10 @@ sudo pdbedit -L
 
 !!! note "Compte Linux obligatoire"
     `smbpasswd -a alice.martin` échoue si `alice.martin` n'existe pas comme utilisateur Linux local.
+
+![Étape 7 - Ajout et activation du compte Samba alice.martin](../../assets/img/admin-systemes-linux/it-4/samba-utilisateur-alice-smbpasswd.png)
+
+Observation : `alice.martin` est ajouté puis activé dans Samba. La commande `pdbedit -L` confirme sa présence dans la base Samba.
 
 ## Étape 8 - Démarrer et activer Samba
 
@@ -275,6 +283,14 @@ sudo ls -l /samba/equipe
 
 Résultat attendu : `alice.martin` peut se connecter et déposer un fichier dans le partage.
 
+![Étape 10a - Upload de fichiers depuis le client avec alice.martin](../../assets/img/admin-systemes-linux/it-4/samba-client-alice-upload-fichiers.png)
+
+Observation : `alice.martin` se connecte au partage, envoie des fichiers avec `put`, puis les retrouve avec `ls`. Les commandes `!pwd` et `!ls -l` rappellent que `!` exécute une commande locale côté client.
+
+![Étape 10b - Vérification côté serveur des fichiers créés via Samba](../../assets/img/admin-systemes-linux/it-4/samba-serveur-verification-fichiers.png)
+
+Observation : les fichiers déposés via Samba apparaissent côté serveur dans `/samba/equipe` avec le groupe `devops`.
+
 ## Étape 11 - Vérifier que `bob.dupont` est refusé
 
 Tester la connexion avec `bob.dupont` :
@@ -292,6 +308,10 @@ NT_STATUS_ACCESS_DENIED
 ou un message équivalent indiquant que l'accès est refusé.
 
 Ce refus est normal si `bob.dupont` n'est pas membre du groupe `devops` ou s'il n'a pas de compte Samba autorisé.
+
+![Étape 11 - Refus d'accès Samba pour bob.dupont](../../assets/img/admin-systemes-linux/it-4/samba-test-bob-acces-refuse.png)
+
+Observation : la tentative de connexion de `bob.dupont` échoue avec `NT_STATUS_ACCESS_DENIED`, ce qui valide la restriction `valid users = @devops`.
 
 ## Étape 12 - Vérifier les logs Samba
 
@@ -400,4 +420,3 @@ Samba partage des fichiers via SMB/CIFS. Pour sécuriser un partage, il faut ali
 3. les utilisateurs Samba créés avec `smbpasswd`.
 
 Un compte Linux seul ne suffit pas pour Samba : il doit aussi exister dans la base Samba.
-
