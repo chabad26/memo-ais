@@ -137,6 +137,11 @@ nav:
           - Rapport de durcissement Linux AlpesNet: admin-systemes-linux/it-4/rapport-durcissement-linux-alpesnet.md
           - Script automatisation Itération 4: admin-systemes-linux/it-4/script-automatisation-it4.md
           - Rapport automatique Itération 4: admin-systemes-linux/it-4/rapport-it4-20260626_120855.md
+      - Itération 5 - Sauvegarde et Nginx : 
+          - Vue d'ensemble: admin-systemes-linux/it-5/index.md
+          - Sauvegarde et restauration AlpesNet: admin-systemes-linux/it-5/sauvegarde-restauration-alpesnet.md
+          - Autonomie 3 - Nginx sécurisé AlpesNet: admin-systemes-linux/it-5/autonomie-3-nginx-securise-alpesnet.md
+          - rapport automatique Autonmie 3 : admin-systemes-linux/it-5/rapport-it5-20260626_141658.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
@@ -227,6 +232,7 @@ nav:
           - Itération 2 - Permissions et logs: pense-bete/glossaire/admin-systemes-linux/it-2.md
           - Itération 3 - Bash et automatisation: pense-bete/glossaire/admin-systemes-linux/it-3.md
           - Itération 4 - Services Linux et NFS: pense-bete/glossaire/admin-systemes-linux/it-4.md
+          - Itération 5 - Sauvegarde et Nginx: pense-bete/glossaire/admin-systemes-linux/it-5.md
       - Administration des réseaux:
           - Itération 1 - TCP/IP et adressage: pense-bete/glossaire/admin-reseaux/iteration-1.md
           - Itération 2 - Switching, ARP et VLANs: pense-bete/glossaire/admin-reseaux/iteration-2.md
