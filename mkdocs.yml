@@ -141,7 +141,8 @@ nav:
           - Vue d'ensemble: admin-systemes-linux/it-5/index.md
           - Sauvegarde et restauration AlpesNet: admin-systemes-linux/it-5/sauvegarde-restauration-alpesnet.md
           - Autonomie 3 - Nginx sécurisé AlpesNet: admin-systemes-linux/it-5/autonomie-3-nginx-securise-alpesnet.md
-          - rapport automatique Autonmie 3 : admin-systemes-linux/it-5/rapport-it5-20260626_141658.md
+          - Débriefing Nginx - comparer et améliorer: admin-systemes-linux/it-5/debriefing-nginx-reference-alpesnet.md
+          - Rapport automatique Autonomie 3 : admin-systemes-linux/it-5/rapport-it5-20260626_141658.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md

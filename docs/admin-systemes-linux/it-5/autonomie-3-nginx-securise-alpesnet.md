@@ -427,6 +427,171 @@ Le script affiche les étapes en direct et génère :
 /var/log/alpesnet-it5/execution-it5-YYYYMMDD_HHMMSS.log
 ```
 
+## Étape 17 - Ajouter les preuves d'exécution
+
+Capture du site intranet généré par le script :
+
+![Page intranet AlpesNet générée par le script](../../assets/img/admin-systemes-linux/it-5/nginx-intranet-page-olidev-style.png)
+
+Observation : la page répond avec le style intranet personnalisé et affiche les informations demandées : prénom, date, nom du serveur et éléments de validation.
+
+Capture du contrôle terminal :
+
+![Contrôle curl HTTP 200 de l'intranet](../../assets/img/admin-systemes-linux/it-5/nginx-controle-curl-http-200.png)
+
+### Preuve 1 - Exécution du script
+
+Le script a été exécuté sur `srv-oliv` et a déroulé les étapes jusqu'au rapport final :
+
+```text
+oliv@srv-oliv:~$ sudo ./alpesnet-it5-sauvegarde.sh
+
+=== Preparation ===
+
+[01] Preparer le dossier de sauvegarde
+     Commande: mkdir -p '/backup' && chmod 750 '/backup' && ls -ld '/backup'
+     Execution...
+     Statut: OK
+     Rapport mis a jour: /var/log/alpesnet-it5/rapport-it5-20260629_091737.md
+
+[02] Verifier ou creer la source AlpesNet
+     Statut: OK
+
+=== Exercice 1 - Sauvegarde rsync ===
+
+[03] Executer la sauvegarde rsync
+     Statut: OK
+
+[04] Verifier le contenu sauvegarde
+     Statut: OK
+
+[05] Verifier rsync en dry-run checksum
+     Statut: OK
+
+=== Exercice 1 - Archive tar et restauration ===
+
+[06] Creer l'archive des configurations
+     Statut: OK
+
+[07] Lister le contenu de l'archive
+     Statut: OK
+
+[08] Tester la restauration dans un repertoire temporaire
+     Statut: OK
+
+[09] Generer et verifier le checksum
+     Statut: OK
+
+=== Procedure de restauration ===
+
+[10] Generer la procedure de restauration SSH
+     Statut: OK
+
+=== Autonomie 3 - Deploiement Nginx securise ===
+
+[11] Installer Nginx et les outils de securite
+     Statut: OK
+
+[12] Creer l'utilisateur dedie Nginx
+     Statut: OK
+
+[13] Configurer la directive user de Nginx
+     Statut: OK
+
+[14] Creer la racine web et la page intranet
+     Statut: OK
+
+[15] Configurer le vhost intranet
+     Statut: OK
+
+[16] Ajouter la resolution locale du nom intranet
+     Statut: OK
+
+[17] Demarrer et verifier Nginx
+     Statut: OK
+
+=== Autonomie 3 - Firewall et Fail2ban ===
+
+[18] Configurer UFW pour SSH restreint et HTTP ouvert
+     Statut: OK
+
+[19] Verifier Fail2ban SSH
+     Statut: OK
+
+=== Autonomie 3 - Rotation et sauvegarde web ===
+
+[20] Configurer logrotate pour les logs intranet
+     Statut: OK
+
+[21] Sauvegarder /var/www dans /backup/www
+     Statut: OK
+
+[22] Generer et verifier le checksum de la sauvegarde web
+     Statut: OK
+
+[23] Tester la restauration de /var/www
+     Statut: OK
+
+=== Autonomie 3 - Criteres de reussite ===
+
+[24] Verifier HTTP 200
+     Statut: OK
+
+[25] Verifier le worker Nginx sous www-nginx
+     Statut: OK
+
+[26] Verifier les regles UFW finales
+     Statut: OK
+
+[27] Verifier les checksums finaux
+     Statut: OK
+
+Done.
+Report: /var/log/alpesnet-it5/rapport-it5-20260629_091737.md
+Raw log: /var/log/alpesnet-it5/execution-it5-20260629_091737.log
+```
+
+Conclusion : les 27 étapes sont passées en `OK`, le rapport Markdown et le log brut ont été générés.
+
+### Preuve 2 - Test `curl -v`
+
+Le test HTTP direct confirme que le vhost répond en `200 OK` :
+
+```text
+oliv@srv-oliv:~$ curl -v http://intranet.alpesnet.local
+*   Trying 127.0.0.1:80...
+* Connected to intranet.alpesnet.local (127.0.0.1) port 80 (#0)
+> GET / HTTP/1.1
+> Host: intranet.alpesnet.local
+> User-Agent: curl/7.88.1
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Server: nginx/1.22.1
+< Date: Mon, 29 Jun 2026 07:23:54 GMT
+< Content-Type: text/html
+< Content-Length: 6226
+< Last-Modified: Mon, 29 Jun 2026 07:17:42 GMT
+< Connection: keep-alive
+< ETag: "6a421c16-1852"
+< Accept-Ranges: bytes
+```
+
+Extrait de la page servie :
+
+```html
+<title>Intranet AlpesNet - Oliv</title>
+<h1>Intranet AlpesNet</h1>
+<div><dt>Prenom</dt><dd>Oliv</dd></div>
+<div><dt>Date</dt><dd>2026-06-29</dd></div>
+<div><dt>Serveur</dt><dd>srv-oliv</dd></div>
+<li>Worker Nginx sous www-nginx</li>
+<li>SSH restreint au campus</li>
+<li>Fail2ban actif sur sshd</li>
+```
+
+Conclusion : `intranet.alpesnet.local` répond sur le port `80`, Nginx renvoie `HTTP/1.1 200 OK`, et la page contient bien le prénom, la date, le nom du serveur et les informations de validation.
+
 ## Livrable attendu
 
 | Élément | Preuve |

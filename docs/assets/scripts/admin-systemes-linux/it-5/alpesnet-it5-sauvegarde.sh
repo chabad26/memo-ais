@@ -288,8 +288,242 @@ run_cmd \
 
 run_cmd \
   "Creer la racine web et la page intranet" \
-  "mkdir -p '$INTRANET_ROOT'; printf '%s\\n' '<!doctype html>' '<html lang=\"fr\">' '<head><meta charset=\"utf-8\"><title>Intranet AlpesNet</title></head>' '<body>' '<h1>Intranet AlpesNet</h1>' '<p>Prenom : $PRENOM</p>' '<p>Date : $(date +%Y-%m-%d)</p>' '<p>Serveur : $(hostname)</p>' '</body>' '</html>' > '$INTRANET_ROOT/index.html'; chown -R root:'$NGINX_USER' '/var/www/intranet.alpesnet.local'; chmod -R 750 '/var/www/intranet.alpesnet.local'; find '/var/www/intranet.alpesnet.local' -maxdepth 3 -ls" \
-  "Cree la page demandee avec prenom, date et nom du serveur, puis applique des droits restrictifs."
+  "mkdir -p '$INTRANET_ROOT'; cat > '$INTRANET_ROOT/index.html' <<HTML
+<!doctype html>
+<html lang=\"fr\">
+<head>
+  <meta charset=\"utf-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+  <title>Intranet AlpesNet - $PRENOM</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09111f;
+      --panel: #101b2e;
+      --panel-2: #142238;
+      --text: #eef6ff;
+      --muted: #9fb2c8;
+      --line: rgba(255,255,255,.12);
+      --accent: #28d4b7;
+      --accent-2: #5aa9ff;
+      --warn: #ffd166;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(40,212,183,.18), transparent 30%),
+        radial-gradient(circle at 85% 8%, rgba(90,169,255,.18), transparent 28%),
+        linear-gradient(135deg, #07101d 0%, var(--bg) 48%, #0f1a2d 100%);
+      color: var(--text);
+    }
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 42px 0;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+    .mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(40,212,183,.5);
+      border-radius: 12px;
+      background: rgba(40,212,183,.1);
+      color: var(--accent);
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    h1 {
+      max-width: 760px;
+      margin: 28px 0 16px;
+      font-size: clamp(2.4rem, 6vw, 5.4rem);
+      line-height: .95;
+      letter-spacing: 0;
+    }
+    .lead {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.18rem);
+      line-height: 1.7;
+    }
+    .status {
+      min-width: 220px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(16,27,46,.78);
+    }
+    .status strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+    section {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(16,27,46,.82);
+      padding: 20px;
+    }
+    section h2 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      color: var(--accent-2);
+      letter-spacing: 0;
+    }
+    dl, ul { margin: 0; }
+    dl { display: grid; gap: 12px; }
+    dt { color: var(--muted); font-size: .84rem; }
+    dd { margin: 3px 0 0; font-weight: 700; }
+    ul {
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .wide { grid-column: span 2; }
+    .terminal {
+      margin-top: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #050a12;
+    }
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      background: var(--panel-2);
+      color: var(--muted);
+      font-size: .82rem;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+    pre {
+      margin: 0;
+      padding: 18px;
+      overflow: auto;
+      color: #d7fbe8;
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+    footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    @media (max-width: 820px) {
+      header { display: block; }
+      .status { margin-top: 22px; }
+      .grid { grid-template-columns: 1fr; }
+      .wide { grid-column: auto; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <div class=\"brand\"><span class=\"mark\">OD</span><span>Olidev style - AlpesNet intranet</span></div>
+        <h1>Intranet AlpesNet</h1>
+        <p class=\"lead\">Serveur web interne deploye avec Nginx, utilisateur dedie, firewall minimal, logs separes, sauvegarde verifiee et restauration testee.</p>
+      </div>
+      <aside class=\"status\">
+        <strong>HTTP 200 attendu</strong>
+        <span>$INTRANET_HOST</span>
+      </aside>
+    </header>
+
+    <div class=\"grid\">
+      <section>
+        <h2>Identite</h2>
+        <dl>
+          <div><dt>Prenom</dt><dd>$PRENOM</dd></div>
+          <div><dt>Date</dt><dd>$(date +%Y-%m-%d)</dd></div>
+          <div><dt>Serveur</dt><dd>$(hostname)</dd></div>
+        </dl>
+      </section>
+
+      <section>
+        <h2>Securite</h2>
+        <ul>
+          <li>Worker Nginx sous $NGINX_USER</li>
+          <li>SSH restreint au campus</li>
+          <li>Fail2ban actif sur sshd</li>
+          <li>Port 80 ouvert pour l'intranet</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Exploitation</h2>
+        <ul>
+          <li>Vhost dedie</li>
+          <li>Logs separes</li>
+          <li>Rotation 7 jours compressee</li>
+          <li>Checksum SHA-256</li>
+        </ul>
+      </section>
+
+      <section class=\"wide\">
+        <h2>Livrables RNCP</h2>
+        <ul>
+          <li>Configuration Nginx annotee dans /etc/nginx/sites-available/intranet</li>
+          <li>Sauvegarde de /var/www dans /backup/www</li>
+          <li>Restauration testee dans /tmp/restauration-www-test</li>
+          <li>Rapport automatique dans /var/log/alpesnet-it5</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Validation</h2>
+        <dl>
+          <div><dt>Commande</dt><dd>curl -v http://$INTRANET_HOST</dd></div>
+          <div><dt>Resultat</dt><dd>Page servie par Nginx</dd></div>
+        </dl>
+      </section>
+    </div>
+
+    <div class=\"terminal\">
+      <div class=\"terminal-bar\"><span class=\"dot\"></span><span>controle-alpesnet.sh</span></div>
+      <pre>nginx -t
+ps -eo user,args | grep \"[n]ginx\"
+sudo ufw status verbose
+sha256sum -c /backup/www-checksums.txt</pre>
+    </div>
+
+    <footer>AlpesNet - deploiement automatise par $PRENOM - $(date +%Y-%m-%d)</footer>
+  </main>
+</body>
+</html>
+HTML
+chown -R root:'$NGINX_USER' '/var/www/intranet.alpesnet.local'; chmod -R 750 '/var/www/intranet.alpesnet.local'; find '/var/www/intranet.alpesnet.local' -maxdepth 3 -ls" \
+  "Cree une page intranet plus professionnelle, inspiree d'une page portfolio/dev sobre, avec prenom, date, nom du serveur, statut, securite, livrables et commandes de verification."
 
 run_cmd \
   "Configurer le vhost intranet" \

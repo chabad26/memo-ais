@@ -28,6 +28,7 @@ itération 5b :
 | --- | --- | --- |
 | [Sauvegarde et restauration AlpesNet](sauvegarde-restauration-alpesnet.md) | Sauvegarde `rsync`, archive `tar`, checksum et restauration testée | Sauvegarde créée, archive vérifiée, restauration testée et procédure documentée |
 | [Autonomie 3 - Déploiement Nginx sécurisé AlpesNet](autonomie-3-nginx-securise-alpesnet.md) | Serveur intranet Nginx sécurisé | Vhost intranet, worker dédié, UFW, Fail2ban, logs, sauvegarde et restauration testée |
+| [Débriefing Nginx - comparer et améliorer](debriefing-nginx-reference-alpesnet.md) | Comparaison avec la configuration de référence | Écarts identifiés, corrections appliquées et carnet complété |
 | [Script d'itération 5](../../assets/scripts/admin-systemes-linux/it-5/alpesnet-it5-sauvegarde.sh) | Automatisation évolutive sauvegarde puis Nginx | Rapport Markdown et log brut avec commandes, résultats et explications |
 
 ## À retenir

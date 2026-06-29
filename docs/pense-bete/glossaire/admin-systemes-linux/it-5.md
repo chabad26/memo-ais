@@ -34,6 +34,12 @@ Sauvegarde, restauration testée, intégrité des archives et préparation de la
 | `error_log` | Directive Nginx qui définit le fichier des erreurs du vhost. |
 | Logrotate | Outil qui archive, compresse et supprime les anciens logs selon une politique définie. |
 | HTTP 200 | Code de réponse indiquant que la page est servie correctement. |
+| `sites-available` | Dossier Debian contenant les vhosts disponibles, même s'ils ne sont pas actifs. |
+| `sites-enabled` | Dossier Debian contenant les liens symboliques vers les vhosts actifs. |
+| Lien symbolique | Raccourci de fichier utilisé pour activer un vhost sans dupliquer sa configuration. |
+| Site par défaut | Vhost Nginx installé par défaut, à désactiver pour éviter les réponses ambiguës. |
+| `nginx -t` | Test de syntaxe obligatoire avant de recharger Nginx. |
+| `curl -v` | Requête HTTP détaillée affichant la résolution, la connexion, les en-têtes et le résultat. |
 
 ## Manipulations faites
 
@@ -52,6 +58,9 @@ Sauvegarde, restauration testée, intégrité des archives et préparation de la
 | Créer un utilisateur Nginx | `useradd --system --no-create-home --shell /usr/sbin/nologin www-nginx`. |
 | Configurer le worker Nginx | directive `user www-nginx;` dans `/etc/nginx/nginx.conf`. |
 | Créer le vhost intranet | `/etc/nginx/sites-available/intranet`, lien dans `sites-enabled`. |
+| Activer le vhost | `sudo ln -sfn /etc/nginx/sites-available/intranet /etc/nginx/sites-enabled/intranet`. |
+| Désactiver le vhost par défaut | `sudo rm -f /etc/nginx/sites-enabled/default`. |
+| Comparer la référence Nginx | Vérifier `nginx.conf`, le vhost, les workers, UFW et le résultat `curl`. |
 | Tester Nginx | `nginx -t`, `systemctl reload nginx`, `curl`. |
 | Vérifier le worker | `ps aux | grep nginx`. |
 | Filtrer avec UFW | SSH restreint au campus, `80/tcp` ouvert. |
@@ -145,9 +154,26 @@ rotate 7
 compress
 ```
 
+## Point clé : débriefing après autonomie
+
+Le débriefing ne sert pas seulement à constater que le site répond. Il sert à comparer ta solution avec une référence et à justifier les écarts.
+
+Contrôles minimaux :
+
+```bash
+grep '^user ' /etc/nginx/nginx.conf
+sudo sed -n '1,120p' /etc/nginx/sites-available/intranet
+ps -eo user,pid,ppid,comm,args | grep "[n]ginx"
+sudo ufw status verbose
+curl -s -o /tmp/intranet.html -w "%{http_code}\n" http://intranet.alpesnet.local
+```
+
+Un écart de racine web, par exemple `/var/www/intranet.alpesnet.local/html` au lieu de `/var/www/intranet`, peut être acceptable si le vhost pointe bien vers le bon dossier et si le choix est expliqué.
+
 ## Docs associées
 
 - [Vue d'ensemble itération 5](../../../admin-systemes-linux/it-5/index.md)
 - [Sauvegarde et restauration AlpesNet](../../../admin-systemes-linux/it-5/sauvegarde-restauration-alpesnet.md)
 - [Autonomie 3 - Déploiement Nginx sécurisé AlpesNet](../../../admin-systemes-linux/it-5/autonomie-3-nginx-securise-alpesnet.md)
+- [Débriefing Nginx - comparer et améliorer](../../../admin-systemes-linux/it-5/debriefing-nginx-reference-alpesnet.md)
 - [Script Itération 5](../../../assets/scripts/admin-systemes-linux/it-5/alpesnet-it5-sauvegarde.sh)
