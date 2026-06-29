@@ -24,6 +24,7 @@ RESTORE_WWW_DIR="${RESTORE_WWW_DIR:-/tmp/restauration-www-test}"
 NGINX_USER="${NGINX_USER:-www-nginx}"
 INTRANET_HOST="${INTRANET_HOST:-intranet.alpesnet.local}"
 INTRANET_ROOT="${INTRANET_ROOT:-/var/www/intranet.alpesnet.local/html}"
+PUBLIC_REPORT="${PUBLIC_REPORT:-$INTRANET_ROOT/rapport-it5.md}"
 PRENOM="${PRENOM:-Oliv}"
 CAMPUS_SUBNET="${CAMPUS_SUBNET:-192.168.56.0/24}"
 WWW_BACKUP_DIR="${WWW_BACKUP_DIR:-$BACKUP_DIR/www}"
@@ -118,6 +119,10 @@ finish_report_on_exit() {
 
 trap finish_report_on_exit EXIT
 
+clean_report_output() {
+  tr -d '\r' < "$1" | sed -E $'s/\x1B\\[[0-?]*[ -/]*[@-~]//g'
+}
+
 append_report() {
   local title="$1"
   local command="$2"
@@ -138,7 +143,7 @@ append_report() {
     echo
     echo '```text'
     if [ -s "$output_file" ]; then
-      sed -n '1,160p' "$output_file"
+      clean_report_output "$output_file" | sed -n '1,160p'
       if [ "$(wc -l < "$output_file")" -gt 160 ]; then
         echo "... sortie tronquee dans le rapport, voir $RAW_LOG"
       fi
@@ -157,8 +162,9 @@ append_report() {
 run_cmd() {
   local title="$1"
   local command="$2"
-  local explanation="$3"
+  local explanation="${3:-Commande de demonstration ajoutee au rapport.}"
   local allow_fail="${4:-no}"
+  local report_command="${5:-$command}"
   local output_file
   local status
 
@@ -183,7 +189,7 @@ run_cmd() {
 
   cat "$output_file" >> "$RAW_LOG"
   echo >> "$RAW_LOG"
-  append_report "$title" "$command" "$status" "$explanation" "$output_file"
+  append_report "$title" "$report_command" "$status" "$explanation" "$output_file"
   printf '| %02d | %s | `%s` |\n' "$STEP" "$title" "$status" >> "$TIMELINE_LOG"
 
   if [ "$status" -ne 0 ] && [ "$allow_fail" != "yes" ]; then
@@ -215,6 +221,13 @@ section() {
 }
 
 section "Preparation"
+
+run_cmd \
+  "bois un café" \
+  "curl -fsSL git.io/coffee || printf '%s\n' '    ( (' '     ) )' '  ........' '  |      |]' '  \      /' '   ------'" \
+  "Tu l'as bien mérité" \
+  "no" \
+  "curl -fsSL git.io/coffee"
 
 run_cmd \
   "Preparer le dossier de sauvegarde" \
@@ -371,6 +384,30 @@ run_cmd \
       font-size: clamp(1rem, 2vw, 1.18rem);
       line-height: 1.7;
     }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid rgba(40,212,183,.62);
+      border-radius: 8px;
+      background: rgba(40,212,183,.14);
+      color: var(--text);
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .button:hover,
+    .button:focus-visible {
+      background: rgba(40,212,183,.24);
+      outline: none;
+    }
     .status {
       min-width: 220px;
       padding: 16px;
@@ -456,9 +493,13 @@ run_cmd \
         <div class=\"brand\"><span class=\"mark\">OD</span><span>Olidev style - AlpesNet intranet</span></div>
         <h1>Intranet AlpesNet</h1>
         <p class=\"lead\">Serveur web interne deploye avec Nginx, utilisateur dedie, firewall minimal, logs separes, sauvegarde verifiee et restauration testee.</p>
+        <div class=\"actions\">
+          <a class=\"button\" href=\"/rapport-it5.md\">Voir le rapport</a>
+        </div>
       </div>
       <aside class=\"status\">
         <strong>HTTP 200 attendu</strong>
+        <span>Cache navigateur desactive</span>
         <span>$INTRANET_HOST</span>
       </aside>
     </header>
@@ -499,7 +540,7 @@ run_cmd \
           <li>Configuration Nginx annotee dans /etc/nginx/sites-available/intranet</li>
           <li>Sauvegarde de /var/www dans /backup/www</li>
           <li>Restauration testee dans /tmp/restauration-www-test</li>
-          <li>Rapport automatique dans /var/log/alpesnet-it5</li>
+          <li>Rapport automatique publie sur /rapport-it5.md</li>
         </ul>
       </section>
 
@@ -525,13 +566,13 @@ sha256sum -c /backup/www-checksums.txt</pre>
 </body>
 </html>
 HTML
-chown -R root:'$NGINX_USER' '/var/www/intranet.alpesnet.local'; chmod -R 750 '/var/www/intranet.alpesnet.local'; find '/var/www/intranet.alpesnet.local' -maxdepth 3 -ls" \
-  "Cree une page intranet plus professionnelle, inspiree d'une page portfolio/dev sobre, avec prenom, date, nom du serveur, statut, securite, livrables et commandes de verification."
+cp '$REPORT' '$PUBLIC_REPORT'; chown -R root:'$NGINX_USER' '/var/www/intranet.alpesnet.local'; chmod -R 750 '/var/www/intranet.alpesnet.local'; find '/var/www/intranet.alpesnet.local' -maxdepth 3 -ls" \
+  "Cree une page intranet plus professionnelle, inspiree d'une page portfolio/dev sobre, avec prenom, date, nom du serveur, statut, securite, livrables, bouton de consultation du rapport et commandes de verification."
 
 run_cmd \
   "Configurer le vhost intranet" \
-  "printf '%s\\n' 'server {' '    listen 80;' '    server_name $INTRANET_HOST;' '' '    root $INTRANET_ROOT;' '    index index.html;' '' '    access_log /var/log/nginx/intranet_access.log;' '    error_log /var/log/nginx/intranet_error.log warn;' '' '    location / {' '        try_files \$uri \$uri/ =404;' '    }' '}' > /etc/nginx/sites-available/intranet; ln -sfn /etc/nginx/sites-available/intranet /etc/nginx/sites-enabled/intranet; rm -f /etc/nginx/sites-enabled/default; nginx -t" \
-  "Declare le vhost intranet.alpesnet.local, la racine web, les logs separes et desactive le site par defaut."
+  "printf '%s\\n' 'server {' '    listen 80;' '    server_name $INTRANET_HOST;' '' '    root $INTRANET_ROOT;' '    index index.html;' '    etag off;' '    if_modified_since off;' '    expires off;' '    add_header Cache-Control \"no-store, no-cache, must-revalidate, max-age=0\" always;' '    add_header Pragma \"no-cache\" always;' '' '    access_log /var/log/nginx/intranet_access.log;' '    error_log /var/log/nginx/intranet_error.log warn;' '' '    location = /rapport-it5.md {' '        default_type text/plain;' '        try_files \$uri =404;' '    }' '' '    location / {' '        try_files \$uri \$uri/ =404;' '    }' '}' > /etc/nginx/sites-available/intranet; ln -sfn /etc/nginx/sites-available/intranet /etc/nginx/sites-enabled/intranet; rm -f /etc/nginx/sites-enabled/default; nginx -t" \
+  "Declare le vhost intranet.alpesnet.local, la racine web, les logs separes, l'affichage texte du rapport Markdown, desactive le cache navigateur pour eviter les 304 et desactive le site par defaut."
 
 run_cmd \
   "Ajouter la resolution locale du nom intranet" \
@@ -581,8 +622,8 @@ section "Autonomie 3 - Criteres de reussite"
 
 run_cmd \
   "Verifier HTTP 200" \
-  "code=\$(curl -s -o /tmp/intranet-curl-body.txt -w '%{http_code}' 'http://$INTRANET_HOST'); printf '%s\\n' \"\$code\"; test \"\$code\" = '200'" \
-  "Verifie que le vhost intranet repond exactement en HTTP 200. Si le code est different, le script echoue."
+  "code=\$(curl -s -H 'Cache-Control: no-cache' -o /tmp/intranet-curl-body.txt -w '%{http_code}' 'http://$INTRANET_HOST'); printf '%s\\n' \"\$code\"; test \"\$code\" = '200'" \
+  "Verifie que le vhost intranet repond exactement en HTTP 200 avec une demande sans cache. Si le code est different, le script echoue."
 
 run_cmd \
   "Verifier le worker Nginx sous www-nginx" \
@@ -637,7 +678,7 @@ run_cmd \
   echo
   echo "| Controle | Commande | Etat attendu |"
   echo "| --- | --- | --- |"
-  echo "| Intranet HTTP | \`curl -s -o /tmp/intranet-curl-body.txt -w '%{http_code}' http://$INTRANET_HOST\` | \`200\` |"
+  echo "| Intranet HTTP | \`curl -s -H 'Cache-Control: no-cache' -o /tmp/intranet-curl-body.txt -w '%{http_code}' http://$INTRANET_HOST\` | \`200\` |"
   echo "| Worker dedie | \`ps -eo user,args | grep '[n]ginx: worker'\` | \`$NGINX_USER\` |"
   echo "| Pare-feu | \`ufw status verbose\` | SSH restreint au campus, HTTP 80 ouvert |"
   echo "| Sauvegardes | \`sha256sum -c '$CHECKSUM_FILE'\` et \`sha256sum -c '$BACKUP_DIR/www-checksums.txt'\` | \`OK\` |"
@@ -658,6 +699,12 @@ run_cmd \
   echo
   echo "Conclusion : la sauvegarde est creee, verifiee, restauree dans un repertoire de test, puis le serveur Nginx intranet est deployee et controle selon les criteres Autonomie 3."
 } >> "$REPORT"
+
+if [ -d "$INTRANET_ROOT" ]; then
+  cp "$REPORT" "$PUBLIC_REPORT"
+  chown root:"$NGINX_USER" "$PUBLIC_REPORT"
+  chmod 640 "$PUBLIC_REPORT"
+fi
 
 COMPLETED=1
 
