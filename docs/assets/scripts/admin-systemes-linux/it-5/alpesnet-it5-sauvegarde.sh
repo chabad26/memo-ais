@@ -11,6 +11,7 @@ RUN_ID="$(date +%Y%m%d_%H%M%S)"
 LOG_DIR="${LOG_DIR:-/var/log/alpesnet-it5}"
 REPORT="${REPORT:-$LOG_DIR/rapport-it5-$RUN_ID.md}"
 RAW_LOG="${RAW_LOG:-$LOG_DIR/execution-it5-$RUN_ID.log}"
+TIMELINE_LOG="${TIMELINE_LOG:-$LOG_DIR/timeline-it5-$RUN_ID.md}"
 
 DATE_TAG="${DATE_TAG:-$(date +%Y%m%d)}"
 SOURCE_DIR="${SOURCE_DIR:-/srv/alpesnet}"
@@ -73,6 +74,7 @@ fi
 
 mkdir -p "$LOG_DIR"
 : > "$RAW_LOG"
+: > "$TIMELINE_LOG"
 
 cat > "$REPORT" <<EOF_REPORT
 # Rapport automatique - Iteration 5 AlpesNet
@@ -90,7 +92,7 @@ cat > "$REPORT" <<EOF_REPORT
 | Sous-reseau SSH | $CAMPUS_SUBNET |
 | Mode dry-run | $DRY_RUN |
 
-Ce rapport liste les commandes executees par le script, leur resultat et l'explication associee.
+Ce rapport liste les commandes executees par le script, leur resultat, leur explication, la timeline, les causes/risques traites, les actions correctives et l'etat final verifiable.
 
 EOF_REPORT
 
@@ -182,6 +184,7 @@ run_cmd() {
   cat "$output_file" >> "$RAW_LOG"
   echo >> "$RAW_LOG"
   append_report "$title" "$command" "$status" "$explanation" "$output_file"
+  printf '| %02d | %s | `%s` |\n' "$STEP" "$title" "$status" >> "$TIMELINE_LOG"
 
   if [ "$status" -ne 0 ] && [ "$allow_fail" != "yes" ]; then
     printf '     Statut: ERREUR (code %s)\n' "$status"
@@ -578,8 +581,8 @@ section "Autonomie 3 - Criteres de reussite"
 
 run_cmd \
   "Verifier HTTP 200" \
-  "curl -s -o /tmp/intranet-curl-body.txt -w '%{http_code}\\n' 'http://$INTRANET_HOST'" \
-  "Verifie que le vhost intranet repond en HTTP 200."
+  "code=\$(curl -s -o /tmp/intranet-curl-body.txt -w '%{http_code}' 'http://$INTRANET_HOST'); printf '%s\\n' \"\$code\"; test \"\$code\" = '200'" \
+  "Verifie que le vhost intranet repond exactement en HTTP 200. Si le code est different, le script echoue."
 
 run_cmd \
   "Verifier le worker Nginx sous www-nginx" \
@@ -597,14 +600,49 @@ run_cmd \
   "Valide les checksums des configurations et de la sauvegarde web."
 
 {
-  echo "Dernière vérification..."
-  sleep 1
-  echo "Validation des compétences..."
-  sleep 1
-  echo "✔ Niveau : Excellent"
+  echo "# Lecture rapide pour jury"
   echo
-  echo "Pour récupérer votre certificat :"
-  echo "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+  echo "## Timeline d'execution"
+  echo
+  echo "| Etape | Action | Code retour |"
+  echo "| --- | --- | --- |"
+  cat "$TIMELINE_LOG"
+  echo
+  echo "## Causes et risques traites"
+  echo
+  echo "| Cause ou risque initial | Effet possible | Reponse appliquee |"
+  echo "| --- | --- | --- |"
+  echo "| Sauvegarde non testee | Impossible de prouver une reprise apres incident | Sauvegarde rsync, archive tar, restauration dans /tmp et checksum |"
+  echo "| Integrite non controlee | Archive modifiee ou corrompue non detectee | Empreintes SHA-256 et verification avec sha256sum -c |"
+  echo "| Serveur web trop generique | Confusion avec le site par defaut ou logs melanges | Vhost intranet dedie, site default desactive, logs separes |"
+  echo "| Processus web trop privilegie | Impact plus fort en cas de compromission | Worker Nginx execute sous $NGINX_USER |"
+  echo "| Exposition SSH trop large | Surface d'attaque plus grande | UFW avec SSH restreint au sous-reseau $CAMPUS_SUBNET |"
+  echo "| Tentatives SSH repetees | Risque de force brute | Fail2ban actif sur la jail sshd |"
+  echo
+  echo "## Actions correctives et commandes de verification"
+  echo
+  echo "| Action corrective | Commande appliquee | Verification associee |"
+  echo "| --- | --- | --- |"
+  echo "| Creer la sauvegarde des donnees | \`rsync -avz --delete '$SOURCE_DIR/' '$RSYNC_DEST/'\` | \`find '$RSYNC_DEST' -maxdepth 2 -type f -ls\` et \`rsync --dry-run --checksum\` |"
+  echo "| Archiver les configurations | \`tar -czf '$CONFIG_ARCHIVE' /etc/ssh /etc/rsyslog.d\` | \`tar -tzf '$CONFIG_ARCHIVE'\` |"
+  echo "| Tester la restauration configs | \`tar -xzf '$CONFIG_ARCHIVE' -C '$RESTORE_DIR'\` | \`ls '$RESTORE_DIR/etc/ssh'\` et lecture de \`sshd_config\` |"
+  echo "| Verifier l'integrite configs | \`sha256sum '$CONFIG_ARCHIVE' > '$CHECKSUM_FILE'\` | \`sha256sum -c '$CHECKSUM_FILE'\` |"
+  echo "| Durcir l'execution Nginx | directive \`user $NGINX_USER;\` dans \`/etc/nginx/nginx.conf\` | \`ps -eo user,args | grep '[n]ginx'\` |"
+  echo "| Publier l'intranet | vhost \`/etc/nginx/sites-available/intranet\` | \`nginx -t\` puis \`curl http://$INTRANET_HOST\` |"
+  echo "| Filtrer le reseau | UFW SSH restreint + HTTP ouvert | \`ufw status verbose\` |"
+  echo "| Activer l'anti force brute | jail Fail2ban \`sshd\` | \`fail2ban-client status sshd\` |"
+  echo "| Sauvegarder /var/www | \`rsync -avz --delete /var/www/ '$WWW_BACKUP_DIR/'\` | \`sha256sum -c '$BACKUP_DIR/www-checksums.txt'\` et restauration testee |"
+  echo
+  echo "## Etat final verifiable"
+  echo
+  echo "| Controle | Commande | Etat attendu |"
+  echo "| --- | --- | --- |"
+  echo "| Intranet HTTP | \`curl -s -o /tmp/intranet-curl-body.txt -w '%{http_code}' http://$INTRANET_HOST\` | \`200\` |"
+  echo "| Worker dedie | \`ps -eo user,args | grep '[n]ginx: worker'\` | \`$NGINX_USER\` |"
+  echo "| Pare-feu | \`ufw status verbose\` | SSH restreint au campus, HTTP 80 ouvert |"
+  echo "| Sauvegardes | \`sha256sum -c '$CHECKSUM_FILE'\` et \`sha256sum -c '$BACKUP_DIR/www-checksums.txt'\` | \`OK\` |"
+  echo "| Restauration | \`test -f '$WWW_RESTORE_DIR/intranet.alpesnet.local/html/index.html'\` | fichier restauré lisible |"
+  echo
   echo "# Synthese finale"
   echo
   echo "- Rapport Markdown : \`$REPORT\`"

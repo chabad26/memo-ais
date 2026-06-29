@@ -105,6 +105,7 @@ nav:
 
   - Systèmes Linux:
       - Vue d'ensemble: admin-systemes-linux/index.md
+      - Mémo personnel de synthèse SYS-01a: admin-systemes-linux/memo-personnel-synthese-sys-01a.md
       - Itération 1 - Installation Debian 12 & comptes:
           - Kit Install - Environnement de travail: admin-systemes-linux/it-1/atelier1-kit-install.md
           - FHS - Arborescence Linux: admin-systemes-linux/it-1/atelier2-fhs.md
@@ -142,7 +143,7 @@ nav:
           - Sauvegarde et restauration AlpesNet: admin-systemes-linux/it-5/sauvegarde-restauration-alpesnet.md
           - Autonomie 3 - Nginx sécurisé AlpesNet: admin-systemes-linux/it-5/autonomie-3-nginx-securise-alpesnet.md
           - Débriefing Nginx - comparer et améliorer: admin-systemes-linux/it-5/debriefing-nginx-reference-alpesnet.md
-          - Rapport automatique Autonomie 3 : admin-systemes-linux/it-5/rapport-it5-20260626_141658.md
+          - Rapport automatique Autonomie 3 : admin-systemes-linux/it-5/rapport-it5-20260629_094637.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
