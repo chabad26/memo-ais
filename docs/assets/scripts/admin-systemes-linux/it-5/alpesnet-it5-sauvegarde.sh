@@ -260,8 +260,10 @@ section "Exercice 1 - Archive tar et restauration"
 
 run_cmd \
   "Creer l'archive des configurations" \
-  "tar -czf '$CONFIG_ARCHIVE' /etc/ssh /etc/rsyslog.d && ls -lh '$CONFIG_ARCHIVE'" \
-  "Archive les configurations critiques SSH et rsyslog dans un fichier compresse."
+  "tar -C / -czf '$CONFIG_ARCHIVE' etc/ssh etc/rsyslog.d && ls -lh '$CONFIG_ARCHIVE'" \
+  "Archive les configurations critiques SSH et rsyslog dans un fichier compresse. L'option -C / evite les avertissements sur les chemins absolus." \
+  "no" \
+  "sudo sh -c \"tar -C / -czf '$CONFIG_ARCHIVE' etc/ssh etc/rsyslog.d && ls -lh '$CONFIG_ARCHIVE'\""
 
 run_cmd \
   "Lister le contenu de l'archive" \
@@ -578,7 +580,7 @@ run_cmd \
   "Ajouter la resolution locale du nom intranet" \
   "grep -qE '[[:space:]]$INTRANET_HOST( |$)' /etc/hosts || printf '%s\\n' '127.0.0.1 $INTRANET_HOST' >> /etc/hosts; grep '$INTRANET_HOST' /etc/hosts" \
   "Permet de tester curl http://intranet.alpesnet.local directement depuis la VM sans DNS externe."
-
+Preuve de travail : Je montre ma fiche de dépannage et j'explique la démarche couche par couche pour la panne traitée
 run_cmd \
   "Demarrer et verifier Nginx" \
   "systemctl enable --now nginx; systemctl reload nginx; systemctl --no-pager --full status nginx | sed -n '1,14p'" \
@@ -642,7 +644,7 @@ run_cmd \
 
 {
   echo "# Lecture rapide pour jury"
-  echo
+  echoPreuve de travail : Je montre ma fiche de dépannage et j'explique la démarche couche par couche pour la panne traitée
   echo "## Timeline d'execution"
   echo
   echo "| Etape | Action | Code retour |"
@@ -693,7 +695,7 @@ run_cmd \
   echo "- Checksum : \`$CHECKSUM_FILE\`"
   echo "- Restauration testee : \`$RESTORE_DIR\`"
   echo "- Vhost Nginx : \`$INTRANET_HOST\`"
-  echo "- Racine intranet : \`$INTRANET_ROOT\`"
+  echo "- Racine intranet : Preuve de travail : Je montre ma fiche de dépannage et j'explique la démarche couche par couche pour la panne traitée\`$INTRANET_ROOT\`"
   echo "- Sauvegarde web : \`$WWW_BACKUP_DIR\`"
   echo "- Restauration web testee : \`$WWW_RESTORE_DIR\`"
   echo
