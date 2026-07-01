@@ -578,11 +578,21 @@ validation_tar_restore() {
   validation_header \
     "Creer une archive tar et tester la restauration" \
     "L'archive est creee, listable et le contenu est restaurable dans un repertoire de test." \
-    "Je liste le contenu avec tar -tzf, puis j'extrais dans /tmp/restauration-test/ et montre les fichiers restaures."
+    "Je cree l'archive, je liste le contenu avec tar -tzf, puis j'extrais dans /tmp/restauration-test/ et je montre les fichiers restaures."
   run_cmd \
-    "Validation tar listage et restauration" \
-    "ls -lh '$CONFIG_ARCHIVE'; tar -tzf '$CONFIG_ARCHIVE' | sed -n '1,40p'; rm -rf '$RESTORE_DIR'; mkdir -p '$RESTORE_DIR'; tar -xzf '$CONFIG_ARCHIVE' -C '$RESTORE_DIR'; find '$RESTORE_DIR' -maxdepth 3 -type f | sed -n '1,40p'" \
-    "Liste l'archive, restaure dans /tmp/restauration-test et montre les fichiers extraits."
+    "Validation creer l'archive tar" \
+    "mkdir -p '$BACKUP_DIR'; tar -C / -czf '$CONFIG_ARCHIVE' etc/ssh etc/rsyslog.d; ls -lh '$CONFIG_ARCHIVE'" \
+    "Cree l'archive tar.gz des configurations SSH et rsyslog, puis affiche le fichier cree."
+
+  run_cmd \
+    "Validation lister le contenu avec tar -tzf" \
+    "tar -tzf '$CONFIG_ARCHIVE' | sed -n '1,80p'" \
+    "Liste le contenu de l'archive sans extraire les fichiers."
+
+  run_cmd \
+    "Validation extraire et afficher les fichiers restaures" \
+    "rm -rf '$RESTORE_DIR'; mkdir -p '$RESTORE_DIR'; tar -xzf '$CONFIG_ARCHIVE' -C '$RESTORE_DIR'; find '$RESTORE_DIR' -maxdepth 3 -type f | sed -n '1,80p'" \
+    "Extrait l'archive dans /tmp/restauration-test et montre les fichiers restaures."
 }
 
 validation_sha256() {
