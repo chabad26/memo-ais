@@ -144,6 +144,10 @@ nav:
           - Autonomie 3 - Nginx sécurisé AlpesNet: admin-systemes-linux/it-5/autonomie-3-nginx-securise-alpesnet.md
           - Débriefing Nginx - comparer et améliorer: admin-systemes-linux/it-5/debriefing-nginx-reference-alpesnet.md
           - Rapport automatique Autonomie 3 : admin-systemes-linux/it-5/rapport-it5-20260630_162804.md
+      - Itération 6 - Challenge final CTF :
+          - Guide CTF AlpesNet et script d'automatisation : admin-systemes-linux/it-6/ctf-challenge-final.md
+          - Validation du challenge CTF : admin-systemes-linux/it-6/validation-ctf-alpesnet.md
+          - Rapport automatique Challenge final CTF : admin-systemes-linux/it-6/rapport_Olivier.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
