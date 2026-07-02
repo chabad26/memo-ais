@@ -1,23 +1,23 @@
 # Mémo personnel de synthèse - SYS-01a
 
-## Concept 1 - Un compte n'est pas seulement un nom d'utilisateur
+## Concept 1 - Identités et comptes
 
-Pour moi, un compte Linux représente une identité technique : il a un UID, appartient à un ou plusieurs groupes, possède un répertoire personnel et peut recevoir des droits précis. Un compte humain sert à tracer les actions d'une personne, alors qu'un compte de service sert uniquement à faire tourner un programme.
+Pour moi, un compte Linux n'est pas juste un nom : c'est une identité avec un UID, des groupes, un home, un shell et des droits. Il faut distinguer les comptes humains, qui servent à tracer une personne, et les comptes de service, qui servent à faire tourner un programme.
 
-Lien avec la sécurité : si tout le monde utilise le même compte, on ne sait plus qui a fait quoi. En séparant les comptes humains, les groupes et les comptes de service, on limite les droits et on garde une meilleure traçabilité.
+Pour la sécurité, c'est essentiel : si les comptes sont mélangés ou partagés, on ne sait plus qui a fait quoi. Des identités séparées permettent d'appliquer le moindre privilège et de garder une vraie traçabilité.
 
-## Concept 2 - Les permissions protègent les fichiers avant même les outils de sécurité
+## Concept 2 - Permissions et accès
 
-Les droits Linux (`r`, `w`, `x`) indiquent qui peut lire, modifier ou exécuter un fichier. `chmod` règle les permissions, `chown` définit le propriétaire, et `umask` fixe les droits par défaut lors de la création de nouveaux fichiers. Les ACL permettent d'ajouter des exceptions plus fines quand les permissions classiques ne suffisent pas.
+Les permissions Linux définissent qui peut lire, modifier ou exécuter un fichier. `chmod`, `chown`, `umask` et les ACL permettent d'adapter les droits selon le besoin réel.
 
-Lien avec la sécurité : un fichier sensible mal protégé peut être lu ou modifié par un utilisateur qui ne devrait pas y avoir accès. Bien régler les permissions évite les fuites d'information et réduit les risques d'erreur ou de sabotage.
+Pour la sécurité, c'est une base : un fichier sensible mal protégé peut être lu, modifié ou supprimé par la mauvaise personne. Bien gérer les droits limite les fuites, les erreurs et les escalades de privilèges.
 
-## Concept 3 - Administrer un serveur, c'est aussi prouver ce qui a été fait
+## Concept 3 - Traces, vérifications et preuves
 
-Les logs, les commandes de vérification et les rapports ne sont pas seulement de la documentation. Ils servent à montrer l'état du système avant/après une action : comptes créés, droits appliqués, services actifs, erreurs, connexions, sauvegardes et restaurations testées.
+Administrer un serveur, ce n'est pas seulement faire des commandes. Il faut aussi vérifier et prouver l'état du système : logs, rapports, tests SSH, services actifs, sauvegardes, restaurations et état avant/après.
 
-Lien avec la sécurité : sans traces, on ne peut pas enquêter correctement après un incident. Les journaux système, les rapports d'audit et les preuves de test permettent de détecter un problème, comprendre ce qui s'est passé et démontrer que les mesures de sécurité fonctionnent.
+Pour la sécurité, les preuves sont indispensables. Sans logs ni vérifications, on ne peut pas comprendre un incident ni démontrer qu'une correction fonctionne.
 
 ## Synthèse personnelle
 
-Ce module me montre qu'un serveur Linux sécurisé repose d'abord sur des bases simples : des identités séparées, des permissions maîtrisées et des preuves vérifiables. Avant d'ajouter des outils avancés, il faut savoir qui a accès à quoi, pourquoi, et comment le démontrer.
+Ce module me montre qu'un serveur Linux sécurisé repose d'abord sur des bases simples : savoir qui accède au système, à quoi il a accès, et comment le prouver.
