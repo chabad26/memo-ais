@@ -60,6 +60,8 @@ Les points à vérifier en priorité :
 
     L'argument `--sshuser` remplace temporairement `SSH_ALLOW_USERS` pendant l'exécution. Il évite de rester bloqué avec une valeur générique comme `adm-prenom`.
 
+    Si `--sshuser` n'est pas fourni et que la configuration contient une valeur vide ou générique (`adm-prenom`, `adm-[prenom]`, `CHANGE_ME`), le script demande automatiquement quel utilisateur SSH doit rester autorisé. En mode non interactif, il refuse de continuer et demande de relancer avec `--sshuser`.
+
 ## Étape 3 - Faire un dry-run
 
 Le dry-run permet de vérifier l'enchaînement sans modifier la machine.
@@ -79,7 +81,7 @@ Pour éviter de devoir deviner les noms des modules, lancer :
 sudo ./main.sh --menu
 ```
 
-Le menu affiche les modules et demande le compte SSH à conserver si le module `03-ssh` est sélectionné.
+Le menu affiche les modules et demande le compte SSH à conserver si le module `03-ssh` est sélectionné et que `--sshuser` n'a pas déjà été fourni.
 
 Il affiche :
 

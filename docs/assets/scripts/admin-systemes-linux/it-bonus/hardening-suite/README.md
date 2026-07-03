@@ -16,6 +16,8 @@ sudo ./main.sh --all --dry-run --sshuser oliv
 
 Le mode `--menu` affiche la liste des modules, accepte `all`, `audit`, `dry-run`, `1 2 3`, `01,02,03` ou `q`, et demande le compte SSH a conserver si le module SSH est selectionne.
 
+Si `--sshuser` n'est pas fourni et que `SSH_ALLOW_USERS` vaut encore une valeur generique comme `adm-prenom`, le script demande automatiquement quel utilisateur SSH doit rester autorise. En mode non interactif, il s'arrete et demande de relancer avec `--sshuser`.
+
 Le log principal est genere dans `/var/log/alpesnet/hardening-[date].log`. Les rapports d'audit sont generes dans `rapports/audit-[hostname]-[date].txt`.
 
 ## Configuration

@@ -131,7 +131,7 @@ MENU
         ;;
       all|ALL)
         REQUESTED_MODULES=("${MODULE_ORDER[@]}")
-        return 0
+        break
         ;;
       audit|AUDIT|8|08)
         REQUESTED_MODULES=("08-audit")
@@ -167,10 +167,7 @@ MENU
   done
 
   if requested_contains "03-ssh" && [ -z "$SSHUSER_OVERRIDE" ]; then
-    echo
-    echo "Securite SSH : utilisateur autorise actuel : ${SSH_ALLOW_USERS:-non defini}"
-    read -r -p "Utilisateur SSH a garder autorise [${SUDO_USER:-${USER:-oliv}}] : " ssh_answer
-    SSHUSER_OVERRIDE="${ssh_answer:-${SUDO_USER:-${USER:-oliv}}}"
+    ask_ssh_user_if_needed
   fi
 }
 
@@ -314,6 +311,42 @@ validate_ssh_user_override() {
   fi
 }
 
+ssh_allow_users_needs_prompt() {
+  if [ -n "$SSHUSER_OVERRIDE" ]; then
+    return 1
+  fi
+  if ! requested_contains "03-ssh"; then
+    return 1
+  fi
+  case "${SSH_ALLOW_USERS:-}" in
+    ""|adm-prenom|adm-\\[prenom\\]|CHANGE_ME|changeme|todo|TODO|prenom|user)
+      return 0
+      ;;
+    *prenom*|*PRENOM*|*change*|*CHANGE*)
+      return 0
+      ;;
+  esac
+  return 1
+}
+
+ask_ssh_user_if_needed() {
+  local ssh_answer default_user
+  ssh_allow_users_needs_prompt || return 0
+  default_user="${SUDO_USER:-${USER:-oliv}}"
+
+  echo
+  echo "Securite SSH : aucun utilisateur SSH fiable n'est defini."
+  echo "Valeur actuelle SSH_ALLOW_USERS : ${SSH_ALLOW_USERS:-non defini}"
+  if [ ! -t 0 ]; then
+    echo "Mode non interactif : relance avec --sshuser $default_user ou definis SSH_ALLOW_USERS dans config/alpesnet.conf." >&2
+    exit 2
+  fi
+  read -r -p "Utilisateur SSH a garder autorise [$default_user] : " ssh_answer
+  SSHUSER_OVERRIDE="${ssh_answer:-$default_user}"
+  validate_ssh_user_override
+  SSH_ALLOW_USERS="$SSHUSER_OVERRIDE"
+}
+
 requested_contains() {
   local wanted="$1"
   local module
@@ -404,6 +437,7 @@ main() {
     validate_ssh_user_override
     load_config
   fi
+  ask_ssh_user_if_needed
   check_root_and_debian
   setup_runtime
   acquire_lock
