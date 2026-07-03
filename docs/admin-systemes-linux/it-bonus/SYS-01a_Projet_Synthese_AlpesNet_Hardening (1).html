@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  /* ── Reset minimal pour Moodle ── */
+  body { font-family: Arial, sans-serif; font-size: 0.9375rem; color: #1a1a2e; line-height: 1.6; max-width: 900px; margin: 0 auto; padding: 0 1rem; }
+  h2 { font-size: 1.3rem; color: #1F3864; border-bottom: 3px solid #2E75B6; padding-bottom: 6px; margin-top: 2rem; }
+  h3 { font-size: 1.05rem; color: #2E75B6; margin-top: 1.4rem; margin-bottom: 0.4rem; }
+  h4 { font-size: 0.95rem; color: #1F3864; margin-top: 1.2rem; margin-bottom: 0.3rem; }
+  p  { margin: 0.5rem 0; }
+  ul { margin: 0.4rem 0 0.8rem 1.4rem; }
+  li { margin: 0.25rem 0; }
+  code, pre { font-family: 'Courier New', monospace; font-size: 0.85rem; }
+  pre {
+    background: #f5f5f5;
+    border-left: 4px solid #2E75B6;
+    padding: 0.8rem 1rem;
+    overflow-x: auto;
+    border-radius: 0 4px 4px 0;
+    margin: 0.6rem 0;
+    line-height: 1.5;
+  }
+  pre .comment { color: #2E75B6; }
+
+  /* ── Boîtes colorées ── */
+  .box { border-radius: 4px; padding: 0.8rem 1rem; margin: 0.8rem 0; border-left: 5px solid; }
+  .box-context  { background: #D6E4F0; border-color: #1F3864; }
+  .box-obj      { background: #E8F5E9; border-color: #1E7E34; }
+  .box-warn     { background: #FFF3E0; border-color: #E65100; }
+  .box-tip      { background: #EDE7F6; border-color: #6B3FA0; }
+  .box-validate { background: #E0F2F1; border-color: #00695C; }
+  .box-optionnel{ background: #EDE7F6; border-color: #6B3FA0; }
+
+  /* ── Badges ── */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.75rem; font-weight: bold; margin-left: 6px; vertical-align: middle; }
+  .badge-obligatoire { background: #E8F5E9; color: #1E7E34; border: 1px solid #1E7E34; }
+  .badge-bonus       { background: #EDE7F6; color: #6B3FA0; border: 1px solid #6B3FA0; }
+
+  /* ── Table livrables ── */
+  table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.875rem; }
+  th { background: #1F3864; color: white; padding: 7px 10px; text-align: left; }
+  td { padding: 6px 10px; border-bottom: 1px solid #ccc; vertical-align: top; }
+  tr:nth-child(even) td { background: #EAF2FB; }
+
+  hr { border: none; border-top: 1px solid #ccc; margin: 2rem 0; }
+  .emoji-title { font-size: 1.1em; margin-right: 4px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 0 — EN-TÊTE
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">🔒</span> Projet de synthèse — AlpesNet Hardening Suite</h2>
+
+<p>
+  <strong>⏱️ Durée estimée :</strong> 6 à 10 heures selon l'ambition<br>
+  <strong>📍 Mode :</strong> Autonome — fin de module SYS-01a<br>
+  <strong>🎯 Public :</strong> Apprenants ayant terminé les kits 1 à 6 en avance<br>
+  <strong>📦 Rendu :</strong> Dépôt Git ou archive ZIP dans Moodle
+</p>
+
+<div class="box box-context">
+  <strong>Contexte opérationnel</strong><br>
+  AlpesNet déploie régulièrement de nouveaux serveurs Linux pour ses équipes. Chaque déploiement manuel prend du temps, est source d'erreurs et produit des configurations légèrement différentes d'une machine à l'autre.<br><br>
+  Tu es missionné pour concevoir une <strong>suite de scripts Bash</strong> qui automatise l'installation et la sécurisation complète d'un serveur Debian 12 fraîchement installé.
+  Le résultat attendu : un administrateur peut cloner un dépôt, lancer un script principal, et obtenir en quelques minutes un serveur durci, configuré et audité — reproductible à l'identique.
+</div>
+
+</section>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 1 — OBJECTIFS
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">🎯</span> Objectifs du projet</h2>
+
+<p>À l'issue de ce projet, tu seras capable de :</p>
+<ul>
+  <li>Concevoir une suite de scripts Bash modulaires, robustes et maintenables</li>
+  <li>Automatiser un processus de sécurisation complet et reproductible</li>
+  <li>Générer un rapport d'audit lisible par un humain et exploitable en production</li>
+  <li>Documenter un outil technique à un niveau professionnel</li>
+</ul>
+
+<div class="box box-obj">
+  <strong>Ce projet n'est pas un kit guidé.</strong> Il n'y a pas de solution fournie, pas d'étapes numérotées à suivre. Tu fais des choix techniques, tu les justifies, tu les documentes. C'est exactement ce qu'on attend d'un administrateur d'infrastructures sécurisées.
+</div>
+
+</section>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 2 — ARCHITECTURE DES SCRIPTS
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">🏗️</span> Architecture attendue</h2>
+
+<p>Le projet est organisé en modules indépendants orchestrés par un script principal.</p>
+
+<pre>
+<span class="comment">#!/bin/bash</span>
+<span class="comment"># hardening-suite/</span>
+<span class="comment">#   main.sh                  ← point d'entrée unique</span>
+<span class="comment">#   modules/</span>
+<span class="comment">#     01-systeme.sh          ← mise à jour + outils de base</span>
+<span class="comment">#     02-utilisateurs.sh     ← comptes, groupes, sudo</span>
+<span class="comment">#     03-ssh.sh              ← durcissement SSH</span>
+<span class="comment">#     04-firewall.sh         ← ufw + fail2ban</span>
+<span class="comment">#     05-services.sh         ← désactivation services inutiles</span>
+<span class="comment">#     06-logs.sh             ← rsyslog + logrotate</span>
+<span class="comment">#     07-sauvegarde.sh       ← rsync + planification cron</span>
+<span class="comment">#     08-audit.sh            ← génération du rapport final</span>
+<span class="comment">#   config/</span>
+<span class="comment">#     alpesnet.conf          ← variables de configuration</span>
+<span class="comment">#   rapports/                ← rapports générés (gitignore)</span>
+<span class="comment">#   README.md                ← documentation</span>
+</pre>
+
+<h3>Fonctionnement du script principal <code>main.sh</code></h3>
+<p><code>main.sh</code> doit :</p>
+<ul>
+  <li>Vérifier qu'il est exécuté en root (ou via sudo)</li>
+  <li>Lire la configuration depuis <code>config/alpesnet.conf</code></li>
+  <li>Appeler chaque module dans l'ordre, en loggant le résultat de chaque étape</li>
+  <li>Accepter des arguments pour sélectionner les modules à exécuter : <code>./main.sh --modules 01,02,03</code> ou <code>./main.sh --all</code></li>
+  <li>Afficher un résumé en fin d'exécution : modules passés / échoués</li>
+  <li>Générer automatiquement le rapport d'audit en fin de run</li>
+</ul>
+
+<pre>
+<span class="comment"># Exemple d'appel</span>
+sudo ./main.sh --all
+sudo ./main.sh --modules 03,04,08
+sudo ./main.sh --audit-only
+</pre>
+
+</section>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 3 — CAHIER DES CHARGES MODULES
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">📋</span> Cahier des charges — Modules obligatoires</h2>
+
+<!-- MODULE 01 -->
+<h3>Module 01 — Mise à jour système <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<ul>
+  <li><code>apt update && apt upgrade -y</code> avec gestion des erreurs</li>
+  <li>Installation des outils définis dans <code>alpesnet.conf</code></li>
+  <li>Résultat loggé : nombre de paquets mis à jour, date, durée</li>
+</ul>
+
+<!-- MODULE 02 -->
+<h3>Module 02 — Utilisateurs et groupes <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<ul>
+  <li>Créer les comptes définis dans <code>alpesnet.conf</code> s'ils n'existent pas (idempotent)</li>
+  <li>Appliquer le principe du moindre privilège : sudo restreint, comptes service sans shell</li>
+  <li>Vérifier qu'aucun compte non défini n'a UID 0</li>
+  <li>Vérifier qu'aucun compte n'a <code>NOPASSWD: ALL</code> dans sudoers</li>
+</ul>
+
+<!-- MODULE 03 -->
+<h3>Module 03 — Durcissement SSH <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<ul>
+  <li>Appliquer les paramètres de durcissement depuis <code>alpesnet.conf</code> : <code>PermitRootLogin</code>, <code>PasswordAuthentication</code>, <code>AllowUsers</code>, <code>MaxAuthTries</code></li>
+  <li>Vérifier la syntaxe avec <code>sshd -t</code> avant tout rechargement</li>
+  <li>Recharger SSH uniquement si la syntaxe est valide — ne jamais couper une session active sans vérification</li>
+</ul>
+
+<!-- MODULE 04 -->
+<h3>Module 04 — Pare-feu et protection brute force <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<ul>
+  <li>Configurer ufw : politique deny-incoming, règles depuis <code>alpesnet.conf</code></li>
+  <li>Activer fail2ban avec la jail SSH, paramètres depuis <code>alpesnet.conf</code></li>
+  <li>Vérifier l'état actif des deux services en fin de module</li>
+</ul>
+
+<!-- MODULE 05 -->
+<h3>Module 05 — Services inutiles <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<ul>
+  <li>Lister les services actifs, comparer à la liste autorisée dans <code>alpesnet.conf</code></li>
+  <li>Désactiver tout service non listé (avec confirmation avant action si mode interactif)</li>
+  <li>Loguer les services désactivés et les ports fermés (avant/après)</li>
+</ul>
+
+<!-- MODULE 06 -->
+<h3>Module 06 — Journalisation <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<ul>
+  <li>Déployer une règle rsyslog dédiée aux événements SSH AlpesNet</li>
+  <li>Configurer logrotate avec la politique définie dans <code>alpesnet.conf</code> (rétention, compression)</li>
+  <li>Tester avec <code>logger</code> que la règle rsyslog est active</li>
+</ul>
+
+<!-- MODULE 07 -->
+<h3>Module 07 — Sauvegarde <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<ul>
+  <li>Configurer rsync pour sauvegarder <code>/etc</code> et les répertoires définis dans <code>alpesnet.conf</code></li>
+  <li>Planifier la sauvegarde via cron avec redirection des logs</li>
+  <li>Générer un checksum sha256 et vérifier l'intégrité après chaque sauvegarde</li>
+</ul>
+
+<!-- MODULE 08 -->
+<h3>Module 08 — Rapport d'audit <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<p>Le module 08 ne configure rien. Il <strong>vérifie</strong> et <strong>documente</strong> l'état du système après les autres modules. Il produit un fichier <code>rapports/audit-[hostname]-[date].txt</code> lisible par un humain et exploitable en production.</p>
+
+<p>Le rapport doit couvrir :</p>
+
+<table>
+  <tr><th>Section</th><th>Contenu attendu</th><th>Commandes de référence</th></tr>
+  <tr><td>En-tête</td><td>Hostname, IP, date, version OS, durée du hardening</td><td><code>hostname</code> <code>ip addr</code> <code>lsb_release</code></td></tr>
+  <tr><td>Comptes</td><td>Liste des comptes avec shell actif, UID 0, membres sudo</td><td><code>awk -F: '($3==0)'</code> <code>getent group sudo</code></td></tr>
+  <tr><td>SSH</td><td>Paramètres clés du sshd_config actif</td><td><code>sshd -T | grep -E "permitroot|password|allowusers|maxauth"</code></td></tr>
+  <tr><td>Pare-feu</td><td>Règles ufw actives, statut fail2ban</td><td><code>ufw status verbose</code> <code>fail2ban-client status</code></td></tr>
+  <tr><td>Services</td><td>Ports ouverts, services actifs</td><td><code>ss -tulnp</code> <code>systemctl list-units</code></td></tr>
+  <tr><td>Logs</td><td>Règles rsyslog actives, fichiers logrotate configurés</td><td><code>rsyslogd -N1</code> <code>logrotate -d</code></td></tr>
+  <tr><td>Sauvegarde</td><td>Dernière sauvegarde, checksum, tâche cron</td><td><code>ls -lh /backup</code> <code>sha256sum -c</code> <code>crontab -l</code></td></tr>
+  <tr><td>Exécution</td><td>Durée de chaque module, durée totale, modules sautés (dépendance non satisfaite)</td><td>Données internes du run (voir section Traçabilité)</td></tr>
+  <tr><td>Score</td><td>Nombre de contrôles passés / total, liste des écarts</td><td>Logique interne du script</td></tr>
+</table>
+
+<div class="box box-validate">
+  <strong>Critère de validation du rapport :</strong> un administrateur externe doit pouvoir lire le rapport et évaluer l'état de sécurité du serveur <em>sans exécuter aucune commande</em>. Chaque section doit indiquer clairement si le contrôle est <strong>PASS</strong>, <strong>FAIL</strong> ou <strong>WARN</strong>.
+</div>
+
+</section>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 4 — FICHIER DE CONFIGURATION
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">⚙️</span> Fichier de configuration <code>config/alpesnet.conf</code></h2>
+
+<p>Toutes les valeurs métier sont externalisées dans ce fichier. Les scripts ne contiennent aucune valeur en dur — ils lisent uniquement depuis <code>alpesnet.conf</code>.</p>
+
+<pre>
+<span class="comment"># ============================================================</span>
+<span class="comment"># alpesnet.conf — Configuration AlpesNet Hardening Suite</span>
+<span class="comment"># ============================================================</span>
+
+<span class="comment"># Identité du serveur</span>
+HOSTNAME="srv-alpesnet"
+DOMAINE="alpesnet.local"
+
+<span class="comment"># Comptes à créer (format : login:groupe:shell:commentaire)</span>
+COMPTES=(
+  "alice.martin:devops:/bin/bash:Alice Martin Lead DevOps"
+  "www-nginx:www-nginx:/usr/sbin/nologin:Compte service Nginx"
+  "backup-agent:backup-agent:/usr/sbin/nologin:Agent de sauvegarde"
+)
+
+<span class="comment"># Groupes à créer</span>
+GROUPES=("devops" "readonly" "backup-agent" "www-nginx")
+
+<span class="comment"># Durcissement SSH</span>
+SSH_PERMIT_ROOT="no"
+SSH_PASSWORD_AUTH="no"
+SSH_ALLOW_USERS="adm-[prenom]"
+SSH_MAX_AUTH_TRIES=3
+SSH_LOGIN_GRACE_TIME=20
+
+<span class="comment"># Règles ufw (format : port/protocol:from)</span>
+UFW_RULES=(
+  "22/tcp:192.168.56.0/24"
+  "80/tcp:any"
+)
+
+<span class="comment"># fail2ban</span>
+FAIL2BAN_BANTIME=3600
+FAIL2BAN_FINDTIME=600
+FAIL2BAN_MAXRETRY=3
+
+<span class="comment"># Services autorisés (tous les autres sont désactivés)</span>
+SERVICES_AUTORISES=("ssh" "rsyslog" "cron" "ufw" "fail2ban" "nginx")
+
+<span class="comment"># Journalisation</span>
+LOG_SSH_FILE="/var/log/alpesnet/ssh-auth.log"
+LOGROTATE_RETENTION=14
+
+<span class="comment"># Sauvegarde</span>
+BACKUP_DIRS=("/etc" "/var/www")
+BACKUP_DEST="/backup/alpesnet"
+BACKUP_CRON="0 2 * * *"
+BACKUP_RETENTION_DAYS=7
+
+<span class="comment"># Outils à installer</span>
+OUTILS_BASE=(
+  "vim" "curl" "wget" "git" "tree" "htop" "lsof" "net-tools"
+  "acl" "rsyslog" "logrotate" "ufw" "fail2ban"
+  "nfs-kernel-server" "samba" "rsync" "nginx"
+)
+</pre>
+
+</section>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 5 — EXIGENCES TECHNIQUES
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">🔧</span> Exigences techniques — obligatoires</h2>
+
+<h3>Robustesse</h3>
+<ul>
+  <li>Chaque script commence par <code>set -euo pipefail</code></li>
+  <li>Chaque module est <strong>idempotent</strong> : il peut être relancé plusieurs fois sans effet de bord (un compte déjà existant n'est pas recréé, une règle ufw déjà présente n'est pas dupliquée)</li>
+  <li>Chaque action risquée est précédée d'une sauvegarde automatique du fichier modifié (<code>cp fichier fichier.bak.$(date +%Y%m%d%H%M%S)</code>)</li>
+  <li>Toute commande susceptible de couper l'accès SSH est testée avec <code>sshd -t</code> avant exécution</li>
+</ul>
+
+<h3>Logging</h3>
+<ul>
+  <li>Chaque module produit des logs horodatés au format : <code>[YYYY-MM-DD HH:MM:SS] [NOM_MODULE] [NIVEAU] message</code></li>
+  <li>Niveaux : <code>INFO</code>, <code>OK</code>, <code>WARN</code>, <code>ERROR</code></li>
+  <li>Le log est écrit simultanément à l'écran et dans <code>/var/log/alpesnet/hardening-[date].log</code></li>
+</ul>
+
+<h3>Documentation</h3>
+<ul>
+  <li>Chaque script a son en-tête standard (Auteur, Date, Module, Objet, Usage, Dépendances)</li>
+  <li>Le <code>README.md</code> explique en moins d'une page : comment utiliser la suite, le format d'<code>alpesnet.conf</code>, la structure des rapports, et comment ajouter un nouveau module</li>
+</ul>
+
+<h3>Compatibilité</h3>
+<ul>
+  <li>Cible : Debian 12 (Bookworm), installation minimale, VirtualBox</li>
+  <li>Aucune dépendance externe (Python, Ruby, etc.) — Bash pur + outils GNU standard</li>
+  <li>Le script principal détecte si la distribution est Debian et refuse de s'exécuter sur une autre</li>
+</ul>
+
+<h3>Traçabilité de l'exécution <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<p>Chaque exécution doit pouvoir être analysée a posteriori : quand un module a-t-il tourné, combien de temps a-t-il pris, est-il allé au bout.</p>
+<ul>
+  <li>Chronométrer chaque module individuellement (début, fin, durée) avec <code>$(date +%s)</code> ou <code>$SECONDS</code></li>
+  <li>Logger la durée de chaque module dans le log principal au format : <code>[NOM_MODULE] terminé en Xs (statut: OK/FAIL)</code></li>
+  <li><code>main.sh</code> affiche un récapitulatif final avec la durée totale et la durée par module, trié du plus long au plus court</li>
+  <li>Le rapport d'audit (module 08) inclut un tableau des durées d'exécution de la dernière run</li>
+</ul>
+
+<pre>
+<span class="comment"># Exemple de mesure dans un module</span>
+DEBUT=$(date +%s)
+<span class="comment"># ... actions du module ...</span>
+FIN=$(date +%s)
+DUREE=$((FIN - DEBUT))
+echo "[$(date '+%Y-%m-%d %H:%M:%S')] [03-ssh] [OK] terminé en ${DUREE}s" | tee -a "$LOGFILE"
+</pre>
+
+<h3>Verrouillage et exécutions concurrentes <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<p>Deux lancements simultanés de <code>main.sh</code> (ou d'un module) sur le même serveur peuvent provoquer des corruptions de configuration. Le script doit l'empêcher.</p>
+<ul>
+  <li><code>main.sh</code> crée un fichier verrou dans <code>/var/lock/alpesnet-hardening.lock</code> dès son démarrage</li>
+  <li>Le fichier verrou contient le PID du processus en cours (<code>echo $$ > /var/lock/alpesnet-hardening.lock</code>)</li>
+  <li>Si un verrou existe déjà au démarrage : vérifier que le PID contenu est toujours actif (<code>kill -0 $PID</code>)
+    <ul>
+      <li>PID actif → refuser de démarrer, afficher un message explicite et quitter (<code>exit 1</code>)</li>
+      <li>PID inactif (verrou orphelin d'un crash précédent) → avertir, supprimer le verrou obsolète et continuer</li>
+    </ul>
+  </li>
+  <li>Le verrou est supprimé en fin d'exécution, <strong>y compris en cas d'erreur</strong> — utiliser un <code>trap</code> sur <code>EXIT</code> pour garantir le nettoyage</li>
+</ul>
+
+<pre>
+<span class="comment"># Exemple de gestion du verrou</span>
+LOCKFILE="/var/lock/alpesnet-hardening.lock"
+
+if [[ -f "$LOCKFILE" ]]; then
+    OLD_PID=$(cat "$LOCKFILE")
+    if kill -0 "$OLD_PID" 2>/dev/null; then
+        echo "ERREUR : une exécution est déjà en cours (PID $OLD_PID)" &gt;&amp;2
+        exit 1
+    else
+        echo "AVERTISSEMENT : verrou orphelin détecté (PID $OLD_PID inactif), nettoyage"
+        rm -f "$LOCKFILE"
+    fi
+fi
+
+echo $$ > "$LOCKFILE"
+trap 'rm -f "$LOCKFILE"' EXIT
+</pre>
+
+<h3>Séquencement et dépendances entre modules <span class="badge badge-obligatoire">Obligatoire</span></h3>
+<p>Certains modules n'ont de sens que si un autre a déjà tourné avec succès. Le module 04 (pare-feu) ne doit pas s'exécuter si le module 03 (SSH) a échoué — sinon le risque est de fermer l'accès distant avant que SSH soit correctement durci et vérifié.</p>
+<ul>
+  <li>Définir une table de dépendances explicite, lisible en un coup d'œil (en haut de <code>main.sh</code> ou dans <code>alpesnet.conf</code>)</li>
+  <li>Avant de lancer un module, vérifier que tous ses prérequis ont le statut <code>OK</code> dans la run en cours</li>
+  <li>Si un prérequis est en échec ou n'a pas été exécuté : le module dépendant est <strong>sauté</strong>, pas exécuté en mode dégradé — logger clairement la raison du saut</li>
+  <li><code>--modules</code> doit respecter cette table même si l'apprenant sélectionne manuellement un sous-ensemble de modules</li>
+</ul>
+
+<pre>
+<span class="comment"># Exemple de table de dépendances (à placer en haut de main.sh)</span>
+<span class="comment"># Format : [module]="dépendance1 dépendance2"</span>
+declare -A DEPENDANCES=(
+    ["02-utilisateurs"]="01-systeme"
+    ["03-ssh"]="01-systeme 02-utilisateurs"
+    ["04-firewall"]="03-ssh"
+    ["05-services"]="01-systeme"
+    ["06-logs"]="01-systeme"
+    ["07-sauvegarde"]="02-utilisateurs"
+    ["08-audit"]=""   <span class="comment"># aucune dépendance — peut toujours tourner</span>
+)
+
+<span class="comment"># Vérification avant exécution d'un module</span>
+verifier_dependances() {
+    local module="$1"
+    for dep in ${DEPENDANCES[$module]}; do
+        if [[ "${STATUT[$dep]}" != "OK" ]]; then
+            echo "[$module] SAUTÉ — dépendance '$dep' non satisfaite (statut: ${STATUT[$dep]:-non exécuté})"
+            STATUT[$module]="SKIPPED"
+            return 1
+        fi
+    done
+    return 0
+}
+</pre>
+
+</section>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 6 — EXTENSIONS OPTIONNELLES
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">⭐</span> Extensions optionnelles — pour aller plus loin</h2>
+
+<div class="box box-optionnel">
+  Ces extensions sont <strong>bonus</strong>. Elles introduisent des concepts au-delà de SYS-01a. Elles ne sont pas évaluées sur les mêmes critères que les modules obligatoires — c'est l'exploration qui compte.
+</div>
+
+<h3>Option A — Module <code>09-auditd.sh</code> : audit noyau <span class="badge badge-bonus">Bonus</span></h3>
+<p>Installer et configurer <code>auditd</code> pour tracer les appels système critiques. <a href="https://linux.die.net/man/8/auditd" target="_blank">→ man auditd</a></p>
+<ul>
+  <li>Installer <code>auditd</code> et <code>audispd-plugins</code></li>
+  <li>Ajouter des règles pour surveiller : modifications de <code>/etc/passwd</code>, <code>/etc/sudoers</code>, exécutions en root, connexions SSH</li>
+  <li>Intégrer la sortie <code>ausearch</code> dans le rapport d'audit module 08</li>
+</ul>
+
+<h3>Option B — Module <code>10-aide.sh</code> : intégrité des fichiers <span class="badge badge-bonus">Bonus</span></h3>
+<p>Installer AIDE (Advanced Intrusion Detection Environment) pour détecter toute modification non autorisée de fichiers système. <a href="https://aide.github.io/" target="_blank">→ aide.github.io</a></p>
+<ul>
+  <li>Installer et configurer AIDE</li>
+  <li>Initialiser la base de référence (<code>aide --init</code>) après hardening</li>
+  <li>Planifier une vérification hebdomadaire via cron avec rapport par mail (ou dans le log)</li>
+</ul>
+
+<h3>Option C — Mode dry-run <span class="badge badge-bonus">Bonus</span></h3>
+<p>Ajouter un mode <code>./main.sh --dry-run</code> qui simule toutes les actions sans rien modifier, et produit un rapport de ce qui serait fait.</p>
+
+<h3>Option D — Gestion des erreurs avancée <span class="badge badge-bonus">Bonus</span></h3>
+<p>Implémenter un mécanisme de rollback : si un module échoue, restaurer automatiquement les fichiers sauvegardés avant l'exécution du module.</p>
+
+<h3>Option E — Tests automatisés <span class="badge badge-bonus">Bonus</span></h3>
+<p>Écrire un script <code>tests/run_tests.sh</code> qui vérifie chaque module de façon indépendante (peut s'appuyer sur <a href="https://github.com/bats-core/bats-core" target="_blank">bats-core</a>).</p>
+
+</section>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 7 — LIVRABLES ET CRITÈRES DE VALIDATION
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">📦</span> Livrables attendus</h2>
+
+<table>
+  <tr><th>Livrable</th><th>Format</th><th>Critère minimum d'acceptance</th></tr>
+  <tr><td>Suite de scripts</td><td>Archive ZIP ou dépôt Git</td><td><code>bash -n *.sh modules/*.sh</code> sans erreur de syntaxe</td></tr>
+  <tr><td>Fichier de configuration</td><td><code>config/alpesnet.conf</code></td><td>Toutes les valeurs métier externalisées, aucune valeur en dur dans les scripts</td></tr>
+  <tr><td>Rapport d'audit généré</td><td><code>rapports/audit-[hostname]-[date].txt</code></td><td>Sections PASS/FAIL/WARN présentes, lisible sans exécuter de commande</td></tr>
+  <tr><td>README.md</td><td>Markdown</td><td>Usage clair en &lt; 1 page, structure expliquée, comment ajouter un module</td></tr>
+  <tr><td>Démonstration live</td><td>VM VirtualBox Debian 12 fraîche</td><td><code>sudo ./main.sh --all</code> s'exécute sans erreur fatale et produit le rapport</td></tr>
+</table>
+
+<h3>🏁 Critères de validation — démonstration live</h3>
+
+<div class="box box-validate">
+<ul style="margin:0">
+  <li><code>sudo ./main.sh --all</code> tourne jusqu'au bout sans <code>exit 1</code> non géré</li>
+  <li>Le rapport <code>audit-[hostname]-[date].txt</code> est produit et contient toutes les sections</li>
+  <li><code>sudo ./main.sh --all</code> relancé une seconde fois sans modification → comportement identique (idempotence)</li>
+  <li>SSH est toujours accessible après exécution complète</li>
+  <li><code>sudo ufw status verbose</code> montre les règles issues d'<code>alpesnet.conf</code></li>
+  <li>Au moins un <code>WARN</code> ou <code>FAIL</code> est correctement détecté dans le rapport (ex : simuler un compte avec NOPASSWD avant le lancement)</li>
+  <li>Le récapitulatif final affiche la durée de chaque module et la durée totale</li>
+  <li>Lancer <code>main.sh</code> deux fois en parallèle dans deux terminaux → le second lancement est refusé avec un message explicite citant le PID en cours</li>
+  <li>Supprimer artificiellement le fichier verrou pendant une exécution puis relancer après un <code>kill -9</code> du premier process → le verrou orphelin est détecté et nettoyé automatiquement</li>
+  <li>Forcer l'échec du module 03 (ex : renommer temporairement <code>sshd</code>) puis lancer <code>--all</code> → le module 04 est bien sauté avec un message explicite, pas exécuté en mode dégradé</li>
+</ul>
+</div>
+
+</section>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 8 — RESSOURCES
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">🟣</span> Ressources</h2>
+
+<h3>📚 Documentation de référence</h3>
+<ul>
+  <li><a href="https://www.gnu.org/software/bash/manual/bash.html" target="_blank">Bash Reference Manual — gnu.org</a></li>
+  <li><a href="https://google.github.io/styleguide/shellguide.html" target="_blank">Google Shell Style Guide — bonnes pratiques Bash</a></li>
+  <li><a href="https://www.ssi.gouv.fr/guide/recommandations-de-securite-relatives-a-un-systeme-gnulinux/" target="_blank">ANSSI — Recommandations sécurité GNU/Linux</a></li>
+  <li><a href="https://www.cisecurity.org/benchmark/debian_linux" target="_blank">CIS Debian Linux Benchmark (référence hardening)</a></li>
+  <li><a href="https://www.debian.org/doc/manuals/securing-debian-manual/" target="_blank">Securing Debian Manual — debian.org</a></li>
+</ul>
+
+<h3>🔧 Outils utiles</h3>
+<ul>
+  <li><a href="https://www.shellcheck.net/" target="_blank">ShellCheck — analyseur statique de scripts Bash (en ligne)</a></li>
+  <li><a href="https://explainshell.com/" target="_blank">ExplainShell — décomposer une commande complexe</a></li>
+  <li><a href="https://github.com/bats-core/bats-core" target="_blank">bats-core — framework de tests pour scripts Bash (option E)</a></li>
+  <li><a href="https://aide.github.io/" target="_blank">AIDE — Advanced Intrusion Detection Environment (option B)</a></li>
+</ul>
+
+<h3>📖 À lire en priorité</h3>
+<ul>
+  <li><code>man bash</code> — sections "Functions", "Special Parameters", "Compound Commands"</li>
+  <li><code>man ufw</code> · <code>man fail2ban</code> · <code>man rsyslogd</code> · <code>man logrotate</code> · <code>man sshd_config</code></li>
+</ul>
+
+</section>
+
+<hr>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 9 — CONSEILS
+═══════════════════════════════════════════════════════════════ -->
+<section>
+
+<h2><span class="emoji-title">💡</span> Conseils avant de commencer</h2>
+
+<div class="box box-warn">
+  <strong>Ne pas partir du résultat.</strong> Commence par écrire <code>main.sh</code> avec des appels vers des modules vides (<code>echo "Module 01 - TODO"</code>). Valide que la structure fonctionne, puis implémente module par module. Un projet bien architecturé avec deux modules complets vaut mieux qu'un monolithe de 400 lignes qui plante au milieu.
+</div>
+
+<ul>
+  <li><strong>Commence par le module 08 (audit)</strong> — savoir ce que tu vas vérifier en aval guide ce que tu configures en amont</li>
+  <li><strong>Teste chaque module isolément</strong> avant de l'intégrer à <code>main.sh</code> : <code>sudo bash modules/03-ssh.sh</code></li>
+  <li><strong>Utilise ShellCheck</strong> systématiquement — il capte 80% des erreurs Bash classiques avant exécution</li>
+  <li><strong>Snapshot VirtualBox</strong> avant chaque test de module risqué (SSH, ufw)</li>
+  <li><strong>L'idempotence est le vrai défi</strong> — tester toujours le second run : le script ne doit pas créer un compte qui existe déjà, ni ajouter une règle ufw en double</li>
+</ul>
+
+<div class="box box-tip">
+  <strong>🟣 Pour l'option A (auditd) :</strong> commence par lire <code>man audit.rules</code> et la page <a href="https://linux.die.net/man/8/auditd" target="_blank">auditd(8)</a> avant d'écrire une seule ligne. Les règles auditd ont une syntaxe spécifique qui diffère de Bash.
+</div>
+
+</section>
+
+</body>
+</html>

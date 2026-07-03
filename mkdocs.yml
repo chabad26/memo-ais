@@ -148,6 +148,8 @@ nav:
           - Guide CTF AlpesNet et script d'automatisation : admin-systemes-linux/it-6/ctf-challenge-final.md
           - Validation du challenge CTF : admin-systemes-linux/it-6/validation-ctf-alpesnet.md
           - Rapport automatique Challenge final CTF : admin-systemes-linux/it-6/rapport_Olivier.md
+      - Bonus - AlpesNet Hardening Suite:
+          - Guide pas-à-pas et script: admin-systemes-linux/it-bonus/alpesnet-hardening-suite.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
