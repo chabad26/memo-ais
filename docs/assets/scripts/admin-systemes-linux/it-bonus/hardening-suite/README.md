@@ -4,17 +4,17 @@ Suite Bash modulaire pour durcir une Debian 12 fraichement installee.
 
 ## Usage
 
-Adapter d'abord `config/alpesnet.conf`, surtout `SSH_ALLOW_USERS` et les regles `UFW_RULES`, puis lancer :
+Adapter d'abord `config/alpesnet.conf`, surtout `SSH_ALLOW_USERS` et les regles `UFW_RULES`, puis lancer. Pour eviter de couper son acces SSH, utiliser `--sshuser` :
 
 ```bash
 sudo ./main.sh --menu
-sudo ./main.sh --all
-sudo ./main.sh --modules 03,04,08
+sudo ./main.sh --all --sshuser oliv
+sudo ./main.sh --modules 03,04,08 --sshuser oliv
 sudo ./main.sh --audit-only
-sudo ./main.sh --all --dry-run
+sudo ./main.sh --all --dry-run --sshuser oliv
 ```
 
-Le mode `--menu` affiche la liste des modules et accepte `all`, `audit`, `dry-run`, `1 2 3`, `01,02,03` ou `q`.
+Le mode `--menu` affiche la liste des modules, accepte `all`, `audit`, `dry-run`, `1 2 3`, `01,02,03` ou `q`, et demande le compte SSH a conserver si le module SSH est selectionne.
 
 Le log principal est genere dans `/var/log/alpesnet/hardening-[date].log`. Les rapports d'audit sont generes dans `rapports/audit-[hostname]-[date].txt`.
 

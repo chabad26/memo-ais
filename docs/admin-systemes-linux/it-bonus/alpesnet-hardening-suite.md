@@ -51,13 +51,22 @@ Les points à vérifier en priorité :
 | `SERVICES_AUTORISES` | définir les services qui doivent rester actifs |
 | `BACKUP_DIRS` | choisir les dossiers à sauvegarder |
 
+!!! warning "Anti auto-blocage SSH"
+    Si le module SSH est lancé, indiquer explicitement le compte à conserver autorisé :
+
+    ```bash
+    sudo ./main.sh --all --sshuser oliv
+    ```
+
+    L'argument `--sshuser` remplace temporairement `SSH_ALLOW_USERS` pendant l'exécution. Il évite de rester bloqué avec une valeur générique comme `adm-prenom`.
+
 ## Étape 3 - Faire un dry-run
 
 Le dry-run permet de vérifier l'enchaînement sans modifier la machine.
 
 ```bash
 cd hardening-suite
-sudo ./main.sh --all --dry-run
+sudo ./main.sh --all --dry-run --sshuser oliv
 ```
 
 Le script doit afficher les modules exécutés, les statuts et les durées. En dry-run, les commandes sont journalisées mais simulées.
@@ -70,7 +79,9 @@ Pour éviter de devoir deviner les noms des modules, lancer :
 sudo ./main.sh --menu
 ```
 
-Le menu affiche :
+Le menu affiche les modules et demande le compte SSH à conserver si le module `03-ssh` est sélectionné.
+
+Il affiche :
 
 ```text
 01  Mise a jour systeme et outils de base
@@ -100,7 +111,7 @@ Pour tester progressivement :
 
 ```bash
 sudo ./main.sh --modules 01,02
-sudo ./main.sh --modules 03,04,08
+sudo ./main.sh --modules 03,04,08 --sshuser oliv
 sudo ./main.sh --audit-only
 ```
 
@@ -244,7 +255,7 @@ Le rapport contient :
 Avant de lancer, faire un snapshot VirtualBox et vérifier l'utilisateur autorisé en SSH.
 
 ```bash
-sudo ./main.sh --all
+sudo ./main.sh --all --sshuser oliv
 ```
 
 Résultat attendu :

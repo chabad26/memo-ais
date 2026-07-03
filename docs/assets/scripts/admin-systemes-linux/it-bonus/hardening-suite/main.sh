@@ -19,6 +19,7 @@ RUN_TIMES_FILE="$REPORT_DIR/run-times-${RUN_ID}.tsv"
 LOCKFILE="/var/lock/alpesnet-hardening.lock"
 DRY_RUN=0
 MENU_MODE=0
+SSHUSER_OVERRIDE=""
 REQUESTED_MODULES=()
 TOTAL_START="$(date +%s)"
 TOTAL_DURATION=0
@@ -74,8 +75,8 @@ usage() {
   cat <<USAGE
 Usage:
   sudo ./main.sh --menu
-  sudo ./main.sh --all [--dry-run]
-  sudo ./main.sh --modules 01,02,03 [--dry-run]
+  sudo ./main.sh --all [--dry-run] [--sshuser oliv]
+  sudo ./main.sh --modules 01,02,03 [--dry-run] [--sshuser oliv]
   sudo ./main.sh --audit-only
 
 Options:
@@ -83,6 +84,7 @@ Options:
   --all             Execute tous les modules dans l'ordre.
   --modules LISTE   Execute une liste: 01,02,03 ou 03-ssh,04-firewall.
   --audit-only      Execute uniquement le module 08-audit.
+  --sshuser USER     Force AllowUsers SSH pour eviter de couper son acces.
   --dry-run         Simule les commandes sans modifier le systeme.
   -h, --help        Affiche cette aide.
 USAGE
@@ -106,7 +108,7 @@ print_module_list() {
 }
 
 menu_select_modules() {
-  local answer token normalized clean
+  local answer token normalized clean ssh_answer
   while true; do
     print_module_list
     cat <<MENU
@@ -160,9 +162,16 @@ MENU
       REQUESTED_MODULES+=("$normalized")
     done
     if [ "${#REQUESTED_MODULES[@]}" -gt 0 ]; then
-      return 0
+      break
     fi
   done
+
+  if requested_contains "03-ssh" && [ -z "$SSHUSER_OVERRIDE" ]; then
+    echo
+    echo "Securite SSH : utilisateur autorise actuel : ${SSH_ALLOW_USERS:-non defini}"
+    read -r -p "Utilisateur SSH a garder autorise [${SUDO_USER:-${USER:-oliv}}] : " ssh_answer
+    SSHUSER_OVERRIDE="${ssh_answer:-${SUDO_USER:-${USER:-oliv}}}"
+  fi
 }
 
 log_main() {
@@ -207,6 +216,11 @@ parse_args() {
         ;;
       --audit-only)
         REQUESTED_MODULES=("08-audit")
+        ;;
+      --sshuser)
+        shift
+        [ "${1:-}" ] || { echo "--sshuser attend un nom d'utilisateur" >&2; exit 2; }
+        SSHUSER_OVERRIDE="$1"
         ;;
       --dry-run)
         DRY_RUN=1
@@ -285,6 +299,19 @@ load_config() {
   fi
   # shellcheck disable=SC1090
   . "$CONFIG_FILE"
+  if [ -n "$SSHUSER_OVERRIDE" ]; then
+    SSH_ALLOW_USERS="$SSHUSER_OVERRIDE"
+  fi
+}
+
+validate_ssh_user_override() {
+  if [ -z "$SSHUSER_OVERRIDE" ]; then
+    return 0
+  fi
+  if ! [[ "$SSHUSER_OVERRIDE" =~ ^[a-z_][a-z0-9_-]*[$]?$ ]]; then
+    echo "Nom d'utilisateur SSH invalide: $SSHUSER_OVERRIDE" >&2
+    exit 2
+  fi
 }
 
 requested_contains() {
@@ -327,8 +354,8 @@ run_one_module() {
   start="$(date +%s)"
   TOTAL_DURATION=$(($(date +%s) - TOTAL_START))
   set +e
-  DRY_RUN="$DRY_RUN" LOGFILE="$LOGFILE" REPORT_DIR="$REPORT_DIR" RUN_TIMES_FILE="$RUN_TIMES_FILE" TOTAL_DURATION="$TOTAL_DURATION" \
-    bash -c "set -euo pipefail; source '$CONFIG_FILE'; source '$MODULE_DIR/_common.sh'; source '$file'; run_module"
+  DRY_RUN="$DRY_RUN" SSHUSER_OVERRIDE="$SSHUSER_OVERRIDE" LOGFILE="$LOGFILE" REPORT_DIR="$REPORT_DIR" RUN_TIMES_FILE="$RUN_TIMES_FILE" TOTAL_DURATION="$TOTAL_DURATION" \
+    bash -c "set -euo pipefail; source '$CONFIG_FILE'; if [ -n \"\${SSHUSER_OVERRIDE:-}\" ]; then SSH_ALLOW_USERS=\"\$SSHUSER_OVERRIDE\"; fi; source '$MODULE_DIR/_common.sh'; source '$file'; run_module"
   status=$?
   set -e
   end="$(date +%s)"
@@ -370,17 +397,23 @@ print_summary() {
 
 main() {
   parse_args "$@"
+  validate_ssh_user_override
+  load_config
   if [ "$MENU_MODE" -eq 1 ]; then
     menu_select_modules
+    validate_ssh_user_override
+    load_config
   fi
   check_root_and_debian
   setup_runtime
   acquire_lock
-  load_config
 
   log_main INFO "run $RUN_ID"
   log_main INFO "log principal : $LOGFILE"
   log_main INFO "modules demandes : ${REQUESTED_MODULES[*]}"
+  if [ -n "$SSHUSER_OVERRIDE" ]; then
+    log_main INFO "override SSH_ALLOW_USERS : $SSH_ALLOW_USERS"
+  fi
 
   local module
   for module in "${MODULE_ORDER[@]}"; do
