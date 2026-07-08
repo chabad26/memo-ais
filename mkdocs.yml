@@ -55,6 +55,7 @@ nav:
       - Système et Linux: intro-ais/systeme-linux.md
       - Réseau: intro-ais/reseau.md
       - Commandes Linux: intro-ais/commandes-linux.md
+      - IA frugale: intro-ais/ia-frugale.md
       - Cybersécurité:
           - Bases: intro-ais/securite.md
           - Acteurs et rôles: intro-ais/securite-acteurs.md
@@ -102,6 +103,12 @@ nav:
       - Travail et données personnelles: rgpd/travail-donnees-personnelles.md
       - Ressources PDF: rgpd/ressources-pdf.md
       - Enjeux avancés: rgpd/enjeux-avances.md
+
+  - Administration Windows:
+      - Vue d'ensemble: admin-windows/index.md
+      - Itération 1 - Plateforme et domaine:
+          - Vue d'ensemble: admin-windows/it-1/index.md
+          - Activité 1 - Installer LABO, Hyper-V et SRV-AD01: admin-windows/it-1/activite1-installation-labo-hyperv-srv-ad01.md
 
   - Systèmes Linux:
       - Vue d'ensemble: admin-systemes-linux/index.md
