@@ -121,7 +121,14 @@ nav:
           - Activité 6ter - Windows LAPS: admin-windows/it-2/activite6ter-windows-laps.md
       - Itération 3 - Serveur de fichiers:
           - Vue d'ensemble: admin-windows/it-3/index.md
-          - Activité 3.1 - Créer SRV-FIC01: admin-windows/it-3/activite31-creation-srv-fic01-serveur-fichiers.md
+          - Activité 7 - Créer SRV-FIC01: admin-windows/it-3/activite7-creation-srv-fic01-serveur-fichiers.md
+          - Activité 7bis - AGDLP, partages et lecteurs réseau: admin-windows/it-3/activite7bis-agdlp-partages-lecteurs-reseau.md
+          - Activité 8 - Sauvegarde et restauration SRV-FIC01: admin-windows/it-3/activite8-sauvegarde-restauration-srv-fic01.md
+      - Itération 4 - PowerShell, durcissement et journaux:
+          - Vue d'ensemble: admin-windows/it-4/index.md
+          - Activité 9 - Créer des utilisateurs depuis un CSV: admin-windows/it-4/activite9-creation-utilisateurs-csv-powershell.md
+          - Activité 10 - Inventaire Active Directory: admin-windows/it-4/activite10-inventaire-active-directory-powershell.md
+          - Activité 11 - Firewall et journaux Windows: admin-windows/it-4/activite11-firewall-journaux-windows.md
 
   - Systèmes Linux:
       - Vue d'ensemble: admin-systemes-linux/index.md
@@ -169,6 +176,7 @@ nav:
           - Validation du challenge CTF : admin-systemes-linux/it-6/validation-ctf-alpesnet.md
           - Rapport automatique Challenge final CTF : admin-systemes-linux/it-6/rapport_Olivier.md
       - Bonus - AlpesNet Hardening Suite:
+          - Vue d'ensemble: assets/scripts/admin-systemes-linux/it-bonus/hardening-suite/README.md
           - Guide pas-à-pas et script: admin-systemes-linux/it-bonus/alpesnet-hardening-suite.md
 
   - Réseaux :

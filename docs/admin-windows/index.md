@@ -15,6 +15,8 @@ L'objectif est de construire progressivement une plateforme de laboratoire perme
 - les stratégies de groupe,
 - les serveurs de fichiers SMB,
 - les volumes NTFS dédiés aux données,
+- l'automatisation PowerShell,
+- le durcissement et l'audit,
 - l'administration distante,
 - la documentation technique.
 
@@ -45,7 +47,8 @@ Windows Admin Center sert d'interface principale pour administrer LABO depuis un
 - installer Windows Server Core,
 - préparer un contrôleur de domaine,
 - administrer à distance avec RSAT ou Windows Admin Center,
-- séparer les rôles AD et fichiers sur des serveurs distincts.
+- séparer les rôles AD et fichiers sur des serveurs distincts,
+- automatiser des tâches d'administration avec PowerShell.
 
 !!! tip "Bon réflexe"
     Une infrastructure Windows propre commence par une documentation claire : noms, adresses IP, rôles, disques, emplacements et captures de preuves.

@@ -1,0 +1,201 @@
+﻿"TimeCreated","Id","ProviderName","Message"
+"10/07/2026 13:58:22","4625","Microsoft-Windows-Security-Auditing","Échec d’ouverture de session d’un compte.
+
+Sujet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d’ouverture de session :		0x0
+
+Type d’ouverture de session :			3
+
+Compte pour lequel l’ouverture de session a échoué :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		Administrateur
+	Domaine du compte :		CORP
+
+Informations sur l’échec :
+	Raison de l’échec :		Nom d’utilisateur inconnu ou mot de passe incorrect.
+	État :			0xC000006D
+	Sous-état :		0xC0000064
+
+Informations sur le processus :
+	ID du processus de l’appelant :	0x0
+	Nom du processus de l’appelant :	-
+
+Informations sur le réseau :
+	Nom de la station de travail :	ubuntu-oliv
+	Adresse du réseau source :	10.42.0.1
+	Port source :		0
+
+Informations détaillées sur l’authentification :
+	Processus d’ouverture de session :		NtLmSsp 
+	Package d’authentification :	NTLM
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de clé :		0
+
+Cet événement est généré lorsqu’une demande d’ouverture de session échoue. Il est généré sur l’ordinateur sur lequel l’accès a été tenté.
+
+Le champ Objet indique le compte sur le système local qui a demandé l’ouverture de session. Il s’agit le plus souvent d’un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d’ouverture de session indique le type d’ouverture de session qui a été demandé. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Les champs relatifs aux informations sur le processus indiquent quel est le compte et le processus sur le système qui ont demandé l’ouverture de session.
+
+Les champs relatifs aux informations sur le réseau indiquent la provenance de la demande d’ouverture de session distante. Le nom de la station de travail n’étant pas toujours disponible, peut rester vide dans certains cas.
+
+Les champs relatifs aux informations d’authentification fournissent des détails sur cette demande d’ouverture de session spécifique.
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d’ouverture de session.
+	- Le nom du package indique quel a été le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n’a été demandée."
+"10/07/2026 13:58:14","4625","Microsoft-Windows-Security-Auditing","Échec d’ouverture de session d’un compte.
+
+Sujet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d’ouverture de session :		0x0
+
+Type d’ouverture de session :			3
+
+Compte pour lequel l’ouverture de session a échoué :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		Administrateur
+	Domaine du compte :		CORP
+
+Informations sur l’échec :
+	Raison de l’échec :		Nom d’utilisateur inconnu ou mot de passe incorrect.
+	État :			0xC000006D
+	Sous-état :		0xC0000064
+
+Informations sur le processus :
+	ID du processus de l’appelant :	0x0
+	Nom du processus de l’appelant :	-
+
+Informations sur le réseau :
+	Nom de la station de travail :	ubuntu-oliv
+	Adresse du réseau source :	10.42.0.1
+	Port source :		0
+
+Informations détaillées sur l’authentification :
+	Processus d’ouverture de session :		NtLmSsp 
+	Package d’authentification :	NTLM
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de clé :		0
+
+Cet événement est généré lorsqu’une demande d’ouverture de session échoue. Il est généré sur l’ordinateur sur lequel l’accès a été tenté.
+
+Le champ Objet indique le compte sur le système local qui a demandé l’ouverture de session. Il s’agit le plus souvent d’un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d’ouverture de session indique le type d’ouverture de session qui a été demandé. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Les champs relatifs aux informations sur le processus indiquent quel est le compte et le processus sur le système qui ont demandé l’ouverture de session.
+
+Les champs relatifs aux informations sur le réseau indiquent la provenance de la demande d’ouverture de session distante. Le nom de la station de travail n’étant pas toujours disponible, peut rester vide dans certains cas.
+
+Les champs relatifs aux informations d’authentification fournissent des détails sur cette demande d’ouverture de session spécifique.
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d’ouverture de session.
+	- Le nom du package indique quel a été le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n’a été demandée."
+"10/07/2026 13:58:11","4625","Microsoft-Windows-Security-Auditing","Échec d’ouverture de session d’un compte.
+
+Sujet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d’ouverture de session :		0x0
+
+Type d’ouverture de session :			3
+
+Compte pour lequel l’ouverture de session a échoué :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		Administrateur
+	Domaine du compte :		CORP
+
+Informations sur l’échec :
+	Raison de l’échec :		Nom d’utilisateur inconnu ou mot de passe incorrect.
+	État :			0xC000006D
+	Sous-état :		0xC0000064
+
+Informations sur le processus :
+	ID du processus de l’appelant :	0x0
+	Nom du processus de l’appelant :	-
+
+Informations sur le réseau :
+	Nom de la station de travail :	ubuntu-oliv
+	Adresse du réseau source :	10.42.0.1
+	Port source :		0
+
+Informations détaillées sur l’authentification :
+	Processus d’ouverture de session :		NtLmSsp 
+	Package d’authentification :	NTLM
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de clé :		0
+
+Cet événement est généré lorsqu’une demande d’ouverture de session échoue. Il est généré sur l’ordinateur sur lequel l’accès a été tenté.
+
+Le champ Objet indique le compte sur le système local qui a demandé l’ouverture de session. Il s’agit le plus souvent d’un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d’ouverture de session indique le type d’ouverture de session qui a été demandé. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Les champs relatifs aux informations sur le processus indiquent quel est le compte et le processus sur le système qui ont demandé l’ouverture de session.
+
+Les champs relatifs aux informations sur le réseau indiquent la provenance de la demande d’ouverture de session distante. Le nom de la station de travail n’étant pas toujours disponible, peut rester vide dans certains cas.
+
+Les champs relatifs aux informations d’authentification fournissent des détails sur cette demande d’ouverture de session spécifique.
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d’ouverture de session.
+	- Le nom du package indique quel a été le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n’a été demandée."
+"10/07/2026 13:58:11","4625","Microsoft-Windows-Security-Auditing","Échec d’ouverture de session d’un compte.
+
+Sujet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d’ouverture de session :		0x0
+
+Type d’ouverture de session :			3
+
+Compte pour lequel l’ouverture de session a échoué :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		Administrateur
+	Domaine du compte :		CORP
+
+Informations sur l’échec :
+	Raison de l’échec :		Nom d’utilisateur inconnu ou mot de passe incorrect.
+	État :			0xC000006D
+	Sous-état :		0xC0000064
+
+Informations sur le processus :
+	ID du processus de l’appelant :	0x0
+	Nom du processus de l’appelant :	-
+
+Informations sur le réseau :
+	Nom de la station de travail :	ubuntu-oliv
+	Adresse du réseau source :	10.42.0.1
+	Port source :		0
+
+Informations détaillées sur l’authentification :
+	Processus d’ouverture de session :		NtLmSsp 
+	Package d’authentification :	NTLM
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de clé :		0
+
+Cet événement est généré lorsqu’une demande d’ouverture de session échoue. Il est généré sur l’ordinateur sur lequel l’accès a été tenté.
+
+Le champ Objet indique le compte sur le système local qui a demandé l’ouverture de session. Il s’agit le plus souvent d’un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d’ouverture de session indique le type d’ouverture de session qui a été demandé. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Les champs relatifs aux informations sur le processus indiquent quel est le compte et le processus sur le système qui ont demandé l’ouverture de session.
+
+Les champs relatifs aux informations sur le réseau indiquent la provenance de la demande d’ouverture de session distante. Le nom de la station de travail n’étant pas toujours disponible, peut rester vide dans certains cas.
+
+Les champs relatifs aux informations d’authentification fournissent des détails sur cette demande d’ouverture de session spécifique.
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d’ouverture de session.
+	- Le nom du package indique quel a été le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n’a été demandée."

@@ -29,4 +29,7 @@ Dans une infrastructure propre :
 4. Joindre le serveur au domaine `corp.local`.
 5. Installer le rôle serveur de fichiers.
 6. Créer l'arborescence de données.
-7. Préparer les partages et permissions dans les activités suivantes.
+7. Appliquer le modèle AGDLP sur les dossiers.
+8. Créer les partages SMB.
+9. Mapper les lecteurs réseau par GPO.
+10. Tester les versions précédentes et Windows Server Backup.

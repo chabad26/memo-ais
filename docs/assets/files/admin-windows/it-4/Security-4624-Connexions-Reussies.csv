@@ -1,0 +1,1201 @@
+﻿"TimeCreated","Id","ProviderName","Message"
+"10/07/2026 14:35:57","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB05BDA
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		49992
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:34:57","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB035AB
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		49991
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:33:57","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB019A0
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		49989
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:33:47","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB012BF
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{d3514046-d911-bcb5-cf08-7d4e269ec508}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		0
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:33:47","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB0119A
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{2899f50d-3b21-e842-73d2-0a6e4f7108e0}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	10.42.0.10
+	Port source :		49988
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:33:47","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB01142
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{d3514046-d911-bcb5-cf08-7d4e269ec508}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		0
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:33:47","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Délégation
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB0107D
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{d3514046-d911-bcb5-cf08-7d4e269ec508}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	fe80::59cf:718a:c257:cf45
+	Port source :		49987
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:33:47","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB00FFA
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{2899f50d-3b21-e842-73d2-0a6e4f7108e0}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	fe80::59cf:718a:c257:cf45
+	Port source :		49986
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:33:32","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB00C7B
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{09bef04a-a41c-128a-989e-81d48090fdcf}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	fe80::59cf:718a:c257:cf45
+	Port source :		49985
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:33:25","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB001DE
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	fe80::59cf:718a:c257:cf45
+	Port source :		49983
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:33:25","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xB00154
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	fe80::59cf:718a:c257:cf45
+	Port source :		49982
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:32:56","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xAFA665
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		49976
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:31:56","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xAF93CE
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		49975
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:30:56","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xAF802C
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		49970
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:29:56","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xAF6E72
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		49969
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:29:12","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Délégation
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-21-1343672170-3922727518-2552636312-1111
+	Nom du compte :		SRV-FIC01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xAF6BC7
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{838aef53-e6c5-103a-df7a-51dfefe375b4}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	10.42.0.30
+	Port source :		49769
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:28:56","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xAF59F2
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{ef4456a7-37d2-5061-d221-6f7aafd38a0c}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		49967
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:28:47","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xAF1641
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{d3514046-d911-bcb5-cf08-7d4e269ec508}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		0
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:28:47","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xAF1521
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{2899f50d-3b21-e842-73d2-0a6e4f7108e0}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	10.42.0.10
+	Port source :		49962
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."
+"10/07/2026 14:28:47","4624","Microsoft-Windows-Security-Auditing","L'ouverture de session d'un compte s'est correctement déroulée.
+
+Objet :
+	ID de sécurité :		S-1-0-0
+	Nom du compte :		-
+	Domaine du compte :		-
+	ID d'ouverture de session :		0x0
+
+Informations d'ouverture de session :
+	Type d'ouverture de session :		3
+	Mode administrateur restreint :	-
+	Credential Guard à distance :	-
+	Compte virtuel :		Non
+	Jeton élevé :		Oui
+
+Niveau d'emprunt d'identité :		Emprunt d’identité
+
+Nouvelle ouverture de session :
+	ID de sécurité :		S-1-5-18
+	Nom du compte :		SRV-AD01$
+	Domaine du compte :		CORP.LOCAL
+	ID d'ouverture de session :		0xAF14BA
+	ID d'ouverture de session liée :		0x0
+	Nom du compte réseau :	-
+	Domaine du compte réseau :	-
+	GUID d'ouverture de session :		{d3514046-d911-bcb5-cf08-7d4e269ec508}
+
+Informations sur le processus :
+	ID du processus :		0x0
+	Nom du processus :		-
+
+Informations sur le réseau :
+	Nom de la station de travail :	-
+	Adresse du réseau source :	::1
+	Port source :		0
+
+Informations détaillées sur l'authentification :
+	Processus d'ouverture de session :		Kerberos
+	Package d'authentification :	Kerberos
+	Services en transit :	-
+	Nom du package (NTLM uniquement) :	-
+	Longueur de la clé :		0
+
+Cet événement est généré lors de la création d'une ouverture de session. Il est généré sur l'ordinateur sur lequel l'ouverture de session a été effectuée.
+
+Le champ Objet indique le compte sur le système local qui a demandé l'ouverture de session. Il s'agit le plus souvent d'un service, comme le service Serveur, ou un processus local tel que Winlogon.exe ou Services.exe.
+
+Le champ Type d'ouverture de session indique le type d'ouverture de session qui s'est produit. Les types les plus courants sont 2 (interactif) et 3 (réseau).
+
+Le champ Nouvelle ouverture de session indique le compte pour lequel la nouvelle ouverture de session a été créée, par exemple, le compte qui s'est connecté.
+
+Les champs relatifs au réseau indiquent la provenance d'une demande d'ouverture de session à distance. Le nom de la station de travail n'étant pas toujours disponible, peut être laissé vide dans certains cas.
+
+Le champ du niveau d'emprunt d'identité indique la portée de l'emprunt d'identité que peut prendre un processus dans la session d'ouverture de session.
+
+Les champs relatifs aux informations d'authentification fournissent des détails sur cette demande d'ouverture de session spécifique.
+	- Le GUID d'ouverture de session est un identificateur unique pouvant servir à associer cet événement à un événement KDC .
+	- Les services en transit indiquent les services intermédiaires qui ont participé à cette demande d'ouverture de session.
+	- Nom du package indique quel est le sous-protocole qui a été utilisé parmi les protocoles NTLM.
+	- La longueur de la clé indique la longueur de la clé de session générée. Elle a la valeur 0 si aucune clé de session n'a été demandée."

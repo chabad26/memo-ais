@@ -1,0 +1,61 @@
+﻿"TimeCreated","Id","ProviderName","LevelDisplayName","Message"
+"10/07/2026 14:08:50","258","Microsoft-Windows-Defrag","Information","L’optimiseur de stockage a terminé réoptimisation sur (C:)"
+"10/07/2026 14:08:50","258","Microsoft-Windows-Defrag","Information","L’optimiseur de stockage a terminé consolidation des sections sur (C:)"
+"10/07/2026 14:08:49","258","Microsoft-Windows-Defrag","Information","L’optimiseur de stockage a terminé défragmentation sur (C:)"
+"10/07/2026 14:08:43","16384","Microsoft-Windows-Security-SPP","Information","La planification du redémarrage du service de protection logicielle à 2026-07-11T11:58:43Z a réussi. Raison : RulesEngine."
+"10/07/2026 14:08:13","16397","Microsoft-Windows-Security-SPP","Information","L’appareil est en période de grâce pendant 0x0000A270 minutes de plus."
+"10/07/2026 14:08:13","16394","Microsoft-Windows-Security-SPP","Information","La migration de bas niveau hors connexion a réussi."
+"10/07/2026 14:08:10","16384","Microsoft-Windows-Security-SPP","Information","La planification du redémarrage du service de protection logicielle à 2026-07-11T11:58:10Z a réussi. Raison : RulesEngine."
+"10/07/2026 14:07:40","16397","Microsoft-Windows-Security-SPP","Information","L’appareil est en période de grâce pendant 0x0000A271 minutes de plus."
+"10/07/2026 14:07:39","16394","Microsoft-Windows-Security-SPP","Information","La migration de bas niveau hors connexion a réussi."
+"10/07/2026 14:02:07","1000","Microsoft-Windows-LoadPerf","Information","Les compteurs de performances pour le service WmiApRpl (WmiApRpl) ont été chargés. Les données d’enregistrement dans la section des données contiennent les nouvelles valeurs d’index assignées à ce service."
+"10/07/2026 14:02:07","1001","Microsoft-Windows-LoadPerf","Information","Les compteurs de performances pour le service WmiApRpl (WmiApRpl) ont été supprimés. Les données d’enregistrement contiennent les nouvelles valeurs du dernier compteur système et les dernières entrées du registre d’aide."
+"10/07/2026 14:00:27","16384","Microsoft-Windows-Security-SPP","Information","La planification du redémarrage du service de protection logicielle à 2026-07-11T11:58:27Z a réussi. Raison : RulesEngine."
+"10/07/2026 13:59:57","16397","Microsoft-Windows-Security-SPP","Information","L’appareil est en période de grâce pendant 0x0000A278 minutes de plus."
+"10/07/2026 13:59:57","16394","Microsoft-Windows-Security-SPP","Information","La migration de bas niveau hors connexion a réussi."
+"10/07/2026 13:59:57","900","Microsoft-Windows-Security-SPP","Information","Démarrage du service de protection logicielle.
+Paramètres : <explicit>"
+"10/07/2026 13:59:57","4202","Microsoft-Windows-MSDTC 2","Information","MSDTC a démarré avec les paramètres suivants : Configuration de la sécurité (Désactivée = 0 et Activée = 1) : Autoriser l’administration à distance = 0, Clients réseau = 0, Communication du gestionnaire de transactions :  Autoriser les transactions entrantes = 0, Autoriser les transactions sortantes = 0, Protocole TIP (Transaction Internet Protocol) = 0, Autoriser les transactions XA = 0, Autoriser les transactions SNA LU 6.2 = 1, Sécurité des communications MSDTC = Authentification mutuelle requise, Compte = NT AUTHORITY\NetworkService, Exclusion de pare-feu détectée = 0 Pont de transaction installé = 0 Filtrage des événements en double = 1"
+"10/07/2026 13:59:19","16384","Microsoft-Windows-Security-SPP","Information","La planification du redémarrage du service de protection logicielle à 2026-07-11T11:58:19Z a réussi. Raison : RulesEngine."
+"10/07/2026 13:58:49","8198","Microsoft-Windows-Security-SPP","Erreur","Échec de l’activation des licences (slui.exe) avec le code d’erreur suivant :
+hr=0x8007232B
+Arguments de la ligne de commande :
+RuleId=eeba1977-569e-4571-b639-7623d8bfecc0;Action=AutoActivate;AppId=55c92734-d682-4d71-983e-d6ec3f16059f;SkuId=c052f164-cdf6-409a-a0cb-853ba0f0f55a;NotificationInterval=1440;Trigger=UserLogon;SessionId=2"
+"10/07/2026 13:58:49","1003","Microsoft-Windows-Security-SPP","Information","Le service de protection logicielle a terminé la vérification du statut des licences.
+ID de l’application=55c92734-d682-4d71-983e-d6ec3f16059f
+Statut des licences=
+1: 0b646350-5349-4013-b1be-4100d1a7fa38, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+2: 10d661ba-f2e3-445c-8e92-200e1e05e9e1, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+3: 2033816d-9d16-44bb-8f08-412ff45f38bf, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+4: 653ae55c-1d53-427b-be51-15bc1841fca7, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+5: 66c20db7-ff1e-4f87-a915-4e03715da35f, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+6: 6bad0243-1c35-46b2-b8e6-7a853e37413f, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+7: 82fcf64d-f9dd-4411-9c79-f2eed16d4eb8, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+8: 84e331f6-4279-48c4-ab10-b75139181351, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+9: 9e232465-2ade-4a33-a277-702010a84adb, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+10: a1da5f8f-7553-42c5-b0b4-6f27c4d74240, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+11: a2004bef-6ff1-48f9-8328-41ce1cd5ee79, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+12: c052f164-cdf6-409a-a0cb-853ba0f0f55a, 1, 1 [(0 [0xC004E003, 0, 0], [( 2 0xC004F056 0 0 msft:rm/algorithm/volume/1.0 0x00000000 0)( 1 0x00000000)(?)( 2 0xC004F056 0 0 msft:rm/algorithm/volume/1.0 0x00000000 0)(?)(?)(?)(?)])(1 )(2 )(3 [0x00000000, 0, 0], [( 6 0xC004F009 0 0)( 1 0x00000000)( 6 0xC004F009 0 0)(?)(?)(?)( 10 0x00000000 msft:rm/algorithm/flags/1.0)( 11 0x00000000 0xC004F056)])]
+13: e5b79126-7250-4d27-ad42-0eeb23db5771, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+14: f15a5790-90b7-4674-8fd4-e187ba426ad2, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+
+"
+"10/07/2026 13:58:49","1003","Microsoft-Windows-Security-SPP","Information","Le service de protection logicielle a terminé la vérification du statut des licences.
+ID de l’application=55c92734-d682-4d71-983e-d6ec3f16059f
+Statut des licences=
+1: 0b646350-5349-4013-b1be-4100d1a7fa38, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+2: 10d661ba-f2e3-445c-8e92-200e1e05e9e1, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+3: 2033816d-9d16-44bb-8f08-412ff45f38bf, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+4: 653ae55c-1d53-427b-be51-15bc1841fca7, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+5: 66c20db7-ff1e-4f87-a915-4e03715da35f, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+6: 6bad0243-1c35-46b2-b8e6-7a853e37413f, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+7: 82fcf64d-f9dd-4411-9c79-f2eed16d4eb8, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+8: 84e331f6-4279-48c4-ab10-b75139181351, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+9: 9e232465-2ade-4a33-a277-702010a84adb, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+10: a1da5f8f-7553-42c5-b0b4-6f27c4d74240, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+11: a2004bef-6ff1-48f9-8328-41ce1cd5ee79, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+12: c052f164-cdf6-409a-a0cb-853ba0f0f55a, 1, 1 [(0 [0xC004E003, 0, 0], [( 2 0xC004F056 0 0 msft:rm/algorithm/volume/1.0 0x00000000 0)( 1 0x00000000)(?)( 2 0xC004F056 0 0 msft:rm/algorithm/volume/1.0 0x00000000 0)(?)(?)(?)(?)])(1 )(2 )(3 [0x00000000, 0, 0], [( 6 0xC004F009 0 0)( 1 0x00000000)( 6 0xC004F009 0 0)(?)(?)(?)( 10 0x00000000 msft:rm/algorithm/flags/1.0)( 11 0x00000000 0xC004F056)])]
+13: e5b79126-7250-4d27-ad42-0eeb23db5771, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+14: f15a5790-90b7-4674-8fd4-e187ba426ad2, 1, 0 [(0 [0xC004F014, 0, 0], [(?)(?)(?)(?)(?)(?)(?)(?)])(1 )(2 )(3 )]
+
+"

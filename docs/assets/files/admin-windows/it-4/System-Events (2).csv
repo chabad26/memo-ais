@@ -1,0 +1,25 @@
+﻿"TimeCreated","Id","ProviderName","LevelDisplayName","Message"
+"10/07/2026 14:22:20","7036","Service Control Manager","Information","Le service Windows Update est entré dans l’état : arrêté."
+"10/07/2026 14:19:13","36886","Schannel","Avertissement","Aucune information d’identification de serveur par défaut appropriée n’existe sur ce système. Cela empêchera les applications serveur qui s’attendent à utiliser les informations d’identification par défaut du système d’accepter les connexions SSL. Un exemple d’une telle application est le serveur d’annuaire. Les applications qui gèrent leurs propres informations d’identification, telles que Internet Information Server, ne sont pas affectées par cette opération. 
+ le processus client SSPI est lsass (PID : 788). "
+"10/07/2026 14:18:11","36886","Schannel","Avertissement","Aucune information d’identification de serveur par défaut appropriée n’existe sur ce système. Cela empêchera les applications serveur qui s’attendent à utiliser les informations d’identification par défaut du système d’accepter les connexions SSL. Un exemple d’une telle application est le serveur d’annuaire. Les applications qui gèrent leurs propres informations d’identification, telles que Internet Information Server, ne sont pas affectées par cette opération. 
+ le processus client SSPI est lsass (PID : 788). "
+"10/07/2026 14:13:43","7036","Service Control Manager","Information","Le service Optimisation de livraison est entré dans l’état : arrêté."
+"10/07/2026 14:13:18","7036","Service Control Manager","Information","Le service WaaSMedicSvc est entré dans l’état : arrêté."
+"10/07/2026 14:12:44","6148","LsaSrv","Information","Le contrôleur de domaine principal a terminé une opération d’analyse automatique de l’approbation pour toutes les approbations sans erreur. 
+
+Plus d’informations sont disponibles sur https://go.microsoft.com/fwlink/?linkid=2162089."
+"10/07/2026 14:12:17","7036","Service Control Manager","Information","Le service WaaSMedicSvc est entré dans l’état : en cours d’exécution."
+"10/07/2026 14:11:55","7036","Service Control Manager","Information","Le service Optimiser les lecteurs est entré dans l’état : arrêté."
+"10/07/2026 14:11:50","7036","Service Control Manager","Information","Le service Service Configuration du réseau est entré dans l’état : arrêté."
+"10/07/2026 14:11:01","7036","Service Control Manager","Information","Le service WaaSMedicSvc est entré dans l’état : arrêté."
+"10/07/2026 14:10:00","7036","Service Control Manager","Information","Le service WaaSMedicSvc est entré dans l’état : en cours d’exécution."
+"10/07/2026 14:09:58","19","Microsoft-Windows-WindowsUpdateClient","Information","Installation réussie : Windows a installé la mise à jour suivante : Mise à jour de la sélection disjointe pour Microsoft Defender Antivirus – 2267602 Ko (version 1.455.70.0) – Canal actuel (large)"
+"10/07/2026 14:09:44","43","Microsoft-Windows-WindowsUpdateClient","Information","Installation démarrée : Windows a commencé l'installation de la mise à jour suivante : Mise à jour de la sélection disjointe pour Microsoft Defender Antivirus – 2267602 Ko (version 1.455.70.0) – Canal actuel (large)"
+"10/07/2026 14:09:17","7036","Service Control Manager","Information","Le service WaaSMedicSvc est entré dans l’état : arrêté."
+"10/07/2026 14:08:48","44","Microsoft-Windows-WindowsUpdateClient","Information","Windows Update a démarré le téléchargement d'une mise à jour."
+"10/07/2026 14:08:46","7036","Service Control Manager","Information","Le service Service Configuration du réseau est entré dans l’état : en cours d’exécution."
+"10/07/2026 14:08:43","7036","Service Control Manager","Information","Le service Optimisation de livraison est entré dans l’état : en cours d’exécution."
+"10/07/2026 14:08:43","7036","Service Control Manager","Information","Le service Protection logicielle est entré dans l’état : arrêté."
+"10/07/2026 14:08:14","7036","Service Control Manager","Information","Le service Optimiser les lecteurs est entré dans l’état : en cours d’exécution."
+"10/07/2026 14:08:13","7036","Service Control Manager","Information","Le service Protection logicielle est entré dans l’état : en cours d’exécution."

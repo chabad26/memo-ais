@@ -379,6 +379,12 @@ Livrables :
 | Capture volumes | volumes `D:` et `E:` visibles | `Nom-Prenom-Site-Activite31-Volumes.png` |
 | Capture arborescence | `D:\DATA\RH`, `IT`, `COMMUN` | `Nom-Prenom-Site-Activite31-Arborescence.png` |
 
+## Exemples de preuves
+
+Volume `D:` initialisé et nommé `DATA` :
+
+![Partition DATA OK](../../assets/img/admin-windows/it-3/partition-data-ok.png)
+
 ## Checklist finale
 
 - [ ] VM `SRV-FIC01` créée.

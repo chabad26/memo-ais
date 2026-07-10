@@ -1,0 +1,4 @@
+﻿"DisplayName","Enabled","Direction","Action","Profile"
+"FIC-SMB-TCP-445","True","Inbound","Allow","Domain"
+"FIC-RPC-TCP-135","True","Inbound","Allow","Domain"
+"FIC-RDP-TCP-3389-Admin","True","Inbound","Allow","Domain"
