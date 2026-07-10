@@ -109,6 +109,19 @@ nav:
       - Itération 1 - Plateforme et domaine:
           - Vue d'ensemble: admin-windows/it-1/index.md
           - Activité 1 - Installer LABO, Hyper-V et SRV-AD01: admin-windows/it-1/activite1-installation-labo-hyperv-srv-ad01.md
+          - Activité 2 - Préparer SRV-AD01 pour AD DS et DNS: admin-windows/it-1/activite2-preparer-srv-ad01-ad-ds-dns.md
+          - Activité 3 - Promouvoir SRV-AD01 en contrôleur de domaine: admin-windows/it-1/activite3-promouvoir-srv-ad01-controleur-domaine.md
+          - Fiche installation LABO et SRV-AD01: admin-windows/it-1/fiche-installation-labo-srv-ad01.md
+      - Itération 2 - Organisation Active Directory:
+          - Vue d'ensemble: admin-windows/it-2/index.md
+          - Activité 4 - OU, utilisateurs et groupes: admin-windows/it-2/activite4-organisation-ou-utilisateurs-groupes.md
+          - Activité 5 - Joindre un poste Windows 11 au domaine: admin-windows/it-2/activite5-joindre-poste-windows11-domaine.md
+          - Activité 6 - GPO et déploiement 7-Zip: admin-windows/it-2/activite6-gpo-password-panel-deploiement-7zip.md
+          - Activité 6bis - GPO BitLocker et récupération AD: admin-windows/it-2/activite6bis-gpo-bitlocker-recuperation-ad.md
+          - Activité 6ter - Windows LAPS: admin-windows/it-2/activite6ter-windows-laps.md
+      - Itération 3 - Serveur de fichiers:
+          - Vue d'ensemble: admin-windows/it-3/index.md
+          - Activité 3.1 - Créer SRV-FIC01: admin-windows/it-3/activite31-creation-srv-fic01-serveur-fichiers.md
 
   - Systèmes Linux:
       - Vue d'ensemble: admin-systemes-linux/index.md

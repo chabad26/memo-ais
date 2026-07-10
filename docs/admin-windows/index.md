@@ -8,10 +8,13 @@ L'objectif est de construire progressivement une plateforme de laboratoire perme
 
 - Windows Server,
 - Hyper-V,
+- Windows Admin Center,
 - Active Directory Domain Services,
 - DNS,
 - les comptes et groupes,
 - les stratégies de groupe,
+- les serveurs de fichiers SMB,
+- les volumes NTFS dédiés aux données,
 - l'administration distante,
 - la documentation technique.
 
@@ -29,6 +32,8 @@ Cette machine sert de base pour :
 
 La première VM importante est **SRV-AD01**. Elle servira ensuite à créer le domaine Active Directory.
 
+Windows Admin Center sert d'interface principale pour administrer LABO depuis un navigateur, gérer Hyper-V et ouvrir la console des machines virtuelles.
+
 ## Compétences visées
 
 À la fin du module, l'objectif est de savoir :
@@ -39,7 +44,8 @@ La première VM importante est **SRV-AD01**. Elle servira ensuite à créer le d
 - créer une VM serveur proprement documentée,
 - installer Windows Server Core,
 - préparer un contrôleur de domaine,
-- administrer à distance avec RSAT ou Windows Admin Center.
+- administrer à distance avec RSAT ou Windows Admin Center,
+- séparer les rôles AD et fichiers sur des serveurs distincts.
 
 !!! tip "Bon réflexe"
     Une infrastructure Windows propre commence par une documentation claire : noms, adresses IP, rôles, disques, emplacements et captures de preuves.

@@ -1,24 +1,45 @@
-# Activité 1 - Installer LABO, Hyper-V et créer SRV-AD01
+# Activité 1 - Installer LABO, Windows Admin Center, Hyper-V et créer SRV-AD01
 
 ## Objectif de l'activité
 
 Cette activité sert à préparer la plateforme Windows du module.
 
-À la fin, la machine **LABO** doit être installée, configurée et prête à héberger une VM Windows Server nommée **SRV-AD01**.
+Le serveur **LABO** est installé en **Windows Server Core**. Comme il n'a pas d'interface graphique locale, l'administration se fera principalement avec **Windows Admin Center** depuis un navigateur.
 
-La VM `SRV-AD01` sera installée en **Windows Server Core** pour travailler dans une logique plus professionnelle, plus légère et administrable à distance.
+À la fin, il faut pouvoir :
+
+- administrer LABO depuis le navigateur du laptop ;
+- gérer Hyper-V dans Windows Admin Center ;
+- créer ou vérifier la VM `SRV-AD01` ;
+- ouvrir la console de la VM depuis Windows Admin Center ;
+- installer `SRV-AD01` en **Windows Server Core**.
+
+## Architecture cible
+
+```text
+Laptop Windows 11 Pro
+Navigateur Edge ou Chrome
+        |
+        | HTTPS
+        v
+LABO - Windows Server Core
+Windows Admin Center
+Hyper-V
+        |
+        +-- VM SRV-AD01
+            Windows Server Core
+            Futur contrôleur de domaine
+```
 
 ## Vue d'ensemble
 
 | Élément | Configuration attendue |
 | --- | --- |
 | Machine physique | `LABO` |
-| OS de LABO | Windows Server |
-| Rôle de LABO | Hôte Hyper-V et machine d'administration |
-| Nom de LABO | Libre, mais documenté |
-| Réseau LABO | IP dans votre range |
-| Accès distant | Bureau distant activé |
-| Hyperviseur | Hyper-V |
+| OS de LABO | Windows Server Core |
+| Rôle de LABO | Hôte Hyper-V et passerelle Windows Admin Center |
+| Accès d'administration | Navigateur via Windows Admin Center |
+| Port Windows Admin Center | `6516` dans cette feuille |
 | Commutateur virtuel | Externe |
 | VM | `SRV-AD01` |
 | OS de la VM | Windows Server Core |
@@ -26,47 +47,37 @@ La VM `SRV-AD01` sera installée en **Windows Server Core** pour travailler dans
 | RAM VM | 4 Go |
 | Disque VM | 60 Go |
 
-!!! note "Choix avancé intégré"
-    Dans cette feuille, `SRV-AD01` est installé en **Server Core**. L'administration se fera ensuite depuis `LABO` avec PowerShell, RSAT ou Windows Admin Center.
+!!! note "Pourquoi Windows Admin Center ?"
+    Windows Admin Center permet d'administrer un Windows Server Core depuis une interface web. Il permet aussi de gérer Hyper-V, voir les VM et ouvrir leur console depuis le navigateur.
 
-## Étape 1 - Installer Windows Server sur LABO
+## Étape 1 - Installer Windows Server Core sur LABO
 
-Installer Windows Server sur la machine multifonction **LABO**.
+Installer Windows Server sur la machine **LABO**.
 
 Pendant l'installation :
 
 1. Démarrer sur l'ISO Windows Server.
 2. Choisir la langue et le clavier.
-3. Sélectionner l'édition Windows Server demandée par le formateur.
-4. Installer le système sur le disque prévu pour LABO.
+3. Sélectionner une édition **Windows Server Core**.
+4. Installer le système sur le disque de LABO.
 5. Définir le mot de passe administrateur local.
-6. Se connecter une première fois avec le compte `Administrator`.
+6. Se connecter avec `Administrateur` ou `Administrator` selon la langue.
 
 Point de contrôle :
 
-- la session Windows Server s'ouvre correctement ;
-- le serveur démarre sans erreur ;
-- le mot de passe administrateur est connu et stocké dans un endroit autorisé.
+- LABO démarre en ligne de commande ;
+- `sconfig` est disponible ;
+- le mot de passe administrateur est connu.
 
-## Étape 2 - Renommer la machine LABO
+## Étape 2 - Renommer LABO
 
-Donner un nom clair à la machine LABO.
-
-Exemples de noms possibles :
-
-```text
-LABO-OLIVIER
-LABO-ROUEN-01
-LABO-[PRENOM]
-```
-
-Depuis PowerShell en administrateur :
+Dans PowerShell administrateur :
 
 ```powershell
 Rename-Computer -NewName "LABO-PRENOM" -Restart
 ```
 
-Après redémarrage, vérifier le nom :
+Après redémarrage :
 
 ```powershell
 hostname
@@ -79,673 +90,591 @@ Point de contrôle :
 
 ## Étape 3 - Donner Internet à LABO via le laptop
 
-Si le PC **LABO** est relié directement au laptop avec un câble Ethernet, le laptop peut partager sa connexion Internet vers LABO.
+Si LABO est relié directement au laptop par câble Ethernet, le laptop peut partager sa connexion Internet.
 
-Dans ce cas, le laptop joue temporairement le rôle de passerelle réseau.
+### Depuis Ubuntu
 
-Architecture :
+Sur Ubuntu :
 
-```text
-Internet
-   |
-Wi-Fi du laptop
-   |
-Laptop
-   |
-Câble Ethernet
-   |
-PC LABO
-```
+1. Connecter le laptop à Internet en Wi-Fi.
+2. Brancher le câble Ethernet entre le laptop et LABO.
+3. Ouvrir les paramètres réseau.
+4. Aller dans la carte Ethernet.
+5. Dans IPv4, choisir **Partagé avec d'autres ordinateurs**.
+6. Enregistrer puis réactiver la connexion Ethernet.
 
-### Sur le laptop Ubuntu
-
-1. Connecter le laptop à Internet, par exemple en Wi-Fi.
-2. Brancher le câble Ethernet entre le laptop Ubuntu et le PC LABO.
-3. Ouvrir les paramètres réseau d'Ubuntu.
-4. Aller dans les paramètres de la carte **Ethernet** reliée à LABO.
-5. Dans IPv4, choisir la méthode **Partagé avec d'autres ordinateurs**.
-6. Enregistrer.
-7. Désactiver puis réactiver la connexion Ethernet si nécessaire.
-
-Ubuntu configure généralement automatiquement la carte Ethernet du laptop avec une adresse du type :
+Ubuntu donne souvent l'adresse suivante à sa carte Ethernet :
 
 ```text
 10.42.0.1/24
 ```
 
-LABO recevra normalement une adresse automatiquement par DHCP, par exemple :
+LABO reçoit souvent une adresse du type :
 
 ```text
 10.42.0.x/24
 ```
 
-### Variante en ligne de commande sur Ubuntu
+### Depuis Windows 11
 
-Identifier les connexions réseau :
+Sur Windows 11 :
 
-```bash
-nmcli connection show
-```
+1. Ouvrir `ncpa.cpl`.
+2. Clic droit sur la carte qui a Internet.
+3. **Propriétés** > **Partage**.
+4. Autoriser le partage vers la carte Ethernet reliée à LABO.
 
-Identifier les interfaces :
-
-```bash
-ip link
-```
-
-Configurer la connexion Ethernet en partage. Adapter le nom de connexion si besoin :
-
-```bash
-nmcli connection modify "Wired connection 1" ipv4.method shared
-nmcli connection down "Wired connection 1"
-nmcli connection up "Wired connection 1"
-```
-
-Vérifier l'adresse côté Ubuntu :
-
-```bash
-ip addr show
-```
-
-Point de contrôle côté laptop :
+Windows utilise souvent :
 
 ```text
-La carte Ethernet reliée à LABO possède une IP, souvent 10.42.0.1/24.
+192.168.137.1/24
 ```
 
-### Sur LABO
+### Vérifier côté LABO
 
-Sur la machine LABO, configurer la carte réseau en automatique, ou mettre une IP compatible avec le partage de connexion.
+Lister les cartes :
 
-Configuration DHCP :
+```powershell
+Get-NetAdapter
+```
+
+Mettre la carte Ethernet en DHCP :
 
 ```powershell
 Set-NetIPInterface -InterfaceAlias "Ethernet" -Dhcp Enabled
 Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ResetServerAddresses
 ```
 
-Configuration manuelle possible :
-
-```powershell
-New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 10.42.0.10 -PrefixLength 24 -DefaultGateway 10.42.0.1
-Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses 1.1.1.1,8.8.8.8
-```
-
 Vérifier :
 
 ```powershell
 ipconfig /all
-ping 10.42.0.1
 ping 1.1.1.1
 nslookup microsoft.com
 ```
 
-Points de contrôle :
+## Étape 4 - Configurer LABO
 
-- LABO possède une IP dans le réseau partagé, souvent `10.42.0.0/24` ;
-- LABO ping l'adresse Ethernet du laptop, souvent `10.42.0.1` ;
-- LABO ping une IP Internet comme `1.1.1.1` ;
-- LABO résout un nom DNS avec `nslookup`.
-
-!!! warning "Attention au réseau"
-    Si le formateur impose un range précis, il faut utiliser ce range pour le laboratoire. Le partage de connexion Ubuntu utilise souvent `10.42.0.0/24`, ce qui peut être différent du plan d'adressage demandé.
-
-!!! tip "Dépannage rapide"
-    Si LABO n'a pas Internet, vérifier d'abord que le laptop Ubuntu a bien Internet, puis que la carte Ethernet est bien en mode `Partagé avec d'autres ordinateurs`. Désactiver/réactiver la connexion Ethernet peut aussi relancer le DHCP.
-
-## Étape 4 - Configurer le réseau, le fuseau horaire et le bureau distant
-
-### Identifier la carte réseau
-
-Lister les interfaces réseau :
-
-```powershell
-Get-NetAdapter
-```
-
-Noter le nom de l'interface utilisée, par exemple :
-
-```text
-Ethernet
-```
-
-### Configurer une IP dans votre range
-
-Adapter les valeurs à votre plan d'adressage.
-
-!!! note "Cas du partage Ubuntu"
-    Si LABO passe par le laptop Ubuntu pour avoir Internet, garder une IP compatible avec le partage, souvent `10.42.0.x/24` avec la passerelle `10.42.0.1`. Ne pas remplacer cette configuration par un autre range tant que le laptop sert de passerelle.
-
-Exemple :
-
-```powershell
-New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 192.168.10.20 -PrefixLength 24 -DefaultGateway 192.168.10.1
-Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses 192.168.10.1
-```
-
-Vérifier :
-
-```powershell
-ipconfig /all
-ping 192.168.10.1
-```
-
-Point de contrôle :
-
-- l'adresse IP est dans votre range ;
-- la passerelle répond ;
-- la configuration est notée dans la fiche d'installation.
-
-### Configurer le fuseau horaire
-
-Afficher les fuseaux disponibles :
-
-```powershell
-Get-TimeZone
-```
-
-Configurer le fuseau France métropolitaine :
+### Fuseau horaire
 
 ```powershell
 Set-TimeZone -Id "Romance Standard Time"
-```
-
-Vérifier :
-
-```powershell
 Get-TimeZone
 ```
 
-### Activer le Bureau distant
-
-Activer l'accès Bureau distant :
+### Bureau distant
 
 ```powershell
 Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
 Get-NetFirewallRule -Name "RemoteDesktop*" | Enable-NetFirewallRule
 ```
 
-Vérifier que la règle pare-feu est active :
+### Administration distante
 
-```powershell
-Get-NetFirewallRule -Name "RemoteDesktop*" | Select-Object Name, DisplayName, Enabled
-```
-
-Si aucune règle n'est trouvée, rechercher les règles liées au Bureau distant :
-
-```powershell
-Get-NetFirewallRule | Where-Object {
-  $_.DisplayName -like "*Bureau*" -or $_.DisplayName -like "*Remote*"
-} | Select-Object Name, DisplayName, Enabled
-```
-
-Sur certains Windows en français, la commande avec `-DisplayGroup "Remote Desktop"` ne fonctionne pas car le groupe affiché est traduit. Le filtre par `Name` est plus fiable.
-
-Point de contrôle :
-
-- le Bureau distant est activé ;
-- la règle pare-feu Remote Desktop est autorisée ;
-- un test de connexion RDP peut être réalisé depuis un autre poste autorisé.
-
-!!! warning "Sécurité"
-    L'accès RDP doit rester limité au réseau du laboratoire. Ne pas exposer le Bureau distant directement sur Internet.
-
-### Cas Windows Server 2025 Core
-
-Sur **Windows Server 2025 sans interface graphique**, utiliser d'abord `sconfig`.
-
-Lancer l'outil :
-
-```powershell
-sconfig
-```
-
-Actions utiles dans `sconfig` :
+Dans `sconfig`, vérifier :
 
 | Option | Action |
 | --- | --- |
-| `2` | Renommer le serveur |
-| `7` | Activer le Bureau distant |
-| `8` | Configurer le réseau |
-| `9` | Régler la date et l'heure |
-| `15` | Quitter vers PowerShell |
+| `4` | Administration distante activée |
+| `7` | Bureau distant activé |
+| `8` | Configuration réseau |
 
-Pour activer le Bureau distant depuis PowerShell :
+Activer PowerShell Remoting :
 
 ```powershell
-Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Value 0
-Get-NetFirewallRule -Name "RemoteDesktop*" | Enable-NetFirewallRule
+Enable-PSRemoting -Force
 ```
 
-Si les règles `RemoteDesktop*` ne sont pas trouvées, utiliser les groupes de règles pare-feu :
+## Étape 5 - Installer Hyper-V sur LABO
 
-```powershell
-Get-NetFirewallRule | Where-Object {
-  $_.DisplayName -like "*Bureau*" -or $_.DisplayName -like "*Remote*"
-} | Select-Object Name, DisplayName, Enabled
-```
-
-Puis activer les règles trouvées avec leur `Name`, par exemple :
-
-```powershell
-Enable-NetFirewallRule -Name "RemoteDesktop-UserMode-In-TCP"
-Enable-NetFirewallRule -Name "RemoteDesktop-UserMode-In-UDP"
-```
-
-Vérifier que le service RDP écoute bien :
-
-```powershell
-Get-Service TermService
-Test-NetConnection -ComputerName localhost -Port 3389
-```
-
-Depuis le laptop ou un autre poste, tester ensuite une connexion Bureau distant vers l'IP du serveur :
-
-```text
-mstsc /v:IP_DU_SERVEUR
-```
-
-!!! note "Depuis Ubuntu"
-    Depuis un laptop Ubuntu, utiliser un client RDP comme **Remmina**. Renseigner l'adresse IP de LABO ou de `SRV-AD01`, puis se connecter avec le compte administrateur autorisé.
-
-## Étape 5 - Installer le rôle Hyper-V
-
-Installer Hyper-V depuis PowerShell en administrateur :
+Installer le rôle Hyper-V :
 
 ```powershell
 Install-WindowsFeature -Name Hyper-V -IncludeManagementTools -Restart
 ```
 
-Après redémarrage, vérifier l'installation :
+Après redémarrage :
 
 ```powershell
 Get-WindowsFeature -Name Hyper-V
-```
-
-Vérifier aussi que les commandes Hyper-V sont disponibles :
-
-```powershell
 Get-Command -Module Hyper-V
 ```
 
 Point de contrôle :
 
 - le rôle Hyper-V est installé ;
-- la console Hyper-V Manager est disponible ;
-- une capture d'écran doit être prise pour le livrable.
+- les commandes Hyper-V sont disponibles.
 
-## Étape 6 - Créer un commutateur virtuel externe
+## Étape 6 - Installer Windows Admin Center sur LABO
 
-Un commutateur externe permet aux VM de communiquer avec le réseau physique.
+Windows Admin Center peut être installé directement sur **Windows Server Core**.
 
-Lister les cartes réseau disponibles :
+Créer un dossier :
+
+```powershell
+New-Item -ItemType Directory -Path "C:\Install" -Force
+Set-Location C:\Install
+```
+
+Télécharger l'installateur :
+
+```powershell
+$parameters = @{
+  Source = "https://aka.ms/WACdownload"
+  Destination = ".\WindowsAdminCenter.exe"
+}
+Start-BitsTransfer @parameters
+```
+
+Installer Windows Admin Center sur le port `6516` :
+
+```powershell
+Start-Process -FilePath ".\WindowsAdminCenter.exe" -ArgumentList "/VERYSILENT /HTTPSPortNumber=6516" -Wait
+```
+
+Démarrer le service si nécessaire :
+
+```powershell
+Start-Service -Name WindowsAdminCenter
+Get-Service -Name WindowsAdminCenter
+```
+
+Autoriser le port dans le pare-feu :
+
+```powershell
+New-NetFirewallRule `
+  -DisplayName "Windows Admin Center 6516" `
+  -Direction Inbound `
+  -Protocol TCP `
+  -LocalPort 6516 `
+  -Action Allow
+```
+
+Point de contrôle :
+
+- le service `WindowsAdminCenter` est en cours d'exécution ;
+- le port `6516` est autorisé ;
+- LABO est joignable depuis le laptop.
+
+!!! tip "Si LABO n'a pas Internet"
+    Télécharger `WindowsAdminCenter.exe` depuis le laptop, puis le copier sur LABO par clé USB, partage réseau ou serveur HTTP temporaire.
+
+## Étape 7 - Accéder à Windows Admin Center depuis le navigateur
+
+Depuis le laptop, ouvrir Edge ou Chrome :
+
+```text
+https://IP_DU_LABO:6516
+```
+
+Exemple :
+
+```text
+https://10.42.0.2:6516
+```
+
+Le navigateur peut afficher une alerte de certificat. Dans un laboratoire, accepter le certificat auto-signé.
+
+Se connecter avec un compte administrateur local de LABO :
+
+```text
+LABO-PRENOM\Administrateur
+```
+
+ou :
+
+```text
+IP_DU_LABO\Administrateur
+```
+
+Point de contrôle :
+
+- l'interface Windows Admin Center s'ouvre ;
+- LABO apparaît comme serveur administrable ;
+- les outils système sont accessibles.
+
+### Dépannage - impossible d'accéder à Windows Admin Center
+
+Windows Admin Center s'ouvre sur le serveur où il est installé.
+
+Exemples :
+
+| Installation de WAC | URL à ouvrir depuis le laptop |
+| --- | --- |
+| WAC installé sur LABO | `https://IP_DU_LABO:6516` |
+| WAC installé sur SRV-AD01 | `https://IP_DE_SRV_AD01:6516` |
+
+Si le navigateur n'accède pas à WAC, vérifier sur le serveur concerné.
+
+Vérifier l'IP :
+
+```powershell
+ipconfig /all
+```
+
+Vérifier que le service Windows Admin Center existe et tourne :
+
+```powershell
+Get-Service *Admin*Center*
+Get-Service | Where-Object {
+  $_.Name -like "*Admin*" -or
+  $_.DisplayName -like "*Admin Center*" -or
+  $_.DisplayName -like "*Windows Admin*"
+}
+```
+
+Si aucun service n'apparaît, Windows Admin Center n'est probablement pas installé sur ce serveur.
+
+Vérifier aussi la présence des fichiers :
+
+```powershell
+Get-ChildItem "C:\Program Files" -Recurse -Filter "*AdminCenter*" -ErrorAction SilentlyContinue
+Get-ChildItem "C:\Program Files" -Recurse -Filter "*ServerManagement*" -ErrorAction SilentlyContinue
+```
+
+Démarrer le service trouvé si nécessaire. Exemple avec un service dont le nom contient `Admin` :
+
+```powershell
+Get-Service | Where-Object {
+  $_.Name -like "*Admin*" -or $_.DisplayName -like "*Windows Admin*"
+} | Start-Service
+```
+
+Vérifier que le port `6516` écoute :
+
+```powershell
+netstat -ano | findstr 6516
+```
+
+Autoriser le port dans le pare-feu :
+
+```powershell
+New-NetFirewallRule `
+  -DisplayName "Windows Admin Center 6516" `
+  -Direction Inbound `
+  -Protocol TCP `
+  -LocalPort 6516 `
+  -Action Allow
+```
+
+Vérifier le profil réseau :
+
+```powershell
+Get-NetConnectionProfile
+```
+
+Si le profil est `Public`, passer le réseau en privé dans le labo :
+
+```powershell
+Set-NetConnectionProfile -InterfaceAlias "Ethernet" -NetworkCategory Private
+```
+
+Depuis le laptop, tester le port :
+
+```powershell
+Test-NetConnection IP_DU_SERVEUR -Port 6516
+```
+
+Si `TcpTestSucceeded` vaut `False`, le problème est réseau, pare-feu, mauvaise IP ou service WAC arrêté.
+
+!!! warning "LABO ou SRV-AD01 ?"
+    Si WAC est installé sur LABO, il faut ouvrir `https://IP_DU_LABO:6516`, pas l'IP de `SRV-AD01`. Depuis WAC sur LABO, on ajoute ensuite `SRV-AD01` comme serveur géré.
+
+## Étape 8 - Créer le commutateur virtuel externe
+
+Depuis Windows Admin Center :
+
+1. Ouvrir la connexion vers LABO.
+2. Aller dans **Virtual switches** ou **Commutateurs virtuels**.
+3. Créer un commutateur de type **External**.
+4. Sélectionner la carte réseau physique connectée au réseau.
+5. Nommer le commutateur :
+
+```text
+vSwitch-Externe
+```
+
+En PowerShell, équivalent :
 
 ```powershell
 Get-NetAdapter
-```
-
-Créer le commutateur externe en adaptant le nom de l'interface :
-
-```powershell
 New-VMSwitch -Name "vSwitch-Externe" -NetAdapterName "Ethernet" -AllowManagementOS $true
-```
-
-Vérifier :
-
-```powershell
 Get-VMSwitch
 ```
 
 Point de contrôle :
 
 - le commutateur `vSwitch-Externe` existe ;
-- son type est `External` ;
-- l'OS de gestion garde l'accès réseau grâce à `-AllowManagementOS $true`.
+- son type est `External`.
 
 !!! warning "Attention réseau"
-    La création d'un commutateur externe peut provoquer une courte coupure réseau sur LABO. Il faut éviter de faire cette action pendant une opération critique.
+    La création d'un commutateur externe peut provoquer une coupure réseau courte sur LABO.
 
-## Étape 7 - Créer la VM SRV-AD01
+## Étape 9 - Préparer l'ISO Windows Server
 
-Avant de créer les dossiers, vérifier les lecteurs disponibles :
-
-```powershell
-Get-PSDrive -PSProvider FileSystem
-```
-
-Si le lecteur `D:` n'existe pas, utiliser `C:\Hyper-V`.
-
-Créer un dossier de stockage pour les VM :
-
-```powershell
-New-Item -ItemType Directory -Path "C:\Hyper-V\VMs" -Force
-New-Item -ItemType Directory -Path "C:\Hyper-V\VHDX" -Force
-```
-
-!!! note "Avec un lecteur D:"
-    Si un second disque existe, il est possible d'utiliser `D:\Hyper-V` à la place de `C:\Hyper-V`. Il faut simplement adapter tous les chemins dans les commandes suivantes.
-
-Définir les chemins dans des variables pour éviter les erreurs :
-
-```powershell
-$VMPath = "C:\Hyper-V\VMs"
-$VHDXPath = "C:\Hyper-V\VHDX\SRV-AD01.vhdx"
-```
-
-Créer la VM :
-
-```powershell
-New-VM `
-  -Name "SRV-AD01" `
-  -Generation 2 `
-  -MemoryStartupBytes 4GB `
-  -NewVHDPath $VHDXPath `
-  -NewVHDSizeBytes 60GB `
-  -Path $VMPath `
-  -SwitchName "vSwitch-Externe"
-```
-
-Configurer les processeurs :
-
-```powershell
-Set-VMProcessor -VMName "SRV-AD01" -Count 2
-```
-
-Désactiver la mémoire dynamique si le formateur demande une configuration fixe :
-
-```powershell
-Set-VMMemory -VMName "SRV-AD01" -DynamicMemoryEnabled $false -StartupBytes 4GB
-```
-
-Vérifier la configuration :
-
-```powershell
-Get-VM -Name "SRV-AD01"
-Get-VMProcessor -VMName "SRV-AD01"
-Get-VMHardDiskDrive -VMName "SRV-AD01"
-Get-VMNetworkAdapter -VMName "SRV-AD01"
-```
-
-Point de contrôle :
-
-- la VM `SRV-AD01` existe ;
-- elle possède `2` vCPU ;
-- elle possède `4 Go` de RAM ;
-- le disque VHDX fait `60 Go` ;
-- elle est connectée au commutateur externe.
-
-## Étape 8 - Installer SRV-AD01 en Windows Server Core
-
-### Transférer l'ISO depuis le laptop Ubuntu vers Server Core
-
-Si l'ISO est sur le laptop Ubuntu, la méthode la plus simple est de le partager temporairement en HTTP.
-
-Sur Ubuntu, se placer dans le dossier où se trouve l'ISO :
-
-```bash
-cd ~/Téléchargements
-```
-
-Lancer un petit serveur web temporaire :
-
-```bash
-python3 -m http.server 8000
-```
-
-Si le port `8000` est déjà utilisé, choisir un autre port, par exemple :
-
-```bash
-python3 -m http.server 8080
-```
-
-Trouver l'adresse IP du laptop Ubuntu :
-
-```bash
-ip addr
-```
-
-Exemple : si le laptop partage Internet à LABO, son IP Ethernet est souvent :
-
-```text
-10.42.0.1
-```
-
-Sur Windows Server Core, créer le dossier de destination :
+Créer le dossier ISO :
 
 ```powershell
 New-Item -ItemType Directory -Path "C:\ISO" -Force
 ```
 
-Télécharger l'ISO depuis le serveur Core :
-
-```powershell
-Invoke-WebRequest -Uri "http://10.42.0.1:8000/WindowsServer.iso" -OutFile "C:\ISO\WindowsServer.iso"
-```
-
-Adapter le nom du fichier ISO selon son vrai nom.
-
-### Dépanner une erreur 404
-
-Une erreur `404 File not found` signifie que le serveur Core arrive bien à contacter Ubuntu, mais que le fichier demandé n'existe pas à cette URL exacte.
-
-Sur Ubuntu, vérifier le nom exact de l'ISO :
-
-```bash
-ls -lh
-```
-
-Exemple : si le fichier s'appelle :
+Copier l'ISO Windows Server dans :
 
 ```text
-fr-fr_windows_server_2025_x64_dvd.iso
+C:\ISO\WindowsServer.iso
 ```
 
-Alors la commande côté Server Core doit utiliser ce nom exact :
-
-```powershell
-Invoke-WebRequest -Uri "http://10.42.0.1:8080/fr-fr_windows_server_2025_x64_dvd.iso" -OutFile "C:\ISO\WindowsServer.iso"
-```
-
-Autre vérification utile : depuis le laptop Ubuntu, ouvrir dans un navigateur :
-
-```text
-http://10.42.0.1:8080/
-```
-
-La page doit afficher la liste des fichiers du dossier partagé. Si l'ISO n'apparaît pas, c'est que le serveur HTTP Python n'a pas été lancé dans le bon dossier.
-
-Vérifier que le fichier est présent :
+Vérifier :
 
 ```powershell
 Get-ChildItem C:\ISO
 ```
 
-Quand le transfert est terminé, arrêter le serveur web sur Ubuntu avec `Ctrl+C`.
+## Étape 10 - Créer la VM SRV-AD01
 
-!!! warning "Sécurité"
-    Le serveur HTTP Python partage tout le dossier courant. Il faut donc le lancer uniquement dans le dossier de l'ISO, le temps du transfert, puis l'arrêter.
+La VM peut être créée depuis Windows Admin Center.
 
-### Alternative avec SCP
+Dans Windows Admin Center :
 
-Si OpenSSH Server est installé et démarré sur Windows Server Core, il est possible d'envoyer l'ISO depuis Ubuntu avec `scp`.
+1. Ouvrir LABO.
+2. Aller dans **Virtual Machines**.
+3. Ouvrir l'onglet **Inventory**.
+4. Cliquer sur **Add** > **New**.
+5. Configurer la VM :
 
-Sur Windows Server Core, vérifier le service SSH :
+| Paramètre | Valeur |
+| --- | --- |
+| Nom | `SRV-AD01` |
+| Génération | `2` |
+| Processeurs | `2` |
+| Mémoire | `4 Go` |
+| Disque | `60 Go` |
+| Réseau | `vSwitch-Externe` |
+| ISO | `C:\ISO\WindowsServer.iso` |
+
+Équivalent PowerShell :
 
 ```powershell
-Get-Service sshd
-```
+New-Item -ItemType Directory -Path "C:\Hyper-V\VMs" -Force
+New-Item -ItemType Directory -Path "C:\Hyper-V\VHDX" -Force
 
-Depuis Ubuntu :
+New-VM `
+  -Name "SRV-AD01" `
+  -Generation 2 `
+  -MemoryStartupBytes 4GB `
+  -NewVHDPath "C:\Hyper-V\VHDX\SRV-AD01.vhdx" `
+  -NewVHDSizeBytes 60GB `
+  -Path "C:\Hyper-V\VMs" `
+  -SwitchName "vSwitch-Externe"
 
-```bash
-scp WindowsServer.iso Administrateur@10.42.0.2:/C:/ISO/WindowsServer.iso
-```
-
-Cette méthode est pratique, mais elle demande que SSH soit déjà disponible côté Windows.
-
-Monter l'ISO Windows Server dans la VM :
-
-```powershell
+Set-VMProcessor -VMName "SRV-AD01" -Count 2
+Set-VMMemory -VMName "SRV-AD01" -DynamicMemoryEnabled $false -StartupBytes 4GB
 Add-VMDvdDrive -VMName "SRV-AD01" -Path "C:\ISO\WindowsServer.iso"
 ```
 
-Adapter le chemin de l'ISO selon son emplacement réel. Pour rechercher rapidement les ISO disponibles :
+Point de contrôle :
 
-```powershell
-Get-ChildItem -Path C:\ -Filter *.iso -Recurse -ErrorAction SilentlyContinue
-```
+- `SRV-AD01` apparaît dans Windows Admin Center ;
+- CPU, RAM, disque et réseau sont visibles.
 
-Vérifier le lecteur DVD :
+## Étape 11 - Ouvrir la console de la VM dans Windows Admin Center
 
-```powershell
-Get-VMDvdDrive -VMName "SRV-AD01"
-```
+Dans Windows Admin Center :
 
-Démarrer la VM :
+1. Aller dans **Virtual Machines**.
+2. Ouvrir **Inventory**.
+3. Sélectionner `SRV-AD01`.
+4. Cliquer sur **Start** si la VM est arrêtée.
+5. Cliquer sur **Connect**.
 
-```powershell
-Start-VM -Name "SRV-AD01"
-```
+Windows Admin Center peut proposer :
 
-Ouvrir la console Hyper-V, puis installer Windows Server en choisissant une édition **Server Core**.
+- une console web intégrée ;
+- ou un fichier RDP à télécharger pour ouvrir la console via VMConnect.
 
-Pendant l'installation :
-
-1. Démarrer sur l'ISO.
-2. Choisir l'édition Windows Server sans interface graphique, donc **Server Core**.
-3. Installer sur le disque de `60 Go`.
-4. Définir le mot de passe administrateur local.
-5. Se connecter à la console de `SRV-AD01`.
+Utiliser les identifiants administrateur de LABO si demandés.
 
 Point de contrôle :
 
-- `SRV-AD01` démarre en console Server Core ;
-- l'outil `sconfig` peut être utilisé ;
-- le serveur est prêt pour la configuration réseau et le futur rôle Active Directory.
+- la console de `SRV-AD01` s'affiche ;
+- l'écran d'installation Windows Server est visible.
 
-!!! tip "Server Core"
-    Server Core consomme moins de ressources, réduit la surface d'attaque et se rapproche des pratiques d'administration serveur. En échange, il demande d'être à l'aise avec PowerShell et l'administration distante.
+### Dépannage - la console VM ne reçoit pas le clavier
 
-## Étape 9 - Préparer l'administration distante de SRV-AD01
+Si la console de la VM s'affiche dans Windows Admin Center mais ne reçoit pas le clavier :
 
-Sur `SRV-AD01`, ouvrir `sconfig` si nécessaire :
+1. Cliquer une fois dans l'écran noir ou bleu de la VM pour donner le focus.
+2. Essayer `Ctrl` + `Alt` + `End` au lieu de `Ctrl` + `Alt` + `Del`.
+3. Passer le navigateur en plein écran avec `F11`.
+4. Tester avec Microsoft Edge si Chrome pose problème, ou inversement.
+5. Désactiver temporairement les extensions navigateur qui capturent le clavier.
+6. Vérifier que la fenêtre Windows Admin Center n'est pas ouverte dans un onglet en arrière-plan.
+7. Télécharger le fichier RDP proposé par Windows Admin Center si l'option est disponible.
+
+Si le problème vient de la disposition clavier pendant l'installation :
+
+- essayer de passer le clavier en français dans l'installateur ;
+- taper le mot de passe dans le champ utilisateur pour vérifier les caractères ;
+- éviter les caractères spéciaux complexes dans le mot de passe temporaire d'installation.
+
+!!! tip "Option la plus fiable"
+    Si Windows Admin Center propose **Download RDP file**, télécharger le fichier et l'ouvrir avec le client Bureau distant. La saisie clavier est souvent plus fiable qu'avec la console web intégrée.
+
+## Étape 12 - Installer SRV-AD01 en Server Core
+
+Dans la console de la VM :
+
+1. Démarrer sur l'ISO Windows Server.
+2. Choisir la langue et le clavier.
+3. Sélectionner l'édition **Windows Server Core**.
+4. Installer sur le disque de `60 Go`.
+5. Définir le mot de passe administrateur local.
+6. Laisser la VM redémarrer.
+7. Se connecter dans la console Server Core.
+
+Après installation, dans `SRV-AD01` :
 
 ```powershell
 sconfig
 ```
 
-Actions à réaliser dans `sconfig` :
+Configurer :
 
-1. Renommer la machine en `SRV-AD01`.
-2. Configurer l'adresse IP selon votre range.
-3. Configurer le DNS temporaire selon les consignes du laboratoire.
-4. Activer l'administration distante.
-5. Activer le Bureau distant si demandé.
-6. Redémarrer le serveur.
-
-Vérifier le nom :
-
-```powershell
-hostname
-```
-
-Vérifier la configuration IP :
-
-```powershell
-ipconfig /all
-```
-
-Depuis LABO, tester la connectivité :
-
-```powershell
-ping SRV-AD01
-```
-
-Si la résolution DNS n'est pas encore disponible, tester avec l'adresse IP :
-
-```powershell
-ping 192.168.10.30
-```
+| Option | Action |
+| --- | --- |
+| `2` | Renommer en `SRV-AD01` |
+| `8` | Configurer l'adresse IP |
+| `7` | Activer Bureau distant si besoin |
+| `15` | Revenir à PowerShell |
 
 Point de contrôle :
 
-- `SRV-AD01` répond au ping selon les règles du laboratoire ;
-- son nom, son IP et son rôle futur sont documentés.
+- `SRV-AD01` démarre en Server Core ;
+- la VM est visible dans Windows Admin Center ;
+- la console VM reste accessible.
 
-## Étape 10 - Documenter tous les paramètres
+## Dépannage - ISO Windows et fichier autounattend
 
-Compléter une fiche d'installation avec les informations suivantes.
+### ISO Windows Server défectueux
+
+Si la VM reste bloquée au démarrage, consomme peu ou pas de CPU, ou revient toujours au firmware, vérifier l'ISO Windows Server.
+
+Symptômes possibles :
+
+- la VM démarre mais l'installation ne commence pas ;
+- CPU à `0 %` après quelques secondes ;
+- aucun affichage exploitable dans la console ;
+- aucune IP et aucun heartbeat ;
+- comportement différent avec un autre ISO.
+
+Bon réflexe :
+
+1. Retélécharger l'ISO depuis une source fiable.
+2. Vérifier le hash si disponible.
+3. Remplacer l'ISO dans `C:\ISO\WindowsServer.iso`.
+4. Redémarrer la VM sur le nouvel ISO.
+
+### Le fichier autounattend.iso n'est pas lu
+
+Windows Setup ne lit pas toujours un fichier `autounattend.xml` placé dans un **second ISO** attaché à la VM.
+
+Le comportement dépend notamment :
+
+- de l'ordre des lecteurs DVD virtuels ;
+- du support reconnu par Windows Setup ;
+- du moment où le fichier de réponse est recherché ;
+- de la structure exacte de l'ISO contenant `autounattend.xml`.
+
+Méthodes plus fiables :
+
+- mettre `autounattend.xml` à la racine d'une clé USB connectée à la VM ;
+- intégrer `autounattend.xml` directement à la racine de l'ISO Windows Server ;
+- utiliser Windows Admin Center pour ouvrir la console et faire l'installation interactive ;
+- préparer un VHDX déjà installé avec `dism` et `bcdboot` si l'installation interactive est impossible.
+
+Dans ce TP, la méthode recommandée reste :
+
+```text
+Windows Admin Center > Virtual Machines > SRV-AD01 > Connect
+```
+
+Puis installation interactive de Windows Server Core dans la console de la VM.
+
+## Étape 13 - Documenter les paramètres
 
 ### Fiche installation LABO
 
+Exemple de preuve pour le serveur LABO :
+
+![Serveur LABO](../../assets/img/admin-windows/it-1/Serveur%20Labo.png)
+
 | Paramètre | Valeur |
 | --- | --- |
-| Nom de la machine LABO |  |
-| Modèle / numéro de poste |  |
-| OS installé | Windows Server |
-| Adresse IP |  |
-| Masque / préfixe |  |
-| Passerelle |  |
-| DNS |  |
+| Nom LABO |  |
+| OS LABO | Windows Server Core |
+| IP LABO |  |
 | Fuseau horaire | Romance Standard Time |
 | Bureau distant | Activé / Désactivé |
-| Rôle Hyper-V | Installé / Non installé |
+| Hyper-V | Installé / Non installé |
+| Windows Admin Center | Installé / Non installé |
+| URL Windows Admin Center | `https://IP_DU_LABO:6516` |
 | Nom du commutateur externe | `vSwitch-Externe` |
 
 ### Fiche VM SRV-AD01
 
+Exemple de preuve pour le serveur `SRV-AD01` :
+
+![Serveur SRV-AD01](../../assets/img/admin-windows/it-1/Serveur%20AD.png)
+
 | Paramètre | Valeur |
 | --- | --- |
-| Nom de la VM | `SRV-AD01` |
-| Nom Windows | `SRV-AD01` |
-| Rôle prévu | Futur contrôleur de domaine AD DS / DNS |
+| Nom VM | `SRV-AD01` |
 | OS | Windows Server Core |
-| Génération VM | 2 |
+| Rôle prévu | Futur contrôleur de domaine AD DS / DNS |
+| Génération | 2 |
 | vCPU | 2 |
 | RAM | 4 Go |
 | Disque | 60 Go |
-| Emplacement VM | `D:\Hyper-V\VMs` |
-| Emplacement VHDX | `D:\Hyper-V\VHDX\SRV-AD01.vhdx` |
-| Commutateur virtuel | `vSwitch-Externe` |
-| Adresse IP |  |
-| Masque / préfixe |  |
-| Passerelle |  |
-| DNS temporaire |  |
+| Emplacement VM | `C:\Hyper-V\VMs` |
+| Emplacement VHDX | `C:\Hyper-V\VHDX\SRV-AD01.vhdx` |
+| Commutateur | `vSwitch-Externe` |
+| ISO utilisée | `C:\ISO\WindowsServer.iso` |
+| IP SRV-AD01 |  |
 
 ## Livrables et preuves attendues
 
-Les livrables doivent respecter la convention :
+Convention de nommage :
 
 ```text
 [Nom]-[Prénom]-[Site]-Activite1-[NomLivrable]
 ```
 
-Livrables attendus :
+Livrables :
 
-| Livrable | Preuve attendue | Exemple de nom |
-| --- | --- | --- |
-| Fiche installation LABO | Document avec nom, IP, fuseau horaire, RDP, Hyper-V | `Nom-Prenom-Site-Activite1-FicheInstallationLABO.pdf` |
-| Capture Hyper-V installé | Capture du rôle installé ou de Hyper-V Manager | `Nom-Prenom-Site-Activite1-HyperVInstalle.png` |
-| Capture VM SRV-AD01 | Capture de la VM dans Hyper-V avec CPU/RAM/disque visibles | `Nom-Prenom-Site-Activite1-VM-SRV-AD01.png` |
+| Livrable | Preuve attendue |
+| --- | --- |
+| Fiche installation LABO | Nom, IP, fuseau horaire, Hyper-V, WAC |
+| Capture Windows Admin Center | Interface web ouverte sur LABO |
+| Capture Hyper-V installé | Rôle Hyper-V ou page Virtual Machines |
+| Capture VM SRV-AD01 | VM visible dans Windows Admin Center |
+| Capture console SRV-AD01 | Écran d'installation ou Server Core démarré |
 
 ## Checklist finale
 
-- [ ] Windows Server est installé sur LABO.
+- [ ] LABO est installé en Windows Server Core.
 - [ ] LABO est renommé.
-- [ ] LABO possède une IP dans le bon range.
-- [ ] Le fuseau horaire est configuré.
-- [ ] Le Bureau distant est activé.
+- [ ] LABO a une IP joignable depuis le laptop.
 - [ ] Hyper-V est installé.
-- [ ] Le commutateur virtuel externe est créé.
-- [ ] La VM `SRV-AD01` est créée avec `2` vCPU, `4 Go` RAM et `60 Go` disque.
-- [ ] `SRV-AD01` est installé en Server Core.
-- [ ] Les paramètres LABO et VM sont documentés.
-- [ ] Les captures attendues sont prêtes.
+- [ ] Windows Admin Center est installé.
+- [ ] Le navigateur accède à `https://IP_DU_LABO:6516`.
+- [ ] Le commutateur `vSwitch-Externe` existe.
+- [ ] La VM `SRV-AD01` existe.
+- [ ] La console de `SRV-AD01` s'ouvre depuis Windows Admin Center.
+- [ ] `SRV-AD01` est installé en Windows Server Core.
+- [ ] Les livrables sont prêts.
 
-## Résumé rapide
+## Ressources
 
-Cette activité prépare la base du laboratoire Windows.
-
-`LABO` devient l'hôte Hyper-V et la machine d'administration. `SRV-AD01` est créé en Server Core pour devenir ensuite le serveur Active Directory principal.
-
-La qualité de la documentation est importante : elle permet de retrouver rapidement les noms, IP, chemins VHDX, paramètres VM et preuves d'installation.
+- Microsoft Learn - Windows Admin Center overview : <https://learn.microsoft.com/en-us/windows-server/manage/windows-admin-center/overview>
+- Microsoft Learn - Install Windows Admin Center : <https://learn.microsoft.com/en-us/windows-server/manage/windows-admin-center/deploy/install>
+- Microsoft Learn - Manage virtual machines with Windows Admin Center : <https://learn.microsoft.com/en-us/windows-server/manage/windows-admin-center/use/manage-virtual-machines>
