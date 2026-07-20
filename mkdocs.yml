@@ -129,6 +129,16 @@ nav:
           - Activité 9 - Créer des utilisateurs depuis un CSV: admin-windows/it-4/activite9-creation-utilisateurs-csv-powershell.md
           - Activité 10 - Inventaire Active Directory: admin-windows/it-4/activite10-inventaire-active-directory-powershell.md
           - Activité 11 - Firewall et journaux Windows: admin-windows/it-4/activite11-firewall-journaux-windows.md
+      - Activité 12 - Dossier d'exploitation SYS01b:
+          - Vue d'ensemble: admin-windows/activite12/index.md
+          - Architecture et domaine: admin-windows/activite12/architecture-domaine.md
+          - Active Directory: admin-windows/activite12/active-directory.md
+          - GPO, BitLocker et LAPS: admin-windows/activite12/gpo-bitlocker-laps.md
+          - SRV-FIC01 et AGDLP: admin-windows/activite12/serveur-fichiers-agdlp.md
+          - Sauvegarde et restauration: admin-windows/activite12/sauvegarde-restauration.md
+          - PowerShell et firewall: admin-windows/activite12/powershell-firewall.md
+          - Reprise d'exploitation: admin-windows/activite12/reprise-exploitation.md
+      - Activité 13 - PKI interne et LDAPS: admin-windows/activite13-deploiement-pki-ldaps.md
 
   - Systèmes Linux:
       - Vue d'ensemble: admin-systemes-linux/index.md
