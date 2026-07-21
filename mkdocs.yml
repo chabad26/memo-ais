@@ -190,7 +190,13 @@ nav:
           - Guide pas-à-pas et script: admin-systemes-linux/it-bonus/alpesnet-hardening-suite.md
 
   - Virtualisation:
-      - Vue d'ensemble: admin-systemes-virtualisation/index.md
+      - Itération 1 - Fondamentaux:
+          - Vue d'ensemble: admin-systemes-virtualisation/index.md
+          - Fondamentaux: admin-systemes-virtualisation/it-1/index.md
+          - Qu'est-ce que la virtualisation ?: admin-systemes-virtualisation/it-1/quest-ce-que-la-virtualisation.md
+          - Comment fonctionne une machine virtuelle ?: admin-systemes-virtualisation/it-1/comment-fonctionne-une-machine-virtuelle.md
+          - Pourquoi virtualiser une infrastructure ?: admin-systemes-virtualisation/it-1/pourquoi-virtualiser-une-infrastructure.md
+          - Machine virtuelle ou conteneur - lequel choisir ?: admin-systemes-virtualisation/it-1/machine-virtuelle-ou-conteneur-lequel-choisir.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
@@ -291,6 +297,9 @@ nav:
           - Itération 4 - Services Linux et NFS: pense-bete/glossaire/admin-systemes-linux/it-4.md
           - Itération 5 - Sauvegarde et Nginx: pense-bete/glossaire/admin-systemes-linux/it-5.md
           - Itération 6 - Challenge final CTF: pense-bete/glossaire/admin-systemes-linux/it-6.md
+      - Administration des systèmes - Virtualisation:
+          - Itération 1 - Fondamentaux: pense-bete/glossaire/admin-systemes-virtualisation/it-1.md
+          - Termes essentiels - Itération 1: pense-bete/glossaire/admin-systemes-virtualisation/termes-essentiels-it-1.md
       - Administration des réseaux:
           - Itération 1 - TCP/IP et adressage: pense-bete/glossaire/admin-reseaux/iteration-1.md
           - Itération 2 - Switching, ARP et VLANs: pense-bete/glossaire/admin-reseaux/iteration-2.md
