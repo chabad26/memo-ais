@@ -189,6 +189,9 @@ nav:
           - Vue d'ensemble: assets/scripts/admin-systemes-linux/it-bonus/hardening-suite/README.md
           - Guide pas-à-pas et script: admin-systemes-linux/it-bonus/alpesnet-hardening-suite.md
 
+  - Virtualisation:
+      - Vue d'ensemble: admin-systemes-virtualisation/index.md
+
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
       - Synthèse personnelle CC-01: admin-reseaux/synthese-personnelle-cc01.md
@@ -274,6 +277,13 @@ nav:
           - Itération 2 - Enjeux, risques et normes: pense-bete/glossaire/systeme-info/iteration-2.md
           - Itération 3 - Analyse d'architecture SI: pense-bete/glossaire/systeme-info/iteration-3.md
           - Itération 4 - Sécurité d'un SI: pense-bete/glossaire/systeme-info/iteration-4.md
+      - Administration Windows:
+          - Itération 1 - Plateforme et domaine: pense-bete/glossaire/admin-windows/it-1.md
+          - Itération 2 - Active Directory et GPO: pense-bete/glossaire/admin-windows/it-2.md
+          - Itération 3 - Serveur de fichiers: pense-bete/glossaire/admin-windows/it-3.md
+          - Itération 4 - PowerShell et sécurité: pense-bete/glossaire/admin-windows/it-4.md
+          - Activité 12 - Dossier d'exploitation: pense-bete/glossaire/admin-windows/activite-12.md
+          - Activité 13 - PKI et LDAPS: pense-bete/glossaire/admin-windows/activite-13.md
       - Systèmes Linux:
           - Itération 1 - Installation et comptes: pense-bete/glossaire/admin-systemes-linux/it-1.md
           - Itération 2 - Permissions et logs: pense-bete/glossaire/admin-systemes-linux/it-2.md
