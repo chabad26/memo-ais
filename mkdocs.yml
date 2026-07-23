@@ -197,6 +197,13 @@ nav:
           - Comment fonctionne une machine virtuelle ?: admin-systemes-virtualisation/it-1/comment-fonctionne-une-machine-virtuelle.md
           - Pourquoi virtualiser une infrastructure ?: admin-systemes-virtualisation/it-1/pourquoi-virtualiser-une-infrastructure.md
           - Machine virtuelle ou conteneur - lequel choisir ?: admin-systemes-virtualisation/it-1/machine-virtuelle-ou-conteneur-lequel-choisir.md
+      - Itération 2 - Déploiement de machines virtuelles:
+          - Vue d'ensemble: admin-systemes-virtualisation/it-2/index.md
+          - Déployer Hyper-V pas à pas: admin-systemes-virtualisation/it-2/comment-deployer-hyper-v.md
+          - Dimensionner et déployer DC1 et WEB1: admin-systemes-virtualisation/it-2/dimensionner-et-deployer-dc1-web1.md
+          - Intégrer WEB1 au domaine et déployer Apache: admin-systemes-virtualisation/it-2/integrer-web1-au-domaine-et-deployer-apache.md
+          - Permettre aux machines virtuelles de communiquer: admin-systemes-virtualisation/it-2/comment-permettre-aux-machines-virtuelles-de-communiquer.md
+          - Sécuriser une opération d'administration: admin-systemes-virtualisation/it-2/comment-securiser-une-operation-administration.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md

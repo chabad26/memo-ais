@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Page d'information du serveur WEB1 d'AlpesNet">
+  <title>WEB1 — AlpesNet</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --primary: #00695c;
+      --primary-light: #e0f2f1;
+      --primary-dark: #004d40;
+      --background: #f4f7f6;
+      --surface: #ffffff;
+      --text: #17211f;
+      --muted: #5e6d69;
+      --border: #d8e2df;
+      --success: #18864b;
+      --shadow: 0 18px 48px rgb(21 55 48 / 10%);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      background:
+        radial-gradient(circle at 8% 0%, rgb(0 105 92 / 15%), transparent 32rem),
+        var(--background);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      padding: 1.1rem clamp(1rem, 4vw, 4rem);
+    }
+
+    nav, main, footer { margin: auto; max-width: 1120px; }
+
+    nav {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .brand { align-items: center; display: flex; gap: .75rem; font-weight: 800; }
+    .brand-mark {
+      align-items: center; background: #fff; border-radius: .55rem; color: var(--primary);
+      display: inline-flex; height: 2.5rem; justify-content: center; width: 2.5rem;
+    }
+
+    .status { align-items: center; display: flex; font-size: .85rem; gap: .45rem; }
+    .dot { background: #63f5a9; border-radius: 50%; box-shadow: 0 0 0 .25rem rgb(99 245 169 / 18%); height: .55rem; width: .55rem; }
+
+    main { padding: clamp(2rem, 6vw, 5rem) clamp(1rem, 4vw, 3rem); }
+
+    .hero { max-width: 760px; }
+    .eyebrow { color: var(--primary); font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { font-size: clamp(2.35rem, 7vw, 5.5rem); letter-spacing: -.055em; line-height: .98; margin: .5rem 0 1rem; }
+    .lead { color: var(--muted); font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.7; }
+
+    .grid { display: grid; gap: 1rem; grid-template-columns: repeat(12, 1fr); margin-top: 2.5rem; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: .8rem; box-shadow: var(--shadow); grid-column: span 4; padding: 1.35rem; }
+    .card.wide { grid-column: span 8; }
+    .card h2 { font-size: .78rem; letter-spacing: .08em; margin: 0 0 .9rem; text-transform: uppercase; text-decoration: underline; text-decoration-color: var(--primary); text-underline-offset: .3rem; }
+    .value { font-size: 1.25rem; font-weight: 800; }
+    .detail { color: var(--muted); font-size: .85rem; margin-top: .35rem; }
+
+    dl { display: grid; gap: .8rem; grid-template-columns: auto 1fr; margin: 0; }
+    dt { color: var(--muted); }
+    dd { font-weight: 700; margin: 0; text-align: right; }
+    code { background: var(--primary-light); border-radius: .3rem; color: var(--primary-dark); padding: .15rem .35rem; }
+
+    .services { display: grid; gap: .65rem; }
+    .service { align-items: center; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; padding-bottom: .65rem; }
+    .service:last-child { border: 0; padding-bottom: 0; }
+    .badge { background: #e5f7ed; border-radius: 99rem; color: var(--success); font-size: .72rem; font-weight: 800; padding: .3rem .55rem; }
+
+    footer { color: var(--muted); font-size: .78rem; padding: 0 1rem 2rem; }
+
+    @media (max-width: 760px) {
+      .card, .card.wide { grid-column: 1 / -1; }
+      .status span:last-child { display: none; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root { --background: #0d1715; --surface: #13231f; --text: #edf7f4; --muted: #a8bbb6; --border: #294039; --primary-light: #173b34; --shadow: 0 18px 48px rgb(0 0 0 / 25%); }
+      code { color: #8be0d2; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="brand"><span class="brand-mark">AN</span><span>AlpesNet · Infrastructure</span></div>
+      <div class="status"><span class="dot"></span><span>Serveur opérationnel</span></div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Plateforme de préproduction</div>
+      <h1>Bienvenue sur WEB1.</h1>
+      <p class="lead">Cette page confirme le déploiement du premier serveur Web virtualisé d’AlpesNet, hébergé sur Hyper‑V et intégré au domaine Active Directory.</p>
+    </section>
+
+    <section class="grid" aria-label="Informations du serveur">
+      <article class="card">
+        <h2>Identité</h2>
+        <div class="value">WEB1</div>
+        <div class="detail">Serveur Web AlpesNet</div>
+      </article>
+      <article class="card">
+        <h2>Adresse réseau</h2>
+        <div class="value"><code>10.42.0.125</code></div>
+        <div class="detail">Réseau 10.42.0.0/24</div>
+      </article>
+      <article class="card">
+        <h2>Domaine</h2>
+        <div class="value">alpesnet.local</div>
+        <div class="detail">Active Directory</div>
+      </article>
+      <article class="card wide">
+        <h2>Architecture</h2>
+        <dl>
+          <dt>Hyperviseur</dt><dd>Microsoft Hyper‑V</dd>
+          <dt>Hôte physique</dt><dd>LABO_CORE</dd>
+          <dt>Système invité</dt><dd>Debian 13</dd>
+          <dt>Serveur HTTP</dt><dd>Apache 2</dd>
+          <dt>Contrôleur de domaine / DNS</dt><dd>DC1 · 10.42.0.10</dd>
+        </dl>
+      </article>
+      <article class="card">
+        <h2>Services</h2>
+        <div class="services">
+          <div class="service"><span>Apache HTTP</span><span class="badge">ACTIF</span></div>
+          <div class="service"><span>Réseau virtuel</span><span class="badge">ACTIF</span></div>
+          <div class="service"><span>Domaine AD</span><span class="badge">INTÉGRÉ</span></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>AlpesNet · Infrastructure virtualisée de préproduction · <span id="year"></span></footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
