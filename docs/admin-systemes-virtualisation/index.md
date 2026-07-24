@@ -27,7 +27,7 @@ La virtualisation constitue également une passerelle vers les services distribu
 La trajectoire pédagogique suit quatre actions : **concevoir → déployer → orchestrer → durcir**.
 
 | Phase | Sujet | Résultat attendu |
-|---|---|---|
+| --- | --- | --- |
 | 1 | Comprendre la virtualisation | Expliquer les rôles de l'hyperviseur, de la VM et du conteneur, puis comparer infrastructure physique et virtuelle. |
 | 2 | Déployer avec Hyper-V | Créer des VMs Windows et Linux, configurer les VHDX, snapshots et vSwitch, puis intégrer les systèmes Windows à Active Directory. |
 | 3 | Déployer avec VMware ESXi | Installer ESXi, administrer avec vCenter et gérer VMs, datastores, réseaux virtuels et modèles. |
