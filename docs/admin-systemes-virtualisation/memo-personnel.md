@@ -17,7 +17,7 @@ La virtualisation ne crée pas de puissance supplémentaire. Les vCPU, la RAM, l
 ## Ce qui reste à approfondir
 
 - La possibilité de le reproduire en prod avec moins de contraintes de ressources.
-- Je souhaite mieux interpréter les indicateurs avancés de performances : latence disque, attente CPU, pression mémoire et seuils d'alerte réellement adaptés, pourquoi pas faire un serveur zabbix pour serveiller plus précisement le tout.
+- Je souhaite mieux interpréter les indicateurs avancés de performances : latence disque, attente CPU, pression mémoire et seuils d'alerte réellement adaptés, pourquoi pas faire un serveur zabbix pour surveiller plus précisement le tout.
 - Je dois encore pratiquer une restauration complète de VM et une architecture sans point unique de panne, avec plusieurs hôtes physiques et un stockage redondant.
 
 ## Bilan personnel
