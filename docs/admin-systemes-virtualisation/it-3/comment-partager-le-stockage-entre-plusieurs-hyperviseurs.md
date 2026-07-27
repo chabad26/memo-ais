@@ -302,6 +302,21 @@ grep -A 6 "nfs: nfs-shared" /etc/pve/storage.cfg
 
 Le stockage `nfs-shared` doit apparaître avec le statut `active`.
 
+### Preuve — stockage commun au cluster à trois nœuds
+
+![Stockage NFS partagé actif dans le cluster Proxmox](<../../assets/img/admin-systemes-virtualisation/it-3/stockage partagé ok.png>)
+
+**Contexte :** la vérification est exécutée depuis `PVE2` après la déclaration de `nfs-shared` au niveau du Datacenter Proxmox.
+
+La sortie confirme simultanément :
+
+- la présence des trois membres `pve1`, `pve2` et `pve3` dans le cluster ;
+- le stockage `nfs-shared` de type NFS avec l'état `active` ;
+- une capacité totale d'environ 37 Gio et de l'espace disponible ;
+- la VM `WEB1` enregistrée dans le cluster.
+
+La configuration du stockage étant conservée dans `/etc/pve/storage.cfg`, elle est distribuée par `pmxcfs` aux trois nœuds. Pour une preuve individuelle supplémentaire, exécuter `pvesm status` sur `PVE1`, `PVE2` et `PVE3` et vérifier `nfs-shared active` sur chacun.
+
 ## Test de fonctionnement prévu
 
 1. créer une petite VM de test sur `nfs-shared` ;

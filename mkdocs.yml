@@ -190,6 +190,7 @@ nav:
           - Guide pas-à-pas et script: admin-systemes-linux/it-bonus/alpesnet-hardening-suite.md
 
   - Virtualisation:
+      - Mémo personnel du module: admin-systemes-virtualisation/memo-personnel.md
       - Itération 1 - Fondamentaux:
           - Vue d'ensemble: admin-systemes-virtualisation/index.md
           - Fondamentaux: admin-systemes-virtualisation/it-1/index.md
@@ -210,6 +211,12 @@ nav:
           - Partager le stockage entre plusieurs hyperviseurs: admin-systemes-virtualisation/it-3/comment-partager-le-stockage-entre-plusieurs-hyperviseurs.md
           - Créer et valider le cluster Proxmox: admin-systemes-virtualisation/it-3/comment-creer-un-cluster-proxmox.md
           - Assurer automatiquement la continuité de service: admin-systemes-virtualisation/it-3/comment-assurer-la-haute-disponibilite.md
+      - Itération 4 - Exploitation et optimisation:
+          - Vue d'ensemble: admin-systemes-virtualisation/it-4/index.md
+          - Sécuriser les communications entre les VM: admin-systemes-virtualisation/it-4/comment-securiser-les-communications-entre-les-machines-virtuelles.md
+          - Identifier l'origine d'un dysfonctionnement: admin-systemes-virtualisation/it-4/comment-identifier-origine-dysfonctionnement.md
+          - Optimiser les performances: admin-systemes-virtualisation/it-4/comment-optimiser-performances-infrastructure-virtualisee.md
+          - Transmettre l'infrastructure à une autre équipe: admin-systemes-virtualisation/it-4/comment-transmettre-infrastructure-autre-equipe.md
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
