@@ -218,6 +218,16 @@ nav:
           - Optimiser les performances: admin-systemes-virtualisation/it-4/comment-optimiser-performances-infrastructure-virtualisee.md
           - Transmettre l'infrastructure à une autre équipe: admin-systemes-virtualisation/it-4/comment-transmettre-infrastructure-autre-equipe.md
 
+  - Intégration distribuée on-premise:
+      - Vue d'ensemble: integration-distribuee-on-premise/README.md
+      - Itération 1 - Docker:
+          - Vue d'ensemble: integration-distribuee-on-premise/it-1/index.md
+          - Découverte entreprise fictive: integration-distribuee-on-premise/it-1/decouverte-entreprise-fictive.md
+          - Installer Docker Engine: integration-distribuee-on-premise/it-1/installer-docker-engine.md
+          - Manipuler un conteneur Ubuntu: integration-distribuee-on-premise/it-1/manipuler-conteneur-ubuntu.md
+          - Créer une image à partir d'un conteneur: integration-distribuee-on-premise/it-1/creer-image-depuis-conteneur.md
+          - Journal technique - Itération 1: integration-distribuee-on-premise/it-1/journal-technique-it1.md
+
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
       - Synthèse personnelle CC-01: admin-reseaux/synthese-personnelle-cc01.md

@@ -18,6 +18,7 @@ Ce mémo est découpé en plusieurs parties :
 - **Administration des systèmes — Linux** : installation, administration, sécurisation, automatisation et sauvegarde d'une infrastructure Debian.
 - **Administration des systèmes — Virtualisation** : déploiement, administration, sécurisation et optimisation de machines virtuelles avec Hyper-V et VMware ESXi.
 - **Administration des réseaux — Fondamentaux** : base de gestion d'un réseau d'entreprise.
+- **Intégration distribuée on-premise** : intégration de services conteneurisés, annuaire, fichiers, messagerie, PKI, sauvegarde, supervision et reprise d'activité.
 
 ## Objectif
 
