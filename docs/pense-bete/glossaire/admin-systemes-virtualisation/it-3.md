@@ -146,4 +146,7 @@ LABO_CORE — Hyper-V — 10.42.0.2
 ## Documents associés
 
 - [Vue d'ensemble de l'itération 3](../../../admin-systemes-virtualisation/it-3/index.md)
+- [Installer trois Proxmox dans Hyper-V](../../../admin-systemes-virtualisation/it-3/installer-trois-proxmox-dans-hyper-v.md)
 - [Partager le stockage entre plusieurs hyperviseurs](../../../admin-systemes-virtualisation/it-3/comment-partager-le-stockage-entre-plusieurs-hyperviseurs.md)
+- [Créer et valider le cluster Proxmox](../../../admin-systemes-virtualisation/it-3/comment-creer-un-cluster-proxmox.md)
+- [Assurer automatiquement la continuité de service](../../../admin-systemes-virtualisation/it-3/comment-assurer-la-haute-disponibilite.md)

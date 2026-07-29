@@ -320,7 +320,9 @@ nav:
       - Administration des systèmes - Virtualisation:
           - Itération 1 - Fondamentaux: pense-bete/glossaire/admin-systemes-virtualisation/it-1.md
           - Termes essentiels - Itération 1: pense-bete/glossaire/admin-systemes-virtualisation/termes-essentiels-it-1.md
+          - Itération 2 - Hyper-V et VM: pense-bete/glossaire/admin-systemes-virtualisation/it-2.md
           - Itération 3 - Disponibilité et stockage partagé: pense-bete/glossaire/admin-systemes-virtualisation/it-3.md
+          - Itération 4 - Exploitation et sécurité: pense-bete/glossaire/admin-systemes-virtualisation/it-4.md
       - Administration des réseaux:
           - Itération 1 - TCP/IP et adressage: pense-bete/glossaire/admin-reseaux/iteration-1.md
           - Itération 2 - Switching, ARP et VLANs: pense-bete/glossaire/admin-reseaux/iteration-2.md
