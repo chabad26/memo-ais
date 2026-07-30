@@ -32,6 +32,25 @@ lsb_release -a
 ping -c 4 8.8.8.8
 ping -c 4 ubuntu.com
 sudo -v
+lsblk
+df -h
+```
+
+### Point de retour sur machine physique
+
+Le formateur parle de snapshot, mais mon Ubuntu est installé sur une machine physique.
+
+Dans ce contexte, je ne peux pas faire un snapshot d'hyperviseur comme avec une VM. Je dois donc documenter un équivalent :
+
+- sauvegarde des fichiers importants ;
+- image disque si possible avec un outil comme Clonezilla ;
+- snapshot LVM ou Btrfs seulement si le partitionnement le permet ;
+- relevé de l'état de référence avant modification.
+
+Phrase de justification :
+
+```text
+Machine Ubuntu physique : pas de snapshot VM possible. Point de retour retenu : sauvegarde/image système + preuves de l'état initial.
 ```
 
 ### Installation Docker Engine

@@ -74,6 +74,20 @@ sudo apt full-upgrade -y
 
 Ces commandes permettent de récupérer la liste des paquets disponibles puis d'appliquer les mises à jour système.
 
+### 4 bis. Prévoir un point de retour adapté au support
+
+Si la machine Ubuntu est une **machine virtuelle**, le point de retour attendu peut être un snapshot de l'hyperviseur.
+
+Si la machine Ubuntu est une **machine physique**, il n'y a pas de snapshot d'hyperviseur possible. Il faut produire une preuve équivalente :
+
+- sauvegarde des fichiers importants sur un support externe ou réseau ;
+- image disque avec un outil comme Clonezilla si le temps et le matériel le permettent ;
+- snapshot LVM ou Btrfs uniquement si le système a été installé avec ce type de volume ;
+- journal des commandes et état de référence avant modification importante.
+
+!!! note "Formulation à retenir"
+    Sur une machine physique, je ne peux pas faire un snapshot de VM. Je documente donc un point de retour équivalent : sauvegarde ou image système, preuve de l'état initial, puis procédure de restauration si nécessaire.
+
 ### 5. Vérifier la version installée
 
 Contrôlez que la machine utilise bien Ubuntu 24.04 LTS :
@@ -109,6 +123,8 @@ lsb_release -a
 ping -c 4 8.8.8.8
 ping -c 4 ubuntu.com
 sudo -v
+lsblk
+df -h
 ```
 
 ## Preuves attendues
@@ -120,6 +136,7 @@ sudo -v
 - résultat du ping vers `8.8.8.8` ;
 - résultat du ping vers `ubuntu.com` ;
 - preuve que le compte utilisateur peut utiliser `sudo`.
+- preuve du point de retour choisi : snapshot si VM, ou sauvegarde/image système si machine physique.
 
 ## Résultat attendu
 
@@ -132,6 +149,7 @@ La machine est prête pour la suite du module :
 - le compte utilisateur est opérationnel ;
 - les droits d'administration sont disponibles ;
 - le système est à jour.
+- un point de retour est documenté avant les changements importants.
 
 ## Ressources
 

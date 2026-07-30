@@ -16,6 +16,65 @@ L'installation doit utiliser le dépôt officiel Docker. Il ne faut pas installe
 | Système cible | Ubuntu 24.04 LTS |
 | Mode d'exécution | Commandes lues avant exécution |
 
+## Schéma de l'installation dans le contexte de l'entreprise
+
+Le moteur Docker installé sur la machine Ubuntu sert de socle technique pour les futurs services internes de l'entreprise fictive : compilation, validation, outils partagés et services d'infrastructure.
+
+```mermaid
+flowchart LR
+    subgraph Entreprise["Entreprise fictive"]
+        HW["Conception matérielle"]
+        EMB["Développement embarqué"]
+        VAL["Intégration et validation"]
+        ADM["Administration système"]
+        COM["Fonctions administratives et commerciales"]
+    end
+
+    subgraph Poste["Machine polyvalente Ubuntu 24.04 LTS"]
+        OS["Système Ubuntu à jour"]
+        DOCKER["Docker Engine"]
+        COMPOSE["Plugin Docker Compose"]
+        GROUP["Groupe docker pour l'utilisateur"]
+    end
+
+    subgraph Services["Futurs services conteneurisés"]
+        BUILD["Service de compilation Yocto"]
+        TESTS["Services de validation et ferme de tests"]
+        FILES["Partages et stockage applicatif"]
+        APPS["Applications internes"]
+    end
+
+    subgraph Dependances["Dépendances à vérifier pendant le module"]
+        NET["Réseau"]
+        DNS["DNS"]
+        CERT["Certificats"]
+        BACKUP["Sauvegarde"]
+        MON["Supervision"]
+    end
+
+    HW --> Services
+    EMB --> BUILD
+    VAL --> TESTS
+    ADM --> Poste
+    COM --> APPS
+
+    OS --> DOCKER
+    DOCKER --> COMPOSE
+    GROUP --> DOCKER
+    DOCKER --> BUILD
+    DOCKER --> TESTS
+    DOCKER --> FILES
+    DOCKER --> APPS
+
+    NET --> DOCKER
+    DNS --> Services
+    CERT --> Services
+    BACKUP --> Services
+    MON --> Services
+```
+
+À retenir : on n'installe pas Docker uniquement pour lancer un conteneur de test. On prépare une base d'exécution qui devra ensuite s'intégrer au réseau, aux noms DNS, aux certificats, aux sauvegardes et à la supervision.
+
 !!! warning "Avant de lancer les commandes"
     Lisez chaque commande avant de l'exécuter. En cas d'erreur d'installation, ne continuez pas en aveugle : signalez l'erreur au formateur.
 
