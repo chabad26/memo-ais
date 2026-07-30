@@ -26,6 +26,10 @@ Avant de déployer Docker et les futurs services conteneurisés, il faut dispose
 - [Installer Docker Engine](installer-docker-engine.md)
 - [1.6 - Manipuler un conteneur Ubuntu](manipuler-conteneur-ubuntu.md)
 - [Créer une image à partir d'un conteneur](creer-image-depuis-conteneur.md)
+- [Construire une image avec un Dockerfile](construire-image-dockerfile.md)
+- [Construire une image contenant une application Web simple](construire-image-nginx-web.md)
+- [Persistance des données avec un volume Docker](persistance-volume-mariadb.md)
+- [Déployer WordPress et MariaDB avec Docker Compose](deployer-wordpress-compose.md)
 - [Journal technique - Itération 1](journal-technique-it1.md)
 
 ### 1. Installer Ubuntu Server 24.04 LTS
@@ -135,7 +139,7 @@ df -h
 - preuve des mises à jour appliquées ;
 - résultat du ping vers `8.8.8.8` ;
 - résultat du ping vers `ubuntu.com` ;
-- preuve que le compte utilisateur peut utiliser `sudo`.
+- preuve que le compte utilisateur peut utiliser `sudo` ;
 - preuve du point de retour choisi : snapshot si VM, ou sauvegarde/image système si machine physique.
 
 ## Résultat attendu
@@ -148,7 +152,7 @@ La machine est prête pour la suite du module :
 - la résolution DNS fonctionne ;
 - le compte utilisateur est opérationnel ;
 - les droits d'administration sont disponibles ;
-- le système est à jour.
+- le système est à jour ;
 - un point de retour est documenté avant les changements importants.
 
 ## Ressources

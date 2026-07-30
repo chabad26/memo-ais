@@ -75,23 +75,3 @@ Certains services dépendront d'autres briques pour fonctionner correctement.
 | Stockage | Les données, partages et sauvegardes doivent être conservés. |
 | Sauvegarde | Les services critiques doivent pouvoir être restaurés. |
 | Supervision | Les incidents doivent être détectés et suivis. |
-
-## À ne pas traiter maintenant
-
-Les exigences de continuité d'activité et de reprise après sinistre seront introduites plus tard dans l'itération.
-
-Pour cette feuille, il faut uniquement poser une première lecture du contexte :
-
-- qui utilise l'infrastructure ;
-- quels types de machines sont présents ;
-- quels services devront communiquer ;
-- quelles dépendances techniques semblent déjà visibles.
-
-## Trace à conserver
-
-Conservez une courte synthèse avec :
-
-- les catégories d'utilisateurs identifiées ;
-- les principaux postes ou serveurs repérés ;
-- les communications importantes ;
-- les dépendances techniques à vérifier plus tard.

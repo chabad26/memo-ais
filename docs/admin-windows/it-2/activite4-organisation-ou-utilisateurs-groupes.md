@@ -23,6 +23,25 @@ L'objectif est de :
 | Groupes globaux | `GG_RH`, `GG_IT`, `GG_ADMIN` |
 | Méthode principale | PowerShell |
 
+## Preuve de travail à remettre
+
+**Premier annuaire de l'entreprise**
+
+| Critère du formateur | Éléments apportés dans cette activité |
+| --- | --- |
+| Arborescence LDAP adaptée à l'organisation | OU `Utilisateurs`, `Groupes`, `Ordinateurs`, `Serveurs` et `Administration` dans `corp.local`. |
+| OU, groupes et utilisateurs créés conformément au besoin | Comptes `user.rh1`, `user.rh2`, `user.it1` et groupes `GG_RH`, `GG_IT`, `GG_ADMIN`. |
+| Conventions de nommage cohérentes | Préfixe `user.` pour les comptes, préfixe `GG_` pour les groupes globaux et noms d'OU explicites. |
+| Annuaire vérifié par les outils d'administration | PowerShell Active Directory et console `dsa.msc`. |
+| Annuaire vérifié par recherche LDAP | Recherche `Get-ADObject -LDAPFilter` et lecture de `RootDSE` avec `ldp.exe`. |
+
+Pièces à remettre :
+
+- capture de l'arborescence dans `dsa.msc` ;
+- capture ou export PowerShell des OU, utilisateurs et groupes ;
+- journal `C:\Activite4-Organisation-AD.txt` ;
+- sortie de recherche LDAP montrant les objets créés.
+
 !!! warning "Points de vigilance"
     Éviter les conteneurs par défaut comme `Users` et `Computers` pour l'organisation courante. Éviter aussi les droits directs aux utilisateurs : on passe par des groupes.
 
@@ -242,7 +261,62 @@ Capture attendue :
 - utilisateurs dans la bonne OU ;
 - groupes dans la bonne OU.
 
-## Étape 8 - Option avancée : structure Tier 0 / Tier 1 / Tier 2
+## Étape 8 - Vérifier l'annuaire avec une recherche LDAP
+
+La console Active Directory vérifie l'administration graphique. Une recherche LDAP permet de vérifier que les objets sont réellement présents dans l'annuaire selon leur `distinguishedName` et leurs attributs.
+
+Depuis PowerShell sur `SRV-AD01`, rechercher les OU créées :
+
+```powershell
+Get-ADObject `
+  -LDAPFilter "(&(objectCategory=organizationalUnit)(|(ou=Utilisateurs)(ou=Groupes)(ou=Ordinateurs)(ou=Serveurs)(ou=Administration)))" `
+  -SearchBase $DomainDN `
+  -Properties description |
+  Select-Object Name, DistinguishedName, Description
+```
+
+Rechercher les utilisateurs de l'entreprise :
+
+```powershell
+Get-ADObject `
+  -LDAPFilter "(&(objectCategory=person)(objectClass=user)(sAMAccountName=user.*))" `
+  -SearchBase "OU=Utilisateurs,$DomainDN" `
+  -Properties sAMAccountName,description |
+  Select-Object Name, SamAccountName, DistinguishedName, Description
+```
+
+Rechercher les groupes globaux :
+
+```powershell
+Get-ADObject `
+  -LDAPFilter "(&(objectCategory=group)(name=GG_*))" `
+  -SearchBase "OU=Groupes,$DomainDN" `
+  -Properties groupType,description |
+  Select-Object Name, DistinguishedName, Description
+```
+
+Vérifier également l'annuaire avec l'outil graphique LDAP :
+
+```powershell
+ldp.exe
+```
+
+Dans `ldp.exe` :
+
+1. sélectionner `Connection > Connect` vers `SRV-AD01` sur le port `389` ;
+2. sélectionner `Connection > Bind` avec le compte administrateur du domaine ;
+3. sélectionner `Browse > Search` avec la base `DC=corp,DC=local` ;
+4. utiliser un filtre comme `(objectClass=organizationalUnit)` ou `(sAMAccountName=user.rh1)` ;
+5. conserver une capture du résultat retourné.
+
+Résultats attendus :
+
+- les OU retournées possèdent un `distinguishedName` cohérent ;
+- les utilisateurs sont placés dans `OU=Utilisateurs` ;
+- les groupes sont placés dans `OU=Groupes` ;
+- la recherche LDAP retourne `user.rh1`, `user.rh2`, `user.it1`, `GG_RH`, `GG_IT` et `GG_ADMIN`.
+
+## Étape 9 - Option avancée : structure Tier 0 / Tier 1 / Tier 2
 
 Le Tiering Model consiste à séparer les comptes et ressources d'administration par niveau de criticité.
 
@@ -283,7 +357,7 @@ New-ADUser -Name "adm.t2.olivier" -SamAccountName "adm.t2.olivier" -UserPrincipa
 !!! warning "Important"
     Ces comptes ne suffisent pas à sécuriser l'AD. Il faudra ensuite ajouter les GPO, restrictions de connexion et délégations adaptées.
 
-## Étape 9 - Arrêter le journal PowerShell
+## Étape 10 - Arrêter le journal PowerShell
 
 ```powershell
 Stop-Transcript

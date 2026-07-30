@@ -183,12 +183,6 @@ figlet "Hello"
 
 La commande ne doit plus être disponible dans ce nouveau conteneur.
 
-Répondez aux questions suivantes :
-
-- Pourquoi la commande n'est-elle plus disponible ?
-- Où la modification précédente avait-elle été enregistrée ?
-- Pourquoi l'image Ubuntu d'origine n'a-t-elle pas été modifiée ?
-
 Quittez le conteneur :
 
 ```bash
@@ -227,22 +221,6 @@ docker run -it ubuntu bash
 figlet "Hello"
 exit
 ```
-
-## Preuves attendues
-
-Conservez :
-
-- la preuve que l'image `ubuntu` est présente ;
-- le résultat de `cat /etc/os-release` dans le conteneur ;
-- la liste des conteneurs avec `docker ps -a` ;
-- l'identifiant, le nom, l'image, le statut et la commande du conteneur Ubuntu ;
-- la preuve que `figlet` fonctionne après redémarrage du conteneur ;
-- la preuve du nettoyage avec `docker system prune` ;
-- la réponse aux trois questions sur la persistance des modifications.
-
-## Résultat attendu
-
-Vous savez lancer un conteneur Ubuntu, interagir avec son shell, installer un paquet, redémarrer le conteneur, vérifier la persistance des modifications dans ce conteneur et expliquer pourquoi l'image Ubuntu d'origine reste inchangée.
 
 ## Ressources
 

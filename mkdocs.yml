@@ -226,6 +226,10 @@ nav:
           - Installer Docker Engine: integration-distribuee-on-premise/it-1/installer-docker-engine.md
           - Manipuler un conteneur Ubuntu: integration-distribuee-on-premise/it-1/manipuler-conteneur-ubuntu.md
           - Créer une image à partir d'un conteneur: integration-distribuee-on-premise/it-1/creer-image-depuis-conteneur.md
+          - Construire une image avec un Dockerfile: integration-distribuee-on-premise/it-1/construire-image-dockerfile.md
+          - Image Nginx avec page Web: integration-distribuee-on-premise/it-1/construire-image-nginx-web.md
+          - Persistance volume MariaDB: integration-distribuee-on-premise/it-1/persistance-volume-mariadb.md
+          - Déployer WordPress et MariaDB avec Docker Compose: integration-distribuee-on-premise/it-1/deployer-wordpress-compose.md
           - Journal technique - Itération 1: integration-distribuee-on-premise/it-1/journal-technique-it1.md
 
   - Réseaux :

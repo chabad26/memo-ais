@@ -232,21 +232,6 @@ docker version
 docker run hello-world
 ```
 
-## Preuves attendues
-
-À la fin de la feuille, conservez :
-
-- la preuve que le service `docker` est actif ;
-- la version de Docker Engine ;
-- la version de Docker Compose ;
-- le résultat du test `hello-world` avec `sudo` ;
-- le résultat de `docker version` sans `sudo` après reconnexion ;
-- le résultat du test `hello-world` sans `sudo` après reconnexion.
-
-## Résultat attendu
-
-Docker Engine est installé depuis le dépôt officiel Docker, le service est actif, le plugin Compose est disponible et l'utilisateur peut exécuter Docker sans `sudo` après reconnexion.
-
 ## Ressources
 
 - [Install Docker Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)

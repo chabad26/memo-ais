@@ -136,17 +136,3 @@ exit
 docker ps -a
 docker rm <nom-ou-id-du-conteneur>
 ```
-
-## Preuves attendues
-
-Conservez :
-
-- l'identifiant ou le nom du conteneur Ubuntu modifié ;
-- la preuve que `figlet` fonctionne dans le conteneur initial ;
-- la preuve que l'image `ubuntu-figlet:1.0` existe ;
-- la preuve que `figlet` fonctionne dans un nouveau conteneur lancé depuis `ubuntu-figlet:1.0` ;
-- les réponses aux questions sur les limites de `docker commit`.
-
-## Résultat attendu
-
-Vous savez créer une image avec `docker commit`, vérifier qu'elle existe, l'utiliser pour lancer un nouveau conteneur et expliquer pourquoi cette méthode reste moins propre et moins reproductible qu'un Dockerfile.
