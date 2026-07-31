@@ -18,7 +18,12 @@
 
 /* Keep the top tab navigation usable when many modules are present. */
 .md-tabs__inner {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
   overflow-x: auto;
+  padding-left: 0;
+  padding-right: 0;
   scrollbar-width: thin;
 }
 

@@ -23,6 +23,7 @@ Il ne remplace pas les pages de cours : il sert à retrouver rapidement les term
 | Administration des systèmes - Virtualisation | [Itération 1](glossaire/admin-systemes-virtualisation/it-1.md), [Termes essentiels](glossaire/admin-systemes-virtualisation/termes-essentiels-it-1.md), [Itération 2](glossaire/admin-systemes-virtualisation/it-2.md), [Itération 3](glossaire/admin-systemes-virtualisation/it-3.md), [Itération 4](glossaire/admin-systemes-virtualisation/it-4.md) |
 | Réseaux | [Itération 1](glossaire/admin-reseaux/iteration-1.md), [Itération 2](glossaire/admin-reseaux/iteration-2.md), [Itération 3](glossaire/admin-reseaux/iteration-3.md), [Itération 4](glossaire/admin-reseaux/iteration-4.md), [Itération 5](glossaire/admin-reseaux/iteration-5.md) |
 | Réseaux sécurisés | [Itération 1](glossaire/admin-reseaux-securisation/it-1.md), [Itération 2](glossaire/admin-reseaux-securisation/it-2.md), [Itération 3](glossaire/admin-reseaux-securisation/it-3.md), [Itération 4](glossaire/admin-reseaux-securisation/it-4.md), [Itération 5](glossaire/admin-reseaux-securisation/it-5.md), [Itération 6](glossaire/admin-reseaux-securisation/it-6.md) |
+| Intégration distribuée on-premise | [Itération 1](glossaire/integration-distribuee-on-premise/it-1.md), [Mémo Git](glossaire/integration-distribuee-on-premise/git.md) |
 
 !!! info "Méthode"
     Quand une nouvelle notion revient souvent, elle va dans **Termes à retenir**. Quand une action a été faite en TP, elle va dans **Manipulations faites**. Le cours complet reste lié dans **Docs associées**.

@@ -230,6 +230,8 @@ nav:
           - Image Nginx avec page Web: integration-distribuee-on-premise/it-1/construire-image-nginx-web.md
           - Persistance volume MariaDB: integration-distribuee-on-premise/it-1/persistance-volume-mariadb.md
           - Déployer WordPress et MariaDB avec Docker Compose: integration-distribuee-on-premise/it-1/deployer-wordpress-compose.md
+          - Gérer la documentation avec Git: integration-distribuee-on-premise/it-1/gerer-documentation-avec-git.md
+          - Analyser le PCA et le PRA de l'entreprise: integration-distribuee-on-premise/it-1/analyser-pca-pra.md
           - Journal technique - Itération 1: integration-distribuee-on-premise/it-1/journal-technique-it1.md
 
   - Réseaux :
@@ -350,3 +352,6 @@ nav:
           - Itération 4 - Zeek et corrélation: pense-bete/glossaire/admin-reseaux-securisation/it-4.md
           - Itération 5 - Incident, Spark et Fail2ban: pense-bete/glossaire/admin-reseaux-securisation/it-5.md
           - Itération 6 - Challenge final: pense-bete/glossaire/admin-reseaux-securisation/it-6.md
+      - Intégration distribuée on-premise:
+          - Itération 1 - Docker, Compose et PCA/PRA: pense-bete/glossaire/integration-distribuee-on-premise/it-1.md
+          - Mémo spécial Git: pense-bete/glossaire/integration-distribuee-on-premise/git.md

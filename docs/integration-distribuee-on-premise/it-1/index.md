@@ -30,6 +30,8 @@ Avant de déployer Docker et les futurs services conteneurisés, il faut dispose
 - [Construire une image contenant une application Web simple](construire-image-nginx-web.md)
 - [Persistance des données avec un volume Docker](persistance-volume-mariadb.md)
 - [Déployer WordPress et MariaDB avec Docker Compose](deployer-wordpress-compose.md)
+- [Gérer la documentation avec Git](gerer-documentation-avec-git.md)
+- [Analyser le PCA et le PRA de l'entreprise](analyser-pca-pra.md)
 - [Journal technique - Itération 1](journal-technique-it1.md)
 
 ### 1. Installer Ubuntu Server 24.04 LTS
