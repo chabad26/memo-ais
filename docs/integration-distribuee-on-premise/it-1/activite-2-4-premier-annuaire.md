@@ -2,7 +2,7 @@
 
 ## Preuve de travail
 
-**Premier annuaire de l'entreprise**
+***Premier annuaire de l'entreprise***
 
 ## Critères du formateur
 
@@ -377,4 +377,3 @@ L'annuaire fournit une première organisation cohérente de l'entreprise :
 
 - [OpenLDAP Software Documentation](https://www.openldap.org/doc/)
 - [ldapsearch — OpenLDAP](https://www.openldap.org/software/man.cgi?query=ldapsearch)
-- [Annuaire central du module](README.md)
