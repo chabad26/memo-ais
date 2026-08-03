@@ -159,5 +159,4 @@ git check-ignore -v wordpress-compose/.env
 ## Docs associées
 
 - [Gérer la documentation avec Git](../../../integration-distribuee-on-premise/it-1/gerer-documentation-avec-git.md)
-- [Journal technique de l'itération 1](../../../integration-distribuee-on-premise/it-1/journal-technique-it1.md)
-
+- [Journal technique du module](../../../integration-distribuee-on-premise/journal-technique.md)

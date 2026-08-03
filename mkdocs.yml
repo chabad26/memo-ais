@@ -220,6 +220,7 @@ nav:
 
   - Intégration distribuée on-premise:
       - Vue d'ensemble: integration-distribuee-on-premise/README.md
+      - Journal technique du module: integration-distribuee-on-premise/journal-technique.md
       - Itération 1 - Docker:
           - Vue d'ensemble: integration-distribuee-on-premise/it-1/index.md
           - Découverte entreprise fictive: integration-distribuee-on-premise/it-1/decouverte-entreprise-fictive.md
@@ -231,9 +232,15 @@ nav:
           - Persistance volume MariaDB: integration-distribuee-on-premise/it-1/persistance-volume-mariadb.md
           - Déployer WordPress et MariaDB avec Docker Compose: integration-distribuee-on-premise/it-1/deployer-wordpress-compose.md
           - Gérer la documentation avec Git: integration-distribuee-on-premise/it-1/gerer-documentation-avec-git.md
-          - Analyser le PCA et le PRA de l'entreprise: integration-distribuee-on-premise/it-1/analyser-pca-pra.md
-          - Journal technique - Itération 1: integration-distribuee-on-premise/it-1/journal-technique-it1.md
-          - Activité 2.4 - Premier annuaire de l'entreprise: integration-distribuee-on-premise/it-1/activite-2-4-premier-annuaire.md
+      - Itération 2 - PCA/PRA:
+          - PCA fourni: integration-distribuee-on-premise/it-2/PCA.md
+          - PRA fourni: integration-distribuee-on-premise/it-2/PRA.md
+          - Analyse des écarts PCA/PRA: integration-distribuee-on-premise/it-2/analyser-pca-pra.md
+          - Concevoir l'annuaire LDAP: integration-distribuee-on-premise/it-2/concevoir-annuaire-ldap.md
+          - Déployer OpenLDAP avec Docker Compose: integration-distribuee-on-premise/it-2/deployer-openldap-compose.md
+          - Administrer OpenLDAP avec LDAP Account Manager: integration-distribuee-on-premise/it-2/administrer-openldap-avec-lam.md
+          - Premier annuaire de l'entreprise: integration-distribuee-on-premise/it-2/premier-annuaire.md
+
 
   - Réseaux :
       - Vue d'ensemble: admin-reseaux/index.md
@@ -354,5 +361,6 @@ nav:
           - Itération 5 - Incident, Spark et Fail2ban: pense-bete/glossaire/admin-reseaux-securisation/it-5.md
           - Itération 6 - Challenge final: pense-bete/glossaire/admin-reseaux-securisation/it-6.md
       - Intégration distribuée on-premise:
-          - Itération 1 - Docker, Compose et PCA/PRA: pense-bete/glossaire/integration-distribuee-on-premise/it-1.md
+          - Itération 1 - Docker, Compose: pense-bete/glossaire/integration-distribuee-on-premise/it-1.md
+          - Itération 2 - LDAP: pense-bete/glossaire/integration-distribuee-on-premise/it-2.md
           - Mémo spécial Git: pense-bete/glossaire/integration-distribuee-on-premise/git.md

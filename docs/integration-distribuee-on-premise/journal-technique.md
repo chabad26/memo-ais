@@ -1,10 +1,10 @@
-# Journal technique - Itération 1
+# Journal technique - Intégration distribuée on-premise
 
-## Notes techniques de l'itération
+## Notes techniques du module
 
-Ce journal sert à garder une trace personnelle des manipulations Docker réalisées pendant l'itération 1.
+Ce journal sert à garder une trace personnelle des manipulations, décisions, preuves et points restant à vérifier pendant tout le module.
 
-Il regroupe les commandes utilisées, les fichiers produits, les preuves obtenues et les points restant à vérifier.
+Il est organisé par itération : l'itération 1 couvre Docker et les premiers services ; l'itération 2 couvre le PCA/PRA, la conception LDAP et le déploiement OpenLDAP.
 
 ## Versions installées
 
@@ -120,7 +120,6 @@ docker run -it ubuntu-figlet:1.0 bash
 figlet "Hello Campus"
 ```
 
-
 ## Productions conservées pendant l'itération
 
 Les fichiers suivants sont les productions de travail à conserver dans l'environnement de TP. Ils peuvent être repris par une autre personne pour comprendre ou relancer les manipulations.
@@ -152,7 +151,7 @@ docker image ls
 docker history figlet-demo:2.0
 ~~~
 
-La première version affiche Hello Campus. La seconde version affiche Bienvenue. Les captures de construction, d'exécution et d'historique sont conservées dans la fiche [Construire une image avec un Dockerfile](construire-image-dockerfile.md).
+La première version affiche Hello Campus. La seconde version affiche Bienvenue. Les captures de construction, d'exécution et d'historique sont conservées dans la fiche [Construire une image avec un Dockerfile](it-1/construire-image-dockerfile.md).
 
 ### 2. Image Nginx et page Web
 
@@ -194,7 +193,7 @@ docker logs campus-web
 docker rm -f campus-web
 ~~~
 
-La page est servie par Nginx depuis /usr/share/nginx/html/index.html. Les captures du build, du navigateur et des journaux sont conservées dans la fiche [Image Nginx avec page Web](construire-image-nginx-web.md).
+La page est servie par Nginx depuis /usr/share/nginx/html/index.html. Les captures du build, du navigateur et des journaux sont conservées dans la fiche [Image Nginx avec page Web](it-1/construire-image-nginx-web.md).
 
 ### 3. Déploiement WordPress et MariaDB
 
@@ -273,7 +272,7 @@ docker volume ls
 docker compose up -d
 ~~~
 
-Le déploiement est documenté dans la fiche [Déployer WordPress et MariaDB avec Docker Compose](deployer-wordpress-compose.md). Le volume db_data est conservé après docker compose down et ne doit être supprimé avec docker compose down -v qu'après validation de la persistance.
+Le déploiement est documenté dans la fiche [Déployer WordPress et MariaDB avec Docker Compose](it-1/deployer-wordpress-compose.md). Le volume db_data est conservé après docker compose down et ne doit être supprimé avec docker compose down -v qu'après validation de la persistance.
 
 ### 4. Documentation commune du module
 
@@ -351,7 +350,7 @@ Le problème est que l'image obtenue ne raconte pas clairement comment elle a é
 
 Un Dockerfile sera préférable parce qu'il documentera les étapes de construction sous forme de fichier texte. Il pourra être relu, corrigé, versionné et rejoué pour reconstruire la même image.
 
-## Bilan de l'itération
+## Bilan de l'itération 1
 
 - Les images `figlet-demo:1.0` et `figlet-demo:2.0` ont été construites avec un Dockerfile.
 - Le conteneur Nginx a servi une page HTML personnalisée sur le port `8080`.
@@ -362,3 +361,134 @@ Un Dockerfile sera préférable parce qu'il documentera les étapes de construct
 - Les fichiers de configuration et de documentation sont regroupés dans des répertoires identifiés.
 
 Avant de considérer l'itération comme complètement terminée, il reste à reporter dans `documentation/journal.md` les erreurs réellement rencontrées pendant les manipulations et à conserver les captures ou sorties de commandes utiles.
+
+## Itération 2 - PCA/PRA et annuaire LDAP
+
+### Analyse du PCA et du PRA
+
+Les documents fournis ont été conservés sans modification dans :
+
+- [`it-2/PCA.md`](it-2/PCA.md) ;
+- [`it-2/PRA.md`](it-2/PRA.md).
+
+L'analyse des écarts est documentée dans [`it-2/analyser-pca-pra.md`](it-2/analyser-pca-pra.md). Les documents datent de 2021 et décrivent une infrastructure plus ancienne que celle construite dans le laboratoire. Ils mentionnent notamment l'authentification Windows, le partage de fichiers, la messagerie, les sauvegardes et la supervision.
+
+À ce stade, les premiers services Docker et l'environnement Ubuntu sont documentés, mais tous les services du PCA/PRA ne sont pas encore déployés ni vérifiés. Les procédures de reprise devront donc être réévaluées au fur et à mesure de la construction de l'infrastructure.
+
+### Conception de l'annuaire
+
+La proposition d'organisation LDAP est conservée dans [`it-2/concevoir-annuaire-ldap.md`](it-2/concevoir-annuaire-ldap.md). La convention retenue prévoit notamment :
+
+- le suffixe `dc=embedded,dc=local` ;
+- les unités `ou=People`, `ou=Groups`, `ou=Services`, `ou=Computers` et `ou=Certificates` ;
+- des groupes associés aux équipes de l'entreprise ;
+- des comptes techniques identifiés séparément des comptes nominatifs.
+
+Les conventions de nommage et les attributs utilisateurs devront rester réutilisables pour les futurs services, notamment Samba, les certificats et la messagerie.
+
+### Déploiement OpenLDAP préparé
+
+Le déploiement est décrit dans [`it-2/deployer-openldap-compose.md`](it-2/deployer-openldap-compose.md). Les paramètres prévus sont les suivants :
+
+| Élément | Valeur prévue |
+| --- | --- |
+| Répertoire de travail | `~/on-premise/openldap` |
+| Image de référence | `osixia/openldap:2.6.10-alpha` |
+| Base DN | `dc=embedded,dc=local` |
+| DN administrateur | `cn=admin,dc=embedded,dc=local` |
+| Port de test | `389` LDAP |
+| Données persistantes | `ldap_data`, `ldap_config` et `ldap_backups` |
+
+La première tentative utilisait `osixia/openldap:1.5.0` avec les variables v1 `LDAP_ORGANISATION` et `LDAP_DOMAIN`. Elle a été abandonnée après un blocage répété dans `dpkg-reconfigure slapd`. La configuration de référence est maintenant alignée sur la documentation Docker Hub v2 avec les variables `OPENLDAP_BOOTSTRAP_ORGANIZATION` et `OPENLDAP_BOOTSTRAP_SUFFIX`.
+
+Lors du premier démarrage v2, la variable `OPENLDAP_URLS` a provoqué l'erreur suivante :
+
+~~~text
+daemon: listen URL "\\" parse error=3
+openldap exited with code 1 (restarting)
+~~~
+
+La variable a été retirée afin d'utiliser les ports internes par défaut de la v2. Le mapping retenu est `389:3890`. Le message `Skipping OpenLDAP bootstrapping` indiquait également que les volumes contenaient déjà l'état incomplet du premier essai ; ils doivent être recréés tant qu'aucune donnée LDAP n'est à conserver.
+
+Après suppression des antislashs et de `OPENLDAP_URLS`, le conteneur est finalement resté actif :
+
+~~~text
+openldap   osixia/openldap:2.6.10-alpha   Up
+0.0.0.0:389->3890/tcp
+~~~
+
+Le port LDAP est donc accessible sur le port `389` de la machine hôte. Le mot de passe administrateur a été récupéré dans les journaux de bootstrap et la vérification d'authentification peut être réalisée avec le DN `cn=admin,dc=embedded,dc=local`.
+
+LAM a ensuite signalé l'absence des suffixes suivants :
+
+~~~text
+ou=People,dc=embedded,dc=local
+ou=Groups,dc=embedded,dc=local
+~~~
+
+Ces deux unités correspondent à la conception LDAP retenue. Leur création depuis LAM complète la structure de base de l'annuaire ; une recherche `ldapsearch` doit être conservée comme preuve indépendante de l'interface Web.
+
+Les mots de passe sont conservés uniquement dans `.env` local et ne doivent pas être ajoutés au dépôt Git. Le fichier `.env.example` documente les variables attendues sans contenir les valeurs réelles.
+
+### Commandes de vérification prévues
+
+Les commandes suivantes serviront à compléter ce journal avec les sorties réellement obtenues :
+
+```bash
+cd ~/on-premise/openldap
+docker compose config
+docker compose up -d
+docker compose ps
+docker compose logs openldap
+docker compose exec openldap ldapwhoami -x -D "cn=admin,dc=embedded,dc=local" -W
+docker compose exec openldap ldapsearch -x -LLL -b "dc=embedded,dc=local" "(objectClass=*)"
+docker volume ls
+docker compose restart openldap
+docker compose down
+docker compose up -d
+```
+
+Ces commandes permettront de vérifier la configuration, le démarrage du service, l'accès administrateur, la recherche LDAP et la persistance après redémarrage. Les captures, journaux et résultats de recherche seront ajoutés ici lorsqu'ils auront été obtenus.
+
+### Incident de démarrage OpenLDAP
+
+Lors du premier test, la commande suivante a renvoyé une erreur :
+
+~~~bash
+docker compose exec openldap ldapwhoami -x -D "cn=admin,dc=embedded,dc=local" -W
+~~~
+
+Résultat observé :
+
+~~~text
+ldap_sasl_bind(SIMPLE): Can't contact LDAP server (-1)
+~~~
+
+Les journaux se terminaient alors par :
+
+~~~text
+Database and config directory are empty...
+Init new ldap server...
+~~~
+
+Interprétation : l'image était encore en train d'initialiser la base LDAP et le service `slapd` n'était pas encore disponible. La vérification doit être recommencée après la fin des journaux d'initialisation. Si l'attente se prolonge, l'état du conteneur, son code de sortie et les journaux complets doivent être conservés avant toute réinitialisation des volumes.
+
+Une vérification complémentaire a confirmé le blocage :
+
+~~~text
+root  72  1  /usr/bin/perl -w /usr/sbin/dpkg-reconfigure -f noninteractive slapd
+root  77 72  /bin/sh /var/lib/dpkg/info/slapd.config reconfigure
+~~~
+
+La commande `ss -lntp` ne montrait que le DNS interne Docker (`127.0.0.11`) et aucun écouteur LDAP. Le conteneur était donc `running`, mais le service `slapd` n'était pas démarré.
+
+### Réponses aux questions OpenLDAP
+
+- Un **DN** (*Distinguished Name*) est le chemin complet et unique d'un objet dans l'annuaire, par exemple `cn=admin,dc=embedded,dc=local`.
+- Un **UID** est un identifiant court associé à un utilisateur, par exemple `olivier`. Il ne remplace pas le DN qui situe l'objet dans l'arborescence.
+- Les volumes Docker conservent les données en dehors de la couche éphémère du conteneur. Les données LDAP peuvent ainsi rester présentes après un arrêt, une suppression ou une recréation du conteneur.
+- Docker Compose regroupe dans un même fichier les images, variables, ports, volumes et paramètres de redémarrage. Il simplifie donc le déploiement et l'administration du service.
+
+### Suite du journal
+
+Les prochaines entrées devront documenter les services ajoutés, les comptes et groupes effectivement créés, les tests LDAP, les sauvegardes, la supervision et les mises à jour du PCA/PRA. Chaque étape devra préciser la commande utilisée, le résultat obtenu, la preuve conservée et le point restant à vérifier.

@@ -1,4 +1,4 @@
-# Activité 2.4 — Premier annuaire de l'entreprise
+# Premier annuaire de l'entreprise
 
 ## Preuve de travail
 

@@ -211,32 +211,6 @@ Les points suivants doivent être confirmés avant la mise à jour définitive :
 - Quels services sont prioritaires pour les équipes de développement embarqué, d'intégration et de validation ?
 - Quels contacts doivent être disponibles en cas d'indisponibilité du réseau ou de la messagerie ?
 
-## 8. Synthèse à remettre
-
-Les extraits du PCA et du PRA restent utiles pour leur organisation générale et leurs principes de priorité, mais ils ne décrivent plus suffisamment l'infrastructure actuelle.
-
-Les écarts les plus importants concernent :
-
-- l'absence des services Docker et des volumes persistants ;
-- l'absence de WordPress, MariaDB et Nginx ;
-- l'absence du dépôt Git de documentation et de scripts ;
-- le manque de détails sur les sauvegardes, les RTO, les RPO et les tests de restauration ;
-- la distinction insuffisante entre machine virtuelle et machine physique ;
-- l'absence de détails opérationnels sur les identités, le DNS, les partages et les réseaux.
-
-Les documents ne sont pas modifiés pendant cette activité. Cette synthèse servira de base aux mises à jour du PCA et du PRA au fil de la construction de l'infrastructure.
-
-## Livrable final
-
-Le document remis doit contenir :
-
-- le tableau des écarts identifiés ;
-- les services et procédures à revoir ;
-- la liste des nouveaux services à intégrer ;
-- la liste priorisée des mises à jour ;
-- les questions nécessitant une validation ;
-- la mention que les extraits originaux n'ont pas été modifiés.
-
 ## Ressources
 
 - [Plan de Continuité d'Activité - ANSSI](https://cyber.gouv.fr/)
@@ -253,3 +227,39 @@ Le document remis doit contenir :
 - Dépendances d'infrastructure
 - Documentation de reprise d'activité
 
+## Récapitulatif final — PCA/PRA et réalité observée
+
+Ce tableau compare les extraits historiques de 2021 avec l'état réellement travaillé dans le module. Il ne constitue pas encore un PCA ou un PRA final : les éléments non vérifiés doivent rester à confirmer.
+
+| Domaine | Ce que décrivent les anciens PCA/PRA | Réalité observée dans le module | Statut |
+| --- | --- | --- | --- |
+| Support Ubuntu | Non détaillé. | Ubuntu 24.04 est utilisé sur une machine physique. Il n'y a pas de snapshot d'hyperviseur disponible. | Vérifié |
+| Docker | Absent des documents. | Docker Engine et Docker Compose sont installés et utilisés pour les travaux. | Vérifié |
+| Nginx | Aucun serveur Web de test décrit. | Une image Nginx sert une page HTML via un conteneur et un port publié. | Vérifié en laboratoire |
+| WordPress | Absent du PCA et du PRA. | WordPress est déployé avec Docker Compose sur le port 8085. | Vérifié en laboratoire |
+| MariaDB | Aucune base de données détaillée. | MariaDB est utilisé comme service WordPress avec le volume nommé db_data. | Vérifié en laboratoire |
+| Persistance | Sauvegardes de serveurs décrites de manière générale. | La persistance du volume est vérifiée après docker compose down. La sauvegarde réelle du volume reste à définir. | Partiel |
+| Réseau des services | Réseau et dépendances peu détaillés. | Le réseau Compose et la résolution DNS du service db sont vérifiés. | Vérifié en laboratoire |
+| Git | Serveurs Git mentionnés hors périmètre. | Un dépôt Git local conserve documentation, Dockerfiles, Compose et scripts. | Vérifié en laboratoire |
+| Authentification | Contrôleur de domaine Windows présenté comme service prioritaire. | Aucun contrôleur de domaine ni annuaire LDAP n'est encore validé dans l'itération 1. | À construire et confirmer |
+| Partage de fichiers | Serveur Windows avec espaces métiers. | Aucun serveur de fichiers n'est encore déployé dans cette partie du module. | À construire et confirmer |
+| Messagerie | Service SMTP/IMAP à restaurer. | Aucun service de messagerie n'est encore déployé ou testé. | À confirmer |
+| Sauvegardes | Sauvegardes nocturnes et copie externe hebdomadaire. | La stratégie réelle, les supports, la rétention et les restaurations ne sont pas encore établis. | À définir |
+| Supervision | Supervision centralisée avec alertes par courrier électronique. | Aucun outil de supervision ni mécanisme d'alerte n'est encore validé. | À construire et confirmer |
+| Virtualisation | Reprise de machines virtuelles prévue. | L'hôte de travail actuel est physique ; une procédure d'image ou de sauvegarde doit remplacer le snapshot VM. | Partiel |
+| PCA/PRA | Documents versionnés en 2021 et révisés annuellement. | Une analyse d'écarts est réalisée, mais les plans originaux n'ont pas encore été mis à jour. | En cours |
+
+### Conclusion opérationnelle
+
+La réalité actuelle est un environnement de laboratoire en construction, centré sur Ubuntu, Docker, Nginx, WordPress, MariaDB, les volumes Docker et Git. Les anciens PCA/PRA décrivent surtout une infrastructure serveur Windows avec authentification, fichiers, messagerie, sauvegardes et supervision.
+
+Les plans ne peuvent donc pas être appliqués tels quels à l'environnement actuel. Ils doivent être mis à jour progressivement pour intégrer les services réellement construits, leurs dépendances, leurs données persistantes et leurs méthodes de restauration.
+
+Les points les plus urgents à ajouter sont :
+
+1. l'inventaire réel des hôtes, conteneurs, volumes, réseaux et services ;
+2. la sauvegarde et la restauration de MariaDB et des volumes Docker ;
+3. la procédure de reconstruction WordPress/Nginx avec Compose ;
+4. la procédure de retour adaptée à la machine Ubuntu physique ;
+5. l'intégration future de l'annuaire, du serveur de fichiers, de la messagerie et de la supervision ;
+6. les RTO/RPO validés et les preuves de tests de reprise.

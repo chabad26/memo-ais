@@ -109,5 +109,4 @@ Ne pas utiliser docker compose down -v avant d'avoir vérifié la persistance : 
 - [Persistance avec un volume MariaDB](../../../integration-distribuee-on-premise/it-1/persistance-volume-mariadb.md)
 - [Déployer WordPress et MariaDB avec Compose](../../../integration-distribuee-on-premise/it-1/deployer-wordpress-compose.md)
 - [Gérer la documentation avec Git](../../../integration-distribuee-on-premise/it-1/gerer-documentation-avec-git.md)
-- [Analyser le PCA et le PRA](../../../integration-distribuee-on-premise/it-1/analyser-pca-pra.md)
-
+- [Analyser le PCA et le PRA](../../../integration-distribuee-on-premise/it-2/analyser-pca-pra.md)
