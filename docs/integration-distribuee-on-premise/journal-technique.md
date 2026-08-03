@@ -491,4 +491,33 @@ La commande `ss -lntp` ne montrait que le DNS interne Docker (`127.0.0.11`) et a
 
 ### Suite du journal
 
-Les prochaines entrées devront documenter les services ajoutés, les comptes et groupes effectivement créés, les tests LDAP, les sauvegardes, la supervision et les mises à jour du PCA/PRA. Chaque étape devra préciser la commande utilisée, le résultat obtenu, la preuve conservée et le point restant à vérifier.
+### Structure LDAP créée et vérifiée — 3 août 2026
+
+La structure conçue dans LAM a été créée et contrôlée dans l'annuaire OpenLDAP.
+
+| Élément vérifié | Résultat |
+| --- | --- |
+| Groupes | 6 groupes créés dans `ou=Groups` |
+| Utilisateurs | 6 comptes créés dans `ou=People` |
+| Identifiants | UID et GID visibles dans LAM |
+| Recherche LDAP | `result: 0 Success` |
+| Preuves | `groupsok.png`, `userok.png` et `vérifok.png` |
+
+Groupes visibles dans LAM : `grp-administration`, `grp-bureau-etudes`,
+`grp-developpement`, `grp-direction`, `grp-informatique` et `grp-integration`.
+Utilisateurs visibles dans LAM : `amartin`, `bdupont`, `cdurand`, `dbernard`,
+`erobert` et `oadmin`.
+
+La recherche LDAP confirme également la présence des unités `ou=People`,
+`ou=Groups`, `ou=Services`, `ou=Computers` ainsi que des unités de service
+associées. Cette vérification valide l'arborescence et l'accès aux entrées,
+mais ne constitue pas encore un test de sauvegarde ou de restauration.
+
+La capture `vérifok.png` doit être vérifiée avant diffusion : les lignes
+`userPassword::` visibles dans une sortie LDAP peuvent exposer des valeurs
+encodées et doivent être masquées si elles correspondent à un secret réel.
+
+Les prochaines entrées devront documenter les services ajoutés, les sauvegardes,
+la supervision et les mises à jour du PCA/PRA. Chaque étape devra préciser la
+commande utilisée, le résultat obtenu, la preuve conservée et le point restant
+à vérifier.

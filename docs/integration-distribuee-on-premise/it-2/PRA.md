@@ -229,3 +229,18 @@ LAM est un outil d'administration Web placé devant OpenLDAP. Il n'est pas le st
 LAM ne nécessite pas une procédure de restauration de données métier indépendante dans cette configuration. Une reconstruction du conteneur suffit si la configuration peut être rejouée. Le PRA doit toutefois conserver les paramètres de connexion et une preuve de fonctionnement.
 
 Après restauration, vérifier également la présence des unités `ou=People,dc=embedded,dc=local` et `ou=Groups,dc=embedded,dc=local` avant de recréer ou de modifier les comptes utilisateurs et les groupes.
+
+## Vérification de l'annuaire après création — 3 août 2026
+
+L'état de référence validé pour le laboratoire comprend :
+
+- 6 groupes dans `ou=Groups` ;
+- 6 utilisateurs dans `ou=People` ;
+- les unités de service et d'organisation attendues ;
+- une recherche LDAP terminée par `result: 0 Success`.
+
+Après toute reprise, comparer l'annuaire restauré avec cet inventaire, puis
+vérifier les identifiants UID/GID et les appartenances aux groupes dans LAM.
+Cette preuve valide le fonctionnement courant de l'annuaire ; elle ne remplace
+pas un exercice de restauration des volumes `ldap_data`, `ldap_config` et
+`ldap_backups`, qui reste à planifier.

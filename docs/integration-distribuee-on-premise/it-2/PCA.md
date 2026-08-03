@@ -229,3 +229,21 @@ Mesures de continuité :
 - prévoir HTTPS et un contrôle d'accès dans un environnement réel.
 
 LAM est classé comme outil d'administration à priorité secondaire. Sa reconstruction est nécessaire pour le confort d'administration, mais son indisponibilité ne doit pas empêcher l'accès direct à l'annuaire par les outils LDAP.
+
+## Validation de la structure LDAP — 3 août 2026
+
+La structure LDAP prévue pour l'entreprise a été créée avec LAM puis vérifiée
+avec une recherche LDAP.
+
+- 6 groupes sont présents dans `ou=Groups` : `grp-administration`,
+  `grp-bureau-etudes`, `grp-developpement`, `grp-direction`,
+  `grp-informatique` et `grp-integration` ;
+- 6 utilisateurs de laboratoire sont présents dans `ou=People` : `amartin`,
+  `bdupont`, `cdurand`, `dbernard`, `erobert` et `oadmin` ;
+- les UID et GID sont visibles dans LAM ;
+- la recherche LDAP se termine par `result: 0 Success`.
+
+Cette validation confirme que l'annuaire peut fournir une base centralisée pour
+les futures authentifications et autorisations. Les captures sont conservées
+dans la feuille de l'activité LDAP. La sauvegarde et la restauration des
+volumes LDAP restent à tester séparément.

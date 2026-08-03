@@ -237,8 +237,11 @@ nav:
           - PRA fourni: integration-distribuee-on-premise/it-2/PRA.md
           - Analyse des écarts PCA/PRA: integration-distribuee-on-premise/it-2/analyser-pca-pra.md
           - Concevoir l'annuaire LDAP: integration-distribuee-on-premise/it-2/concevoir-annuaire-ldap.md
+          - Étude de conception d'un annuaire LDAP pour une PME: integration-distribuee-on-premise/it-2/etude-conception-annuaire-ldap-pme.md
           - Déployer OpenLDAP avec Docker Compose: integration-distribuee-on-premise/it-2/deployer-openldap-compose.md
           - Administrer OpenLDAP avec LDAP Account Manager: integration-distribuee-on-premise/it-2/administrer-openldap-avec-lam.md
+          - Construire la structure LDAP avec LAM: integration-distribuee-on-premise/it-2/construire-structure-annuaire-lam.md
+          - Gérer le cycle de vie des identités LDAP: integration-distribuee-on-premise/it-2/gerer-cycle-de-vie-identites-ldap.md
           - Premier annuaire de l'entreprise: integration-distribuee-on-premise/it-2/premier-annuaire.md
 
 
