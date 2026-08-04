@@ -170,8 +170,7 @@ Elle evite la duplication des comptes, applique les changements depuis un
 point unique, facilite la desactivation d'un utilisateur et garantit une
 identite coherente entre les services.
 
-### Pourquoi les utilisateurs ne doivent-ils pas etre crees separement dans
-chaque service ?
+### Pourquoi les utilisateurs ne doivent-ils pas etre crees separement dans chaque service ?
 
 Des comptes separes provoqueraient des mots de passe et des etats differents.
 Un depart pourrait alors laisser une boite encore active. Avec LDAP comme
