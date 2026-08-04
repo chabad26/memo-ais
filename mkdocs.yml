@@ -262,6 +262,7 @@ nav:
           - Déployer l'infrastructure de messagerie: integration-distribuee-on-premise/it-4/deployer-messagerie.md
           - Authentifier la messagerie avec LDAP: integration-distribuee-on-premise/it-4/authentification-ldap-messagerie.md
           - Rapport de validation et corrections: integration-distribuee-on-premise/it-4/rapport-validation-corrections-messagerie.md
+          - "Diagnostic : suppression de la boîte Inbox": integration-distribuee-on-premise/it-4/diagnostiquer-suppression-inbox.md
 
 
   - Réseaux :

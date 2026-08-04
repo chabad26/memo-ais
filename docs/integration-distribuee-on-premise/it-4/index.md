@@ -18,3 +18,4 @@ entre eux avant toute installation.
 - [Déployer l'infrastructure de messagerie](deployer-messagerie.md)
 - [Authentifier la messagerie avec LDAP](authentification-ldap-messagerie.md)
 - [Rapport de validation et corrections](rapport-validation-corrections-messagerie.md)
+- [Diagnostic : suppression de la boîte Inbox](diagnostiquer-suppression-inbox.md)
