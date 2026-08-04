@@ -1,16 +1,26 @@
-# Préparer la sécurisation TLS de la messagerie
+# Préparer la sécurisation de l'infrastructure de messagerie
 
 ## Objectif
 
 Identifier les échanges et les services qui devront être protégés par TLS
-après le déploiement fonctionnel de Postfix, Dovecot et Roundcube.
+après le déploiement fonctionnel de Postfix, Dovecot et Roundcube, afin de
+préparer l'itération suivante.
 
 Aucun certificat n'est généré ou installé pendant cette activité.
+
+## Livrable attendu
+
+Cette feuille conserve :
+
+- les services nécessitant un certificat ;
+- les certificats et noms à prévoir ;
+- les bénéfices attendus pour chaque échange ;
+- les réponses aux questions de préparation.
 
 ## 1. Échanges à protéger
 
 | Échange | Port | Protection attendue | Certificat présenté par |
-|---|---:|---|---|
+| --- | ---: | --- | --- |
 | Navigateur vers Roundcube | 443 | HTTPS avec TLS | Roundcube ou reverse proxy |
 | Client vers Dovecot | 993 | IMAPS avec TLS direct | Dovecot |
 | Client vers Dovecot | 143 | IMAP avec STARTTLS si utilisé | Dovecot |
@@ -108,7 +118,7 @@ retenu comme solution d'exploitation normale.
 ## 5. Emplacement des certificats
 
 | Service | Certificat et clé privée à installer |
-|---|---|
+| --- | --- |
 | Roundcube | dans le reverse proxy ou le serveur Web ; clé lisible uniquement par le service |
 | Dovecot | chemins TLS dans la configuration Dovecot |
 | Postfix | chemins TLS dans la configuration Postfix |
