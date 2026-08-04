@@ -247,3 +247,34 @@ Cette validation confirme que l'annuaire peut fournir une base centralisée pour
 les futures authentifications et autorisations. Les captures sont conservées
 dans la feuille de l'activité LDAP. La sauvegarde et la restauration des
 volumes LDAP restent à tester séparément.
+
+## Mise à jour du projet — Samba autonome avec OpenLDAP — 4 août 2026
+
+Le choix d'architecture retenu pour l'intégration est un serveur Samba
+classique utilisant OpenLDAP comme backend `ldapsam`. Le contrôleur Samba AD
+initial a été conservé comme archive dans `compose.ad.yaml` et n'est pas lancé
+avec le service Samba LDAP.
+
+| Élément | État actuel |
+| --- | --- |
+| Serveur SMB | Image locale `embedded-samba-ldap:1.0` construite depuis Debian 12 |
+| Backend d'identités | `ldapsam:ldap://openldap:3890` |
+| Base LDAP | `dc=embedded,dc=local` |
+| Partage | `partage`, publié via SMB sur les ports 139 et 445 |
+| Réseau | `openldap_default` |
+| Persistance | Volumes `samba_state` et `samba_share` |
+| Vérification | `amartin` résolu par NSS, listé par `pdbedit` et authentifié par SMB |
+
+Les attributs `sambaSamAccount` sont ajoutés au schéma OpenLDAP et au compte
+de test utilisé pour la preuve. Le mot de passe LDAP de service reste dans
+`.env` et n'est pas versionné.
+
+Mesures de continuité :
+
+- restaurer OpenLDAP avant Samba ;
+- restaurer `samba-ad/Dockerfile`, `compose.yaml`, `entrypoint.sh` et
+  `config/smb.conf` ;
+- restaurer les volumes LDAP avant de démarrer Samba ;
+- vérifier `getent passwd`, `pdbedit` et un accès à `partage` ;
+- conserver le fichier de schéma Samba avec la documentation LDAP ;
+- ne pas démarrer simultanément `compose.ad.yaml` et `compose.yaml`.

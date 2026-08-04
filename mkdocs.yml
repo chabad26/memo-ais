@@ -243,6 +243,15 @@ nav:
           - Construire la structure LDAP avec LAM: integration-distribuee-on-premise/it-2/construire-structure-annuaire-lam.md
           - Gérer le cycle de vie des identités LDAP: integration-distribuee-on-premise/it-2/gerer-cycle-de-vie-identites-ldap.md
           - Premier annuaire de l'entreprise: integration-distribuee-on-premise/it-2/premier-annuaire.md
+      - Itération 3 - Samba Active Directory et partage:
+          - Vue d'ensemble: integration-distribuee-on-premise/it-3/index.md
+          - Concevoir l'architecture Samba AD et LDAP: integration-distribuee-on-premise/it-3/concevoir-architecture-samba-ad-ldap.md
+          - Historique - Déployer un contrôleur de domaine Samba: integration-distribuee-on-premise/it-3/deployer-controleur-domaine-samba-compose.md
+          - Intégrer Samba à OpenLDAP: integration-distribuee-on-premise/it-3/integrer-samba-openldap.md
+          - Créer les espaces de partage Samba: integration-distribuee-on-premise/it-3/creer-espaces-partage-samba.md
+          - Procédures courantes d'administration: integration-distribuee-on-premise/it-3/procedures-administration.md
+          - Plan de validation de l'infrastructure: integration-distribuee-on-premise/it-3/plan-validation.md
+          - Revue de l'itération: integration-distribuee-on-premise/it-3/revue-iteration.md
 
 
   - Réseaux :

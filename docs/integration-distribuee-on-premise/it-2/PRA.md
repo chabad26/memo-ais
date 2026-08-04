@@ -244,3 +244,34 @@ vérifier les identifiants UID/GID et les appartenances aux groupes dans LAM.
 Cette preuve valide le fonctionnement courant de l'annuaire ; elle ne remplace
 pas un exercice de restauration des volumes `ldap_data`, `ldap_config` et
 `ldap_backups`, qui reste à planifier.
+
+## Mise à jour du projet — Reprise de Samba avec OpenLDAP — 4 août 2026
+
+Samba est désormais un serveur autonome dont le backend d'identités est
+OpenLDAP. Le contrôleur AD initial n'est pas nécessaire à la reprise de ce
+service et ne doit pas être démarré en parallèle.
+
+### Procédure de reprise
+
+1. Restaurer et démarrer OpenLDAP dans `~/on-premise/openldap`.
+2. Vérifier le bind de `cn=admin,dc=embedded,dc=local`.
+3. Vérifier la présence du schéma `samba` dans `cn=schema,cn=config`.
+4. Restaurer les fichiers de `~/on-premise/samba-ad`.
+5. Restaurer les volumes `samba_state` et `samba_share`.
+6. Construire et démarrer Samba avec `docker compose up -d --build`.
+7. Vérifier `testparm -s` et l'état du conteneur.
+8. Vérifier la résolution NSS de `amartin` avec `getent passwd amartin`.
+9. Vérifier le backend avec `pdbedit -L -b ldapsam:ldap://openldap:3890`.
+10. Tester l'authentification et la lecture du partage avec `smbclient`.
+
+### Données critiques
+
+- volumes OpenLDAP `ldap_data`, `ldap_config` et `ldap_backups` ;
+- schéma `samba.ldif` ;
+- volume Samba `samba_state`, notamment `secrets.tdb` ;
+- volume Samba `samba_share` ;
+- configurations Compose et `smb.conf` ;
+- secrets présents uniquement dans les fichiers locaux protégés.
+
+La perte d'OpenLDAP rend l'authentification Samba indisponible. La reprise doit
+donc restaurer l'annuaire avant le serveur SMB.
