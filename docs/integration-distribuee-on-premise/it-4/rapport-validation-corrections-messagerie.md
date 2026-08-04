@@ -28,6 +28,10 @@ Deux comptes LDAP temporaires ont été utilisés :
 Le compte `absent.mail@embedded.local` a servi au test négatif.
 Les mots de passe de TP ne sont pas enregistrés dans Git.
 
+![État des conteneurs de messagerie](../../assets/img/integration-distribuee-on-premise/it-4/etat-conteneurs-messagerie.png)
+*Preuve : les conteneurs de messagerie, OpenLDAP, LAM et Samba sont visibles
+dans l'environnement de TP.*
+
 ## 2. Tests réalisés
 
 ### Test 1 - Authentification LDAP avec Dovecot
@@ -73,6 +77,17 @@ sasl_username=test.mail@embedded.local
 ```
 
 Conclusion : Postfix délègue correctement l'authentification à Dovecot.
+
+Une seconde validation a été réalisée avec le compte LDAP `amartin` :
+
+```text
+235 2.7.0 Authentication successful
+250 2.0.0 Ok: queued as DE48A6A3C7F
+```
+
+![Authentification SMTP réussie avec amartin](../../assets/img/integration-distribuee-on-premise/it-4/smtp-amartin-authentification-reussie.png)
+*Preuve : le compte `amartin` est authentifié par SMTP et le message est
+accepté par Postfix.*
 
 ### Test 4 - Envoi et réception d'un message
 
@@ -126,6 +141,12 @@ http://localhost:8082
 Conclusion : Roundcube est accessible. Il utilise Dovecot pour IMAP et Postfix
 pour SMTP.
 
+![Page de connexion Roundcube](../../assets/img/integration-distribuee-on-premise/it-4/roundcube-page-connexion.png)
+*Preuve : l'interface Web Roundcube est disponible.*
+
+![Réponse HTTP de Roundcube](../../assets/img/integration-distribuee-on-premise/it-4/roundcube-http-200.png)
+*Preuve : le serveur Web répond avec `HTTP/1.1 200 OK`.*
+
 ### Test 7 - Utilisateur inexistant
 
 Compte testé : `absent.mail@embedded.local`.
@@ -139,6 +160,10 @@ passdb: absent.mail@embedded.local auth failed
 
 Conclusion : un utilisateur absent de LDAP ne peut pas ouvrir de session ni
 envoyer de message.
+
+![Authentification LDAP refusée](../../assets/img/integration-distribuee-on-premise/it-4/authentification-ldap-refusee.png)
+*Preuve : le test d'authentification Dovecot échoue pour un mot de passe
+incorrect ou un compte non valide.*
 
 ## 3. Anomalies rencontrées
 
@@ -274,6 +299,10 @@ Cette anomalie est conservée comme point restant de l'itération de
 sécurisation. Les tests fonctionnels ont été réalisés sur IMAP 143 et SMTP
 587 en environnement de TP.
 
+![Anomalie Roundcube CAPABILITY](../../assets/img/integration-distribuee-on-premise/it-4/roundcube-anomalie-capability.png)
+*Preuve historique : Roundcube affichait une erreur IMAP avant la correction
+de la chaîne Dovecot/IMAP.*
+
 ### Anomalie E - Échec SASL contourné par le réseau de confiance
 
 #### Symptôme
@@ -304,6 +333,14 @@ submission/inet/smtpd_relay_restrictions = permit_sasl_authenticated,reject
 - mot de passe incorrect : `535`, puis `554 Client host rejected` ;
 - mot de passe correct : `235 Authentication successful`, puis message
   accepté et livré.
+
+![Échec IMAP avec un mauvais mot de passe](../../assets/img/integration-distribuee-on-premise/it-4/imap-authentification-refusee.png)
+*Preuve : une authentification IMAP incorrecte est refusée.*
+
+![Ancien contournement SMTP](../../assets/img/integration-distribuee-on-premise/it-4/smtp-anomalie-auth-contournement.png)
+*Preuve historique : avant le durcissement du port 587, l'authentification
+échouait mais le message pouvait encore être mis en file via le réseau de
+confiance.*
 
 ## 4. État final validé
 
