@@ -260,7 +260,7 @@ Deux comptes LDAP temporaires ont été utilisés :
 | M-04 IMAPS TLS | Non validé | `ssl = no`, certificats à installer dans l'activité TLS |
 | M-05 Roundcube | Validé | `HTTP/1.1 200 OK`, IMAP et SMTP testés séparément |
 | M-06 Pièce jointe | Validé | SHA-256 envoyé et reçu : `965ec755826dffb000bd0b1139b13824e679cb16bf2fd4528b47bda77833e463` |
-| M-07 Compte inexistant | Validé | Dovecot `auth failed`, SMTP `535` |
+| M-07 Compte inexistant | Validé | Dovecot `auth failed`, SMTP `535`, puis `554` au destinataire |
 
 ### Corrections réalisées
 

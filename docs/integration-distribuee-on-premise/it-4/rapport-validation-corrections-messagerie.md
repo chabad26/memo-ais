@@ -274,6 +274,37 @@ Cette anomalie est conservée comme point restant de l'itération de
 sécurisation. Les tests fonctionnels ont été réalisés sur IMAP 143 et SMTP
 587 en environnement de TP.
 
+### Anomalie E - Échec SASL contourné par le réseau de confiance
+
+#### Symptôme
+
+Avec le mot de passe volontairement incorrect `MOT_DE_PASSE`, Postfix
+retournait bien `535`, mais acceptait encore la commande `MAIL FROM` puis
+mettait le message en file.
+
+#### Cause
+
+Le réseau Docker `172.16.0.0/12` figurait dans `mynetworks`. La règle globale
+`permit_mynetworks` permettait donc à un client du réseau interne de contourner
+l'authentification SMTP.
+
+#### Correction
+
+Le port 587 possède maintenant des restrictions spécifiques dans
+`postfix-init.sh` :
+
+```text
+submission/inet/smtpd_client_restrictions = permit_sasl_authenticated,reject
+submission/inet/smtpd_recipient_restrictions = permit_sasl_authenticated,reject
+submission/inet/smtpd_relay_restrictions = permit_sasl_authenticated,reject
+```
+
+#### Vérification
+
+- mot de passe incorrect : `535`, puis `554 Client host rejected` ;
+- mot de passe correct : `235 Authentication successful`, puis message
+  accepté et livré.
+
 ## 4. État final validé
 
 | Élément | Résultat |
