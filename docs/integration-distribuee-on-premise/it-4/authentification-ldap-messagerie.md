@@ -55,7 +55,9 @@ avant le domaine eventuel, par exemple `amartin` dans
 `amartin@embedded.local`.
 
 Le `userdb static` fournit le repertoire de boite attendu par Dovecot sans
-dupliquer les utilisateurs dans une base locale.
+dupliquer les utilisateurs dans une base locale. L'option
+`allow_all_users=yes` permet les recherches LMTP ; Postfix filtre cependant
+les destinataires avec sa table LDAP avant la livraison.
 
 ## 3. Configuration Postfix
 
@@ -65,16 +67,15 @@ operation a Dovecot :
 ```yaml
 POSTFIX_smtpd_sasl_auth_enable: "yes"
 POSTFIX_smtpd_sasl_type: dovecot
-POSTFIX_smtpd_sasl_path: inet:dovecot:12345
+POSTFIX_smtpd_sasl_path: private/auth
 ```
 
-Dovecot expose le service SASL sur le reseau interne Docker :
+Dovecot expose le service SASL dans le volume partage avec Postfix :
 
 ```conf
 service auth {
-  inet_listener {
-    address = 0.0.0.0
-    port = 12345
+  unix_listener /var/spool/postfix/private/auth {
+    mode = 0666
   }
 }
 ```
@@ -137,7 +138,7 @@ curl -I http://localhost:8082
 Resultats obtenus :
 
 - `mail-postfix`, `mail-dovecot`, `mail-roundcube` et MariaDB sont demarres ;
-- Dovecot ecoute sur le port SASL interne `12345` ;
+- Dovecot expose le socket SASL Unix `private/auth` partage avec Postfix ;
 - Postfix utilise `smtpd_sasl_type = dovecot` ;
 - Postfix utilise `virtual_mailbox_maps = ldap:/etc/postfix/ldap-users.cf` ;
 - Roundcube repond `HTTP/1.1 200 OK` sur `http://localhost:8082` ;
