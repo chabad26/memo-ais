@@ -252,6 +252,15 @@ nav:
           - Procédures courantes d'administration: integration-distribuee-on-premise/it-3/procedures-administration.md
           - Plan de validation de l'infrastructure: integration-distribuee-on-premise/it-3/plan-validation.md
           - Revue de l'itération: integration-distribuee-on-premise/it-3/revue-iteration.md
+      - Itération 4 - Infrastructure de messagerie:
+          - Vue d'ensemble: integration-distribuee-on-premise/it-4/index.md
+          - Concevoir l'architecture de messagerie: integration-distribuee-on-premise/it-4/concevoir-architecture-messagerie.md
+          - Préparer le déploiement de la messagerie: integration-distribuee-on-premise/it-4/preparer-deploiement-messagerie.md
+          - Politique de messagerie: integration-distribuee-on-premise/it-4/politique-messagerie.md
+          - Plan de validation de la messagerie: integration-distribuee-on-premise/it-4/validation-mail.md
+          - Préparer la sécurisation TLS de la messagerie: integration-distribuee-on-premise/it-4/securiser-messagerie-tls.md
+          - Déployer l'infrastructure de messagerie: integration-distribuee-on-premise/it-4/deployer-messagerie.md
+          - Authentifier la messagerie avec LDAP: integration-distribuee-on-premise/it-4/authentification-ldap-messagerie.md
 
 
   - Réseaux :
