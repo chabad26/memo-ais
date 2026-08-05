@@ -109,11 +109,25 @@ Compléter après la première exécution :
 
 | Vérification | Résultat |
 |---|---|
-| Archive complète créée | À vérifier |
-| Dépôt chiffré en `repokey` | À vérifier |
-| Politique 7/4/6 appliquée | À vérifier |
-| Intégrité du dépôt | À vérifier |
-| Journal sans erreur bloquante | À vérifier |
+| Archive complète créée | Oui, 82 fichiers |
+| Dépôt chiffré en `repokey` | Conforme |
+| Politique 7/4/6 appliquée | Première archive quotidienne conservée |
+| Intégrité du dépôt | Conforme, code retour `0` |
+| Journal sans erreur bloquante | Sauvegarde terminée avec succès |
+
+Résultats de la première exécution :
+
+| Élément | Valeur |
+|---|---|
+| Archive | `embedded-infra-ubuntu-oliv-2026-08-05T12-14-01` |
+| Taille originale | 5,57 MB |
+| Taille compressée | 3,06 MB |
+| Taille dédupliquée | 3,06 MB |
+| Journal | `backup-2026-08-05T12-13-57.log` |
+
+Le contrôle du contenu confirme la présence des exports LDAP, de l'export SQL
+Roundcube et des volumes Samba/Dovecot. `backup/.env` et `borg-demo` sont bien
+exclus.
 
 ## 8. Point technique LDAP
 
@@ -123,6 +137,18 @@ avertissements de checksum sur deux fichiers `slapd.d`, liés à la précédente
 réinitialisation hors ligne du mot de passe administrateur. Ils ne bloquent pas
 l'export, mais devront être corrigés avant une utilisation en production.
 
+## 9. Exporter la clé Borg
+
+Le message d'initialisation rappelle que la clé et la phrase secrète sont
+nécessaires pour restaurer le dépôt :
+
+```bash
+borg key export /home/oliv/borg-infrastructure-backup \
+  /chemin/securise/borg-infrastructure-key
+```
+
+La clé exportée doit être conservée séparément du dépôt et hors de Git.
+
 ## Livrables
 
 - `~/on-premise/backup/backup.sh` ;
@@ -130,4 +156,3 @@ l'export, mais devront être corrigés avant une utilisation en production.
 - `~/on-premise/backup/README.md` ;
 - `~/on-premise/documentation/backup-implementation.md` ;
 - l'archive et le journal produits après la première exécution.
-
