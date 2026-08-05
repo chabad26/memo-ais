@@ -56,6 +56,10 @@ Vérifier le dépôt :
 borg info ~/borg-repository-demo
 ```
 
+![Dépôt Borg chiffré initialisé](../../assets/img/integration-distribuee-on-premise/it-5/borg-depot-chiffre-initialise.png)
+*Preuve : le dépôt utilise le mode `repokey` et ne contient encore aucune
+archive.*
+
 ## 4. Créer la première archive
 
 ```bash
@@ -78,6 +82,10 @@ Lister les archives et leur contenu :
 borg list ~/borg-repository-demo
 borg list ~/borg-repository-demo::sauvegarde-$(date +%F)-01
 ```
+
+![Première archive Borg et statistiques](../../assets/img/integration-distribuee-on-premise/it-5/borg-premiere-archive-statistiques.png)
+*Preuve : la première archive contient deux fichiers pour une taille originale
+et dédupliquée de 20,97 MB.*
 
 ## 5. Modifier les données
 
@@ -108,6 +116,13 @@ La valeur `Deduplicated size` de cette archive doit rester nettement plus
 faible que sa taille apparente, car Borg ne stocke réellement que les blocs
 nouveaux.
 
+![Seconde archive et effet de la déduplication](../../assets/img/integration-distribuee-on-premise/it-5/borg-seconde-archive-deduplication.png)
+*Preuve : la seconde archive représente 41,94 MB mais ajoute seulement 137 B
+de données uniques au dépôt.*
+
+La capture montre également qu'un nom d'archive déjà présent ne peut pas être
+réutilisé. Chaque nouvelle sauvegarde doit donc recevoir un nom unique.
+
 Comparer les archives :
 
 ```bash
@@ -131,15 +146,15 @@ Compléter le tableau avec les valeurs réellement affichées :
 
 | Archive | Taille originale | Taille compressée | Taille dédupliquée |
 |---|---:|---:|---:|
-| `sauvegarde-AAAA-MM-JJ-01` | À relever | À relever | À relever |
-| `sauvegarde-AAAA-MM-JJ-02` | À relever | À relever | À relever |
+| `sauvegarde-2026-08-05-01` | 20,97 MB | 20,97 MB | 20,97 MB |
+| `sauvegarde-2026-08-05-02` | 41,94 MB | 41,94 MB | 137 B |
 
 Ajouter également :
 
 | Mesure | Valeur |
 |---|---:|
-| Taille apparente du dossier `data` | À relever |
-| Espace occupé par le dépôt Borg | À relever |
+| Taille apparente du dossier `data` | 41 MB |
+| Espace occupé par le dépôt Borg | 21 MB |
 
 Ces valeurs ne sont pas strictement identiques aux statistiques d'une archive :
 le dépôt contient les blocs partagés, les métadonnées, le manifeste et les
@@ -193,4 +208,3 @@ validation du formateur.
 
 - [Documentation BorgBackup](https://borgbackup.readthedocs.io/en/stable/)
 - [Guide officiel Quickstart](https://borgbackup.readthedocs.io/en/stable/quickstart.html)
-
