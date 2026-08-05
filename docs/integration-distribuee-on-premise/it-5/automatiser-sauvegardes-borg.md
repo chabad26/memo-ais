@@ -86,6 +86,25 @@ echo "Code retour du contrôle : $?"
 Le résultat attendu est `SUCCESS`, un code retour `0`, une archive récente et
 le message `CONFORME`.
 
+Résultat obtenu le 5 août 2026 :
+
+| Vérification | Résultat |
+|---|---|
+| Archive créée | `embedded-infra-ubuntu-oliv-2026-08-05T12-55-10` |
+| Nombre de fichiers | 87 |
+| Taille originale | 5,59 MB |
+| Taille compressée | 3,06 MB |
+| Taille dédupliquée | 1,13 MB |
+| État de l'automatisation | `SUCCESS` |
+| Code retour | `0` |
+| Journal | `backup-2026-08-05T12-55-07.log` |
+
+La sauvegarde est terminée, la rétention est appliquée et le fichier
+`last-run.status` contient l'heure de début, l'heure de fin, le code retour et
+le nom de l'hôte.
+
+![Exécution automatisée réussie et état de la dernière sauvegarde](../../assets/img/integration-distribuee-on-premise/it-5/borg-execution-automatisee-success.png)
+
 ## 5. Installer la planification
 
 Sauvegarder d'abord l'éventuelle crontab existante :
@@ -112,7 +131,11 @@ crontab -l
 ```
 
 La crontab n'est pas installée automatiquement par la documentation : elle doit
-être validée par l'administrateur sur la machine qui héberge les services.
+être validée par l'administrateur sur la machine qui héberge les services. Dans
+le laboratoire, les deux tâches ont été installées et vérifiées : sauvegarde à
+02 h 00, puis contrôle à 08 h 15.
+
+![Crontab de sauvegarde et de contrôle quotidien](../../assets/img/integration-distribuee-on-premise/it-5/borg-crontab-sauvegarde-controle.png)
 
 ## 6. Contrôle quotidien de l'administrateur
 
@@ -131,6 +154,18 @@ L'administrateur vérifie :
 - la présence d'une archive récente ;
 - la ligne `Sauvegarde terminée` dans le journal détaillé ;
 - l'absence d'erreur Borg, Docker, LDAP ou MariaDB.
+
+Le contrôle exécuté après la mise en place retourne :
+
+```text
+État : SUCCESS
+Dernière archive : embedded-infra-ubuntu-oliv-2026-08-05T12-55-10
+CONFORME : la dernière sauvegarde est récente et terminée avec succès.
+```
+
+Les avertissements de checksum OpenLDAP déjà identifiés restent visibles dans
+le journal détaillé, mais ils n'ont pas empêché la création ni le contrôle de
+l'archive. Leur correction demeure nécessaire avant une mise en production.
 
 En cas d'échec, il consulte :
 
