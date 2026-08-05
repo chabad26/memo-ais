@@ -266,6 +266,7 @@ nav:
       - Itération 5 - Sauvegarde et restauration:
           - Vue d'ensemble: integration-distribuee-on-premise/it-5/index.md
           - Identifier les exigences de sauvegarde: integration-distribuee-on-premise/it-5/identifier-exigences-sauvegarde.md
+          - Définir la stratégie de sauvegarde: integration-distribuee-on-premise/it-5/definir-strategie-sauvegarde.md
 
 
   - Réseaux :
