@@ -9,3 +9,4 @@ l'infrastructure construite lors des itérations précédentes.
 - [Définir la stratégie de sauvegarde](definir-strategie-sauvegarde.md)
 - [Découvrir BorgBackup](decouvrir-borgbackup.md)
 - [Vérifier les sauvegardes BorgBackup](verifier-sauvegardes-borg.md)
+- [Mettre en œuvre la sauvegarde BorgBackup](mettre-en-oeuvre-sauvegarde-borg.md)
