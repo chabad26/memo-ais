@@ -12,3 +12,4 @@ l'infrastructure construite lors des itérations précédentes.
 - [Mettre en œuvre la sauvegarde BorgBackup](mettre-en-oeuvre-sauvegarde-borg.md)
 - [Restaurer une sauvegarde BorgBackup](restaurer-sauvegarde-borg.md)
 - [Automatiser et contrôler les sauvegardes BorgBackup](automatiser-sauvegardes-borg.md)
+- [Valider la stratégie de sauvegarde](valider-strategie-sauvegarde.md)
