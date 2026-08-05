@@ -39,7 +39,8 @@ Le script prépare :
 - un export LDIF des données et de la configuration OpenLDAP ;
 - un export cohérent de la base MariaDB Roundcube ;
 - une archive des volumes OpenLDAP ;
-- une archive des volumes Samba `samba_share` et `samba_state` ;
+- une archive des volumes Samba `samba_config`, `samba_share` et
+  `samba_state` ;
 - une archive du volume `dovecot_mail` ;
 - une archive de la configuration Roundcube ;
 - une archive du volume MariaDB WordPress s'il existe ;

@@ -68,6 +68,11 @@ groupe Unix correspondant. Ces groupes sont fournis par NSS depuis OpenLDAP.
 Les options `guest ok = no` et `read only = no` imposent une authentification
 et autorisent l'ecriture aux utilisateurs autorises.
 
+Le fichier versionne sert de modele. Au premier demarrage, il est copie dans
+le volume persistant `samba_config`, puis l'entrypoint copie la version
+persistante vers `/etc/samba/smb.conf`. Apres une modification du modele, la
+synchronisation du volume doit donc etre realisee explicitement.
+
 ![Configuration Samba des espaces de partage et des groupes autorises](../../assets/img/integration-distribuee-on-premise/it-3/configuration-espaces-partage.png)
 
 ## 3. Creer les repertoires

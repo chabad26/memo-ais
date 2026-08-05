@@ -128,10 +128,57 @@ déploie maintenant un serveur Samba autonome avec le backend `ldapsam`.
 Les fichiers principaux sont :
 
 - `Dockerfile` : image Debian avec Samba, `smbclient`, LDAP et NSS LDAP ;
-- `entrypoint.sh` : initialisation du secret LDAP et du service NSS ;
-- `config/smb.conf` : backend `ldapsam` et partage `partage` ;
+- `entrypoint.sh` : copie des configurations persistantes, initialisation du
+  secret LDAP et démarrage du service NSS ;
+- `config/smb.conf`, `config/nslcd.conf.template` et `config/nsswitch.conf` :
+  modèles versionnés intégrés à l'image ;
 - `schema/samba.ldif` : schéma `sambaSamAccount` chargé dans OpenLDAP ;
+- volume `samba_config` : configurations persistantes initialisées au premier
+  démarrage ;
 - volumes `samba_state` et `samba_share` : état Samba et données partagées.
+
+### Correction après revue de la formatrice
+
+La première version construisait `nslcd.conf` avec plusieurs appels à `printf`
+et modifiait `nsswitch.conf` avec `sed` dans l'entrypoint. Cette méthode rendait
+les erreurs de syntaxe difficiles à repérer et recréait la configuration à
+chaque démarrage.
+
+La configuration corrigée suit ce cycle :
+
+1. les modèles complets sont versionnés dans `samba-ad/config/` ;
+2. le `Dockerfile` les intègre dans `/usr/local/share/samba-config/` ;
+3. au premier démarrage, l'entrypoint les initialise dans le volume
+   `samba_config` ;
+4. à chaque démarrage, les fichiers persistants sont copiés vers `/etc` ;
+5. `testparm` valide `smb.conf` avant le lancement de Samba.
+
+Seule la variable `${LDAP_ADMIN_PASSWORD}` est substituée à l'exécution dans
+`/etc/nslcd.conf`. Le secret ne figure donc ni dans Git, ni dans le modèle, ni
+dans le volume persistant.
+
+L'entrypoint exécute également `ldapwhoami` avant le démarrage de Samba. Si le
+mot de passe de `samba-ad/.env` ne correspond plus à celui d'OpenLDAP, le
+conteneur s'arrête avec un message explicite. Après correction, `smbpasswd -w`
+met systématiquement à jour le secret conservé dans `secrets.tdb`.
+
+Le test de migration a justement détecté ce cas : l'ancien volume contenait un
+`smb.conf` de contrôleur AD et le mot de passe LDAP local n'était plus à jour.
+L'ancien fichier a été conservé sous un nom `smb.conf.pre-ldapsam-<date>`, puis
+le modèle autonome a été installé. `testparm` confirme désormais le rôle
+`ROLE_STANDALONE`; l'authentification LDAP reste à rejouer après synchronisation
+du mot de passe local.
+
+Après une modification volontaire de `config/smb.conf`, la synchronisation est
+explicite afin de ne pas écraser silencieusement le volume :
+
+~~~bash
+docker compose build samba
+docker compose run --rm --entrypoint sh samba -c \
+  'install -m 0644 /usr/local/share/samba-config/smb.conf /var/lib/samba-config/smb.conf'
+docker compose up -d
+docker compose exec samba testparm -s
+~~~
 
 Démarrer OpenLDAP puis Samba :
 
