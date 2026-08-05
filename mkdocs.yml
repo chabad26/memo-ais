@@ -263,6 +263,9 @@ nav:
           - Authentifier la messagerie avec LDAP: integration-distribuee-on-premise/it-4/authentification-ldap-messagerie.md
           - Rapport de validation et corrections: integration-distribuee-on-premise/it-4/rapport-validation-corrections-messagerie.md
           - "Diagnostic : suppression de la boîte Inbox": integration-distribuee-on-premise/it-4/diagnostiquer-suppression-inbox.md
+      - Itération 5 - Sauvegarde et restauration:
+          - Vue d'ensemble: integration-distribuee-on-premise/it-5/index.md
+          - Identifier les exigences de sauvegarde: integration-distribuee-on-premise/it-5/identifier-exigences-sauvegarde.md
 
 
   - Réseaux :
