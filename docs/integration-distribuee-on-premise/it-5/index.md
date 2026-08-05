@@ -10,3 +10,4 @@ l'infrastructure construite lors des itérations précédentes.
 - [Découvrir BorgBackup](decouvrir-borgbackup.md)
 - [Vérifier les sauvegardes BorgBackup](verifier-sauvegardes-borg.md)
 - [Mettre en œuvre la sauvegarde BorgBackup](mettre-en-oeuvre-sauvegarde-borg.md)
+- [Restaurer une sauvegarde BorgBackup](restaurer-sauvegarde-borg.md)

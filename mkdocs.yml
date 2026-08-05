@@ -270,6 +270,7 @@ nav:
           - Découvrir BorgBackup: integration-distribuee-on-premise/it-5/decouvrir-borgbackup.md
           - Vérifier les sauvegardes BorgBackup: integration-distribuee-on-premise/it-5/verifier-sauvegardes-borg.md
           - Mettre en œuvre la sauvegarde BorgBackup: integration-distribuee-on-premise/it-5/mettre-en-oeuvre-sauvegarde-borg.md
+          - Restaurer une sauvegarde BorgBackup: integration-distribuee-on-premise/it-5/restaurer-sauvegarde-borg.md
 
 
   - Réseaux :
