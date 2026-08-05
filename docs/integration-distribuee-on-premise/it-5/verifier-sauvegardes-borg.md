@@ -72,6 +72,10 @@ chemin sans le `/` initial :
 home/oliv/on-premise/borg-demo/data/document.txt
 ```
 
+![Contrôle du dépôt, liste des archives et restauration](../../assets/img/integration-distribuee-on-premise/it-5/borg-integrite-archives-restauration.png)
+*Preuve : `borg check` retourne `0`, les deux archives sont présentes et
+`document.txt` est extrait dans un répertoire temporaire.*
+
 ## 4. Restaurer un fichier temporairement
 
 Créer un répertoire temporaire vide :
@@ -124,20 +128,24 @@ echo "Code retour cmp : $?"
 `cmp` ne produit aucune sortie lorsque les fichiers sont identiques. Son code
 retour doit être `0`.
 
+![Comparaison du fichier restauré avec l'original](../../assets/img/integration-distribuee-on-premise/it-5/borg-comparaison-fichier-restaure.png)
+*Preuve : les empreintes SHA-256 sont identiques et `cmp` retourne le code
+`0`.*
+
 ## 6. Résultats à consigner
 
 | Vérification | Résultat attendu | Résultat obtenu |
 |---|---|---|
-| Intégrité du dépôt | Code retour Borg `0` | À vérifier |
+| Intégrité du dépôt | Code retour Borg `0` | Conforme, code `0` |
 | Vérification approfondie des données | Code retour Borg `0` | À vérifier |
-| Présence des deux archives | Archives `01` et `02` visibles | À vérifier |
-| Présence du fichier dans l'archive | `document.txt` visible | À vérifier |
-| Restauration temporaire | Fichier extrait sans écraser l'original | À vérifier |
-| Empreintes SHA-256 | Empreintes identiques | À vérifier |
-| Comparaison avec `cmp` | Code retour `0` | À vérifier |
+| Présence des deux archives | Archives `01` et `02` visibles | Conforme |
+| Présence du fichier dans l'archive | `document.txt` visible | Conforme |
+| Restauration temporaire | Fichier extrait sans écraser l'original | Réussie |
+| Empreintes SHA-256 | Empreintes identiques | Conforme |
+| Comparaison avec `cmp` | Code retour `0` | Conforme, code `0` |
 
-Ne remplacer « À vérifier » qu'après avoir exécuté la commande et conservé sa
-sortie ou une capture.
+La vérification approfondie reste à compléter avec une preuve de la commande
+`borg check --verify-data`.
 
 ## 7. Recommandations d'exploitation
 
@@ -157,4 +165,3 @@ La présence d'une archive ne prouve pas qu'elle est exploitable. Une solution
 de sauvegarde doit être contrôlée par des vérifications d'intégrité et surtout
 par des restaurations régulières. Le test est terminé uniquement lorsque les
 données restaurées sont lisibles et identiques à l'original.
-
