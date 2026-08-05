@@ -129,6 +129,10 @@ Le contrôle du contenu confirme la présence des exports LDAP, de l'export SQL
 Roundcube et des volumes Samba/Dovecot. `backup/.env` et `borg-demo` sont bien
 exclus.
 
+![Première sauvegarde complète de l'infrastructure](../../assets/img/integration-distribuee-on-premise/it-5/borg-premiere-sauvegarde-infrastructure.png)
+*Preuve : l'archive contient 82 fichiers, la rétention quotidienne est
+appliquée et Borg termine avec le code retour `0`.*
+
 ## 8. Point technique LDAP
 
 Les tests préparatoires confirment que les exports LDAP et MariaDB ainsi que
