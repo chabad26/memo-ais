@@ -151,6 +151,11 @@ curl -I http://127.0.0.1:5601
 Ouvrir ensuite <http://127.0.0.1:5601> dans le navigateur et conserver une
 capture de l'interface.
 
+![Interface d'accueil Kibana accessible](../../assets/img/integration-distribuee-on-premise/it-7/kibana-interface-operationnelle.png)
+
+Cette capture confirme que Kibana est démarré, joignable depuis le navigateur
+et connecté à une plateforme Elastic prête à recevoir des intégrations.
+
 ## 7. Vérifier le volume
 
 ```bash
@@ -160,6 +165,14 @@ docker volume inspect monitoring_elasticsearch_data
 
 Les index Elasticsearch sont enregistrés dans ce volume et non dans la couche
 éphémère du conteneur.
+
+![Santé Elasticsearch et volume persistant](../../assets/img/integration-distribuee-on-premise/it-7/elasticsearch-sante-volume-persistant.png)
+
+La sortie confirme la version Elasticsearch `9.3.1`, un nœud actif, tous les
+shards primaires disponibles et la présence du volume
+`monitoring_elasticsearch_data`. L'état `yellow` correspond à la réplique non
+attribuable sur le nœud unique du TP ; il ne signale pas la perte d'un shard
+primaire.
 
 ## 8. Tester le redémarrage et la persistance
 
@@ -198,11 +211,14 @@ attribuée, car le TP utilise un nœud unique. Aucun message d'erreur de démarr
 n'a été relevé. L'avertissement Kibana relatif à l'assistant IA concerne une
 fonction nécessitant une licence supérieure et ne bloque pas la plateforme.
 
-## Captures à conserver
+## Preuves visuelles intégrées
 
-1. `docker compose ps` avec les deux services actifs ;
-2. résultat de `_cluster/health` ;
-3. interface Web de Kibana.
+1. santé de l'API Elasticsearch et inspection du volume persistant ;
+2. accès à l'interface Web de Kibana.
+
+Une capture complémentaire de `docker compose ps` peut être ajoutée si le
+formateur souhaite voir explicitement l'état des deux conteneurs sur une seule
+preuve.
 
 ## Termes à retenir
 
