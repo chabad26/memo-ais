@@ -296,7 +296,7 @@ marqueur de fin est présent.
 `crontab.example` sépare la sauvegarde de 02 h 00 et le contrôle de 08 h 15. Un
 échec nocturne peut ainsi être détecté au début de la journée.
 
-## Supervision Elasticsearch et Kibana
+## Supervision Elasticsearch, Kibana et Filebeat
 
 `monitoring-compose/compose.yaml` contient :
 
@@ -307,11 +307,28 @@ marqueur de fin est présent.
 - Kibana, démarré seulement lorsque le contrôle Elasticsearch réussit ;
 - un réseau `monitoring` dédié ;
 - les ports liés à `127.0.0.1`, donc inaccessibles depuis une autre machine.
+- Filebeat, qui lit les journaux Docker et BorgBackup puis les envoie à
+  Elasticsearch.
 
 `depends_on` utilise ici `condition: service_healthy`, ce qui est plus précis
 qu'un simple ordre de démarrage. La sécurité Elastic est temporairement
 désactivée pour le test local ; TLS et l'authentification doivent être activés
 avant une exposition réseau.
+
+`filebeat.yml` contient deux inputs `filestream` avec des identifiants stables :
+
+- `docker-containers` lit les fichiers JSON du pilote Docker et utilise le
+  parseur `container` ;
+- `borgbackup-files` lit les journaux et le statut BorgBackup.
+
+Le processeur `add_docker_metadata` ajoute le nom, l'image et les labels des
+conteneurs actifs. Il nécessite le socket Docker, qui reste très privilégié
+même monté en lecture seule. `drop_event` exclut les propres journaux Filebeat
+pour éviter une boucle de collecte.
+
+Le volume `monitoring_filebeat_data` conserve le registre de lecture. Il ne
+contient pas les journaux : il mémorise le fichier et le dernier octet déjà lu.
+Les événements, eux, sont conservés dans Elasticsearch.
 
 ## Quelle commande après une modification ?
 
