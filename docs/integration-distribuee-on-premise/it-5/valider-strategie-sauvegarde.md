@@ -134,9 +134,9 @@ La sauvegarde automatique actuelle est quotidienne. Dans le pire cas, les
 modifications réalisées depuis la sauvegarde de 02 h 00 sont perdues : comptes
 créés, changements de groupes, mots de passe et attributs LDAP.
 
-La stratégie documentaire prévoit un export LDAP toutes les 6 heures, mais ce
-rythme n'est pas encore automatisé. Le RPO réel est donc actuellement de
-24 heures au maximum, et non de 6 heures.
+La fréquence nocturne limite le RPO technique à environ 24 heures. Elle répond
+à l'exigence historique du PCA, mais cette perte maximale doit encore être
+acceptée par le responsable métier.
 
 ## 6. Respect du PCA et du PRA
 
@@ -146,7 +146,7 @@ rythme n'est pas encore automatisé. Le RPO réel est donc actuellement de
 | Reprise en moins de 2 heures | Conforme sur estimation | La procédure est estimée à 1 h 20, mais le temps réel reste à mesurer. |
 | Interruption inférieure à 4 heures | Conforme sur estimation | La marge estimée est de 2 h 40 par rapport au PCA. |
 | Sauvegarde quotidienne contrôlée | Conforme | Cron, journal, état `SUCCESS` et contrôle `CONFORME` ont été vérifiés. |
-| Export LDAP toutes les 6 heures | Non conforme | Seule l'exécution quotidienne complète est actuellement planifiée. |
+| Sauvegarde LDAP nocturne | Conforme à l'exigence historique | Le script exporte les LDIF et les volumes dans l'archive quotidienne. |
 | Restauration fonctionnelle complète | Partiellement conforme | Les fichiers et volumes ont été extraits, mais un OpenLDAP restauré n'a pas encore été démarré et chronométré. |
 | Copie chiffrée hors de l'hôte | À confirmer | Le dépôt est chiffré, mais la copie externe n'est pas prouvée. |
 
@@ -155,13 +155,12 @@ rythme n'est pas encore automatisé. Le RPO réel est donc actuellement de
 La stratégie répond **partiellement** aux exigences. Les sauvegardes sont
 automatisées, chiffrées, journalisées et extractibles. Le RTO LDAP semble
 compatible avec le PCA/PRA, mais il ne sera déclaré validé qu'après un exercice
-chronométré. L'export LDAP toutes les 6 heures et la copie hors hôte restent à
-mettre en œuvre pour réduire la perte de données et respecter la stratégie
-annoncée.
+chronométré. La copie hors hôte reste à mettre en œuvre et le RPO de 24 heures
+doit être validé par le responsable métier.
 
 ## 7. Actions correctives
 
-1. ajouter un export LDIF toutes les 6 heures ;
+1. faire valider le RPO LDAP de 24 heures par le responsable métier ;
 2. répliquer le dépôt Borg chiffré sur un support hors hôte ;
 3. démarrer une instance OpenLDAP à partir des volumes restaurés ;
 4. mesurer le temps réel jusqu'au rétablissement de Samba et de la messagerie ;

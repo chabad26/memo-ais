@@ -63,6 +63,11 @@ echo "Code retour cmp : $?"
 Résultat obtenu le 5 août 2026 : les empreintes SHA-256 sont identiques et
 `cmp` retourne `0`. Le fichier restauré est conforme.
 
+Le contrôle a été rejoué le 6 août depuis l'archive encore présente
+`embedded-infra-ubuntu-oliv-2026-08-05T12-55-10` : l'empreinte
+`8c8f7879ab221181e2857c1f8a28db966c1398f278cf620534fa7a0a1a521c70`
+est identique et `cmp` retourne encore `0`.
+
 ![Restauration du fichier Compose et comparaison SHA-256](../../assets/img/integration-distribuee-on-premise/it-5/borg-restauration-configuration-verifiee.png)
 
 ## 3. Restaurer un document Samba
@@ -108,6 +113,10 @@ echo "Code retour cmp : $?"
 
 Les deux empreintes sont identiques et `cmp` retourne `0` : le document Samba
 est conforme à l'original.
+
+La revalidation du 6 août depuis l'archive `12-55-10` retourne l'empreinte
+`cc177c42e595cb4fffe879fbc133d6e952d15fc56528af6c6c072dbec362b68f`
+pour les deux fichiers et `cmp=0`.
 
 ![Restauration et comparaison du document Samba](../../assets/img/integration-distribuee-on-premise/it-5/borg-restauration-volume-samba-verifiee.png)
 
@@ -193,8 +202,8 @@ réalisées dans des répertoires temporaires ou des volumes Docker isolés.
 
 | Élément restauré | Archive utilisée | Résultat |
 |---|---|---|
-| `messaging-compose/docker-compose.yml` | `embedded-infra-ubuntu-oliv-2026-08-05T12-14-01` | Conforme, SHA-256 identiques et `cmp=0` |
-| `preuve-ldap/document-restauration.txt` | `embedded-infra-ubuntu-oliv-2026-08-05T12-44-31` | Conforme, SHA-256 identiques et `cmp=0` |
+| `messaging-compose/docker-compose.yml` | `embedded-infra-ubuntu-oliv-2026-08-05T12-55-10` | Revalidé le 6 août, SHA-256 identiques et `cmp=0` |
+| `preuve-ldap/document-restauration.txt` | `embedded-infra-ubuntu-oliv-2026-08-05T12-55-10` | Revalidé le 6 août, SHA-256 identiques et `cmp=0` |
 | Volume Dovecot | `embedded-infra-ubuntu-oliv-2026-08-05T12-44-31` | Extraction Maildir réussie ; validation IMAP à réaliser avant réinjection |
 | Volume OpenLDAP | `embedded-infra-ubuntu-oliv-2026-08-05T12-44-31` | Extraction réussie dans `restore-openldap-test` ; démarrage LDAP isolé à valider |
 

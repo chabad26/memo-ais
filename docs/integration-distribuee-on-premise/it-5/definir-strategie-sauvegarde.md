@@ -21,9 +21,9 @@ conteneurs ne constitue pas une sauvegarde suffisante.
 
 | Élément | Méthode prévue | Fréquence | Rétention | Chiffrement | Vérification |
 |---|---|---|---|---|---|
-| Annuaire LDAP | Export LDIF des données et de `cn=config`, plus sauvegarde des volumes LDAP | Export toutes les 6 h, volumes chaque nuit | 7 quotidiennes, 4 hebdomadaires, 6 mensuelles | Oui | Import LDAP mensuel dans un environnement isolé |
-| Partages Samba | Sauvegarde incrémentale du volume `samba_share` et de `smb.conf` | Chaque nuit | 14 quotidiennes, 8 hebdomadaires, 6 mensuelles | Oui | Restauration mensuelle d'un fichier et contrôle des droits |
-| Boîtes Dovecot | Sauvegarde cohérente du volume `dovecot_mail` | Chaque nuit | 14 quotidiennes, 8 hebdomadaires, 6 mensuelles | Oui | Restauration mensuelle d'une boîte et lecture IMAP |
+| Annuaire LDAP | Export LDIF des données et de `cn=config`, plus sauvegarde des volumes LDAP | Chaque nuit | 7 quotidiennes, 4 hebdomadaires, 6 mensuelles | Oui | Import LDAP mensuel dans un environnement isolé |
+| Partages Samba | Sauvegarde des volumes `samba_config`, `samba_state` et `samba_share` | Chaque nuit | 7 quotidiennes, 4 hebdomadaires, 6 mensuelles | Oui | Restauration mensuelle d'un fichier et contrôle des droits |
+| Boîtes Dovecot | Sauvegarde cohérente du volume `dovecot_mail` | Chaque nuit | 7 quotidiennes, 4 hebdomadaires, 6 mensuelles | Oui | Restauration mensuelle d'une boîte et lecture IMAP |
 | Base Roundcube | Export MariaDB cohérent | Chaque nuit | 7 quotidiennes, 4 hebdomadaires, 6 mensuelles | Oui | Import mensuel dans une base temporaire |
 | Configuration Roundcube | Volume `roundcube_config` | Chaque nuit et après modification | 7 quotidiennes, 4 hebdomadaires | Oui | Démarrage d'un conteneur de test |
 | Configurations Docker | Compose, Dockerfiles, scripts, Dovecot, Postfix, Samba et `.env.example` | À chaque commit | Historique Git et 6 archives mensuelles | Dépôt privé et archive chiffrée | Reconstruction trimestrielle des services |
@@ -113,4 +113,3 @@ régulières démontrent que les sauvegardes sont réellement exploitables.
 Cette feuille constitue la stratégie à présenter au formateur. Sa mise en
 œuvre devra produire des scripts, des journaux d'exécution et des preuves de
 restauration.
-

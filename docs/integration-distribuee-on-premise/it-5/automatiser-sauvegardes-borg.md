@@ -167,6 +167,13 @@ Les avertissements de checksum OpenLDAP déjà identifiés restent visibles dans
 le journal détaillé, mais ils n'ont pas empêché la création ni le contrôle de
 l'archive. Leur correction demeure nécessaire avant une mise en production.
 
+Le 6 août, la machine a démarré à 08 h 48 : les tâches prévues à 02 h 00 et
+08 h 15 n'ont donc pas été exécutées. Cron ne rejoue pas les tâches manquées.
+Le mécanisme et son lancement manuel sont validés, mais une exécution nocturne
+sans intervention doit encore être observée sur un hôte laissé actif. Sur un
+portable fréquemment arrêté, un timer systemd avec `Persistent=true` ou Anacron
+serait plus adapté.
+
 En cas d'échec, il consulte :
 
 ```bash
