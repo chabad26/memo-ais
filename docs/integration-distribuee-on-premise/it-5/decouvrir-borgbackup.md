@@ -145,14 +145,14 @@ borg info ~/borg-repository-demo::sauvegarde-$(date +%F)-02
 Compléter le tableau avec les valeurs réellement affichées :
 
 | Archive | Taille originale | Taille compressée | Taille dédupliquée |
-|---|---:|---:|---:|
+| --- | ---: | ---: | ---: |
 | `sauvegarde-2026-08-05-01` | 20,97 MB | 20,97 MB | 20,97 MB |
 | `sauvegarde-2026-08-05-02` | 41,94 MB | 41,94 MB | 137 B |
 
 Ajouter également :
 
 | Mesure | Valeur |
-|---|---:|
+| --- | ---: |
 | Taille apparente du dossier `data` | 41 MB |
 | Espace occupé par le dépôt Borg | 21 MB |
 

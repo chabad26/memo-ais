@@ -8,7 +8,7 @@ réutilisable pour les services de l'infrastructure.
 ## 1. Configuration retenue
 
 | Élément | Configuration |
-|---|---|
+| --- | --- |
 | Dépôt Borg | `/home/oliv/borg-infrastructure-backup` |
 | Chiffrement | `repokey` |
 | Compression | `lz4` |
@@ -109,7 +109,7 @@ ls -l ~/on-premise/backup/logs
 Compléter après la première exécution :
 
 | Vérification | Résultat |
-|---|---|
+| --- | --- |
 | Archive complète créée | Oui, 82 fichiers |
 | Dépôt chiffré en `repokey` | Conforme |
 | Politique 7/4/6 appliquée | Première archive quotidienne conservée |
@@ -119,7 +119,7 @@ Compléter après la première exécution :
 Résultats de la première exécution :
 
 | Élément | Valeur |
-|---|---|
+| --- | --- |
 | Archive | `embedded-infra-ubuntu-oliv-2026-08-05T12-14-01` |
 | Taille originale | 5,57 MB |
 | Taille compressée | 3,06 MB |

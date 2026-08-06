@@ -9,7 +9,7 @@ journaux exploitables et détecter rapidement une sauvegarde absente ou en
 ## 1. Solution retenue
 
 | Élément | Solution retenue |
-|---|---|
+| --- | --- |
 | Exécution | Cron utilisateur, tous les jours à 02 h 00 |
 | Sauvegarde | `~/on-premise/backup/backup.sh` |
 | Lanceur cron | `~/on-premise/backup/run-backup-cron.sh` |

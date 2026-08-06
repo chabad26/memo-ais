@@ -189,7 +189,7 @@ production avant validation.
 ## 6. Problèmes rencontrés et corrections
 
 | Problème observé | Cause | Correction appliquée |
-|---|---|---|
+| --- | --- | --- |
 | `Invalid location format: "/home/oliv/borg-infrastructure-backup::"` | `ARCHIVE_NAME` était vide et les variables de `.env` n'avaient pas été rechargées dans le terminal courant. | Revenir dans `~/on-premise/backup`, charger `.env`, définir ou détecter l'archive, puis afficher les deux valeurs avant l'extraction. |
 | `Archive ...12-42-02 does not exist` | L'archive ciblée avait été supprimée par la politique de rétention après une nouvelle sauvegarde. | Consulter `borg list` et sélectionner dynamiquement la dernière archive encore présente. |
 | `Empty strings are not accepted as paths` puis erreur `tar` | La recherche n'avait trouvé aucun fichier `.tar.gz`, mais les commandes suivantes avaient continué avec une variable vide. | Activer `set -euo pipefail` et contrôler chaque chemin avec `test -n ... || exit 1`. |
@@ -201,7 +201,7 @@ réalisées dans des répertoires temporaires ou des volumes Docker isolés.
 ## 7. Résultats
 
 | Élément restauré | Archive utilisée | Résultat |
-|---|---|---|
+| --- | --- | --- |
 | `messaging-compose/docker-compose.yml` | `embedded-infra-ubuntu-oliv-2026-08-05T12-55-10` | Revalidé le 6 août, SHA-256 identiques et `cmp=0` |
 | `preuve-ldap/document-restauration.txt` | `embedded-infra-ubuntu-oliv-2026-08-05T12-55-10` | Revalidé le 6 août, SHA-256 identiques et `cmp=0` |
 | Volume Dovecot | `embedded-infra-ubuntu-oliv-2026-08-05T12-44-31` | Extraction Maildir réussie ; validation IMAP à réaliser avant réinjection |

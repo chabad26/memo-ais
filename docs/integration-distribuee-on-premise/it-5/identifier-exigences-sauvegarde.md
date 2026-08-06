@@ -19,7 +19,7 @@ activité.
 ## 1. Évolution des exigences existantes
 
 | Exigence du PCA/PRA | Source | Statut | Adaptation nécessaire |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | Sauvegarde nocturne des serveurs | PCA §7 | À adapter | Inclure les volumes Docker et vérifier le résultat chaque matin. |
 | Copie hebdomadaire sur un support séparé | PCA §7 | À compléter | Chiffrer la copie et la conserver sur un emplacement distinct. |
 | Vérification de l'espace disponible et des journaux | PCA §7 | Toujours applicable | Ajouter les journaux Docker, Postfix, Dovecot et LDAP. |
@@ -33,7 +33,7 @@ activité.
 ## 2. Nouvelles exigences
 
 | Élément à sauvegarder | Contenu | Fréquence proposée | Priorité |
-|---|---|---:|---:|
+| --- | --- | ---: | ---: |
 | OpenLDAP | volumes `ldap_data`, `ldap_config`, `ldap_backups` et export LDIF | Quotidienne | Critique |
 | Identités LDAP | utilisateurs, groupes, OU et attributs de messagerie | Quotidienne | Critique |
 | Partages Samba | volume `samba_share` et configuration `smb.conf` | Quotidienne | Haute |

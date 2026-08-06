@@ -20,7 +20,7 @@ conteneurs ne constitue pas une sauvegarde suffisante.
 ## 2. Plan de sauvegarde
 
 | Élément | Méthode prévue | Fréquence | Rétention | Chiffrement | Vérification |
-|---|---|---|---|---|---|
+| --- | --- | --- | --- | --- | --- |
 | Annuaire LDAP | Export LDIF des données et de `cn=config`, plus sauvegarde des volumes LDAP | Chaque nuit | 7 quotidiennes, 4 hebdomadaires, 6 mensuelles | Oui | Import LDAP mensuel dans un environnement isolé |
 | Partages Samba | Sauvegarde des volumes `samba_config`, `samba_state` et `samba_share` | Chaque nuit | 7 quotidiennes, 4 hebdomadaires, 6 mensuelles | Oui | Restauration mensuelle d'un fichier et contrôle des droits |
 | Boîtes Dovecot | Sauvegarde cohérente du volume `dovecot_mail` | Chaque nuit | 7 quotidiennes, 4 hebdomadaires, 6 mensuelles | Oui | Restauration mensuelle d'une boîte et lecture IMAP |
@@ -75,7 +75,7 @@ consigné dans le journal technique et vérifié par l'administrateur.
 ## 6. Tests de restauration
 
 | Périodicité | Test |
-|---|---|
+| --- | --- |
 | Mensuelle | Restaurer un utilisateur LDAP, un fichier Samba, une boîte IMAP et la base Roundcube dans un environnement isolé. |
 | Trimestrielle | Reconstruire l'ensemble des services depuis Git, les secrets protégés et les sauvegardes. |
 | Annuelle | Réaliser un exercice PRA complet avec mesure des délais de reprise. |
@@ -87,7 +87,7 @@ corrects et le service répond aux tests fonctionnels prévus.
 ## 7. Compatibilité avec le PCA et le PRA
 
 | Service | Objectif existant | Réponse de la stratégie |
-|---|---|---|
+| --- | --- | --- |
 | Authentification | Reprise prioritaire, cible PRA de 2 h | Export LDAP fréquent, volumes nocturnes et test mensuel |
 | Partage de fichiers | Reprise sous 8 h | Sauvegarde quotidienne et restauration régulière des droits |
 | Messagerie | Reprise sous 24 h | Sauvegarde quotidienne des boîtes et de la base Roundcube |

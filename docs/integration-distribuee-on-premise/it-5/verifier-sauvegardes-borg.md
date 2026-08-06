@@ -135,7 +135,7 @@ retour doit être `0`.
 ## 6. Résultats à consigner
 
 | Vérification | Résultat attendu | Résultat obtenu |
-|---|---|---|
+| --- | --- | --- |
 | Intégrité du dépôt | Code retour Borg `0` | Conforme, code `0` |
 | Vérification approfondie des données | Code retour Borg `0` | À vérifier |
 | Présence des deux archives | Archives `01` et `02` visibles | Conforme |

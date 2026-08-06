@@ -12,7 +12,7 @@ utilisateurs ne peuvent plus être recherchés et les services dépendants
 (Samba et messagerie) ne peuvent plus authentifier correctement les comptes.
 
 | Élément | Réponse |
-|---|---|
+| --- | --- |
 | Incident | Corruption de la base OpenLDAP |
 | Service prioritaire | Authentification centralisée |
 | Objectif PCA | Interruption maximale de 4 heures |
@@ -114,7 +114,7 @@ utilisateurs, les appartenances et les attributs Samba.
 ## 4. Estimation du temps de reprise
 
 | Opération | Durée estimée |
-|---|---:|
+| --- | ---: |
 | Détection, décision et gel des écritures | 10 min |
 | Choix et contrôle de l'archive | 10 min |
 | Extraction des LDIF et volumes | 15 min |
@@ -141,7 +141,7 @@ acceptée par le responsable métier.
 ## 6. Respect du PCA et du PRA
 
 | Exigence | Évaluation | Justification |
-|---|---|---|
+| --- | --- | --- |
 | Priorité donnée à OpenLDAP | Conforme | LDAP est restauré avant Samba, la messagerie et LAM. |
 | Reprise en moins de 2 heures | Conforme sur estimation | La procédure est estimée à 1 h 20, mais le temps réel reste à mesurer. |
 | Interruption inférieure à 4 heures | Conforme sur estimation | La marge estimée est de 2 h 40 par rapport au PCA. |
@@ -169,7 +169,7 @@ doit être validé par le responsable métier.
 ## Autres scénarios possibles
 
 | Incident | Sauvegarde principale | Objectif de reprise |
-|---|---|---:|
+| --- | --- | ---: |
 | Suppression d'un partage Samba | Volume `samba_share` | 8 heures |
 | Perte de l'hôte de messagerie | Dovecot, Roundcube, configurations et Git | 24 heures |
 | Suppression d'une configuration | Git puis archive Borg | selon le service concerné |
