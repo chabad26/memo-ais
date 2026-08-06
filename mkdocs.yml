@@ -277,6 +277,7 @@ nav:
           - Vue d'ensemble: integration-distribuee-on-premise/it-7/index.md
           - Identifier les besoins de supervision: integration-distribuee-on-premise/it-7/identifier-besoins-supervision.md
           - Concevoir la centralisation des journaux: integration-distribuee-on-premise/it-7/concevoir-centralisation-journaux.md
+          - Déployer Elasticsearch et Kibana: integration-distribuee-on-premise/it-7/deployer-elasticsearch-kibana.md
 
 
   - Réseaux :

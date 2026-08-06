@@ -8,3 +8,4 @@ les itérations précédentes. Elle commence par identifier les journaux, les
 
 - [Identifier les besoins de supervision](identifier-besoins-supervision.md)
 - [Concevoir une architecture de centralisation des journaux](concevoir-centralisation-journaux.md)
+- [Déployer Elasticsearch et Kibana](deployer-elasticsearch-kibana.md)
