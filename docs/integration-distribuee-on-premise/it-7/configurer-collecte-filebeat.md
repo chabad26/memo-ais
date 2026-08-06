@@ -193,6 +193,12 @@ curl 'http://127.0.0.1:9200/_data_stream/logs-infrastructure*?pretty'
 curl 'http://127.0.0.1:9200/_cat/indices/logs-infrastructure*?v'
 ```
 
+![Index des journaux présents dans Elasticsearch](../../assets/img/integration-distribuee-on-premise/it-7/elasticsearch-index-journaux-infrastructure.png)
+
+La présence des index `.ds-logs-infrastructure-*` et de documents confirme que
+Filebeat transmet les événements et qu'Elasticsearch les conserve dans les
+data streams attendus.
+
 Pour compter les événements par conteneur et par source :
 
 ```bash
@@ -211,6 +217,12 @@ curl -s http://127.0.0.1:9200/logs-infrastructure*/_search \
   }'
 ```
 
+![Agrégation des événements Docker et BorgBackup](../../assets/img/integration-distribuee-on-premise/it-7/elasticsearch-agregation-sources-filebeat.png)
+
+La réponse contient les sources `docker` et `borgbackup`. Elle constitue une
+preuve directe que les deux inputs déclarés dans `filebeat.yml` alimentent le
+même pipeline de collecte.
+
 ## 8. Créer la vue Kibana
 
 Dans Kibana :
@@ -219,6 +231,12 @@ Dans Kibana :
 2. créer la vue `logs-infrastructure*` ;
 3. choisir `@timestamp` comme champ temporel ;
 4. ouvrir **Discover** et sélectionner **Journaux infrastructure**.
+
+![Journaux centralisés consultables dans Kibana Discover](../../assets/img/integration-distribuee-on-premise/it-7/kibana-discover-journaux-infrastructure.png)
+
+La vue **Journaux infrastructure** affiche les événements reçus, leur
+horodatage ainsi que les métadonnées ajoutées par Filebeat, notamment le nom et
+l'image des conteneurs.
 
 La même opération peut être reproduite par l'API :
 
