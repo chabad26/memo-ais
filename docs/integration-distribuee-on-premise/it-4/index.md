@@ -10,6 +10,9 @@ entre eux avant toute installation.
 
 ## Feuille de l'itération
 
+Le lien entre le Compose, `postfix-init.sh` et les fichiers Dovecot est expliqué
+dans le [guide des fichiers techniques](../comprendre-fichiers-techniques.md#messagerie).
+
 - [Concevoir l'architecture de messagerie](concevoir-architecture-messagerie.md)
 - [Préparer le déploiement de la messagerie](preparer-deploiement-messagerie.md)
 - [Politique de messagerie](politique-messagerie.md)

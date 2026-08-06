@@ -32,6 +32,7 @@ Avant de déployer Docker et les futurs services conteneurisés, il faut dispose
 - [Déployer WordPress et MariaDB avec Docker Compose](deployer-wordpress-compose.md)
 - [Gérer la documentation avec Git](gerer-documentation-avec-git.md)
 - [Journal technique du module](../journal-technique.md)
+- [Comprendre les fichiers Docker et les scripts](../comprendre-fichiers-techniques.md)
 
 ### 1. Installer Ubuntu Server 24.04 LTS
 

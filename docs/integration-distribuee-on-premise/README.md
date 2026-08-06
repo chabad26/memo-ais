@@ -37,6 +37,9 @@ Les choix techniques sont guidés par des exigences métier : disponibilité des
 | Supervision | Observer l'état des services, détecter les pannes et garder des traces exploitables. |
 | PCA/PRA | Relier les choix techniques aux objectifs de continuité et de reprise. |
 
+Pour comprendre le rôle des fichiers créés pendant les activités, consulter le
+[guide des fichiers Docker Compose, configurations et scripts](comprendre-fichiers-techniques.md).
+
 ## Notions clés
 
 ### Infrastructure intégrée
