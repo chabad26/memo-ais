@@ -13,9 +13,9 @@ standard et d'erreur de chaque service sont donc une première source commune,
 consultable avec `docker logs`. Les fichiers internes restent utiles lorsqu'un
 service produit un journal plus détaillé ou séparé par client.
 
-`step-ca` n'est pas encore déployé dans l'infrastructure actuelle. Ses besoins
-de supervision sont préparés pour sa future intégration ; aucune collecte
-step-ca n'est présentée comme déjà opérationnelle.
+Dans l'ordre corrigé du module, `step-ca` appartient à l'itération 6 et la
+supervision à l'itération 7 optionnelle. Au moment de cette analyse, `step-ca`
+n'est pas encore déployé : ses sources décrivent donc la collecte cible.
 
 ## Journaux et informations attendues
 
@@ -27,7 +27,7 @@ step-ca n'est présentée comme déjà opérationnelle.
 | Dovecot | `docker logs mail-dovecot` ; journaux Dovecot dédiés si configurés | échec d'authentification, ouverture/fermeture IMAP, livraison LMTP, quota dépassé, erreur Maildir ou index, erreur TLS | compte, IP cliente, protocole, boîte concernée, durée de session, volume occupé, code d'erreur |
 | Roundcube | `docker logs mail-roundcube` ; journaux Apache/PHP ; journal d'erreurs Roundcube si activé | échec de connexion, erreur PHP, indisponibilité IMAP/SMTP, erreur MariaDB, réponses HTTP 4xx/5xx | utilisateur sans mot de passe, URL, code HTTP, exception, serveur joint, temps de réponse, identifiant de session pseudonymisé |
 | MariaDB messagerie | `docker logs mail-db` ; journal d'erreurs MariaDB | arrêt, échec de connexion, requête lente, verrouillage, corruption, espace disque faible | base, compte technique, durée, code SQL, connexions actives, taille des données, état InnoDB |
-| step-ca (prévu) | `docker logs step-ca` ; journal JSON de l'autorité lorsqu'il sera activé | émission, renouvellement ou révocation, échec d'autorisation, certificat proche de l'expiration, erreur de base ou de provisioner | numéro de série, sujet, SAN, provisioner, date d'expiration, résultat, adresse cliente ; ne jamais journaliser une clé privée |
+| step-ca (itération 6) | `docker logs step-ca` ; journal JSON de l'autorité lorsqu'il sera activé | émission, renouvellement ou révocation, échec d'autorisation, certificat proche de l'expiration, erreur de base ou de provisioner | numéro de série, sujet, SAN, provisioner, date d'expiration, résultat, adresse cliente ; ne jamais journaliser une clé privée |
 | BorgBackup | `backup/logs/backup-*.log` ; `cron.log` ; `daily-check.log` ; `last-run.status` | échec ou absence de sauvegarde, archive trop ancienne, verrou, erreur d'intégrité, échec de prune/compact, dépôt inaccessible | archive, heure, durée, code retour, tailles originale/compressée/dédupliquée, nombre de fichiers, âge de la dernière archive |
 | Docker | `journalctl -u docker` ; `docker events` ; `docker logs <conteneur>` ; santé et état via `docker inspect` | création/suppression, redémarrages répétés, conteneur unhealthy, OOM, image introuvable, erreur réseau/volume, espace Docker faible | conteneur, image et tag, exit code, restart count, healthcheck, consommation CPU/RAM, montage, réseau, espace disque |
 | LDAP Account Manager | `docker logs lam` ; journaux Apache/PHP du conteneur | indisponibilité Web, échec de connexion LDAP, erreur PHP, modification impossible | code HTTP, serveur LDAP, profil LAM, exception, temps de réponse ; ne pas conserver les mots de passe saisis |

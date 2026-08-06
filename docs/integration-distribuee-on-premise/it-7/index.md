@@ -1,4 +1,4 @@
-# Itération 6 - Supervision et diagnostic
+# Itération 7 - Supervision et diagnostic (optionnelle)
 
 Cette itération prépare la supervision de l'infrastructure construite pendant
 les itérations précédentes. Elle commence par identifier les journaux, les
@@ -7,3 +7,4 @@ les itérations précédentes. Elle commence par identifier les journaux, les
 ## Feuilles de l'itération
 
 - [Identifier les besoins de supervision](identifier-besoins-supervision.md)
+- [Concevoir une architecture de centralisation des journaux](concevoir-centralisation-journaux.md)
