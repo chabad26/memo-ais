@@ -273,6 +273,9 @@ nav:
           - Restaurer une sauvegarde BorgBackup: integration-distribuee-on-premise/it-5/restaurer-sauvegarde-borg.md
           - Automatiser et contrôler les sauvegardes BorgBackup: integration-distribuee-on-premise/it-5/automatiser-sauvegardes-borg.md
           - Valider la stratégie de sauvegarde: integration-distribuee-on-premise/it-5/valider-strategie-sauvegarde.md
+      - Itération 6 - Supervision et diagnostic:
+          - Vue d'ensemble: integration-distribuee-on-premise/it-6/index.md
+          - Identifier les besoins de supervision: integration-distribuee-on-premise/it-6/identifier-besoins-supervision.md
 
 
   - Réseaux :
