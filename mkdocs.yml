@@ -274,6 +274,16 @@ nav:
           - Restaurer une sauvegarde BorgBackup: integration-distribuee-on-premise/it-5/restaurer-sauvegarde-borg.md
           - Automatiser et contrôler les sauvegardes BorgBackup: integration-distribuee-on-premise/it-5/automatiser-sauvegardes-borg.md
           - Valider la stratégie de sauvegarde: integration-distribuee-on-premise/it-5/valider-strategie-sauvegarde.md
+      - Itération 6 - Autorité de certification interne:
+          - Vue d'ensemble: integration-distribuee-on-premise/it-6/index.md
+          - Identifier les besoins en certificats numériques: integration-distribuee-on-premise/it-6/inventorier-besoins-certificats.md
+          - Concevoir l'architecture de certification: integration-distribuee-on-premise/it-6/concevoir-architecture-certification.md
+          - Installer et initialiser une autorité Step CA: integration-distribuee-on-premise/it-6/installer-initialiser-step-ca.md
+          - Distribuer le certificat racine sur un client: integration-distribuee-on-premise/it-6/distribuer-certificat-racine-client.md
+          - Générer les certificats des services: integration-distribuee-on-premise/it-6/generer-certificats-services.md
+          - Déployer les certificats sur les services: integration-distribuee-on-premise/it-6/deployer-certificats-services.md
+          - Valider TLS depuis une machine cliente: integration-distribuee-on-premise/it-6/valider-tls-depuis-client.md
+          - Administrer le cycle de vie des certificats: integration-distribuee-on-premise/it-6/administrer-cycle-vie-certificats.md
       - Itération 7 - Supervision et diagnostic (optionnelle):
           - Vue d'ensemble: integration-distribuee-on-premise/it-7/index.md
           - Identifier les besoins de supervision: integration-distribuee-on-premise/it-7/identifier-besoins-supervision.md
@@ -406,4 +416,9 @@ nav:
       - Intégration distribuée on-premise:
           - Itération 1 - Docker, Compose: pense-bete/glossaire/integration-distribuee-on-premise/it-1.md
           - Itération 2 - LDAP: pense-bete/glossaire/integration-distribuee-on-premise/it-2.md
+          - Itération 3 - Samba et partages: pense-bete/glossaire/integration-distribuee-on-premise/it-3.md
+          - Itération 4 - Messagerie: pense-bete/glossaire/integration-distribuee-on-premise/it-4.md
+          - Itération 5 - Sauvegardes Borg: pense-bete/glossaire/integration-distribuee-on-premise/it-5.md
+          - Itération 6 - PKI et certificats: pense-bete/glossaire/integration-distribuee-on-premise/it-6.md
+          - Itération 7 - Supervision et diagnostic: pense-bete/glossaire/integration-distribuee-on-premise/it-7.md
           - Mémo spécial Git: pense-bete/glossaire/integration-distribuee-on-premise/git.md
