@@ -280,6 +280,7 @@ nav:
           - Concevoir la centralisation des journaux: integration-distribuee-on-premise/it-7/concevoir-centralisation-journaux.md
           - Déployer Elasticsearch et Kibana: integration-distribuee-on-premise/it-7/deployer-elasticsearch-kibana.md
           - Configurer la collecte avec Filebeat: integration-distribuee-on-premise/it-7/configurer-collecte-filebeat.md
+          - Créer les tableaux de bord Kibana: integration-distribuee-on-premise/it-7/creer-tableaux-bord-kibana.md
 
 
   - Réseaux :

@@ -13,3 +13,4 @@ Le Compose Elasticsearch, Kibana et Filebeat est décomposé dans le
 - [Concevoir une architecture de centralisation des journaux](concevoir-centralisation-journaux.md)
 - [Déployer Elasticsearch et Kibana](deployer-elasticsearch-kibana.md)
 - [Configurer la collecte centralisée avec Filebeat](configurer-collecte-filebeat.md)
+- [Créer les tableaux de bord Kibana](creer-tableaux-bord-kibana.md)
