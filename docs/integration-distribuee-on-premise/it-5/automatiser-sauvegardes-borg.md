@@ -89,7 +89,7 @@ le message `CONFORME`.
 Résultat obtenu le 5 août 2026 :
 
 | Vérification | Résultat |
-|---|---|
+| --- | --- |
 | Archive créée | `embedded-infra-ubuntu-oliv-2026-08-05T12-55-10` |
 | Nombre de fichiers | 87 |
 | Taille originale | 5,59 MB |
@@ -188,7 +188,7 @@ réalise une restauration de test selon le calendrier défini dans la stratégie
 ## 7. Gestion des erreurs
 
 | Situation | Comportement attendu |
-|---|---|
+| --- | --- |
 | Une commande de sauvegarde échoue | `backup.sh` s'arrête, nettoie le répertoire temporaire et réactive les conteneurs mis en pause. |
 | Une sauvegarde est déjà active | Le verrou refuse la seconde exécution et inscrit `SKIPPED`. |
 | La dernière exécution a échoué | Le contrôle affiche `FAILURE` et retourne un code non nul. |
