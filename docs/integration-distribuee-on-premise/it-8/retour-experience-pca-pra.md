@@ -15,7 +15,6 @@ l'exercice est rejoue sur une autre configuration.
 | --- | --- |
 | `/home/oliv/on-premise/documentation/incident-majeur-ldap.md` | Decisions de crise. |
 | `/home/oliv/on-premise/documentation/rapport-restauration-pra.md` | Chronologie, services restaures, RTO/RPO. |
-| `/home/oliv/on-premise/documentation/gestion-certificats-roundcube.md` | Traitement du certificat Roundcube compromis. |
 | `/home/oliv/on-premise/documentation/PCA.md` | Plan de continuite a mettre a jour. |
 | `/home/oliv/on-premise/documentation/PRA.md` | Plan de reprise a mettre a jour. |
 | `/home/oliv/on-premise/documentation/retour-experience-pca-pra.md` | Livrable REX de l'exercice. |
@@ -27,10 +26,17 @@ l'exercice est rejoue sur une autre configuration.
 | OpenLDAP | Restaure | `ldapwhoami` et `ldapsearch` reussis | 1 h 55 | 18 h |
 | LAM | Restaure | Connexion Web et bind LDAP valides | 2 h 25 | 18 h |
 | Samba | Restaure | Acces au partage `Commun` et refus hors groupe | 3 h 40 | 18 h |
-| Messagerie | Partiel | IMAPS et SMTP OK, Roundcube bloque par certificat | 5 h 15 | 18 h |
-| Roundcube TLS | Restaure apres remplacement | Nouveau numero de serie observe cote client | 6 h 10 | Sans perte de donnees |
-| Supervision | Partiel | Kibana accessible, alertes externes non validees | 6 h 45 | Index non critiques |
+| Messagerie | Partiel | Authentification a revalider apres retour LDAP | 5 h 15 | 18 h |
+| Supervision | Partiel | Kibana accessible, alertes externes non validees | 5 h 50 | Index non critiques |
 | WordPress/MariaDB | Non restaure | Temps insuffisant, service non prioritaire | Non mesure | Non mesure |
+
+!!! note "Limite du memo"
+    La partie certificats n'a pas ete traitee dans cet exercice. Le retour
+    d'experience reste donc centre sur la crise LDAP, la restauration depuis
+    sauvegarde et l'ordre de reprise des services dependants. Si les
+    certificats avaient fait partie de la crise, le REX aurait aussi mesure le
+    temps de revocation, de remplacement des cles, de redeploiement TLS et de
+    verification client.
 
 ## Points ayant bien fonctionne
 
@@ -40,16 +46,16 @@ l'exercice est rejoue sur une autre configuration.
 - Les fichiers Compose versionnes ont accelere la reconstruction.
 - Les commandes `ldapwhoami` et `ldapsearch` ont donne une preuve claire du
   retour de l'annuaire.
-- Le client TLS dedie a permis de verifier rapidement les certificats de
-  service.
+- Le redemarrage sous surveillance des services dependants a limite les risques
+  de reprise dans le mauvais ordre.
 
 ## Difficultes rencontrees
 
 | Difficulté | Impact | Correction proposee |
 | --- | --- | --- |
 | Archive saine selectionnee trop tardivement | Perte de temps au debut de l'exercice | Ajouter une commande standard de selection d'archive dans le PRA. |
-| Procedure CRL insuffisamment detaillee | Validation de revocation incomplete | Documenter l'URL CRL, la commande de controle et les limites Step CA. |
-| Dependances TLS decouvertes pendant la reprise | Retard sur Roundcube | Ajouter une verification certificat avant remise en service messagerie. |
+| Perimetre de reprise a clarifier | Risque de melanger crise LDAP et sujets certificats | Noter explicitement que les certificats sont seulement un cas conditionnel. |
+| Validation applicative incomplete | Certains services dependants doivent etre retestes apres LDAP | Ajouter une checklist par service dependant. |
 | Tests Samba disperses | Validation plus lente | Ajouter une checklist unique par partage et par groupe. |
 | Alertes externes non validees | Supervision partielle | Prevoir un canal de notification hors messagerie. |
 
@@ -57,9 +63,9 @@ l'exercice est rejoue sur une autre configuration.
 
 | Procedure | Manque identifie | Mise a jour attendue |
 | --- | --- | --- |
-| Restauration LDAP | Validation TLS non systematique | Ajouter LDAPS et controle certificat apres `ldapsearch`. |
-| Restauration messagerie | Ordre entre certificats, Dovecot, Postfix et Roundcube trop implicite | Rendre l'ordre de reprise explicite. |
-| Revocation certificat | Publication CRL non prouvee | Ajouter controle `step crl inspect` et emplacement de publication. |
+| Restauration LDAP | Selection de l'archive saine a formaliser | Ajouter les commandes Borg et les criteres de choix. |
+| Restauration messagerie | Tests apres retour LDAP trop implicites | Rendre l'ordre de reprise explicite. |
+| Perimetre certificats | Non traite dans ce poste | L'annoncer comme cas conditionnel : revocation, nouvelle cle, redeploiement et verification client. |
 | Validation Samba | Tests d'acces insuffisamment formalises | Ajouter tests autorise/refuse par groupe. |
 | Supervision | Alertes externes non integrees au PRA | Ajouter une procedure de notification manuelle ou alternative. |
 
@@ -68,7 +74,6 @@ l'exercice est rejoue sur une autre configuration.
 - Disposer d'un environnement de restauration LDAP isole et preconfigure.
 - Conserver une checklist de validation par service.
 - Mesurer automatiquement les heures de debut et de fin de reprise.
-- Publier une CRL accessible aux clients ou documenter clairement la limite.
 - Augmenter la frequence de sauvegarde LDAP si un RPO de 18 h est juge trop
   eleve.
 - Prevoir un canal de communication de crise qui ne depend pas de la messagerie
@@ -78,9 +83,9 @@ l'exercice est rejoue sur une autre configuration.
 
 | Element | Modification proposee | Justification |
 | --- | --- | --- |
-| Procedure de restauration LDAP | Ajouter verification LDAPS et certificat apres restauration. | Plusieurs services consomment LDAP en TLS. |
-| Procedure de restauration messagerie | Ajouter un jalon TLS avant Roundcube. | La cle Roundcube compromise a retarde la reprise. |
-| Gestion des certificats | Ajouter revocation, CRL, nouvelle cle et preuve client. | Une cle compromise ne doit jamais etre renouvelee. |
+| Procedure de restauration LDAP | Ajouter extraction Borg, controle des LDIF et import dans un LDAP sain. | Ce sont les actions reellement realisees pendant le poste. |
+| Procedure de restauration messagerie | Ajouter les tests d'authentification apres retour LDAP. | La messagerie depend de l'annuaire pour les comptes. |
+| Perimetre de l'iteration | Garder les certificats comme annonce conditionnelle, sans feuille technique dediee. | Le poste ne contenait pas cette partie, mais le jury peut voir la reaction attendue si elle avait existe. |
 | Strategie de sauvegarde LDAP | Revoir la frequence si RPO cible inferieur a 24 h. | RPO simule de 18 h, acceptable seulement si valide metier. |
 | Plan d'alertes | Ajouter un canal hors messagerie. | La messagerie peut etre indisponible pendant la crise. |
 | Rapport PRA | Ajouter tableau RTO/RPO par service. | Comparaison plus rapide avec les objectifs PCA/PRA. |

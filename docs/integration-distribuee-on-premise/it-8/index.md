@@ -13,8 +13,15 @@ l'administration des identités.
 
 - [Gestion de crise - incident majeur LDAP](gestion-crise-ldap.md)
 - [Restaurer l'infrastructure avec le PRA](restaurer-infrastructure-pra.md)
-- [Traiter la compromission du certificat Roundcube](traiter-compromission-certificat-roundcube.md)
 - [Retour d'expérience et mise à jour PCA/PRA](retour-experience-pca-pra.md)
+
+!!! note "Perimetre de l'exercice"
+    Le poste realise porte sur la gestion de crise LDAP et la restauration du
+    service depuis une sauvegarde saine. La partie compromission/remplacement de
+    certificats Roundcube n'a pas ete faite. Si des certificats avaient aussi
+    ete declares compromis, il aurait fallu isoler les anciennes cles, revoquer
+    les certificats concernes, generer de nouvelles paires cle/certificat,
+    redeployer les services TLS et verifier la chaine depuis un client.
 
 ## Documentation opérationnelle associée
 
@@ -22,7 +29,6 @@ Le livrable de crise est conservé dans le dépôt d'exploitation :
 
 - `/home/oliv/on-premise/documentation/incident-majeur-ldap.md`
 - `/home/oliv/on-premise/documentation/rapport-restauration-pra.md`
-- `/home/oliv/on-premise/documentation/gestion-certificats-roundcube.md`
 - `/home/oliv/on-premise/documentation/retour-experience-pca-pra.md`
 
 Les documents PCA/PRA, inventaire, sauvegardes, restauration et supervision

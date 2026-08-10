@@ -5,7 +5,7 @@
 Chaque fichier répond à une question différente :
 
 | Fichier | Question à laquelle il répond |
-|---|---|
+| --- | --- |
 | `Dockerfile` | Comment construire une image personnalisée ? |
 | `compose.yaml` ou `docker-compose.yml` | Quels conteneurs, réseaux et volumes doivent fonctionner ensemble ? |
 | `.env` | Quelles valeurs utilise cette machine ? |
@@ -128,7 +128,7 @@ construction avec `docker build` ou `docker compose up -d --build`.
 Le projet `wordpress-compose/compose.yaml` contient deux services :
 
 | Élément | Rôle |
-|---|---|
+| --- | --- |
 | `db` | exécute MariaDB et initialise la base ainsi que l'utilisateur WordPress |
 | `wordpress` | exécute Apache/PHP/WordPress et joint MariaDB avec le nom DNS `db` |
 | `db_data` | conserve la base, donc l'installation et les pages WordPress |
@@ -184,7 +184,7 @@ externes n'existent pas, ce qui évite une création silencieuse au mauvais nom.
 Le projet `samba-ad/` combine plusieurs types de fichiers :
 
 | Fichier | Rôle précis |
-|---|---|
+| --- | --- |
 | `Dockerfile` | construit une Debian avec Samba, les outils LDAP, NSLCD et `envsubst` |
 | `compose.yaml` | construit l'image, publie SMB et relie Samba au réseau OpenLDAP |
 | `config/smb.conf` | définit le backend LDAP, les partages et les groupes autorisés |
@@ -217,7 +217,7 @@ Les volumes ont des responsabilités séparées : configuration (`samba_config`)
 `messaging-compose/docker-compose.yml` assemble quatre services :
 
 | Service | Fonction | Dépendance principale |
-|---|---|---|
+| --- | --- | --- |
 | `db` | conserve les préférences Roundcube | volume `roundcube_db` |
 | `postfix` | reçoit, contrôle et distribue les messages | LDAP et socket LMTP Dovecot |
 | `dovecot` | authentifie les comptes et expose les boîtes IMAP | LDAP et volume `dovecot_mail` |
@@ -333,7 +333,7 @@ Les événements, eux, sont conservés dans Elasticsearch.
 ## Quelle commande après une modification ?
 
 | Modification | Commande habituelle | Pourquoi |
-|---|---|---|
+| --- | --- | --- |
 | `.env` | `docker compose up -d` | recrée le conteneur avec les nouvelles variables |
 | `compose.yaml` | `docker compose up -d` | rapproche l'exécution du nouvel état déclaré |
 | `Dockerfile` ou fichier copié dans l'image | `docker compose up -d --build` | reconstruit l'image avant recréation |

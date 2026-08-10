@@ -49,9 +49,8 @@ donnees perdues apres incident.
 | 2 | LDAP Account Manager | Administration des comptes apres validation LDAP. |
 | 3 | Samba | Acces aux partages metiers dependant des groupes LDAP. |
 | 4 | Messagerie | Authentification Dovecot/Postfix/Roundcube via LDAP. |
-| 5 | Certificats TLS | Validation LDAPS, IMAPS, SMTP STARTTLS et HTTPS si requis. |
-| 6 | Supervision | Controle des journaux et preuve de reprise. |
-| 7 | WordPress/MariaDB | Service moins directement touche par la compromission LDAP actuelle. |
+| 5 | Supervision | Controle des journaux et preuve de reprise. |
+| 6 | WordPress/MariaDB | Service moins directement touche par la compromission LDAP actuelle. |
 
 ## Chronometrage
 
@@ -66,8 +65,8 @@ Fin des 7 heures : **10 aout 2026 a 21:10 CEST**.
 | Reprise LAM | 16:05 | 16:35 | 30 min | Acces Web et connexion LDAP. |
 | Reprise Samba | 16:35 | 17:50 | 1 h 15 | Partages et droits. |
 | Reprise messagerie | 17:50 | 19:25 | 1 h 35 | Connexion, envoi et reception. |
-| Reprise certificats TLS | 19:25 | 20:20 | 55 min | LDAPS, IMAPS, SMTP STARTTLS et HTTPS si necessaire. |
-| Reprise supervision | 20:20 | 20:55 | 35 min | Journaux et tableaux de bord. |
+| Reprise supervision | 19:25 | 20:00 | 35 min | Journaux et tableaux de bord. |
+| Controle des services dependants | 20:00 | 20:55 | 55 min | Redemarrage surveille et verification applicative. |
 | WordPress/MariaDB et cloture | 20:55 | 21:10 | 15 min | WordPress non restaure ; synthese RTO/RPO. |
 | Cloture et rapport | 20:55 | 21:10 | 15 min | RTO/RPO et comparaison PCA/PRA. |
 
@@ -139,10 +138,19 @@ Points a verifier :
 | --- | --- | --- |
 | LAM | Redemarrer l'interface apres LDAP. | Connexion a `ldap://openldap:3890`. |
 | Samba | Restaurer volumes/configuration puis demarrer. | Acces aux partages et controle des droits. |
-| Messagerie | Restaurer Maildir, base Roundcube, TLS puis demarrer. | Connexion IMAP/Webmail et message de test. |
-| TLS | Restaurer ou regenerer les certificats necessaires. | Validation de la chaine depuis le client. |
+| Messagerie | Restaurer Maildir, base Roundcube puis demarrer. | Connexion IMAP/Webmail et message de test. |
 | Supervision | Relancer Elasticsearch, Kibana et Filebeat. | Journaux visibles et tableaux de bord exploitables. |
 | WordPress | Relancer si le temps restant le permet. | Acces Web et donnees presentes. |
+
+!!! note "Cas ou les certificats auraient ete touches"
+    La gestion des certificats n'a pas ete traitee pendant ce poste. Si elle
+    avait ete incluse, il aurait fallu ajouter une etape apres la reprise des
+    services : identifier les certificats ou cles compromis, revoquer les
+    certificats concernes, generer de nouvelles paires cle/certificat,
+    redeployer les fichiers TLS et verifier cote client que le nouveau
+    certificat est presente. Dans ce memo, les controles attendus portent donc
+    sur le retour du service LDAP, la presence des utilisateurs et groupes, puis
+    le redemarrage surveille des services dependants.
 
 ## Tableau de resultat attendu
 
@@ -152,7 +160,6 @@ Points a verifier :
 | LDAP Account Manager | A completer | A completer | A completer | A completer | Service d'administration. |
 | Samba | A completer | A completer | A completer | A completer | Partages metiers. |
 | Messagerie | A completer | A completer | A completer | A completer | Postfix, Dovecot, Roundcube. |
-| Certificats TLS | A completer | A completer | A completer | A completer | LDAPS, IMAPS, SMTP STARTTLS, HTTPS. |
 | Supervision | A completer | A completer | A completer | A completer | Kibana et journaux. |
 | WordPress/MariaDB | A completer | A completer | A completer | A completer | Service non prioritaire dans ce scenario. |
 

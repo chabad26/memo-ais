@@ -376,7 +376,6 @@ nav:
             - Vue d'ensemble: integration-distribuee-on-premise/it-8/index.md
             - Gestion de crise LDAP: integration-distribuee-on-premise/it-8/gestion-crise-ldap.md
             - Restaurer l'infrastructure avec le PRA: integration-distribuee-on-premise/it-8/restaurer-infrastructure-pra.md
-            - Traiter la compromission du certificat Roundcube: integration-distribuee-on-premise/it-8/traiter-compromission-certificat-roundcube.md
             - Retour d'expérience et mise à jour PCA/PRA: integration-distribuee-on-premise/it-8/retour-experience-pca-pra.md
 
 
@@ -435,4 +434,5 @@ nav:
           - Itération 5 - Sauvegardes Borg: pense-bete/glossaire/integration-distribuee-on-premise/it-5.md
           - Itération 6 - PKI et certificats: pense-bete/glossaire/integration-distribuee-on-premise/it-6.md
           - Itération 7 - Supervision et diagnostic: pense-bete/glossaire/integration-distribuee-on-premise/it-7.md
+          - Itération 8 - Gestion de crise: pense-bete/glossaire/integration-distribuee-on-premise/it-8.md
           - Mémo spécial Git: pense-bete/glossaire/integration-distribuee-on-premise/git.md
