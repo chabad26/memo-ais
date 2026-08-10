@@ -49,324 +49,332 @@ markdown_extensions:
 
 nav:
   - Accueil: index.md
-  - Intro à l'AIS:
-      - Présentation: intro-ais/index.md
-      - Matériel: intro-ais/materiel.md
-      - Système et Linux: intro-ais/systeme-linux.md
-      - Réseau: intro-ais/reseau.md
-      - Commandes Linux: intro-ais/commandes-linux.md
-      - IA frugale: intro-ais/ia-frugale.md
-      - Cybersécurité:
-          - Bases: intro-ais/securite.md
-          - Acteurs et rôles: intro-ais/securite-acteurs.md
-          - Menaces et attaques: intro-ais/securite-menaces.md
-          - Hygiène numérique: intro-ais/hygiene-numerique.md
-          - Chiffrement: intro-ais/chiffrement.md
+  - Socle AIS:
+    - Intro à l'AIS:
+        - Présentation: intro-ais/index.md
+        - Matériel: intro-ais/materiel.md
+        - Système et Linux: intro-ais/systeme-linux.md
+        - Réseau: intro-ais/reseau.md
+        - Commandes Linux: intro-ais/commandes-linux.md
+        - IA frugale: intro-ais/ia-frugale.md
+        - Cybersécurité:
+            - Bases: intro-ais/securite.md
+            - Acteurs et rôles: intro-ais/securite-acteurs.md
+            - Menaces et attaques: intro-ais/securite-menaces.md
+            - Hygiène numérique: intro-ais/hygiene-numerique.md
+            - Chiffrement: intro-ais/chiffrement.md
 
-  - SI & archi:
-      - Présentation: systeme-info-si/index.md
-      - Mémo personnel : systeme-info-si/synthese-personnel-final.md
-      - Itération 1 - Système d'information:
-          - Vue d'ensemble: systeme-info-si/iteration-1/index.md
-          - Cas concret SI: systeme-info-si/iteration-1/cas-concret-si.md
-          - Première vue globale du SI: systeme-info-si/iteration-1/premiere-vue-globale-si.md
-          - Diagramme réseau du SI: systeme-info-si/iteration-1/diagramme-reseau-si.md
-          - Cartographie des utilisateurs: systeme-info-si/iteration-1/cartographie-utilisateurs.md
-          - Modèles d'architecture applicative: systeme-info-si/iteration-1/modeles-architecture-applicative.md
-          - Dépendances applicatives: systeme-info-si/iteration-1/dependances-applicatives.md
-          - Diagrammes finaux & résumé: systeme-info-si/iteration-1/finalisation-diagrammes.md
-      - Itération 2 - Enjeux, risques et normes:
-          - Vue d'ensemble: systeme-info-si/iteration-2/index.md
-          - Enjeux d'un SI à partir du réel: systeme-info-si/iteration-2/enjeux-si-reel.md
-          - Identifier et prioriser les risques: systeme-info-si/iteration-2/risques-si.md
-          - Introduction aux normes SI: systeme-info-si/iteration-2/normes-si.md
-          - Synthèse enjeux, risques et normes: systeme-info-si/iteration-2/synthese-enjeux-risques-normes.md
-      - Itération 3 - Analyse d'architecture SI:
-          - Vue d'ensemble: systeme-info-si/iteration-3/index.md
-          - Choisir un cas d'étude SI: systeme-info-si/iteration-3/choisir-cas.md
-          - Cartographie du SI: systeme-info-si/iteration-3/cartographie-si.md
-          - Analyse des usages et des risques: systeme-info-si/iteration-3/analyse-usages-risques.md
-          - Propositions d'amélioration: systeme-info-si/iteration-3/propositions-amelioration.md
-          - Préparation de la restitution: systeme-info-si/iteration-3/preparation-restitution.md
-      - Itération 4 - Sécurité d'un SI:
-          - Vue d'ensemble: systeme-info-si/iteration-4/index.md
-          - Analyse des incidents et mitigation: systeme-info-si/iteration-4/analyse-incidents-mitigation.md
-          - Amélioration architecture CHU Rouen: systeme-info-si/iteration-4/amelioration-architecture-chu-rouen.md
+    - SI & archi:
+        - Présentation: systeme-info-si/index.md
+        - Mémo personnel : systeme-info-si/synthese-personnel-final.md
+        - Itération 1 - Système d'information:
+            - Vue d'ensemble: systeme-info-si/iteration-1/index.md
+            - Cas concret SI: systeme-info-si/iteration-1/cas-concret-si.md
+            - Première vue globale du SI: systeme-info-si/iteration-1/premiere-vue-globale-si.md
+            - Diagramme réseau du SI: systeme-info-si/iteration-1/diagramme-reseau-si.md
+            - Cartographie des utilisateurs: systeme-info-si/iteration-1/cartographie-utilisateurs.md
+            - Modèles d'architecture applicative: systeme-info-si/iteration-1/modeles-architecture-applicative.md
+            - Dépendances applicatives: systeme-info-si/iteration-1/dependances-applicatives.md
+            - Diagrammes finaux & résumé: systeme-info-si/iteration-1/finalisation-diagrammes.md
+        - Itération 2 - Enjeux, risques et normes:
+            - Vue d'ensemble: systeme-info-si/iteration-2/index.md
+            - Enjeux d'un SI à partir du réel: systeme-info-si/iteration-2/enjeux-si-reel.md
+            - Identifier et prioriser les risques: systeme-info-si/iteration-2/risques-si.md
+            - Introduction aux normes SI: systeme-info-si/iteration-2/normes-si.md
+            - Synthèse enjeux, risques et normes: systeme-info-si/iteration-2/synthese-enjeux-risques-normes.md
+        - Itération 3 - Analyse d'architecture SI:
+            - Vue d'ensemble: systeme-info-si/iteration-3/index.md
+            - Choisir un cas d'étude SI: systeme-info-si/iteration-3/choisir-cas.md
+            - Cartographie du SI: systeme-info-si/iteration-3/cartographie-si.md
+            - Analyse des usages et des risques: systeme-info-si/iteration-3/analyse-usages-risques.md
+            - Propositions d'amélioration: systeme-info-si/iteration-3/propositions-amelioration.md
+            - Préparation de la restitution: systeme-info-si/iteration-3/preparation-restitution.md
+        - Itération 4 - Sécurité d'un SI:
+            - Vue d'ensemble: systeme-info-si/iteration-4/index.md
+            - Analyse des incidents et mitigation: systeme-info-si/iteration-4/analyse-incidents-mitigation.md
+            - Amélioration architecture CHU Rouen: systeme-info-si/iteration-4/amelioration-architecture-chu-rouen.md
 
-  - RGPD:
-      - Présentation: rgpd/index.md
-      - Définition et enjeux basiques: rgpd/definition-enjeux-basiques.md
-      - Historique du RGPD: rgpd/historique.md
-      - Acteurs du RGPD: rgpd/acteurs.md
-      - Les 8 règles d'or: rgpd/regles-or.md
-      - RGPD en collectivité: rgpd/collectivites.md
-      - Travail et données personnelles: rgpd/travail-donnees-personnelles.md
-      - Ressources PDF: rgpd/ressources-pdf.md
-      - Enjeux avancés: rgpd/enjeux-avances.md
-
-  - Administration Windows:
-      - Vue d'ensemble: admin-windows/index.md
-      - Itération 1 - Plateforme et domaine:
-          - Vue d'ensemble: admin-windows/it-1/index.md
-          - Activité 1 - Installer LABO, Hyper-V et SRV-AD01: admin-windows/it-1/activite1-installation-labo-hyperv-srv-ad01.md
-          - Activité 2 - Préparer SRV-AD01 pour AD DS et DNS: admin-windows/it-1/activite2-preparer-srv-ad01-ad-ds-dns.md
-          - Activité 3 - Promouvoir SRV-AD01 en contrôleur de domaine: admin-windows/it-1/activite3-promouvoir-srv-ad01-controleur-domaine.md
-          - Fiche installation LABO et SRV-AD01: admin-windows/it-1/fiche-installation-labo-srv-ad01.md
-      - Itération 2 - Organisation Active Directory:
-          - Vue d'ensemble: admin-windows/it-2/index.md
-          - Activité 4 - OU, utilisateurs et groupes: admin-windows/it-2/activite4-organisation-ou-utilisateurs-groupes.md
-          - Activité 5 - Joindre un poste Windows 11 au domaine: admin-windows/it-2/activite5-joindre-poste-windows11-domaine.md
-          - Activité 6 - GPO et déploiement 7-Zip: admin-windows/it-2/activite6-gpo-password-panel-deploiement-7zip.md
-          - Activité 6bis - GPO BitLocker et récupération AD: admin-windows/it-2/activite6bis-gpo-bitlocker-recuperation-ad.md
-          - Activité 6ter - Windows LAPS: admin-windows/it-2/activite6ter-windows-laps.md
-      - Itération 3 - Serveur de fichiers:
-          - Vue d'ensemble: admin-windows/it-3/index.md
-          - Activité 7 - Créer SRV-FIC01: admin-windows/it-3/activite7-creation-srv-fic01-serveur-fichiers.md
-          - Activité 7bis - AGDLP, partages et lecteurs réseau: admin-windows/it-3/activite7bis-agdlp-partages-lecteurs-reseau.md
-          - Activité 8 - Sauvegarde et restauration SRV-FIC01: admin-windows/it-3/activite8-sauvegarde-restauration-srv-fic01.md
-      - Itération 4 - PowerShell, durcissement et journaux:
-          - Vue d'ensemble: admin-windows/it-4/index.md
-          - Activité 9 - Créer des utilisateurs depuis un CSV: admin-windows/it-4/activite9-creation-utilisateurs-csv-powershell.md
-          - Activité 10 - Inventaire Active Directory: admin-windows/it-4/activite10-inventaire-active-directory-powershell.md
-          - Activité 11 - Firewall et journaux Windows: admin-windows/it-4/activite11-firewall-journaux-windows.md
-      - Activité 12 - Dossier d'exploitation SYS01b:
-          - Vue d'ensemble: admin-windows/activite12/index.md
-          - Architecture et domaine: admin-windows/activite12/architecture-domaine.md
-          - Active Directory: admin-windows/activite12/active-directory.md
-          - GPO, BitLocker et LAPS: admin-windows/activite12/gpo-bitlocker-laps.md
-          - SRV-FIC01 et AGDLP: admin-windows/activite12/serveur-fichiers-agdlp.md
-          - Sauvegarde et restauration: admin-windows/activite12/sauvegarde-restauration.md
-          - PowerShell et firewall: admin-windows/activite12/powershell-firewall.md
-          - Reprise d'exploitation: admin-windows/activite12/reprise-exploitation.md
-      - Activité 13 - PKI interne et LDAPS: admin-windows/activite13-deploiement-pki-ldaps.md
-
-  - Systèmes Linux:
-      - Vue d'ensemble: admin-systemes-linux/index.md
-      - Mémo personnel de synthèse SYS-01a: admin-systemes-linux/memo-personnel-synthese-sys-01a.md
-      - Itération 1 - Installation Debian 12 & comptes:
-          - Kit Install - Environnement de travail: admin-systemes-linux/it-1/atelier1-kit-install.md
-          - FHS - Arborescence Linux: admin-systemes-linux/it-1/atelier2-fhs.md
-          - Identités Linux - passwd shadow group: admin-systemes-linux/it-1/atelier3-identites.md
-          - Comptes AlpesNet - utilisateurs et services: admin-systemes-linux/it-1/atelier4-comptes-alpesnet.md
-          - Cycle de vie des comptes Linux: admin-systemes-linux/it-1/atelier5-cycle-vie-comptes.md
-          - Audit des comptes et droits sudo AlpesNet: admin-systemes-linux/it-1/atelier6-audit-comptes-sudo.md
-          - Carnet de bord: admin-systemes-linux/it-1/carnet-bord-it1.md
-          - audit alpesnet : admin-systemes-linux/it-1/audit-comptes-sudo-alpesnet.md
-      - Itération 2 - Permissions et logs Linux:
-          - Synthèse chmod, chown et umask: admin-systemes-linux/it-2/synthese-permissions-chmod-chown-umask.md
-          - ACL Linux sur AlpesNet: admin-systemes-linux/it-2/atelier-acl-alpesnet.md
-          - Logs système et journalctl AlpesNet: admin-systemes-linux/it-2/atelier-logs-journalctl-alpesnet.md
-          - Rsyslog et logrotate SSH AlpesNet: admin-systemes-linux/it-2/atelier-rsyslog-logrotate-alpesnet.md
-          - Audit des permissions AlpesNet: admin-systemes-linux/it-2/atelier-audit-permissions-alpesnet.md
-          - Rapport audit permissions AlpesNet: admin-systemes-linux/it-2/audit-permissions-alpesnet.md
-          - Carnet de bord : admin-systemes-linux/it-2/carnet-bord-it2.md
-      - Itération 3 - Bash & automatisation:
-          - Fondamentaux Bash et scripts simples: admin-systemes-linux/it-3/atelier1-bash-fondamentaux.md
-          - Scripts d'administration pratiques: admin-systemes-linux/it-3/scripts-administration-pratiques.md
-          - Planification cron AlpesNet: admin-systemes-linux/it-3/planification-cron-alpesnet.md
-          - Script administration robuste AlpesNet: admin-systemes-linux/it-3/script-administration-robuste-alpesnet.md
-          - Fonctions, arguments et trap Bash: admin-systemes-linux/it-3/fonctions-arguments-trap-bash.md
-          - Carnet de bord : admin-systemes-linux/it-3/carnet-bord-it3.md
-      - Itération 4 - Services Linux et durcissement:
-          - Vue d'ensemble: admin-systemes-linux/it-4/index.md
-          - NFS AlpesNet - partage réseau Linux: admin-systemes-linux/it-4/nfs-alpesnet.md
-          - Samba AlpesNet - partage SMB/CIFS: admin-systemes-linux/it-4/samba-alpesnet.md
-          - Durcissement Linux AlpesNet: admin-systemes-linux/it-4/durcissement-linux-alpesnet.md
-          - Rapport de durcissement Linux AlpesNet: admin-systemes-linux/it-4/rapport-durcissement-linux-alpesnet.md
-          - Script automatisation Itération 4: admin-systemes-linux/it-4/script-automatisation-it4.md
-          - Rapport automatique Itération 4: admin-systemes-linux/it-4/rapport-it4-20260626_120855.md
-      - Itération 5 - Sauvegarde et Nginx : 
-          - Vue d'ensemble: admin-systemes-linux/it-5/index.md
-          - Sauvegarde et restauration AlpesNet: admin-systemes-linux/it-5/sauvegarde-restauration-alpesnet.md
-          - Autonomie 3 - Nginx sécurisé AlpesNet: admin-systemes-linux/it-5/autonomie-3-nginx-securise-alpesnet.md
-          - Débriefing Nginx - comparer et améliorer: admin-systemes-linux/it-5/debriefing-nginx-reference-alpesnet.md
-          - Rapport automatique Autonomie 3 : admin-systemes-linux/it-5/rapport-it5-20260630_162804.md
-      - Itération 6 - Challenge final CTF :
-          - Guide CTF AlpesNet et script d'automatisation : admin-systemes-linux/it-6/ctf-challenge-final.md
-          - Validation du challenge CTF : admin-systemes-linux/it-6/validation-ctf-alpesnet.md
-          - Rapport automatique Challenge final CTF : admin-systemes-linux/it-6/rapport_Olivier.md
-      - Bonus - AlpesNet Hardening Suite:
-          - Vue d'ensemble: assets/scripts/admin-systemes-linux/it-bonus/hardening-suite/README.md
-          - Guide pas-à-pas et script: admin-systemes-linux/it-bonus/alpesnet-hardening-suite.md
-
-  - Virtualisation:
-      - Mémo personnel du module: admin-systemes-virtualisation/memo-personnel.md
-      - Itération 1 - Fondamentaux:
-          - Vue d'ensemble: admin-systemes-virtualisation/index.md
-          - Fondamentaux: admin-systemes-virtualisation/it-1/index.md
-          - Qu'est-ce que la virtualisation ?: admin-systemes-virtualisation/it-1/quest-ce-que-la-virtualisation.md
-          - Comment fonctionne une machine virtuelle ?: admin-systemes-virtualisation/it-1/comment-fonctionne-une-machine-virtuelle.md
-          - Pourquoi virtualiser une infrastructure ?: admin-systemes-virtualisation/it-1/pourquoi-virtualiser-une-infrastructure.md
-          - Machine virtuelle ou conteneur - lequel choisir ?: admin-systemes-virtualisation/it-1/machine-virtuelle-ou-conteneur-lequel-choisir.md
-      - Itération 2 - Déploiement de machines virtuelles:
-          - Vue d'ensemble: admin-systemes-virtualisation/it-2/index.md
-          - Déployer Hyper-V pas à pas: admin-systemes-virtualisation/it-2/comment-deployer-hyper-v.md
-          - Dimensionner et déployer DC1 et WEB1: admin-systemes-virtualisation/it-2/dimensionner-et-deployer-dc1-web1.md
-          - Intégrer WEB1 au domaine et déployer Apache: admin-systemes-virtualisation/it-2/integrer-web1-au-domaine-et-deployer-apache.md
-          - Permettre aux machines virtuelles de communiquer: admin-systemes-virtualisation/it-2/comment-permettre-aux-machines-virtuelles-de-communiquer.md
-          - Sécuriser une opération d'administration: admin-systemes-virtualisation/it-2/comment-securiser-une-operation-administration.md
-      - Itération 3 - Disponibilité des services virtualisés:
-          - Vue d'ensemble: admin-systemes-virtualisation/it-3/index.md
-          - Installer trois Proxmox dans Hyper-V: admin-systemes-virtualisation/it-3/installer-trois-proxmox-dans-hyper-v.md
-          - Partager le stockage entre plusieurs hyperviseurs: admin-systemes-virtualisation/it-3/comment-partager-le-stockage-entre-plusieurs-hyperviseurs.md
-          - Créer et valider le cluster Proxmox: admin-systemes-virtualisation/it-3/comment-creer-un-cluster-proxmox.md
-          - Assurer automatiquement la continuité de service: admin-systemes-virtualisation/it-3/comment-assurer-la-haute-disponibilite.md
-      - Itération 4 - Exploitation et optimisation:
-          - Vue d'ensemble: admin-systemes-virtualisation/it-4/index.md
-          - Sécuriser les communications entre les VM: admin-systemes-virtualisation/it-4/comment-securiser-les-communications-entre-les-machines-virtuelles.md
-          - Identifier l'origine d'un dysfonctionnement: admin-systemes-virtualisation/it-4/comment-identifier-origine-dysfonctionnement.md
-          - Optimiser les performances: admin-systemes-virtualisation/it-4/comment-optimiser-performances-infrastructure-virtualisee.md
-          - Transmettre l'infrastructure à une autre équipe: admin-systemes-virtualisation/it-4/comment-transmettre-infrastructure-autre-equipe.md
-
-  - Intégration distribuée on-premise:
-      - Vue d'ensemble: integration-distribuee-on-premise/README.md
-      - Journal technique du module: integration-distribuee-on-premise/journal-technique.md
-      - Comprendre les fichiers Docker et les scripts: integration-distribuee-on-premise/comprendre-fichiers-techniques.md
-      - Itération 1 - Docker:
-          - Vue d'ensemble: integration-distribuee-on-premise/it-1/index.md
-          - Découverte entreprise fictive: integration-distribuee-on-premise/it-1/decouverte-entreprise-fictive.md
-          - Installer Docker Engine: integration-distribuee-on-premise/it-1/installer-docker-engine.md
-          - Manipuler un conteneur Ubuntu: integration-distribuee-on-premise/it-1/manipuler-conteneur-ubuntu.md
-          - Créer une image à partir d'un conteneur: integration-distribuee-on-premise/it-1/creer-image-depuis-conteneur.md
-          - Construire une image avec un Dockerfile: integration-distribuee-on-premise/it-1/construire-image-dockerfile.md
-          - Image Nginx avec page Web: integration-distribuee-on-premise/it-1/construire-image-nginx-web.md
-          - Persistance volume MariaDB: integration-distribuee-on-premise/it-1/persistance-volume-mariadb.md
-          - Déployer WordPress et MariaDB avec Docker Compose: integration-distribuee-on-premise/it-1/deployer-wordpress-compose.md
-          - Gérer la documentation avec Git: integration-distribuee-on-premise/it-1/gerer-documentation-avec-git.md
-      - Itération 2 - PCA/PRA:
-          - PCA fourni: integration-distribuee-on-premise/it-2/PCA.md
-          - PRA fourni: integration-distribuee-on-premise/it-2/PRA.md
-          - Analyse des écarts PCA/PRA: integration-distribuee-on-premise/it-2/analyser-pca-pra.md
-          - Concevoir l'annuaire LDAP: integration-distribuee-on-premise/it-2/concevoir-annuaire-ldap.md
-          - Étude de conception d'un annuaire LDAP pour une PME: integration-distribuee-on-premise/it-2/etude-conception-annuaire-ldap-pme.md
-          - Déployer OpenLDAP avec Docker Compose: integration-distribuee-on-premise/it-2/deployer-openldap-compose.md
-          - Administrer OpenLDAP avec LDAP Account Manager: integration-distribuee-on-premise/it-2/administrer-openldap-avec-lam.md
-          - Construire la structure LDAP avec LAM: integration-distribuee-on-premise/it-2/construire-structure-annuaire-lam.md
-          - Gérer le cycle de vie des identités LDAP: integration-distribuee-on-premise/it-2/gerer-cycle-de-vie-identites-ldap.md
-          - Premier annuaire de l'entreprise: integration-distribuee-on-premise/it-2/premier-annuaire.md
-      - Itération 3 - Samba Active Directory et partage:
-          - Vue d'ensemble: integration-distribuee-on-premise/it-3/index.md
-          - Concevoir l'architecture Samba AD et LDAP: integration-distribuee-on-premise/it-3/concevoir-architecture-samba-ad-ldap.md
-          - Historique - Déployer un contrôleur de domaine Samba: integration-distribuee-on-premise/it-3/deployer-controleur-domaine-samba-compose.md
-          - Intégrer Samba à OpenLDAP: integration-distribuee-on-premise/it-3/integrer-samba-openldap.md
-          - Créer les espaces de partage Samba: integration-distribuee-on-premise/it-3/creer-espaces-partage-samba.md
-          - Procédures courantes d'administration: integration-distribuee-on-premise/it-3/procedures-administration.md
-          - Plan de validation de l'infrastructure: integration-distribuee-on-premise/it-3/plan-validation.md
-          - Revue de l'itération: integration-distribuee-on-premise/it-3/revue-iteration.md
-      - Itération 4 - Infrastructure de messagerie:
-          - Vue d'ensemble: integration-distribuee-on-premise/it-4/index.md
-          - Concevoir l'architecture de messagerie: integration-distribuee-on-premise/it-4/concevoir-architecture-messagerie.md
-          - Préparer le déploiement de la messagerie: integration-distribuee-on-premise/it-4/preparer-deploiement-messagerie.md
-          - Politique de messagerie: integration-distribuee-on-premise/it-4/politique-messagerie.md
-          - Plan de validation de la messagerie: integration-distribuee-on-premise/it-4/validation-mail.md
-          - Préparer la sécurisation TLS de la messagerie: integration-distribuee-on-premise/it-4/securiser-messagerie-tls.md
-          - Déployer l'infrastructure de messagerie: integration-distribuee-on-premise/it-4/deployer-messagerie.md
-          - Authentifier la messagerie avec LDAP: integration-distribuee-on-premise/it-4/authentification-ldap-messagerie.md
-          - Rapport de validation et corrections: integration-distribuee-on-premise/it-4/rapport-validation-corrections-messagerie.md
-          - "Diagnostic : suppression de la boîte Inbox": integration-distribuee-on-premise/it-4/diagnostiquer-suppression-inbox.md
-      - Itération 5 - Sauvegarde et restauration:
-          - Vue d'ensemble: integration-distribuee-on-premise/it-5/index.md
-          - Identifier les exigences de sauvegarde: integration-distribuee-on-premise/it-5/identifier-exigences-sauvegarde.md
-          - Définir la stratégie de sauvegarde: integration-distribuee-on-premise/it-5/definir-strategie-sauvegarde.md
-          - Découvrir BorgBackup: integration-distribuee-on-premise/it-5/decouvrir-borgbackup.md
-          - Vérifier les sauvegardes BorgBackup: integration-distribuee-on-premise/it-5/verifier-sauvegardes-borg.md
-          - Mettre en œuvre la sauvegarde BorgBackup: integration-distribuee-on-premise/it-5/mettre-en-oeuvre-sauvegarde-borg.md
-          - Restaurer une sauvegarde BorgBackup: integration-distribuee-on-premise/it-5/restaurer-sauvegarde-borg.md
-          - Automatiser et contrôler les sauvegardes BorgBackup: integration-distribuee-on-premise/it-5/automatiser-sauvegardes-borg.md
-          - Valider la stratégie de sauvegarde: integration-distribuee-on-premise/it-5/valider-strategie-sauvegarde.md
-      - Itération 6 - Autorité de certification interne:
-          - Vue d'ensemble: integration-distribuee-on-premise/it-6/index.md
-          - Identifier les besoins en certificats numériques: integration-distribuee-on-premise/it-6/inventorier-besoins-certificats.md
-          - Concevoir l'architecture de certification: integration-distribuee-on-premise/it-6/concevoir-architecture-certification.md
-          - Installer et initialiser une autorité Step CA: integration-distribuee-on-premise/it-6/installer-initialiser-step-ca.md
-          - Distribuer le certificat racine sur un client: integration-distribuee-on-premise/it-6/distribuer-certificat-racine-client.md
-          - Générer les certificats des services: integration-distribuee-on-premise/it-6/generer-certificats-services.md
-          - Déployer les certificats sur les services: integration-distribuee-on-premise/it-6/deployer-certificats-services.md
-          - Valider TLS depuis une machine cliente: integration-distribuee-on-premise/it-6/valider-tls-depuis-client.md
-          - Administrer le cycle de vie des certificats: integration-distribuee-on-premise/it-6/administrer-cycle-vie-certificats.md
-      - Itération 7 - Supervision et diagnostic (optionnelle):
-          - Vue d'ensemble: integration-distribuee-on-premise/it-7/index.md
-          - Identifier les besoins de supervision: integration-distribuee-on-premise/it-7/identifier-besoins-supervision.md
-          - Concevoir la centralisation des journaux: integration-distribuee-on-premise/it-7/concevoir-centralisation-journaux.md
-          - Déployer Elasticsearch et Kibana: integration-distribuee-on-premise/it-7/deployer-elasticsearch-kibana.md
-          - Configurer la collecte avec Filebeat: integration-distribuee-on-premise/it-7/configurer-collecte-filebeat.md
-          - Créer les tableaux de bord Kibana: integration-distribuee-on-premise/it-7/creer-tableaux-bord-kibana.md
-          - Analyser un incident avec les journaux centralisés: integration-distribuee-on-premise/it-7/analyser-incident-journaux-centralises.md
-          - Définir le plan d'alertes d'exploitation: integration-distribuee-on-premise/it-7/definir-plan-alertes-exploitation.md
+    - RGPD:
+        - Présentation: rgpd/index.md
+        - Définition et enjeux basiques: rgpd/definition-enjeux-basiques.md
+        - Historique du RGPD: rgpd/historique.md
+        - Acteurs du RGPD: rgpd/acteurs.md
+        - Les 8 règles d'or: rgpd/regles-or.md
+        - RGPD en collectivité: rgpd/collectivites.md
+        - Travail et données personnelles: rgpd/travail-donnees-personnelles.md
+        - Ressources PDF: rgpd/ressources-pdf.md
+        - Enjeux avancés: rgpd/enjeux-avances.md
 
 
-  - Réseaux :
-      - Vue d'ensemble: admin-reseaux/index.md
-      - Synthèse personnelle CC-01: admin-reseaux/synthese-personnelle-cc01.md
-      - Itération 1 - TCP/IP et adressage:
-          - Vue d'ensemble: admin-reseaux/iteration-1/index.md
-          - Fondations TCP/IP & capture : admin-reseaux/iteration-1/fondations-tcpip-capture.md
-          - Exercices Wireshark: admin-reseaux/iteration-1/wireshark.md
-          - Adressage IPv4 et subnetting: admin-reseaux/iteration-1/adressage-ipv4-subnetting.md
-          - Schémas réseau L1/L2/L3: admin-reseaux/iteration-1/ schémas_réseau_L1_L2_L3.md
-          - Schéma réseau annoté : admin-reseaux/iteration-1/schema-reseau-alpesnet-complet.md
-      - Itération 2 - Switching, ARP et VLANs:
-          - Vue d'ensemble: admin-reseaux/iteration-2/index.md
-          - Commutation et VLANs: admin-reseaux/iteration-2/synthese_switching_arp_stp.md
-          - GNS3 tables mac & arp: admin-reseaux/iteration-2/gns3_mac_arp.md
-          - Synthese VLANs: admin-reseaux/iteration-2/synthese_vlans.md
-          - exercice facultatif - STP avancé : admin-reseaux/iteration-2/stp_avance.md
-      - Itération 3 - Routage:
-          - Vue d'ensemble: admin-reseaux/iteration-3/index.md
-          - Routage statique: admin-reseaux/iteration-3/routage-statique.md
-          - Routage dynamique: admin-reseaux/iteration-3/routage-dynamique-OSPF.md
-      - Itération 4 - Services réseau:
-          - Vue d'ensemble: admin-reseaux/iteration-4/index.md
-          - Synthèse DHCP: admin-reseaux/iteration-4/synthese-dhcp.md
-          - TP DHCP et VLANs: admin-reseaux/iteration-4/dhcp-vlans-gns3.md
-          - Nat et PAT: admin-reseaux/iteration-4/nat-pat.md
-          - TP NAT/PAT GNS3: admin-reseaux/iteration-4/tp-nat-pat-gns3.md
-          - DNS interne: admin-reseaux/iteration-4/dns.md
-          - Finalisation AlpesNet: admin-reseaux/iteration-4/finalisation-infrastructure-alpesnet.md
-      - Itération 5 - Diagnostic et automatisation:
-          - Vue d'ensemble: admin-reseaux/iteration-5/index.md
-          - Méthode de diagnostic OSI: admin-reseaux/iteration-5/methode-diagnostic-osi.md
-          - Simulation pannes AlpesNet OSI: admin-reseaux/iteration-5/simulation-pannes-alpesnet-osi.md
-          - Critères fiche dépannage AlpesNet: admin-reseaux/iteration-5/criteres-fiche-depannage-alpesnet.md
-          - TP Wireshark GNS3 et réseau physique: admin-reseaux/iteration-5/tp-wireshark-gns3-reseau-physique.md
-          - Synthèse automatisation Bash: admin-reseaux/iteration-5/synthese-automatisation-bash.md
-          - Automatisation connectivité et sauvegarde: admin-reseaux/iteration-5/automatisation-connectivite-sauvegarde.md
+  - Administration systèmes:
+    - Systèmes Linux:
+        - Vue d'ensemble: admin-systemes-linux/index.md
+        - Mémo personnel de synthèse SYS-01a: admin-systemes-linux/memo-personnel-synthese-sys-01a.md
+        - Itération 1 - Installation Debian 12 & comptes:
+            - Kit Install - Environnement de travail: admin-systemes-linux/it-1/atelier1-kit-install.md
+            - FHS - Arborescence Linux: admin-systemes-linux/it-1/atelier2-fhs.md
+            - Identités Linux - passwd shadow group: admin-systemes-linux/it-1/atelier3-identites.md
+            - Comptes AlpesNet - utilisateurs et services: admin-systemes-linux/it-1/atelier4-comptes-alpesnet.md
+            - Cycle de vie des comptes Linux: admin-systemes-linux/it-1/atelier5-cycle-vie-comptes.md
+            - Audit des comptes et droits sudo AlpesNet: admin-systemes-linux/it-1/atelier6-audit-comptes-sudo.md
+            - Carnet de bord: admin-systemes-linux/it-1/carnet-bord-it1.md
+            - audit alpesnet : admin-systemes-linux/it-1/audit-comptes-sudo-alpesnet.md
+        - Itération 2 - Permissions et logs Linux:
+            - Synthèse chmod, chown et umask: admin-systemes-linux/it-2/synthese-permissions-chmod-chown-umask.md
+            - ACL Linux sur AlpesNet: admin-systemes-linux/it-2/atelier-acl-alpesnet.md
+            - Logs système et journalctl AlpesNet: admin-systemes-linux/it-2/atelier-logs-journalctl-alpesnet.md
+            - Rsyslog et logrotate SSH AlpesNet: admin-systemes-linux/it-2/atelier-rsyslog-logrotate-alpesnet.md
+            - Audit des permissions AlpesNet: admin-systemes-linux/it-2/atelier-audit-permissions-alpesnet.md
+            - Rapport audit permissions AlpesNet: admin-systemes-linux/it-2/audit-permissions-alpesnet.md
+            - Carnet de bord : admin-systemes-linux/it-2/carnet-bord-it2.md
+        - Itération 3 - Bash & automatisation:
+            - Fondamentaux Bash et scripts simples: admin-systemes-linux/it-3/atelier1-bash-fondamentaux.md
+            - Scripts d'administration pratiques: admin-systemes-linux/it-3/scripts-administration-pratiques.md
+            - Planification cron AlpesNet: admin-systemes-linux/it-3/planification-cron-alpesnet.md
+            - Script administration robuste AlpesNet: admin-systemes-linux/it-3/script-administration-robuste-alpesnet.md
+            - Fonctions, arguments et trap Bash: admin-systemes-linux/it-3/fonctions-arguments-trap-bash.md
+            - Carnet de bord : admin-systemes-linux/it-3/carnet-bord-it3.md
+        - Itération 4 - Services Linux et durcissement:
+            - Vue d'ensemble: admin-systemes-linux/it-4/index.md
+            - NFS AlpesNet - partage réseau Linux: admin-systemes-linux/it-4/nfs-alpesnet.md
+            - Samba AlpesNet - partage SMB/CIFS: admin-systemes-linux/it-4/samba-alpesnet.md
+            - Durcissement Linux AlpesNet: admin-systemes-linux/it-4/durcissement-linux-alpesnet.md
+            - Rapport de durcissement Linux AlpesNet: admin-systemes-linux/it-4/rapport-durcissement-linux-alpesnet.md
+            - Script automatisation Itération 4: admin-systemes-linux/it-4/script-automatisation-it4.md
+            - Rapport automatique Itération 4: admin-systemes-linux/it-4/rapport-it4-20260626_120855.md
+        - Itération 5 - Sauvegarde et Nginx :
+            - Vue d'ensemble: admin-systemes-linux/it-5/index.md
+            - Sauvegarde et restauration AlpesNet: admin-systemes-linux/it-5/sauvegarde-restauration-alpesnet.md
+            - Autonomie 3 - Nginx sécurisé AlpesNet: admin-systemes-linux/it-5/autonomie-3-nginx-securise-alpesnet.md
+            - Débriefing Nginx - comparer et améliorer: admin-systemes-linux/it-5/debriefing-nginx-reference-alpesnet.md
+            - Rapport automatique Autonomie 3 : admin-systemes-linux/it-5/rapport-it5-20260630_162804.md
+        - Itération 6 - Challenge final CTF :
+            - Guide CTF AlpesNet et script d'automatisation : admin-systemes-linux/it-6/ctf-challenge-final.md
+            - Validation du challenge CTF : admin-systemes-linux/it-6/validation-ctf-alpesnet.md
+            - Rapport automatique Challenge final CTF : admin-systemes-linux/it-6/rapport_Olivier.md
+        - Bonus - AlpesNet Hardening Suite:
+            - Vue d'ensemble: assets/scripts/admin-systemes-linux/it-bonus/hardening-suite/README.md
+            - Guide pas-à-pas et script: admin-systemes-linux/it-bonus/alpesnet-hardening-suite.md
 
-  - Réseaux sécurisés :
-    - Vue d'ensemble: admin-reseaux-securisation/index.md
-    - Itération 1 - VLANs sécurisés et nftables:
-        - Vue d'ensemble: admin-reseaux-securisation/it-1/index.md
-        - Introduction du module et architecture sécurisée: admin-reseaux-securisation/it-1/atelier1.md
-        - VLANs sécurisés et préparation du filtrage: admin-reseaux-securisation/it-1/atelier2.md
-        - Filtrage réseau avec nftables: admin-reseaux-securisation/it-1/atelier3.md
-        - Introduction au VLAN Hopping et tests d'attaque: admin-reseaux-securisation/it-1/atelier4.md
-    - Itération 2 - pfSense et ACL:
-        - Vue d'ensemble: admin-reseaux-securisation/it-2/index.md
-        - Déploiement de pfSense: admin-reseaux-securisation/it-2/atelier1.md
-        - Règles de filtrage et ACL avec pfSense: admin-reseaux-securisation/it-2/atelier2.md
-        - Journalisation et analyse des logs pfSense: admin-reseaux-securisation/it-2/atelier3.md
-        - Synthèse pfSense: admin-reseaux-securisation/it-2/synthese-pfsense.md
-    - Itération 3 - OpenVPN:
-        - Vue d'ensemble: admin-reseaux-securisation/it-3/index.md
-        - Introduction aux VPN et architecture du TP: admin-reseaux-securisation/it-3/atelier1.md
-        - Mise en place d'un VPN OpenVPN site-à-site: admin-reseaux-securisation/it-3/atelier2.md
-        - Analyse Wireshark et logs OpenVPN: admin-reseaux-securisation/it-3/atelier3.md
-    - Itération 4 - Zeek et corrélation:
-        - Vue d'ensemble: admin-reseaux-securisation/it-4/index.md
-        - Découverte de Zeek et architecture d'analyse réseau: admin-reseaux-securisation/it-4/atelier1.md
-        - Installation et premiers logs Zeek: admin-reseaux-securisation/it-4/atelier2.md
-        - Analyse des logs Zeek et détection d'attaques: admin-reseaux-securisation/it-4/atelier3.md
-        - Corrélation et analyse forensique réseau: admin-reseaux-securisation/it-4/atelier4.md
-    - Itération 5 - Incident, Spark et Fail2ban:
-        - Vue d'ensemble: admin-reseaux-securisation/it-5/index.md
-        - Réponse à incident et sécurisation d'une installation Spark : admin-reseaux-securisation/it-5/atelier1.md
-        - Fail2ban SSH et script de bannissement IP : admin-reseaux-securisation/it-5/atelier2.md
-    - Itération 6 - Challenge final:
-        - Vue d'ensemble: admin-reseaux-securisation/it-6/index.md
-        - Préparation défensive et validation de l'infrastructure : admin-reseaux-securisation/it-6/atelier1.md
-        - Test depuis un PC d'un autre apprenant : admin-reseaux-securisation/it-6/test-pc-autre-apprenant.md
-        - Préparation d'un CTF facile : admin-reseaux-securisation/it-6/preparation-ctf-facile.md
-        
+    - Administration Windows:
+        - Vue d'ensemble: admin-windows/index.md
+        - Itération 1 - Plateforme et domaine:
+            - Vue d'ensemble: admin-windows/it-1/index.md
+            - Activité 1 - Installer LABO, Hyper-V et SRV-AD01: admin-windows/it-1/activite1-installation-labo-hyperv-srv-ad01.md
+            - Activité 2 - Préparer SRV-AD01 pour AD DS et DNS: admin-windows/it-1/activite2-preparer-srv-ad01-ad-ds-dns.md
+            - Activité 3 - Promouvoir SRV-AD01 en contrôleur de domaine: admin-windows/it-1/activite3-promouvoir-srv-ad01-controleur-domaine.md
+            - Fiche installation LABO et SRV-AD01: admin-windows/it-1/fiche-installation-labo-srv-ad01.md
+        - Itération 2 - Organisation Active Directory:
+            - Vue d'ensemble: admin-windows/it-2/index.md
+            - Activité 4 - OU, utilisateurs et groupes: admin-windows/it-2/activite4-organisation-ou-utilisateurs-groupes.md
+            - Activité 5 - Joindre un poste Windows 11 au domaine: admin-windows/it-2/activite5-joindre-poste-windows11-domaine.md
+            - Activité 6 - GPO et déploiement 7-Zip: admin-windows/it-2/activite6-gpo-password-panel-deploiement-7zip.md
+            - Activité 6bis - GPO BitLocker et récupération AD: admin-windows/it-2/activite6bis-gpo-bitlocker-recuperation-ad.md
+            - Activité 6ter - Windows LAPS: admin-windows/it-2/activite6ter-windows-laps.md
+        - Itération 3 - Serveur de fichiers:
+            - Vue d'ensemble: admin-windows/it-3/index.md
+            - Activité 7 - Créer SRV-FIC01: admin-windows/it-3/activite7-creation-srv-fic01-serveur-fichiers.md
+            - Activité 7bis - AGDLP, partages et lecteurs réseau: admin-windows/it-3/activite7bis-agdlp-partages-lecteurs-reseau.md
+            - Activité 8 - Sauvegarde et restauration SRV-FIC01: admin-windows/it-3/activite8-sauvegarde-restauration-srv-fic01.md
+        - Itération 4 - PowerShell, durcissement et journaux:
+            - Vue d'ensemble: admin-windows/it-4/index.md
+            - Activité 9 - Créer des utilisateurs depuis un CSV: admin-windows/it-4/activite9-creation-utilisateurs-csv-powershell.md
+            - Activité 10 - Inventaire Active Directory: admin-windows/it-4/activite10-inventaire-active-directory-powershell.md
+            - Activité 11 - Firewall et journaux Windows: admin-windows/it-4/activite11-firewall-journaux-windows.md
+        - Activité 12 - Dossier d'exploitation SYS01b:
+            - Vue d'ensemble: admin-windows/activite12/index.md
+            - Architecture et domaine: admin-windows/activite12/architecture-domaine.md
+            - Active Directory: admin-windows/activite12/active-directory.md
+            - GPO, BitLocker et LAPS: admin-windows/activite12/gpo-bitlocker-laps.md
+            - SRV-FIC01 et AGDLP: admin-windows/activite12/serveur-fichiers-agdlp.md
+            - Sauvegarde et restauration: admin-windows/activite12/sauvegarde-restauration.md
+            - PowerShell et firewall: admin-windows/activite12/powershell-firewall.md
+            - Reprise d'exploitation: admin-windows/activite12/reprise-exploitation.md
+        - Activité 13 - PKI interne et LDAPS: admin-windows/activite13-deploiement-pki-ldaps.md
+
+    - Virtualisation:
+        - Mémo personnel du module: admin-systemes-virtualisation/memo-personnel.md
+        - Itération 1 - Fondamentaux:
+            - Vue d'ensemble: admin-systemes-virtualisation/index.md
+            - Fondamentaux: admin-systemes-virtualisation/it-1/index.md
+            - Qu'est-ce que la virtualisation ?: admin-systemes-virtualisation/it-1/quest-ce-que-la-virtualisation.md
+            - Comment fonctionne une machine virtuelle ?: admin-systemes-virtualisation/it-1/comment-fonctionne-une-machine-virtuelle.md
+            - Pourquoi virtualiser une infrastructure ?: admin-systemes-virtualisation/it-1/pourquoi-virtualiser-une-infrastructure.md
+            - Machine virtuelle ou conteneur - lequel choisir ?: admin-systemes-virtualisation/it-1/machine-virtuelle-ou-conteneur-lequel-choisir.md
+        - Itération 2 - Déploiement de machines virtuelles:
+            - Vue d'ensemble: admin-systemes-virtualisation/it-2/index.md
+            - Déployer Hyper-V pas à pas: admin-systemes-virtualisation/it-2/comment-deployer-hyper-v.md
+            - Dimensionner et déployer DC1 et WEB1: admin-systemes-virtualisation/it-2/dimensionner-et-deployer-dc1-web1.md
+            - Intégrer WEB1 au domaine et déployer Apache: admin-systemes-virtualisation/it-2/integrer-web1-au-domaine-et-deployer-apache.md
+            - Permettre aux machines virtuelles de communiquer: admin-systemes-virtualisation/it-2/comment-permettre-aux-machines-virtuelles-de-communiquer.md
+            - Sécuriser une opération d'administration: admin-systemes-virtualisation/it-2/comment-securiser-une-operation-administration.md
+        - Itération 3 - Disponibilité des services virtualisés:
+            - Vue d'ensemble: admin-systemes-virtualisation/it-3/index.md
+            - Installer trois Proxmox dans Hyper-V: admin-systemes-virtualisation/it-3/installer-trois-proxmox-dans-hyper-v.md
+            - Partager le stockage entre plusieurs hyperviseurs: admin-systemes-virtualisation/it-3/comment-partager-le-stockage-entre-plusieurs-hyperviseurs.md
+            - Créer et valider le cluster Proxmox: admin-systemes-virtualisation/it-3/comment-creer-un-cluster-proxmox.md
+            - Assurer automatiquement la continuité de service: admin-systemes-virtualisation/it-3/comment-assurer-la-haute-disponibilite.md
+        - Itération 4 - Exploitation et optimisation:
+            - Vue d'ensemble: admin-systemes-virtualisation/it-4/index.md
+            - Sécuriser les communications entre les VM: admin-systemes-virtualisation/it-4/comment-securiser-les-communications-entre-les-machines-virtuelles.md
+            - Identifier l'origine d'un dysfonctionnement: admin-systemes-virtualisation/it-4/comment-identifier-origine-dysfonctionnement.md
+            - Optimiser les performances: admin-systemes-virtualisation/it-4/comment-optimiser-performances-infrastructure-virtualisee.md
+            - Transmettre l'infrastructure à une autre équipe: admin-systemes-virtualisation/it-4/comment-transmettre-infrastructure-autre-equipe.md
+
+
+  - Réseaux & sécurité:
+    - Réseaux :
+        - Vue d'ensemble: admin-reseaux/index.md
+        - Synthèse personnelle CC-01: admin-reseaux/synthese-personnelle-cc01.md
+        - Itération 1 - TCP/IP et adressage:
+            - Vue d'ensemble: admin-reseaux/iteration-1/index.md
+            - Fondations TCP/IP & capture : admin-reseaux/iteration-1/fondations-tcpip-capture.md
+            - Exercices Wireshark: admin-reseaux/iteration-1/wireshark.md
+            - Adressage IPv4 et subnetting: admin-reseaux/iteration-1/adressage-ipv4-subnetting.md
+            - Schémas réseau L1/L2/L3: admin-reseaux/iteration-1/ schémas_réseau_L1_L2_L3.md
+            - Schéma réseau annoté : admin-reseaux/iteration-1/schema-reseau-alpesnet-complet.md
+        - Itération 2 - Switching, ARP et VLANs:
+            - Vue d'ensemble: admin-reseaux/iteration-2/index.md
+            - Commutation et VLANs: admin-reseaux/iteration-2/synthese_switching_arp_stp.md
+            - GNS3 tables mac & arp: admin-reseaux/iteration-2/gns3_mac_arp.md
+            - Synthese VLANs: admin-reseaux/iteration-2/synthese_vlans.md
+            - exercice facultatif - STP avancé : admin-reseaux/iteration-2/stp_avance.md
+        - Itération 3 - Routage:
+            - Vue d'ensemble: admin-reseaux/iteration-3/index.md
+            - Routage statique: admin-reseaux/iteration-3/routage-statique.md
+            - Routage dynamique: admin-reseaux/iteration-3/routage-dynamique-OSPF.md
+        - Itération 4 - Services réseau:
+            - Vue d'ensemble: admin-reseaux/iteration-4/index.md
+            - Synthèse DHCP: admin-reseaux/iteration-4/synthese-dhcp.md
+            - TP DHCP et VLANs: admin-reseaux/iteration-4/dhcp-vlans-gns3.md
+            - Nat et PAT: admin-reseaux/iteration-4/nat-pat.md
+            - TP NAT/PAT GNS3: admin-reseaux/iteration-4/tp-nat-pat-gns3.md
+            - DNS interne: admin-reseaux/iteration-4/dns.md
+            - Finalisation AlpesNet: admin-reseaux/iteration-4/finalisation-infrastructure-alpesnet.md
+        - Itération 5 - Diagnostic et automatisation:
+            - Vue d'ensemble: admin-reseaux/iteration-5/index.md
+            - Méthode de diagnostic OSI: admin-reseaux/iteration-5/methode-diagnostic-osi.md
+            - Simulation pannes AlpesNet OSI: admin-reseaux/iteration-5/simulation-pannes-alpesnet-osi.md
+            - Critères fiche dépannage AlpesNet: admin-reseaux/iteration-5/criteres-fiche-depannage-alpesnet.md
+            - TP Wireshark GNS3 et réseau physique: admin-reseaux/iteration-5/tp-wireshark-gns3-reseau-physique.md
+            - Synthèse automatisation Bash: admin-reseaux/iteration-5/synthese-automatisation-bash.md
+            - Automatisation connectivité et sauvegarde: admin-reseaux/iteration-5/automatisation-connectivite-sauvegarde.md
+
+    - Réseaux sécurisés :
+      - Vue d'ensemble: admin-reseaux-securisation/index.md
+      - Itération 1 - VLANs sécurisés et nftables:
+          - Vue d'ensemble: admin-reseaux-securisation/it-1/index.md
+          - Introduction du module et architecture sécurisée: admin-reseaux-securisation/it-1/atelier1.md
+          - VLANs sécurisés et préparation du filtrage: admin-reseaux-securisation/it-1/atelier2.md
+          - Filtrage réseau avec nftables: admin-reseaux-securisation/it-1/atelier3.md
+          - Introduction au VLAN Hopping et tests d'attaque: admin-reseaux-securisation/it-1/atelier4.md
+      - Itération 2 - pfSense et ACL:
+          - Vue d'ensemble: admin-reseaux-securisation/it-2/index.md
+          - Déploiement de pfSense: admin-reseaux-securisation/it-2/atelier1.md
+          - Règles de filtrage et ACL avec pfSense: admin-reseaux-securisation/it-2/atelier2.md
+          - Journalisation et analyse des logs pfSense: admin-reseaux-securisation/it-2/atelier3.md
+          - Synthèse pfSense: admin-reseaux-securisation/it-2/synthese-pfsense.md
+      - Itération 3 - OpenVPN:
+          - Vue d'ensemble: admin-reseaux-securisation/it-3/index.md
+          - Introduction aux VPN et architecture du TP: admin-reseaux-securisation/it-3/atelier1.md
+          - Mise en place d'un VPN OpenVPN site-à-site: admin-reseaux-securisation/it-3/atelier2.md
+          - Analyse Wireshark et logs OpenVPN: admin-reseaux-securisation/it-3/atelier3.md
+      - Itération 4 - Zeek et corrélation:
+          - Vue d'ensemble: admin-reseaux-securisation/it-4/index.md
+          - Découverte de Zeek et architecture d'analyse réseau: admin-reseaux-securisation/it-4/atelier1.md
+          - Installation et premiers logs Zeek: admin-reseaux-securisation/it-4/atelier2.md
+          - Analyse des logs Zeek et détection d'attaques: admin-reseaux-securisation/it-4/atelier3.md
+          - Corrélation et analyse forensique réseau: admin-reseaux-securisation/it-4/atelier4.md
+      - Itération 5 - Incident, Spark et Fail2ban:
+          - Vue d'ensemble: admin-reseaux-securisation/it-5/index.md
+          - Réponse à incident et sécurisation d'une installation Spark : admin-reseaux-securisation/it-5/atelier1.md
+          - Fail2ban SSH et script de bannissement IP : admin-reseaux-securisation/it-5/atelier2.md
+      - Itération 6 - Challenge final:
+          - Vue d'ensemble: admin-reseaux-securisation/it-6/index.md
+          - Préparation défensive et validation de l'infrastructure : admin-reseaux-securisation/it-6/atelier1.md
+          - Test depuis un PC d'un autre apprenant : admin-reseaux-securisation/it-6/test-pc-autre-apprenant.md
+          - Préparation d'un CTF facile : admin-reseaux-securisation/it-6/preparation-ctf-facile.md
+
+
+  - Intégration, services & supervision:
+    - Intégration distribuée on-premise:
+        - Vue d'ensemble: integration-distribuee-on-premise/README.md
+        - Journal technique du module: integration-distribuee-on-premise/journal-technique.md
+        - Comprendre les fichiers Docker et les scripts: integration-distribuee-on-premise/comprendre-fichiers-techniques.md
+        - Itération 1 - Docker:
+            - Vue d'ensemble: integration-distribuee-on-premise/it-1/index.md
+            - Découverte entreprise fictive: integration-distribuee-on-premise/it-1/decouverte-entreprise-fictive.md
+            - Installer Docker Engine: integration-distribuee-on-premise/it-1/installer-docker-engine.md
+            - Manipuler un conteneur Ubuntu: integration-distribuee-on-premise/it-1/manipuler-conteneur-ubuntu.md
+            - Créer une image à partir d'un conteneur: integration-distribuee-on-premise/it-1/creer-image-depuis-conteneur.md
+            - Construire une image avec un Dockerfile: integration-distribuee-on-premise/it-1/construire-image-dockerfile.md
+            - Image Nginx avec page Web: integration-distribuee-on-premise/it-1/construire-image-nginx-web.md
+            - Persistance volume MariaDB: integration-distribuee-on-premise/it-1/persistance-volume-mariadb.md
+            - Déployer WordPress et MariaDB avec Docker Compose: integration-distribuee-on-premise/it-1/deployer-wordpress-compose.md
+            - Gérer la documentation avec Git: integration-distribuee-on-premise/it-1/gerer-documentation-avec-git.md
+        - Itération 2 - PCA/PRA:
+            - PCA fourni: integration-distribuee-on-premise/it-2/PCA.md
+            - PRA fourni: integration-distribuee-on-premise/it-2/PRA.md
+            - Analyse des écarts PCA/PRA: integration-distribuee-on-premise/it-2/analyser-pca-pra.md
+            - Concevoir l'annuaire LDAP: integration-distribuee-on-premise/it-2/concevoir-annuaire-ldap.md
+            - Étude de conception d'un annuaire LDAP pour une PME: integration-distribuee-on-premise/it-2/etude-conception-annuaire-ldap-pme.md
+            - Déployer OpenLDAP avec Docker Compose: integration-distribuee-on-premise/it-2/deployer-openldap-compose.md
+            - Administrer OpenLDAP avec LDAP Account Manager: integration-distribuee-on-premise/it-2/administrer-openldap-avec-lam.md
+            - Construire la structure LDAP avec LAM: integration-distribuee-on-premise/it-2/construire-structure-annuaire-lam.md
+            - Gérer le cycle de vie des identités LDAP: integration-distribuee-on-premise/it-2/gerer-cycle-de-vie-identites-ldap.md
+            - Premier annuaire de l'entreprise: integration-distribuee-on-premise/it-2/premier-annuaire.md
+        - Itération 3 - Samba Active Directory et partage:
+            - Vue d'ensemble: integration-distribuee-on-premise/it-3/index.md
+            - Concevoir l'architecture Samba AD et LDAP: integration-distribuee-on-premise/it-3/concevoir-architecture-samba-ad-ldap.md
+            - Historique - Déployer un contrôleur de domaine Samba: integration-distribuee-on-premise/it-3/deployer-controleur-domaine-samba-compose.md
+            - Intégrer Samba à OpenLDAP: integration-distribuee-on-premise/it-3/integrer-samba-openldap.md
+            - Créer les espaces de partage Samba: integration-distribuee-on-premise/it-3/creer-espaces-partage-samba.md
+            - Procédures courantes d'administration: integration-distribuee-on-premise/it-3/procedures-administration.md
+            - Plan de validation de l'infrastructure: integration-distribuee-on-premise/it-3/plan-validation.md
+            - Revue de l'itération: integration-distribuee-on-premise/it-3/revue-iteration.md
+        - Itération 4 - Infrastructure de messagerie:
+            - Vue d'ensemble: integration-distribuee-on-premise/it-4/index.md
+            - Concevoir l'architecture de messagerie: integration-distribuee-on-premise/it-4/concevoir-architecture-messagerie.md
+            - Préparer le déploiement de la messagerie: integration-distribuee-on-premise/it-4/preparer-deploiement-messagerie.md
+            - Politique de messagerie: integration-distribuee-on-premise/it-4/politique-messagerie.md
+            - Plan de validation de la messagerie: integration-distribuee-on-premise/it-4/validation-mail.md
+            - Préparer la sécurisation TLS de la messagerie: integration-distribuee-on-premise/it-4/securiser-messagerie-tls.md
+            - Déployer l'infrastructure de messagerie: integration-distribuee-on-premise/it-4/deployer-messagerie.md
+            - Authentifier la messagerie avec LDAP: integration-distribuee-on-premise/it-4/authentification-ldap-messagerie.md
+            - Rapport de validation et corrections: integration-distribuee-on-premise/it-4/rapport-validation-corrections-messagerie.md
+            - "Diagnostic : suppression de la boîte Inbox": integration-distribuee-on-premise/it-4/diagnostiquer-suppression-inbox.md
+        - Itération 5 - Sauvegarde et restauration:
+            - Vue d'ensemble: integration-distribuee-on-premise/it-5/index.md
+            - Identifier les exigences de sauvegarde: integration-distribuee-on-premise/it-5/identifier-exigences-sauvegarde.md
+            - Définir la stratégie de sauvegarde: integration-distribuee-on-premise/it-5/definir-strategie-sauvegarde.md
+            - Découvrir BorgBackup: integration-distribuee-on-premise/it-5/decouvrir-borgbackup.md
+            - Vérifier les sauvegardes BorgBackup: integration-distribuee-on-premise/it-5/verifier-sauvegardes-borg.md
+            - Mettre en œuvre la sauvegarde BorgBackup: integration-distribuee-on-premise/it-5/mettre-en-oeuvre-sauvegarde-borg.md
+            - Restaurer une sauvegarde BorgBackup: integration-distribuee-on-premise/it-5/restaurer-sauvegarde-borg.md
+            - Automatiser et contrôler les sauvegardes BorgBackup: integration-distribuee-on-premise/it-5/automatiser-sauvegardes-borg.md
+            - Valider la stratégie de sauvegarde: integration-distribuee-on-premise/it-5/valider-strategie-sauvegarde.md
+        - Itération 6 - Autorité de certification interne:
+            - Vue d'ensemble: integration-distribuee-on-premise/it-6/index.md
+            - Identifier les besoins en certificats numériques: integration-distribuee-on-premise/it-6/inventorier-besoins-certificats.md
+            - Concevoir l'architecture de certification: integration-distribuee-on-premise/it-6/concevoir-architecture-certification.md
+            - Installer et initialiser une autorité Step CA: integration-distribuee-on-premise/it-6/installer-initialiser-step-ca.md
+            - Distribuer le certificat racine sur un client: integration-distribuee-on-premise/it-6/distribuer-certificat-racine-client.md
+            - Générer les certificats des services: integration-distribuee-on-premise/it-6/generer-certificats-services.md
+            - Déployer les certificats sur les services: integration-distribuee-on-premise/it-6/deployer-certificats-services.md
+            - Valider TLS depuis une machine cliente: integration-distribuee-on-premise/it-6/valider-tls-depuis-client.md
+            - Administrer le cycle de vie des certificats: integration-distribuee-on-premise/it-6/administrer-cycle-vie-certificats.md
+        - Itération 7 - Supervision et diagnostic (optionnelle):
+            - Vue d'ensemble: integration-distribuee-on-premise/it-7/index.md
+            - Identifier les besoins de supervision: integration-distribuee-on-premise/it-7/identifier-besoins-supervision.md
+            - Concevoir la centralisation des journaux: integration-distribuee-on-premise/it-7/concevoir-centralisation-journaux.md
+            - Déployer Elasticsearch et Kibana: integration-distribuee-on-premise/it-7/deployer-elasticsearch-kibana.md
+            - Configurer la collecte avec Filebeat: integration-distribuee-on-premise/it-7/configurer-collecte-filebeat.md
+            - Créer les tableaux de bord Kibana: integration-distribuee-on-premise/it-7/creer-tableaux-bord-kibana.md
+            - Analyser un incident avec les journaux centralisés: integration-distribuee-on-premise/it-7/analyser-incident-journaux-centralises.md
+            - Définir le plan d'alertes d'exploitation: integration-distribuee-on-premise/it-7/definir-plan-alertes-exploitation.md
+
+
+
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
       - Liens utiles: pense-bete/liens-utiles.md
