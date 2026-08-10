@@ -372,6 +372,12 @@ nav:
             - Créer les tableaux de bord Kibana: integration-distribuee-on-premise/it-7/creer-tableaux-bord-kibana.md
             - Analyser un incident avec les journaux centralisés: integration-distribuee-on-premise/it-7/analyser-incident-journaux-centralises.md
             - Définir le plan d'alertes d'exploitation: integration-distribuee-on-premise/it-7/definir-plan-alertes-exploitation.md
+        - Itération 8 - Gestion de crise:
+            - Vue d'ensemble: integration-distribuee-on-premise/it-8/index.md
+            - Gestion de crise LDAP: integration-distribuee-on-premise/it-8/gestion-crise-ldap.md
+            - Restaurer l'infrastructure avec le PRA: integration-distribuee-on-premise/it-8/restaurer-infrastructure-pra.md
+            - Traiter la compromission du certificat Roundcube: integration-distribuee-on-premise/it-8/traiter-compromission-certificat-roundcube.md
+            - Retour d'expérience et mise à jour PCA/PRA: integration-distribuee-on-premise/it-8/retour-experience-pca-pra.md
 
 
 
