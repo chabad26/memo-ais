@@ -18,8 +18,8 @@ operationnelle a produire et a mettre a jour se trouve dans le depot
 
 | Document | Role dans l'exercice |
 | --- | --- |
-| `/home/oliv/on-premise/documentation/PCA.md` | Mesures de continuite et services couverts. |
-| `/home/oliv/on-premise/documentation/PRA.md` | Ordre de reprise et procedures par service. |
+| `/home/oliv/on-premise/documentation/PCA-exercice-crise-ldap.md` | Mesures de continuite propres a l'exercice. |
+| `/home/oliv/on-premise/documentation/PRA-exercice-crise-ldap.md` | Ordre de reprise propre a la crise OpenLDAP. |
 | `/home/oliv/on-premise/documentation/inventory.md` | Inventaire des services, ports, volumes et dependances. |
 | `/home/oliv/on-premise/documentation/backup-strategy-validation.md` | Scenario de corruption LDAP et estimation de restauration. |
 | `/home/oliv/on-premise/documentation/restore-procedure.md` | Commandes de restauration BorgBackup en environnement isole. |

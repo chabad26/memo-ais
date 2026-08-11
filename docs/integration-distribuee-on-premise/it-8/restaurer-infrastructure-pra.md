@@ -14,8 +14,8 @@ considere comme restaure uniquement lorsque son fonctionnement a ete verifie.
 | Document | Role dans l'exercice |
 | --- | --- |
 | `/home/oliv/on-premise/documentation/incident-majeur-ldap.md` | Plan de crise et ordre d'action valide. |
-| `/home/oliv/on-premise/documentation/PRA.md` | Procedures de reprise par service. |
-| `/home/oliv/on-premise/documentation/PCA.md` | Objectifs de continuite et priorites. |
+| `/home/oliv/on-premise/documentation/PRA-exercice-crise-ldap.md` | Procedures de reprise propres a l'exercice. |
+| `/home/oliv/on-premise/documentation/PCA-exercice-crise-ldap.md` | Objectifs de continuite propres a l'exercice. |
 | `/home/oliv/on-premise/documentation/restore-procedure.md` | Restauration depuis BorgBackup. |
 | `/home/oliv/on-premise/documentation/backup-strategy-validation.md` | Estimation initiale RTO/RPO pour LDAP. |
 | `/home/oliv/on-premise/documentation/rapport-restauration-pra.md` | Rapport de restauration a completer. |

@@ -15,8 +15,8 @@ l'exercice est rejoue sur une autre configuration.
 | --- | --- |
 | `/home/oliv/on-premise/documentation/incident-majeur-ldap.md` | Decisions de crise. |
 | `/home/oliv/on-premise/documentation/rapport-restauration-pra.md` | Chronologie, services restaures, RTO/RPO. |
-| `/home/oliv/on-premise/documentation/PCA.md` | Plan de continuite a mettre a jour. |
-| `/home/oliv/on-premise/documentation/PRA.md` | Plan de reprise a mettre a jour. |
+| `/home/oliv/on-premise/documentation/PCA-exercice-crise-ldap.md` | PCA propre a l'exercice, sans modifier le PCA general. |
+| `/home/oliv/on-premise/documentation/PRA-exercice-crise-ldap.md` | PRA propre a l'exercice, sans modifier le PRA general. |
 | `/home/oliv/on-premise/documentation/retour-experience-pca-pra.md` | Livrable REX de l'exercice. |
 
 ## Resultats simules de l'exercice
