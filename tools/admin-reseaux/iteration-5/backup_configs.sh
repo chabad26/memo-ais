@@ -11,8 +11,10 @@
 set -uo pipefail
 shopt -s extglob
 
-EQUIPMENT_FILE="${1:-equipements.txt}"
-BACKUP_DIR="backups"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+EQUIPMENT_FILE="${1:-${SCRIPT_DIR}/equipements.txt}"
+BACKUP_DIR="${REPO_ROOT}/reports/backups"
 SSH_USER="${SSH_USER:-admin}"
 SSH_TIMEOUT=8
 OK_COUNT=0
@@ -20,6 +22,7 @@ ERROR_COUNT=0
 
 usage() {
     printf 'Usage: SSH_USER=admin %s [equipements.txt]\n' "$0" >&2
+    printf 'Par defaut: %s\n' "${SCRIPT_DIR}/equipements.txt" >&2
 }
 
 clean_line() {

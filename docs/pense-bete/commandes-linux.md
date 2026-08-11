@@ -13,7 +13,7 @@
 
 ```bash
 screen -S sauvegarde
-./backup_configs.sh
+tools/admin-reseaux/iteration-5/backup_configs.sh
 ```
 
 Raccourcis utiles :

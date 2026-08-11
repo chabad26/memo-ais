@@ -2,16 +2,6 @@
 
 Ce dépôt contient un petit site de documentation pour centraliser des notes de formation **AIS**.
 
-Il sert à garder au propre des rappels sur :
-
-- le matériel informatique,
-- Linux et le terminal,
-- les commandes utiles,
-- le réseau,
-- la cybersécurité,
-- l'administration des systèmes Linux,
-- les réflexes de dépannage.
-
 Le site est construit avec **MkDocs** et le thème **Material for MkDocs**.
 
 ## Prérequis

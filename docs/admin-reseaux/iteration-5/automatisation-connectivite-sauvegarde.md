@@ -9,14 +9,14 @@ Deux sujets sont traités :
 - **Sujet A** : vérifier automatiquement la connectivité d'une liste d'IPs ;
 - **Sujet B** : sauvegarder automatiquement les configurations des équipements réseau.
 
-Les fichiers créés à la racine du projet sont :
+Les fichiers de l'atelier sont regroupés dans `tools/admin-reseaux/iteration-5/` :
 
 ```text
-check_connectivity.sh
-hosts.txt
-backup_configs.sh
-equipements.txt
-backup_configs_netmiko.py
+tools/admin-reseaux/iteration-5/check_connectivity.sh
+tools/admin-reseaux/iteration-5/hosts.txt
+tools/admin-reseaux/iteration-5/backup_configs.sh
+tools/admin-reseaux/iteration-5/equipements.txt
+tools/admin-reseaux/iteration-5/backup_configs_netmiko.py
 ```
 
 ---
@@ -62,8 +62,10 @@ Le script doit :
 set -uo pipefail
 shopt -s extglob
 
-HOSTS_FILE="${1:-hosts.txt}"
-REPORT_DIR="reports"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+HOSTS_FILE="${1:-${SCRIPT_DIR}/hosts.txt}"
+REPORT_DIR="${REPO_ROOT}/reports"
 REPORT_FILE="${REPORT_DIR}/connectivity_$(date +%Y%m%d_%H%M%S).log"
 TIMEOUT=2
 UP_COUNT=0
@@ -72,6 +74,7 @@ TOTAL_COUNT=0
 
 usage() {
     printf 'Usage: %s [hosts.txt]\n' "$0" >&2
+    printf 'Par defaut: %s\n' "${SCRIPT_DIR}/hosts.txt" >&2
 }
 
 clean_line() {
@@ -141,8 +144,8 @@ done < "$HOSTS_FILE"
 ### Exécution
 
 ```bash
-chmod +x check_connectivity.sh
-./check_connectivity.sh hosts.txt
+chmod +x tools/admin-reseaux/iteration-5/check_connectivity.sh
+tools/admin-reseaux/iteration-5/check_connectivity.sh
 ```
 
 Exemple de sortie attendue :
@@ -161,7 +164,7 @@ Rapport: reports/connectivity_20260604_154012.log
 Commande obligatoire :
 
 ```bash
-shellcheck check_connectivity.sh
+shellcheck tools/admin-reseaux/iteration-5/check_connectivity.sh
 ```
 
 Résultat attendu :
@@ -201,13 +204,13 @@ Le script doit :
 Le script utilise la variable d'environnement `SSH_USER`. Si elle n'est pas définie, il utilise `admin`.
 
 ```bash
-SSH_USER=admin ./backup_configs.sh equipements.txt
+SSH_USER=admin tools/admin-reseaux/iteration-5/backup_configs.sh
 ```
 
 Pour chaque équipement, le fichier généré suit ce modèle :
 
 ```text
-backups/backup_R1_20260604.cfg
+reports/backups/backup_R1_20260604.cfg
 ```
 
 En-tête ajouté automatiquement :
@@ -247,14 +250,14 @@ pip install netmiko --break-system-packages
 ### Exécution B
 
 ```bash
-NET_USER=admin NET_PASSWORD='motdepasse' python3 backup_configs_netmiko.py
+NET_USER=admin NET_PASSWORD='motdepasse' python3 tools/admin-reseaux/iteration-5/backup_configs_netmiko.py
 ```
 
 ### Principe
 
 Netmiko gère la connexion SSH aux équipements réseau et simplifie l'envoi de commandes Cisco.
 
-Le script Python reprend le même fichier `equipements.txt`, génère le même type de fichier `backup_NOM_YYYYMMDD.cfg`, puis ajoute le même en-tête standard.
+Le script Python reprend le même fichier `tools/admin-reseaux/iteration-5/equipements.txt`, génère le même type de fichier `backup_NOM_YYYYMMDD.cfg`, puis ajoute le même en-tête standard.
 
 Documentation : [github.com/ktbyers/netmiko](https://github.com/ktbyers/netmiko)
 
@@ -264,12 +267,12 @@ Documentation : [github.com/ktbyers/netmiko](https://github.com/ktbyers/netmiko)
 
 | Sujet | Fichier principal | Entrée | Sortie |
 | --- | --- | --- | --- |
-| A - Connectivité | `check_connectivity.sh` | `hosts.txt` | `reports/connectivity_YYYYMMDD_HHMMSS.log` |
-| B - Sauvegarde Bash | `backup_configs.sh` | `equipements.txt` | `backups/backup_NOM_YYYYMMDD.cfg` |
-| B avancé - Netmiko | `backup_configs_netmiko.py` | `equipements.txt` | `backups/backup_NOM_YYYYMMDD.cfg` |
+| A - Connectivité | `tools/admin-reseaux/iteration-5/check_connectivity.sh` | `tools/admin-reseaux/iteration-5/hosts.txt` | `reports/connectivity_YYYYMMDD_HHMMSS.log` |
+| B - Sauvegarde Bash | `tools/admin-reseaux/iteration-5/backup_configs.sh` | `tools/admin-reseaux/iteration-5/equipements.txt` | `reports/backups/backup_NOM_YYYYMMDD.cfg` |
+| B avancé - Netmiko | `tools/admin-reseaux/iteration-5/backup_configs_netmiko.py` | `tools/admin-reseaux/iteration-5/equipements.txt` | `reports/backups/backup_NOM_YYYYMMDD.cfg` |
 
 La validation minimale obligatoire pour le Sujet A est :
 
 ```bash
-shellcheck check_connectivity.sh
+shellcheck tools/admin-reseaux/iteration-5/check_connectivity.sh
 ```

@@ -6,20 +6,23 @@ Installation avancee:
     pip install netmiko --break-system-packages
 
 Usage:
-    NET_USER=admin NET_PASSWORD='motdepasse' python3 backup_configs_netmiko.py
+    NET_USER=admin NET_PASSWORD='motdepasse' python3 tools/admin-reseaux/iteration-5/backup_configs_netmiko.py [equipements.txt]
 """
 
 from __future__ import annotations
 
 import os
+import sys
 from datetime import datetime
 from pathlib import Path
 
 from netmiko import ConnectHandler
 
 
-EQUIPMENT_FILE = Path("equipements.txt")
-BACKUP_DIR = Path("backups")
+SCRIPT_DIR = Path(__file__).resolve().parent
+REPO_ROOT = SCRIPT_DIR.parent.parent.parent
+EQUIPMENT_FILE = Path(sys.argv[1]) if len(sys.argv) > 1 else SCRIPT_DIR / "equipements.txt"
+BACKUP_DIR = REPO_ROOT / "reports" / "backups"
 NET_USER = os.environ.get("NET_USER", "admin")
 NET_PASSWORD = os.environ.get("NET_PASSWORD", "")
 DEVICE_TYPE = os.environ.get("NET_DEVICE_TYPE", "cisco_ios")

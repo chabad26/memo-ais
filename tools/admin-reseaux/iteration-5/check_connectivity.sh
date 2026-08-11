@@ -11,8 +11,10 @@
 set -uo pipefail
 shopt -s extglob
 
-HOSTS_FILE="${1:-hosts.txt}"
-REPORT_DIR="reports"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "${SCRIPT_DIR}/../../.." && pwd)"
+HOSTS_FILE="${1:-${SCRIPT_DIR}/hosts.txt}"
+REPORT_DIR="${REPO_ROOT}/reports"
 REPORT_FILE="${REPORT_DIR}/connectivity_$(date +%Y%m%d_%H%M%S).log"
 TIMEOUT=2
 UP_COUNT=0
@@ -21,6 +23,7 @@ TOTAL_COUNT=0
 
 usage() {
     printf 'Usage: %s [hosts.txt]\n' "$0" >&2
+    printf 'Par defaut: %s\n' "${SCRIPT_DIR}/hosts.txt" >&2
 }
 
 clean_line() {
