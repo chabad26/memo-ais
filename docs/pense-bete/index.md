@@ -15,6 +15,7 @@ Il ne remplace pas les pages de cours : il sert à retrouver rapidement les term
 
 | Module | Fiches |
 | --- | --- |
+| Inventaires transverses | [Mots de passe et tokens de formation](inventaire-mots-de-passe-tokens-formation.md) |
 | Intro AIS et RGPD | [Intro AIS](glossaire/intro-rgpd/intro-ais.md), [RGPD](glossaire/intro-rgpd/rgpd.md) |
 | Cyber défense | [Outils cyber et notions d'attaque](glossaire/outils-cyber-et-hack.md) |
 | Système d'information | [Itération 1](glossaire/systeme-info/iteration-1.md), [Itération 2](glossaire/systeme-info/iteration-2.md), [Itération 3](glossaire/systeme-info/iteration-3.md), [Itération 4](glossaire/systeme-info/iteration-4.md) |
