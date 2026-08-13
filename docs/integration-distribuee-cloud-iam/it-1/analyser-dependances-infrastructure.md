@@ -165,10 +165,10 @@ Cet ordre est une hypothèse de travail, à valider par tests.
 
 1. Sauvegardes et exports : sécuriser OpenLDAP, Samba, Dovecot, MariaDB Roundcube et configurations.
 2. Supervision : préparer la collecte des logs dans les deux environnements.
+6. Annuaire OpenLDAP : migrer avec une fenêtre contrôlée, car beaucoup de services en dépendent.
 3. PKI et DNS : décider comment les noms et certificats seront reconnus pendant la transition.
 4. Services peu critiques ou de consultation : LAM ou Kibana, si leurs dépendances restent accessibles.
 5. Messagerie complète : Postfix, Dovecot, Roundcube et MariaDB doivent migrer comme un groupe cohérent ou via une phase hybride maîtrisée.
-6. Annuaire OpenLDAP : migrer avec une fenêtre contrôlée, car beaucoup de services en dépendent.
 7. Samba et partages : migrer après validation des droits, volumes et accès utilisateurs.
 
 ## Pour aller plus loin

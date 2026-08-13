@@ -89,7 +89,9 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 | [1. Rédiger une note de cadrage](it-1/rediger-note-cadrage-migration.md) | Produire une note courte pour faire valider le principe de migration par la direction. |
 | [1. Lire et interpréter un SLA cloud](it-1/lire-interpreter-sla-cloud.md) | Comprendre disponibilité, exclusions, responsabilités client et compensations. |
 | [1. Produire les livrables DIST01b](it-1/produire-livrables-dist01b-plan-migration.md) | Consolider plan de migration, matrice pondérée et note de cadrage. |
-| 2. Déployer sur le premier fournisseur | Créer manuellement le socle cloud, puis l'automatiser avec OpenTofu et Ansible. |
+| [2. Déployer et automatiser OVH](it-2/deployer-automatiser-ovh.md) | Créer le socle cloud du premier fournisseur, puis l'automatiser avec OpenTofu et Ansible. |
+| [2. Construire un réseau isolé OVH à la main](it-2/construire-reseau-isole-ovh.md) | Créer manuellement réseau privé, sous-réseau, VM Ubuntu et security group minimal avant automatisation. |
+| [2. Comprendre l'IaC et le cycle OpenTofu](it-2/comprendre-iac-cycle-opentofu.md) | Comprendre providers, fichiers `.tf`, état et commandes `init`, `plan`, `apply`, `destroy`. |
 | 3. Migrer et sécuriser l'IAM | Configurer les accès, les rôles, le MFA, les identités de service et les secrets. |
 | 4. Reproduire sur le second fournisseur | Porter l'infrastructure, comparer les écarts et adapter la méthode. |
 | 5. Exploiter et clôturer | Superviser, gérer un incident, mesurer RTO/RPO et documenter les choix. |

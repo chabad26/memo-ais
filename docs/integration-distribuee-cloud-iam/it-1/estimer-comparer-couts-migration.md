@@ -171,6 +171,7 @@ Notes à conserver :
 | Écart mensuel vs OVHcloud | Référence | +12,41/mois hors EBS/options | -4,55 EUR/mois | Différence brute sur l'offre principale. |
 | Avantage principal | 4 Go RAM, 50 Go inclus, fournisseur européen | Écosystème AWS, engagement 1 an fortement réduit | Prix le plus bas, 75 Go NVMe inclus, fournisseur souverain | Scaleway devient très compétitif économiquement. |
 | Risque principal | Moins de services cloud avancés que l'écosystème AWS | EBS séparé, architecture ARM à vérifier, coût On-Demand plus élevé | SLA/support et conditions exactes à vérifier | Ne pas comparer uniquement le prix mensuel. |
+| souveraintée | respecte le RGPD | American Act, qui autorise à la lecture & à la suppression des données | Respecte le RGPD | Ovh & Scaleway sont les meilleurs candidats |
 
 Formule d'écart :
 

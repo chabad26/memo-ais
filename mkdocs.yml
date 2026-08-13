@@ -309,6 +309,11 @@ nav:
             - Rédiger une note de cadrage de migration: integration-distribuee-cloud-iam/it-1/rediger-note-cadrage-migration.md
             - Lire et interpréter un SLA cloud: integration-distribuee-cloud-iam/it-1/lire-interpreter-sla-cloud.md
             - Produire les livrables DIST01b - Plan de migration: integration-distribuee-cloud-iam/it-1/produire-livrables-dist01b-plan-migration.md
+        - Itération 2 - Déployer et automatiser OVH:
+            - Vue d'ensemble: integration-distribuee-cloud-iam/it-2/index.md
+            - Déployer et automatiser OVH: integration-distribuee-cloud-iam/it-2/deployer-automatiser-ovh.md
+            - Construire un réseau isolé OVH à la main: integration-distribuee-cloud-iam/it-2/construire-reseau-isole-ovh.md
+            - Comprendre l'IaC et le cycle OpenTofu: integration-distribuee-cloud-iam/it-2/comprendre-iac-cycle-opentofu.md
     - Intégration distribuée on-premise:
         - Vue d'ensemble: integration-distribuee-on-premise/README.md
         - Journal technique du module: integration-distribuee-on-premise/journal-technique.md
@@ -439,6 +444,9 @@ nav:
           - Itération 4 - Zeek et corrélation: pense-bete/glossaire/admin-reseaux-securisation/it-4.md
           - Itération 5 - Incident, Spark et Fail2ban: pense-bete/glossaire/admin-reseaux-securisation/it-5.md
           - Itération 6 - Challenge final: pense-bete/glossaire/admin-reseaux-securisation/it-6.md
+      - Intégration distribuée Cloud & IAM:
+          - Itération 1 - Préparer la migration: pense-bete/glossaire/integration-distribuee-cloud-iam/it-1.md
+          - Itération 2 - Déployer et automatiser OVH: pense-bete/glossaire/integration-distribuee-cloud-iam/it-2.md
       - Intégration distribuée on-premise:
           - Itération 1 - Docker, Compose: pense-bete/glossaire/integration-distribuee-on-premise/it-1.md
           - Itération 2 - LDAP: pense-bete/glossaire/integration-distribuee-on-premise/it-2.md
