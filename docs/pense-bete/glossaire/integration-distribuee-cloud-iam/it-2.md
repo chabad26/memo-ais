@@ -20,7 +20,7 @@ et preuves de validation.
 | Application key | Identifiant applicatif OVH ; secret a proteger. |
 | Application secret | Secret associe a l'application OVH ; ne doit jamais etre expose. |
 | Consumer key | Jeton d'autorisation OVH donne a l'application ; secret a proteger. |
-| OpenTofu | Outil IaC utilise pour decrire l'instance, la cle SSH et les parametres cloud. |
+| OpenTofu | Outil IaC utilise pour decrire l'instance principale, la cle SSH et les parametres cloud. |
 | Provider OVH | Plugin OpenTofu/Terraform qui sait dialoguer avec l'API OVHcloud. |
 | `tofu init` | Initialise le dossier IaC et telecharge les providers. |
 | `tofu validate` | Controle la syntaxe et la coherence de la configuration. |
@@ -30,6 +30,9 @@ et preuves de validation.
 | Inventaire Ansible | Fichier listant les machines a configurer et leurs variables de connexion. |
 | Playbook | Fichier YAML qui decrit les taches Ansible a appliquer. |
 | UFW | Pare-feu simple utilise pour autoriser SSH et bloquer le reste par defaut. |
+| Role Ansible | Ensemble reutilisable de taches, fichiers et handlers, ici utilise pour deployer Nginx et le site Olidev. |
+| Backend S3 | Stockage distant de l'etat OpenTofu dans le bucket Object Storage `tan-thouless`. |
+| Alias `/etc/hosts` | Association locale entre `cloud.olidev.ovh` et l'IP de la VM, sans DNS public. |
 
 ## Commandes a retenir
 
@@ -47,6 +50,9 @@ et preuves de validation.
 | Tester Ansible | `ansible -i ansible/inventory/ovh.ini ovh -m ping` |
 | Lancer le playbook | `ansible-playbook -i ansible/inventory/ovh.ini ansible/playbooks/base-system.yml` |
 | Verifier le pare-feu | `ansible -i ansible/inventory/ovh.ini ovh -a "sudo ufw status verbose"` |
+| Tester le site par IP | `curl -4 -I http://IP_PUBLIQUE` |
+| Tester le nom local | `getent hosts cloud.olidev.ovh && curl -I http://cloud.olidev.ovh` |
+| Initialiser le backend S3 | `tofu init -migrate-state` avec le profil ou les variables AWS S3 |
 | Chercher un secret suivi par Git | `git ls-files \| grep -E 'ovh\\.env|APPLICATION_SECRET|CONSUMER_KEY' || true` |
 
 ## Points de vigilance
@@ -65,9 +71,9 @@ et preuves de validation.
 | Preuve | Contenu attendu |
 | --- | --- |
 | OpenTofu | `tofu fmt`, `tofu validate`, `tofu plan`, puis `tofu apply` si realise. |
-| Ressources OVH | Instance `d2-8-2026_08_31-09-17`, region `GRA9`, flavor `d2-8`, image Ubuntu 26.04 - UEFI, IP publique masquee si besoin. |
+| Ressources OVH | Instance principale `d2-8-2026_08_31-09-17`, region `GRA9`, flavor `d2-4`, image Ubuntu 26.04 - UEFI ; deux `d2-2` a recreer pour les services. |
 | SSH | Connexion reussie sans mot de passe ; instance et SSH declares valides le 31/08/2026 avec utilisateur `ubuntu`. |
-| Ansible | Playbook applique le 31/08/2026 (`ok=5`, `changed=3`, `failed=0`) et controles hostname, UFW, Git visibles dans `ansible-base-system-ok-5-changed-3-2026-08-31.png`. |
+| Ansible | Playbook applique sur la VM principale (`ok=12`, `changed=2`, `failed=0`), puis rejoue avec `changed=0`; Nginx et le site Olidev sont actifs. |
 | Securite | Secrets absents de Git, pare-feu actif, acces SSH autorise. |
 | Ecart | Blocage compte, quota, paiement, region, image ou provider documente. |
 

@@ -27,7 +27,7 @@ Le périmètre reste volontairement compact pour un premier fournisseur :
 | --- | --- |
 | Fournisseur | OVHcloud Public Cloud |
 | Région | GRA9, Gravelines |
-| Instances | Une VM principale `d2-4` et deux petites VM `d2-2` |
+| Instances | Une VM principale `d2-4` et deux VM de services `d2-2` |
 | Système | Ubuntu 26.04 LTS - UEFI |
 | Accès | SSH par clé, pas par mot de passe |
 | Automatisation infra | OpenTofu |
@@ -287,11 +287,9 @@ Adapter l'utilisateur selon l'image choisie (`debian`, `ubuntu` ou autre).
 
 ### Avancement réel au 31 août 2026
 
-L'infrastructure OVHcloud comprend une VM principale `d2-4` et deux VM
-`d2-2`. L'accès SSH a été validé depuis le poste d'administration. Le
-déploiement Ansible est volontairement limité à la VM principale : les deux
-petites VM restent disponibles côté OpenTofu, mais ne sont plus ciblées par
-l'inventaire Ansible.
+L'infrastructure OVHcloud doit comprendre une VM principale `d2-4` et deux VM
+de services `d2-2`. Les deux petites VM avaient été supprimées pendant la
+réduction des coûts et sont à recréer pour le déploiement multi-hôte.
 
 ![Instance OVHcloud active avec informations de connexion](../../assets/img/integration-distribuee-cloud-iam/it-2/ovh-instance-active-ssh-ok-2026-08-31.png)
 
@@ -300,7 +298,7 @@ l'inventaire Ansible.
 | Élément | Statut | Preuve attendue |
 | --- | --- | --- |
 | Instance principale | Réalisé le 31/08/2026 | `d2-8-2026_08_31-09-17`, flavor réel `d2-4`, statut actif. |
-| Petites instances | Réalisé le 31/08/2026 | Deux instances `d2-2`, conservées côté OpenTofu mais retirées de l'inventaire Ansible. |
+| Petites instances | À recréer | Deux instances `d2-2` réactivées dans OpenTofu pour le déploiement des services. |
 | Accès SSH | Réalisé le 31/08/2026 | `ubuntu@135.125.57.xxx`, capture du prompt à joindre si possible. |
 | Région, image et flavor | Relevé le 31/08/2026 | `GRA9` / Ubuntu 26.04 - UEFI / `d2-4` pour la VM principale. |
 | IP publique et IP privée | Relevé le 31/08/2026 | `135.125.57.xxx` et `10.42.10.123`. |
@@ -327,9 +325,8 @@ dist01b-ovh ansible_host=IP_PUBLIQUE ansible_user=ubuntu
 ansible_python_interpreter=/usr/bin/python3
 ```
 
-Les deux instances `d2-2` sont volontairement absentes de ce fichier. Elles
-ne sont donc pas configurées par le playbook et ne sont pas supprimées de
-l'infrastructure OpenTofu.
+Les deux instances `d2-2` sont volontairement absentes de ce fichier et du
+code OpenTofu. Elles ne sont donc ni configurées ni recréées.
 
 Tester la connexion :
 
@@ -418,6 +415,11 @@ Résultat observé le 31/08/2026 : Nginx répond en HTTP `200 OK`, UFW affiche
 seconde exécution du playbook a produit `changed=0`, ce qui valide son
 idempotence sur la VM principale.
 
+La page a également été vérifiée depuis un navigateur avec l'adresse IP
+publique de la VM :
+
+![Site Olidev servi par Nginx depuis l'IP publique de la VM](../../assets/img/integration-distribuee-cloud-iam/it-2/olidev-site-ip-vm-2026-08-31.png)
+
 !!! warning "Pare-feu"
     Toujours autoriser et tester SSH avant d'activer une politique restrictive.
     En cas de doute, garder une console de secours ouverte côté fournisseur.
@@ -433,7 +435,7 @@ du livrable :
 | Projet | Nom ou identifiant masqué |
 | Région | Région retenue |
 | Image | Distribution et version |
-| Instances | `d2-4` principale et deux `d2-2` |
+| Instances | `d2-4` principale et deux `d2-2` de services |
 | Accès | SSH par clé |
 | OpenTofu | `fmt`, `init`, `validate`, `plan`, `apply` |
 | Ansible | `ping`, rôle Nginx, page HTTP, UFW et seconde exécution idempotente |
@@ -461,8 +463,8 @@ module :
 - l'infrastructure est décrite dans OpenTofu ;
 - la configuration de base est rejouable avec Ansible ;
 - le site web Olidev est servi par Nginx sur la VM principale ;
-- les deux petites VM restent hors du périmètre Ansible tant qu'elles ne sont
-  pas nécessaires ;
+- les deux petites VM sont recréées lorsque le déploiement multi-hôte est
+  activé ;
 - les secrets sont exclus ou chiffrés ;
 - le prochain travail peut porter sur les services, l'IAM, les sauvegardes et
   la migration progressive de DIST-01a.

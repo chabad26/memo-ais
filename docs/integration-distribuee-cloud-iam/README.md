@@ -39,6 +39,7 @@ Cette répétition permet de distinguer ce qui est propre à un fournisseur de c
 | Fournisseurs | Comparer OVH et AWS selon les critères techniques, économiques, juridiques et de souveraineté. |
 | Infrastructure as Code | Provisionner une infrastructure reproductible avec OpenTofu, versionnée dans Git. |
 | Configuration as Code | Installer et configurer les services avec Ansible après le provisionnement. |
+| Déploiement distribué | Répartir le socle on-premise sur trois VM et vérifier les dépendances inter-hôtes. |
 | IAM | Gérer utilisateurs, groupes, rôles, MFA et identités de service selon le moindre privilège. |
 | Secrets | Protéger les secrets avec SOPS et git-crypt, sans les exposer dans le dépôt. |
 | Sécurité cloud | Chiffrer les données au repos, sécuriser les flux et contrôler les accès réseau. |
@@ -96,6 +97,7 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 | [2. Automatiser avec Ansible](it-2/automatiser-avec-ansible.md) | Comprendre l'inventaire, l'idempotence et l'application du socle système sur les VM OVH. |
 | [2. Playbook et versionnement](it-2/playbook-versionnement-service.md) | Déployer un service réel avec un rôle Ansible, le tester deux fois, le versionner et sauvegarder sa configuration. |
 | [2. DNS et répartition de charge cloud](it-2/dns-repartition-charge-cloud.md) | Faire pointer un nom de domaine vers une VM et comprendre l'extension load balancer. |
+| [2. Déployer le socle on-premise sur trois VM OVH](it-2/deployer-socle-on-premise-sur-trois-vm.md) | Reprendre les services on-premise sur trois VM et valider leurs communications privées. |
 | 3. Migrer et sécuriser l'IAM | Configurer les accès, les rôles, le MFA, les identités de service et les secrets. |
 | 4. Reproduire sur le second fournisseur | Porter l'infrastructure, comparer les écarts et adapter la méthode. |
 | 5. Exploiter et clôturer | Superviser, gérer un incident, mesurer RTO/RPO et documenter les choix. |

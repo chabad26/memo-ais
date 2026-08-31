@@ -318,6 +318,7 @@ nav:
             - Automatiser avec Ansible: integration-distribuee-cloud-iam/it-2/automatiser-avec-ansible.md
             - Playbook et versionnement: integration-distribuee-cloud-iam/it-2/playbook-versionnement-service.md
             - DNS et répartition de charge cloud: integration-distribuee-cloud-iam/it-2/dns-repartition-charge-cloud.md
+            - Déployer le socle on-premise sur trois VM OVH: integration-distribuee-cloud-iam/it-2/deployer-socle-on-premise-sur-trois-vm.md
     - Intégration distribuée on-premise:
         - Vue d'ensemble: integration-distribuee-on-premise/README.md
         - Journal technique du module: integration-distribuee-on-premise/journal-technique.md

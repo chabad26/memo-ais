@@ -14,9 +14,11 @@ résolution. Comprendre ensuite la différence entre DNS et répartition de char
 Préparer une zone DNS administrable, l'adresse publique de la VM et un service
 HTTP ou HTTPS réellement démarré si un test applicatif est prévu.
 
-Dans le prototype OVH, les VM sont joignables par Ansible mais aucun domaine ni
-enregistrement DNS réel n'est documenté. La résolution reste donc à réaliser et
-à prouver.
+Dans le prototype OVH, aucun enregistrement DNS public n'est créé afin de
+rester dans le périmètre gratuit. Le test est réalisé localement avec le nom
+`cloud.olidev.ovh`, défini dans `/etc/hosts` sur le poste d'administration.
+Cette méthode ne modifie pas la zone DNS publique et n'est visible que depuis
+la machine configurée.
 
 !!! warning "Adresse publique et pare-feu"
     Une adresse publique peut changer. Le DNS ne corrige pas un pare-feu qui
@@ -33,58 +35,83 @@ enregistrement DNS réel n'est documenté. La résolution reste donc à réalise
 
 Pour la VM OVH, un enregistrement A est le choix pédagogique le plus direct.
 
-## Étape 1 - Créer l'enregistrement DNS
+## Étape 1 - Créer un alias local gratuitement
 
-Dans le gestionnaire DNS du domaine, ou dans la zone OVHcloud :
+Sur le poste d'administration, ouvrir le fichier `/etc/hosts` :
 
-1. ouvrir la zone DNS ;
-2. ajouter un enregistrement A ;
-3. choisir un nom, par exemple `cloud` ou `web` ;
-4. renseigner l'IPv4 publique de la VM ;
-5. choisir un TTL, par exemple 300 secondes pour un laboratoire ;
-6. enregistrer la modification.
+```bash
+sudo nano /etc/hosts
+```
 
-Fiche à compléter avec les valeurs réelles :
+Ajouter cette ligne :
+
+```text
+135.125.57.223 cloud.olidev.ovh
+```
+
+Cette entrée associe le nom à l'IP uniquement sur le poste local. Elle ne crée
+pas de CNAME ou d'enregistrement A public et ne coûte rien. Ne pas remplacer
+la résolution de `olidev.ovh`, qui doit continuer à pointer vers le site réel.
+
+Fiche de la configuration réalisée :
 
 | Élément | Valeur |
 | --- | --- |
-| Zone DNS | `A_COMPLETER` |
-| Nom complet | `A_COMPLETER` |
-| Type | `A` ou `CNAME` |
-| Cible | `IP_PUBLIQUE_VM` ou `NOM_CIBLE` |
-| TTL | `A_COMPLETER` |
-| Date et heure | `A_COMPLETER` |
+| Portée | Poste d'administration uniquement |
+| Nom local | `cloud.olidev.ovh` |
+| Mécanisme | `/etc/hosts` |
+| Cible | `135.125.57.223` |
+| DNS public | Aucun |
+| Date | 31/08/2026 |
 
 Ne pas publier une adresse ou une information de compte inutile à la preuve.
 
-## Étape 2 - Vérifier la résolution
+## Étape 2 - Vérifier la résolution et le service
 
 Depuis le poste d'administration :
 
 ```bash
-dig +short cloud.example.tld A
-dig cloud.example.tld A
-nslookup cloud.example.tld
+getent hosts cloud.olidev.ovh
+curl -I http://cloud.olidev.ovh
 ```
 
-Comparer avec deux résolveurs publics :
+`dig` et `nslookup` interrogent normalement un résolveur DNS et ne tiennent
+pas compte de `/etc/hosts` de la même manière. Pour ce test local, `getent`
+est donc la vérification adaptée de la résolution système.
+
+Preuve terminale :
+
+![Résolution locale et réponse HTTP du site](../../assets/img/integration-distribuee-cloud-iam/it-2/dns-local-hosts-curl-2026-08-31.png)
+
+Vérifier ensuite le site dans un navigateur avec l'adresse :
+
+```text
+http://cloud.olidev.ovh
+```
+
+Preuve navigateur :
+
+![Site Olidev accessible avec le nom local](../../assets/img/integration-distribuee-cloud-iam/it-2/dns-local-browser-2026-08-31.png)
+
+Pour un véritable enregistrement DNS public, comparer ensuite avec deux
+résolveurs :
 
 ```bash
 dig @1.1.1.1 +short cloud.example.tld A
 dig @8.8.8.8 +short cloud.example.tld A
 ```
 
-La réponse attendue contient la cible configurée. En cas d'absence, contrôler
-la zone autoritative, le nom complet, le TTL et la propagation.
+Ces commandes ne constituent pas une preuve pour l'alias `/etc/hosts` et sont
+à utiliser seulement après la création éventuelle d'un enregistrement public.
 
-Si HTTP est volontairement exposé :
+Pour vérifier le service avec le nom local :
 
 ```bash
-curl -I http://cloud.example.tld
+curl -I http://cloud.olidev.ovh
 ```
 
 Une résolution réussie ne prouve pas que le service HTTP répond. Conserver les
-sorties `dig` et `curl` comme deux preuves distinctes.
+sorties `getent` et `curl` comme deux preuves distinctes.
 
 ## Étape 3 - Documenter une bascule
 
@@ -126,19 +153,21 @@ sont pas prouvés.
 
 | Point de contrôle | Statut initial |
 | --- | --- |
-| Zone DNS contrôlée | À confirmer |
-| Enregistrement A ou CNAME | À réaliser |
-| Résolution avec `dig` | À prouver |
-| Résolution avec un second résolveur | À prouver |
-| Réponse HTTP/HTTPS | Conditionnelle |
+| Alias local `/etc/hosts` | Réalisé le 31/08/2026 |
+| Enregistrement DNS public A ou CNAME | Non réalisé, coût évité |
+| Résolution locale avec `getent` | Réalisé le 31/08/2026 |
+| Réponse HTTP avec le nom local | Réalisé le 31/08/2026, `200 OK` |
+| Résolution avec un second résolveur public | Non applicable à `/etc/hosts` |
+| Réponse HTTPS | Non réalisée, test en HTTP |
 | Bascule d'adresse | Optionnelle |
 | Load balancer avec deux VM | Extension non obligatoire |
 
 ## Preuves à conserver
 
-- capture de l'enregistrement DNS sans secret ;
-- sortie `dig` ou `nslookup` datée ;
-- test depuis au moins deux résolveurs ;
+- capture ou sortie de `/etc/hosts` sans secret ;
+- sortie `getent` et `curl` datée ;
+- capture navigateur avec `cloud.olidev.ovh` ;
+- pour une zone publique, sortie `dig` ou `nslookup` et test depuis deux résolveurs ;
 - sortie `curl` séparée si le service est exposé ;
 - TTL, heure et observations lors d'une bascule ;
 - pour l'extension, état des backends et test après arrêt d'une VM.

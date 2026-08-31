@@ -138,22 +138,22 @@ Default: deny (incoming), allow (outgoing)
 22/tcp ALLOW IN 90.38.162.195
 ```
 
-Après l'ajout des deux petites instances `d2-2`, le test Ansible `ping` a
-retourné `pong` pour `dist01b-ovh`, `d2-2-01` et `d2-2-02`. L'application du
-playbook sur les trois machines reste la preuve finale à conserver si elle est
-réalisée.
+Le test Ansible `ping` a été réalisé sur les trois VM pendant la phase de
+validation. Les deux petites VM `d2-2` ont ensuite été supprimées car elles
+n'étaient pas nécessaires pour la suite. L'inventaire actuel ne conserve donc
+que `dist01b-ovh`, qui porte le site Nginx.
 
 ## État final attendu
 
 | Point de contrôle | Attendu | Statut |
 | --- | --- | --- |
-| Inventaire | Hôtes OVH et utilisateur SSH corrects | Réalisé pour les trois VM |
-| Connexion Ansible | `pong` pour chaque hôte | Réalisé |
+| Inventaire | `dist01b-ovh` et utilisateur SSH corrects | Réalisé pour la VM principale |
+| Connexion Ansible | `pong` pour l'hôte conservé | Réalisé |
 | Syntaxe | `--syntax-check` sans erreur | Réalisé |
 | Socle système | Paquets de base présents | Réalisé sur `dist01b-ovh` |
 | Pare-feu | UFW actif, entrée refusée par défaut | Réalisé sur `dist01b-ovh` |
 | SSH | Limité à l'IP d'administration | Réalisé sur `dist01b-ovh` |
-| Idempotence | Seconde exécution sans changements inattendus | À confirmer sur les trois VM |
+| Idempotence | Seconde exécution sans changements inattendus | Réalisé sur `dist01b-ovh` (`changed=0`) |
 
 ## Preuves à conserver
 

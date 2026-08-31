@@ -18,14 +18,15 @@ un point de restauration exploitable au Kit 4.
 
 Le dépôt opérationnel `/home/oliv/cloud-iam` contient déjà :
 
-- un inventaire OVH pour `dist01b-ovh`, `d2-2-01` et `d2-2-02` ;
-- le playbook plat `ansible/playbooks/base-system.yml` ;
+- un inventaire OVH limité à `dist01b-ovh` ;
+- le playbook `ansible/playbooks/base-system.yml` et le rôle `web` ;
 - une clé SSH et des VM joignables par Ansible ;
 - un dépôt Git local initialisé avec un premier commit.
 
-Le déploiement d'un service Nginx, le découpage en rôles et l'envoi vers le
-bucket restent à exécuter et à prouver. Le backend S3 de l'état OpenTofu doit
-être opérationnel avant de considérer le stockage comme une preuve finale.
+Le déploiement Nginx et le découpage en rôle ont été réalisés sur la VM
+principale. La sauvegarde dans le bucket reste à exécuter et à prouver. Le
+backend S3 de l'état OpenTofu est configuré, mais les vérifications finales
+restent à conserver dans les preuves.
 
 ## Étape 1 - Choisir et définir le service
 
@@ -37,11 +38,10 @@ Pour cet exercice, le service cible est Nginx :
 | Service | `nginx` démarré et activé |
 | Contenu | page d'accueil de démonstration versionnée |
 | Vérification | réponse HTTP locale sur le port 80 |
-| Réseau | port 80 non publié par UFW dans le prototype actuel |
+| Réseau | port 80 autorisé par UFW sur la VM principale |
 
-Le port 80 peut rester fermé depuis Internet : la vérification peut être faite
-localement sur la VM avec `curl http://127.0.0.1` ou avec le module Ansible
-`uri`.
+La réponse HTTP a été vérifiée depuis l'extérieur sur l'IP publique de la VM
+et avec le nom local `cloud.olidev.ovh` défini dans `/etc/hosts`.
 
 ## Étape 2 - Créer un rôle Ansible
 
@@ -59,7 +59,7 @@ ansible/roles/web/
 ├── defaults/main.yml
 ├── handlers/main.yml
 ├── tasks/main.yml
-├── templates/
+├── files/site/
 └── meta/main.yml
 ```
 
@@ -73,10 +73,10 @@ Exemple de tâches dans `ansible/roles/web/tasks/main.yml` :
     state: present
     update_cache: true
 
-- name: Déployer la page du service
-  ansible.builtin.template:
-    src: index.html.j2
-    dest: /var/www/html/index.html
+- name: Déployer le site Olidev
+  ansible.builtin.copy:
+    src: site/
+    dest: /var/www/html/
     owner: root
     group: root
     mode: "0644"
@@ -99,40 +99,32 @@ Exemple de handler dans `ansible/roles/web/handlers/main.yml` :
     state: restarted
 ```
 
-Exemple de template `ansible/roles/web/templates/index.html.j2` :
+Le rôle copie le site existant depuis
+`ansible/roles/web/files/site/`, notamment `index.html`, les feuilles CSS, le
+JavaScript et les images nécessaires.
 
-```html
-<!doctype html>
-<html lang="fr">
-  <head><meta charset="utf-8"><title>DIST-01b</title></head>
-  <body><h1>Service web OVH</h1><p>Déployé par Ansible.</p></body>
-</html>
-```
+## Étape 3 - Appeler le rôle depuis le playbook principal
 
-## Étape 3 - Appeler le rôle depuis un playbook
-
-Créer `ansible/playbooks/web-service.yml` :
+Le rôle est appelé depuis `ansible/playbooks/base-system.yml` :
 
 ```yaml
 ---
-- name: Déployer le service web DIST-01b
-  hosts: ovh
-  become: true
-  roles:
-    - web
+- name: Deployer le site web
+  ansible.builtin.include_role:
+    name: web
 ```
 
 Vérifier la syntaxe puis exécuter :
 
 ```bash
 ansible-playbook -i ansible/inventory/ovh.ini \
-  ansible/playbooks/web-service.yml --syntax-check
+  ansible/playbooks/base-system.yml --syntax-check
 
 ansible-playbook -i ansible/inventory/ovh.ini \
-  ansible/playbooks/web-service.yml
+  ansible/playbooks/base-system.yml
 ```
 
-Vérifier le service sans ouvrir le port 80 dans le Security Group ou UFW :
+Vérifier le service après l'ouverture du port 80 dans UFW :
 
 ```bash
 ansible -i ansible/inventory/ovh.ini ovh \
@@ -145,7 +137,7 @@ Exécuter exactement le même playbook une seconde fois :
 
 ```bash
 ansible-playbook -i ansible/inventory/ovh.ini \
-  ansible/playbooks/web-service.yml
+  ansible/playbooks/base-system.yml
 ```
 
 La première exécution peut produire des `changed`. La seconde doit produire
@@ -168,7 +160,7 @@ git diff -- ansible/
 Créer des commits compréhensibles, par exemple :
 
 ```bash
-git add ansible/roles/web ansible/playbooks/web-service.yml
+    git add ansible.cfg ansible/roles/web ansible/playbooks/base-system.yml
 git commit -m "Ajouter le role Ansible du service web"
 
 git log --oneline --decorate --graph -10
@@ -192,7 +184,7 @@ sudo chown "$USER:$USER" "/tmp/$backup_name"
 aws --profile ovh-s3 \
   --endpoint-url https://s3.gra.io.cloud.ovh.net/ \
   s3 cp "/tmp/$backup_name" \
-  "s3://NOM_DU_BUCKET/kit4/nginx/$backup_name"
+  "s3://tan-thouless/kit4/nginx/$backup_name"
 ```
 
 Vérifier la présence et la taille de l'objet :
@@ -200,7 +192,7 @@ Vérifier la présence et la taille de l'objet :
 ```bash
 aws --profile ovh-s3 \
   --endpoint-url https://s3.gra.io.cloud.ovh.net/ \
-  s3api head-object --bucket NOM_DU_BUCKET \
+  s3api head-object --bucket tan-thouless \
   --key "kit4/nginx/$backup_name"
 ```
 
@@ -222,11 +214,11 @@ Tester chaque ajout séparément et garder une session SSH de secours ouverte.
 
 | Point de contrôle | Statut initial |
 | --- | --- |
-| Rôle Ansible réutilisable | À réaliser |
-| Service Nginx déployé | À réaliser |
-| Première exécution réussie | À prouver |
-| Deuxième exécution idempotente | À prouver |
-| Vérification HTTP 200 | À prouver |
+| Rôle Ansible réutilisable | Réalisé |
+| Service Nginx déployé | Réalisé sur `dist01b-ovh` |
+| Première exécution réussie | Réalisé (`ok=12`, `changed=2`) |
+| Deuxième exécution idempotente | Réalisé (`ok=11`, `changed=0`) |
+| Vérification HTTP 200 | Réalisé depuis l'IP et `cloud.olidev.ovh` |
 | Commits logiques et lisibles | Dépôt local initial déjà créé |
 | Sauvegarde horodatée dans S3 | À réaliser |
 | Point de restauration Kit 4 | À préparer |

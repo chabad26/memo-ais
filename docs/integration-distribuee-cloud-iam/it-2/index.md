@@ -29,11 +29,11 @@ créer une première cible OVHcloud, de la rendre reproductible avec
 
 | Date | Élément | Statut | Preuve à joindre |
 | --- | --- | --- | --- |
-| 31/08/2026 | Première instance OVHcloud `d2-8-2026_08_31-09-17` | Réalisé | Capture OVHcloud `ovh-instance-active-ssh-ok-2026-08-31.png`. |
+| 31/08/2026 | Instance OVHcloud principale `d2-8-2026_08_31-09-17` (`d2-4`) | Réalisé | Capture OVHcloud `ovh-instance-active-ssh-ok-2026-08-31.png`. |
 | 31/08/2026 | Connexion SSH depuis le poste d'administration | Validée | Accès `ubuntu@135.125.57.xxx`; capture du prompt SSH à joindre si possible. |
-| 31/08/2026 | Paramètres relevés | Documenté | `GRA9`, `d2-8`, Ubuntu 26.04 - UEFI, IP privée `10.42.10.123`. |
-| À compléter | OpenTofu | À faire ou à documenter | `tofu fmt`, `tofu init`, `tofu validate`, `tofu plan`. |
-| 31/08/2026 | Ansible | Réalisé | Playbook : `ok=5`, `changed=3`, `failed=0`; contrôles hostname, UFW et Git dans `ansible-base-system-ok-5-changed-3-2026-08-31.png`. |
+| 31/08/2026 | Paramètres relevés | Documenté | `GRA9`, `d2-4`, Ubuntu 26.04 - UEFI, IP privée `10.42.10.123`. |
+| 31/08/2026 | OpenTofu | Réalisé pour la cible trois VM | `tofu apply` terminé ; sorties et adresses des deux `d2-2` à joindre. |
+| 31/08/2026 | Ansible et Nginx | Réalisé | Playbook sur la VM principale : première exécution `ok=12`, `changed=2`, puis `changed=0`. |
 
 ## Feuilles de l'itération
 
@@ -44,6 +44,7 @@ créer une première cible OVHcloud, de la rendre reproductible avec
 - [Automatiser avec Ansible](automatiser-avec-ansible.md)
 - [Playbook et versionnement](playbook-versionnement-service.md)
 - [DNS et répartition de charge cloud](dns-repartition-charge-cloud.md)
+- [Déployer le socle on-premise sur trois VM OVH](deployer-socle-on-premise-sur-trois-vm.md)
 
 ## État final attendu
 
