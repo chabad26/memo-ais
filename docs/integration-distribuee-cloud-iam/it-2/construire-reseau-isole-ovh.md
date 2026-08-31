@@ -289,6 +289,23 @@ Preuves à conserver :
 | IP privée attribuée | `ip -br addr`. |
 | Route par défaut | `ip route`. |
 
+### Avancement réel au 31 août 2026
+
+L'instance a été créée dans OVHcloud et la connexion SSH depuis le poste
+d'administration a été validée.
+
+![Instance OVHcloud active avec informations de connexion](../../assets/img/integration-distribuee-cloud-iam/it-2/ovh-instance-active-ssh-ok-2026-08-31.png)
+
+Preuves restantes à joindre au livrable :
+
+| Preuve | Statut | Précaution |
+| --- | --- | --- |
+| Instance visible côté OVHcloud | Fait | Capture `ovh-instance-active-ssh-ok-2026-08-31.png`. |
+| Connexion SSH réussie | Fait, déclaré le 31/08/2026 | Conserver aussi une capture du prompt si possible. |
+| Utilisateur SSH utilisé | `ubuntu` | Visible dans l'information de connexion OVHcloud. |
+| IP publique de l'instance | `135.125.57.xxx` | IP complète visible dans la preuve locale ; masquer si diffusion externe. |
+| IP privée de l'instance | `10.42.10.123` | Visible dans les réseaux privés OVHcloud. |
+
 ## Étape 6 - Vérifier l'exposition minimale
 
 Depuis ton poste :
@@ -373,7 +390,9 @@ Résultat attendu :
 | Security group dédié créé | À compléter | `openstack security group list`. |
 | SSH limité à ton IP | À compléter | `openstack security group rule list dist01b-web-sg`. |
 | HTTP public autorisé | À compléter | Règle TCP 80 depuis `0.0.0.0/0`. |
-| Instance Ubuntu 24.04 active | À compléter | `openstack server show dist01b-web-01`. |
+| Instance active | Réalisé le 31/08/2026 | Capture OVHcloud `ovh-instance-active-ssh-ok-2026-08-31.png`. |
+| Connexion SSH depuis le poste d'administration | Réalisé le 31/08/2026 | Déclaré validé ; capture du prompt à joindre si possible. |
+| IP privée vérifiée côté OVHcloud | Réalisé le 31/08/2026 | `10.42.10.123`, capture OVHcloud. |
 | IP privée vérifiée dans la VM | À compléter | `ip -br addr`. |
 | Communication interne testée | À compléter | `ping` ou SSH privé vers `dist01b-web-02`. |
 
@@ -404,14 +423,26 @@ Si les ressources sont conservées pour l'automatisation, noter :
 
 | Élément | Valeur réelle |
 | --- | --- |
-| Date du TP | À compléter |
-| Région OVHcloud | À compléter |
+| Date du TP | 31/08/2026 |
+| Nom réel de l'instance | `d2-8-2026_08_31-09-17` |
+| Région OVHcloud | Gravelines `GRA9`, zone `1-AZ` |
+| Modèle | `d2-8` |
+| Image | Ubuntu 26.04 - UEFI |
+| Mémoire vive | 8 GB |
+| Processeur | 4 vCore |
+| Bande passante publique | 500 Mbit |
+| Prix indiqué | 0,037 € HT / heure |
+| Clé SSH | `laptop` |
+| Utilisateur de connexion | `ubuntu` |
 | IP publique source SSH | À compléter |
-| Réseau privé | `dist01b-lab-net` |
-| Sous-réseau | `10.42.10.0/24` |
-| Instance 1 | `dist01b-web-01` |
-| IP privée instance 1 | À compléter |
-| IP publique instance 1 | À compléter |
+| Réseau public | `Ext-Net` |
+| IP publique instance 1 | `135.125.57.xxx` |
+| Passerelle publique | `135.125.57.1` |
+| Réseau privé | `pn-GRA9-31082026` |
+| Sous-réseau | À confirmer depuis la VM ou OpenStack ; IP privée dans `10.42.10.0/24` |
+| Instance 1 | Créée |
+| IP privée instance 1 | `10.42.10.123` |
 | Instance 2 | `dist01b-web-02` ou non créée |
 | IP privée instance 2 | À compléter |
-| Écart rencontré | À compléter |
+| Accès SSH | Validé depuis le poste d'administration |
+| Écart rencontré | Noms réels OVHcloud différents des noms pédagogiques proposés. |

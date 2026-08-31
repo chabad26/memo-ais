@@ -92,6 +92,10 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 | [2. Déployer et automatiser OVH](it-2/deployer-automatiser-ovh.md) | Créer le socle cloud du premier fournisseur, puis l'automatiser avec OpenTofu et Ansible. |
 | [2. Construire un réseau isolé OVH à la main](it-2/construire-reseau-isole-ovh.md) | Créer manuellement réseau privé, sous-réseau, VM Ubuntu et security group minimal avant automatisation. |
 | [2. Comprendre l'IaC et le cycle OpenTofu](it-2/comprendre-iac-cycle-opentofu.md) | Comprendre providers, fichiers `.tf`, état et commandes `init`, `plan`, `apply`, `destroy`. |
+| [2. Utiliser le stockage objet comme backend OpenTofu](it-2/stockage-objet-backend-opentofu.md) | Créer un bucket S3 OVH, le tester et migrer l'état OpenTofu vers un backend distant. |
+| [2. Automatiser avec Ansible](it-2/automatiser-avec-ansible.md) | Comprendre l'inventaire, l'idempotence et l'application du socle système sur les VM OVH. |
+| [2. Playbook et versionnement](it-2/playbook-versionnement-service.md) | Déployer un service réel avec un rôle Ansible, le tester deux fois, le versionner et sauvegarder sa configuration. |
+| [2. DNS et répartition de charge cloud](it-2/dns-repartition-charge-cloud.md) | Faire pointer un nom de domaine vers une VM et comprendre l'extension load balancer. |
 | 3. Migrer et sécuriser l'IAM | Configurer les accès, les rôles, le MFA, les identités de service et les secrets. |
 | 4. Reproduire sur le second fournisseur | Porter l'infrastructure, comparer les écarts et adapter la méthode. |
 | 5. Exploiter et clôturer | Superviser, gérer un incident, mesurer RTO/RPO et documenter les choix. |

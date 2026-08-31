@@ -65,9 +65,9 @@ et preuves de validation.
 | Preuve | Contenu attendu |
 | --- | --- |
 | OpenTofu | `tofu fmt`, `tofu validate`, `tofu plan`, puis `tofu apply` si realise. |
-| Ressources OVH | Identifiant ou nom de l'instance, region, flavor, IP masquee si besoin. |
-| SSH | Connexion reussie sans mot de passe. |
-| Ansible | `ping` reussi et playbook applique. |
+| Ressources OVH | Instance `d2-8-2026_08_31-09-17`, region `GRA9`, flavor `d2-8`, image Ubuntu 26.04 - UEFI, IP publique masquee si besoin. |
+| SSH | Connexion reussie sans mot de passe ; instance et SSH declares valides le 31/08/2026 avec utilisateur `ubuntu`. |
+| Ansible | Playbook applique le 31/08/2026 (`ok=5`, `changed=3`, `failed=0`) et controles hostname, UFW, Git visibles dans `ansible-base-system-ok-5-changed-3-2026-08-31.png`. |
 | Securite | Secrets absents de Git, pare-feu actif, acces SSH autorise. |
 | Ecart | Blocage compte, quota, paiement, region, image ou provider documente. |
 
