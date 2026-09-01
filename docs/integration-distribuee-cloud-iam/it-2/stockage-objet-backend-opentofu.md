@@ -229,16 +229,28 @@ terraform {
 }
 ```
 
-Pour High Performance, reprendre l'endpoint fourni par OVH. Charger les clés
-depuis le profil AWS ou l'environnement, jamais dans le bloc backend :
+Pour High Performance, reprendre l'endpoint fourni par OVH. Le fichier OpenRC
+et le profil S3 ont deux usages différents : `openrc.sh` charge les variables
+`OS_*` pour l'API OpenStack, tandis que le backend `s3` charge les identifiants
+du profil AWS `ovh-s3`.
+
+Avant `tofu init`, `tofu plan` ou `tofu apply`, charger les deux contextes :
 
 ```bash
-export AWS_ACCESS_KEY_ID='A_REMPLACER'
-export AWS_SECRET_ACCESS_KEY='A_REMPLACER'
+source ~/cloud-iam-ovh/env/openrc.sh
+export AWS_PROFILE=ovh-s3
+export AWS_SDK_LOAD_CONFIG=1
+
+aws --profile ovh-s3 \
+  --endpoint-url https://s3.gra.io.cloud.ovh.net/ \
+  s3api head-bucket --bucket tan-thouless
 ```
 
 Le fichier `backend.tf` peut contenir la configuration du backend, mais jamais
-les clés S3. Elles sont chargées par le profil `ovh-s3` ou par l'environnement.
+les clés S3. Elles sont chargées par `AWS_PROFILE`, par le profil AWS ou par
+l'environnement. Sans `AWS_PROFILE`, OpenTofu peut chercher des credentials
+AWS par défaut ou un rôle EC2 et échouer avec `No valid credential sources
+found`.
 
 ## Étape 6 - Migrer l'état
 
@@ -247,7 +259,7 @@ Sauvegarder l'état local dans un emplacement protégé, puis migrer :
 ```bash
 cd /home/oliv/cloud-iam/opentofu/ovh
 cp terraform.tfstate /tmp/cloud-iam-terraform.tfstate.backup
-tofu init -migrate-state
+AWS_PROFILE=ovh-s3 tofu init -migrate-state
 ```
 
 Répondre `yes` uniquement après vérification du bucket, de l'endpoint et des
@@ -255,7 +267,7 @@ identifiants S3. Vérifier ensuite l'objet distant et l'absence de dérive :
 
 ```bash
 aws --profile ovh-s3 --endpoint-url https://s3.gra.io.cloud.ovh.net/ s3 ls s3://tan-thouless/dist01b/ovh/
-tofu state list && tofu plan
+AWS_PROFILE=ovh-s3 tofu state list && AWS_PROFILE=ovh-s3 tofu plan
 ```
 
 Preuves de la migration, dans l'ordre d'apparition dans le terminal :

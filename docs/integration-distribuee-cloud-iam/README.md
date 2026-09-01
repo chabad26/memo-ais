@@ -91,6 +91,7 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 | [1. Lire et interpréter un SLA cloud](it-1/lire-interpreter-sla-cloud.md) | Comprendre disponibilité, exclusions, responsabilités client et compensations. |
 | [1. Produire les livrables DIST01b](it-1/produire-livrables-dist01b-plan-migration.md) | Consolider plan de migration, matrice pondérée et note de cadrage. |
 | [2. Déployer et automatiser OVH](it-2/deployer-automatiser-ovh.md) | Créer le socle cloud du premier fournisseur, puis l'automatiser avec OpenTofu et Ansible. |
+| [2. Déployer et automatiser Infomaniak](it-2/deployer-automatiser-infomaniak.md) | Porter le même socle OpenStack vers le second fournisseur et relever les écarts. |
 | [2. Construire un réseau isolé OVH à la main](it-2/construire-reseau-isole-ovh.md) | Créer manuellement réseau privé, sous-réseau, VM Ubuntu et security group minimal avant automatisation. |
 | [2. Comprendre l'IaC et le cycle OpenTofu](it-2/comprendre-iac-cycle-opentofu.md) | Comprendre providers, fichiers `.tf`, état et commandes `init`, `plan`, `apply`, `destroy`. |
 | [2. Utiliser le stockage objet comme backend OpenTofu](it-2/stockage-objet-backend-opentofu.md) | Créer un bucket S3 OVH, le tester et migrer l'état OpenTofu vers un backend distant. |

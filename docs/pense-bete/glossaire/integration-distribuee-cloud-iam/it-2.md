@@ -52,12 +52,13 @@ et preuves de validation.
 | Verifier le pare-feu | `ansible -i ansible/inventory/ovh.ini ovh -a "sudo ufw status verbose"` |
 | Tester le site par IP | `curl -4 -I http://IP_PUBLIQUE` |
 | Tester le nom local | `getent hosts cloud.olidev.ovh && curl -I http://cloud.olidev.ovh` |
-| Initialiser le backend S3 | `tofu init -migrate-state` avec le profil ou les variables AWS S3 |
+| Initialiser le backend S3 | `source ~/cloud-iam-ovh/env/openrc.sh`, puis `AWS_PROFILE=ovh-s3 tofu init -migrate-state` |
 | Chercher un secret suivi par Git | `git ls-files \| grep -E 'ovh\\.env|APPLICATION_SECRET|CONSUMER_KEY' || true` |
 
 ## Points de vigilance
 
 - Ne pas versionner les cles API OVH ni le fichier `ovh.env`.
+- `openrc.sh` charge l'authentification OpenStack ; `AWS_PROFILE=ovh-s3` charge les identifiants du backend S3. Les deux sont nécessaires lorsque l'état est distant.
 - Ne jamais capturer une cle privee SSH ou une consumer key dans les preuves.
 - Verifier les noms exacts de region, flavor et image dans le projet OVHcloud
   au moment du TP.

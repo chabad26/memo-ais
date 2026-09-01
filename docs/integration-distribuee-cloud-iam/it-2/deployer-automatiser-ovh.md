@@ -249,11 +249,19 @@ ssh_public_key_path = "~/.ssh/id_ed25519.pub"
 Depuis le dossier `opentofu/ovh/` :
 
 ```bash
+source ~/cloud-iam-ovh/env/openrc.sh
+export AWS_PROFILE=ovh-s3
+export AWS_SDK_LOAD_CONFIG=1
 tofu fmt
 tofu init
 tofu validate
-tofu plan
+AWS_PROFILE=ovh-s3 tofu plan
 ```
+
+`openrc.sh` fournit les identifiants OpenStack. Le backend S3 de l'état
+OpenTofu utilise séparément le profil AWS `ovh-s3`. Si ce profil n'est pas
+chargé, le plan peut échouer avec `No valid credential sources found` en
+cherchant inutilement un rôle EC2.
 
 À conserver :
 
@@ -267,7 +275,7 @@ tofu plan
 Quand le plan est cohérent :
 
 ```bash
-tofu apply
+AWS_PROFILE=ovh-s3 tofu apply
 ```
 
 Après création :

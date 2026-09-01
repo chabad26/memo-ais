@@ -45,6 +45,7 @@ créer une première cible OVHcloud, de la rendre reproductible avec
 - [Playbook et versionnement](playbook-versionnement-service.md)
 - [DNS et répartition de charge cloud](dns-repartition-charge-cloud.md)
 - [Déployer le socle on-premise sur trois VM OVH](deployer-socle-on-premise-sur-trois-vm.md)
+- [Déployer et automatiser Infomaniak](deployer-automatiser-infomaniak.md)
 
 ## État final attendu
 
