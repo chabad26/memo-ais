@@ -99,7 +99,10 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 | [2. Playbook et versionnement](it-2/playbook-versionnement-service.md) | Déployer un service réel avec un rôle Ansible, le tester deux fois, le versionner et sauvegarder sa configuration. |
 | [2. DNS et répartition de charge cloud](it-2/dns-repartition-charge-cloud.md) | Faire pointer un nom de domaine vers une VM et comprendre l'extension load balancer. |
 | [2. Déployer le socle on-premise sur trois VM OVH](it-2/deployer-socle-on-premise-sur-trois-vm.md) | Reprendre les services on-premise sur trois VM et valider leurs communications privées. |
-| 3. Migrer et sécuriser l'IAM | Configurer les accès, les rôles, le MFA, les identités de service et les secrets. |
+| [3. Migrer et sécuriser les services (IAM)](it-3/index.md) | Configurer les accès, les rôles, le MFA, les identités de service et les secrets. |
+| [3.6. Choisir une PKI interne ou un certificat public](it-3/pki-interne-ou-certificat-public.md) | Choisir une chaîne de confiance adaptée aux services internes et publics. |
+| [3.7. Appliquer le bon type de certificat](it-3/appliquer-certificat-selon-service.md) | Réutiliser Step CA pour un service interne et documenter Let's Encrypt pour un site public. |
+| [3.8. Livrable L3 : documentation IAM et chiffrement](it-3/livrable-l3-documentation-iam.md) | Consolider la matrice IAM, la revue des accès, le chiffrement et le script de contrôle. |
 | 4. Reproduire sur le second fournisseur | Porter l'infrastructure, comparer les écarts et adapter la méthode. |
 | 5. Exploiter et clôturer | Superviser, gérer un incident, mesurer RTO/RPO et documenter les choix. |
 

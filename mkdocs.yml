@@ -320,6 +320,15 @@ nav:
             - DNS et répartition de charge cloud: integration-distribuee-cloud-iam/it-2/dns-repartition-charge-cloud.md
             - Déployer le socle on-premise sur trois VM OVH: integration-distribuee-cloud-iam/it-2/deployer-socle-on-premise-sur-trois-vm.md
             - Déployer et automatiser Infomaniak: integration-distribuee-cloud-iam/it-2/deployer-automatiser-infomaniak.md
+        - Itération 3 - Migrer et sécuriser les services (IAM):
+            - Vue d'ensemble: integration-distribuee-cloud-iam/it-3/index.md
+            - Comprendre les briques IAM et le MFA: integration-distribuee-cloud-iam/it-3/comprendre-briques-iam-et-mfa.md
+            - Configurer l'IAM sur le premier fournisseur: integration-distribuee-cloud-iam/it-3/configurer-iam-premier-fournisseur.md
+            - Auditer une configuration IAM: integration-distribuee-cloud-iam/it-3/auditer-configuration-iam-moindre-privilege.md
+            - Gestion des secrets avec SOPS: integration-distribuee-cloud-iam/it-3/gestion-secrets-sops.md
+            - PKI interne ou certificat public: integration-distribuee-cloud-iam/it-3/pki-interne-ou-certificat-public.md
+            - Appliquer le bon type de certificat: integration-distribuee-cloud-iam/it-3/appliquer-certificat-selon-service.md
+            - "Livrable L3 : documentation IAM et chiffrement": integration-distribuee-cloud-iam/it-3/livrable-l3-documentation-iam.md
     - Intégration distribuée on-premise:
         - Vue d'ensemble: integration-distribuee-on-premise/README.md
         - Journal technique du module: integration-distribuee-on-premise/journal-technique.md
