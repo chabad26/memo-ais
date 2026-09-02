@@ -329,6 +329,13 @@ nav:
             - PKI interne ou certificat public: integration-distribuee-cloud-iam/it-3/pki-interne-ou-certificat-public.md
             - Appliquer le bon type de certificat: integration-distribuee-cloud-iam/it-3/appliquer-certificat-selon-service.md
             - "Livrable L3 : documentation IAM et chiffrement": integration-distribuee-cloud-iam/it-3/livrable-l3-documentation-iam.md
+        - Itération 4 - Reproduire et exploiter sur le second fournisseur:
+            - Vue d'ensemble: integration-distribuee-cloud-iam/it-4/index.md
+            - Reproduire et exploiter le second fournisseur: integration-distribuee-cloud-iam/it-4/reproduire-exploiter-second-fournisseur.md
+            - Optimisation des coûts FinOps: integration-distribuee-cloud-iam/it-4/optimisation-couts-finops.md
+            - Supervision cloud native: integration-distribuee-cloud-iam/it-4/supervision-cloud-native.md
+            - Déclencher une alerte de supervision: integration-distribuee-cloud-iam/it-4/declencher-alerte-supervision.md
+            - Déployer et automatiser Infomaniak: integration-distribuee-cloud-iam/it-2/deployer-automatiser-infomaniak.md
     - Intégration distribuée on-premise:
         - Vue d'ensemble: integration-distribuee-on-premise/README.md
         - Journal technique du module: integration-distribuee-on-premise/journal-technique.md

@@ -8,7 +8,12 @@
 Ce module fait passer l'infrastructure construite en on-premise vers une infrastructure cloud déployée sur deux fournisseurs :
 
 - **OVH**, fournisseur européen ;
-- **AWS**, fournisseur non européen.
+- **Infomaniak**, second fournisseur utilisé dans ce dossier.
+
+Le support de cours peut citer **AWS** comme exemple de second fournisseur.
+Dans cette documentation, le travail pratique reste centré sur **Infomaniak
+Public Cloud**, afin de rester cohérent avec les ressources réellement
+déployées.
 
 L'objectif est de savoir justifier une architecture cloud, automatiser son déploiement de bout en bout avec **OpenTofu** et **Ansible**, puis sécuriser l'ensemble avec une gestion rigoureuse des identités, des accès et des secrets.
 
@@ -18,7 +23,7 @@ En fin de module, tu dois être capable d'expliquer non seulement ce qui a été
 
 Le fil conducteur reste la migration de l'infrastructure **DIST-01a**.
 
-La démarche est volontairement répétée sur deux fournisseurs pour éviter de dépendre d'une seule plateforme. Ce qui compte n'est pas uniquement la syntaxe AWS, OVH, OpenTofu ou Ansible, mais la méthode :
+La démarche est volontairement répétée sur deux fournisseurs pour éviter de dépendre d'une seule plateforme. Ce qui compte n'est pas uniquement la syntaxe Infomaniak, OVH, OpenTofu ou Ansible, mais la méthode :
 
 1. comprendre l'existant ;
 2. comparer les options cloud ;
@@ -36,7 +41,7 @@ Cette répétition permet de distinguer ce qui est propre à un fournisseur de c
 | --- | --- |
 | Modèles cloud | Différencier IaaS, PaaS, SaaS et relier chaque modèle au partage des responsabilités. |
 | Migration | Analyser l'infrastructure existante, ses dépendances et les services à déplacer ou adapter. |
-| Fournisseurs | Comparer OVH et AWS selon les critères techniques, économiques, juridiques et de souveraineté. |
+| Fournisseurs | Comparer OVHcloud et Infomaniak selon les critères techniques, économiques, juridiques et de souveraineté. |
 | Infrastructure as Code | Provisionner une infrastructure reproductible avec OpenTofu, versionnée dans Git. |
 | Configuration as Code | Installer et configurer les services avec Ansible après le provisionnement. |
 | Déploiement distribué | Répartir le socle on-premise sur trois VM et vérifier les dépendances inter-hôtes. |
@@ -55,7 +60,7 @@ Comprendre cette frontière est essentiel pour éviter les fausses impressions d
 
 ### Souveraineté numérique
 
-Le choix entre OVH et AWS ne se limite pas à une comparaison technique. Il pose aussi des questions de localisation des données, de cadre juridique, de dépendance fournisseur et de conformité attendue par le métier.
+Le choix entre OVHcloud et Infomaniak ne se limite pas à une comparaison technique. Il pose aussi des questions de localisation des données, de cadre juridique, de dépendance fournisseur et de conformité attendue par le métier.
 
 Le module doit permettre de justifier ces arbitrages devant un jury.
 
@@ -85,13 +90,12 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 | [1. Comprendre les modèles cloud](it-1/comprendre-modeles-cloud-responsabilite.md) | Distinguer IaaS, PaaS, SaaS et le modèle de responsabilité partagée. |
 | [1. Classer les services](it-1/classer-services-responsabilites.md) | Situer des services dans IaaS, PaaS ou SaaS et identifier la responsabilité OS. |
 | [1. Analyser les dépendances](it-1/analyser-dependances-infrastructure.md) | Cartographier les dépendances DIST-01a avant de décider l'ordre de migration. |
-| [1. Estimer les coûts de migration](it-1/estimer-comparer-couts-migration.md) | Comparer le coût mensuel OVHcloud et AWS avec hypothèses datées. |
+| [1. Estimer les coûts de migration](it-1/estimer-comparer-couts-migration.md) | Comparer le coût mensuel de plusieurs fournisseurs avec hypothèses datées, puis retenir OVHcloud et Infomaniak pour la pratique. |
 | [1. Comprendre les enjeux juridiques](it-1/comprendre-enjeux-juridiques-cloud.md) | Relier Cloud Act, RGPD et souveraineté au choix du fournisseur cloud. |
 | [1. Rédiger une note de cadrage](it-1/rediger-note-cadrage-migration.md) | Produire une note courte pour faire valider le principe de migration par la direction. |
 | [1. Lire et interpréter un SLA cloud](it-1/lire-interpreter-sla-cloud.md) | Comprendre disponibilité, exclusions, responsabilités client et compensations. |
 | [1. Produire les livrables DIST01b](it-1/produire-livrables-dist01b-plan-migration.md) | Consolider plan de migration, matrice pondérée et note de cadrage. |
 | [2. Déployer et automatiser OVH](it-2/deployer-automatiser-ovh.md) | Créer le socle cloud du premier fournisseur, puis l'automatiser avec OpenTofu et Ansible. |
-| [2. Déployer et automatiser Infomaniak](it-2/deployer-automatiser-infomaniak.md) | Porter le même socle OpenStack vers le second fournisseur et relever les écarts. |
 | [2. Construire un réseau isolé OVH à la main](it-2/construire-reseau-isole-ovh.md) | Créer manuellement réseau privé, sous-réseau, VM Ubuntu et security group minimal avant automatisation. |
 | [2. Comprendre l'IaC et le cycle OpenTofu](it-2/comprendre-iac-cycle-opentofu.md) | Comprendre providers, fichiers `.tf`, état et commandes `init`, `plan`, `apply`, `destroy`. |
 | [2. Utiliser le stockage objet comme backend OpenTofu](it-2/stockage-objet-backend-opentofu.md) | Créer un bucket S3 OVH, le tester et migrer l'état OpenTofu vers un backend distant. |
@@ -103,7 +107,10 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 | [3.6. Choisir une PKI interne ou un certificat public](it-3/pki-interne-ou-certificat-public.md) | Choisir une chaîne de confiance adaptée aux services internes et publics. |
 | [3.7. Appliquer le bon type de certificat](it-3/appliquer-certificat-selon-service.md) | Réutiliser Step CA pour un service interne et documenter Let's Encrypt pour un site public. |
 | [3.8. Livrable L3 : documentation IAM et chiffrement](it-3/livrable-l3-documentation-iam.md) | Consolider la matrice IAM, la revue des accès, le chiffrement et le script de contrôle. |
-| 4. Reproduire sur le second fournisseur | Porter l'infrastructure, comparer les écarts et adapter la méthode. |
+| [4. Reproduire et exploiter sur le second fournisseur](it-4/index.md) | Porter l'infrastructure sur Infomaniak, comparer les écarts et produire les preuves d'exploitation. |
+| [4. Optimisation des coûts FinOps](it-4/optimisation-couts-finops.md) | Inventorier les ressources inutilisées, documenter les suppressions et estimer l'économie mensuelle. |
+| [4. Supervision cloud native](it-4/supervision-cloud-native.md) | Comprendre métriques, dashboards, alertes et lien avec le FinOps sans inventer de ressource active. |
+| [4. Déclencher une alerte de supervision](it-4/declencher-alerte-supervision.md) | Préparer un dashboard, une alerte CPU et un test `stress-ng` à rejouer sur une VM active. |
 | 5. Exploiter et clôturer | Superviser, gérer un incident, mesurer RTO/RPO et documenter les choix. |
 
 ## Livrables attendus
@@ -111,7 +118,7 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 Les livrables du module doivent permettre de prouver la démarche, pas seulement le résultat final :
 
 - une analyse de l'infrastructure DIST-01a à migrer ;
-- une matrice de décision comparant OVH et AWS ;
+- une matrice de décision comparant OVHcloud et Infomaniak ;
 - un plan de migration argumenté ;
 - un dépôt Git contenant le code OpenTofu et Ansible ;
 - une documentation IAM : utilisateurs, groupes, rôles, MFA et identités de service ;

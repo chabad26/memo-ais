@@ -45,7 +45,6 @@ créer une première cible OVHcloud, de la rendre reproductible avec
 - [Playbook et versionnement](playbook-versionnement-service.md)
 - [DNS et répartition de charge cloud](dns-repartition-charge-cloud.md)
 - [Déployer le socle on-premise sur trois VM OVH](deployer-socle-on-premise-sur-trois-vm.md)
-- [Déployer et automatiser Infomaniak](deployer-automatiser-infomaniak.md)
 
 ## État final attendu
 
@@ -59,3 +58,6 @@ créer une première cible OVHcloud, de la rendre reproductible avec
 - les mises à jour, comptes d'administration et règles réseau de base sont
   documentés ;
 - les preuves techniques sont conservées sans exposer de secret.
+
+La reproduction sur Infomaniak est désormais suivie dans
+[l'itération 4](../it-4/index.md).
