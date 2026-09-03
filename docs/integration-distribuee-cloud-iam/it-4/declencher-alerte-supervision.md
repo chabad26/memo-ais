@@ -140,13 +140,36 @@ La différence existe, mais elle se lit entre deux points de 5 minutes :
 Pour une preuve plus lisible pendant l'exercice, conserver en parallèle une
 capture `htop` ou `top` sur la VM pendant l'exécution de `stress-ng`.
 
-![Charge CPU stress-ng et métrique Gnocchi](../../assets/img/integration-distribuee-cloud-iam/it-4/Capture%20d’écran%20du%202026-09-02%2016-09-00.png)
+![Charge CPU stress-ng et métrique Gnocchi](../../assets/img/integration-distribuee-cloud-iam/it-4/alerte-cpu-stress-gnocchi-2026-09-02.png)
 
 _La capture montre la VM `dist01b-infomaniak` en cours de test : deux processus
 `stress-ng-cpu` consomment environ 100 % CPU chacun dans `top`, tandis que la
 commande Gnocchi affiche un nouveau point CPU à `16:00`. La valeur passe de
 `105620000000 ns` à `341860000000 ns`, soit une hausse de `236240000000 ns` sur
 la fenêtre observée._
+
+Le `03/09/2026`, le même scénario a permis de valider le déclenchement Aodh :
+après quelques minutes d'attente, l'alarme `cpu-haut-dist01b-infomaniak` est
+passée de `insufficient data` à `alarm`.
+
+| Élément | Résultat observé |
+| --- | --- |
+| VM testée | `dist01b-infomaniak` |
+| Métrique suivie | `cpu` via Gnocchi |
+| Granularité | `300` secondes |
+| Charge provoquée | `stress-ng --cpu 2 --timeout 300s --metrics-brief` |
+| État Aodh initial | `insufficient data` |
+| État Aodh final | `alarm` |
+| Raison | `Transition to alarm due to 1 samples outside threshold, most recent: 4260000000.0` |
+
+![Alerte Aodh CPU déclenchée](../../assets/img/integration-distribuee-cloud-iam/it-4/alerte-cpu-aodh-declenchee-2026-09-03.png)
+
+_La capture montre l'alarme Aodh `cpu-haut-dist01b-infomaniak` passée en état
+`alarm` pendant le test `stress-ng`. La raison indique qu'un échantillon est
+sorti du seuil configuré, avec une valeur récente de `4260000000.0`._
+
+Cette preuve montre la chaîne complète : métrique disponible, charge CPU
+volontaire, évaluation Aodh, puis passage de l'alarme en état `alarm`.
 
 ## Étape 2 - Créer l'alerte CPU
 

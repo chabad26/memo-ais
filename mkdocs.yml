@@ -335,6 +335,7 @@ nav:
             - Optimisation des coûts FinOps: integration-distribuee-cloud-iam/it-4/optimisation-couts-finops.md
             - Supervision cloud native: integration-distribuee-cloud-iam/it-4/supervision-cloud-native.md
             - Déclencher une alerte de supervision: integration-distribuee-cloud-iam/it-4/declencher-alerte-supervision.md
+            - Tester une restauration cloud et mesurer RTO/RPO: integration-distribuee-cloud-iam/it-4/tester-restauration-rto-rpo-cloud.md
             - Déployer et automatiser Infomaniak: integration-distribuee-cloud-iam/it-2/deployer-automatiser-infomaniak.md
     - Intégration distribuée on-premise:
         - Vue d'ensemble: integration-distribuee-on-premise/README.md

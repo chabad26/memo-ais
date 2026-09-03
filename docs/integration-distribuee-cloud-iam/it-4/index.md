@@ -21,6 +21,7 @@ même logique OpenTofu et Ansible, mais contraintes fournisseur différentes.
 - [Optimisation des coûts FinOps](optimisation-couts-finops.md)
 - [Supervision cloud native](supervision-cloud-native.md)
 - [Déclencher une alerte de supervision](declencher-alerte-supervision.md)
+- [Tester une restauration cloud et mesurer RTO/RPO](tester-restauration-rto-rpo-cloud.md)
 - [Déployer et automatiser Infomaniak](../it-2/deployer-automatiser-infomaniak.md)
 
 ## État final attendu
@@ -34,4 +35,5 @@ même logique OpenTofu et Ansible, mais contraintes fournisseur différentes.
 - les ressources inutilisées sont repérées et leur coût est estimé ;
 - les principes de supervision cloud native sont compris ;
 - une alerte de supervision est préparée et testable lors d'un prochain déploiement ;
+- une restauration cloud est chronométrée avec RTO/RPO ;
 - les ressources coûteuses sont arrêtées ou supprimées si l'exercice est clos.
