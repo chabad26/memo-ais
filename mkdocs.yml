@@ -308,6 +308,7 @@ nav:
             - Comprendre les enjeux juridiques du choix cloud: integration-distribuee-cloud-iam/it-1/comprendre-enjeux-juridiques-cloud.md
             - Rédiger une note de cadrage de migration: integration-distribuee-cloud-iam/it-1/rediger-note-cadrage-migration.md
             - Lire et interpréter un SLA cloud: integration-distribuee-cloud-iam/it-1/lire-interpreter-sla-cloud.md
+            - Fiche SLA et circuit d'escalade: integration-distribuee-cloud-iam/it-1/fiche-sla-circuit-escalade.md
             - Produire les livrables DIST01b - Plan de migration: integration-distribuee-cloud-iam/it-1/produire-livrables-dist01b-plan-migration.md
         - Itération 2 - Déployer et automatiser OVH:
             - Vue d'ensemble: integration-distribuee-cloud-iam/it-2/index.md
@@ -319,6 +320,7 @@ nav:
             - Playbook et versionnement: integration-distribuee-cloud-iam/it-2/playbook-versionnement-service.md
             - DNS et répartition de charge cloud: integration-distribuee-cloud-iam/it-2/dns-repartition-charge-cloud.md
             - Déployer le socle on-premise sur trois VM OVH: integration-distribuee-cloud-iam/it-2/deployer-socle-on-premise-sur-trois-vm.md
+            - Bonus - Déployer un serveur bare metal OVH: integration-distribuee-cloud-iam/it-2/bonus-deploiement-bare-metal-ovh.md
             - Déployer et automatiser Infomaniak: integration-distribuee-cloud-iam/it-2/deployer-automatiser-infomaniak.md
         - Itération 3 - Migrer et sécuriser les services (IAM):
             - Vue d'ensemble: integration-distribuee-cloud-iam/it-3/index.md

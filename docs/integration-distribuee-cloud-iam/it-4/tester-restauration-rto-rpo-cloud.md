@@ -161,30 +161,40 @@ ansible -i ansible/inventory/infomaniak.ini infomaniak -a "sudo ufw status verbo
 
 ## Calcul RTO/RPO
 
-| Mesure | Formule | Valeur à relever |
+| Mesure | Formule | Valeur constatée |
 | --- | --- | --- |
-| RTO | `T1 - T0` | `A_COMPLETER` |
-| RPO | `T0 - heure de la sauvegarde restaurée` | `A_COMPLETER` |
+| RTO | `T1 - T0` | **31 minutes** |
+| RPO | `T0 - heure de la sauvegarde restaurée` | **Non calculable** : l'horodatage de la sauvegarde restaurée n'est pas présent dans les preuves disponibles. |
 
-Exemple de calcul à remplacer par les valeurs réelles :
+Calcul réalisé à partir des preuves :
 
 ```text
-T0 = 2026-09-03T10:00:00+02:00
-T1 = 2026-09-03T10:42:00+02:00
-Sauvegarde restaurée = 2026-09-03T09:15:00+02:00
+T0 = 2026-09-03T09:58:48+02:00
+T1 = 2026-09-03T10:29:48+02:00
 
-RTO = 42 minutes
-RPO = 45 minutes
+RTO = 31 minutes
+RPO = non calculable sans l'heure de la sauvegarde restaurée
+```
+
+La capture de début d'incident confirme l'heure `09:58:48`. Le retour
+fonctionnel a été constaté 31 minutes plus tard grâce aux captures OpenTofu,
+Ansible, Docker et au test du service. Le RPO devra être calculé seulement si
+l'heure de création ou de restauration de la sauvegarde est retrouvée :
+
+```text
+RPO = 2026-09-03T09:58:48+02:00 - heure de la sauvegarde
 ```
 
 ## Preuves collectées le 03/09/2026
 
 Les captures suivantes documentent une restauration réelle du lab Infomaniak
-après suppression des VM. Elles prouvent les étapes techniques, mais le RTO/RPO
-définitif reste à compléter avec les horodatages retenus dans le rapport.
+après suppression des VM. Elles prouvent les étapes techniques et permettent
+de retenir un RTO de 31 minutes. La capture de l'heure de panne est ajoutée
+comme preuve de `T0` ; le RPO reste non calculable sans l'heure de sauvegarde.
 
 | Preuve | Ce que la capture montre |
 | --- | --- |
+| Heure de panne | La commande `date -Is` affiche `2026-09-03T09:58:48+02:00`, utilisée comme `T0`. |
 | Recréation OpenTofu | `tofu apply` terminé avec `4 added, 0 changed, 0 destroyed`, puis sorties d'IP. |
 | Instances actives | Les trois VM `files-infomaniak`, `mail-infomaniak` et `dist01b-infomaniak` sont revenues en état `ACTIVE`. |
 | Connexion Ansible | Les trois hôtes répondent au module `ping`. |
@@ -192,6 +202,8 @@ définitif reste à compléter avec les horodatages retenus dans le rapport.
 | Conteneurs Docker | Les conteneurs OpenLDAP, LAM, supervision, WordPress, Samba, Postfix, Dovecot et Roundcube sont en état `Up`. |
 | Service web | Le site principal répond depuis l'IP publique. |
 | WordPress | Le test local sur la VM fichiers retourne `HTTP/1.1 302 Found`, preuve que WordPress répond sur `8085`. |
+
+![Heure de début de la panne](../../assets/img/integration-distribuee-cloud-iam/it-4/8mjikAyquzJBuca9E1788424038943-Capture+d’écran+du+2026-09-03+09-59-02.png)
 
 ![OpenTofu recrée les ressources](../../assets/img/integration-distribuee-cloud-iam/it-4/rto-restauration-tofu-apply-output-2026-09-03.png)
 

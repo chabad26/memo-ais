@@ -103,6 +103,7 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 | [2. Playbook et versionnement](it-2/playbook-versionnement-service.md) | Déployer un service réel avec un rôle Ansible, le tester deux fois, le versionner et sauvegarder sa configuration. |
 | [2. DNS et répartition de charge cloud](it-2/dns-repartition-charge-cloud.md) | Faire pointer un nom de domaine vers une VM et comprendre l'extension load balancer. |
 | [2. Déployer le socle on-premise sur trois VM OVH](it-2/deployer-socle-on-premise-sur-trois-vm.md) | Reprendre les services on-premise sur trois VM et valider leurs communications privées. |
+| [2. Bonus : déployer un serveur bare metal OVH](it-2/bonus-deploiement-bare-metal-ovh.md) | Installer, sécuriser et administrer un serveur physique OVHcloud avec Ansible, puis comparer ses limites avec une VM. |
 | [3. Migrer et sécuriser les services (IAM)](it-3/index.md) | Configurer les accès, les rôles, le MFA, les identités de service et les secrets. |
 | [3.6. Choisir une PKI interne ou un certificat public](it-3/pki-interne-ou-certificat-public.md) | Choisir une chaîne de confiance adaptée aux services internes et publics. |
 | [3.7. Appliquer le bon type de certificat](it-3/appliquer-certificat-selon-service.md) | Réutiliser Step CA pour un service interne et documenter Let's Encrypt pour un site public. |
