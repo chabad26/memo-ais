@@ -113,7 +113,8 @@ La sécurité attendue couvre aussi le chiffrement des données au repos et la p
 | [4. Supervision cloud native](it-4/supervision-cloud-native.md) | Comprendre métriques, dashboards, alertes et lien avec le FinOps sans inventer de ressource active. |
 | [4. Déclencher une alerte de supervision](it-4/declencher-alerte-supervision.md) | Préparer un dashboard, une alerte CPU et un test `stress-ng` à rejouer sur une VM active. |
 | [4. Tester une restauration cloud et mesurer RTO/RPO](it-4/tester-restauration-rto-rpo-cloud.md) | Simuler la perte d'une VM, restaurer avec OpenTofu/Ansible et calculer RTO/RPO. |
-| 5. Exploiter et clôturer | Superviser, gérer un incident, mesurer RTO/RPO et documenter les choix. |
+| [5. Consolider et clôturer](it-5/index.md) | Mettre à jour la matrice avec les constats réels, ajouter le bare metal et formuler la recommandation finale. |
+| [5. Mémo personnel de synthèse](it-5/memo-personnel-synthese.md) | Reformuler trois concepts clés avant le débrief final. |
 
 ## Livrables attendus
 

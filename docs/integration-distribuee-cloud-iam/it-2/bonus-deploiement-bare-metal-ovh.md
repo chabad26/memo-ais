@@ -1,21 +1,19 @@
-# Bonus - Préparer un serveur bare metal chez OVHcloud
+# Bonus - Déployer un serveur bare metal chez OVHcloud
 
 !!! info "Bonus d'architecture"
-    Ce bonus complète le déploiement des VM OVHcloud par la préparation d'une
-    cible **bare metal** existante, c'est-à-dire un serveur dédié dont le
-    système d'exploitation est installé directement sur le matériel.
+    Ce bonus complète le déploiement des VM OVHcloud par une cible **bare
+    metal**, c'est-à-dire un serveur dédié dont le système d'exploitation est
+    installé directement sur le matériel.
 
 ## Objectif
 
-Préparer le serveur dédié existant `fleender`, le sécuriser et le rendre
-administrable avec Ansible. L'objectif est de savoir expliquer les différences
-entre une VM Public Cloud et un serveur physique, puis de produire des preuves
-d'exploitation propres.
+Déployer un serveur dédié OVHcloud, le sécuriser et le rendre administrable
+avec Ansible. L'objectif est de savoir expliquer les différences entre une VM
+Public Cloud et un serveur physique, puis de produire des preuves de mise en
+service propres.
 
-Le serveur `fleender` est un serveur de production qui héberge déjà un site.
-Le test Docker a donc été réalisé temporairement, avec un périmètre limité,
-puis entièrement démonté après la collecte des preuves. Aucun secret, aucune
-donnée bancaire et aucune donnée personnelle ne doivent apparaître dans les
+Le serveur est une cible de laboratoire. Aucun secret, aucune adresse IP
+publique complète et aucune donnée personnelle ne doivent apparaître dans les
 captures publiées.
 
 ## Ce qui change par rapport à une VM OVH
@@ -32,8 +30,7 @@ captures publiées.
 !!! warning "Ne pas confondre"
     Un serveur dédié n'est pas une VM plus grosse. Il faut traiter séparément
     le cycle de vie matériel, le réseau, les sauvegardes et la procédure de
-    réinstallation. Ici, le serveur existe déjà : l'objectif est de préparer
-    son exploitation avec Ansible.
+    réinstallation.
 
 ## Architecture retenue
 
@@ -54,9 +51,10 @@ Serveur dédié OVHcloud
 Autres hôtes OVH ou site on-premise
 ```
 
-Le serveur `fleender` existe déjà. Les services doivent être choisis en
-fonction de sa mémoire, de son stockage, du nombre de cœurs et du besoin réel
-en I/O. Ses caractéristiques sont à relever avant le déploiement applicatif.
+Pour un premier essai, un seul serveur suffit. Les services doivent être
+choisis en fonction de la mémoire, du stockage, du nombre de cœurs et du
+besoin réel en I/O. Le modèle commercial et les caractéristiques exactes du
+serveur sont à relever dans le Manager au moment du déploiement.
 
 ### Cible du projet
 
@@ -66,45 +64,51 @@ Le serveur bare metal retenu pour la suite du projet est joignable sur
 | Élément | Valeur |
 | --- | --- |
 | Groupe Ansible | `baremetal` |
-| Nom logique | `fleender` |
+| Nom logique | `ovh-baremetal-01` |
 | Adresse SSH | `51.255.196.223` |
 | Utilisateur SSH | À confirmer selon l'image installée |
 | Services visés | Socle DIST-01a conteneurisé |
 
-## Étape 1 - Relever l'existant
+## Étape 1 - Préparer la commande
 
-Avant de préparer Ansible, relever sur `fleender` :
+Avant de commander ou d'installer :
 
-- le système d'exploitation et sa version ;
-- les disques, volumes, RAID et l'espace disponible ;
-- le compte SSH administrateur et la clé utilisée ;
-- les ports déjà ouverts et les services actifs ;
-- la destination de sauvegarde hors du serveur.
+- choisir une gamme et une région adaptées au besoin ;
+- vérifier le prix, les frais d'installation et la durée d'engagement ;
+- vérifier les disques, le RAID matériel ou logiciel et la possibilité de
+  réinstaller le serveur ;
+- prévoir une clé SSH dédiée au serveur ;
+- définir le nom d'hôte, le domaine et le reverse DNS souhaités ;
+- décider si un vRack est nécessaire pour joindre d'autres environnements ;
+- écrire la stratégie de sauvegarde avant de stocker des données utiles.
 
-Conserver les sorties de contrôle sans publier de clé privée, de mot de passe
-ou de donnée sensible.
+Conserver comme preuve le récapitulatif de la configuration en masquant le
+numéro de commande, l'adresse IP, les identifiants et les données de facturation.
 
-## Étape 2 - Vérifier l'accès au serveur existant
+## Étape 2 - Installer le système depuis le Manager
 
-Le serveur est déjà installé. Vérifier seulement que l'accès SSH fonctionne
-avec la clé conservée hors du dépôt :
+Dans l'espace OVHcloud :
+
+1. ouvrir le serveur dédié et vérifier son état de livraison ;
+2. choisir **Installer** ou **Réinstaller** ;
+3. sélectionner une distribution supportée et son mode de partitionnement ;
+4. sélectionner la clé SSH publique ;
+5. choisir le RAID et les volumes selon le besoin ;
+6. lancer l'installation et attendre la fin de l'opération ;
+7. relever uniquement les informations nécessaires à l'inventaire local ;
+8. tester la connexion SSH avec la clé privée conservée hors du dépôt.
 
 Exemple de première connexion :
 
 ```bash
-ssh -i ~/.ssh/ovh-baremetal_ed25519 UTILISATEUR_SSH@51.255.196.223
+ssh -i ~/.ssh/ovh-baremetal_ed25519 admin@IP_PUBLIQUE
 ```
 
-Remplacer `UTILISATEUR_SSH` par le compte réellement présent sur `fleender`.
-Ne pas supposer que `root` est autorisé par SSH ; vérifier l'accès `sudo`.
+Le compte et l'utilisateur exacts dépendent de l'image choisie. Ne pas
+supposer que `root` est autorisé par SSH : vérifier la politique de l'image et
+utiliser un compte nominatif avec `sudo`.
 
 ## Étape 3 - Contrôler le socle avant de déployer
-
-!!! warning "Serveur en production"
-  `fleender` héberge déjà un site. Ne pas lancer de mise à jour globale,
-  modifier UFW, redémarrer des services ou appliquer un playbook complet
-  sans fenêtre d'intervention, sauvegarde vérifiée et retour arrière prévu.
-  La première intervention Ansible doit rester en lecture seule.
 
 Depuis le serveur, relever les informations utiles sans publier les adresses
 complètes :
@@ -135,7 +139,7 @@ et ne pas le commiter s'il contient des adresses d'exploitation :
 
 ```ini
 [baremetal]
-fleender ansible_host=51.255.196.223 ansible_user=ubuntu
+ovh-baremetal-01 ansible_host=51.255.196.223 ansible_user=ubuntu
 
 [baremetal:vars]
 ansible_python_interpreter=/usr/bin/python3
@@ -144,38 +148,29 @@ ansible_python_interpreter=/usr/bin/python3
 Remplacer `ubuntu` par le compte réellement créé lors de l'installation. La
 clé privée SSH reste hors du dépôt.
 
-Tester uniquement la connexion et le mode simulation :
+Tester puis appliquer un socle dédié :
 
 ```bash
 cd ~/cloud-iam
 ansible -i ansible/inventory/ovh-baremetal.ini baremetal -m ping
 ansible-playbook -i ansible/inventory/ovh-baremetal.ini \
-  ansible/playbooks/base-system.yml --check --diff
+  ansible/playbooks/base-system.yml
 ```
 
-Avant toute modification, conserver au minimum la configuration des services,
-des ports et du pare-feu. Le playbook applicatif ne doit être lancé qu'après
-identification précise des tâches qui touchent le site.
-
-```bash
-ansible -i ansible/inventory/ovh-baremetal.ini baremetal -b -m shell \
-  -a 'systemctl --type=service --state=running; ss -tulpen; ufw status verbose'
-```
-
-Après validation explicite et sur une fenêtre d'intervention, vérifier d'abord
-la syntaxe du playbook de déploiement :
+Après validation du socle, réutiliser le playbook de déploiement du projet :
 
 ```bash
 ansible-playbook -i ansible/inventory/ovh-baremetal.ini \
   ansible/playbooks/deploy-on-premise.yml --syntax-check
+ansible-playbook -i ansible/inventory/ovh-baremetal.ini \
+  ansible/playbooks/deploy-on-premise.yml
 ```
 
 Ne pas lancer le déploiement applicatif avant d'avoir vérifié le stockage,
 l'espace disque, les ports nécessaires et la destination de sauvegarde. Les VM
 cloud existantes ne doivent pas être modifiées par cet inventaire.
 
-Si une modification est validée, elle doit être ciblée et documentée. Le socle
-à contrôler, sans l'appliquer automatiquement, couvre notamment :
+Le playbook doit au minimum :
 
 - appliquer les mises à jour de sécurité ;
 - créer les comptes nominatifs et leurs clés ;
@@ -206,39 +201,9 @@ Le vRack ne remplace pas le pare-feu. Tester séparément le routage, les routes
 les VLAN éventuels et la résolution DNS. Documenter les différences entre une
 adresse publique, une adresse privée et le reverse DNS.
 
-## Étape 6 - Déployer temporairement les services de test
+## Étape 6 - Déployer le service et sauvegarder
 
-Pour préserver le site Apache existant, aucun Nginx ni WordPress n'a été
-installé sur `fleender`. Le test a porté uniquement sur LDAP, la messagerie et
-la supervision Docker, avec vérification des ports avant démarrage.
-
-Les contrôles réalisés ont confirmé que :
-
-- Apache conserve les ports `80` et `443` ;
-- LAM répond sur le port `8081` ;
-- Elasticsearch répond localement sur le port configuré ;
-- les services de messagerie utilisent les ports dédiés `25`, `587`, `143`,
-  `993` et `8443`.
-
-Après les captures, les conteneurs, volumes et réseaux créés pour le test ont
-été supprimés. Docker et les fichiers temporaires copiés sur le serveur ont
-également été retirés afin de laisser `fleender` dans son état de production.
-
-## Résultats et preuves du test
-
-![Interface LAM accessible sur fleender](../../assets/img/integration-distribuee-cloud-iam/it-2/Capture%20d’écran%20du%202026-09-07%2011-30-31.png)
-
-_LAM est accessible sur `http://51.255.196.223:8081` et utilise le service
-OpenLDAP du test._
-
-![Elasticsearch répond localement](../../assets/img/integration-distribuee-cloud-iam/it-2/Capture%20d’écran%20du%202026-09-07%2011-31-19.png)
-
-_La réponse JSON confirme qu'Elasticsearch fonctionne pendant le test de
-supervision. Le service est lié localement et n'a pas été exposé sur Internet._
-
-## Sauvegarde et exploitation
-
-Avant toute donnée métier, définir :
+Déployer un seul service démonstrateur, par exemple Nginx, puis vérifier :
 
 ```bash
 curl -I http://127.0.0.1
