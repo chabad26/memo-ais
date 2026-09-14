@@ -181,3 +181,13 @@ Supervision utilise **192.168.122.80**. La règle IIS initiale autorisait `.81` 
 - Kibana : **Gestion de la Suite → Kibana → Vues de données** ; créer `Journaux AlpesNet` au lieu de modifier une vue gérée.
 - Discover : `message:` doit être suivi d’une valeur. Utiliser le marqueur complet et une période couvrant l’événement ; une erreur KQL n’est pas un échec d’ingestion.
 - Les tests documentés sont `ALPESNET_LOG_LINUX_20260914T140642Z` et `ALPESNET_LOG_WINDOWS_20260914T141352Z`.
+
+## Réservations DHCP du laboratoire — appliquées
+
+Le 14 septembre 2026, les adresses ont été réservées dans le réseau libvirt `default`, en configuration active **et persistante** : supervision `.80`, Debian `.158`, Windows `.25`. Aucun redémarrage du réseau ou des VM n’a été effectué ; le réseau est en démarrage automatique.
+
+- Vérifier les réservations sur le laptop : `virsh -c qemu:///system net-dumpxml default --inactive`.
+- Vérifier les baux : `virsh -c qemu:///system net-dhcp-leases default`.
+- Les invités restent en DHCP. Conserver les MAC ; recontrôler l’association si une VM est recréée.
+- Le renouvellement après redémarrage du laptop reste à observer ; ne pas confondre ce futur contrôle avec la persistance déjà vérifiée dans le XML.
+- [Associations MAC/IP et sauvegarde](../../../supervision-optimisation-performances/it-1/identifier-elements-observer.md#adresses-stabilisees-par-reservation-dhcp).

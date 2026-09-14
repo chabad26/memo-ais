@@ -17,6 +17,39 @@ Les services réseau et applicatifs à observer seront choisis parmi ceux réell
 !!! note "Deux niveaux à distinguer"
     Une VM Debian est à la fois une machine virtuelle, vue depuis l'hôte, et un serveur Linux, vu depuis son système invité. Il n'est donc pas nécessaire de créer une VM supplémentaire pour remplir la ligne « VM ». L'état « en cours d'exécution » dans virt-manager ne prouve pas à lui seul que le système ou ses services répondent.
 
+## Adresses stabilisées par réservation DHCP
+
+Le 14 septembre 2026, les trois VM actives ont été vérifiées sur le réseau libvirt `default`, puis leurs IP actuelles ont été réservées par adresse MAC depuis le laptop. Les invités restent en DHCP.
+
+| VM libvirt | Adresse MAC | IP réservée |
+| --- | --- | --- |
+| `supervision` | `52:54:00:15:da:99` | `192.168.122.80` |
+| `debian13` | `52:54:00:b8:f6:3c` | `192.168.122.158` |
+| `win2k25` | `52:54:00:7d:3e:1b` | `192.168.122.25` |
+
+Les réservations ont été ajoutées à chaud et dans la configuration persistante, sans redémarrage du réseau ni des VM. Le réseau `default` est actif, persistant et en démarrage automatique. Les baux actuels correspondent aux réservations. Le prochain renouvellement après redémarrage du laptop n’a pas encore été observé.
+
+Commandes appliquées sur **le laptop**, après vérification de l’absence de réservation existante :
+
+```bash
+virsh -c qemu:///system net-update default add-last ip-dhcp-host "<host mac='52:54:00:15:da:99' ip='192.168.122.80'/>" --live --config
+virsh -c qemu:///system net-update default add-last ip-dhcp-host "<host mac='52:54:00:b8:f6:3c' ip='192.168.122.158'/>" --live --config
+virsh -c qemu:///system net-update default add-last ip-dhcp-host "<host mac='52:54:00:7d:3e:1b' ip='192.168.122.25'/>" --live --config
+```
+
+Ces ajouts sont **déjà réalisés** : ne pas les rejouer. Pour vérifier :
+
+```bash
+virsh -c qemu:///system net-dumpxml default
+virsh -c qemu:///system net-dumpxml default --inactive
+virsh -c qemu:///system net-dhcp-leases default
+virsh -c qemu:///system net-info default
+```
+
+Les deux XML doivent contenir les trois entrées `<host>` sous `<dhcp>`. Les configurations avant modification sont sauvegardées sur le laptop dans `~/.local/state/alpesnet-libvirt/20260914-163023/` (`default-active.xml` et `default-persistent.xml`). Pour annuler uniquement une réservation, utiliser `net-update default delete ip-dhcp-host` avec la même entrée XML et `--live --config`, sans remplacer tout le réseau.
+
+La réservation dépend de la MAC : si une VM est recréée ou sa carte réseau remplacée, recontrôler l’association avant de réutiliser son IP. Elle préserve les cibles Prometheus, les règles de pare-feu et l’adresse `.80` du certificat Logstash. [Format DHCP libvirt](https://libvirt.org/formatnetwork.html), [commande net-update](https://www.libvirt.org/manpages/virsh.html#net-update).
+
 ## Travail demandé
 
 À partir de l'infrastructure, observer plusieurs types d'éléments :
