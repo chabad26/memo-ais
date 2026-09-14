@@ -423,6 +423,18 @@ nav:
             - Gestion de crise LDAP: integration-distribuee-on-premise/it-8/gestion-crise-ldap.md
             - Restaurer l'infrastructure avec le PRA: integration-distribuee-on-premise/it-8/restaurer-infrastructure-pra.md
             - Retour d'expérience et mise à jour PCA/PRA: integration-distribuee-on-premise/it-8/retour-experience-pca-pra.md
+    - Supervision et optimisation des performances:
+        - Vue d'ensemble: supervision-optimisation-performances/README.md
+        - Itération 1 - Instrumenter et mesurer l'infrastructure:
+            - Vue d'ensemble: supervision-optimisation-performances/it-1/index.md
+            - Cadrage de la mission: supervision-optimisation-performances/it-1/instrumenter-mesurer-infrastructure.md
+            - Identifier les éléments à observer: supervision-optimisation-performances/it-1/identifier-elements-observer.md
+            - Classer les informations de supervision: supervision-optimisation-performances/it-1/classer-informations-supervision.md
+            - Comprendre l'observabilité: supervision-optimisation-performances/it-1/comprendre-observabilite.md
+            - Déployer la plateforme d'observabilité: supervision-optimisation-performances/it-1/deployer-plateforme-observabilite.md
+            - Intégrer Linux et Windows Server Core: supervision-optimisation-performances/it-1/integrer-endpoints-linux-windows.md
+            - Créer et configurer les sondes: supervision-optimisation-performances/it-1/creer-configurer-sondes.md
+            - Ajouter une source de logs: supervision-optimisation-performances/it-1/ajouter-source-logs.md
 
 
 
@@ -454,6 +466,7 @@ nav:
           - Itération 4 - Services Linux et NFS: pense-bete/glossaire/admin-systemes-linux/it-4.md
           - Itération 5 - Sauvegarde et Nginx: pense-bete/glossaire/admin-systemes-linux/it-5.md
           - Itération 6 - Challenge final CTF: pense-bete/glossaire/admin-systemes-linux/it-6.md
+          - Bonus - Hardening Suite: pense-bete/glossaire/admin-systemes-linux/it-bonus.md
       - Administration des systèmes - Virtualisation:
           - Itération 1 - Fondamentaux: pense-bete/glossaire/admin-systemes-virtualisation/it-1.md
           - Termes essentiels - Itération 1: pense-bete/glossaire/admin-systemes-virtualisation/termes-essentiels-it-1.md
@@ -476,6 +489,9 @@ nav:
       - Intégration distribuée Cloud & IAM:
           - Itération 1 - Préparer la migration: pense-bete/glossaire/integration-distribuee-cloud-iam/it-1.md
           - Itération 2 - Déployer et automatiser OVH: pense-bete/glossaire/integration-distribuee-cloud-iam/it-2.md
+          - Itération 3 - IAM et chiffrement: pense-bete/glossaire/integration-distribuee-cloud-iam/it-3.md
+          - Itération 4 - Second fournisseur et exploitation: pense-bete/glossaire/integration-distribuee-cloud-iam/it-4.md
+          - Itération 5 - Synthèse et clôture: pense-bete/glossaire/integration-distribuee-cloud-iam/it-5.md
       - Intégration distribuée on-premise:
           - Itération 1 - Docker, Compose: pense-bete/glossaire/integration-distribuee-on-premise/it-1.md
           - Itération 2 - LDAP: pense-bete/glossaire/integration-distribuee-on-premise/it-2.md
@@ -486,3 +502,6 @@ nav:
           - Itération 7 - Supervision et diagnostic: pense-bete/glossaire/integration-distribuee-on-premise/it-7.md
           - Itération 8 - Gestion de crise: pense-bete/glossaire/integration-distribuee-on-premise/it-8.md
           - Mémo spécial Git: pense-bete/glossaire/integration-distribuee-on-premise/git.md
+
+      - Supervision et optimisation des performances:
+          - Itération 1 - Instrumenter et mesurer: pense-bete/glossaire/supervision-optimisation-performances/it-1.md

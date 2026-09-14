@@ -110,3 +110,7 @@ Ne pas utiliser docker compose down -v avant d'avoir vérifié la persistance : 
 - [Déployer WordPress et MariaDB avec Compose](../../../integration-distribuee-on-premise/it-1/deployer-wordpress-compose.md)
 - [Gérer la documentation avec Git](../../../integration-distribuee-on-premise/it-1/gerer-documentation-avec-git.md)
 - [Analyser le PCA et le PRA](../../../integration-distribuee-on-premise/it-2/analyser-pca-pra.md)
+
+- [Créer une image à partir d'un conteneur](../../../integration-distribuee-on-premise/it-1/creer-image-depuis-conteneur.md)
+- [Découverte de l'entreprise fictive](../../../integration-distribuee-on-premise/it-1/decouverte-entreprise-fictive.md)
+- [1.6 - Manipuler un conteneur Ubuntu](../../../integration-distribuee-on-premise/it-1/manipuler-conteneur-ubuntu.md)

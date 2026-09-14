@@ -1,0 +1,17 @@
+filebeat.inputs:
+  - type: journald
+    id: alpesnet-journal-systeme
+    seek: since
+    since: -1h
+    fields:
+      lab_source: linux
+processors:
+  - add_host_metadata: ~
+setup.ilm.enabled: false
+setup.template.enabled: false
+output.logstash:
+  hosts: ["192.168.122.80:5044"]
+  ssl.certificate_authorities: ["/etc/filebeat/certs/ca.crt"]
+  ssl.certificate: "/etc/filebeat/certs/cert.pem"
+  ssl.key: "/etc/filebeat/certs/key.pkcs8.pem"
+logging.level: info

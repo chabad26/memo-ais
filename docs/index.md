@@ -19,6 +19,7 @@ Ce mémo est découpé en plusieurs parties :
 - **Administration des systèmes — Virtualisation** : déploiement, administration, sécurisation et optimisation de machines virtuelles avec Hyper-V et VMware ESXi.
 - **Administration des réseaux — Fondamentaux** : base de gestion d'un réseau d'entreprise.
 - **Intégration distribuée on-premise** : intégration de services conteneurisés, annuaire, fichiers, messagerie, PKI, sauvegarde, supervision et reprise d'activité.
+- **[Supervision et optimisation des performances](supervision-optimisation-performances/README.md)** : observabilité avec Prometheus, Grafana et ELK, supervision Linux et Windows, alertes, diagnostic et optimisation.
 
 ## Objectif
 

@@ -44,3 +44,8 @@ Authentification centralisée et partage de fichiers avec Samba et OpenLDAP.
 - [Concevoir l'architecture Samba AD et LDAP](../../../integration-distribuee-on-premise/it-3/concevoir-architecture-samba-ad-ldap.md)
 - [Intégrer Samba à OpenLDAP](../../../integration-distribuee-on-premise/it-3/integrer-samba-openldap.md)
 - [Créer les espaces de partage Samba](../../../integration-distribuee-on-premise/it-3/creer-espaces-partage-samba.md)
+
+- [Déployer un contrôleur de domaine Samba avec Docker Compose](../../../integration-distribuee-on-premise/it-3/deployer-controleur-domaine-samba-compose.md)
+- [Plan de validation de l'infrastructure](../../../integration-distribuee-on-premise/it-3/plan-validation.md)
+- [Procédures courantes d'administration](../../../integration-distribuee-on-premise/it-3/procedures-administration.md)
+- [Revue de l'itération](../../../integration-distribuee-on-premise/it-3/revue-iteration.md)

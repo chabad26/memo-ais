@@ -23,3 +23,7 @@ formuler une recommandation métier comparant OVHcloud et AWS.
 - la recommandation OVHcloud ou AWS repose sur un cas d'usage concret ;
 - les limites du bare metal et les preuves manquantes sont documentées.
 - le mémo personnel de synthèse est prêt pour le débrief final.
+
+## Pense-bête
+
+- [Termes et gestes à retenir](../../pense-bete/glossaire/integration-distribuee-cloud-iam/it-5.md)

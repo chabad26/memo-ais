@@ -37,3 +37,7 @@ même logique OpenTofu et Ansible, mais contraintes fournisseur différentes.
 - une alerte de supervision est préparée et testable lors d'un prochain déploiement ;
 - une restauration cloud est chronométrée avec RTO/RPO ;
 - les ressources coûteuses sont arrêtées ou supprimées si l'exercice est clos.
+
+## Pense-bête
+
+- [Termes et gestes à retenir](../../pense-bete/glossaire/integration-distribuee-cloud-iam/it-4.md)

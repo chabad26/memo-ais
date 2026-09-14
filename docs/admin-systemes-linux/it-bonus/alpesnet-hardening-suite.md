@@ -286,3 +286,7 @@ Ne jamais désactiver l'authentification par mot de passe SSH sans avoir testé 
 Ne jamais activer UFW sans avoir vérifié que le sous-réseau d'administration est autorisé.
 
 Toujours relancer le script une deuxième fois : l'idempotence se vérifie surtout au second passage.
+
+## Pense-bête
+
+- [Termes et gestes à retenir](../../pense-bete/glossaire/admin-systemes-linux/it-bonus.md)

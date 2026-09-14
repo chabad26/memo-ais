@@ -106,3 +106,8 @@ restent hors du dépôt Git.
 - [Concevoir l'architecture de certification](../../../integration-distribuee-on-premise/it-6/concevoir-architecture-certification.md)
 - [Préparer la sécurisation TLS de la messagerie](../../../integration-distribuee-on-premise/it-4/securiser-messagerie-tls.md)
 - [Pense-bête LDAP - itération 2](it-2.md)
+
+- [Administrer le cycle de vie des certificats](../../../integration-distribuee-on-premise/it-6/administrer-cycle-vie-certificats.md)
+- [Itération 6 - Autorité de certification interne](../../../integration-distribuee-on-premise/it-6/index.md)
+- [Identifier les besoins en certificats numériques](../../../integration-distribuee-on-premise/it-6/inventorier-besoins-certificats.md)
+- [Valider TLS depuis une machine cliente](../../../integration-distribuee-on-premise/it-6/valider-tls-depuis-client.md)

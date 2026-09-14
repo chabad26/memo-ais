@@ -1,0 +1,46 @@
+# Fusionner ce service dans services: et le volume dans volumes: du Compose existant.
+services:
+  logstash-logs:
+    image: docker.elastic.co/logstash/logstash:9.5.3
+    user: "1000:1000"
+    restart: unless-stopped
+    mem_limit: 1536m
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    ports:
+      - "192.168.122.80:5044:5044"
+    environment:
+      LS_JAVA_OPTS: "-Xms512m -Xmx512m -XX:MaxDirectMemorySize=256m"
+      PIPELINE_WORKERS: "1"
+      PIPELINE_BATCH_SIZE: "50"
+      XPACK_MONITORING_ENABLED: "false"
+      LOGSTASH_LOGS_API_KEY: "${LOGSTASH_LOGS_API_KEY:?Renseigner LOGSTASH_LOGS_API_KEY dans .env}"
+    command: ["-f", "/usr/share/logstash/pipeline/endpoints.conf"]
+    volumes:
+      - type: bind
+        source: ./logstash/pipeline/endpoints.conf
+        target: /usr/share/logstash/pipeline/endpoints.conf
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./tls-beats/server
+        target: /usr/share/logstash/config/beats-tls
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ./certs/http_ca.crt
+        target: /usr/share/logstash/config/certs/http_ca.crt
+        read_only: true
+        bind:
+          create_host_path: false
+      - logstash_logs_data:/usr/share/logstash/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  logstash_logs_data:

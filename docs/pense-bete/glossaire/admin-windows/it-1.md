@@ -33,3 +33,4 @@ Plateforme LABO, Hyper-V, Windows Server Core, AD DS et DNS.
 - [Préparer AD DS et DNS](../../../admin-windows/it-1/activite2-preparer-srv-ad01-ad-ds-dns.md)
 - [Promouvoir le contrôleur de domaine](../../../admin-windows/it-1/activite3-promouvoir-srv-ad01-controleur-domaine.md)
 
+- [Fiche d'installation - LABO et SRV-AD01](../../../admin-windows/it-1/fiche-installation-labo-srv-ad01.md)

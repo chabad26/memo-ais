@@ -46,3 +46,7 @@ Supervision de l'infrastructure avec Elasticsearch, Kibana et Filebeat.
 - [Configurer la collecte Filebeat](../../../integration-distribuee-on-premise/it-7/configurer-collecte-filebeat.md)
 - [Analyser un incident avec les journaux centralisés](../../../integration-distribuee-on-premise/it-7/analyser-incident-journaux-centralises.md)
 - [Définir le plan d'alertes](../../../integration-distribuee-on-premise/it-7/definir-plan-alertes-exploitation.md)
+
+- [Concevoir une architecture de centralisation des journaux](../../../integration-distribuee-on-premise/it-7/concevoir-centralisation-journaux.md)
+- [Créer les tableaux de bord Kibana](../../../integration-distribuee-on-premise/it-7/creer-tableaux-bord-kibana.md)
+- [Identifier les besoins de supervision](../../../integration-distribuee-on-premise/it-7/identifier-besoins-supervision.md)

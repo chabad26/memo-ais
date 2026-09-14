@@ -1,0 +1,35 @@
+PUT /_index_template/alpesnet-journaux
+{
+  "index_patterns": ["observabilite-linux", "observabilite-windows"],
+  "priority": 200,
+  "template": {
+    "settings": {"number_of_shards": 1, "number_of_replicas": 0},
+    "mappings": {
+      "properties": {
+        "@timestamp": {"type": "date"},
+        "message": {"type": "text"},
+        "host": {"properties": {"name": {"type": "keyword"}, "ip": {"type": "ip"}}},
+        "agent": {"properties": {"type": {"type": "keyword"}, "version": {"type": "keyword"}}},
+        "fields": {"properties": {"lab_source": {"type": "keyword"}}},
+        "event": {"properties": {"code": {"type": "keyword"}, "provider": {"type": "keyword"}}},
+        "winlog": {"properties": {"channel": {"type": "keyword"}, "provider_name": {"type": "keyword"}, "record_id": {"type": "keyword"}}}
+      }
+    }
+  }
+}
+
+PUT /observabilite-linux
+
+PUT /observabilite-windows
+
+POST /_security/api_key
+{
+  "name": "logstash-journaux-alpesnet",
+  "expiration": "7d",
+  "role_descriptors": {
+    "ingestion_journaux": {
+      "cluster": ["monitor"],
+      "indices": [{"names": ["observabilite-linux", "observabilite-windows"], "privileges": ["create_doc", "auto_configure"]}]
+    }
+  }
+}

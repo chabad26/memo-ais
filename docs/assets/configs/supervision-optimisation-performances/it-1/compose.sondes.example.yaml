@@ -1,0 +1,21 @@
+# Exemple à fusionner dans compose.yaml : ne remplace pas les autres services.
+services:
+  blackbox:
+    image: quay.io/prometheus/blackbox-exporter:v0.28.0
+    restart: unless-stopped
+    mem_limit: 128m
+    ports:
+      - "127.0.0.1:9115:9115"
+    volumes:
+      - type: bind
+        source: ./blackbox/blackbox.yml
+        target: /config/blackbox.yml
+        read_only: true
+        bind:
+          create_host_path: false
+    command: ["--config.file=/config/blackbox.yml"]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

@@ -78,7 +78,31 @@ et preuves de validation.
 | Securite | Secrets absents de Git, pare-feu actif, acces SSH autorise. |
 | Ecart | Blocage compte, quota, paiement, region, image ou provider documente. |
 
+## Compléments à retenir
+
+| Notion | Repère |
+| --- | --- |
+| Réseau privé | Séparer les échanges internes des accès publics ; limiter SSH à l’adresse d’administration autorisée. |
+| Backend distant | Partager et protéger l’état OpenTofu ; vérifier ses dépendances avant nettoyage. |
+| Idempotence | Rejouer Ansible et vérifier que la configuration conforme ne change plus. |
+| DNS et répartition de charge | La résolution de nom et la distribution des requêtes remplissent des rôles différents. |
+| Trois VM | Répartir les services et vérifier leurs communications inter-hôtes. |
+| Infomaniak | Adapter le provisionnement au fournisseur, puis réutiliser les rôles Ansible. |
+| Bare metal | Variante sur serveur physique dédié, distincte du Public Cloud ; consulter les limites de la fiche. |
+
+Les noms et résultats présents dans les preuves ci-dessus décrivent le laboratoire historique. Ils ne constituent pas un inventaire de ressources encore actives.
+
 ## Docs associees
 
 - [Vue d'ensemble de l'iteration 2](../../../integration-distribuee-cloud-iam/it-2/index.md)
 - [Deployer et automatiser OVH](../../../integration-distribuee-cloud-iam/it-2/deployer-automatiser-ovh.md)
+
+- [Automatiser avec Ansible](../../../integration-distribuee-cloud-iam/it-2/automatiser-avec-ansible.md)
+- [Bonus - Déployer un serveur bare metal chez OVHcloud](../../../integration-distribuee-cloud-iam/it-2/bonus-deploiement-bare-metal-ovh.md)
+- [Comprendre l'IaC et le cycle OpenTofu](../../../integration-distribuee-cloud-iam/it-2/comprendre-iac-cycle-opentofu.md)
+- [Construire un réseau isolé OVH à la main](../../../integration-distribuee-cloud-iam/it-2/construire-reseau-isole-ovh.md)
+- [Déployer et automatiser Infomaniak](../../../integration-distribuee-cloud-iam/it-2/deployer-automatiser-infomaniak.md)
+- [Déployer le socle on-premise sur trois VM OVH](../../../integration-distribuee-cloud-iam/it-2/deployer-socle-on-premise-sur-trois-vm.md)
+- [DNS et répartition de charge cloud](../../../integration-distribuee-cloud-iam/it-2/dns-repartition-charge-cloud.md)
+- [Playbook et versionnement](../../../integration-distribuee-cloud-iam/it-2/playbook-versionnement-service.md)
+- [Utiliser le stockage objet OVH comme backend OpenTofu](../../../integration-distribuee-cloud-iam/it-2/stockage-objet-backend-opentofu.md)

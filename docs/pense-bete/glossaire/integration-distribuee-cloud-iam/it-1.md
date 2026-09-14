@@ -2,9 +2,7 @@
 
 ## Sujet
 
-Preparation de la migration cloud de l'infrastructure DIST-01a : comparaison
-OVHcloud, AWS et Scaleway, analyse des responsabilites cloud, estimation des
-couts, cadrage juridique et preparation des outils d'automatisation.
+Préparation de la migration cloud de DIST-01a : pratique sur **OVHcloud et Infomaniak**, comparaison documentaire avec AWS et Scaleway, responsabilités, coûts et préparation des outils.
 
 Cette iteration ne deploye pas encore les ressources cloud. Elle prepare les
 comptes, les outils, les hypotheses et les livrables de decision.
@@ -14,6 +12,7 @@ comptes, les outils, les hypotheses et les livrables de decision.
 | Terme | Definition courte |
 | --- | --- |
 | OVHcloud | Fournisseur cloud europeen utilise comme option principale de souverainete. |
+| Infomaniak | Second fournisseur retenu pour la pratique du module. |
 | AWS | Fournisseur cloud non europeen utilise pour comparer l'ecosysteme, les couts et les contraintes juridiques. |
 | Scaleway | Fournisseur souverain ajoute comme alternative economique et technique. |
 | IaaS | Modele ou le fournisseur gere l'infrastructure physique et la virtualisation, tandis que le client administre les VM, l'OS, les services et les donnees. |
@@ -40,7 +39,7 @@ comptes, les outils, les hypotheses et les livrables de decision.
 | Manipulation | Commande ou action |
 | --- | --- |
 | Verifier OVHcloud | Creer ou verifier le compte OVH, puis tester l'API publique avec `curl -s https://api.ovh.com/1.0/ \| head -20`. |
-| Verifier AWS | Creer ou verifier le compte AWS, installer l'AWS CLI, puis controler `aws --version` et `aws configure list` sans afficher de secret. |
+| Préparer le second fournisseur | Vérifier le projet et les accès Infomaniak ; AWS reste une comparaison documentaire dans ce parcours. |
 | Installer OpenTofu | Installer l'outil puis verifier `tofu version`. |
 | Installer Ansible | Installer le paquet puis verifier `ansible --version`. |
 | Installer Git | Verifier `git --version` et versionner les livrables de migration. |
@@ -84,3 +83,5 @@ comptes, les outils, les hypotheses et les livrables de decision.
 - [Rediger une note de cadrage de migration](../../../integration-distribuee-cloud-iam/it-1/rediger-note-cadrage-migration.md)
 - [Lire et interpreter un SLA cloud](../../../integration-distribuee-cloud-iam/it-1/lire-interpreter-sla-cloud.md)
 - [Produire les livrables DIST01b - Plan de migration](../../../integration-distribuee-cloud-iam/it-1/produire-livrables-dist01b-plan-migration.md)
+
+- [Fiche SLA et circuit d'escalade](../../../integration-distribuee-cloud-iam/it-1/fiche-sla-circuit-escalade.md)

@@ -116,3 +116,5 @@ Avant de recharger SSH ou d'activer UFW, garder la session active ouverte et tes
 - [Durcissement Linux AlpesNet](../../../admin-systemes-linux/it-4/durcissement-linux-alpesnet.md)
 - [Rapport de durcissement Linux AlpesNet](../../../admin-systemes-linux/it-4/rapport-durcissement-linux-alpesnet.md)
 - [Script automatisation Itération 4](../../../admin-systemes-linux/it-4/script-automatisation-it4.md)
+
+- [Rapport automatique - Iteration 4 AlpesNet](../../../admin-systemes-linux/it-4/rapport-it4-20260626_120855.md)

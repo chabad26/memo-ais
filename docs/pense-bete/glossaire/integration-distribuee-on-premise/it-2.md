@@ -167,3 +167,11 @@ Les groupes répondent à la question « à quelles équipes ou ressources cet u
 
 L'activité actuelle est une conception : aucune installation ni création réelle ne doit être faite avant validation du formateur.
 
+- [Plan de Continuité d'Activité (PCA)](../../../integration-distribuee-on-premise/it-2/PCA.md)
+- [Plan de Reprise d'Activité (PRA)](../../../integration-distribuee-on-premise/it-2/PRA.md)
+- [Administrer OpenLDAP avec LDAP Account Manager](../../../integration-distribuee-on-premise/it-2/administrer-openldap-avec-lam.md)
+- [Découvrir le PCA et le PRA de l'entreprise](../../../integration-distribuee-on-premise/it-2/analyser-pca-pra.md)
+- [Construire la structure LDAP de l'entreprise avec LAM](../../../integration-distribuee-on-premise/it-2/construire-structure-annuaire-lam.md)
+- [Déployer un serveur OpenLDAP avec Docker Compose](../../../integration-distribuee-on-premise/it-2/deployer-openldap-compose.md)
+- [Étude de conception d'un annuaire LDAP pour une PME](../../../integration-distribuee-on-premise/it-2/etude-conception-annuaire-ldap-pme.md)
+- [Gérer le cycle de vie des identités LDAP](../../../integration-distribuee-on-premise/it-2/gerer-cycle-de-vie-identites-ldap.md)

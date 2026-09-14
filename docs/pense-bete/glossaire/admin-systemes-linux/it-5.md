@@ -177,3 +177,5 @@ Un écart de racine web, par exemple `/var/www/intranet.alpesnet.local/html` au 
 - [Autonomie 3 - Déploiement Nginx sécurisé AlpesNet](../../../admin-systemes-linux/it-5/autonomie-3-nginx-securise-alpesnet.md)
 - [Débriefing Nginx - comparer et améliorer](../../../admin-systemes-linux/it-5/debriefing-nginx-reference-alpesnet.md)
 - [Script Itération 5](../../../assets/scripts/admin-systemes-linux/it-5/alpesnet-it5-sauvegarde.sh)
+
+- [Rapport automatique - Iteration 5 AlpesNet](../../../admin-systemes-linux/it-5/rapport-it5-20260630_162804.md)

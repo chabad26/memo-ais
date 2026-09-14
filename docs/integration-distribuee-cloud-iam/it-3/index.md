@@ -28,3 +28,7 @@ relier les droits accordés à une mission réelle.
 - le MFA protège les comptes à privilèges ;
 - aucun mot de passe, token ou secret n'est publié dans Git ;
 - les choix IAM sont justifiés et accompagnés de preuves non sensibles.
+
+## Pense-bête
+
+- [Termes et gestes à retenir](../../pense-bete/glossaire/integration-distribuee-cloud-iam/it-3.md)

@@ -45,3 +45,8 @@ Sauvegarde, contrôle et restauration de l'infrastructure avec BorgBackup.
 - [Mettre en œuvre la sauvegarde BorgBackup](../../../integration-distribuee-on-premise/it-5/mettre-en-oeuvre-sauvegarde-borg.md)
 - [Restaurer une sauvegarde BorgBackup](../../../integration-distribuee-on-premise/it-5/restaurer-sauvegarde-borg.md)
 - [Automatiser et contrôler les sauvegardes](../../../integration-distribuee-on-premise/it-5/automatiser-sauvegardes-borg.md)
+
+- [Découvrir BorgBackup](../../../integration-distribuee-on-premise/it-5/decouvrir-borgbackup.md)
+- [Identifier les exigences de sauvegarde](../../../integration-distribuee-on-premise/it-5/identifier-exigences-sauvegarde.md)
+- [Valider la stratégie de sauvegarde](../../../integration-distribuee-on-premise/it-5/valider-strategie-sauvegarde.md)
+- [Vérifier les sauvegardes BorgBackup](../../../integration-distribuee-on-premise/it-5/verifier-sauvegardes-borg.md)

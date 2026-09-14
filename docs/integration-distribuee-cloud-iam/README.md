@@ -136,3 +136,11 @@ Les livrables du module doivent permettre de prouver la démarche, pas seulement
 Tu dois être capable de migrer, automatiser et sécuriser une infrastructure sur deux fournisseurs cloud différents, puis de défendre chaque choix devant un jury.
 
 La compétence visée n'est pas seulement de "faire marcher" une plateforme cloud. Elle consiste à construire une trajectoire de migration claire, automatisée, sécurisée, documentée et justifiable.
+
+## Pense-bête du module
+
+- [Itération 1](../pense-bete/glossaire/integration-distribuee-cloud-iam/it-1.md)
+- [Itération 2](../pense-bete/glossaire/integration-distribuee-cloud-iam/it-2.md)
+- [Itération 3](../pense-bete/glossaire/integration-distribuee-cloud-iam/it-3.md)
+- [Itération 4](../pense-bete/glossaire/integration-distribuee-cloud-iam/it-4.md)
+- [Itération 5](../pense-bete/glossaire/integration-distribuee-cloud-iam/it-5.md)

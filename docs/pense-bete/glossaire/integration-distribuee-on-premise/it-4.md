@@ -43,3 +43,10 @@ Messagerie interne avec Postfix, Dovecot, Roundcube et authentification LDAP.
 - [Concevoir l'architecture de messagerie](../../../integration-distribuee-on-premise/it-4/concevoir-architecture-messagerie.md)
 - [Préparer la sécurisation TLS](../../../integration-distribuee-on-premise/it-4/securiser-messagerie-tls.md)
 - [Authentifier la messagerie avec LDAP](../../../integration-distribuee-on-premise/it-4/authentification-ldap-messagerie.md)
+
+- [Déploiement de l'infrastructure de messagerie](../../../integration-distribuee-on-premise/it-4/deployer-messagerie.md)
+- [Diagnostiquer la suppression d'une boîte Inbox](../../../integration-distribuee-on-premise/it-4/diagnostiquer-suppression-inbox.md)
+- [Politique de messagerie](../../../integration-distribuee-on-premise/it-4/politique-messagerie.md)
+- [Préparer le déploiement de la messagerie](../../../integration-distribuee-on-premise/it-4/preparer-deploiement-messagerie.md)
+- [Rapport de validation et corrections de la messagerie](../../../integration-distribuee-on-premise/it-4/rapport-validation-corrections-messagerie.md)
+- [Plan de validation de la messagerie](../../../integration-distribuee-on-premise/it-4/validation-mail.md)
