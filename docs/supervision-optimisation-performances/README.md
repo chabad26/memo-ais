@@ -32,6 +32,11 @@ Ce module vise à mettre en place une plateforme d'observabilité pour suivre un
 
 - [Ajouter une source de logs](it-1/ajouter-source-logs.md)
 
+- [Construire un premier dashboard Grafana](it-1/construire-dashboard-grafana.md)
+- [Construire un dashboard Kibana](it-1/construire-dashboard-kibana.md)
+- [Améliorer les dashboards — Livrable L2](it-1/ameliorer-dashboards.md)
+- [Simulation croisée — Vérifier le dispositif d’observabilité](it-1/simulation-croisee-observabilite.md)
+
 ## Sommaire prévisionnel
 
 Cette progression est proposée à partir des objectifs du module. Les fiches et les itérations seront ajoutées au fil des activités ; les thèmes ci-dessous ne représentent pas des travaux déjà réalisés.

@@ -189,5 +189,95 @@ Le 14 septembre 2026, les adresses ont été réservées dans le réseau libvirt
 - Vérifier les réservations sur le laptop : `virsh -c qemu:///system net-dumpxml default --inactive`.
 - Vérifier les baux : `virsh -c qemu:///system net-dhcp-leases default`.
 - Les invités restent en DHCP. Conserver les MAC ; recontrôler l’association si une VM est recréée.
-- Le renouvellement après redémarrage du laptop reste à observer ; ne pas confondre ce futur contrôle avec la persistance déjà vérifiée dans le XML.
+- Le 15 septembre 2026, l’utilisateur confirme les IP correctes à la reprise ; la persistance XML avait été vérifiée la veille. Aucun nouveau relevé de bail n’est joint.
 - [Associations MAC/IP et sauvegarde](../../../supervision-optimisation-performances/it-1/identifier-elements-observer.md#adresses-stabilisees-par-reservation-dhcp).
+
+## Simulation croisée — préparation et observation
+
+[Feuille de simulation croisée](../../../supervision-optimisation-performances/it-1/simulation-croisee-observabilite.md). Exercice proposé, non encore réalisé.
+
+- Vérifier l’état nominal du jour : métriques récentes, deux sondes à 1, événements récents des deux sources, dashboard lisible.
+- Préparer trois événements : disponibilité, performance, journalisation. Conserver choix et horaires dans une fiche privée, hors du site et du dépôt partagé.
+- Le binôme observateur connaît le périmètre, pas les actions ; noter observations et hypothèses avant de révéler le scénario.
+- `up` mesure la collecte ; `probe_success` mesure le résultat du contrôle. Pour le CPU, utiliser le taux d’évolution du compteur et une unité en pourcentage.
+- Prévoir durée maximale et restauration ; maintenir les collecteurs actifs. Revenir au nominal entre les essais de cette première simulation.
+- Délai d’observation = première détection humaine moins heure réelle de l’action ; noter « non mesuré » si les horaires manquent.
+- Après comparaison, améliorer la configuration ou la présentation et rejouer le contrôle concerné. Ne pas présenter un autotest comme un exercice à l’aveugle.
+
+## Construire un dashboard Grafana
+
+- [JSON prêt à importer](../../../assets/configs/supervision-optimisation-performances/it-1/grafana/alpesnet-observation-croisee.json) : 12 panneaux, actualisation 30 s, période 1 h.
+- Grafana via tunnel SSH, port 3000 ; source Prometheus : `http://prometheus:9090` depuis le conteneur Grafana.
+- **Dashboards → New → Import**, charger le fichier, sélectionner la source Prometheus. Import/rendu à confirmer dans l’interface.
+- CPU en pourcentage moyen sur 2 minutes ; mémoire non disponible et stockage occupé en pourcentage de 0 à 100. Durée des sondes en secondes. Les sondes affichent « Sans données » quand leur collecte échoue.
+- Les journaux restent dans Discover via le tunnel 5601 ; le dashboard ne contient aucun scénario confidentiel.
+
+- [Feuille dédiée au dashboard](../../../supervision-optimisation-performances/it-1/construire-dashboard-grafana.md) : import et construction manuelle, choix des KPI, unités, périodes, actualisation et tests. La simulation croisée reste une activité séparée.
+
+### Dashboard manuel — capture du 15 septembre
+
+Neuf panneaux sont présents ; la construction se fait à la main, le JSON reste facultatif. Avant validation : remplacer les métriques mémoire brutes, retirer les anciennes séries du disque Windows, vérifier les valeurs CPU négatives et afficher les états séparément sans somme/empilement. Finaliser unités, légendes, actualisation 30 s et enregistrement. Ne pas ajouter de panneaux uniquement pour augmenter leur nombre.
+
+
+## Construire un dashboard Kibana
+
+- [Feuille de construction manuelle](../../../supervision-optimisation-performances/it-1/construire-dashboard-kibana.md) : cinq panneaux illustrés sur 24 h ; classement étendu à Linux, collecte actuelle à valider.
+- Accès via tunnel : `http://127.0.0.1:5601` ; supervision `192.168.122.80`.
+- Vue **Journaux AlpesNet**, index `observabilite-linux,observabilite-windows`, date `@timestamp`.
+- Cinq panneaux : total, évolution temporelle, sources, types d’événements et tableau Discover trié du plus récent au plus ancien.
+- Compter les documents avec **Count of records** ; ne pas sommer `event.code` et ne pas confondre événements et incidents.
+- `fields.lab_source` distingue Linux/Windows ; `host.name` identifie la machine. Les niveaux ne sont pas encore harmonisés : classement par types avec filtres KQL et catégorie « Autres ».
+- Enregistrer la session Discover sans filtre de marqueur, puis l’ajouter depuis la bibliothèque du dashboard.
+- Dernière heure, actualisation 30 s ; mêmes filtres et période pour tous les panneaux. Une actualisation ne prouve pas la fraîcheur de la collecte.
+- Les anciens tests datent du 14 septembre 2026, vers 16:06 et 16:13 heure de Paris : adapter la période ou produire de nouveaux marqueurs.
+
+### Kibana — libellés français et preuves sur 24 h
+
+- **Indicateur** = Metric ; **Compte → Enregistrements** = Count of records ; **Camembert** pour la répartition ; **Valeurs les plus élevées** = Top values.
+- Pour les types, utiliser **Vertical à barres**, axe horizontal **Filtres**, axe vertical **Compte → Enregistrements**.
+- Cinq captures du 15 septembre montrent les événements du 14 : 268 documents = 229 Linux + 39 Windows, et chaque marqueur historique est retrouvé une fois.
+- Le classement actuel sélectionne 40 documents : tests et événements Windows. L’utilisateur confirme que « Autres » cible Windows ; renommer cette catégorie « Autres événements Windows ».
+- Ajouter « Autres événements Linux » avec `fields.lab_source: "linux" and not log.syslog.appname: "alpesnet-lab"`. Sur les mêmes données, attendre 228 événements supplémentaires, soit 268 au total. Ajout visible sur la capture de 10:25 : quatre barres, total 268, infobulle « Autres événements Windows » à 19. Relever les quatre valeurs exactes au survol pour confirmer leur somme.
+- Une fenêtre de 24 h prouve la consultation de l’historique, pas la collecte actuelle : générer de nouveaux tests pour valider cette dernière.
+
+- Après correction, certains libellés des catégories sont masqués : élargir le panneau ou raccourcir les étiquettes pour garder les quatre catégories lisibles.
+
+## Améliorer les dashboards — Livrable L2
+
+- [Feuille L2 et validation individuelle CA-05](../../../supervision-optimisation-performances/it-1/ameliorer-dashboards.md).
+- Un panneau doit répondre à une question d’exploitation : identifier sa source, son calcul, son unité, son périmètre et ses limites.
+- Corriger les données et calculs avant les titres et couleurs ; retirer les doublons, expliciter les endpoints, distinguer absence de données et succès.
+- Grafana : reprendre les ajustements des neuf panneaux ; leur validation finale reste à confirmer.
+- Kibana : quatre catégories présentes ; rendre tous les libellés lisibles, relever les décomptes et distinguer consultation sur 24 h et collecte actuelle.
+- Comparer avant/après sur la même période et avec les mêmes filtres ; vérifier les deux endpoints et l’accès aux données source.
+- L2 : deux dashboards enregistrés et accessibles, dossier de configuration, preuves datées et amélioration justifiée. Présentation individuelle avec au moins deux choix de visualisation expliqués.
+- Compléter l’auto-évaluation avant de demander la validation ; la préparation du dossier ne vaut pas validation du formateur.
+
+- [Corrections Grafana à saisir](../../../supervision-optimisation-performances/it-1/ameliorer-dashboards.md#mode-demploi-ou-coller-les-requetes) : neuf requêtes PromQL, titres, légendes, unités et réglages par panneau. Coller dans **Queries → Code**, remplacer les anciennes requêtes du panneau.
+- [Corrections Kibana à saisir](../../../supervision-optimisation-performances/it-1/ameliorer-dashboards.md#mode-demploi-champs-a-modifier-dans-kibana) : champs en français, quatre filtres KQL, titres et recherches de contrôle. Distinguer **Formule** (`count()`), filtres de catégories et barre KQL globale.
+
+### L2 — captures après changements
+
+- Grafana, capture de 11:11 : deux états distincts pour la collecte et deux pour les sondes ; mémoire affichée autour de 16–18. Calculs à confirmer, unités et légendes à finaliser ; le disque Windows contient encore les tailles de volumes.
+- Kibana, capture de 11:19 : quatre catégories lisibles, tableau à cinq colonnes trié par date décroissante, 268 documents sur 24 h. Titres et hauteur du compteur à finaliser.
+- Les écrans restent en édition ; la fraîcheur de la collecte, l’enregistrement final et la réouverture ne sont pas prouvés par ces captures.
+- [Captures et bilan des améliorations](../../../supervision-optimisation-performances/it-1/ameliorer-dashboards.md#captures-des-ameliorations-15-septembre-2026).
+
+### Grafana — emplacement exact du nom de légende
+
+- **Sous le graphique : Queries → requête A → Options → Legend → Auto → Custom**, puis saisir par exemple `Windows Core — {{volume}}` et cliquer sur **Run queries**.
+- Le menu **Legend** à droite (Visibility, List/Table, Bottom/Right, Values) règle la présentation ; il ne contient pas ce champ Custom.
+- [Repères détaillés dans L2](../../../supervision-optimisation-performances/it-1/ameliorer-dashboards.md#trouver-le-champ-de-legende-sous-le-graphique).
+
+### L2 — dernières captures de 11:36 et 11:43
+
+- Grafana : titres explicites, états nommés, disque C: seul autour de 30, légendes des services et unités temporelles visibles. Finaliser les unités % et bornes 0–100 des ressources, ainsi que les textes des états si retenus.
+- Kibana : titres des répartitions, couleurs Linux/Windows distinctes et compteur 268 entièrement visible. Ajouter le titre de l’histogramme, redonner de la largeur au tableau et retirer l’arrière-plan du compteur s’il n’aide pas la lecture.
+- Les deux captures restent en édition et ne valident ni l’enregistrement final ni la fraîcheur de collecte. Les anciennes remarques décrivent chaque étape datée.
+
+### L2 — bilan visuel à 11:48
+
+- Grafana : six graphiques de ressources avec bornes 0–100 et titres en %, états distincts et nommés, durées avec unités.
+- Kibana : titre « Évolution du nombre d’événements » ajouté, tableau élargi et compteur 268 visible sur 24 h.
+- Les anciens points sur les échelles, ce titre et la largeur du tableau sont levés par les nouvelles captures. Enregistrement/réouverture et validation de collecte restent à vérifier séparément.
+- [Dernières preuves de présentation L2](../../../supervision-optimisation-performances/it-1/ameliorer-dashboards.md#bilan-visuel-a-1148-echelles-et-titres-harmonises).

@@ -435,6 +435,10 @@ nav:
             - Intégrer Linux et Windows Server Core: supervision-optimisation-performances/it-1/integrer-endpoints-linux-windows.md
             - Créer et configurer les sondes: supervision-optimisation-performances/it-1/creer-configurer-sondes.md
             - Ajouter une source de logs: supervision-optimisation-performances/it-1/ajouter-source-logs.md
+            - Construire un dashboard Grafana: supervision-optimisation-performances/it-1/construire-dashboard-grafana.md
+            - Construire un dashboard Kibana: supervision-optimisation-performances/it-1/construire-dashboard-kibana.md
+            - Améliorer les dashboards — Livrable L2: supervision-optimisation-performances/it-1/ameliorer-dashboards.md
+            - Simulation croisée d’observabilité: supervision-optimisation-performances/it-1/simulation-croisee-observabilite.md
 
 
 

@@ -27,7 +27,7 @@ Le 14 septembre 2026, les trois VM actives ont été vérifiées sur le réseau 
 | `debian13` | `52:54:00:b8:f6:3c` | `192.168.122.158` |
 | `win2k25` | `52:54:00:7d:3e:1b` | `192.168.122.25` |
 
-Les réservations ont été ajoutées à chaud et dans la configuration persistante, sans redémarrage du réseau ni des VM. Le réseau `default` est actif, persistant et en démarrage automatique. Les baux actuels correspondent aux réservations. Le prochain renouvellement après redémarrage du laptop n’a pas encore été observé.
+Les réservations ont été ajoutées à chaud et dans la configuration persistante, sans redémarrage du réseau ni des VM. Le réseau `default` est actif, persistant et en démarrage automatique. Les baux actuels correspondent aux réservations. Le 15 septembre 2026, l’utilisateur confirme que les IP sont restées correctes à la reprise ; aucun nouveau relevé de bail n’a été collecté dans cette étape.
 
 Commandes appliquées sur **le laptop**, après vérification de l’absence de réservation existante :
 

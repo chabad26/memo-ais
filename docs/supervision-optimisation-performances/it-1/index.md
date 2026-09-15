@@ -17,6 +17,12 @@ Cette première itération porte sur la mise en place d'une observation centrali
 
 - [Ajouter une source de logs](ajouter-source-logs.md) : journald, événements Windows, collecte TLS et recherche dans ELK.
 
+- [Construire un premier dashboard Grafana](construire-dashboard-grafana.md) : KPI, visualisations, import, unités et validation sur Linux/Windows.
+- [Construire un dashboard Kibana](construire-dashboard-kibana.md) : cinq panneaux, événements Linux/Windows, recherches et validation.
+- [Améliorer les dashboards — Livrable L2](ameliorer-dashboards.md) : audit, améliorations, preuves et validation individuelle CA-05.
+
+- [Simulation croisée — Vérifier le dispositif d’observabilité](simulation-croisee-observabilite.md) : état nominal, KPI, événements confidentiels et observation par un autre binôme.
+
 [Retour au module](../README.md)
 
 ## Pense-bête
