@@ -1,0 +1,68 @@
+# Ajouter ces blocs sous la liste scrape_configs existante.
+  - job_name: lab_app_inject19
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['lab-app:8080']
+        labels:
+          endpoint: inject-lab
+          scenario: "19"
+
+  - job_name: sonde_inject19_app
+    scrape_interval: 15s
+    scrape_timeout: 5s
+    metrics_path: /probe
+    params:
+      module: [http_inject19]
+    static_configs:
+      - targets: ['http://lab-app:8080/health']
+        labels:
+          endpoint: inject-lab
+          scenario: "19"
+          service: lab-app
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: sonde_inject19_dependency
+    scrape_interval: 15s
+    scrape_timeout: 5s
+    metrics_path: /probe
+    params:
+      module: [http_inject19]
+    static_configs:
+      - targets: ['http://lab-dependency:8081/health']
+        labels:
+          endpoint: inject-lab
+          scenario: "19"
+          service: lab-dependency
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: sonde_inject19_feature
+    scrape_interval: 15s
+    scrape_timeout: 5s
+    metrics_path: /probe
+    params:
+      module: [http_inject19]
+    static_configs:
+      - targets: ['http://lab-app:8080/feature']
+        labels:
+          endpoint: inject-lab
+          scenario: "19"
+          service: lab-app-feature
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115

@@ -1,0 +1,8 @@
+# Ajouter sous la liste scrape_configs existante.
+  - job_name: lab_simulator
+    scrape_interval: 5s
+    scrape_timeout: 3s
+    static_configs:
+      - targets: ['lab-simulator:8083']
+        labels:
+          endpoint: inject-lab

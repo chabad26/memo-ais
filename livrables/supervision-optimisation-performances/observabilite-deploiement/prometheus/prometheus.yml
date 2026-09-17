@@ -1,0 +1,156 @@
+global:
+  scrape_interval: 30s
+  scrape_timeout: 10s
+
+rule_files:
+  - /etc/prometheus/rules/*.yml
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ['alertmanager:9093']
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ['localhost:9090']
+  - job_name: linux
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['192.168.122.158:9100']
+        labels:
+          endpoint: debian
+          os_family: linux
+  - job_name: windows
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['192.168.122.25:9182']
+        labels:
+          endpoint: windows-core
+          os_family: windows
+  - job_name: sonde_linux_http
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    metrics_path: /probe
+    params:
+      module: [http_linux]
+    static_configs:
+      - targets: ['http://192.168.122.158:8080/health.txt']
+        labels:
+          endpoint: debian
+          service: nginx-lab
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: sonde_windows_http
+    scrape_interval: 30s
+    scrape_timeout: 10s
+    metrics_path: /probe
+    params:
+      module: [http_windows]
+    static_configs:
+      - targets: ['http://192.168.122.25:8080/health.txt']
+        labels:
+          endpoint: windows-core
+          service: iis-lab
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: blackbox
+    static_configs:
+      - targets: ['blackbox:9115']
+
+  - job_name: lab_crashloop_inject18
+    scrape_interval: 5s
+    scrape_timeout: 3s
+    static_configs:
+      - targets: ['lab-crashloop:8082']
+        labels:
+          endpoint: inject-lab
+          scenario: "18"
+
+  - job_name: lab_app_inject19
+    scrape_interval: 15s
+    static_configs:
+      - targets: ['lab-app:8080']
+        labels:
+          endpoint: inject-lab
+          scenario: "19"
+
+  - job_name: sonde_inject19_app
+    scrape_interval: 15s
+    scrape_timeout: 5s
+    metrics_path: /probe
+    params:
+      module: [http_inject19]
+    static_configs:
+      - targets: ['http://lab-app:8080/health']
+        labels:
+          endpoint: inject-lab
+          scenario: "19"
+          service: lab-app
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: sonde_inject19_dependency
+    scrape_interval: 15s
+    scrape_timeout: 5s
+    metrics_path: /probe
+    params:
+      module: [http_inject19]
+    static_configs:
+      - targets: ['http://lab-dependency:8081/health']
+        labels:
+          endpoint: inject-lab
+          scenario: "19"
+          service: lab-dependency
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: sonde_inject19_feature
+    scrape_interval: 15s
+    scrape_timeout: 5s
+    metrics_path: /probe
+    params:
+      module: [http_inject19]
+    static_configs:
+      - targets: ['http://lab-app:8080/feature']
+        labels:
+          endpoint: inject-lab
+          scenario: "19"
+          service: lab-app-feature
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox:9115
+
+  - job_name: lab_simulator
+    scrape_interval: 5s
+    scrape_timeout: 3s
+    static_configs:
+      - targets: ['lab-simulator:8083']
+        labels:
+          endpoint: inject-lab

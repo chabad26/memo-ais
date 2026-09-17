@@ -225,3 +225,24 @@ Tableau de décisions, quatre situations retenues, sources et requêtes, conditi
 - Séparer les faits observés, les hypothèses et les éléments effectivement vérifiés.
 - Ne commencer la mise en situation que lorsque les outils de diagnostic nécessaires au scénario sont opérationnels.
 - Conserver des traces ciblées et reproductibles sans secret ni identifiant inutile.
+- Garder le classeur et ses informations `T2/T3` du côté injecteur ; le diagnostiqueur reçoit uniquement la situation professionnelle et `T1` au départ.
+- Avant la passation, vérifier que l’inject choisi possède réellement une métrique, une sonde, une alerte et des journaux exploitables dans le lab.
+- L’injecteur note l’action exacte, l’heure, la limite de sécurité et le retour arrière sans transmettre ces éléments au diagnostiqueur.
+
+## Guide du testeur — Diagnostic autonome
+
+[Feuille dédiée : commandes et pistes remises au diagnostiqueur](../../../supervision-optimisation-performances/it-2/guide-testeur-diagnostic.md).
+
+### Manipulations faites
+
+- Une feuille de diagnostic sans mécanisme d’injection ni réponses `T2/T3` a été préparée pour le testeur.
+- La réalisation d’un nouveau diagnostic avec cette feuille reste à démontrer lors de la mise en situation.
+
+### Gestes et commandes à retenir
+
+- Partir de l’alerte, vérifier `up`, puis choisir les métriques liées au signal.
+- Comparer service principal, fonctionnalité et dépendance avant de conclure.
+- Consulter les journaux Docker des mini-services et les notifications `firing`/`resolved` du webhook.
+- Écrire plusieurs hypothèses et rechercher une donnée contradictoire avant toute correction.
+- Dans un scénario simulé, proposer l’action technique ; l’injecteur applique le rétablissement caché.
+- Refaire les mêmes contrôles après intervention et observer une période stable supérieure au délai `for`.

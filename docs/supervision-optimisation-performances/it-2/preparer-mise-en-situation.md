@@ -8,6 +8,13 @@ Mettre en œuvre de manière autonome une démarche de détection, de diagnostic
 
 Cette feuille prépare les outils et les traces nécessaires. Elle ne décrit pas encore l’incident qui sera déclenché. Une fois la préparation validée, le formateur se retire complètement de la mise en situation : l’apprenant conduit seul le diagnostic et consigne ses décisions.
 
+Deux rôles doivent rester séparés :
+
+- **l’injecteur** choisit et provoque le défaut, conserve la cause réelle et prépare le retour arrière ;
+- **le diagnostiqueur** reçoit uniquement la situation professionnelle et le signal initial, puis recherche lui-même la cause.
+
+Le classeur d’injection contient des informations réservées à l’injecteur. Il ne doit pas être transmis, affiché ou lié dans la feuille remise au diagnostiqueur : ses colonnes suivantes révèlent les éléments à découvrir et à confirmer.
+
 ## 1. Distinguer preuve antérieure et disponibilité actuelle
 
 Les activités précédentes attestent qu’au **16 septembre 2026**, Prometheus, Grafana, les sondes Blackbox, les journaux centralisés, Alertmanager et le récepteur local ont été utilisés. Le scénario IIS a également produit une alerte `firing`, une notification `resolved` et un retour fonctionnel du site.
@@ -115,6 +122,44 @@ Les captures illustrent une observation ; les exports textuels et les requêtes 
 | La procédure associée à l’alerte du scénario est accessible | V | ☐ | |
 | Le dossier de diagnostic et la chronologie sont prêts | V | ☐ | |
 | Le fuseau horaire de référence est noté | V | ☐ | |
+
+## 6. Préparer l’injection et la passation
+
+Avant toute injection, l’injecteur vérifie que le scénario choisi est réellement observable dans le lab. Une situation décrite dans le classeur ne devient pas automatiquement réalisable : la métrique, la sonde, la règle d’alerte et les journaux nécessaires doivent déjà exister et avoir été testés à l’état nominal.
+
+| Contrôle réservé à l’injecteur | Résultat attendu |
+| --- | --- |
+| Scénario sélectionné | Numéro consigné dans une note non remise au diagnostiqueur |
+| Condition injectée | Action précise, cible et heure prévues |
+| Signal initial | Seul l’élément `T1` sera communiqué au départ |
+| Données de diagnostic | Métrique, sonde et journaux attendus identifiés avant l’exercice |
+| Règle d’alerte | Expression et durée `for` compatibles avec l’injection |
+| État nominal | Valeurs de référence relevées juste avant l’action |
+| Retour arrière | Commande ou procédure testée, ciblée et immédiatement disponible |
+| Limite de sécurité | Durée maximale et condition d’arrêt définies |
+| Horloge | Heure et fuseau communs à l’injecteur et aux sources |
+
+La passation suit cet ordre :
+
+1. relever l’état nominal et l’heure de départ ;
+2. appliquer uniquement l’injection choisie et noter exactement l’action réalisée ;
+3. attendre que le signal initial attendu soit réellement visible ;
+4. vérifier que la plateforme de diagnostic reste disponible ;
+5. remettre au diagnostiqueur la situation professionnelle et `T1`, sans fournir la cause, `T2`, `T3` ni la commande d’injection ;
+6. laisser le diagnostiqueur conduire ses recherches et choisir son action ;
+7. ne communiquer un indice prévu qu’au moment défini par le scénario, en consignant l’heure de cette aide ;
+8. interrompre l’exercice et appliquer le retour arrière si la limite de sécurité est atteinte.
+
+L’injecteur conserve séparément le tableau de contrôle suivant :
+
+| Heure | Action ou inject communiqué | Effet attendu | Effet réellement observé | Décision |
+| --- | --- | --- | --- | --- |
+|  | État nominal | Toutes les sources fonctionnent |  | Go / no-go |
+|  | Injection | Apparition du défaut prévu |  | Passation / retour arrière |
+|  | `T1` communiqué | Début du diagnostic autonome |  | Poursuite |
+|  | `T2` éventuel | Information intermédiaire prévue |  | Poursuite |
+|  | `T3` éventuel | Confirmation prévue |  | Action / clôture |
+|  | Retour arrière | Rétablissement technique |  | Vérification finale |
 
 La mise en situation commence lorsque tous les points nécessaires au scénario sont validés. En cas d’échec, consigner le blocage et rétablir le prérequis concerné avant le retrait du formateur : un défaut de l’outil de diagnostic ne doit pas être confondu avec l’incident étudié.
 

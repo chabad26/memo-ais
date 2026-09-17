@@ -1,0 +1,9 @@
+# Ajouter ce module sous la clé modules existante de blackbox/blackbox.yml.
+  http_inject19:
+    prober: http
+    timeout: 4s
+    http:
+      method: GET
+      preferred_ip_protocol: ip4
+      follow_redirects: false
+      valid_status_codes: [200]

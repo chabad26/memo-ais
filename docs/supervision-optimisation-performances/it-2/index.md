@@ -26,6 +26,8 @@ Cette itération transforme les données de supervision en alertes exploitables,
 
 - [Prendre en charge l’incident](prendre-en-charge-incident.md) : conduire le diagnostic inconnu de bout en bout, corréler les sources, agir et conserver les preuves du retour à la normale.
 
+- [Guide du testeur — Diagnostiquer l’incident injecté](guide-testeur-diagnostic.md) : commandes de consultation, requêtes PromQL, journaux et démarche de résolution sans révéler les injects.
+
 Le test CPU est documenté jusqu’au retour au nominal. Le cycle IIS est attesté de l’arrêt au rétablissement, avec `firing` et `resolved` reçus par le webhook. Kibana fournit un événement HttpService cohérent avec le retrait des URL HTTP. Les règles de collecte et de stockage et les variations temporaires restent à tester.
 
 ## Réutilisation et pense-bête

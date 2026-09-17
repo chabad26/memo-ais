@@ -52,6 +52,7 @@ Ce module vise à mettre en place une plateforme d'observabilité pour suivre un
 - [Vérifier le retour à la normale](it-2/verifier-retour-normale.md)
 - [Préparer la mise en situation — Diagnostic autonome](it-2/preparer-mise-en-situation.md)
 - [Prendre en charge l’incident](it-2/prendre-en-charge-incident.md)
+- [Guide du testeur — Diagnostiquer l’incident injecté](it-2/guide-testeur-diagnostic.md)
 
 ## Sommaire prévisionnel
 

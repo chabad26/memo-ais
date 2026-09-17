@@ -1,0 +1,17 @@
+.env
+certs/
+tls-beats/
+diagnostics/
+sauvegarde-*/
+backups/
+*.bak*
+*.avant-*
+injects/**/active
+injects/simulateur/state/*.active
+prometheus_data/
+grafana_data/
+elasticsearch_data/
+kibana_data/
+logstash_logs_data/
+__pycache__/
+*.pyc

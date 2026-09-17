@@ -1,0 +1,9 @@
+# Ajouter ce bloc sous la liste scrape_configs existante.
+  - job_name: lab_crashloop_inject18
+    scrape_interval: 5s
+    scrape_timeout: 3s
+    static_configs:
+      - targets: ['lab-crashloop:8082']
+        labels:
+          endpoint: inject-lab
+          scenario: "18"
