@@ -37,6 +37,22 @@ Ce module vise à mettre en place une plateforme d'observabilité pour suivre un
 - [Améliorer les dashboards — Livrable L2](it-1/ameliorer-dashboards.md)
 - [Simulation croisée — Vérifier le dispositif d’observabilité](it-1/simulation-croisee-observabilite.md)
 
+### Itération 2 — Alerter et diagnostiquer les incidents
+
+- [Sommaire de l’itération](it-2/index.md)
+- [Mise en situation — Alerter et diagnostiquer les incidents](it-2/alerter-diagnostiquer-incidents.md)
+- [Identifier les situations nécessitant une alerte](it-2/identifier-situations-alerte.md)
+- [Définir les seuils et la criticité](it-2/definir-seuils-criticite.md)
+- [Configurer et tester les alertes](it-2/configurer-tester-alertes.md)
+- [Construire la procédure de réponse — Livrable L3](it-2/construire-procedure-reponse.md)
+- [Partir d’une alerte pour rechercher ce qui s’est produit](it-2/partir-alerte-rechercher-situation.md)
+- [Formuler et vérifier des hypothèses](it-2/formuler-verifier-hypotheses.md)
+- [Corréler les métriques, les sondes et les journaux](it-2/correler-metriques-sondes-journaux.md)
+- [Identifier la cause probable](it-2/identifier-cause-probable.md)
+- [Vérifier le retour à la normale](it-2/verifier-retour-normale.md)
+- [Préparer la mise en situation — Diagnostic autonome](it-2/preparer-mise-en-situation.md)
+- [Prendre en charge l’incident](it-2/prendre-en-charge-incident.md)
+
 ## Sommaire prévisionnel
 
 Cette progression est proposée à partir des objectifs du module. Les fiches et les itérations seront ajoutées au fil des activités ; les thèmes ci-dessous ne représentent pas des travaux déjà réalisés.
@@ -71,3 +87,5 @@ Chaque activité permettra de conserver les configurations utiles, les vérifica
 ## Pense-bête du module
 
 - [Itération 1](../pense-bete/glossaire/supervision-optimisation-performances/it-1.md)
+
+- [Itération 2](../pense-bete/glossaire/supervision-optimisation-performances/it-2.md)

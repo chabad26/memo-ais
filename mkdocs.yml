@@ -439,6 +439,20 @@ nav:
             - Construire un dashboard Kibana: supervision-optimisation-performances/it-1/construire-dashboard-kibana.md
             - Améliorer les dashboards — Livrable L2: supervision-optimisation-performances/it-1/ameliorer-dashboards.md
             - Simulation croisée d’observabilité: supervision-optimisation-performances/it-1/simulation-croisee-observabilite.md
+        - Itération 2 - Alerter et diagnostiquer les incidents:
+            - Vue d'ensemble: supervision-optimisation-performances/it-2/index.md
+            - Mise en situation: supervision-optimisation-performances/it-2/alerter-diagnostiquer-incidents.md
+            - Identifier les situations nécessitant une alerte: supervision-optimisation-performances/it-2/identifier-situations-alerte.md
+            - Définir les seuils et la criticité: supervision-optimisation-performances/it-2/definir-seuils-criticite.md
+            - Configurer et tester les alertes: supervision-optimisation-performances/it-2/configurer-tester-alertes.md
+            - Construire la procédure de réponse — Livrable L3: supervision-optimisation-performances/it-2/construire-procedure-reponse.md
+            - Partir d’une alerte pour rechercher la situation: supervision-optimisation-performances/it-2/partir-alerte-rechercher-situation.md
+            - Formuler et vérifier des hypothèses: supervision-optimisation-performances/it-2/formuler-verifier-hypotheses.md
+            - Corréler métriques, sondes et journaux: supervision-optimisation-performances/it-2/correler-metriques-sondes-journaux.md
+            - Identifier la cause probable: supervision-optimisation-performances/it-2/identifier-cause-probable.md
+            - Vérifier le retour à la normale: supervision-optimisation-performances/it-2/verifier-retour-normale.md
+            - Préparer la mise en situation — Diagnostic autonome: supervision-optimisation-performances/it-2/preparer-mise-en-situation.md
+            - Prendre en charge l’incident: supervision-optimisation-performances/it-2/prendre-en-charge-incident.md
 
 
 
@@ -509,3 +523,4 @@ nav:
 
       - Supervision et optimisation des performances:
           - Itération 1 - Instrumenter et mesurer: pense-bete/glossaire/supervision-optimisation-performances/it-1.md
+          - Itération 2 - Alerter et diagnostiquer: pense-bete/glossaire/supervision-optimisation-performances/it-2.md

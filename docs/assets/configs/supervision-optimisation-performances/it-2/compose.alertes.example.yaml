@@ -1,0 +1,42 @@
+# Fragment à fusionner dans compose.override.yaml, sans remplacer ses services.
+services:
+  prometheus:
+    volumes:
+      - ./prometheus/rules:/etc/prometheus/rules:ro
+
+  alertmanager:
+    image: prom/alertmanager:v0.28.1
+    restart: unless-stopped
+    mem_limit: 128m
+    ports:
+      - "127.0.0.1:9093:9093"
+    volumes:
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager_data:/alertmanager
+    command:
+      - --config.file=/etc/alertmanager/alertmanager.yml
+      - --storage.path=/alertmanager
+      - --cluster.listen-address=
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  alert-receiver:
+    image: python:3.13-slim
+    restart: unless-stopped
+    mem_limit: 128m
+    user: "65534:65534"
+    read_only: true
+    volumes:
+      - ./alert-receiver/server.py:/app/server.py:ro
+    command: ["python", "-u", "/app/server.py"]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  alertmanager_data:
