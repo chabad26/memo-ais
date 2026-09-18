@@ -82,12 +82,12 @@ Le Compose du lab confirme une collecte Prometheus toutes les 30 secondes pour L
 
 | Élément observé | Période étudiée | Évolution constatée | Situation | Risque potentiel |
 | --- | --- | --- | --- | --- |
-| CPU |  |  | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière |  |
-| Mémoire |  |  | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière |  |
-| Stockage |  |  | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière |  |
-| Disponibilité ou temps de réponse d'un service |  |  | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière |  |
-| Activité réseau, si disponible |  |  | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière |  |
-| Événements ou erreurs des journaux |  |  | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière |  |
+| CPU | N/A | N/A | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière | N/A |
+| Mémoire | N/A | N/A | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière | N/A |
+| Stockage | N/A | N/A | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière | N/A |
+| Disponibilité ou temps de réponse d'un service | N/A | N/A | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière | N/A |
+| Activité réseau, si disponible | N/A | N/A | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière | N/A |
+| Événements ou erreurs des journaux | N/A | N/A | Stable / ponctuelle / tendance / dégradation progressive / surveillance particulière | N/A |
 
 Pour chaque ligne, joindre ou référencer la preuve utile : panneau, requête PromQL, filtre KQL, capture datée ou export. Si aucune évolution significative n'est démontrée, écrire « aucune tendance démontrée sur la période étudiée » plutôt que de forcer une conclusion.
 

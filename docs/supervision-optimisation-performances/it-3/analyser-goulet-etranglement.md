@@ -29,9 +29,9 @@ Reprendre la chronologie de la feuille [Analyser une dégradation de stockage](a
 
 | Phase | Événement à documenter | Heure | Source |
 | --- | --- | --- | --- |
-| Avant | état nominal de l'opération et des services |  | Prometheus / logs |
-| Pendant | activation du scénario 17 et hausse de la durée |  | fichier d'état / métrique |
-| Après | désactivation et retour de la durée |  | métrique / logs |
+| Avant | état nominal de l'opération et des services | N/A | Prometheus / logs |
+| Pendant | activation du scénario 17 et hausse de la durée | N/A | fichier d'état / métrique |
+| Après | désactivation et retour de la durée | N/A | métrique / logs |
 
 La collecte du simulateur est configurée toutes les 5 secondes. Les endpoints Linux, Windows et les sondes HTTP sont configurés toutes les 30 secondes. Tenir compte de cette différence avant de comparer les heures.
 
@@ -91,12 +91,12 @@ Les cases cochées dans le tableau constituent un point de départ à confirmer 
 
 | Hypothèse | Donnée attendue si elle est vraie | Donnée qui pourrait la contredire | Résultat |
 | --- | --- | --- | --- |
-| H1 — l'opération ou sa dépendance de stockage est le goulet | durée d'écriture élevée pendant le scénario, sans nécessité d'une panne de collecte | retour immédiat à la valeur nominale et absence de reproduction hors scénario |  |
-| H2 — le CPU limite l'opération | CPU élevé avant ou pendant la hausse, avec autres signes de contention | CPU stable et aucune charge concordante |  |
-| H3 — la mémoire limite l'opération | mémoire disponible en baisse, swap ou événement OOM | mémoire stable, absence de swap et pas d'événement mémoire |  |
-| H4 — le réseau limite l'opération | erreurs, latence réseau ou autres services dégradés au même instant | réseau stable et dégradation limitée à l'opération |  |
-| H5 — le service ou la sonde est le goulet | durée de sonde élevée, erreurs HTTP ou `probe_success=0` | sonde stable, service fonctionnel et seule la métrique simulée change |  |
-| H6 — la collecte donne une fausse impression | `up=0`, points absents ou horodatages incohérents | points réguliers, `up=1` et logs concordants |  |
+| H1 — l'opération ou sa dépendance de stockage est le goulet | durée d'écriture élevée pendant le scénario, sans nécessité d'une panne de collecte | retour immédiat à la valeur nominale et absence de reproduction hors scénario | N/A |
+| H2 — le CPU limite l'opération | CPU élevé avant ou pendant la hausse, avec autres signes de contention | CPU stable et aucune charge concordante | N/A |
+| H3 — la mémoire limite l'opération | mémoire disponible en baisse, swap ou événement OOM | mémoire stable, absence de swap et pas d'événement mémoire | N/A |
+| H4 — le réseau limite l'opération | erreurs, latence réseau ou autres services dégradés au même instant | réseau stable et dégradation limitée à l'opération | N/A |
+| H5 — le service ou la sonde est le goulet | durée de sonde élevée, erreurs HTTP ou `probe_success=0` | sonde stable, service fonctionnel et seule la métrique simulée change | N/A |
+| H6 — la collecte donne une fausse impression | `up=0`, points absents ou horodatages incohérents | points réguliers, `up=1` et logs concordants | N/A |
 
 Une hypothèse est écartée seulement lorsqu'une donnée discriminante la contredit. L'absence d'une donnée ne suffit pas : elle doit être notée comme limite d'analyse.
 
@@ -104,13 +104,13 @@ Une hypothèse est écartée seulement lorsqu'une donnée discriminante la contr
 
 | Ordre | Heure et fuseau | Source | Fait observé | Interprétation prudente |
 | ---: | --- | --- | --- | --- |
-| 1 |  | Prometheus / simulateur | valeur nominale et collecte active | état de référence |
-| 2 |  | fichier d'état / terminal | activation du scénario 17 | début du test, pas cause réelle de production |
-| 3 |  | Prometheus | durée d'écriture élevée | dégradation de l'opération mesurée |
-| 4 |  | logs | événement associé, s'il existe | confirmation du contexte ou limite si absent |
-| 5 |  | Prometheus / sonde | service et collecte pendant l'essai | impact fonctionnel à qualifier |
-| 6 |  | terminal / fichier d'état | désactivation du scénario | début du retour arrière |
-| 7 |  | Prometheus | durée nominale et `up=1` | retour observé, à maintenir sur plusieurs points |
+| 1 | N/A | Prometheus / simulateur | valeur nominale et collecte active | état de référence |
+| 2 | N/A | fichier d'état / terminal | activation du scénario 17 | début du test, pas cause réelle de production |
+| 3 | N/A | Prometheus | durée d'écriture élevée | dégradation de l'opération mesurée |
+| 4 | N/A | logs | événement associé, s'il existe | confirmation du contexte ou limite si absent |
+| 5 | N/A | Prometheus / sonde | service et collecte pendant l'essai | impact fonctionnel à qualifier |
+| 6 | N/A | terminal / fichier d'état | désactivation du scénario | début du retour arrière |
+| 7 | N/A | Prometheus | durée nominale et `up=1` | retour observé, à maintenir sur plusieurs points |
 
 Ne pas utiliser l'heure d'une capture comme heure exacte de l'action. Conserver le fuseau et la précision réellement disponible.
 

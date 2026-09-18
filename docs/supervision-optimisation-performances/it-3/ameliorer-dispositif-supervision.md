@@ -18,7 +18,7 @@ Transformer les difficultés observées pendant les incidents en améliorations 
 
 | Problème observé | Impact | Effort | Priorité | Décision et responsable |
 | --- | --- | --- | --- | --- |
-|  | faible / moyen / fort | faible / moyen / fort | P1 / P2 / P3 |  |
+| / | faible / moyen / fort | faible / moyen / fort | P1 / P2 / P3 | / |
 
 Prioriser les pertes de visibilité, les alertes qui n'aboutissent à aucune action et les indicateurs incapables de montrer une dégradation avant incident. Ne pas augmenter le nombre de panneaux ou d'alertes sans usage opérationnel identifié.
 

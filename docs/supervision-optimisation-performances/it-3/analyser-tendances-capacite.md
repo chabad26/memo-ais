@@ -18,11 +18,11 @@ Passer d'une valeur observée à une évolution interprétable. L'analyse doit r
 
 | Ressource ou service | Indicateur | Période et fréquence | Observation | Risque | Capacité ou échéance | Donnée à compléter |
 | --- | --- | --- | --- | --- | --- | --- |
-| Debian | espace disponible `/` | à relever |  | saturation ou échec d'écriture | calculer selon la croissance | points historiques |
-| Windows | espace libre `C:` | à relever |  | journaux ou service bloqués | calculer selon la croissance | octets libres et événements |
-| Endpoint | CPU et mémoire disponibles | à relever |  | ralentissement ou pression mémoire | comparer aux charges prévues | processus et latence |
-| Service HTTP | durée et succès de sonde | à relever |  | dégradation avant indisponibilité | définir une limite de performance | journaux applicatifs |
-| Collecte | `up`, âge du dernier point | à relever |  | perte de visibilité | agir avant absence durable | erreur Target et fréquence |
+| Debian | espace disponible `/` | à relever | N/A | saturation ou échec d'écriture | calculer selon la croissance | points historiques |
+| Windows | espace libre `C:` | à relever | N/A | journaux ou service bloqués | calculer selon la croissance | octets libres et événements |
+| Endpoint | CPU et mémoire disponibles | à relever | N/A | ralentissement ou pression mémoire | comparer aux charges prévues | processus et latence |
+| Service HTTP | durée et succès de sonde | à relever | N/A | dégradation avant indisponibilité | définir une limite de performance | journaux applicatifs |
+| Collecte | `up`, âge du dernier point | à relever | N/A | perte de visibilité | agir avant absence durable | erreur Target et fréquence |
 
 ## Estimer une échéance
 

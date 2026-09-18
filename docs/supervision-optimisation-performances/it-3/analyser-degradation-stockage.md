@@ -106,9 +106,9 @@ Après plusieurs scrapes, vérifier le retour vers `0.03` seconde et `up=1`. La 
 
 | Phase | Heure | Valeur attendue | `up` | Preuve |
 | --- | --- | ---: | ---: | --- |
-| Avant activation |  | `0.03 s` | `1` | PromQL et capture |
-| Pendant activation |  | `3.2 s` | `1` | PromQL, heure d'activation et logs |
-| Après désactivation |  | `0.03 s` | `1` | PromQL et heure de retour |
+| Avant activation | / | `0.03 s` | `1` | PromQL et capture |
+| Pendant activation | / | `3.2 s` | `1` | PromQL, heure d'activation et logs |
+| Après désactivation | / | `0.03 s` | `1` | PromQL et heure de retour |
 
 ## 5. Corréler et discuter la cause
 

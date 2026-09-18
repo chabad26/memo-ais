@@ -4,7 +4,7 @@
 
 Reprendre le goulet d'étranglement ou la tendance analysée précédemment et préparer une intervention avant qu'une dégradation ne devienne un incident. La décision doit relier :
 
-**Tendance observée → Goulet d'étranglement → Risque futur → Action préventive → Indicateur de suivi**
+**Tendance observée → Goulet d'étranglement → Risque futur → Action préventive → Indicateur de suivi.**
 
 Le scénario 17 sert ici de cas pédagogique : il montre une hausse de la durée d'écriture, mais ne prouve pas que le disque réel est saturé. Une action de production doit donc être déclenchée par des mesures réelles et répétées.
 
@@ -73,14 +73,14 @@ Après l'intervention :
 
 | Indicateur | Avant action | Après action | Critère de réussite |
 | --- | --- | --- | --- |
-| Espace libre du volume |  |  | marge suffisante et croissance maîtrisée |
-| Inodes Linux |  |  | aucune saturation d'inodes |
-| Durée d'écriture |  |  | retour dans la baseline hors scénario |
-| Erreurs d'écriture |  |  | aucune nouvelle erreur pertinente |
-| Service rendu |  |  | fonctionnalité et statut HTTP attendus |
-| Sondes |  |  | `probe_success=1`, `up=1`, durée stable |
-| Journaux |  |  | collecte fraîche et absence d'erreurs liées |
-| Stabilité |  |  | état maintenu pendant la période définie |
+| Espace libre du volume | N/A | N/A | marge suffisante et croissance maîtrisée |
+| Inodes Linux | N/A | N/A | aucune saturation d'inodes |
+| Durée d'écriture | N/A | N/A | retour dans la baseline hors scénario |
+| Erreurs d'écriture | N/A | N/A | aucune nouvelle erreur pertinente |
+| Service rendu | N/A | N/A | fonctionnalité et statut HTTP attendus |
+| Sondes | N/A | N/A | `probe_success=1`, `up=1`, durée stable |
+| Journaux | N/A | N/A | collecte fraîche et absence d'erreurs liées |
+| Stabilité | N/A | N/A | état maintenu pendant la période définie |
 
 Une baisse immédiate de l'indicateur ne suffit pas si la croissance reprend ou si le service reste dégradé. Comparer des périodes équivalentes et documenter les limites de la mesure.
 
