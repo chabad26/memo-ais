@@ -30,6 +30,12 @@ Cette itération transforme les données de supervision en alertes exploitables,
 
 Le test CPU est documenté jusqu’au retour au nominal. Le cycle IIS est attesté de l’arrêt au rétablissement, avec `firing` et `resolved` reçus par le webhook. Kibana fournit un événement HttpService cohérent avec le retrait des URL HTTP. Les règles de collecte et de stockage et les variations temporaires restent à tester.
 
+## Bilan personnel de la mise en situation
+
+Lors de la mise en situation, j'ai diagnostiqué et résolu les **10 problèmes** qui m'ont été proposés. Le diagnostic a été réalisé de manière autonome, sans aide extérieure, en m'appuyant sur les signaux de supervision, les métriques, les sondes et les journaux disponibles.
+
+La comparaison avec l'autre participant doit être nuancée : nous n'avions pas les mêmes problèmes à créer. Il n'a pas réussi à identifier la majorité des pannes de sa série, tandis que j'ai traité les dix problèmes de la mienne. Ce résultat montre ma capacité à rechercher méthodiquement la cause d'un incident, à appliquer une correction adaptée et à vérifier le retour à la normale.
+
 ## Réutilisation et pense-bête
 
 - [Itération 1 — Instrumenter et mesurer](../it-1/index.md)

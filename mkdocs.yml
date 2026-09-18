@@ -454,6 +454,19 @@ nav:
             - Préparer la mise en situation — Diagnostic autonome: supervision-optimisation-performances/it-2/preparer-mise-en-situation.md
             - Prendre en charge l’incident: supervision-optimisation-performances/it-2/prendre-en-charge-incident.md
             - Guide du testeur — Diagnostiquer l’incident: supervision-optimisation-performances/it-2/guide-testeur-diagnostic.md
+        - Itération 3 - Optimiser et formaliser l'exploitation:
+            - Vue d'ensemble: supervision-optimisation-performances/it-3/index.md
+            - Mise en situation: supervision-optimisation-performances/it-3/optimiser-formaliser-exploitation.md
+            - Rechercher les évolutions significatives: supervision-optimisation-performances/it-3/rechercher-evolutions-significatives.md
+            - Analyser une dégradation de stockage: supervision-optimisation-performances/it-3/analyser-degradation-stockage.md
+            - Analyser un goulet d'étranglement: supervision-optimisation-performances/it-3/analyser-goulet-etranglement.md
+            - Préparer une action de maintenance préventive: supervision-optimisation-performances/it-3/preparer-action-maintenance-preventive.md
+            - Définir le périmètre du plan de supervision: supervision-optimisation-performances/it-3/definir-perimetre-plan-supervision.md
+            - Construire le plan de supervision et d'exploitation — Livrable L5: supervision-optimisation-performances/it-3/construire-plan-supervision-exploitation.md
+            - Analyser les tendances et la capacité: supervision-optimisation-performances/it-3/analyser-tendances-capacite.md
+            - Améliorer le dispositif de supervision: supervision-optimisation-performances/it-3/ameliorer-dispositif-supervision.md
+            - Préparer la maintenance préventive: supervision-optimisation-performances/it-3/preparer-maintenance-preventive.md
+            - Formaliser le dossier d'exploitation: supervision-optimisation-performances/it-3/formaliser-dossier-exploitation.md
 
 
 
@@ -525,3 +538,4 @@ nav:
       - Supervision et optimisation des performances:
           - Itération 1 - Instrumenter et mesurer: pense-bete/glossaire/supervision-optimisation-performances/it-1.md
           - Itération 2 - Alerter et diagnostiquer: pense-bete/glossaire/supervision-optimisation-performances/it-2.md
+          - Itération 3 - Optimiser et formaliser l'exploitation: pense-bete/glossaire/supervision-optimisation-performances/it-3.md

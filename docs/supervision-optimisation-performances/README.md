@@ -54,6 +54,21 @@ Ce module vise à mettre en place une plateforme d'observabilité pour suivre un
 - [Prendre en charge l’incident](it-2/prendre-en-charge-incident.md)
 - [Guide du testeur — Diagnostiquer l’incident injecté](it-2/guide-testeur-diagnostic.md)
 
+### Itération 3 — Optimiser et formaliser l'exploitation
+
+- [Sommaire de l'itération](it-3/index.md)
+- [Mise en situation — Optimiser et formaliser l'exploitation](it-3/optimiser-formaliser-exploitation.md)
+- [Rechercher les évolutions significatives](it-3/rechercher-evolutions-significatives.md)
+- [Analyser une dégradation de stockage](it-3/analyser-degradation-stockage.md)
+- [Analyser un goulet d'étranglement](it-3/analyser-goulet-etranglement.md)
+- [Préparer une action de maintenance préventive](it-3/preparer-action-maintenance-preventive.md)
+- [Définir le périmètre du plan de supervision](it-3/definir-perimetre-plan-supervision.md)
+- [Construire le plan de supervision et d'exploitation — Livrable L5](it-3/construire-plan-supervision-exploitation.md)
+- [Analyser les tendances et la capacité](it-3/analyser-tendances-capacite.md)
+- [Améliorer le dispositif de supervision](it-3/ameliorer-dispositif-supervision.md)
+- [Préparer la maintenance préventive](it-3/preparer-maintenance-preventive.md)
+- [Formaliser le dossier d'exploitation](it-3/formaliser-dossier-exploitation.md)
+
 ## Sommaire prévisionnel
 
 Cette progression est proposée à partir des objectifs du module. Les fiches et les itérations seront ajoutées au fil des activités ; les thèmes ci-dessous ne représentent pas des travaux déjà réalisés.
@@ -90,3 +105,5 @@ Chaque activité permettra de conserver les configurations utiles, les vérifica
 - [Itération 1](../pense-bete/glossaire/supervision-optimisation-performances/it-1.md)
 
 - [Itération 2](../pense-bete/glossaire/supervision-optimisation-performances/it-2.md)
+
+- [Itération 3](../pense-bete/glossaire/supervision-optimisation-performances/it-3.md)
