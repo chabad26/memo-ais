@@ -4,6 +4,28 @@ Ce dépôt contient un petit site de documentation pour centraliser des notes de
 
 Le site est construit avec **MkDocs** et le thème **Material for MkDocs**.
 
+## Module Sécurité des données
+
+Ce module présente les mécanismes cryptographiques qui protègent les données
+d'une infrastructure, qu'elles circulent sur le réseau, soient stockées sur les
+machines ou conservées dans des sauvegardes. La progression va des notions de
+base (confidentialité, intégrité, authenticité, clés et certificats) à la
+vérification de TLS, puis à la mise en œuvre de volumes chiffrés avec LUKS.
+
+Les activités abordent également l'aléa cryptographique, la sauvegarde du
+header LUKS et la restauration après perte contrôlée des informations de
+récupération. La dernière étape élargit la réflexion à la gestion du cycle de
+vie des clés dans un parc : stockage, sauvegarde, récupération, rotation,
+révocation et destruction, avec une comparaison de systemd-cryptenroll/TPM2,
+Clevis/Tang et des services de gestion de clés cloud.
+
+En fin de module, l'apprenant sait choisir un mécanisme adapté à un besoin,
+analyser une configuration au regard de recommandations de sécurité, vérifier
+une connexion TLS, récupérer un stockage LUKS et documenter une architecture de
+gestion des clés. Les livrables sont une analyse de configuration, un stockage
+LUKS opérationnel, une procédure de récupération et une architecture de gestion
+des clés pour un parc.
+
 ## Prérequis
 
 Avant de commencer, il faut avoir :

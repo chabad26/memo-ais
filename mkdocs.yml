@@ -295,6 +295,21 @@ nav:
           - Test depuis un PC d'un autre apprenant : admin-reseaux-securisation/it-6/test-pc-autre-apprenant.md
           - Préparation d'un CTF facile : admin-reseaux-securisation/it-6/preparation-ctf-facile.md
 
+    - Sécurité des données:
+      - Vue d'ensemble: securite-donnees/index.md
+      - Itération 1 - Fondamentaux cryptographiques:
+          - Vue d'ensemble: securite-donnees/it-1/index.md
+          - Les briques de la cryptographie: securite-donnees/it-1/briques-cryptographie.md
+          - Architecture cryptographique dans les services administrés: securite-donnees/it-1/crypto-archi-admin.md
+      - Itération 2 - Données en transit et TLS:
+          - Vue d'ensemble: securite-donnees/it-2/index.md
+      - Itération 3 - Données au repos et LUKS:
+          - Vue d'ensemble: securite-donnees/it-3/index.md
+      - Itération 4 - Récupération et génération des clés:
+          - Vue d'ensemble: securite-donnees/it-4/index.md
+      - Itération 5 - Gestion des clés à l'échelle d'un parc:
+          - Vue d'ensemble: securite-donnees/it-5/index.md
+
 
   - Intégration, services & supervision:
     - Intégration distribuée Cloud & IAM:
@@ -518,6 +533,12 @@ nav:
           - Itération 4 - Zeek et corrélation: pense-bete/glossaire/admin-reseaux-securisation/it-4.md
           - Itération 5 - Incident, Spark et Fail2ban: pense-bete/glossaire/admin-reseaux-securisation/it-5.md
           - Itération 6 - Challenge final: pense-bete/glossaire/admin-reseaux-securisation/it-6.md
+      - Sécurité des données:
+          - Itération 1 - Fondamentaux cryptographiques: pense-bete/glossaire/securite-donnees/it-1.md
+          - Itération 2 - Données en transit et TLS: pense-bete/glossaire/securite-donnees/it-2.md
+          - Itération 3 - Données au repos et LUKS: pense-bete/glossaire/securite-donnees/it-3.md
+          - Itération 4 - Récupération et génération des clés: pense-bete/glossaire/securite-donnees/it-4.md
+          - Itération 5 - Gestion des clés à l'échelle d'un parc: pense-bete/glossaire/securite-donnees/it-5.md
       - Intégration distribuée Cloud & IAM:
           - Itération 1 - Préparer la migration: pense-bete/glossaire/integration-distribuee-cloud-iam/it-1.md
           - Itération 2 - Déployer et automatiser OVH: pense-bete/glossaire/integration-distribuee-cloud-iam/it-2.md

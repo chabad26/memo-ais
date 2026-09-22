@@ -32,4 +32,3 @@ Préparation défensive, validation de l'infrastructure et préparation au chall
 - [Préparation défensive et validation de l'infrastructure](../../../admin-reseaux-securisation/it-6/atelier1.md)
 - [Test depuis un PC d'un autre apprenant](../../../admin-reseaux-securisation/it-6/test-pc-autre-apprenant.md)
 - [Préparation d'un CTF facile](../../../admin-reseaux-securisation/it-6/preparation-ctf-facile.md)
-

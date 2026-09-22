@@ -35,4 +35,3 @@ Segmentation sécurisée, VLANs, filtrage `nftables` et introduction au VLAN Hop
 - [VLANs sécurisés et préparation du filtrage](../../../admin-reseaux-securisation/it-1/atelier2.md)
 - [Filtrage réseau avec nftables](../../../admin-reseaux-securisation/it-1/atelier3.md)
 - [Introduction au VLAN Hopping et tests d'attaque](../../../admin-reseaux-securisation/it-1/atelier4.md)
-

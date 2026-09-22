@@ -32,4 +32,3 @@ Réponse à incident, sécurisation Spark, Fail2ban et script de bannissement.
 - [Vue d'ensemble](../../../admin-reseaux-securisation/it-5/index.md)
 - [Réponse à incident et sécurisation d'une installation Spark](../../../admin-reseaux-securisation/it-5/atelier1.md)
 - [Fail2ban SSH et script de bannissement IP](../../../admin-reseaux-securisation/it-5/atelier2.md)
-
