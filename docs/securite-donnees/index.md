@@ -47,6 +47,8 @@ Vous serez capables de :
 
 - [Itération 1 - Fondamentaux cryptographiques](it-1/index.md)
 - [Itération 2 - Données en transit et TLS](it-2/index.md)
+  - [Analyser une configuration avec les recommandations ANSSI](it-2/analyser-configuration-anssi.md)
+  - [Comprendre et vérifier une connexion TLS](it-2/connexion-tls.md)
 - [Itération 3 - Données au repos et LUKS](it-3/index.md)
 - [Itération 4 - Récupération et génération des clés](it-4/index.md)
 - [Itération 5 - Gestion des clés à l'échelle d'un parc](it-5/index.md)

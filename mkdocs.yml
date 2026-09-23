@@ -303,6 +303,8 @@ nav:
           - Architecture cryptographique dans les services administrés: securite-donnees/it-1/crypto-archi-admin.md
       - Itération 2 - Données en transit et TLS:
           - Vue d'ensemble: securite-donnees/it-2/index.md
+          - Analyser une configuration avec les recommandations ANSSI: securite-donnees/it-2/analyser-configuration-anssi.md
+          - Comprendre et vérifier une connexion TLS: securite-donnees/it-2/connexion-tls.md
       - Itération 3 - Données au repos et LUKS:
           - Vue d'ensemble: securite-donnees/it-3/index.md
       - Itération 4 - Récupération et génération des clés:

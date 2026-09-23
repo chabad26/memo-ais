@@ -13,4 +13,6 @@ chaîne de confiance.
 - analyser les paramètres importants d'une configuration TLS ;
 - documenter les écarts et les corrections proposées.
 
+- [Analyser une configuration avec les recommandations ANSSI](analyser-configuration-anssi.md)
+- [Comprendre et vérifier une connexion TLS](connexion-tls.md)
 - [Termes à retenir](../../pense-bete/glossaire/securite-donnees/it-2.md)

@@ -1,0 +1,108 @@
+# Inventaire des mécanismes cryptographiques
+
+## Objectif
+
+Identifier les principaux types de cryptographie dans des services connus et
+comprendre leur utilisation. Pour chaque service, l'analyse précise les
+données protégées et le besoin couvert : confidentialité, intégrité ou
+authenticité.
+
+## 1. Les principaux types de cryptographie
+
+| Type de cryptographie | Principe | Utilisation principale |
+| --- | --- | --- |
+| Chiffrement symétrique | La même clé sert à chiffrer et à déchiffrer. | Protéger rapidement des données en volume : fichiers, sauvegardes et flux réseau. |
+| Cryptographie asymétrique | Une clé publique et une clé privée sont associées. | Authentifier un service, établir un secret et protéger une clé. |
+| Échange de clés | Deux parties calculent un secret partagé sans l'envoyer directement. | Établir les clés de session d'une connexion TLS ou SSH. |
+| Fonction de hachage | Produit une empreinte de taille fixe, difficile à inverser. | Vérifier une intégrité, comparer une empreinte ou dériver des clés. |
+| MAC / AEAD | Associe protection de l'intégrité et authentification des données. | Détecter une modification d'un message pendant un échange ou dans un fichier. |
+| Signature numérique | Une signature créée avec une clé privée est vérifiée avec la clé publique. | Prouver l'origine et l'intégrité d'un certificat, paquet ou message. |
+| Certificat numérique | Lie une identité à une clé publique et est signé par une autorité. | Authentifier un serveur ou un service : HTTPS, LDAPS ou IMAPS. |
+| Aléa cryptographique | Produit des valeurs imprévisibles. | Générer des clés, secrets de session, nonces et valeurs de handshake. |
+
+La cryptographie asymétrique est utile pour l'authentification et
+l'établissement initial d'un secret, mais elle est trop coûteuse pour chiffrer
+un grand volume de données. Les protocoles utilisent donc généralement
+l'asymétrique au début, puis du chiffrement symétrique et un mécanisme
+d'intégrité pour les données applicatives.
+
+## 2. Inventaire des services étudiés
+
+| Service ou mécanisme | Type(s) identifié(s) | Utilisation | Données protégées | Besoin couvert |
+| --- | --- | --- | --- | --- |
+| SSH / Ansible | Asymétrique, échange de clés, symétrique, hash, MAC ou AEAD, aléa | Authentifier l'administrateur et créer un canal sécurisé. | Commandes, fichiers, identifiants et flux d'administration. | Confidentialité, intégrité et authenticité du serveur et du client. |
+| HTTPS / TLS | Certificat, signature, asymétrique, échange de clés, symétrique, AEAD, hash et aléa | Authentifier le serveur puis protéger la session. | Requêtes, réponses, cookies et données applicatives. | Confidentialité, intégrité et authenticité du serveur. |
+| LDAPS / OpenLDAP | Certificat X.509, signature, asymétrique, échange de clés, symétrique et AEAD | Protéger la connexion entre les clients et l'annuaire. | Identifiants, recherches LDAP et données d'annuaire. | Confidentialité, intégrité et authenticité du serveur. |
+| IMAPS / Dovecot | Certificat, signature, asymétrique, échange de clés, symétrique et AEAD | Protéger l'accès aux boîtes aux lettres. | Messages, identifiants et commandes IMAP. | Confidentialité, intégrité et authenticité du serveur. |
+| SMTP STARTTLS / Postfix | Certificat, signature, asymétrique, échange de clés, symétrique et AEAD | Chiffrer le transport entre clients et serveurs de messagerie. | Messages et identifiants SMTP lorsque l'authentification est activée. | Confidentialité et intégrité du transport ; authenticité selon la validation du certificat. |
+| PKI interne / Campus CA | Asymétrique, signatures et certificats | Délivrer et vérifier l'identité des services. | Identités des serveurs et clés publiques. | Authenticité et intégrité des certificats. |
+| BorgBackup | Symétrique, hash et mécanisme d'intégrité interne | Chiffrer et vérifier un dépôt de sauvegarde. | Archives et données sauvegardées. | Confidentialité et intégrité ; disponibilité dépendante des clés. |
+| SOPS / age | Symétrique, asymétrique, AEAD et hash | Chiffrer des secrets et limiter les destinataires. | Mots de passe, jetons, clés API et variables sensibles. | Confidentialité, intégrité et contrôle des destinataires. |
+| Mots de passe LDAP | Fonction de hachage avec sel, selon le schéma configuré | Ne pas stocker le mot de passe en clair. | Empreintes des mots de passe. | Réduire l'impact d'une fuite de la base. |
+| Paquets et mises à jour APT | Hash et signatures numériques | Vérifier l'intégrité et l'origine des paquets et dépôts. | Paquets logiciels et métadonnées de dépôt. | Intégrité et authenticité de la source. |
+
+Les mécanismes exacts doivent être confirmés dans la configuration ou dans la
+sortie de l'outil. Lorsqu'une information n'est pas démontrée, il faut noter
+`à vérifier` plutôt que deviner un algorithme.
+
+## 3. Analyse de quelques services
+
+### SSH / Ansible
+
+SSH utilise un échange de clés pour établir un secret de session, puis un
+chiffrement symétrique et un mécanisme d'intégrité pour le canal. Les clés
+asymétriques servent à authentifier le serveur et, selon la configuration, le
+client. Les données protégées sont les commandes, les fichiers transférés et
+les informations d'administration.
+
+### HTTPS, LDAPS et messagerie TLS
+
+Ces services utilisent TLS. Le certificat associe le nom du service à une clé
+publique et permet au client de vérifier l'identité du serveur. Un échange de
+clés établit les secrets de session. Les données sont ensuite protégées par un
+algorithme symétrique authentifié, comme AES-GCM ou ChaCha20-Poly1305.
+
+### BorgBackup
+
+Borg chiffre les archives avec une clé de dépôt et protège leur intégrité. La
+phrase secrète et la clé exportée sont donc aussi importantes que le dépôt.
+La perte de ces éléments peut empêcher toute restauration ; leur compromission
+peut permettre l'accès aux sauvegardes.
+
+### SOPS / age
+
+SOPS chiffre les valeurs sensibles avec un chiffrement symétrique authentifié.
+La clé de données est protégée pour les destinataires autorisés avec age, qui
+utilise une cryptographie asymétrique. La clé privée age doit être conservée
+hors du dépôt et protégée contre la copie ou la divulgation.
+
+### APT
+
+APT utilise des signatures numériques pour authentifier les dépôts et vérifier
+que les métadonnées proviennent d'une clé de confiance. Les hash permettent
+ensuite de vérifier que les paquets téléchargés correspondent aux fichiers
+annoncés. Ici, la cryptographie protège surtout l'intégrité et l'authenticité,
+pas la confidentialité des logiciels téléchargés.
+
+## 4. Synthèse par besoin de sécurité
+
+| Besoin | Mécanismes adaptés | Exemples |
+| --- | --- | --- |
+| Confidentialité | Chiffrement symétrique, échange de clés et chiffrement asymétrique pour de petites données | TLS, SSH, BorgBackup, SOPS, LDAPS. |
+| Intégrité | Hash, MAC, AEAD et signature numérique | TLS, SSH, BorgBackup, APT et certificats. |
+| Authenticité | Certificat, signature numérique, clé publique et clé SSH | HTTPS, LDAPS, PKI, SSH et APT. |
+| Disponibilité | Sauvegarde des clés, renouvellement des certificats et récupération | BorgBackup, PKI, SOPS et services TLS. |
+
+La cryptographie ne garantit pas directement la disponibilité. Une clé perdue,
+un certificat expiré ou un dépôt impossible à déchiffrer peut empêcher l'accès
+à un service ou à une sauvegarde.
+
+## Conclusion
+
+L'inventaire montre que les services administrés combinent plusieurs briques
+cryptographiques. Le chiffrement symétrique protège efficacement les données,
+la cryptographie asymétrique permet l'authentification et l'établissement des
+secrets, les hash et les MAC détectent les modifications, et les signatures
+ainsi que les certificats établissent l'origine et l'identité. Le choix du
+mécanisme dépend donc du besoin : confidentialité, intégrité, authenticité ou
+protection combinée de plusieurs propriétés.
