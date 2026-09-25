@@ -178,6 +178,43 @@ sudo cat /etc/crypttab
 swapon --show
 ```
 
+### Rendre la correction GRUB permanente
+
+Après validation du démarrage temporaire, sauvegardez la configuration puis
+modifiez les paramètres par défaut :
+
+```bash
+sudo cp -a /etc/default/grub /etc/default/grub.avant-correction
+sudo nano /etc/default/grub
+```
+
+Dans `GRUB_CMDLINE_LINUX_DEFAULT`, retirez `splash=silent`, `quiet` et
+`resume=/dev/mapper/cr_swap`, puis conservez les autres options et ajoutez :
+
+```text
+plymouth.enable=0 rd.plymouth=0 noresume
+```
+
+La configuration appliquée sur la VM est :
+
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="plymouth.enable=0 rd.plymouth=0 noresume mitigations=auto security=selinux selinux=1"
+```
+
+Régénérez et contrôlez GRUB :
+
+```bash
+sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+grep -E 'plymouth|noresume|splash|quiet|resume=' /etc/default/grub
+sudo grep -E 'plymouth|noresume' /boot/grub2/grub.cfg | head
+sudo reboot
+```
+
+Le fichier généré contient bien `plymouth.enable=0 rd.plymouth=0 noresume`.
+Le redémarrage suivant a réussi sans nouvelle modification manuelle de GRUB.
+Cette correction désactive la reprise après hibernation, mais n'interdit pas
+l'utilisation normale du swap, à contrôler avec `swapon --show`.
+
 ### Activer SSH dès le premier démarrage
 
 Une fois connecté localement avec le compte utilisateur créé dans Agama,

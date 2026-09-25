@@ -6,6 +6,11 @@
 | Pseudo-aléa | Valeur produite par un algorithme déterministe à partir d'un état initial. |
 | CSPRNG | Générateur pseudo-aléatoire conçu pour résister aux prédictions. |
 | Entropie | Mesure de l'incertitude disponible pour produire un secret. |
+| Seed | Valeur initiale qui détermine la suite produite par un générateur pseudo-aléatoire déterministe. |
+| Espace de clés | Ensemble des clés qu'un mécanisme peut réellement produire ou qu'un attaquant doit explorer. |
+| `getrandom(2)` | Appel système Linux permettant d'obtenir des octets depuis le générateur cryptographique du noyau. |
+| `/dev/urandom` | Interface Linux fournissant des octets issus du générateur cryptographique du noyau. |
+| `secrets` | Module Python destiné à produire des valeurs adaptées aux secrets, contrairement au module `random`. |
 | Sauvegarde du header | Copie de secours des métadonnées nécessaires à la récupération d'un volume. |
 | Header LUKS | Métadonnées du volume contenant notamment ses paramètres cryptographiques, son UUID et ses keyslots. |
 | Keyslot | Emplacement du header protégeant une copie de la clé de volume à l'aide d'un moyen d'accès. |

@@ -54,6 +54,7 @@ Vous serez capables de :
   - [Administrer les accès et préparer la récupération d'un volume LUKS](it-3/administrer-acces-preparer-recuperation-luks.md)
 - [Itération 4 - Récupération et génération des clés](it-4/index.md)
   - [Provoquer et restaurer un incident LUKS sur openSUSE Leap 16.0](it-4/provoquer-restaurer-incident-luks-opensuse.md)
+  - [Comprendre l'aléa et la génération des clés](it-4/comprendre-alea-generation-cles.md)
 - [Itération 5 - Gestion des clés à l'échelle d'un parc](it-5/index.md)
 
 ## Glossaire
