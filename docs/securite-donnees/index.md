@@ -50,7 +50,10 @@ Vous serez capables de :
   - [Analyser une configuration avec les recommandations ANSSI](it-2/analyser-configuration-anssi.md)
   - [Comprendre et vérifier une connexion TLS](it-2/connexion-tls.md)
 - [Itération 3 - Données au repos et LUKS](it-3/index.md)
+  - [Mettre en œuvre et comprendre un stockage chiffré avec LUKS](it-3/mettre-en-oeuvre-stockage-chiffre-luks.md)
+  - [Administrer les accès et préparer la récupération d'un volume LUKS](it-3/administrer-acces-preparer-recuperation-luks.md)
 - [Itération 4 - Récupération et génération des clés](it-4/index.md)
+  - [Provoquer et restaurer un incident LUKS sur openSUSE Leap 16.0](it-4/provoquer-restaurer-incident-luks-opensuse.md)
 - [Itération 5 - Gestion des clés à l'échelle d'un parc](it-5/index.md)
 
 ## Glossaire

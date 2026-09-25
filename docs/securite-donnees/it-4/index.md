@@ -19,4 +19,5 @@ de l'aléa dans la génération des clés.
 Une procédure de récupération testée, avec preuves de sauvegarde et de
 restauration, sans exposer de secret réel.
 
+- [Provoquer et restaurer un incident LUKS sur openSUSE Leap 16.0](provoquer-restaurer-incident-luks-opensuse.md)
 - [Termes à retenir](../../pense-bete/glossaire/securite-donnees/it-4.md)

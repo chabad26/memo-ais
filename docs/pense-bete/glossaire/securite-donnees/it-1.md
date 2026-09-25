@@ -11,3 +11,7 @@
 | MAC | Code d'authentification calculé avec un secret partagé. |
 | Signature numérique | Preuve d'origine et d'intégrité produite avec une clé privée. |
 | Certificat | Association signée entre une identité et une clé publique. |
+
+## Ressource associée
+
+- [Synthèse des règles et recommandations cryptographiques de l'ANSSI](referentiel-anssi.md)

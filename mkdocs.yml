@@ -307,8 +307,11 @@ nav:
           - Comprendre et vérifier une connexion TLS: securite-donnees/it-2/connexion-tls.md
       - Itération 3 - Données au repos et LUKS:
           - Vue d'ensemble: securite-donnees/it-3/index.md
+          - Mettre en œuvre et comprendre un stockage chiffré avec LUKS: securite-donnees/it-3/mettre-en-oeuvre-stockage-chiffre-luks.md
+          - Administrer les accès et préparer la récupération d'un volume LUKS: securite-donnees/it-3/administrer-acces-preparer-recuperation-luks.md
       - Itération 4 - Récupération et génération des clés:
           - Vue d'ensemble: securite-donnees/it-4/index.md
+          - Provoquer et restaurer un incident LUKS sur openSUSE Leap 16.0: securite-donnees/it-4/provoquer-restaurer-incident-luks-opensuse.md
       - Itération 5 - Gestion des clés à l'échelle d'un parc:
           - Vue d'ensemble: securite-donnees/it-5/index.md
 
@@ -536,6 +539,7 @@ nav:
           - Itération 5 - Incident, Spark et Fail2ban: pense-bete/glossaire/admin-reseaux-securisation/it-5.md
           - Itération 6 - Challenge final: pense-bete/glossaire/admin-reseaux-securisation/it-6.md
       - Sécurité des données:
+          - Synthèse du référentiel ANSSI: pense-bete/glossaire/securite-donnees/referentiel-anssi.md
           - Itération 1 - Fondamentaux cryptographiques: pense-bete/glossaire/securite-donnees/it-1.md
           - Itération 2 - Données en transit et TLS: pense-bete/glossaire/securite-donnees/it-2.md
           - Itération 3 - Données au repos et LUKS: pense-bete/glossaire/securite-donnees/it-3.md

@@ -10,3 +10,7 @@
 | Négociation TLS | Échange initial qui choisit les paramètres et établit les secrets de session. |
 | Suite cryptographique | Ensemble d'algorithmes utilisés par une connexion TLS. |
 | SNI | Indication du nom de service présentée au début d'une connexion TLS. |
+
+## Ressource associée
+
+- [Synthèse des règles et recommandations cryptographiques de l'ANSSI](referentiel-anssi.md)
