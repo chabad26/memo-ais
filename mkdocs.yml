@@ -315,6 +315,9 @@ nav:
           - Comprendre l'aléa et la génération des clés: securite-donnees/it-4/comprendre-alea-generation-cles.md
       - Itération 5 - Gestion des clés à l'échelle d'un parc:
           - Vue d'ensemble: securite-donnees/it-5/index.md
+          - Concevoir une gestion des clés adaptée à un parc de machines: securite-donnees/it-5/concevoir-gestion-cles-parc.md
+          - Option 1 - systemd-cryptenroll et TPM2: securite-donnees/it-5/option-systemd-cryptenroll-tpm2.md
+          - Option 2 - Clevis et Tang: securite-donnees/it-5/option-clevis-tang.md
 
 
   - Intégration, services & supervision:

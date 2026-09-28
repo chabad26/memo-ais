@@ -56,6 +56,9 @@ Vous serez capables de :
   - [Provoquer et restaurer un incident LUKS sur openSUSE Leap 16.0](it-4/provoquer-restaurer-incident-luks-opensuse.md)
   - [Comprendre l'aléa et la génération des clés](it-4/comprendre-alea-generation-cles.md)
 - [Itération 5 - Gestion des clés à l'échelle d'un parc](it-5/index.md)
+  - [Concevoir une gestion des clés adaptée à un parc de machines](it-5/concevoir-gestion-cles-parc.md)
+  - [Option 1 - systemd-cryptenroll et TPM2](it-5/option-systemd-cryptenroll-tpm2.md)
+  - [Option 2 - Clevis et Tang](it-5/option-clevis-tang.md)
 
 ## Glossaire
 

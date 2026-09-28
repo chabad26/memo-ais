@@ -11,3 +11,10 @@
 | Tang | Service réseau fournissant une liaison de récupération pour Clevis. |
 | KMS | Service de gestion de clés cryptographiques. |
 | HSM | Matériel spécialisé pour protéger et utiliser des clés cryptographiques. |
+| Coffre-fort de secrets | Service contrôlant le stockage et la délivrance de secrets avec authentification et audit. |
+| Keyslot de secours | Emplacement LUKS contenant un moyen d'ouverture indépendant du mécanisme normal. |
+| PCR | Registre du TPM contenant une mesure de l'état de composants du démarrage. |
+| vTPM | TPM virtuel présenté à une machine virtuelle avec un état qui doit rester persistant. |
+| Double approbation | Règle imposant l'accord de deux personnes distinctes pour une opération sensible. |
+| Séparation des responsabilités | Répartition des droits afin qu'une seule personne ou un seul outil ne contrôle pas toute la chaîne. |
+| Secret commun | Même secret réutilisé sur plusieurs machines, créant un impact collectif en cas de compromission. |
