@@ -223,6 +223,7 @@ nav:
 
 
   - Réseaux & sécurité:
+    - Journée IA & Cybersécurité : Memo_Journee_IA_Cybersecurite_29-09-2026.md
     - Réseaux :
         - Vue d'ensemble: admin-reseaux/index.md
         - Synthèse personnelle CC-01: admin-reseaux/synthese-personnelle-cc01.md
@@ -318,6 +319,24 @@ nav:
           - Concevoir une gestion des clés adaptée à un parc de machines: securite-donnees/it-5/concevoir-gestion-cles-parc.md
           - Option 1 - systemd-cryptenroll et TPM2: securite-donnees/it-5/option-systemd-cryptenroll-tpm2.md
           - Option 2 - Clevis et Tang: securite-donnees/it-5/option-clevis-tang.md
+
+    - Sécurisation avancée des infrastructures:
+      - Vue d'ensemble: securisation-avancee-infrastructures/README.md
+      - Cadrage du laboratoire et responsabilités: securisation-avancee-infrastructures/cadrage-laboratoire.md
+      - Dossier de preuves: securisation-avancee-infrastructures/dossier-preuves.md
+      - Itération 1 - Auditer et prioriser:
+          - Vue d'ensemble: securisation-avancee-infrastructures/it-1/index.md
+          - Préparer la cible et installer Greenbone: securisation-avancee-infrastructures/it-1/preparer-cible-installer-greenbone.md
+          - Vulnérabilité ou autre problème ?: securisation-avancee-infrastructures/it-1/vulnerabilite-ou-autre-probleme.md
+          - Lire et analyser trois entrées CVE: securisation-avancee-infrastructures/it-1/lire-analyser-entrees-cve.md
+          - Comprendre CVSS: securisation-avancee-infrastructures/it-1/comprendre-cvss.md
+          - Observer la cible: securisation-avancee-infrastructures/it-1/observer-cible.md
+          - Premier audit avec Greenbone: securisation-avancee-infrastructures/it-1/premier-audit-greenbone.md
+      - Itération 2 - Corriger, durcir et vérifier: securisation-avancee-infrastructures/it-2/index.md
+      - Itération 3 - Suricata en individuel: securisation-avancee-infrastructures/it-3/index.md
+      - Itération 4 - Wazuh en collectif: securisation-avancee-infrastructures/it-4/index.md
+      - Itération 5 - Incident et REX: securisation-avancee-infrastructures/it-5/index.md
+      - Itération 6 - Analyser et faire évoluer la PSSI: securisation-avancee-infrastructures/it-6/index.md
 
 
   - Intégration, services & supervision:
@@ -549,6 +568,13 @@ nav:
           - Itération 3 - Données au repos et LUKS: pense-bete/glossaire/securite-donnees/it-3.md
           - Itération 4 - Récupération et génération des clés: pense-bete/glossaire/securite-donnees/it-4.md
           - Itération 5 - Gestion des clés à l'échelle d'un parc: pense-bete/glossaire/securite-donnees/it-5.md
+      - Sécurisation avancée des infrastructures:
+          - Itération 1 - Auditer et prioriser: pense-bete/glossaire/securisation-avancee-infrastructures/it-1.md
+          - Itération 2 - Corriger, durcir et vérifier: pense-bete/glossaire/securisation-avancee-infrastructures/it-2.md
+          - Itération 3 - Suricata en individuel: pense-bete/glossaire/securisation-avancee-infrastructures/it-3.md
+          - Itération 4 - Wazuh en collectif: pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md
+          - Itération 5 - Incident et REX: pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md
+          - Itération 6 - Analyser et faire évoluer la PSSI: pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md
       - Intégration distribuée Cloud & IAM:
           - Itération 1 - Préparer la migration: pense-bete/glossaire/integration-distribuee-cloud-iam/it-1.md
           - Itération 2 - Déployer et automatiser OVH: pense-bete/glossaire/integration-distribuee-cloud-iam/it-2.md

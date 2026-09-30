@@ -19,6 +19,8 @@ Ce mémo est découpé en plusieurs parties :
 - **[Administration des systèmes — Virtualisation](admin-systemes-virtualisation/index.md)** : déploiement, administration, sécurisation et optimisation de machines virtuelles avec Hyper-V et VMware ESXi.
 - **[Administration des réseaux — Fondamentaux](admin-reseaux/index.md)** : base de gestion d'un réseau d'entreprise.
 - **[Administration des réseaux — Sécurisation](admin-reseaux-securisation/index.md)** : segmentation, pare-feux, VPN, analyse du trafic et réponse aux incidents réseau.
+- **[Sécurité des données](securite-donnees/index.md)** : cryptographie, TLS, stockage LUKS, récupération et gestion des clés.
+- **[Sécurisation avancée des infrastructures](securisation-avancee-infrastructures/README.md)** : audit Greenbone/OpenVAS, Lynis et Trivy, durcissement, détection Suricata/Wazuh, incident et évolution d'un fragment de PSSI.
 - **[Intégration distribuée on-premise](integration-distribuee-on-premise/README.md)** : intégration de services conteneurisés, annuaire, fichiers, messagerie, PKI, sauvegarde, supervision et reprise d'activité.
 - **[Intégration distribuée — Cloud & IAM](integration-distribuee-cloud-iam/README.md)** : migration vers OVHcloud et Infomaniak, automatisation OpenTofu et Ansible, gestion des identités, des accès et des secrets.
 - **[Supervision et optimisation des performances](supervision-optimisation-performances/README.md)** : observabilité avec Prometheus, Grafana et ELK, supervision Linux et Windows, alertes, diagnostic et optimisation.

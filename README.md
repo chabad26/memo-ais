@@ -26,6 +26,18 @@ gestion des clés. Les livrables sont une analyse de configuration, un stockage
 LUKS opérationnel, une procédure de récupération et une architecture de gestion
 des clés pour un parc.
 
+## Module Sécurisation avancée des infrastructures
+
+Le [module de sécurisation avancée](docs/securisation-avancee-infrastructures/README.md)
+prépare une démarche allant de l'audit d'un serveur exposé jusqu'à l'évolution
+d'un fragment de PSSI. Il articule Greenbone Community Edition/OpenVAS, Lynis,
+Trivy, le durcissement, Suricata en individuel, Wazuh en collectif et le
+traitement d'incident.
+
+La progression prévisionnelle comprend six itérations, un cadrage du laboratoire,
+des modèles de preuves et une fiche pense-bête par itération. Les activités
+sont présentées comme préparatoires jusqu'à leur réalisation documentée.
+
 ## Prérequis
 
 Avant de commencer, il faut avoir :
