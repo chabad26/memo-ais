@@ -5,10 +5,10 @@
 Construire un état initial du serveur exposé, croiser les résultats de plusieurs
 outils et proposer un ordre de traitement justifié.
 
-**Statut : environnement observé, deux scans Greenbone terminés.** Les exports
-de tâches du 30 septembre 2026 confirment **Done** et des compteurs de résultats.
-Les rapports détaillés restent nécessaires pour vérifier l'authentification et
-qualifier les constats. Cette numérotation est prévisionnelle.
+**Statut : environnement observé, deux scans Greenbone terminés et cinq constats
+qualifiés.** Les rapports détaillés du 30 septembre 2026 prouvent la réussite du
+scan SSH authentifié et documentent les résultats retenus. Les vérifications
+locales se poursuivent dans l'[itération 2](../it-2/reprendre-constats-j1.md).
 
 ## Activités fournies par le formateur
 

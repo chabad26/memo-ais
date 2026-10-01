@@ -63,7 +63,22 @@ de Poitiers étudiée en formation.
 6. [Observer la cible](it-1/observer-cible.md) avec les commandes déjà connues, avant le scan.
 7. Ouvrir le [dossier de preuves et les modèles de suivi](dossier-preuves.md).
 8. Réaliser le [premier audit avec Greenbone](it-1/premier-audit-greenbone.md), sans puis avec authentification SSH.
-9. Poursuivre l'[audit et la priorisation](it-1/index.md), en conservant l'état initial.
+9. [Reprendre les constats du J1](it-2/reprendre-constats-j1.md) et préparer les
+   vérifications locales sans modifier la cible.
+10. [Installer et découvrir Lynis](it-2/installer-decouvrir-lynis.md), puis
+    produire et conserver le rapport d'audit local.
+11. [Analyser et prioriser les résultats de Lynis](it-2/analyser-prioriser-resultats-lynis.md)
+    avant de sélectionner les modifications.
+12. [Vérifier la configuration du système](it-2/verifier-configuration-systeme.md)
+    et confirmer manuellement les constats retenus sans modifier la cible.
+13. [Consolider les résultats Greenbone et Lynis](it-2/consolider-resultats-greenbone-lynis.md)
+    dans une analyse unique avant toute modification.
+14. [Identifier les limites de l’audit et préparer l’analyse du conteneur](it-2/limites-audit-preparer-analyse-conteneur.md)
+    avant l’analyse de l’image au J3.
+15. [Observer le conteneur sans y exécuter Lynis](it-2/etendre-audit-conteneur.md)
+    et conserver uniquement les informations disponibles depuis Docker.
+16. Poursuivre l'[itération 2](it-2/index.md) avec les corrections, le
+    durcissement et les contrôles avant/après.
 
 ## Environnement des exercices
 

@@ -100,7 +100,7 @@ Elle cherche surtout à garantir :
 
 ## 2. AI for security & security for AI
 
-[AI for security & security for AI by Kavé Salamatian](assets/files/Presentation_IA_Cyber_DGSI.pdf)
+[DGSI conférences](assets/files/Presentation_IA_Cyber_DGSI.pdf)
 
 ### 2.1 IA comme aide à la cybersécurité
 

@@ -332,7 +332,15 @@ nav:
           - Comprendre CVSS: securisation-avancee-infrastructures/it-1/comprendre-cvss.md
           - Observer la cible: securisation-avancee-infrastructures/it-1/observer-cible.md
           - Premier audit avec Greenbone: securisation-avancee-infrastructures/it-1/premier-audit-greenbone.md
-      - Itération 2 - Corriger, durcir et vérifier: securisation-avancee-infrastructures/it-2/index.md
+      - Itération 2 - Corriger, durcir et vérifier:
+          - Vue d'ensemble: securisation-avancee-infrastructures/it-2/index.md
+          - Reprendre les constats du J1: securisation-avancee-infrastructures/it-2/reprendre-constats-j1.md
+          - Installer et découvrir Lynis: securisation-avancee-infrastructures/it-2/installer-decouvrir-lynis.md
+          - Analyser et prioriser les résultats de Lynis: securisation-avancee-infrastructures/it-2/analyser-prioriser-resultats-lynis.md
+          - Vérifier la configuration du système: securisation-avancee-infrastructures/it-2/verifier-configuration-systeme.md
+          - Consolider les résultats Greenbone et Lynis: securisation-avancee-infrastructures/it-2/consolider-resultats-greenbone-lynis.md
+          - Limites de l’audit et analyse du conteneur: securisation-avancee-infrastructures/it-2/limites-audit-preparer-analyse-conteneur.md
+          - Observer le conteneur sans Lynis: securisation-avancee-infrastructures/it-2/etendre-audit-conteneur.md
       - Itération 3 - Suricata en individuel: securisation-avancee-infrastructures/it-3/index.md
       - Itération 4 - Wazuh en collectif: securisation-avancee-infrastructures/it-4/index.md
       - Itération 5 - Incident et REX: securisation-avancee-infrastructures/it-5/index.md

@@ -91,7 +91,7 @@ contrôles. Sur une VM neuve, la voie proposée pour Ubuntu 20.04 est le paquet
 ```bash
 sudo apt update
 apt-cache policy docker.io
-sudo apt install docker.io curl ca-certificates
+sudo apt install docker.io curl ca-certificates docker-buildx
 sudo systemctl enable --now docker
 ```
 

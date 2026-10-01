@@ -5,8 +5,41 @@
 Réduire les risques identifiés dans l'audit et démontrer les effets des mesures
 sans perdre les fonctions attendues de l'application.
 
-**Statut : activité préparatoire, à réaliser.** Les changements seront choisis
-à partir des constats réels de l'[itération 1](../it-1/index.md).
+**Statut : première activité partiellement réalisée.** Les versions, services,
+écoutes, paramètres SSH et éléments CUPS ont été relevés le 1er octobre 2026.
+Les contrôles Docker/BuildKit et Ubuntu Pro restent à compléter avant de choisir
+les changements. Lynis 2.6.2 a été installé et un premier audit a été exécuté.
+Le premier rapport complet a été remplacé lors d'une commande de version. Un
+second audit a fourni 4 avertissements, 52 suggestions et un indice de
+durcissement de 57 ; ses fichiers doivent encore être copiés et empreintés.
+
+## Activités fournies par le formateur
+
+- [Reprendre les constats du J1](reprendre-constats-j1.md) — **45 min** :
+  reprendre l'inventaire et les cinq constats Greenbone, identifier les
+  informations manquantes et préparer leur vérification locale sans modifier
+  la cible.
+- [Installer et découvrir Lynis](installer-decouvrir-lynis.md) — **1 h** :
+  installer l'outil, consulter son aide, exécuter l'audit local et comparer la
+  sortie du terminal avec le journal et le rapport structurés.
+- [Analyser et prioriser les résultats de Lynis](analyser-prioriser-resultats-lynis.md) :
+  retrouver les preuves associées aux identifiants de test, classer les constats
+  et décrire deux à trois modifications sans les appliquer.
+- [Vérifier la configuration du système](verifier-configuration-systeme.md) —
+  **1 h 15** : confronter les recommandations de Lynis aux comptes, paramètres,
+  permissions, mises à jour et journaux réellement observés, sans les modifier.
+
+- [Consolider les résultats Greenbone et Lynis](consolider-resultats-greenbone-lynis.md) :
+  construire une analyse unique avec les vérifications manuelles, les priorités
+  et trois propositions de modification sans les appliquer.
+
+- [Identifier les limites de l’audit et préparer l’analyse du conteneur](limites-audit-preparer-analyse-conteneur.md) — **1 h** :
+  distinguer la couverture des audits, relever les métadonnées de l’image
+  File Browser et préparer les preuves pour le J3.
+
+- [Observer le conteneur sans y exécuter Lynis](etendre-audit-conteneur.md) :
+  conserver les métadonnées Docker et les observations déjà obtenues, en
+  respectant le périmètre fixé par la formatrice.
 
 ## Préparer une modification
 
