@@ -1,4 +1,4 @@
-# Pense-bête — Sécurisation avancée : Analyser et faire évoluer la PSSI
+# Pense-bête — Sécurisation avancée : Incident et retour d'expérience
 
 ## Périmètre
 
@@ -9,13 +9,14 @@ les notions et les gestes ; les résultats seront ajoutés après les activités
 
 | Terme | Définition courte |
 | --- | --- |
-| PSSI | Politique de sécurité des systèmes d'information : cadre des objectifs et règles de sécurité. |
-| Fragment | Partie précisément référencée du document étudié. |
-| Exigence | Règle exprimant ce qui doit être respecté sur un périmètre donné. |
-| Procédure | Description de la manière d'exécuter une activité. |
-| Dérogation | Exception formalisée avec approbation, justification et durée limitée. |
-| Contrôle | Vérification de l'application et des effets attendus d'une règle. |
-| Gouvernance | Organisation des responsabilités, des décisions et du suivi de la sécurité. |
+| Événement | Fait enregistré par une source, sans qualification automatique en incident. |
+| Alerte | Signal qui attire l'attention sur un comportement à analyser. |
+| Qualification | Évaluation de la réalité, du périmètre, de l'impact et de l'urgence d'un incident. |
+| Confinement | Action qui limite les effets ou la propagation de l'incident. |
+| Remédiation | Traitement des causes et des éléments compromis identifiés. |
+| Chronologie | Suite horodatée de faits, sources, décisions et actions. |
+| REX | Retour d'expérience destiné à produire des améliorations suivies. |
+| Indicateur de compromission | Indice à contextualiser et vérifier, sans le confondre avec une preuve suffisante. |
 
 ## Manipulations faites
 
@@ -24,15 +25,15 @@ de la fiche ne constitue pas une preuve d'audit, de déploiement ou de test.
 
 ## Gestes et commandes à retenir
 
-- Identifier le titre, la version, la date et les pages du document fourni.
-- Distinguer ce que la PSSI exige de ce qui est proposé par l'apprenant.
-- Relier chaque évolution aux constats et au REX.
-- Préciser responsable, périmètre, fréquence, preuve et traitement des exceptions.
-- Garder la proposition au statut proposé jusqu'à validation par l'autorité compétente.
+- Ouvrir une chronologie dès le signal initial.
+- Séparer faits, hypothèses, décisions et limites.
+- Préserver les traces et documenter qui a collecté quoi, quand et comment.
+- Vérifier l'effet du confinement, puis les conditions de reprise.
+- Transformer le REX en actions avec responsables, échéances et critères de clôture.
 
 ## Preuves attendues
 
-Analyse référencée du texte réel et fragment proposé avec justification et contrôles. Document exact de Poitiers encore à référencer.
+Chronologie sourcée, décisions attribuées, effets vérifiés et REX ; simulation explicitement indiquée.
 
 ## Docs associées
 

@@ -6,7 +6,7 @@ Relier chaque décision aux observations qui la justifient, depuis l'audit
 initial jusqu'à la proposition d'évolution de la PSSI.
 
 **Statut : modèles à compléter.** Les lignes « À renseigner » ne sont ni des
-constats réels ni des résultats de tests. L1 à L6 sont des repères internes.
+constats réels ni des résultats de tests. L1 à L7 sont des repères internes.
 
 ## Classer les éléments
 
@@ -26,12 +26,13 @@ outil prouve son accessibilité, pas l'efficacité de toute la chaîne.
 
 | Repère | Contenu attendu | Validation recherchée |
 | --- | --- | --- |
-| L1 | Périmètre, rapports des trois outils, constats qualifiés et priorités | Les décisions sont justifiées par le contexte et les preuves |
-| L2 | Changements, retour arrière, tests fonctionnels et nouveaux contrôles | Le risque est réduit et le service attendu fonctionne |
-| L3 | Capture réseau, configuration Suricata, règles et tests | Une règle chargée détecte le trafic prévu, avec un contrôle négatif |
-| L4 | Architecture Wazuh, collecte et recherches | Le même événement est suivi de la source au dashboard |
-| L5 | Chronologie, qualification, confinement, remédiation et REX | Faits, hypothèses et décisions sont séparés |
-| L6 | Référence PSSI, analyse du fragment et texte proposé | Chaque évolution répond à un enseignement et possède un contrôle |
+| L1 | Périmètre et rapports Greenbone, constats qualifiés et priorités initiales | Les décisions sont justifiées par le contexte et les preuves |
+| L2 | Audit Lynis, vérifications manuelles et analyse consolidée de la VM | Les constats locaux sont confirmés, nuancés ou laissés à vérifier |
+| L3 | Objet d’image identifié, rapport Trivy et vulnérabilités qualifiées | Chaque résultat est relié à un composant réellement détecté et à ses limites |
+| L4 | Capture réseau, configuration Suricata, règles et tests | Une règle chargée détecte le trafic prévu, avec un contrôle négatif |
+| L5 | Architecture Wazuh, collecte et recherches | Le même événement est suivi de la source au dashboard |
+| L6 | Chronologie, qualification, confinement, remédiation et REX | Faits, hypothèses et décisions sont séparés |
+| L7 | Référence PSSI, analyse du fragment et texte proposé | Chaque évolution répond à un enseignement et possède un contrôle |
 
 ## Registre des constats
 

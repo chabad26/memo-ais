@@ -29,7 +29,7 @@ alimente une proposition d'évolution d'un fragment de la PSSI de l'Université
 de Poitiers étudiée en formation.
 
 !!! info "Module préparé — premiers résultats documentés"
-    Les six itérations ci-dessous constituent une progression **prévisionnelle**
+    Les sept itérations ci-dessous constituent une progression **prévisionnelle**
     à adapter aux consignes du formateur. La
     [fiche de préparation](it-1/preparer-cible-installer-greenbone.md) rassemble
     les premiers résultats et sept captures : File Browser accessible depuis
@@ -38,7 +38,7 @@ de Poitiers étudiée en formation.
     [premier audit Greenbone](it-1/premier-audit-greenbone.md). Leurs rapports
     détaillés prouvent la réussite du scan SSH authentifié et documentent cinq
     constats qualifiés. Le durcissement et les activités
-    suivantes restent à réaliser. Les identifiants L1 à L6 sont des repères internes
+    suivantes restent à réaliser. Les identifiants L1 à L7 sont des repères internes
     de préparation, pas une numérotation officielle d'évaluation.
 
 ## Vous apprendrez à
@@ -77,8 +77,19 @@ de Poitiers étudiée en formation.
     avant l’analyse de l’image au J3.
 15. [Observer le conteneur sans y exécuter Lynis](it-2/etendre-audit-conteneur.md)
     et conserver uniquement les informations disponibles depuis Docker.
-16. Poursuivre l'[itération 2](it-2/index.md) avec les corrections, le
+16. [Évaluer les risques et définir les priorités](it-3/evaluer-risques-definir-priorites.md)
+    avec un classement contextualisé de tous les constats.
+17. Poursuivre l'[itération 2](it-2/index.md) avec les corrections, le
     durcissement et les contrôles avant/après.
+17. Ouvrir l'[itération 3](it-3/index.md) en identifiant
+    [ce qui manque dans l’audit](it-3/identifier-manques-audit.md) avant
+    l’analyse de l’image avec Trivy.
+18. [Analyser l’image avec Trivy](it-3/analyser-image-trivy.md), conserver le
+    rapport complet et qualifier les résultats dans le contexte du serveur.
+19. [Analyser et vérifier les résultats Trivy](it-3/analyser-verifier-resultats-trivy.md)
+    à partir des entrées CVE, du code File Browser et de l’exposition observée.
+20. [Consolider les trois sources d’audit](it-3/consolider-trois-sources-audit.md)
+    dans un tableau unique et conserver la justification des résultats écartés.
 
 ## Environnement des exercices
 
@@ -101,12 +112,13 @@ Le document exact de PSSI reste à identifier avec sa version et ses pages.
 
 | Étape | Activité | Production attendue | Pense-bête |
 | --- | --- | --- | --- |
-| [Itération 1](it-1/index.md) | Auditer et prioriser avec Greenbone/OpenVAS, Lynis et Trivy | L1 : rapport d'audit et registre des constats | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-1.md) |
-| [Itération 2](it-2/index.md) | Corriger, durcir et vérifier | L2 : journal des changements et comparaison avant/après | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-2.md) |
-| [Itération 3](it-3/index.md) | Détecter avec Suricata, individuellement | L3 : emplacement de la sonde, règles et tests | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-3.md) |
-| [Itération 4](it-4/index.md) | Centraliser avec Wazuh, collectivement | L4 : chaîne de collecte et corrélation démontrées | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md) |
-| [Itération 5](it-5/index.md) | Traiter l'incident sur le serveur étudié | L5 : chronologie, décisions, remédiation et REX | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md) |
-| [Itération 6](it-6/index.md) | Analyser et faire évoluer un fragment de PSSI | L6 : analyse sourcée et proposition de règles contrôlables | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md) |
+| [Itération 1](it-1/index.md) | Observer et auditer avec Greenbone/OpenVAS | L1 : premier rapport et constats distants/authentifiés | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-1.md) |
+| [Itération 2](it-2/index.md) | Auditer localement avec Lynis, vérifier et consolider | L2 : audit local, vérifications manuelles et analyse consolidée | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-2.md) |
+| [Itération 3](it-3/index.md) | Identifier les limites puis analyser l’image avec Trivy | L3 : inventaire de l’image et vulnérabilités qualifiées | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-3.md) |
+| [Itération 4](it-4/index.md) | Détecter avec Suricata, individuellement | L4 : emplacement de la sonde, règles et tests | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md) |
+| [Itération 5](it-5/index.md) | Centraliser avec Wazuh, collectivement | L5 : chaîne de collecte et corrélation démontrées | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md) |
+| [Itération 6](it-6/index.md) | Traiter l'incident sur le serveur étudié | L6 : chronologie, décisions, remédiation et REX | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md) |
+| [Itération 7](it-7/index.md) | Analyser et faire évoluer un fragment de PSSI | L7 : analyse sourcée et proposition de règles contrôlables | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-7.md) |
 
 ## Fil de preuve
 
@@ -134,3 +146,9 @@ Un dossier permet de comprendre les risques du serveur, les décisions prises,
 les changements réellement vérifiés, les événements détectés et les limites
 restantes. Il relie les enseignements techniques aux responsabilités et aux
 règles de sécurité proposées.
+
+## Rapport final et préparation du J4
+
+[Finaliser le rapport d’audit et le plan de remédiation](it-3/finaliser-rapport-plan-remediation.md) — **2 h** :
+synthèse des preuves Greenbone, Lynis, Trivy et manuelles, priorités, lots
+de traitement, investigations et validations futures.

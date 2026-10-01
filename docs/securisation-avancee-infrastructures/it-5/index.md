@@ -1,87 +1,88 @@
-# Itération 5 — Traiter l'incident et produire un REX
+# Itération 5 — Centraliser avec Wazuh, collectivement
 
 ## Objectif
 
-Utiliser les dispositifs construits pendant le module pour qualifier un incident
-affectant le serveur étudié, reconstruire les faits et contribuer à sa résolution.
+Construire une chaîne de collecte collective et retrouver dans Wazuh les
+événements du serveur étudié et ceux produits par Suricata.
 
-**Statut : exercice à réaliser.** Le scénario d'incident sera fourni ou validé
-par le formateur. Aucun événement, indicateur de compromission ou résultat de
-confinement n'est inventé dans cette préparation.
+**Statut : activité préparatoire, à réaliser collectivement.** La réussite
+individuelle de la détection Suricata doit être vérifiée avant l'intégration.
 
-## Préparer la prise en charge
+## Répartir les fonctions
 
-Disposer de l'état initial, du registre des constats, des corrections réalisées,
-des sources Suricata/Wazuh et des contacts métier, système, applicatif et sécurité.
-Identifier qui peut décider du confinement et du retour au service.
+| Composant | Fonction dans le laboratoire |
+| --- | --- |
+| Agent sur la machine portant Suricata | Lire le journal EVE JSON et transmettre les événements |
+| Agent sur le serveur applicatif, si machine distincte | Collecter les sources système et applicatives sélectionnées |
+| Serveur Wazuh | Analyser les événements avec les décodeurs et règles |
+| Indexer | Stocker et rendre recherchables les données indexées |
+| Dashboard | Rechercher les alertes et présenter les résultats |
 
-Ouvrir la [chronologie d'incident](../dossier-preuves.md#chronologie-dincident).
-Nommer un rédacteur de la chronologie et attribuer les actions techniques.
+L'hébergement et les flux seront renseignés dans le cadrage collectif.
+Les rôles des composants sont décrits dans
+l'[architecture officielle Wazuh](https://documentation.wazuh.com/current/getting-started/architecture.html).
 
-## Conduire le traitement
+## Travail à réaliser
 
-| Phase | Travail attendu | Éléments à conserver |
+1. Désigner les responsables de la plateforme, de l'enrôlement et des tests.
+2. Documenter les versions, les composants, les accès et les flux nécessaires.
+3. Enrôler les agents avec des identifiants permettant de retrouver leur machine
+   et leur apprenant. Protéger les clés d'enrôlement.
+4. Raccorder une source système/applicative utile et le fichier EVE de Suricata.
+5. Vérifier que l'agent peut lire le fichier, y compris après rotation des logs.
+6. Produire un nouvel événement de test et noter heure, source, destination et SID.
+7. Retrouver cet événement localement, puis dans Wazuh avec le bon agent.
+8. Documenter le décodage, la règle Wazuh, le délai de collecte et les limites.
+9. Croiser une alerte réseau avec un événement hôte ou applicatif pertinent,
+   en distinguant la corrélation réalisée par l'analyste d'une règle automatique.
+
+## Préparer la collecte Suricata
+
+Exemple à intégrer, après sauvegarde, dans la configuration existante de l'agent
+qui a accès au fichier EVE ; adapter le chemin réel :
+
+```xml
+<localfile>
+  <log_format>json</log_format>
+  <location>/var/log/suricata/eve.json</location>
+</localfile>
+```
+
+Ce bloc appartient à la configuration `ossec_config` de l'agent. Il ne remplace
+pas le fichier complet. Vérifier les permissions nécessaires et les erreurs de
+configuration avant de tester la collecte. La documentation fournit cette
+[intégration Suricata/Wazuh](https://documentation.wazuh.com/current/proof-of-concept-guide/integrate-network-ids-suricata.html).
+
+Pour rechercher les alertes Suricata, commencer par le groupe `rule.groups:suricata`,
+puis limiter la période et l'agent. Examiner l'événement effectivement indexé
+avant de choisir les champs complémentaires. Le SID Suricata et l'identifiant
+de règle Wazuh sont deux références différentes à conserver.
+
+## Vérifier la chaîne complète
+
+| Étape | Question | Preuve attendue |
 | --- | --- | --- |
-| Détection | Identifier le signal initial et vérifier sa source | Alerte, heure, machine, règle et contexte |
-| Qualification | Évaluer réalité, périmètre, impact et urgence | Faits confirmés, inconnues et hypothèses |
-| Préservation | Conserver les traces disponibles et documenter la collecte | Copies protégées, sources, auteurs, heures et empreintes |
-| Chronologie | Rapprocher les événements réseau, hôte et application | Séquence sourcée et écarts d'horloge éventuels |
-| Confinement | Limiter la propagation ou l'accès selon l'impact et l'autorité désignée | Décision, périmètre, heure et vérification de l'effet |
-| Remédiation | Traiter la cause, les accès compromis et les mécanismes indésirables identifiés | Changements, preuves et limites de vérification |
-| Reprise | Rétablir un service jugé acceptable et renforcer l'observation | Tests fonctionnels, contrôles de sécurité et décision de reprise |
-| REX | Identifier les améliorations techniques et organisationnelles | Actions, responsables, échéances et contrôles |
+| Source | Suricata a-t-il produit l'alerte attendue ? | Événement EVE local |
+| Lecture | Le bon agent lit-il le bon fichier ? | Configuration, droits et diagnostics de collecte |
+| Transmission | L'agent est-il relié au serveur ? | État de connexion et absence d'erreur bloquante |
+| Analyse | L'événement est-il décodé et associé à une règle ? | Alerte Wazuh et champs reconnus |
+| Recherche | Le résultat est-il retrouvé sur la bonne période ? | Filtre, agent, heure et événement consultable |
+| Continuité | La collecte reste-t-elle fonctionnelle après redémarrage/rotation ? | Nouvel événement de test reçu |
 
-Ces phases peuvent se chevaucher. Un confinement urgent peut précéder certaines
-collectes ; noter le motif et les éléments devenus indisponibles. Éviter une
-réinstallation ou une suppression de traces avant d'avoir évalué les besoins
-de conservation et les effets de l'action.
-
-## Distinguer fait, hypothèse et décision
-
-| Nature | Formulation attendue |
-| --- | --- |
-| Fait | Ce qu'une source datée montre, avec sa référence |
-| Hypothèse | Une explication possible, accompagnée du contrôle permettant de la vérifier |
-| Décision | Une action retenue par une personne identifiée, avec motif et résultat |
-| Limite | Une source absente, une période manquante ou une conclusion non démontrée |
-
-Une alerte réseau ne prouve pas qu'une exploitation a réussi. Un code de réponse
-HTTP ne prouve pas à lui seul une compromission. Rapprocher les sources utiles
-et indiquer le degré de confiance sans combler les périodes manquantes.
-
-## Vérifier les effets des actions
-
-- Après confinement : le flux ou l'accès visé est-il réellement interrompu ?
-- Après remédiation : la cause identifiée est-elle traitée et contrôlée ?
-- Après reprise : les parcours métier, les données utiles et la collecte sont-ils fonctionnels ?
-- Sur la période d'observation : les indicateurs recherchés réapparaissent-ils ?
-
-L'absence de nouvelle alerte doit être accompagnée d'une vérification de la
-collecte et d'une fenêtre d'observation documentée. Elle ne prouve pas à elle
-seule que toute compromission a disparu.
-
-## Construire le retour d'expérience
-
-| Axe | Question à traiter |
-| --- | --- |
-| Prévention | Quel constat d'audit ou quelle faiblesse a joué un rôle démontré ? |
-| Détection | Quel signal a été utile ? Quel angle mort subsiste ? |
-| Réponse | Qu'est-ce qui a facilité ou retardé la qualification et le confinement ? |
-| Responsabilités | Qui devait maintenir, surveiller, décider et communiquer ? |
-| Amélioration | Quelle action, quel responsable, quelle échéance et quelle preuve de clôture ? |
-
-Mesurer les délais uniquement si les horodatages nécessaires sont disponibles
-et comparables. Sinon, indiquer « non mesurable avec les traces disponibles ».
+Un agent connecté ne prouve pas la collecte de chaque source. Un dashboard
+accessible ne prouve pas qu'un événement de test a traversé la chaîne.
 
 ## État final attendu et preuves L5
 
-Un compte rendu précise la qualification, le périmètre, la chronologie, les
-actions, leurs effets et les limites. Le REX relie les apprentissages au plan
-de correction et prépare la traduction en règles de sécurité.
+Un événement identifiable est suivi de Suricata jusqu'à Wazuh. Une recherche
+documentée rapproche les événements réseau et hôte utiles à la qualification.
+Le dossier collectif attribue les configurations, les tests et les conclusions
+aux personnes qui les ont réalisés.
 
-Identifier clairement le caractère simulé de l'exercice. Les données de scénario
-réservées à l'injecteur ne sont pas ajoutées au guide public de l'analyste.
+Conserver les extraits de configuration sans clé, la matrice machine/agent,
+les filtres et les événements anonymisés. La réponse automatique reste une
+fonction distincte ; aucun blocage n'est déduit de la simple centralisation.
 
 - [Pense-bête de l'itération](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md)
-- [Étape suivante — Évolution d'un fragment de PSSI](../it-6/index.md)
+- [Étape suivante — Traitement d'incident](../it-6/index.md)
 - [Retour au module](../README.md)

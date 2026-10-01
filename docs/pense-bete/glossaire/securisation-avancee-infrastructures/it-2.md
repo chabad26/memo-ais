@@ -108,3 +108,11 @@ la formatrice limite Lynis à la VM Ubuntu. Conserver les métadonnées Docker e
 les observations internes déjà obtenues, sans installer, copier ou lancer Lynis
 dans File Browser. L’analyse de l’image exacte sera réalisée avec l’outil prévu,
 notamment Trivy, en conservant les différences de périmètre.
+
+## Évaluer les risques
+
+Le [classement contextualisé](../../../securisation-avancee-infrastructures/it-3/evaluer-risques-definir-priorites.md)
+conserve C01 à C11 et distingue priorité de correction, préparation et
+investigation. CVSS est une information, pas un ordre automatique. Expliquer
+accès requis, données, protections et risque de régression ; ne pas transformer
+les arrêts volontaires en incidents ni supposer une exposition Internet.

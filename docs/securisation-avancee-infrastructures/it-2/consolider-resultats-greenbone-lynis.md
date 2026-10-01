@@ -7,6 +7,9 @@ résultats Greenbone du J1, de Lynis et des vérifications manuelles. Chaque
 constat possède un identifiant unique, même lorsque plusieurs sources le
 justifient. **Aucune modification de configuration n’est réalisée.**
 
+Cette consolidation J2 est prolongée par la
+[consolidation des trois sources avec Trivy](../it-3/consolider-trois-sources-audit.md).
+
 **État au 1er octobre 2026 : consolidation documentaire réalisée à partir des
 preuves disponibles.** Les conditions d’exploitation, les dépendances et les
 contrôles encore manquants restent explicitement ouverts. Cette feuille ne
@@ -226,6 +229,14 @@ Le [contrôle interne optionnel](etendre-audit-conteneur.md) à **11:49:04
 avec UID/GID 0. Il précise C10. Lynis n’est pas trouvé dans le PATH ; aucun
 audit interne n’a encore été exécuté. Le démarrage montre `health: starting`,
 ce qui ne constitue pas une validation healthy.
+
+## Priorités contextualisées
+
+La [feuille d’évaluation des risques](../it-3/evaluer-risques-definir-priorites.md)
+justifie le rang de chaque constat et les conditions de révision. Elle précise
+C09 en **P3 investigation** et C11 en **P3 besoin d’exploitation**, écarté comme
+panne spontanée. Ce classement complète le tableau consolidé et sert de
+référence pour préparer les traitements ; aucune mesure n’est appliquée.
 
 ## État final de l’exercice
 

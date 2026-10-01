@@ -1,4 +1,4 @@
-# Pense-bête — Sécurisation avancée : Wazuh en collectif
+# Pense-bête — Sécurisation avancée : Suricata en individuel
 
 ## Périmètre
 
@@ -9,13 +9,14 @@ les notions et les gestes ; les résultats seront ajoutés après les activités
 
 | Terme | Définition courte |
 | --- | --- |
-| Agent Wazuh | Composant installé sur une machine pour collecter des informations et événements. |
-| Serveur Wazuh | Composant central qui analyse les événements reçus. |
-| Indexer | Composant de stockage et de recherche des données indexées. |
-| Dashboard | Interface de consultation et d'exploration des résultats. |
-| Décodeur | Mécanisme qui extrait les champs d'un événement pour l'analyse. |
-| Corrélation | Rapprochement d'événements selon le temps, l'actif et d'autres éléments pertinents. |
-| SID Suricata / règle Wazuh | Deux identifiants différents à conserver lors du suivi d'une alerte. |
+| IDS | Dispositif qui détecte et signale des événements ; le blocage est une fonction distincte. |
+| IPS | Dispositif placé pour intervenir sur le trafic et appliquer des actions de prévention. |
+| HOME_NET | Variable Suricata décrivant le réseau protégé. |
+| SID / révision | Identifiant d'une signature Suricata et version de cette règle. |
+| EVE JSON | Sortie structurée des événements produits par Suricata. |
+| Test positif | Trafic choisi pour déclencher la règle attendue. |
+| Test négatif | Trafic témoin qui ne doit pas déclencher cette règle précise. |
+| Visibilité | Trafic réellement reçu par l'interface de la sonde. |
 
 ## Manipulations faites
 
@@ -24,15 +25,15 @@ de la fiche ne constitue pas une preuve d'audit, de déploiement ou de test.
 
 ## Gestes et commandes à retenir
 
-- Associer chaque machine et agent au bon apprenant ou groupe.
-- Configurer la lecture EVE sur l'agent qui a accès au journal Suricata.
-- Produire un événement neuf et le retrouver de la source au dashboard.
-- Commencer par le filtre `rule.groups:suricata`, puis préciser période et agent.
-- Vérifier aussi la collecte après rotation des journaux et redémarrage.
+- Documenter le chemin du trafic et vérifier la capture avant les règles.
+- Vérifier version, interface, réseau protégé et règles chargées.
+- Prévoir `suricata -T` avec le fichier de configuration adapté avant application.
+- Conserver SID, révision, horodatage et adresses pour chaque test.
+- Interpréter les limites liées au TLS, aux flux non visibles et aux pertes de paquets.
 
 ## Preuves attendues
 
-Événement suivi de bout en bout, recherche reproductible et contributions attribuées.
+Configuration valide, visibilité démontrée et tests positif/négatif documentés.
 
 ## Docs associées
 

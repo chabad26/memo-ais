@@ -112,5 +112,5 @@ changement seront détaillées après identification des systèmes et des servic
 pour éviter d'appliquer une procédure à une cible différente.
 
 - [Pense-bête de l'itération](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-2.md)
-- [Étape suivante — Détection Suricata](../it-3/index.md)
+- [Étape suivante — Analyse de l’image du conteneur](../it-3/index.md)
 - [Retour au module](../README.md)

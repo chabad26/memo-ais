@@ -1,86 +1,78 @@
-# Itération 3 — Détecter avec Suricata, individuellement
+# Itération 3 — Analyser l’image du conteneur
 
 ## Objectif
 
-Installer une détection réseau sur le laboratoire, configurer des règles et
-prouver qu'elles réagissent au trafic attendu.
+Compléter l’audit de la VM par une analyse de l’image File Browser, en
+distinguant clairement l’hôte Ubuntu, le conteneur en cours d’exécution, l’image
+et les données montées.
 
-**Statut : activité préparatoire, à réaliser individuellement.** L'installation
-et les règles seront adaptées à la version retenue et aux interfaces observées.
+**Statut : scan et inventaire Trivy réalisés ; qualification à poursuivre.**
+Trivy 0.74.0 est installé sur la machine d’audit. L’image exacte a été
+identifiée, exportée puis transférée avec une empreinte SHA-256 identique. Le
+scan a réussi et produit un rapport JSON. Trivy a reconnu Alpine 3.13.4 avec
+20 paquets système ainsi que 53 composants du binaire Go. L’extraction recense
+294 associations composant–vulnérabilité, dont 13 critiques. Cinq résultats ont
+été vérifiés : quatre sont non pertinents dans la configuration observée et un
+reste à vérifier. Des exports séparés regroupent les résultats `CRITICAL`,
+`HIGH` et l’ensemble `HIGH` + `CRITICAL` demandé par la formatrice. La
+consolidation finale ajoute un seul constat structurel sur l’image hors support.
 
-## Définir ce que la sonde voit
+## Activités
 
-Compléter le [cadrage réseau](../cadrage-laboratoire.md#preparer-les-flux-et-la-visibilite)
-avant les tests. Indiquer l'emplacement de Suricata, l'interface de capture,
-le réseau protégé et le chemin du trafic entre le client et le serveur.
+- [Identifier ce qui manque dans l’audit](identifier-manques-audit.md) : reprendre
+  l’audit consolidé du J2, séparer les informations connues des inconnues et
+  expliquer pourquoi Greenbone, Lynis et les contrôles manuels ne suffisent pas.
+- [Analyser l’image avec Trivy](analyser-image-trivy.md) — **1 h** : installer
+  l’outil sur la machine d’audit, scanner l’image exacte, conserver le rapport
+  et identifier composants, versions, CVE, sévérités et correctifs indiqués.
+- [Analyser et vérifier les résultats Trivy](analyser-verifier-resultats-trivy.md) :
+  sélectionner cinq résultats significatifs, vérifier leurs conditions dans le
+  code, le binaire et l’exposition réelle, puis statuer sur leur applicabilité.
+- [Consolider les trois sources d’audit](consolider-trois-sources-audit.md) :
+  intégrer Greenbone, Lynis, Trivy, les contrôles manuels et les références CVE
+  dans un tableau unique, sans dupliquer les problèmes.
 
-Suricata est d'abord utilisé ici en **IDS** : il observe et alerte. Un blocage
-nécessiterait un déploiement IPS et une validation distincte. Ne pas attribuer
-un blocage au seul déclenchement d'une alerte.
+- [Évaluer les risques et définir les priorités](evaluer-risques-definir-priorites.md) — **1 h 15** :
+  justifier les priorités selon le risque pour ce serveur et les limites
+  des preuves disponibles.
 
-## Travail à réaliser
+- [Finaliser le rapport d’audit et le plan de remédiation](finaliser-rapport-plan-remediation.md) — **2 h** :
+  produire la synthèse finale, regrouper les actions et préparer leur validation
+  à partir du J4.
 
-1. Choisir une version compatible avec le système et conserver sa référence.
-2. Configurer l'interface et `HOME_NET` selon le laboratoire réel.
-3. Activer la sortie EVE JSON et identifier son emplacement effectif.
-4. Vérifier avec un trafic connu que la sonde reçoit les paquets utiles.
-5. Charger les règles prévues, puis ajouter une règle locale de test identifiable.
-6. Vérifier la configuration avant rechargement et noter les erreurs éventuelles.
-7. Réaliser un test positif puis un test négatif pour la règle choisie.
-8. Conserver les événements EVE, la règle, sa révision et les conditions de test.
+## Périmètres à ne pas confondre
 
-La sortie EVE permet d'examiner les événements structurés de Suricata. Le
-[guide officiel de démarrage](https://docs.suricata.io/en/suricata-7.0.15/quickstart.html)
-illustre la capture et la lecture des alertes ; utiliser la documentation
-correspondant à la version effectivement installée.
-
-## Décrire une règle avant de l'écrire
-
-| Élément | Question à documenter |
-| --- | --- |
-| Intention | Quel comportement du cas fil rouge veut-on détecter ? |
-| Périmètre | Quel protocole, sens de circulation, réseau et service ? |
-| Condition | Quel indicateur réellement observable déclenche la règle ? |
-| Identifiant | Quel SID local disponible, quelle révision et quel message ? |
-| Test positif | Quel trafic inoffensif de laboratoire doit déclencher cette règle ? |
-| Test négatif | Quel trafic témoin doit passer sans déclencher cette règle précise ? |
-| Limites | Quels faux positifs, angles morts ou effets du chiffrement ? |
-
-Un marqueur de test valide le fonctionnement technique de la règle. Il ne
-démontre pas la couverture de toutes les attaques sur l'application.
-
-## Gestes à retenir après installation
-
-Sur la machine portant la sonde, avec les chemins par défaut à vérifier :
-
-```bash
-suricata --build-info
-sudo suricata -T -c /etc/suricata/suricata.yaml
-sudo tail -n 100 /var/log/suricata/eve.json | jq 'select(.event_type == "alert")'
-```
-
-Ces commandes sont des contrôles prévus, non exécutés dans cette préparation.
-Le test de configuration doit réussir avant application. Il ne prouve ni la
-visibilité réseau ni la réception d'un événement réel. La lecture des cent
-dernières lignes sert à une vérification rapide, pas à conclure à l'absence
-d'alerte sur toute une période.
-
-## Matrice de validation
-
-| Test | Résultat attendu | Preuve à conserver |
+| Objet | Exemple dans le laboratoire | Question principale |
 | --- | --- | --- |
-| Configuration | Règles et paramètres acceptés | Sortie du contrôle et version |
-| Visibilité | Trafic de test observé sur la bonne interface | Compteurs ou capture limitée et horodatée |
-| Positif | Alerte correspondant au SID attendu | Heure, SID, révision, source et destination |
-| Négatif | Absence de cette alerte sur la fenêtre du test témoin | Trafic témoin observé et recherche sur la période |
-| Redémarrage du service | Configuration et détection toujours présentes | Nouveau test positif après redémarrage |
+| Hôte | VM Ubuntu 20.04 | Quels paquets, services et paramètres protègent le moteur Docker ? |
+| Conteneur | Instance `filebrowser` | Avec quels droits et montages l’application s’exécute-t-elle ? |
+| Image | ImageID `sha256:a68f…e1a5` | Quels composants sont intégrés dans les couches de l’image ? |
+| Application | File Browser 2.15.0 | Quelles vulnérabilités concernent réellement cette version et sa configuration ? |
+| Données | `/srv/filebrowser` monté dans `/srv` | Qui peut lire ou modifier les documents servis ? |
+
+Un résultat obtenu sur un objet ne doit pas être automatiquement attribué aux
+autres. Une CVE d’un paquet Ubuntu de l’hôte n’est pas une CVE de l’image, et un
+scan sans résultat ne garantit pas l’absence de vulnérabilité.
+
+## Preuves attendues pour l’itération
+
+- objet analysé identifié par ImageID et, si disponible, RepoDigest ;
+- version de Trivy et date de sa base ;
+- commande exacte, scanners et options utilisés ;
+- rapport conservé avec date et empreinte ;
+- composants et versions détectés, erreurs et éléments non identifiés ;
+- qualification des résultats avec les références des vulnérabilités ;
+- distinction entre résultat de l’image, configuration du conteneur et données
+  montées.
 
 ## État final attendu et preuves L3
 
-Une sonde dont la visibilité est expliquée, au moins une règle documentée et des
-tests positif/négatif attribuables à l'apprenant. Conserver les limites, notamment
-le trafic non visible et les contenus TLS inaccessibles à la sonde.
+Un rapport d’analyse d’image reproductible complète les constats Greenbone et
+Lynis. Chaque vulnérabilité retenue est rattachée à un composant réellement
+détecté et à une condition d’applicabilité. Les limites du scanner et les
+composants non identifiés restent visibles.
 
-- [Pense-bête de l'itération](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-3.md)
-- [Étape suivante — Centralisation Wazuh](../it-4/index.md)
+- [Pense-bête de l’itération](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-3.md)
+- [Étape précédente — Itération 2](../it-2/index.md)
+- [Étape suivante — Détection Suricata](../it-4/index.md)
 - [Retour au module](../README.md)

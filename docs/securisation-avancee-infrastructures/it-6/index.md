@@ -1,99 +1,87 @@
-# Itération 6 — Analyser et faire évoluer un fragment de PSSI
+# Itération 6 — Traiter l'incident et produire un REX
 
 ## Objectif
 
-Analyser un fragment de la PSSI de l'Université de Poitiers utilisée en formation
-et proposer une évolution justifiée par les constats d'audit et le REX du module.
+Utiliser les dispositifs construits pendant le module pour qualifier un incident
+affectant le serveur étudié, reconstruire les faits et contribuer à sa résolution.
 
-**Statut : méthode préparée ; analyse du document à compléter.** La version
-exacte fournie par le formateur n'est pas encore référencée dans le mémo.
-Aucun article ni obligation n'est attribué à cette PSSI sans lecture du texte.
+**Statut : exercice à réaliser.** Le scénario d'incident sera fourni ou validé
+par le formateur. Aucun événement, indicateur de compromission ou résultat de
+confinement n'est inventé dans cette préparation.
 
-## Identifier le document de travail
+## Préparer la prise en charge
 
-| Champ | Information à renseigner |
-| --- | --- |
-| Titre exact | À compléter depuis le document |
-| Émetteur | Université de Poitiers, à vérifier sur le document |
-| Version et date | À relever ; ne pas confondre date du document et date de consultation |
-| Source | Lien ou référence du document transmis par le formateur |
-| Fragment étudié | Pages, titre de section et paragraphes |
-| Statut | Version de travail, approuvée ou historique selon les indications du document |
-| Périmètre | Acteurs, systèmes et usages couverts par le fragment |
+Disposer de l'état initial, du registre des constats, des corrections réalisées,
+des sources Suricata/Wazuh et des contacts métier, système, applicatif et sécurité.
+Identifier qui peut décider du confinement et du retour au service.
 
-La recherche de préparation du 30 septembre 2026 n'a pas permis d'identifier
-avec certitude le document exact du cours. Une présentation de la SSI, une
-charte d'usage, un schéma directeur ou une fiche de formation ne remplace pas
-la PSSI à analyser. La grille ci-dessous pourra être utilisée dès réception
-de sa référence.
+Ouvrir la [chronologie d'incident](../dossier-preuves.md#chronologie-dincident).
+Nommer un rédacteur de la chronologie et attribuer les actions techniques.
 
-## Analyser le fragment existant
+## Conduire le traitement
 
-1. Lire le fragment avec son contexte et relever sa référence précise.
-2. Reformuler ses objectifs et ses exigences sans leur ajouter d'obligation.
-3. Identifier les responsables, le périmètre, les contrôles et les exceptions.
-4. Comparer les exigences aux faits du cas fil rouge et aux preuves du module.
-5. Distinguer règle absente, règle imprécise et règle existante mal appliquée.
-6. Choisir une évolution limitée et justifiée, puis prévoir sa vérification.
-
-Une mauvaise application peut appeler une procédure, une attribution de
-responsabilité ou un contrôle supplémentaire, sans réécrire toute la politique.
-
-## Relier les enseignements aux règles
-
-La table suivante propose des axes de recherche. Les constats techniques et
-les effets de l'incident restent à démontrer pendant les activités.
-
-| Axe issu du cas fil rouge | Passage à rechercher dans la PSSI | Contrôle envisageable |
+| Phase | Travail attendu | Éléments à conserver |
 | --- | --- | --- |
-| Responsabilités de maintenance devenues floues | Propriété des actifs, rôles métier, système et applicatif | Inventaire avec responsables désignés et revues datées |
-| Maintien d'un service exposé | Autorisation d'exposition, gestion des risques et fin de vie | Revue de l'utilité du service, des flux et des risques acceptés |
-| Vulnérabilités à traiter selon l'audit | Veille, qualification, correctifs et dérogations | Registre avec priorité, responsable, échéance et vérification |
-| Détection à vérifier pendant le module | Journalisation, surveillance et gestion des alertes | Test documenté de la source à la qualification |
-| Enseignements à établir pendant l'incident | Signalement, escalade, confinement, reprise et REX | Compte rendu et suivi des actions d'amélioration |
+| Détection | Identifier le signal initial et vérifier sa source | Alerte, heure, machine, règle et contexte |
+| Qualification | Évaluer réalité, périmètre, impact et urgence | Faits confirmés, inconnues et hypothèses |
+| Préservation | Conserver les traces disponibles et documenter la collecte | Copies protégées, sources, auteurs, heures et empreintes |
+| Chronologie | Rapprocher les événements réseau, hôte et application | Séquence sourcée et écarts d'horloge éventuels |
+| Confinement | Limiter la propagation ou l'accès selon l'impact et l'autorité désignée | Décision, périmètre, heure et vérification de l'effet |
+| Remédiation | Traiter la cause, les accès compromis et les mécanismes indésirables identifiés | Changements, preuves et limites de vérification |
+| Reprise | Rétablir un service jugé acceptable et renforcer l'observation | Tests fonctionnels, contrôles de sécurité et décision de reprise |
+| REX | Identifier les améliorations techniques et organisationnelles | Actions, responsables, échéances et contrôles |
 
-Utiliser la [matrice REX/PSSI](../dossier-preuves.md#relier-le-rex-a-la-pssi)
-pour conserver la référence du texte initial à côté de chaque proposition.
+Ces phases peuvent se chevaucher. Un confinement urgent peut précéder certaines
+collectes ; noter le motif et les éléments devenus indisponibles. Éviter une
+réinstallation ou une suppression de traces avant d'avoir évalué les besoins
+de conservation et les effets de l'action.
 
-## Exemple de rédaction à adapter
+## Distinguer fait, hypothèse et décision
 
-!!! note "Proposition pédagogique originale"
-    Le texte ci-dessous est une piste de rédaction fondée sur le cas fil rouge.
-    Il ne constitue ni un extrait ni une règle actuelle de l'Université de Poitiers.
-    Il devra être comparé au fragment réel et ajusté aux résultats du module.
-
-> Tout service exposé sur Internet doit être associé à un responsable métier,
-> un responsable de maintenance système et un responsable de maintenance
-> applicative. Leurs périmètres et les contacts de suppléance sont enregistrés
-> dans l'inventaire. Une revue est réalisée au moins annuellement et lors d'un
-> changement de responsable ou d'une évolution majeure du service. Elle vérifie
-> l'utilité du service, son maintien en condition de sécurité et ses moyens de
-> détection. Les écarts donnent lieu à une action attribuée et datée, ou à une
-> dérogation approuvée, limitée dans le temps et assortie de mesures compensatoires.
-
-La fréquence annuelle est ici un choix proposé à discuter, pas une exigence
-supposée du document étudié. La règle doit rester applicable et contrôlable.
-
-## Vérifier la qualité de la proposition
-
-| Critère | Vérification attendue |
+| Nature | Formulation attendue |
 | --- | --- |
-| Traçabilité | Référence exacte du fragment initial et des constats qui motivent l'évolution |
-| Clarté | Qui fait quoi, sur quel périmètre et à quel moment ? |
-| Faisabilité | Responsables, moyens, dépendances et charge identifiés |
-| Contrôle | Preuve attendue, fréquence et personne chargée de la revue |
-| Exceptions | Approbateur, justification, échéance et compensation définis |
-| Validation | Proposition soumise à l'autorité compétente ; statut d'approbation explicite |
+| Fait | Ce qu'une source datée montre, avec sa référence |
+| Hypothèse | Une explication possible, accompagnée du contrôle permettant de la vérifier |
+| Décision | Une action retenue par une personne identifiée, avec motif et résultat |
+| Limite | Une source absente, une période manquante ou une conclusion non démontrée |
+
+Une alerte réseau ne prouve pas qu'une exploitation a réussi. Un code de réponse
+HTTP ne prouve pas à lui seul une compromission. Rapprocher les sources utiles
+et indiquer le degré de confiance sans combler les périodes manquantes.
+
+## Vérifier les effets des actions
+
+- Après confinement : le flux ou l'accès visé est-il réellement interrompu ?
+- Après remédiation : la cause identifiée est-elle traitée et contrôlée ?
+- Après reprise : les parcours métier, les données utiles et la collecte sont-ils fonctionnels ?
+- Sur la période d'observation : les indicateurs recherchés réapparaissent-ils ?
+
+L'absence de nouvelle alerte doit être accompagnée d'une vérification de la
+collecte et d'une fenêtre d'observation documentée. Elle ne prouve pas à elle
+seule que toute compromission a disparu.
+
+## Construire le retour d'expérience
+
+| Axe | Question à traiter |
+| --- | --- |
+| Prévention | Quel constat d'audit ou quelle faiblesse a joué un rôle démontré ? |
+| Détection | Quel signal a été utile ? Quel angle mort subsiste ? |
+| Réponse | Qu'est-ce qui a facilité ou retardé la qualification et le confinement ? |
+| Responsabilités | Qui devait maintenir, surveiller, décider et communiquer ? |
+| Amélioration | Quelle action, quel responsable, quelle échéance et quelle preuve de clôture ? |
+
+Mesurer les délais uniquement si les horodatages nécessaires sont disponibles
+et comparables. Sinon, indiquer « non mesurable avec les traces disponibles ».
 
 ## État final attendu et preuves L6
 
-Une analyse référencée, le fragment proposé et une justification reliant chaque
-modification à un constat ou à un enseignement du REX. Ajouter le responsable
-du contrôle, la preuve attendue et les limites restantes.
+Un compte rendu précise la qualification, le périmètre, la chronologie, les
+actions, leurs effets et les limites. Le REX relie les apprentissages au plan
+de correction et prépare la traduction en règles de sécurité.
 
-Le livrable n'est considéré comme analysé qu'une fois le document source lu et
-les références complétées. La préparation actuelle fournit la méthode et la trame.
+Identifier clairement le caractère simulé de l'exercice. Les données de scénario
+réservées à l'injecteur ne sont pas ajoutées au guide public de l'analyste.
 
 - [Pense-bête de l'itération](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md)
-- [Dossier de preuves](../dossier-preuves.md)
+- [Étape suivante — Évolution d'un fragment de PSSI](../it-7/index.md)
 - [Retour au module](../README.md)

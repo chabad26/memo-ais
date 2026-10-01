@@ -1,88 +1,86 @@
-# Itération 4 — Centraliser avec Wazuh, collectivement
+# Itération 4 — Détecter avec Suricata, individuellement
 
 ## Objectif
 
-Construire une chaîne de collecte collective et retrouver dans Wazuh les
-événements du serveur étudié et ceux produits par Suricata.
+Installer une détection réseau sur le laboratoire, configurer des règles et
+prouver qu'elles réagissent au trafic attendu.
 
-**Statut : activité préparatoire, à réaliser collectivement.** La réussite
-individuelle de la détection Suricata doit être vérifiée avant l'intégration.
+**Statut : activité préparatoire, à réaliser individuellement.** L'installation
+et les règles seront adaptées à la version retenue et aux interfaces observées.
 
-## Répartir les fonctions
+## Définir ce que la sonde voit
 
-| Composant | Fonction dans le laboratoire |
-| --- | --- |
-| Agent sur la machine portant Suricata | Lire le journal EVE JSON et transmettre les événements |
-| Agent sur le serveur applicatif, si machine distincte | Collecter les sources système et applicatives sélectionnées |
-| Serveur Wazuh | Analyser les événements avec les décodeurs et règles |
-| Indexer | Stocker et rendre recherchables les données indexées |
-| Dashboard | Rechercher les alertes et présenter les résultats |
+Compléter le [cadrage réseau](../cadrage-laboratoire.md#preparer-les-flux-et-la-visibilite)
+avant les tests. Indiquer l'emplacement de Suricata, l'interface de capture,
+le réseau protégé et le chemin du trafic entre le client et le serveur.
 
-L'hébergement et les flux seront renseignés dans le cadrage collectif.
-Les rôles des composants sont décrits dans
-l'[architecture officielle Wazuh](https://documentation.wazuh.com/current/getting-started/architecture.html).
+Suricata est d'abord utilisé ici en **IDS** : il observe et alerte. Un blocage
+nécessiterait un déploiement IPS et une validation distincte. Ne pas attribuer
+un blocage au seul déclenchement d'une alerte.
 
 ## Travail à réaliser
 
-1. Désigner les responsables de la plateforme, de l'enrôlement et des tests.
-2. Documenter les versions, les composants, les accès et les flux nécessaires.
-3. Enrôler les agents avec des identifiants permettant de retrouver leur machine
-   et leur apprenant. Protéger les clés d'enrôlement.
-4. Raccorder une source système/applicative utile et le fichier EVE de Suricata.
-5. Vérifier que l'agent peut lire le fichier, y compris après rotation des logs.
-6. Produire un nouvel événement de test et noter heure, source, destination et SID.
-7. Retrouver cet événement localement, puis dans Wazuh avec le bon agent.
-8. Documenter le décodage, la règle Wazuh, le délai de collecte et les limites.
-9. Croiser une alerte réseau avec un événement hôte ou applicatif pertinent,
-   en distinguant la corrélation réalisée par l'analyste d'une règle automatique.
+1. Choisir une version compatible avec le système et conserver sa référence.
+2. Configurer l'interface et `HOME_NET` selon le laboratoire réel.
+3. Activer la sortie EVE JSON et identifier son emplacement effectif.
+4. Vérifier avec un trafic connu que la sonde reçoit les paquets utiles.
+5. Charger les règles prévues, puis ajouter une règle locale de test identifiable.
+6. Vérifier la configuration avant rechargement et noter les erreurs éventuelles.
+7. Réaliser un test positif puis un test négatif pour la règle choisie.
+8. Conserver les événements EVE, la règle, sa révision et les conditions de test.
 
-## Préparer la collecte Suricata
+La sortie EVE permet d'examiner les événements structurés de Suricata. Le
+[guide officiel de démarrage](https://docs.suricata.io/en/suricata-7.0.15/quickstart.html)
+illustre la capture et la lecture des alertes ; utiliser la documentation
+correspondant à la version effectivement installée.
 
-Exemple à intégrer, après sauvegarde, dans la configuration existante de l'agent
-qui a accès au fichier EVE ; adapter le chemin réel :
+## Décrire une règle avant de l'écrire
 
-```xml
-<localfile>
-  <log_format>json</log_format>
-  <location>/var/log/suricata/eve.json</location>
-</localfile>
+| Élément | Question à documenter |
+| --- | --- |
+| Intention | Quel comportement du cas fil rouge veut-on détecter ? |
+| Périmètre | Quel protocole, sens de circulation, réseau et service ? |
+| Condition | Quel indicateur réellement observable déclenche la règle ? |
+| Identifiant | Quel SID local disponible, quelle révision et quel message ? |
+| Test positif | Quel trafic inoffensif de laboratoire doit déclencher cette règle ? |
+| Test négatif | Quel trafic témoin doit passer sans déclencher cette règle précise ? |
+| Limites | Quels faux positifs, angles morts ou effets du chiffrement ? |
+
+Un marqueur de test valide le fonctionnement technique de la règle. Il ne
+démontre pas la couverture de toutes les attaques sur l'application.
+
+## Gestes à retenir après installation
+
+Sur la machine portant la sonde, avec les chemins par défaut à vérifier :
+
+```bash
+suricata --build-info
+sudo suricata -T -c /etc/suricata/suricata.yaml
+sudo tail -n 100 /var/log/suricata/eve.json | jq 'select(.event_type == "alert")'
 ```
 
-Ce bloc appartient à la configuration `ossec_config` de l'agent. Il ne remplace
-pas le fichier complet. Vérifier les permissions nécessaires et les erreurs de
-configuration avant de tester la collecte. La documentation fournit cette
-[intégration Suricata/Wazuh](https://documentation.wazuh.com/current/proof-of-concept-guide/integrate-network-ids-suricata.html).
+Ces commandes sont des contrôles prévus, non exécutés dans cette préparation.
+Le test de configuration doit réussir avant application. Il ne prouve ni la
+visibilité réseau ni la réception d'un événement réel. La lecture des cent
+dernières lignes sert à une vérification rapide, pas à conclure à l'absence
+d'alerte sur toute une période.
 
-Pour rechercher les alertes Suricata, commencer par le groupe `rule.groups:suricata`,
-puis limiter la période et l'agent. Examiner l'événement effectivement indexé
-avant de choisir les champs complémentaires. Le SID Suricata et l'identifiant
-de règle Wazuh sont deux références différentes à conserver.
+## Matrice de validation
 
-## Vérifier la chaîne complète
-
-| Étape | Question | Preuve attendue |
+| Test | Résultat attendu | Preuve à conserver |
 | --- | --- | --- |
-| Source | Suricata a-t-il produit l'alerte attendue ? | Événement EVE local |
-| Lecture | Le bon agent lit-il le bon fichier ? | Configuration, droits et diagnostics de collecte |
-| Transmission | L'agent est-il relié au serveur ? | État de connexion et absence d'erreur bloquante |
-| Analyse | L'événement est-il décodé et associé à une règle ? | Alerte Wazuh et champs reconnus |
-| Recherche | Le résultat est-il retrouvé sur la bonne période ? | Filtre, agent, heure et événement consultable |
-| Continuité | La collecte reste-t-elle fonctionnelle après redémarrage/rotation ? | Nouvel événement de test reçu |
-
-Un agent connecté ne prouve pas la collecte de chaque source. Un dashboard
-accessible ne prouve pas qu'un événement de test a traversé la chaîne.
+| Configuration | Règles et paramètres acceptés | Sortie du contrôle et version |
+| Visibilité | Trafic de test observé sur la bonne interface | Compteurs ou capture limitée et horodatée |
+| Positif | Alerte correspondant au SID attendu | Heure, SID, révision, source et destination |
+| Négatif | Absence de cette alerte sur la fenêtre du test témoin | Trafic témoin observé et recherche sur la période |
+| Redémarrage du service | Configuration et détection toujours présentes | Nouveau test positif après redémarrage |
 
 ## État final attendu et preuves L4
 
-Un événement identifiable est suivi de Suricata jusqu'à Wazuh. Une recherche
-documentée rapproche les événements réseau et hôte utiles à la qualification.
-Le dossier collectif attribue les configurations, les tests et les conclusions
-aux personnes qui les ont réalisés.
-
-Conserver les extraits de configuration sans clé, la matrice machine/agent,
-les filtres et les événements anonymisés. La réponse automatique reste une
-fonction distincte ; aucun blocage n'est déduit de la simple centralisation.
+Une sonde dont la visibilité est expliquée, au moins une règle documentée et des
+tests positif/négatif attribuables à l'apprenant. Conserver les limites, notamment
+le trafic non visible et les contenus TLS inaccessibles à la sonde.
 
 - [Pense-bête de l'itération](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md)
-- [Étape suivante — Traitement d'incident](../it-5/index.md)
+- [Étape suivante — Centralisation Wazuh](../it-5/index.md)
 - [Retour au module](../README.md)

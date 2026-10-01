@@ -1,4 +1,4 @@
-# Pense-bête — Sécurisation avancée : Incident et retour d'expérience
+# Pense-bête — Sécurisation avancée : Wazuh en collectif
 
 ## Périmètre
 
@@ -9,14 +9,13 @@ les notions et les gestes ; les résultats seront ajoutés après les activités
 
 | Terme | Définition courte |
 | --- | --- |
-| Événement | Fait enregistré par une source, sans qualification automatique en incident. |
-| Alerte | Signal qui attire l'attention sur un comportement à analyser. |
-| Qualification | Évaluation de la réalité, du périmètre, de l'impact et de l'urgence d'un incident. |
-| Confinement | Action qui limite les effets ou la propagation de l'incident. |
-| Remédiation | Traitement des causes et des éléments compromis identifiés. |
-| Chronologie | Suite horodatée de faits, sources, décisions et actions. |
-| REX | Retour d'expérience destiné à produire des améliorations suivies. |
-| Indicateur de compromission | Indice à contextualiser et vérifier, sans le confondre avec une preuve suffisante. |
+| Agent Wazuh | Composant installé sur une machine pour collecter des informations et événements. |
+| Serveur Wazuh | Composant central qui analyse les événements reçus. |
+| Indexer | Composant de stockage et de recherche des données indexées. |
+| Dashboard | Interface de consultation et d'exploration des résultats. |
+| Décodeur | Mécanisme qui extrait les champs d'un événement pour l'analyse. |
+| Corrélation | Rapprochement d'événements selon le temps, l'actif et d'autres éléments pertinents. |
+| SID Suricata / règle Wazuh | Deux identifiants différents à conserver lors du suivi d'une alerte. |
 
 ## Manipulations faites
 
@@ -25,15 +24,15 @@ de la fiche ne constitue pas une preuve d'audit, de déploiement ou de test.
 
 ## Gestes et commandes à retenir
 
-- Ouvrir une chronologie dès le signal initial.
-- Séparer faits, hypothèses, décisions et limites.
-- Préserver les traces et documenter qui a collecté quoi, quand et comment.
-- Vérifier l'effet du confinement, puis les conditions de reprise.
-- Transformer le REX en actions avec responsables, échéances et critères de clôture.
+- Associer chaque machine et agent au bon apprenant ou groupe.
+- Configurer la lecture EVE sur l'agent qui a accès au journal Suricata.
+- Produire un événement neuf et le retrouver de la source au dashboard.
+- Commencer par le filtre `rule.groups:suricata`, puis préciser période et agent.
+- Vérifier aussi la collecte après rotation des journaux et redémarrage.
 
 ## Preuves attendues
 
-Chronologie sourcée, décisions attribuées, effets vérifiés et REX ; simulation explicitement indiquée.
+Événement suivi de bout en bout, recherche reproductible et contributions attribuées.
 
 ## Docs associées
 
