@@ -1,12 +1,35 @@
-# Itération 4 — Détecter avec Suricata, individuellement
+# Itération 4 — Préparer les remédiations et la détection Suricata
 
 ## Objectif
 
-Installer une détection réseau sur le laboratoire, configurer des règles et
-prouver qu'elles réagissent au trafic attendu.
+Préparer puis mettre en œuvre les remédiations prioritaires issues du J3 et
+les vérifier avec des preuves de sécurité et de fonctionnement.
+Préparer ensuite une détection réseau sur le laboratoire, configurer des règles
+et prouver qu'elles réagissent au trafic attendu.
 
 **Statut : activité préparatoire, à réaliser individuellement.** L'installation
 et les règles seront adaptées à la version retenue et aux interfaces observées.
+
+## Préparer les remédiations à partir du J3
+
+Commencer par la [nouvelle feuille — Préparer les remédiations](preparer-remediations.md) :
+sélection des actions prioritaires, impacts, validations de sécurité et de
+fonctionnement, état initial et retour arrière. Elle intègre notamment le
+changement du mot de passe File Browser après la connexion `admin` / `admin`
+confirmée selon le test utilisateur. **Préparation réalisée ; corrections à
+mettre en œuvre et à valider.**
+
+Poursuivre avec [Mettre en œuvre et vérifier les remédiations](mettre-en-oeuvre-verifier-remediations.md) :
+recherche des commandes, sept étapes par changement, fiche de résultats et
+diagnostic des problèmes. **Migration Ubuntu jusqu’à 26.04.1 et fonctionnement
+File Browser validés le 2 octobre 2026, avec captures ; lots SSH, Docker, auditd,
+CUPS et sysctl documentés, rescans reçus ; qualification globale à compléter en J5.**
+
+Terminer avec [Finaliser le compte-rendu de durcissement](finaliser-compte-rendu-durcissement.md) — **1 h** :
+bilan J4 fondé sur les preuves, écarts au plan, risques résiduels et matrice J5
+à compléter pour le compte-rendu de durcissement et de vérification utilisé pour C2.
+
+La préparation Suricata ci-dessous reste une activité distincte de détection.
 
 ## Définir ce que la sonde voit
 
@@ -84,3 +107,12 @@ le trafic non visible et les contenus TLS inaccessibles à la sonde.
 - [Pense-bête de l'itération](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md)
 - [Étape suivante — Centralisation Wazuh](../it-5/index.md)
 - [Retour au module](../README.md)
+
+## Avancement déclaré — File Browser
+
+Le 2 octobre 2026, Olivier confirme le succès de la migration File Browser
+2.63.23, des montages persistants et du démarrage automatique après les tests
+proposés. Le [suivi R03/R08](mettre-en-oeuvre-verifier-remediations.md#r03-r08-bascule-et-reprise-succes-declare)
+attribue ces résultats au retour utilisateur. Captures, chemin persistant
+exact et scans ont depuis été intégrés au journal. Le compte-rendu final
+ci-dessus présente le bilan actuel et ses limites de validation.

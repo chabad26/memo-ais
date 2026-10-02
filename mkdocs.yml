@@ -349,7 +349,11 @@ nav:
           - Consolider les trois sources d’audit: securisation-avancee-infrastructures/it-3/consolider-trois-sources-audit.md
           - Evaluer les risques et définir les priorités: securisation-avancee-infrastructures/it-3/evaluer-risques-definir-priorites.md
           - Finaliser le rapport et le plan de remédiation: securisation-avancee-infrastructures/it-3/finaliser-rapport-plan-remediation.md
-      - Itération 4 - Suricata en individuel: securisation-avancee-infrastructures/it-4/index.md
+      - Itération 4 - Remédiations et Suricata:
+          - Vue d'ensemble: securisation-avancee-infrastructures/it-4/index.md
+          - Préparer les remédiations: securisation-avancee-infrastructures/it-4/preparer-remediations.md
+          - Mettre en œuvre et vérifier les remédiations: securisation-avancee-infrastructures/it-4/mettre-en-oeuvre-verifier-remediations.md
+          - Finaliser le compte-rendu de durcissement: securisation-avancee-infrastructures/it-4/finaliser-compte-rendu-durcissement.md
       - Itération 5 - Wazuh en collectif: securisation-avancee-infrastructures/it-5/index.md
       - Itération 6 - Incident et REX: securisation-avancee-infrastructures/it-6/index.md
       - Itération 7 - Analyser et faire évoluer la PSSI: securisation-avancee-infrastructures/it-7/index.md

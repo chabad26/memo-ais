@@ -115,7 +115,7 @@ Le document exact de PSSI reste à identifier avec sa version et ses pages.
 | [Itération 1](it-1/index.md) | Observer et auditer avec Greenbone/OpenVAS | L1 : premier rapport et constats distants/authentifiés | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-1.md) |
 | [Itération 2](it-2/index.md) | Auditer localement avec Lynis, vérifier et consolider | L2 : audit local, vérifications manuelles et analyse consolidée | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-2.md) |
 | [Itération 3](it-3/index.md) | Identifier les limites puis analyser l’image avec Trivy | L3 : inventaire de l’image et vulnérabilités qualifiées | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-3.md) |
-| [Itération 4](it-4/index.md) | Détecter avec Suricata, individuellement | L4 : emplacement de la sonde, règles et tests | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md) |
+| [Itération 4](it-4/index.md) | Préparer les remédiations puis détecter avec Suricata, individuellement | L4 : actions préparées, validations/retours arrière ; sonde, règles et tests | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md) |
 | [Itération 5](it-5/index.md) | Centraliser avec Wazuh, collectivement | L5 : chaîne de collecte et corrélation démontrées | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md) |
 | [Itération 6](it-6/index.md) | Traiter l'incident sur le serveur étudié | L6 : chronologie, décisions, remédiation et REX | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md) |
 | [Itération 7](it-7/index.md) | Analyser et faire évoluer un fragment de PSSI | L7 : analyse sourcée et proposition de règles contrôlables | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-7.md) |
@@ -152,3 +152,17 @@ règles de sécurité proposées.
 [Finaliser le rapport d’audit et le plan de remédiation](it-3/finaliser-rapport-plan-remediation.md) — **2 h** :
 synthèse des preuves Greenbone, Lynis, Trivy et manuelles, priorités, lots
 de traitement, investigations et validations futures.
+
+## Itération 4 — Préparation des remédiations
+
+[Préparer les remédiations](it-4/preparer-remediations.md) : reprendre le plan du
+J3, sélectionner les actions prioritaires (dont les identifiants File Browser),
+préparer impacts, validations et retours arrière avant mise en œuvre.
+
+[Mettre en œuvre et vérifier les remédiations](it-4/mettre-en-oeuvre-verifier-remediations.md) :
+rechercher la méthode, appliquer les changements retenus, valider sécurité et
+fonctionnement, diagnostiquer les échecs et documenter chaque résultat.
+
+[Finaliser le compte-rendu de durcissement](it-4/finaliser-compte-rendu-durcissement.md) — **1 h** :
+synthèse des remédiations réalisées, écarts, diagnostics et risques résiduels ;
+préparation de la vérification globale J5 et du livrable utilisé pour C2.

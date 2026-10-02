@@ -17,6 +17,20 @@ reste à vérifier. Des exports séparés regroupent les résultats `CRITICAL`,
 `HIGH` et l’ensemble `HIGH` + `CRITICAL` demandé par la formatrice. La
 consolidation finale ajoute un seul constat structurel sur l’image hors support.
 
+## Complément — Tests manuels de File Browser
+
+**Retour utilisateur du 2 octobre 2026 :** Olivier a effectué les tests
+applicatifs proposés. La connexion avec **`admin` / `admin` réussit** ; les
+autres tests (accès sans session, accès direct, séparation des comptes,
+lecture seule et déconnexion) sont déclarés conformes. Le détail des résultats
+et les captures restent à joindre ; aucune conformité globale n’est déduite.
+
+Le [rapport et plan de remédiation](finaliser-rapport-plan-remediation.md#tests-manuels-applicatifs-et-retours-du-2-octobre-2026)
+intègre **C13 — identifiants par défaut actifs** et **R09 — changement du mot
+de passe administrateur**, en **P1 correction prioritaire**. La correction est
+**à effectuer** ; son efficacité devra être validée par le refus des anciens
+identifiants et le fonctionnement du nouvel accès.
+
 ## Activités
 
 - [Identifier ce qui manque dans l’audit](identifier-manques-audit.md) : reprendre
