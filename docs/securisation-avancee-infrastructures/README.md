@@ -116,7 +116,7 @@ Le document exact de PSSI reste à identifier avec sa version et ses pages.
 | [Itération 2](it-2/index.md) | Auditer localement avec Lynis, vérifier et consolider | L2 : audit local, vérifications manuelles et analyse consolidée | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-2.md) |
 | [Itération 3](it-3/index.md) | Identifier les limites puis analyser l’image avec Trivy | L3 : inventaire de l’image et vulnérabilités qualifiées | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-3.md) |
 | [Itération 4](it-4/index.md) | Préparer les remédiations puis détecter avec Suricata, individuellement | L4 : actions préparées, validations/retours arrière ; sonde, règles et tests | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md) |
-| [Itération 5](it-5/index.md) | Centraliser avec Wazuh, collectivement | L5 : chaîne de collecte et corrélation démontrées | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md) |
+| [Itération 5](it-5/index.md) | Bilan du durcissement et préparation du fragment de PSSI | L5 : compte-rendu, analyse organisationnelle, propositions de règles et plan J6 | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md) |
 | [Itération 6](it-6/index.md) | Traiter l'incident sur le serveur étudié | L6 : chronologie, décisions, remédiation et REX | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md) |
 | [Itération 7](it-7/index.md) | Analyser et faire évoluer un fragment de PSSI | L7 : analyse sourcée et proposition de règles contrôlables | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-7.md) |
 
@@ -166,3 +166,31 @@ fonctionnement, diagnostiquer les échecs et documenter chaque résultat.
 [Finaliser le compte-rendu de durcissement](it-4/finaliser-compte-rendu-durcissement.md) — **1 h** :
 synthèse des remédiations réalisées, écarts, diagnostics et risques résiduels ;
 préparation de la vérification globale J5 et du livrable utilisé pour C2.
+
+## Itération 5 — Bilan du durcissement et préparation du fragment de PSSI
+
+[Vérifier l’état du système après remédiation](it-5/verifier-etat-systeme-apres-remediation.md) :
+comparer aux constats J3, reprendre les preuves J4 et compléter les verdicts J5
+avec des contrôles pertinents. Contrôles manuels, Greenbone et Lynis refaits
+selon Olivier ; résultats stables, pièces J5 à joindre. Risques résiduels et
+investigations conservés dans le compte-rendu utilisé pour C2.
+
+[Finaliser le compte-rendu de durcissement et de vérification](it-5/finaliser-compte-rendu-durcissement-verification.md) :
+conclusion J5, résultats par remédiation, difficultés et risques résiduels ;
+contrôles refaits déclarés, annexes J5 encore à joindre.
+
+[Identifier ce que la technique ne règle pas](it-5/identifier-ce-que-technique-ne-regle-pas.md) :
+analyser les problèmes organisationnels du cas File Browser et proposer
+responsables, règles de maintenance et contrôles du cycle de vie.
+
+[Analyser une PSSI existante — Université de Poitiers](it-5/analyser-pssi-existante-poitiers.md) :
+lecture du document fourni, analyse de règles sourcées et adaptations au cas
+File Browser ; responsabilités, maintenance, accès, réseau et preuves de contrôle.
+
+[Proposer des règles adaptées au cas fil rouge](it-5/proposer-regles-adaptees-cas-fil-rouge.md) :
+premières propositions sur maintenance, vulnérabilités, mises à jour, exposition,
+contrôles, exceptions, cycle de vie et accès ; adoption à valider.
+
+[Préparer le fragment de PSSI](it-5/preparer-fragment-pssi.md) :
+cinq sujets regroupant P01–P08, ancrage dans le cas File Browser et plan
+de rédaction J6 ; décisions et adoption encore à valider.

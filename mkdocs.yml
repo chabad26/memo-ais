@@ -354,7 +354,14 @@ nav:
           - Préparer les remédiations: securisation-avancee-infrastructures/it-4/preparer-remediations.md
           - Mettre en œuvre et vérifier les remédiations: securisation-avancee-infrastructures/it-4/mettre-en-oeuvre-verifier-remediations.md
           - Finaliser le compte-rendu de durcissement: securisation-avancee-infrastructures/it-4/finaliser-compte-rendu-durcissement.md
-      - Itération 5 - Wazuh en collectif: securisation-avancee-infrastructures/it-5/index.md
+      - Itération 5 - Bilan et préparation PSSI:
+          - Vue d'ensemble: securisation-avancee-infrastructures/it-5/index.md
+          - Vérifier l’état du système après remédiation: securisation-avancee-infrastructures/it-5/verifier-etat-systeme-apres-remediation.md
+          - Finaliser le compte-rendu de durcissement et de vérification: securisation-avancee-infrastructures/it-5/finaliser-compte-rendu-durcissement-verification.md
+          - Identifier ce que la technique ne règle pas: securisation-avancee-infrastructures/it-5/identifier-ce-que-technique-ne-regle-pas.md
+          - Analyser une PSSI existante - Université de Poitiers: securisation-avancee-infrastructures/it-5/analyser-pssi-existante-poitiers.md
+          - Proposer des règles adaptées au cas fil rouge: securisation-avancee-infrastructures/it-5/proposer-regles-adaptees-cas-fil-rouge.md
+          - Préparer le fragment de PSSI: securisation-avancee-infrastructures/it-5/preparer-fragment-pssi.md
       - Itération 6 - Incident et REX: securisation-avancee-infrastructures/it-6/index.md
       - Itération 7 - Analyser et faire évoluer la PSSI: securisation-avancee-infrastructures/it-7/index.md
 

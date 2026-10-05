@@ -1,88 +1,70 @@
-# Itération 5 — Centraliser avec Wazuh, collectivement
+# Itération 5 — Bilan du durcissement et préparation du fragment de PSSI
 
 ## Objectif
 
-Construire une chaîne de collecte collective et retrouver dans Wazuh les
-événements du serveur étudié et ceux produits par Suricata.
+Conclure sur les remédiations réalisées, distinguer les risques corrigés des
+risques résiduels, puis transformer les problèmes organisationnels du cas
+File Browser en propositions de règles. Préparer les sujets du fragment de
+PSSI qui sera élaboré en J6.
 
-**Statut : activité préparatoire, à réaliser collectivement.** La réussite
-individuelle de la détection Suricata doit être vérifiée avant l'intégration.
+**Itération terminée le 5 octobre 2026 selon le retour d’Olivier.** Les
+contrôles manuels, Greenbone et Lynis ont été refaits avec des résultats
+inchangés par rapport au 2 octobre. Les pièces détaillées J5 restent à joindre.
+Les propositions de règles sont préparées ; elles ne constituent pas une
+PSSI adoptée ni une validation acquise de C2.
 
-## Répartir les fonctions
+## Parcours réalisé
 
-| Composant | Fonction dans le laboratoire |
-| --- | --- |
-| Agent sur la machine portant Suricata | Lire le journal EVE JSON et transmettre les événements |
-| Agent sur le serveur applicatif, si machine distincte | Collecter les sources système et applicatives sélectionnées |
-| Serveur Wazuh | Analyser les événements avec les décodeurs et règles |
-| Indexer | Stocker et rendre recherchables les données indexées |
-| Dashboard | Rechercher les alertes et présenter les résultats |
-
-L'hébergement et les flux seront renseignés dans le cadrage collectif.
-Les rôles des composants sont décrits dans
-l'[architecture officielle Wazuh](https://documentation.wazuh.com/current/getting-started/architecture.html).
-
-## Travail à réaliser
-
-1. Désigner les responsables de la plateforme, de l'enrôlement et des tests.
-2. Documenter les versions, les composants, les accès et les flux nécessaires.
-3. Enrôler les agents avec des identifiants permettant de retrouver leur machine
-   et leur apprenant. Protéger les clés d'enrôlement.
-4. Raccorder une source système/applicative utile et le fichier EVE de Suricata.
-5. Vérifier que l'agent peut lire le fichier, y compris après rotation des logs.
-6. Produire un nouvel événement de test et noter heure, source, destination et SID.
-7. Retrouver cet événement localement, puis dans Wazuh avec le bon agent.
-8. Documenter le décodage, la règle Wazuh, le délai de collecte et les limites.
-9. Croiser une alerte réseau avec un événement hôte ou applicatif pertinent,
-   en distinguant la corrélation réalisée par l'analyste d'une règle automatique.
-
-## Préparer la collecte Suricata
-
-Exemple à intégrer, après sauvegarde, dans la configuration existante de l'agent
-qui a accès au fichier EVE ; adapter le chemin réel :
-
-```xml
-<localfile>
-  <log_format>json</log_format>
-  <location>/var/log/suricata/eve.json</location>
-</localfile>
-```
-
-Ce bloc appartient à la configuration `ossec_config` de l'agent. Il ne remplace
-pas le fichier complet. Vérifier les permissions nécessaires et les erreurs de
-configuration avant de tester la collecte. La documentation fournit cette
-[intégration Suricata/Wazuh](https://documentation.wazuh.com/current/proof-of-concept-guide/integrate-network-ids-suricata.html).
-
-Pour rechercher les alertes Suricata, commencer par le groupe `rule.groups:suricata`,
-puis limiter la période et l'agent. Examiner l'événement effectivement indexé
-avant de choisir les champs complémentaires. Le SID Suricata et l'identifiant
-de règle Wazuh sont deux références différentes à conserver.
-
-## Vérifier la chaîne complète
-
-| Étape | Question | Preuve attendue |
+| Étape | Feuille | Travail et résultat |
 | --- | --- | --- |
-| Source | Suricata a-t-il produit l'alerte attendue ? | Événement EVE local |
-| Lecture | Le bon agent lit-il le bon fichier ? | Configuration, droits et diagnostics de collecte |
-| Transmission | L'agent est-il relié au serveur ? | État de connexion et absence d'erreur bloquante |
-| Analyse | L'événement est-il décodé et associé à une règle ? | Alerte Wazuh et champs reconnus |
-| Recherche | Le résultat est-il retrouvé sur la bonne période ? | Filtre, agent, heure et événement consultable |
-| Continuité | La collecte reste-t-elle fonctionnelle après redémarrage/rotation ? | Nouvel événement de test reçu |
+| 1 | [Vérifier l’état du système après remédiation](verifier-etat-systeme-apres-remediation.md) | Comparaison J3/J4/J5, contrôles pertinents, résultats stables déclarés et limites de preuve ; Trivy non relancé, image déclarée inchangée |
+| 2 | [Finaliser le compte-rendu de durcissement et de vérification](finaliser-compte-rendu-durcissement-verification.md) | Traçabilité R01–R09, effet des protections, maintien du fonctionnement, diagnostics, état final et risques résiduels |
+| 3 | [Identifier ce que la technique ne règle pas](identifier-ce-que-technique-ne-regle-pas.md) | Responsabilités, maintenance, suivi des alertes, exposition et cycle de vie du service |
+| 4 | [Analyser une PSSI existante — Université de Poitiers](analyser-pssi-existante-poitiers.md) | Structure, responsabilités et sept règles référencées ; applicabilité et adaptations au cas File Browser |
+| 5 | [Proposer des règles adaptées au cas fil rouge](proposer-regles-adaptees-cas-fil-rouge.md) | Huit propositions P01–P08, avec problème, objectif, destinataire, responsable et contrôle |
+| 6 | [Préparer le fragment de PSSI](preparer-fragment-pssi.md) | Regroupement en cinq sujets, ancrage dans les faits du cas et plan de rédaction J6 |
 
-Un agent connecté ne prouve pas la collecte de chaque source. Un dashboard
-accessible ne prouve pas qu'un événement de test a traversé la chaîne.
+## Bilan technique et limites
 
-## État final attendu et preuves L5
+Les mesures vérifiées en J4 portent sur la migration, SSH, Docker, auditd,
+CUPS, sysctl, les identifiants et la reprise du service. Les contrôles J5
+refaits sont déclarés stables ; les nouveaux rapports et sorties ne sont pas
+encore annexés. Aucun nouveau problème n’est signalé dans ce retour.
 
-Un événement identifiable est suivi de Suricata jusqu'à Wazuh. Une recherche
-documentée rapproche les événements réseau et hôte utiles à la qualification.
-Le dossier collectif attribue les configurations, les tests et les conclusions
-aux personnes qui les ont réalisés.
+Les alertes non qualifiées, les dix HIGH Trivy de l’export précédent et la
+fin de maintenance File Browser restent documentés. Une image inchangée
+peut recevoir de nouvelles associations de vulnérabilités si les bases du
+scanner évoluent. La stabilité des résultats ne signifie pas l’absence de
+risque et les compteurs ne suffisent pas à conclure à une sécurité globale.
 
-Conserver les extraits de configuration sans clé, la matrice machine/agent,
-les filtres et les événements anonymisés. La réponse automatique reste une
-fonction distincte ; aucun blocage n'est déduit de la simple centralisation.
+## Bilan organisationnel
 
-- [Pense-bête de l'itération](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md)
-- [Étape suivante — Traitement d'incident](../it-6/index.md)
+Le cas montre qu’une correction technique ne désigne pas le mainteneur futur,
+ne garantit pas le suivi des alertes et ne décide pas du retrait d’un service.
+La préparation du fragment est organisée autour de cinq sujets :
+
+1. Responsabilités de maintenance et transmission.
+2. Maintenance et suivi des vulnérabilités.
+3. Exposition et accès des partenaires.
+4. Contrôles, écarts et exceptions.
+5. Cycle de vie, remplacement et retrait.
+
+Chaque sujet est relié à un problème du cas, à des rôles, à des règles
+proposées et à des preuves de contrôle. Les responsables nominatifs, délais,
+fréquences, moyens et autorités de validation restent à arbitrer.
+
+## Livrables de l’itération
+
+- Compte-rendu de durcissement et de vérification renseigné, avec limites des preuves J5.
+- Analyse des problèmes organisationnels et de la PSSI de référence.
+- Huit propositions de règles adaptées au service.
+- Plan du fragment de PSSI, à développer en J6.
+
+**Suite en J6 :** élaborer une première version du fragment à partir de la
+[préparation](preparer-fragment-pssi.md), sans transformer les propositions en
+règles déjà approuvées. L’annexion des pièces J5 complète le dossier de preuve
+sans nécessiter une nouvelle extension automatique du durcissement.
+
+- [Compte-rendu J4](../it-4/finaliser-compte-rendu-durcissement.md)
+- [Rapport d’audit et plan initial J3](../it-3/finaliser-rapport-plan-remediation.md)
 - [Retour au module](../README.md)
