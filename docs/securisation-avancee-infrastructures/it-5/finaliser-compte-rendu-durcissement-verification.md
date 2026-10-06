@@ -238,6 +238,46 @@ Les règles de sécurité appliquées ne remplacent pas les mises à jour des
 composants vulnérables. Une alerte de scanner corrigée par rétroportage doit
 être justifiée par la version complète, le chemin et une source éditeur.
 
+### Complément du 6 octobre 2026 — Accès réseau au port 8080
+
+**Point soulevé par la formatrice, confirmé par Olivier : le filtrage du port
+publié par Docker n’a pas été traité pendant le durcissement.** Il s’agit d’un
+risque résiduel identifié après la rédaction du bilan, sans correction exécutée.
+
+Le déploiement documenté utilise `-p 8080:80`, sans adresse d’écoute restrictive.
+Un relevé antérieur montre 8080 sur toutes les interfaces IPv4/IPv6 de la VM.
+Cela ne démontre pas une accessibilité depuis Internet : la joignabilité
+reste dépendante du routage, du réseau virtuel et des règles effectives.
+Aucune restriction aux seules sources autorisées n’est démontrée dans le dossier.
+
+Le trafic vers un port publié par Docker peut suivre des règles de
+redirection/transfert distinctes du filtrage des connexions destinées à
+l’hôte. Une règle UFW sur les entrées de l’hôte ne suffit donc pas à prouver
+le blocage de 8080 ; il faut examiner le chemin réseau et le backend de
+pare-feu réellement utilisés par Docker. Le contournement d’une règle précise
+n’a pas été testé ici.
+
+L’authentification File Browser limite l’accès applicatif, pas la possibilité
+de joindre le port. `cap-drop` et `no-new-privileges` limitent les privilèges
+du conteneur ; ils ne constituent pas un filtrage réseau. Les réglages sysctl
+appliqués ne prouvent pas non plus une restriction des sources sur 8080.
+
+**Action proposée — à réaliser :**
+
+1. Définir les utilisateurs/zones autorisés et le besoin de publication avec le propriétaire du service, selon CV04 du fragment de PSSI.
+2. Relever publication Docker et adresses d’écoute, règles de filtrage/transfert effectives, backend Docker et configuration du réseau virtuel ; examiner IPv4 et IPv6.
+3. Appliquer une restriction compatible avec le chemin réseau Docker et adaptée à ces sources. Si un reverse proxy situé sur la VM est l’unique point d’accès retenu, envisager `127.0.0.1:8080:80` ; vérifier son accès et l’absence de publication alternative. Cette option n’est pas adaptée automatiquement à un proxy situé sur une autre machine ou dans un autre conteneur.
+4. Tester depuis une source autorisée et une source censée être refusée, puis vérifier le fonctionnement applicatif et la persistance après redémarrage/recréation. Conserver configuration, résultats et périmètre des tests.
+
+**Verdict : filtrage non traité ; restriction réseau non vérifiable.** Le point
+ne sera déclaré corrigé qu’après preuve des accès permis et refusés. Aucune
+modification de pare-feu ni de publication Docker n’a été effectuée par cet ajout.
+
+**Formulation pour le bilan :** « Le conteneur a été durci, mais le filtrage de
+son port publié reste à traiter. Nous allons définir les sources autorisées,
+appliquer une restriction adaptée au fonctionnement réseau de Docker et
+vérifier son effet depuis les zones concernées avant de clôturer ce risque. »
+
 ## 4. Résultats des audits et investigations restantes
 
 **Lynis J4 :** version 3.1.6, indice 65 → 67, écarts sysctl 15 → 9, auditd

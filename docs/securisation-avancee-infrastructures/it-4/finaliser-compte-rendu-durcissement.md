@@ -257,6 +257,14 @@ Pour chaque ligne, compléter : **corrigé et vérifié**, **partiellement corri
 Un résultat non concluant doit préciser la preuve manquante. L’acceptation
 éventuelle d’un risque est une décision à documenter, pas un état déduit du scan.
 
+## Complément identifié le 6 octobre 2026
+
+Le filtrage du port Docker publié **8080** n’a pas été traité, selon Olivier
+après la remarque de la formatrice. Le durcissement des privilèges du conteneur
+ne démontre pas une restriction réseau. Voir le
+[risque résiduel, le correctif proposé et les preuves attendues](../it-5/finaliser-compte-rendu-durcissement-verification.md#complement-du-6-octobre-2026-acces-reseau-au-port-8080).
+**Aucune correction réseau exécutée ; exposition Internet non démontrée.**
+
 ## 📦 Livrable et état final attendu
 
 **Compte-rendu de durcissement J4 préparé**, comprenant actions, commandes,
