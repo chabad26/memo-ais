@@ -362,7 +362,14 @@ nav:
           - Analyser une PSSI existante - Université de Poitiers: securisation-avancee-infrastructures/it-5/analyser-pssi-existante-poitiers.md
           - Proposer des règles adaptées au cas fil rouge: securisation-avancee-infrastructures/it-5/proposer-regles-adaptees-cas-fil-rouge.md
           - Préparer le fragment de PSSI: securisation-avancee-infrastructures/it-5/preparer-fragment-pssi.md
-      - Itération 6 - Incident et REX: securisation-avancee-infrastructures/it-6/index.md
+      - Itération 6 - Fragment de PSSI:
+          - Vue d'ensemble: securisation-avancee-infrastructures/it-6/index.md
+          - Définir le périmètre du fragment de PSSI: securisation-avancee-infrastructures/it-6/definir-perimetre-fragment-pssi.md
+          - Définir les rôles et responsabilités: securisation-avancee-infrastructures/it-6/definir-roles-responsabilites.md
+          - Définir les règles du cycle de vie d’un service: securisation-avancee-infrastructures/it-6/definir-regles-cycle-vie-service.md
+          - Définir les contrôles et les exceptions: securisation-avancee-infrastructures/it-6/definir-controles-exceptions.md
+          - Tester le fragment de PSSI: securisation-avancee-infrastructures/it-6/tester-fragment-pssi.md
+          - Fragment de PSSI - V1: securisation-avancee-infrastructures/it-6/fragment-pssi-v1.md
       - Itération 7 - Analyser et faire évoluer la PSSI: securisation-avancee-infrastructures/it-7/index.md
 
 

@@ -1,4 +1,39 @@
-# Itération 6 — Traiter l'incident et produire un REX
+# Itération 6 — Élaborer le fragment de PSSI
+
+## Travail J6 — Définir puis rédiger le fragment
+
+Reprendre la [préparation J5](../it-5/preparer-fragment-pssi.md) et commencer
+par [Définir le périmètre du fragment de PSSI](definir-perimetre-fragment-pssi.md) :
+systèmes administrés hors de l’équipe principale, acteurs, responsabilités,
+cycle de vie et exclusions. **Périmètre proposé le 6 octobre 2026 ; adoption
+à valider.** La première version est désormais consolidée dans le document V1 ci-dessous.
+
+Poursuivre avec [Définir les rôles et responsabilités](definir-roles-responsabilites.md) :
+demande, autorisation, administration par couche, vulnérabilités, décisions,
+revues, transfert et retrait ; rôles proposés et nominations à valider.
+
+Poursuivre avec [Définir les règles du cycle de vie d’un service](definir-regles-cycle-vie-service.md) :
+onze règles vérifiables, du déploiement au retrait, avec délais proposés à valider.
+
+Compléter le fragment avec [Définir les contrôles et les exceptions](definir-controles-exceptions.md) :
+matrice liée à CV01–CV11, résultats, traitement des écarts et circuit des dérogations.
+
+[Tester le fragment de PSSI](tester-fragment-pssi.md) : appliquer les règles
+aux situations A–E, identifier les informations manquantes et compléter CV07/CV11.
+Test documentaire réalisé ; application réelle et adoption non démontrées.
+
+## Document de référence conservé
+
+[Fragment de PSSI — V1](fragment-pssi-v1.md), consolidé le 6 octobre 2026 :
+objectif/périmètre, responsabilités, autorisation, CV01–CV11, contrôles,
+exceptions et révision après REX. **V1 rédigée et conservée ; adoption à valider.**
+Utiliser cette version pendant les journées suivantes ; créer une V2 distincte
+après le retour d’expérience de l’incident.
+
+## Préparation antérieure — Incident et REX
+
+La préparation ci-dessous est conservée comme activité distincte du travail
+PSSI J6 ; aucun incident n’est présenté comme réalisé.
 
 ## Objectif
 

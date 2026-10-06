@@ -117,7 +117,7 @@ Le document exact de PSSI reste à identifier avec sa version et ses pages.
 | [Itération 3](it-3/index.md) | Identifier les limites puis analyser l’image avec Trivy | L3 : inventaire de l’image et vulnérabilités qualifiées | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-3.md) |
 | [Itération 4](it-4/index.md) | Préparer les remédiations puis détecter avec Suricata, individuellement | L4 : actions préparées, validations/retours arrière ; sonde, règles et tests | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md) |
 | [Itération 5](it-5/index.md) | Bilan du durcissement et préparation du fragment de PSSI | L5 : compte-rendu, analyse organisationnelle, propositions de règles et plan J6 | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md) |
-| [Itération 6](it-6/index.md) | Traiter l'incident sur le serveur étudié | L6 : chronologie, décisions, remédiation et REX | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md) |
+| [Itération 6](it-6/index.md) | Élaborer le fragment de PSSI | L6 : périmètre et première version des règles à valider | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md) |
 | [Itération 7](it-7/index.md) | Analyser et faire évoluer un fragment de PSSI | L7 : analyse sourcée et proposition de règles contrôlables | [Termes et méthode](../pense-bete/glossaire/securisation-avancee-infrastructures/it-7.md) |
 
 ## Fil de preuve
@@ -194,3 +194,29 @@ contrôles, exceptions, cycle de vie et accès ; adoption à valider.
 [Préparer le fragment de PSSI](it-5/preparer-fragment-pssi.md) :
 cinq sujets regroupant P01–P08, ancrage dans le cas File Browser et plan
 de rédaction J6 ; décisions et adoption encore à valider.
+
+## Itération 6 — Élaborer le fragment de PSSI
+
+[Définir le périmètre du fragment de PSSI](it-6/definir-perimetre-fragment-pssi.md) :
+situations d’administration hors équipe principale, ressources, acteurs,
+responsabilités, cycle de vie, exclusions et interfaces ; préparation J6 à valider.
+
+[Définir les rôles et responsabilités](it-6/definir-roles-responsabilites.md) :
+répartition proposée des décisions et tâches pendant le cycle de vie, application
+à File Browser et continuité lors d’un départ ou d’un changement de fonction.
+
+[Définir les règles du cycle de vie d’un service](it-6/definir-regles-cycle-vie-service.md) :
+onze règles précisant attentes, destinataires, responsables et preuves de contrôle ;
+fréquences et délais proposés, adoption à valider.
+
+[Définir les contrôles et les exceptions](it-6/definir-controles-exceptions.md) :
+contrôles des règles CV01–CV11, preuves, écarts et exceptions avec décision,
+compensations, durée, réexamen et clôture ; section du fragment à valider.
+
+[Tester le fragment de PSSI](it-6/tester-fragment-pssi.md) :
+cinq situations A–E, décisions, règles mobilisées et informations manquantes ;
+circuits CV07 et CV11 précisés à la suite du test documentaire.
+
+[Fragment de PSSI — V1](it-6/fragment-pssi-v1.md) :
+version autonome consolidée et conservée le 6 octobre 2026, intégrant le test A–E ;
+référence pour les journées suivantes, adoption à valider et future V2 après REX.
