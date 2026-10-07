@@ -220,3 +220,30 @@ circuits CV07 et CV11 précisés à la suite du test documentaire.
 [Fragment de PSSI — V1](it-6/fragment-pssi-v1.md) :
 version autonome consolidée et conservée le 6 octobre 2026, intégrant le test A–E ;
 référence pour les journées suivantes, adoption à valider et future V2 après REX.
+
+## Itération 8 — Première détection réseau avec Suricata
+
+[Contexte et objectifs du 7 octobre 2026](it-8/index.md) : Suricata directement
+sur l’hôte, visibilité du trafic VM et analyse d’événements.
+
+[Identifier le point d’observation — 45 min](it-8/identifier-point-observation.md) :
+interfaces, IP, trajets, services exposés, visibilité et limites ; à lire avant les règles.
+
+[Comprendre les événements produits](it-8/comprendre-evenements-produits.md) :
+localiser EVE sur l’hôte, générer DNS/connexions normales depuis la VM et accès
+File Browser depuis l’hôte, retrouver et analyser les objets ; nouveaux essais à réaliser.
+
+[Installer et tester des règles Suricata — 1 h 15](it-8/installer-tester-regles-suricata.md) :
+lecture du dépôt, quatre signatures proposées, dix maximum, validation et tests
+inertes sur serveur temporaire ; tableau des quatre règles testé/résultat et
+extrait EVE observé et export brut documenté sur l’hôte.
+
+[Observer l’activité autour de File Browser](it-8/observer-activite-file-browser.md) :
+accès contrôlés, ressources, SSH et échecs ; grille événement/alerte et limites
+des déductions. Huit captures HTTP sur 8080 intégrées ; SSH/22 reste à documenter.
+
+[Faire le bilan du dispositif de détection](it-8/bilan-dispositif-detection.md) :
+installation, preuves normales/alertes, six réponses, angles morts et pistes
+de réglage pour la prochaine journée, avant centralisation.
+
+[Pense-bête de l’itération 8](../pense-bete/glossaire/securisation-avancee-infrastructures/it-8.md).

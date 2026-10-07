@@ -371,6 +371,13 @@ nav:
           - Tester le fragment de PSSI: securisation-avancee-infrastructures/it-6/tester-fragment-pssi.md
           - Fragment de PSSI - V1: securisation-avancee-infrastructures/it-6/fragment-pssi-v1.md
       - Itération 7 - Analyser et faire évoluer la PSSI: securisation-avancee-infrastructures/it-7/index.md
+      - Itération 8 - Suricata sur l’hôte:
+          - Contexte et objectifs: securisation-avancee-infrastructures/it-8/index.md
+          - Identifier le point d’observation: securisation-avancee-infrastructures/it-8/identifier-point-observation.md
+          - Comprendre les événements produits: securisation-avancee-infrastructures/it-8/comprendre-evenements-produits.md
+          - Installer et tester des règles Suricata: securisation-avancee-infrastructures/it-8/installer-tester-regles-suricata.md
+          - Observer l’activité autour de File Browser: securisation-avancee-infrastructures/it-8/observer-activite-file-browser.md
+          - Faire le bilan du dispositif de détection: securisation-avancee-infrastructures/it-8/bilan-dispositif-detection.md
 
 
   - Intégration, services & supervision:
@@ -610,6 +617,7 @@ nav:
           - Itération 5 - Wazuh en collectif: pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md
           - Itération 6 - Incident et REX: pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md
           - Itération 7 - Analyser et faire évoluer la PSSI: pense-bete/glossaire/securisation-avancee-infrastructures/it-7.md
+          - Itération 8 - Suricata sur l’hôte: pense-bete/glossaire/securisation-avancee-infrastructures/it-8.md
       - Intégration distribuée Cloud & IAM:
           - Itération 1 - Préparer la migration: pense-bete/glossaire/integration-distribuee-cloud-iam/it-1.md
           - Itération 2 - Déployer et automatiser OVH: pense-bete/glossaire/integration-distribuee-cloud-iam/it-2.md

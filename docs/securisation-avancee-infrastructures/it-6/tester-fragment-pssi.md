@@ -1,6 +1,6 @@
 # Tester le fragment de PSSI
 
-**Itération 6 — Travail individuel — 6 octobre 2026**
+***Itération 6 — Travail individuel — 6 octobre 2026***
 
 ## 🎯 Objectif et méthode
 
