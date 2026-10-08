@@ -1,6 +1,5 @@
 # Identifier le point d’observation
 
-
 ## 🎯 Objectif
 
 Comprendre où placer l’IDS et déterminer quels échanges il peut observer.

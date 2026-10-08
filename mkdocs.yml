@@ -370,14 +370,21 @@ nav:
           - Définir les contrôles et les exceptions: securisation-avancee-infrastructures/it-6/definir-controles-exceptions.md
           - Tester le fragment de PSSI: securisation-avancee-infrastructures/it-6/tester-fragment-pssi.md
           - Fragment de PSSI - V1: securisation-avancee-infrastructures/it-6/fragment-pssi-v1.md
-      - Itération 7 - Analyser et faire évoluer la PSSI: securisation-avancee-infrastructures/it-7/index.md
-      - Itération 8 - Suricata sur l’hôte:
-          - Contexte et objectifs: securisation-avancee-infrastructures/it-8/index.md
-          - Identifier le point d’observation: securisation-avancee-infrastructures/it-8/identifier-point-observation.md
-          - Comprendre les événements produits: securisation-avancee-infrastructures/it-8/comprendre-evenements-produits.md
-          - Installer et tester des règles Suricata: securisation-avancee-infrastructures/it-8/installer-tester-regles-suricata.md
-          - Observer l’activité autour de File Browser: securisation-avancee-infrastructures/it-8/observer-activite-file-browser.md
-          - Faire le bilan du dispositif de détection: securisation-avancee-infrastructures/it-8/bilan-dispositif-detection.md
+      - Itération 7 - Suricata sur l’hôte:
+          - Contexte et objectifs: securisation-avancee-infrastructures/it-7/index.md
+          - Identifier le point d’observation: securisation-avancee-infrastructures/it-7/identifier-point-observation.md
+          - Comprendre les événements produits: securisation-avancee-infrastructures/it-7/comprendre-evenements-produits.md
+          - Installer et tester des règles Suricata: securisation-avancee-infrastructures/it-7/installer-tester-regles-suricata.md
+          - Observer l’activité autour de File Browser: securisation-avancee-infrastructures/it-7/observer-activite-file-browser.md
+          - Faire le bilan du dispositif de détection: securisation-avancee-infrastructures/it-7/bilan-dispositif-detection.md
+      - Itération 8 - Besoins de détection:
+          - Vue d’ensemble: securisation-avancee-infrastructures/it-8/index.md
+          - Des vulnérabilités aux besoins de détection: securisation-avancee-infrastructures/it-8/vulnerabilites-besoins-detection.md
+          - Rechercher et adapter des règles de détection: securisation-avancee-infrastructures/it-8/rechercher-adapter-regles-detection.md
+          - Relier les détections à MITRE ATT&CK: securisation-avancee-infrastructures/it-8/relier-detections-mitre-attack.md
+          - Concevoir les différents points d’observation: securisation-avancee-infrastructures/it-8/concevoir-points-observation.md
+          - Installer Wazuh en single-node: securisation-avancee-infrastructures/it-8/installer-wazuh-single-node.md
+          - Agent Wazuh dans le conteneur File Browser ?: securisation-avancee-infrastructures/it-8/etudier-agent-wazuh-file-browser.md
 
 
   - Intégration, services & supervision:
@@ -616,8 +623,8 @@ nav:
           - Itération 4 - Suricata en individuel: pense-bete/glossaire/securisation-avancee-infrastructures/it-4.md
           - Itération 5 - Wazuh en collectif: pense-bete/glossaire/securisation-avancee-infrastructures/it-5.md
           - Itération 6 - Incident et REX: pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md
-          - Itération 7 - Analyser et faire évoluer la PSSI: pense-bete/glossaire/securisation-avancee-infrastructures/it-7.md
-          - Itération 8 - Suricata sur l’hôte: pense-bete/glossaire/securisation-avancee-infrastructures/it-8.md
+          - Itération 7 - Suricata sur l’hôte: pense-bete/glossaire/securisation-avancee-infrastructures/it-7.md
+          - Itération 8 - Besoins de détection: pense-bete/glossaire/securisation-avancee-infrastructures/it-8.md
       - Intégration distribuée Cloud & IAM:
           - Itération 1 - Préparer la migration: pense-bete/glossaire/integration-distribuee-cloud-iam/it-1.md
           - Itération 2 - Déployer et automatiser OVH: pense-bete/glossaire/integration-distribuee-cloud-iam/it-2.md

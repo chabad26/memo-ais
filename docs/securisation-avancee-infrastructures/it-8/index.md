@@ -1,43 +1,26 @@
-# Itération 8 — Première détection réseau avec Suricata
+# Itération 8 — Des constats d’audit au réglage de la détection
 
-## Objectifs de la journée
+**8 octobre 2026 — Travail individuel**
 
-Après audit, durcissement et rédaction de la PSSI V1, mettre en place un premier
-IDS réseau sur **la machine hôte**, directement, sans installation dans la VM
-ni dans un conteneur. Suricata observe le trafic visible depuis son interface
-de capture et génère des événements/alertes ; une alerte ne prouve pas un incident.
+Reprendre les constats J1–J3 pour choisir des besoins de détection adaptés
+au trafic réellement visible. La détection complète la remédiation ; elle ne
+corrige ni les versions, ni les privilèges, ni les règles de pare-feu.
 
-```text
-Réseau extérieur
-       |
-Machine hôte — Suricata (IDS)
-       |
-Réseau virtuel de la VM
-       |
-VM — File Browser (conteneur)
-```
-
-L’énoncé mentionne Ubuntu 20.04 ; le mémo rapporte une migration ultérieure.
-Relever l’OS réel de la cible sans réinstaller ni revenir à 20.04 pour cet exercice.
-Le schéma indique le point d’observation souhaité, pas une visibilité déjà prouvée :
-identifier interface, réseau virtuel, NAT et trajet effectif des échanges.
-
-## Parcours de la journée
-
-- [Identifier le point d’observation — 45 min](identifier-point-observation.md)
-- [Comprendre les événements produits](comprendre-evenements-produits.md)
-- [Installer et tester des règles Suricata — 1 h 15](installer-tester-regles-suricata.md)
-- [Observer l’activité autour de File Browser](observer-activite-file-browser.md)
-- [Faire le bilan du dispositif de détection](bilan-dispositif-detection.md)
-- [Pense-bête de l’itération](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-8.md)
-
-**État attendu :** trafic de la VM visible, règles lues et sélectionnées (10
-maximum), configuration acceptée, événements retrouvés et analysés avec limites.
-**État au 7 octobre :** Suricata 8.0.3 et quatre règles chargées vérifiés par
-les sorties fournies ; correction `eth0` → `virbr0` et service actif documentés à 10 h 18.
-Capture de 10 h 30 : trafic sur 18080 et quatre alertes EVE observés sur le
-serveur temporaire ; aucune exploitation ni détection sur File Browser/8080
-n’est démontrée par ces essais. Voir les captures dans la feuille de test.
-
-- [V1 du fragment de PSSI conservée](../it-6/fragment-pssi-v1.md)
+- [Des vulnérabilités aux besoins de détection — 1 h](vulnerabilites-besoins-detection.md)
+- [Rechercher et adapter des règles de détection — 1 h 15](rechercher-adapter-regles-detection.md)
+- [Relier les détections à MITRE ATT&CK](relier-detections-mitre-attack.md)
+- [Concevoir les différents points d’observation](concevoir-points-observation.md)
+- [Installer Wazuh en single-node — travail en groupe](installer-wazuh-single-node.md)
+- [Peut-on installer un agent Wazuh dans le conteneur File Browser ?](etudier-agent-wazuh-file-browser.md)
+- [Pense-bête](../../pense-bete/glossaire/securisation-avancee-infrastructures/it-8.md)
+- [Bilan Suricata précédent](../it-7/bilan-dispositif-detection.md)
 - [Retour au module](../README.md)
+
+**Statut : analyse documentaire réalisée ; capture de validation de sept
+signatures et d’une alerte locale 1008001 sur File Browser:8080 intégrée.
+Validation des alertes 1008002 et 1008003 à compléter ; test par marqueur
+inerte, sans preuve d’exploitation.**
+
+**Cible Wazuh retenue : VM dédiée Ubuntu Server 26.04**, exécutant la stack
+Docker single-node officielle ; adresse observée `192.168.122.37` ; dashboard et indexer green illustrés ; logs File Browser reçus par le manager
+via un agent sur la VM, avec décodeur JSON. Alerte spécifique à valider.

@@ -1,6 +1,6 @@
 # Observer l’activité autour de File Browser
 
-**Itération 8 — 7 octobre 2026 — Travail individuel**
+**Itération 7 — 7 octobre 2026 — Travail individuel**
 
 ## 🎯 Objectif et point de départ
 

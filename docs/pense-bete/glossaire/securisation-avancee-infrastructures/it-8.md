@@ -1,24 +1,47 @@
-# Itération 8 — Suricata sur l’hôte
+# Itération 8 — Vulnérabilités et besoins de détection
 
-Route par virbr0 et quatre alertes sur le serveur temporaire/18080 documentées ;
-les autres trajets et File Browser/8080 restent à vérifier.
-
-| Terme / contrôle | À retenir |
+| Notion | À retenir |
 | --- | --- |
-| IDS réseau | Alerte sur le trafic visible ; ne prouve pas une compromission et ne remplace pas le filtrage |
-| Point d’observation | Emplacement de capture ; visibilité limitée aux flux qui y passent |
-| Interface de capture | Prouver le trajet VM/hôte avant d’interpréter l’absence d’alerte |
-| SID / rev | Identifier chaque signature et sa version ; dix signatures maximum |
-| HTTP brut / normalisé | Lire le buffer réellement inspecté ; le chiffrement masque les motifs HTTP |
-| `suricata -T -c ...` | Valider configuration et bilan de chargement avant redémarrage |
-| EVE | Corréler timestamp, IP/ports, signature et flow_id aux tests |
+| Présence / exploitabilité | Vérifier fonction, entrée contrôlée, version et options ; association CVE insuffisante |
+| Visibilité | Trajet sur virbr0, protocole et chiffrement déterminent ce que l’IDS voit |
+| Signal indirect | Un flux inhabituel peut aider sans prouver la CVE exploitée |
+| Sources complémentaires | Authentification, auditd, runtime et application pour les actions non lisibles sur le réseau |
 
-- [Contexte de la journée](../../../securisation-avancee-infrastructures/it-8/index.md)
-- [Identifier le point d’observation](../../../securisation-avancee-infrastructures/it-8/identifier-point-observation.md)
-- [Installer et tester les règles](../../../securisation-avancee-infrastructures/it-8/installer-tester-regles-suricata.md)
+- [Des vulnérabilités aux besoins de détection](../../../securisation-avancee-infrastructures/it-8/vulnerabilites-besoins-detection.md)
+- [Itération 8](../../../securisation-avancee-infrastructures/it-8/index.md)
 
-- [Comprendre les événements produits](../../../securisation-avancee-infrastructures/it-8/comprendre-evenements-produits.md) : lecture EVE, activité normale, flow_id et distinction événement/alerte.
+- [Rechercher et adapter des règles](../../../securisation-avancee-infrastructures/it-8/rechercher-adapter-regles-detection.md)
 
-- [Observer l’activité autour de File Browser](../../../securisation-avancee-infrastructures/it-8/observer-activite-file-browser.md) : essais contrôlés, corrélation et limites des déductions.
+## MITRE ATT&CK
 
-- [Bilan du dispositif de détection](../../../securisation-avancee-infrastructures/it-8/bilan-dispositif-detection.md) : capacités prouvées, bruit, angles morts et réglage à préparer.
+Tactique : objectif ; technique : manière d’agir. Partir du comportement,
+pas du numéro de CVE. Un marqueur HTTP, un code 401 ou des GET répétés
+ne prouvent pas une technique d’attaque ; documenter le contexte manquant.
+
+- [Relier les détections à MITRE ATT&CK](../../../securisation-avancee-infrastructures/it-8/relier-detections-mitre-attack.md)
+
+## Deux points d’observation
+
+Suricata voit les échanges passant sur virbr0 ; l’agent voit les sources
+locales accessibles et configurées. Un agent dans le conteneur ne surveille
+pas toute la VM. La collecte EVE sur l’hôte doit être configurée séparément.
+
+- [Concevoir les différents points d’observation](../../../securisation-avancee-infrastructures/it-8/concevoir-points-observation.md)
+
+## Wazuh single-node
+
+VM dédiée Ubuntu Server 26.04 ; Docker et Compose dans cette VM.
+Trois composants centraux : manager, indexer et dashboard. Utiliser le
+dossier single-node officiel, générer les certificats et vérifier les
+communications ; des conteneurs Up ou une page de login seuls ne suffisent pas.
+
+- [Installer Wazuh en single-node](../../../securisation-avancee-infrastructures/it-8/installer-wazuh-single-node.md)
+
+## Agent dans File Browser
+
+Examiner la base, les bibliothèques et les droits avant installation.
+Tester une image dérivée isolée ; prévoir deux processus et une identité
+persistante. Agent actif, collecte et maintien de File Browser sont trois
+preuves distinctes. Un échec diagnostiqué est un résultat valable.
+
+- [Étudier l’agent dans File Browser](../../../securisation-avancee-infrastructures/it-8/etudier-agent-wazuh-file-browser.md)

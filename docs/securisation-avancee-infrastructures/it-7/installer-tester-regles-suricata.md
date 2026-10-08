@@ -1,6 +1,6 @@
 # Installer et tester des règles Suricata
 
-**Itération 8 — 7 octobre 2026 — Travail individuel — 1 h 15**
+**Itération 7 — 7 octobre 2026 — Travail individuel — 1 h 15**
 
 **Étape précédente dans le parcours :** [Comprendre les événements produits](comprendre-evenements-produits.md).
 Le point d’observation est décrit dans la [première feuille](identifier-point-observation.md).
