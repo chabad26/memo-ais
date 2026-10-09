@@ -277,3 +277,38 @@ de fonctionnement et d’accès au dashboard à conserver.
 [Peut-on installer un agent Wazuh dans le conteneur File Browser ?](it-8/etudier-agent-wazuh-file-browser.md) :
 investigation de compatibilité, stratégie reproductible, essai isolé,
 diagnostic et note d’intégration ; faisabilité à établir.
+
+## Itération 9 — Reprise du dispositif de détection
+
+[Vue d’ensemble](it-9/index.md) — 9 octobre 2026.
+
+[Reprendre le dispositif de détection](it-9/reprendre-dispositif-detection.md) :
+contrôler File Browser, Suricata, les règles et Wazuh ; générer des activités
+connues, retrouver leurs traces et compléter le tableau des sources et limites.
+Contrôles J9 à réaliser ; agent J8 installé sur la VM, pas dans le conteneur.
+
+[Pense-bête de l’itération 9](../pense-bete/glossaire/securisation-avancee-infrastructures/it-9.md).
+
+[Construire une vue exploitable des événements — 1 h](it-9/construire-vue-exploitable-evenements.md) :
+activités contrôlées, comparaison Suricata/Docker/Wazuh, corrélation temporelle
+et distinction signal, bruit, redondances et informations manquantes ; nouveaux essais à réaliser.
+
+[Vérifier votre capacité de détection](it-9/verifier-capacite-detection.md) :
+scan Nmap borné, ports fermés, chemins HTTP inhabituels ; observation,
+recherche/adaptation de règles et interprétation sans attribution d’intention.
+Essais à réaliser, trois signatures locales proposées à valider.
+
+[Préparer l’analyse d’une situation inhabituelle](it-9/preparer-analyse-situation-inhabituelle.md) :
+questions d’investigation, ordre des sources, conservation des preuves,
+chronologie vide et distinction fait/interprétation/hypothèse ; préparation
+avant réception des premiers éléments, sans incident présumé.
+
+[Incident : premiers éléments](it-9/incident-premiers-elements.md) :
+signalement d’accès inattendus, recherches EVE/Docker/Wazuh, chronologie
+en cours et hypothèses ; période à obtenir et faits techniques à rechercher,
+sans incident présumé ni confusion avec les tests contrôlés.
+
+[Qualifier la situation et préparer la suite](it-9/qualifier-situation-preparer-suite.md) :
+état provisoire, faits/hypothèses/manques, risques conditionnels et impacts
+des actions ; conservation pour J10 et investigations priorisées, sans
+restriction/isolation/arrêt automatique ni clôture de la situation.

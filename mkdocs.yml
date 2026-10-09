@@ -385,6 +385,14 @@ nav:
           - Concevoir les différents points d’observation: securisation-avancee-infrastructures/it-8/concevoir-points-observation.md
           - Installer Wazuh en single-node: securisation-avancee-infrastructures/it-8/installer-wazuh-single-node.md
           - Agent Wazuh dans le conteneur File Browser ?: securisation-avancee-infrastructures/it-8/etudier-agent-wazuh-file-browser.md
+      - Itération 9 - Reprise du dispositif de détection:
+          - Vue d’ensemble: securisation-avancee-infrastructures/it-9/index.md
+          - Reprendre le dispositif de détection: securisation-avancee-infrastructures/it-9/reprendre-dispositif-detection.md
+          - Construire une vue exploitable des événements: securisation-avancee-infrastructures/it-9/construire-vue-exploitable-evenements.md
+          - Vérifier votre capacité de détection: securisation-avancee-infrastructures/it-9/verifier-capacite-detection.md
+          - Préparer l’analyse d’une situation inhabituelle: securisation-avancee-infrastructures/it-9/preparer-analyse-situation-inhabituelle.md
+          - "Incident : premiers éléments": securisation-avancee-infrastructures/it-9/incident-premiers-elements.md
+          - Qualifier la situation et préparer la suite: securisation-avancee-infrastructures/it-9/qualifier-situation-preparer-suite.md
 
 
   - Intégration, services & supervision:
@@ -625,6 +633,7 @@ nav:
           - Itération 6 - Incident et REX: pense-bete/glossaire/securisation-avancee-infrastructures/it-6.md
           - Itération 7 - Suricata sur l’hôte: pense-bete/glossaire/securisation-avancee-infrastructures/it-7.md
           - Itération 8 - Besoins de détection: pense-bete/glossaire/securisation-avancee-infrastructures/it-8.md
+          - Itération 9 - Reprise de la détection: pense-bete/glossaire/securisation-avancee-infrastructures/it-9.md
       - Intégration distribuée Cloud & IAM:
           - Itération 1 - Préparer la migration: pense-bete/glossaire/integration-distribuee-cloud-iam/it-1.md
           - Itération 2 - Déployer et automatiser OVH: pense-bete/glossaire/integration-distribuee-cloud-iam/it-2.md

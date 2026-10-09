@@ -1,0 +1,139 @@
+Dispositif de détection des événements de sécurité
+
+Compte rendu destiné au formateur — Olivier HIMBLOT
+
+Formation AIS — Travaux des 7 et 8 octobre 2026 — Document établi le 9 octobre 2026
+
+Objectif évalué
+
+Mettre en œuvre un dispositif de détection d’événements de sécurité et vérifier son fonctionnement.
+
+Critères : configurer les sources de détection ; générer et retrouver des événements ; interpréter les alertes ; identifier les limites du dispositif.
+
+Preuve de travail : dispositif fonctionnel et preuves de détection comprenant l’analyse d’activités réseau avec Suricata et l’exploitation des informations disponibles dans Wazuh.
+
+Résultat documenté
+
+Suricata est actif et produit des alertes sur des marqueurs HTTP contrôlés : quatre signatures sur un serveur temporaire, puis une règle locale ciblant File Browser sur 8080. Wazuh reçoit les journaux Docker de File Browser via un agent installé sur la VM ; trois messages /api/renew 401 ont été retrouvés dans les archives du manager.
+
+La détection réseau et la collecte applicative sont documentées. Une alerte Wazuh spécifique à ces messages et la centralisation des événements Suricata dans Wazuh ne sont pas démontrées.
+
+Périmètre des preuves
+
+Ce compte rendu synthétise les captures et sorties déjà conservées dans le mémo. Il ne constitue pas un nouveau contrôle en direct. L’activité Suricata est individuelle ; la plateforme Wazuh relève du travail collectif, complété par les essais documentés de collecte File Browser. Les adresses privées servent à corréler les preuves du laboratoire.
+
+1. Sources configurées et architecture
+
+Source réseau : Suricata 8.0.3 installé sur l’hôte et configuré sur virbr0 (192.168.122.1/24). La VM File Browser utilise 192.168.122.229 ; Docker publie le service HTTP sur 8080. Un serveur HTTP temporaire sur 18080 a servi aux premiers essais.
+
+Chemin réseau : hôte → bridge virbr0 observé par Suricata → VM File Browser. Journal lu : /var/log/suricata/eve.json. Types observés : alert, http, dns, tls, flow, fileinfo et ssh.
+
+Le premier démarrage échouait car eth0 était absente. Après sélection de virbr0, le test de configuration a accepté quatre signatures sans erreur et le service est devenu actif le 7 octobre à 10:18:27. Le 8 octobre, sept signatures dans deux fichiers ont été acceptées, code 0.
+
+Source applicative : File Browser → stdout/stderr → fichier Docker json-file → agent Wazuh sur la VM → manager Wazuh 192.168.122.37:1514/TCP. Agent 001, vm-filebrowser, version 4.14.8, Ubuntu 26.04.1 LTS. Le manager est également en 4.14.8 (révision rc2 documentée).
+
+Le collecteur utilise un bloc localfile avec log_format=json et le chemin réel obtenu par docker inspect --format {{.LogPath}}. Son test a retourné 0 ; le fichier Docker est annoncé comme analysé. L’agent se trouve sur la VM, pas dans le conteneur BusyBox-musl.
+
+P1 — Configuration Suricata acceptée et service actif après correction de l’interface.
+
+Capture : docs/assets/img/securisation-avancee-infrastructures/it-7/Capture d’écran du 2026-10-07 10-18-37.png
+
+2. Générer et retrouver les alertes Suricata
+
+Le 7 octobre, quatre requêtes HTTP contrôlées ont envoyé des marqueurs de traversée ou de script vers le serveur temporaire de la VM:18080. Le serveur répond 404 ; les alertes apparaissent dans eve.json.
+
+SID 50500003 : %2e%2e dans l’URI brute — 10:30:38.887961 +02:00. SID 50500004 : ..%2f — 10:30:38.892375. SID 50500006 : %252e%252e — 10:30:38.898569. SID 50100004 : ouverture de balise script dans l’URI normalisée — 10:30:38.904860.
+
+P2 — Trafic TCP sur 18080 et quatre SID corrélés aux essais contrôlés.
+
+Capture : docs/assets/img/securisation-avancee-infrastructures/it-7/Capture d’écran du 2026-10-07 10-30-55.png
+
+Pour retrouver une détection, filtrer EVE par event_type=alert, SID, destination et intervalle ; conserver ensuite l’objet JSON complet. Lire signature, timestamp, in_iface, src_ip, dest_ip, ports, flow_id et contexte HTTP. Le flow_id relie les événements d’un même flux.
+
+Interprétation : les motifs sont détectés malgré la réponse 404. action:allowed indique que le trafic n’a pas été bloqué. Ces essais ne démontrent ni exploitation réussie, ni lecture de fichier sensible, ni exécution XSS. Ils ne valident pas à eux seuls le service sur 8080.
+
+3. Détection adaptée au service File Browser
+
+Le 8 octobre, une règle locale cible HTTP vers 192.168.122.229:8080 : SID 1008001, révision 1, motif %2e%2e dans http.uri.raw, flux établi vers le serveur. Elle adapte la condition de la signature générique au service observé.
+
+P3 — Sept signatures acceptées, service actif et alerte locale 1008001 sur File Browser/8080.
+
+Capture : docs/assets/img/securisation-avancee-infrastructures/it-8/Capture d’écran du 2026-10-08 11-53-27.png
+
+Événement : 2026-10-08T11:53:20.484380+0200 ; source 192.168.122.1:55214 ; destination 192.168.122.229:8080 ; flow_id 105860300332322 ; GET /?ais_probe=%2e%2e ; réponse 200 ; action allowed.
+
+Analyse : le paramètre est un marqueur inerte. L’alerte confirme la détection sur 8080 ; HTTP 200 ne prouve aucune exploitation. Le contrôle négatif de cette règle reste à documenter.
+
+Deux autres règles sont chargées : 1008002 vise cinq GET / en dix secondes ; 1008003 vise les réponses 401. Aucune alerte correspondante n’est visible dans cette capture : leur déclenchement reste à valider. Cela ne prouve pas leur absence dans le journal complet.
+
+4. Activités normales et limites du capteur réseau
+
+P4 — Accès HTTP successifs à File Browser retrouvés dans EVE.
+
+Capture : docs/assets/img/securisation-avancee-infrastructures/it-7/Capture d’écran du 2026-10-07 11-00-05.png
+
+Les observations du 7 octobre montrent le chargement de la page et de ses ressources, puis cinq GET retournant 200 entre 10:59:51 et 10:59:55. Les bilans sélectionnés affichent alerted:false. Une même activité génère plusieurs objets HTTP, fileinfo et flow ; le nombre de lignes ne mesure pas le nombre d’actions humaines.
+
+Des flux DNS et TLS sortants sont également visibles. Ils renseignent destinations et métadonnées, sans établir une exfiltration ou une commande malveillante. Un 401 sur /api/renew n’est pas une preuve de mauvais mot de passe.
+
+Couverture : virbr0 prouve les trajets testés, sans couvrir automatiquement le loopback VM, les échanges internes Docker ou tous les autres réseaux. HTTPS et SSH peuvent laisser voir des métadonnées tout en masquant le contenu.
+
+Les règles reconnaissent des conditions précises ; elles ne prouvent ni identité, ni intention, ni vulnérabilité exploitable. Aucun taux de faux positifs ou volume quotidien n’a été mesuré. Le mode IDS ne remplace pas le filtrage réseau. L’arrêt du serveur temporaire reste à confirmer.
+
+5. Wazuh : agent actif et collecte applicative
+
+P5 — Agent 001 vm-filebrowser actif, version 4.14.8, Ubuntu 26.04.1 LTS.
+
+Capture : docs/assets/img/securisation-avancee-infrastructures/it-8/Capture d’écran du 2026-10-08 16-52-44.png
+
+Le statut actif confirme la connexion de l’agent ; la réception applicative repose sur les événements retrouvés dans archives.json du manager. Trois messages /api/renew 401 sont documentés le 8 octobre à 14:49:05.845, 14:49:43.848 et 14:50:07.851 UTC (16:49–16:50 CEST).
+
+Champs conservés du dernier message : agent.id=001 ; agent.name=vm-filebrowser ; agent.ip=192.168.122.229 ; manager.name=wazuh.manager ; decoder.name=json ; data.stream=stdout ; data.time=2026-10-08T14:50:07.29758532Z.
+
+data.log : 2026/10/08 14:50:07 /api/renew: 401 192.168.122.1 <nil>. Ces champs proviennent de l’extrait texte fourni, pas d’un objet brut complet annexé à ce PDF.
+
+Analyse : collecte de bout en bout démontrée et décodage JSON obtenu. Le statut 401 représente un refus de renouvellement de session. Le chemin HTTP, le statut et l’adresse restent dans data.log ; aucun décodeur applicatif dédié ni règle Wazuh spécifique n’est validé ici.
+
+6. Exploitation des informations Wazuh et diagnostic
+
+P6 — Vue MITRE Wazuh avec événements associés à vm-filebrowser.
+
+Capture : docs/assets/img/securisation-avancee-infrastructures/it-8/Capture d’écran du 2026-10-08 16-51-51.png
+
+La vue MITRE affiche des agrégations de règles associées à des techniques. Cette information oriente l’analyse ; elle ne prouve ni attaque ni compromission. Pour qualifier un événement, consulter son détail, l’agent, le journal source, l’heure, la règle et le contexte des opérations du laboratoire.
+
+Diagnostic réalisé : les premières recherches ne trouvaient pas les logs applicatifs car logall_json était à no dans la configuration effective du manager. Le fichier source monté avait été changé à yes, mais la configuration persistante /var/ossec/etc/ossec.conf restait à no.
+
+Après sauvegarde et correction de la configuration effective, redémarrage et nouvelle requête, les messages ont été retrouvés dans archives.json. La divergence des fichiers a été constatée ; son mécanisme exact n’a pas été établi.
+
+Ne rien retrouver dans alerts.json ne démontre pas une absence de transmission : un événement reçu et archivé ne devient pas nécessairement une alerte. Les archives locales ne sont pas automatiquement visibles dans le dashboard. L’archivage complet était encore actif au dernier état observé ; sa réduction après diagnostic reste à vérifier.
+
+7. Bilan par critère et suites nécessaires
+
+Configurer les sources — Documenté : interface virbr0, signatures Suricata acceptées, agent Wazuh sur la VM et source Docker JSON configurée. La configuration complète et sa continuité après recréation restent à conserver et tester.
+
+Générer et retrouver — Documenté : quatre alertes sur 18080, alerte locale 1008001 sur 8080, activités normales EVE et trois messages applicatifs reçus dans les archives Wazuh.
+
+Interpréter — Documenté : corrélation par heures, adresses, ports et flux ; distinction motif/exploitation, observation/blocage, réception/alerte et classification MITRE/attaque prouvée.
+
+Identifier les limites — Documenté : contenu chiffré, trajets hors capteur, bruit non mesuré, règles 1008002/1008003 non validées, absence d’alerte applicative Wazuh démontrée et absence d’ingestion EVE dans Wazuh prouvée.
+
+À compléter
+
+Exporter les objets EVE et Wazuh originaux sans secret ; réaliser les contrôles négatifs et les essais des deux règles restantes ; définir un décodeur/règle File Browser puis prouver l’alerte ; vérifier rotation des logs, recréation du conteneur et rétention. Le chemin Docker dépend de l’identité du conteneur. La politique SCA Ubuntu 22.04 a été ignorée sur Ubuntu 26.04 : couverture de conformité limitée.
+
+Sources du compte rendu
+
+docs/securisation-avancee-infrastructures/it-7/installer-tester-regles-suricata.md
+
+docs/securisation-avancee-infrastructures/it-7/bilan-dispositif-detection.md
+
+docs/securisation-avancee-infrastructures/it-8/rechercher-adapter-regles-detection.md
+
+docs/securisation-avancee-infrastructures/it-8/etudier-agent-wazuh-file-browser.md
+
+docs/securisation-avancee-infrastructures/it-8/installer-wazuh-single-node.md
+
+docs/securisation-avancee-infrastructures/it-8/relier-detections-mitre-attack.md
+
+Les captures annexées sont les pièces déjà présentes dans le mémo. Disponibilité durable, couverture exhaustive et réussite d’une attaque ne sont pas déduites de ces preuves datées.

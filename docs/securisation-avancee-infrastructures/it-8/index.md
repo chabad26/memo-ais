@@ -24,3 +24,5 @@ inerte, sans preuve d’exploitation.**
 **Cible Wazuh retenue : VM dédiée Ubuntu Server 26.04**, exécutant la stack
 Docker single-node officielle ; adresse observée `192.168.122.37` ; dashboard et indexer green illustrés ; logs File Browser reçus par le manager
 via un agent sur la VM, avec décodeur JSON. Alerte spécifique à valider.
+
+**Suite :** [Itération 9 — reprendre le dispositif de détection](../it-9/index.md).
