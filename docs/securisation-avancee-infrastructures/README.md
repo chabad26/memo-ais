@@ -312,3 +312,42 @@ sans incident présumé ni confusion avec les tests contrôlés.
 état provisoire, faits/hypothèses/manques, risques conditionnels et impacts
 des actions ; conservation pour J10 et investigations priorisées, sans
 restriction/isolation/arrêt automatique ni clôture de la situation.
+
+## Itération 10 — Poursuivre l’investigation
+
+[Vue d’ensemble](it-10/index.md) — 12 octobre 2026.
+
+[Compléter la chronologie](it-10/completer-chronologie.md) : reprendre les
+preuves J9, rechercher les flows/ports fermés et autres pièces manquantes,
+distinguer heure d’activité/publication et faits/interprétations. Chronologie
+J9 reprise ; nouvelles recherches J10 à réaliser sans relancer le scénario.
+
+[Pense-bête de l’itération 10](../pense-bete/glossaire/securisation-avancee-infrastructures/it-10.md).
+
+[Qualifier la situation — 1 h](it-10/qualifier-situation.md) :
+conclusions Établie/Probable/Non démontrée, origine, ports, 22 GET et
+limites des réponses 200 ; exploitation, modification et persistance
+non établies par la séquence observée. Qualification provisoire sourcée.
+
+[Décider du traitement](it-10/decider-traitement.md) :
+actions immédiates/différées, justification, impacts sur service et preuves,
+vérifications et déclencheurs de réévaluation ; décisions documentées sans
+restriction, mise à jour ou interruption automatique.
+
+[Produire le compte-rendu d’incident](it-10/compte-rendu-incident.md) :
+rapport consolidé, chronologie et sources, faits et hypothèses, qualification
+provisoire, décisions et remédiations proposées ; scénario réel du formateur
+non communiqué, reproduction distinguée de l’activité initiale.
+
+[Réaliser le REX — 1 h](it-10/realiser-rex.md) : comparaison du script fourni
+et des preuves, causes des écarts, amélioration de la détection/investigation
+et gouvernance du cycle de vie File Browser ; complément du compte-rendu.
+
+[Réviser le fragment de PSSI — 1 h 30](it-10/reviser-fragment-pssi.md) :
+tableau des enseignements, règles et contrôles ;
+[fragment V2 proposé](it-10/fragment-pssi-v2.md), CV01–CV11 précisées et
+CV12 incidents ajoutée. V1 conservée ; adoption et mise en œuvre à valider.
+
+[Finaliser le fragment de PSSI — 1 h](it-10/finaliser-fragment-pssi.md) :
+V2 finalisée pour la formation, cas File Browser depuis 2021 et vérification
+d’applicabilité/contrôlabilité. Adoption organisationnelle non établie.

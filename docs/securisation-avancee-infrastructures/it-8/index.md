@@ -1,6 +1,6 @@
 # Itération 8 — Des constats d’audit au réglage de la détection
 
-**8 octobre 2026 — Travail individuel**
+***8 octobre 2026 — Travail individuel***
 
 Reprendre les constats J1–J3 pour choisir des besoins de détection adaptés
 au trafic réellement visible. La détection complète la remédiation ; elle ne

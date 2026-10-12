@@ -66,3 +66,5 @@ et limites de visibilité documentées, sans résultat supposé.
 **Suite J10 :** état provisoire séparant faits, hypothèses, manques, risques
 conditionnels et actions avec impacts. Préservation et investigation ciblée
 retenues ; aucune coupure effectuée, situation non clôturée.
+
+**Suite :** [Itération 10 — compléter la chronologie](../it-10/index.md).

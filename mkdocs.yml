@@ -393,6 +393,16 @@ nav:
           - Préparer l’analyse d’une situation inhabituelle: securisation-avancee-infrastructures/it-9/preparer-analyse-situation-inhabituelle.md
           - "Incident : premiers éléments": securisation-avancee-infrastructures/it-9/incident-premiers-elements.md
           - Qualifier la situation et préparer la suite: securisation-avancee-infrastructures/it-9/qualifier-situation-preparer-suite.md
+      - Itération 10 - Poursuivre l’investigation:
+          - Vue d’ensemble: securisation-avancee-infrastructures/it-10/index.md
+          - Compléter la chronologie: securisation-avancee-infrastructures/it-10/completer-chronologie.md
+          - Qualifier la situation: securisation-avancee-infrastructures/it-10/qualifier-situation.md
+          - Décider du traitement: securisation-avancee-infrastructures/it-10/decider-traitement.md
+          - Produire le compte-rendu d’incident: securisation-avancee-infrastructures/it-10/compte-rendu-incident.md
+          - Réaliser le REX: securisation-avancee-infrastructures/it-10/realiser-rex.md
+          - Réviser le fragment de PSSI: securisation-avancee-infrastructures/it-10/reviser-fragment-pssi.md
+          - Finaliser le fragment de PSSI: securisation-avancee-infrastructures/it-10/finaliser-fragment-pssi.md
+          - Fragment de PSSI - V2 finalisée: securisation-avancee-infrastructures/it-10/fragment-pssi-v2.md
 
 
   - Intégration, services & supervision:
@@ -634,6 +644,7 @@ nav:
           - Itération 7 - Suricata sur l’hôte: pense-bete/glossaire/securisation-avancee-infrastructures/it-7.md
           - Itération 8 - Besoins de détection: pense-bete/glossaire/securisation-avancee-infrastructures/it-8.md
           - Itération 9 - Reprise de la détection: pense-bete/glossaire/securisation-avancee-infrastructures/it-9.md
+          - Itération 10 - Compléter la chronologie: pense-bete/glossaire/securisation-avancee-infrastructures/it-10.md
       - Intégration distribuée Cloud & IAM:
           - Itération 1 - Préparer la migration: pense-bete/glossaire/integration-distribuee-cloud-iam/it-1.md
           - Itération 2 - Déployer et automatiser OVH: pense-bete/glossaire/integration-distribuee-cloud-iam/it-2.md
