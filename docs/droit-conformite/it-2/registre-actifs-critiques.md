@@ -1,5 +1,9 @@
 # Travail en autonomie — Registre des actifs critiques
 
+!!! info "Cadrage corrigé — exercice fondé sur le ReCyF"
+    Le ReCyF v2.5 du 17 mars 2026 est le référentiel principal demandé pour l’exercice. Les articles NIS2 ci-dessous restent les correspondances juridiques. Voir la [matrice ReCyF et ses mesures précises](debrief-matrice-cloud-act-politique-securite.md#32-referentiel-principal-de-lexercice-recyf). Les cotations C/I/D/T sont une méthode pédagogique locale, pas une échelle imposée par le ReCyF. Le recensement doit couvrir toutes les activités, services et SI (1.1-EI/EE), avec revue au moins annuelle (1.3-EI/EE), cartographie (5.A.1-EI/EE) et analyse des risques en hypothèse EE (16.2-EE).
+
+
 ## Objectif et cadre de la séance
 
 Produire un registre des actifs critiques d'**ÉnergieAlp**, justifier les cotations et proposer de premières remédiations. Le formateur est absent pendant la production : aucun choix n'est validé au fil de l'eau. Le débrief collectif de l'après-midi servira à corriger le travail et à comparer le registre à l'exemple du formateur.

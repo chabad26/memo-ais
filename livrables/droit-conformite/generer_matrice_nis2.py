@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Génère le livrable formateur et sa source Markdown ; nécessite ReportLab."""
 from pathlib import Path
+from recyf_energiealp import ROWS as RECYF_ROWS, CLOUD as RECYF_CLOUD, VERSION as RECYF_VERSION, URL as RECYF_URL
 from html import escape
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
 from reportlab.lib import colors
@@ -34,12 +35,13 @@ def page(t):
  if story:story.append(PageBreak())
  title(t)
 
-story.append(para('Matrice d’applicabilité NIS2','TitleFR'))
-text('Olivier HIMBLOT • ÉnergieAlp • 15 octobre 2026 • Version 1 documentaire')
+story.append(para('Matrice d’applicabilité ReCyF / NIS2','TitleFR'))
+text('Olivier HIMBLOT • ÉnergieAlp • 15 octobre 2026 • Version 3 documentaire — cadrage ReCyF')
+text('Référentiel principal corrigé : ReCyF v2.5 du 17/03/2026, document de travail. La correspondance juridique NIS2 est conservée ; le contrôle est désormais structuré par objectifs et MAC du ReCyF.')
 text('Compétence : Participer à l’élaboration et à la mise en œuvre de la politique de sécurité.')
 text('Critère : produire une matrice d’applicabilité NIS2 article par article, reliant les obligations aux configurations techniques, et tenir un registre des actifs critiques et des procédures de gestion des sous-traitants.')
 table(['Élément évalué','Pièce présentée','Portée de la preuve'],[
-['Applicabilité article par article','Examen des articles 1 à 46, puis contrôles détaillés','Raisonnement documentaire, exclusions et réserves explicites'],
+['Applicabilité ReCyF puis correspondance juridique','Vingt objectifs, MAC sélectionnés et articles NIS2 1 à 46','Raisonnement documentaire, exclusions et réserves explicites'],
 ['Lien obligation / configuration','Contrôles CT-01 à CT-16 : cible, test et preuve attendue','Conception proposée ; aucune configuration réelle exportée'],
 ['Actifs critiques','Registre EA-01 à EA-05 et justification C/I/D/T','V0 du scénario ; inventaire existant non fourni, validation métier attendue'],
 ['Sous-traitants','Registre ST-01 à ST-03 ; procédures PR-ST-01 à PR-ST-04','Procédures rédigées pour l’exercice ; application non attestée']],[140,300,326])
@@ -57,7 +59,7 @@ table(['Point','Fait / raisonnement','Décision et réserve'],[
 ['Disponibilité','Supervision et SI clientèle disponibles en continu ; changements en fenêtres validées, nuit/hors pics sauf urgence avérée.','Avant changement : essai, critères de réussite, retour arrière et validation Production/DSI selon périmètre.']],[130,330,306])
 text('Méthode : fait du dossier → article et condition d’application → objectif de sécurité → configuration cible proposée → test → preuve → décision et responsable. Une absence dans le dossier signifie « non documenté », sauf lorsque le dossier affirme expressément un écart.')
 text('Les propositions techniques ne sont pas des prescriptions littérales de la directive. Elles traduisent ses objectifs dans le périmètre ÉnergieAlp ; paramètres, produits, versions, durées de conservation et tolérances doivent être décidés après analyse des risques.')
-text('Sources : S1 = directive UE 2022/2555 du 14 décembre 2022 ; S2 = dossier pédagogique ÉnergieAlp, §1 à §6 ; S3 = fiches du mémo, itérations 1 et 2 ; S4 = orientation ANSSI NIS2. Références et chemins détaillés en dernière page.')
+text('Référentiel principal R : ReCyF v2.5 (source et matrice ci-après). Sources juridiques et scénario : S1 = directive UE 2022/2555 du 14 décembre 2022 ; S2 = dossier pédagogique ÉnergieAlp, §1 à §6 ; S3 = fiches du mémo, itérations 1 et 2 ; S4 = orientation ANSSI NIS2. Références et chemins détaillés en dernière page.')
 
 screen=[
 (1,'Objet','H','Cadre de la directive ; aucun réglage technique isolé à en déduire.'),
@@ -106,10 +108,34 @@ screen=[
 (44,'Abrogation NIS1','H','Distinguer ancien statut OSE et qualification EE/EI ; ne pas les confondre.'),
 (45,'Entrée en vigueur','H','Repère temporel européen ; ne vaut pas preuve de mise en œuvre nationale.'),
 (46,'Destinataires','H','Directive adressée aux États membres ; exigences opérationnelles à lire avec transposition.')]
-for start,end in [(0,16),(16,31),(31,46)]:
- page(f'2. Examen article par article — {start+1} à {end}')
- text('Référence S1. Les motifs ci-dessous expliquent la sélection du périmètre. Pour H, l’absence de réglage technique ne signifie pas que l’article est sans effet juridique. État de mise en œuvre : non évalué, sauf écarts explicitement déclarés par S2.')
- table(['Art.','Objet résumé','Code','Lien au périmètre / décision motivée'],[[str(n),t,c,r] for n,t,c,r in screen[start:end]],[35,145,35,551])
+
+page('ReCyF — base de l’exercice et conditions d’application')
+text(RECYF_VERSION + '. Source officielle : ' + RECYF_URL)
+text('Correction du cadrage à la demande du formateur : les objectifs et moyens acceptables de conformité (MAC) du ReCyF structurent désormais la matrice. Les articles NIS2 servent de correspondance juridique. ReCyF est utilisé comme référentiel imposé pour cet exercice, sans lui attribuer le statut d’un texte national adopté.')
+text('Hypothèse EE documentaire conservée : objectifs 1 à 20 examinés. Objectifs 16 à 20 propres aux EE ; certains MAC des objectifs 1 à 15 le sont également. Conserver suffixes et colonnes EI/EE du document officiel ; ne pas déduire l’application d’un MAC uniquement du titre de son objectif.')
+text('La matrice couvre les vingt objectifs avec une sélection de MAC pertinents ; elle ne prétend pas être un audit unitaire exhaustif de chaque MAC sur chaque SI. Une ligne identifie le périmètre, le contrôle proposé, le constat et la preuve attendue ; les moyens non détaillés restent à examiner par SI.')
+table(['Notion','Conséquence dans le travail'],[
+['Objectif / MAC','L’objectif décrit le résultat recherché ; le MAC est un moyen proposé. Une alternative est motivée dans l’analyse selon 2.C.3-EI/EE ; aucune exemption ou acceptation ANSSI automatique.'],
+['Périmètre — 1.1-EI/EE et 1.2-EI/EE','Recenser toutes les activités, services et SI, au-delà des cinq actifs critiques. Pas d’exclusion proposée ; toute exclusion doit être justifiée selon risques, sans argumenter seulement par une protection déjà installée.'],
+['Preuves et état','P-DOS-01 atteste uniquement les faits du scénario. Registre/matrice/politique sont des productions documentaires ; les contrôles techniques, contrats et décisions approuvées restent à prouver.'],
+['Cloud Act / SecNumCloud','Analyse juridique et qualification d’une offre éclairent le choix fournisseur ; ni le mot souverain ni SecNumCloud ne démontrent automatiquement la conformité du SI client au ReCyF.']],[180,586])
+text('Références : texte officiel pp. 3 et 7–38 ; tables de correspondance NIS2 pp. 44–47. Les formulations ci-après sont des synthèses locales. Pages indiquées selon pagination du PDF officiel, consultation du 15/10/2026.')
+for offset in range(0,20,4):
+ page(f'Matrice ReCyF — objectifs {offset+1} à {offset+4}')
+ text('Applicabilité : retenu dans l’hypothèse EE sur les SI concernés ; exclusions non justifiées ici. J = approbation future du plan. Chaque R est un objectif ; les MAC sélectionnés précisent les contrôles, sans déclaration de conformité.')
+ table(['Objectif / source','MAC sélectionnés','Périmètre et cible proposée','Preuve / état / écart','Action / pilote'],[
+ [f'R-{n:02} {theme}\np. {pages}\nNIS2 art. {law}',refs,scope+'\n'+target,evidence,action]
+ for n,theme,pages,refs,law,scope,target,evidence,action in RECYF_ROWS[offset:offset+4]
+ ],[120,150,215,180,101])
+page('ReCyF — conditions précises à reprendre dans les tests')
+table(['Mesure(s)','Critère de contrôle et limite'],[
+['8.3-EE ; 8.4-EE','MFA distant comportant au moins un facteur de connaissance : vérifier ce facteur et le second facteur dans les essais. Si impossibilité technique/opérationnelle, justifier et réduire le risque selon 8.4-EE ; une simple autorisation interne ne vaut pas conformité.'],
+['1.3-EI/EE ; 7.B.5-EI/EE ; 10.A.6-EI/EE ; 10.C.4-EI/EE','Revues au moins annuelles selon leur objet : liste activités/SI, filtrage, comptes et droits. Les rythmes trimestriels de la politique sont des choix locaux plus fréquents, pas une citation du ReCyF.'],
+['13.2-EI/EE ; 13.4-EE ; 13.6-EE','Restauration testée au moins annuellement ; DMIA et PRD par activité/service en EE ; PCA/PRA cohérents. Les D3/D4 du registre ne sont pas des objectifs de reprise déjà validés. Semestriel = proposition locale.'],
+['15.4-EE ; 16.4-EE','Programme triennal d’entraînement ; analyse des risques revue au minimum tous les trois ans et selon événements. Prévoir les scénarios cloud, incident et reprise.'],
+['20.1-EE ; 20.5-EE ; 20.6-EE','MAC 20.1 : rédaction « 24h ouvrés », alors que l’objectif mentionne 24 heures. Différence tracée ; cible locale prudente proposée : maximum 24 h calendaires, sans interprétation officielle revendiquée. Conserver événements/supervision au moins trois mois et les protéger, en respectant les autres obligations.'],
+['2.C.1-EI/EE ; 2.C.2-EI/EE ; 3.B.2-EI/EE','Analyse de conformité par SI, plan avec responsables/échéances et contrôle périodique des prestataires. Relier les actions existantes aux R/MAC ; ne pas clôturer sans preuve de vérification.']],[230,536])
+text('Notifications : les délais européens d’alerte et notification restent ceux de l’article 23 de NIS2, à articuler avec les règles nationales applicables ; le délai de prise en compte de supervision du ReCyF est un sujet distinct. Ne pas faire dire au ReCyF qu’il remplace le régime juridique de notification.')
 
 page('3. Gouvernance et cadre des configurations')
 table(['ID / base','Exigence et applicabilité','Cible proposée / contrôle','Preuve et état','Pilote / action'],[
@@ -138,7 +164,7 @@ table(['ID / article','Périmètre','Configuration / dispositif cible','Test de 
 ['CT-10\n21 §2 h','EA-03/04/05 ; autres selon risque','Chiffrer flux et données sensibles selon analyse ; gérer certificats, accès aux clés, rotation et récupération ; paramètres à définir après inventaire.','Vérifier protocole/certificat réellement négocié et accès aux clés ; tester récupération sur copie isolée.','PR-10 : politique, export anonymisé, tests. Aucun protocole, algorithme ou clé observé.','DSI ; RSSI pour politique.'],
 ['CT-11\n21 §2 i','EA-01 à EA-05','Registre avec propriétaire, données, dépendances, criticité, version et cycle de vie ; revue après changement et périodique.','Rapprocher registre, terrain, cloud et inventaire existant ; justifier exclusions.','PR-11 : registre réconcilié et validé. Registre incomplet selon S2 ; V0 produite ici.','DSI / Production.'],
 ['CT-12\n21 §2 i','Comptes internes et tiers','Moindre privilège ; comptes nominatifs, séparation administration/usages, expiration des accès tiers et retrait après départ ; revue proposée trimestrielle.','Tester refus hors périmètre, compte expiré et retrait ; vérifier attribution des actions sur systèmes cibles.','PR-12 : matrice de droits, exports et revues. Accès tiers sans stratégie ni revue documentée.','DSI / Production ; RH pour mouvements, rôle proposé.'],
-['CT-13\n21 §2 j','EA-05 vers EA-01','MFA sur accès VPN sensibles, exceptions identifiées et approuvées ; aucun accès tiers partagé ; prévoir moyens de communication de crise adaptés.','Tester connexion avec facteur, refus sans facteur/invalide, secours contrôlé et continuité ; ne pas supprimer accès avant solution validée.','PR-13 : paramètres et essais. VPN sans MFA établi par S2 ; communications de crise non décrites.','DSI, Production et RSSI.']],[70,90,185,175,165,81])
+['CT-13\n21 §2 j','EA-05 vers EA-01','MFA avec au moins un facteur de connaissance (ReCyF 8.3-EE) sur accès VPN sensibles, exceptions identifiées et approuvées ; aucun accès tiers partagé ; prévoir moyens de communication de crise adaptés.','Tester connexion avec facteur, refus sans facteur/invalide, secours contrôlé et continuité ; ne pas supprimer accès avant solution validée.','PR-13 : paramètres et essais. VPN sans MFA établi par S2 ; communications de crise non décrites.','DSI, Production et RSSI.']],[70,90,185,175,165,81])
 
 page('6. Notification, supervision et contrôles associés')
 table(['ID / base','Applicabilité / résultat attendu','Traduction technique et organisationnelle','Contrôle / preuve attendue','État et pilote'],[
@@ -189,15 +215,99 @@ table(['Métadonnée requise pour chaque future preuve','Valeur à conserver'],[
 ['Origine, méthode et résultat','Système/version, configuration effectivement chargée, comptes/échantillon ; export ou protocole de test ; attendu/constaté ; limites et conclusion.'],
 ['Conservation et validation','Original dans espace contrôlé, version/empreinte si utile, droits et durée de conservation décidés ; copie anonymisée pour présentation ; relecteur et date.']],[245,521])
 
-page('11. Bilan de preuve et références')
+
+# Compléments de la séance présentielle : reprendre la feuille source pour éviter
+# une seconde rédaction divergente de la politique et de l'analyse cloud.
+import re
+SHEET=ROOT.parent.parent/'docs/droit-conformite/it-2/debrief-matrice-cloud-act-politique-securite.md'
+lesson=SHEET.read_text(encoding='utf-8')
+def clean(value):
+ value=re.sub(r'\[([^\]]+)\]\([^)]+\)',r'\1',value)
+ return value.replace('**','').replace('`','').strip()
+def part(begin,end):
+ return lesson.split(begin,1)[1].split(end,1)[0].strip()
+def lesson_table(chunk,widths):
+ lines=[l for l in chunk.splitlines() if l.startswith('|')]
+ rows=[[clean(v) for v in l.strip('|').split('|')] for l in lines]
+ assert rows and len(rows[0])==len(widths)
+ table(rows[0],rows[2:],widths)
+styles.add(ParagraphStyle(name='PolicyBody',fontName='DV',fontSize=8.4,leading=11.5,spaceAfter=8))
+styles.add(ParagraphStyle(name='PolicyHead',fontName='DV-B',fontSize=10,leading=13,spaceAfter=5,keepWithNext=True,textColor=colors.HexColor('#13354c')))
+def lesson_prose(chunk,policy=False):
+ for block in chunk.split('\n\n'):
+  if not block.strip() or block.lstrip().startswith('|'):continue
+  lines=block.splitlines()
+  if lines[0].startswith('#'):
+   story.append(para(clean(lines[0].lstrip('#').strip()),'PolicyHead' if policy else 'HFR'))
+   md.append('### '+clean(lines[0].lstrip('#').strip())+'\n')
+   lines=lines[1:]
+  if lines:
+   value=clean(' '.join(l.lstrip('- ') for l in lines))
+   if policy:
+    story.append(para(value,'PolicyBody'));md.append(value+'\n')
+   else:text(value)
+
+page('11. Mise à jour : débrief et correspondance des matrices')
+text('V3 documentaire du 15 octobre 2026 : cadrage principal ReCyF et ajout des éléments de la séance de 3 h 30 en présentiel. La matrice et les contrôles initiaux sont conservés ; les compléments reprennent la nouvelle feuille du mémo. Aucun débrief, échange entre binômes, arbitrage ou adoption n’est présenté comme réalisé.')
+table(['Ligne de la nouvelle feuille','Contrôle(s) du présent PDF','Objet'],[
+['M-01','CT-13','MFA VPN'],['M-02','CT-02, CT-06 et CT-06b','Risques et garanties CloudPeak'],
+['M-03','CT-11','Registre des actifs'],['M-04','CT-12','Habilitations internes et tiers'],
+['M-05','CT-14 et CT-14a','Notification des incidents'],['M-06','CT-01','Gouvernance et politique'],
+['M-07','CT-02','Analyse des risques tous risques'],['M-08','CT-04 et CT-05','Continuité et crise'],
+['M-09','CT-07','Maintenance et vulnérabilités'],['M-10','CT-08 et CT-16','Efficacité et correction'],
+['M-11','CT-09 et CT-01','Formation et hygiène'],['M-12','CT-10','Cryptographie et clés'],
+['M-13','CT-02','Environnement physique : locaux, énergie et équipements'],
+['M-14','CT-03','Collecte, détection et traitement des incidents'],['M-15','CT-15','Dossier de supervision'],
+['M-16','JUR-01 et qualification section 1','Champ, identité, juridiction et modalités nationales']],[160,180,426])
+text('Points à arbitrer au débrief : adaptation de l’échelle C/I/D/T, maximum retenu, EA-04 I4 prudent, D3 provisoires et propriétaire EA-02. Conserver actif, ancienne/nouvelle note, motif, auteur, date et validateur. Aucune modification des notes n’est justifiée par une correction collective non reçue.')
+
+page('12. Cloud Act — conditions et risques concrets')
+lesson_prose(part('### 4.1. Partir des acquis Cloud et des faits','### 4.2. Questions et risques concrets'))
+lesson_table(part('### 4.2. Questions et risques concrets','Les probabilités et risques résiduels'),[100,230,215,221])
+text('RC-01 à RC-05 : première identification destinée à la future matrice des risques fournisseurs. Probabilités et risques résiduels non chiffrés faute d’informations suffisantes. Aucun transfert vers les États-Unis ni demande d’accès effectif n’est établi.')
+
+page('13. Comparaison des offres cloud')
+lesson_table(part('### 5.1. Grille de comparaison à appliquer aux offres précises','La [qualification SecNumCloud]'),[100,225,240,201])
+text('SecNumCloud : vérifier qualification de l’offre exacte, périmètre et validité ; une démarche en cours ou un siège français ne suffit pas. La qualification de l’offre ne certifie pas automatiquement le CRM ni la configuration du client. Aucune obligation générale de migration SecNumCloud d’ÉnergieAlp n’est démontrée par le dossier.')
+text('Chiffrement : vérifier qui peut utiliser les clés et accéder au clair. Le chiffrement au repos géré par le fournisseur ne supprime pas à lui seul l’accès possible de celui-ci. Une clé dite client ne suffit pas si le service peut l’invoquer ; tester aussi récupération et contraintes fonctionnelles.')
+
+page('14. Orientation de maintien ou migration')
+lesson_prose(part('### 5.2. Recommandation proposée pour ÉnergieAlp','| Étape | Travail / condition'))
+lesson_table(part('### 5.2. Recommandation proposée pour ÉnergieAlp','Si des faits établissent'),[125,365,276])
+text('Le maintien transitoire n’est ni approuvé ni exécuté ; il ne régularise pas l’absence de contrat. Une dérogation de sécurité RSSI ne légalise pas un traitement illicite. Si des faits révèlent une non-conformité juridique imposant une action immédiate, faire arbitrer sans attendre le calendrier indicatif.')
+
+page('15. Politique de sécurité simplifiée — rubriques 1 à 4')
+text('Politique V0 proposée pour revue croisée, non adoptée. Chaque règle indique résultat, périmètre, responsable et contrôle. Les références ReCyF sont indiquées sous chaque rubrique. Les références M renvoient à la correspondance section 11 ; les actions A-01 à A-06 et fréquences sont proposées, sous réserve d’approbation.')
+lesson_prose('### 1 — Objet et périmètre\n\n'+part('### 1 — Objet et périmètre','### 5 — Sécurité physique des sites et équipements'),policy=True)
+
+page('15 bis. Politique de sécurité simplifiée — rubriques 5 et 6')
+lesson_prose('### 5 — Sécurité physique des sites et équipements\n\n'+part('### 5 — Sécurité physique des sites et équipements','### 7 — Continuité et reprise d’activité'),policy=True)
+
+page('16. Politique de sécurité simplifiée — rubriques 7 à 9')
+lesson_prose('### 7 — Continuité et reprise d’activité\n\n'+part('### 7 — Continuité et reprise d’activité','### 10 — Conformité et audit'),policy=True)
+page('16 bis. Politique de sécurité simplifiée — rubriques 10 et 11')
+lesson_prose('### 10 — Conformité et audit\n\n'+part('### 10 — Conformité et audit','## 7. Procédures de gestion des tiers'),policy=True)
+
+text('Concordance du plan de la feuille : A-01 = MFA ; A-02 = cloud et clés ; A-03 = revue des accès ; A-04 = inventaire, risques et physique ; A-05 = incidents, traces et reprise ; A-06 = gouvernance, contrôles, formation et cadre juridique. Le plan de la section 10 couvre ces axes ; les échéances ne sont pas des délais légaux.')
+text('Les procédures PR-ST-01 à PR-ST-04 de la section 9 complètent la rubrique 8 : évaluation, contractualisation, accès/revue, incident/sortie. Les preuves de signature, revue et retrait restent à recueillir.')
+
+page('17. Revue croisée et état des nouvelles productions')
+text('Grille proposée pour échanger avec un autre binôme puis débriefer avec le formateur. Aucun commentaire ni validation ne leur est attribué. Conserver la version initiale, les commentaires reçus avec auteur/date, les corrections et la décision après réalisation.')
+lesson_table(part('## 8. Revue croisée et débrief formateur','Conserver la production initiale'),[135,315,316])
+text('Disponible : analyse RC-01 à RC-05, grille de comparaison, orientation conditionnelle, politique V0 en onze rubriques et grille de revue. À recueillir : réponses fournisseur, offres et devis, analyse juridique individualisée, arbitrage direction, retours de binôme, approbation et preuves d’application.')
+text('Origine des compléments : docs/droit-conformite/it-2/debrief-matrice-cloud-act-politique-securite.md. Les renvois au module Cloud/IAM mobilisent des acquis ; ils ne prouvent aucune configuration de CloudPeak.')
+
+page('18. Bilan de preuve et références')
 table(['Critère du formateur','Travail produit','Éléments restant à démontrer'],[
-['Matrice article par article','46 articles examinés ; décisions d’applicabilité et motifs. Art. 21 décomposé ; configurations et contrôles reliés aux actifs.','Qualification confirmée sur périmètre juridique ; vérification du droit français et des modalités applicables.'],
+['Matrice ReCyF et correspondance NIS2','Vingt objectifs ReCyF et MAC sélectionnés structurent le contrôle ; quarante-six articles NIS2 examinés en annexe. Configuration, preuve et action par objectif.','Qualification confirmée sur périmètre juridique ; vérification du droit français et des modalités applicables.'],
 ['Lien obligations / configurations','CT-01 à CT-16 et CT-06b ; objectifs, paramètres cibles, tests et références de preuve.','Exports réels, tests datés, comportement constaté et traitement des écarts ; aucune efficacité opérationnelle démontrée.'],
 ['Registre des actifs critiques','Cinq services identifiés, responsables connus ou proposés, dépendances, C/I/D/T justifiés et réserves.','Inventaire existant réconcilié, instances/versions/sites, actifs de support et validation métier.'],
+['Politique et décision cloud','Analyse de risques cloud, comparaison et orientation ; politique V0 en onze rubriques.','Retours de revue croisée, arbitrage direction, approbation, diffusion et application.'],
 ['Gestion des sous-traitants','Trois prestataires recensés et quatre procédures : qualification, contractualisation, accès/revue, incident/sortie.','Approbation, contrats, évaluations, revues et preuves d’application.']],[170,298,298])
 text('Conclusion de portée : ce livrable étaye la participation à l’élaboration de la politique de sécurité par un travail de qualification, de formalisation et de préparation des contrôles. Il ne suffit pas à démontrer leur mise en œuvre. Aucune conformité globale, certification, approbation du formateur ou exécution réelle n’est revendiquée.')
 text('Références consultées le 15 octobre 2026 ; reformulations pédagogiques, sans reproduction extensive du texte légal :')
 for line in [
+'ReCyF — référentiel principal de l’exercice : ' + RECYF_URL,
 'S1 — Directive (UE) 2022/2555, articles 1–46 et annexe I : https://eur-lex.europa.eu/eli/dir/2022/2555/oj',
 'S4 — ANSSI, directive NIS2 : https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformation/directives-nis-nis2-et-dispositif-saiv/directive-nis-2/',
 'Orientation de qualification : https://messervices.cyber.gouv.fr/conseils-cyber/directive-nis2-mon-organisation-est-elle-concernee',
@@ -207,11 +317,17 @@ for line in [
 ]: text(line)
 text('Pour le débrief : confirmer les décisions d’applicabilité, les cotations provisoires (notamment EA-04 I4 et les D3), les pilotes et les échéances ; identifier les preuves opérationnelles attendues avant d’attribuer un état de conformité.')
 
+for start,end in [(0,16),(16,31),(31,46)]:
+ page(f'Annexe juridique NIS2 — articles {start+1} à {end}')
+ text('Référence S1. Les motifs ci-dessous expliquent la sélection du périmètre. Pour H, l’absence de réglage technique ne signifie pas que l’article est sans effet juridique. État de mise en œuvre : non évalué, sauf écarts explicitement déclarés par S2.')
+ table(['Art.','Objet résumé','Code','Lien au périmètre / décision motivée'],[[str(n),t,c,r] for n,t,c,r in screen[start:end]],[35,145,35,551])
+
+
 W,H=landscape(A4)
 def footer(canvas,doc):
  canvas.saveState();canvas.setStrokeColor(colors.HexColor('#b8cbd5'));canvas.line(38,29,W-38,29)
  canvas.setFont('DV',7);canvas.setFillColor(colors.HexColor('#425765'))
- canvas.drawString(38,17,'Olivier HIMBLOT • ÉnergieAlp fictive • NIS2 • V1 documentaire du 15/10/2026')
+ canvas.drawString(38,17,'Olivier HIMBLOT • ÉnergieAlp fictive • NIS2 • V3 ReCyF du 15/10/2026')
  canvas.drawRightString(W-38,17,str(doc.page));canvas.restoreState()
 doc=SimpleDocTemplate(str(OUT),pagesize=landscape(A4),rightMargin=38,leftMargin=38,topMargin=32,bottomMargin=42,title='Matrice d’applicabilité NIS2 — ÉnergieAlp',author='Olivier HIMBLOT')
 doc.build(story,onFirstPage=footer,onLaterPages=footer)

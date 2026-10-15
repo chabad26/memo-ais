@@ -14,6 +14,12 @@
 | Politique de sécurité | Règles avec résultat, périmètre, responsable et contrôle ; distinguer rédaction et adoption |
 | Écart | Différence étayée entre une situation et une exigence identifiée |
 
+## Référentiel principal corrigé
+
+ReCyF v2.5 du 17/03/2026, document de travail : objectifs 1 à 20 en hypothèse EE ; les objectifs 16 à 20 sont spécifiques EE et certains MAC des objectifs 1 à 15 le sont aussi. NIS2 reste la base juridique. Un MAC est un moyen acceptable de conformité ; une alternative doit être justifiée.
+
+Repères : 1.1-EI/EE recensement complet ; 3.B.1-EI/EE garanties contractuelles ; 8.3-EE MFA distant avec facteur de connaissance ; 10.C.4-EI/EE revue des droits au moins annuelle ; 13.4-EE DMIA/PRD ; 16.2-EE analyse des risques ; 20.5-EE rétention de supervision au moins trois mois. Vérifier les conditions précises dans la fiche et la source.
+
 ## Méthode à retenir
 
 1. Recenser les actifs à partir du dossier et attribuer des identifiants stables.

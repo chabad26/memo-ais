@@ -4,7 +4,7 @@
 
 ## Objectif et statut du travail
 
-Passer du [registre des actifs critiques](registre-actifs-critiques.md) à une matrice NIS2 renseignée, argumenter le maintien ou la migration de l’hébergement CloudPeak et rédiger une politique de sécurité simplifiée en onze rubriques.
+Passer du [registre des actifs critiques](registre-actifs-critiques.md) à une matrice fondée sur le ReCyF, reliée à NIS2, argumenter le maintien ou la migration de l’hébergement CloudPeak et rédiger une politique de sécurité simplifiée en onze rubriques.
 
 !!! note "Proposition documentaire du 15 octobre 2026"
     Les réponses ci-dessous s’appuient sur le [dossier fictif ÉnergieAlp](../annexes/dossier-entreprise-energiealp.md). Le débrief, les échanges entre binômes et la validation du formateur **ne sont pas documentés comme réalisés**. Les configurations, procédures et échéances sont proposées ; aucun déploiement, contrat signé, test technique ou adoption de la politique n’est attesté. Les cotations du registre V0 sont conservées jusqu’à un arbitrage explicite.
@@ -36,19 +36,65 @@ La durée globale est de **3 h 30** ; aucune durée par étape n’est fournie. 
 
 Après le débrief, conserver **actif → ancienne note → nouvelle note → motif → auteur → date → validateur**. Une note modifiée sans justification affaiblit la traçabilité.
 
-## 3. Matrice d’applicabilité NIS2 renseignée
+## 3. Matrice d’applicabilité ReCyF et correspondance NIS2
 
 ### 3.1. Périmètre, sources et règles de lecture
 
 - **Source européenne :** [directive (UE) 2022/2555](https://eur-lex.europa.eu/eli/dir/2022/2555/oj), articles et annexes précisés ci-dessous. Les modalités nationales doivent être vérifiées séparément avant une conclusion juridique opérationnelle.
 - **Qualification proposée :** gestionnaire de distribution d’électricité, annexe I ; environ 650 salariés ; **entité essentielle (EE)** selon le raisonnement de l’[activité 1.2](../it-1/de-exigence-a-preuve.md), sous réserve du périmètre juridique et des règles de calcul. Aucun résultat du simulateur n’est disponible ; OIV non déterminé.
 - **Périmètre technique :** EA-01 SCADA, EA-02 compteurs, EA-03 CRM, EA-04 analytics, EA-05 VPN ; les dépendances à confirmer sont recensées dans le registre.
-- **Référentiel d’aide :** [ReCyF — ANSSI](https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformation/directives-nis-nis2-et-dispositif-saiv/directive-nis-2/), présenté comme document de travail lors de la consultation du 15 octobre 2026. Ne pas transformer ses recommandations en obligations nationales supposées déjà opposables.
+- **Référentiel principal de l’exercice :** [ReCyF — ANSSI](https://cyber.gouv.fr/reglementation/cybersecurite-systemes-dinformation/directives-nis-nis2-et-dispositif-saiv/directive-nis-2/), présenté comme document de travail lors de la consultation du 15 octobre 2026. Ne pas transformer ses recommandations en obligations nationales supposées déjà opposables.
 - **État des preuves :** P-DOS-01 = dossier pédagogique, §1 à §6 ; auteur et date de production non précisés, lecture du 15 octobre 2026. Il étaye les faits du scénario, sans prouver un état opérationnel réel.
 
-La sélection article par article ci-après reprend l’examen documentaire préparé pour le livrable formateur. Les codes sont : **A**, retenu dans l’hypothèse EE ; **C**, conditionnel à vérifier ; **H**, cadre institutionnel ou juridique sans réglage technique directement déductible ; **X**, hors activité décrite. Ils ne sont pas des notes de conformité.
+En complément de la matrice ReCyF, la sélection article par article ci-après reprend l’examen documentaire préparé pour le livrable formateur. Les codes sont : **A**, retenu dans l’hypothèse EE ; **C**, conditionnel à vérifier ; **H**, cadre institutionnel ou juridique sans réglage technique directement déductible ; **X**, hors activité décrite. Ils ne sont pas des notes de conformité.
 
-### 3.2. Examen article par article
+### 3.2. Référentiel principal de l’exercice : ReCyF
+
+**Correction de cadrage communiquée le 15 octobre 2026 : l’exercice se fonde sur le ReCyF.** NIS2 reste la source juridique européenne ; son examen article par article devient une correspondance, pas le plan principal du contrôle technique.
+
+Référence utilisée : [ReCyF v2.5 du 17/03/2026 — document de travail](https://messervices.cyber.gouv.fr/documents-ressources/20260317_NIS_V2_ReCyF_v2.5.pdf), pages 3 et 7 à 38 ; correspondance officielle avec NIS2 pages 44 à 47. Le document distingue **objectif de sécurité** (résultat) et **moyen acceptable de conformité — MAC** (mesure proposée). Son statut de travail est conservé : son emploi imposé pour l’exercice ne le transforme pas en droit national adopté.
+
+**Périmètre :** l’hypothèse EE conduit à examiner les objectifs 1 à 20. Les objectifs 16 à 20 concernent les EE ; certains MAC des objectifs 1 à 15 sont également propres aux EE. Le suffixe de l’identifiant est conservé ; vérifier aussi les colonnes EI/EE du document source. Une mesure alternative doit être motivée et évaluée selon 2.C.3-EI/EE ; elle n’est ni une exemption automatique ni une preuve d’acceptation par l’ANSSI.
+
+Le registre des cinq actifs critiques ne couvre pas à lui seul le recensement de toutes les activités, services et SI demandé par 1.1-EI/EE. Aucun SI n’est exclu ici ; les exclusions éventuelles doivent être motivées selon 1.2-EI/EE. Une protection déjà en place ne suffit pas à justifier l’absence d’exposition au risque.
+
+La matrice suivante couvre les **vingt objectifs**, avec une sélection explicite de MAC pertinents. Elle ne prétend pas constituer un audit unitaire exhaustif de tous les MAC du ReCyF ; les autres moyens restent à examiner par SI. Les exigences sont synthétisées, sans recopier le texte officiel. Les correspondances NIS2 suivent les tableaux officiels, sans inventer un article pour chaque réglage.
+
+| Objectif / page source / MAC sélectionnés | Périmètre et configuration ou procédure cible | Preuve, état et écart du scénario | Action / responsable proposé | Correspondance NIS2 |
+| --- | --- | --- | --- | --- |
+| **R-01 — Recensement des SI** ; p. 7 ; 1.1-EI/EE ; 1.2-EI/EE ; 1.3-EI/EE | Toutes activités, services et SI, pas seulement les cinq actifs critiques. Relier activités/services à un responsable et aux SI ; justifier toute exclusion par les risques ; valider et revoir au moins annuellement et après évolution. | Registre incomplet déclaré ; V0 cinq actifs produite, liste des activités et SI support à compléter. Preuve : liste validée et exclusions motivées. | DSI/Production : rapprochement J+30 ; conserver les cinq EA sans les assimiler à tout le périmètre. | Art. 21 §2 i |
+| **R-02 — Gouvernance de la sécurité** ; p. 8–10 ; 2.A.1-EI/EE ; 2.A.2-EE ; 2.B.1-EI/EE ; 2.B.3-EI/EE ; 2.C.1-EI/EE ; 2.C.2-EI/EE ; 2.C.3-EI/EE | Direction, RSSI et tous SI. PSSI approuvée ; point de contact ; analyse de conformité par SI et action avec responsable/échéance ; justifier une mesure alternative au lieu de déclarer une exemption. | PSSI et matrice rédigées ici ; adoption et application non prouvées. Preuve : approbation, analyse par SI et suivi. | Direction/RSSI : revue J+30 ; décision, diffusion et preuves à recueillir. | Art. 20 ; 21 §2 a/f/h/i |
+| **R-03 — Écosystème et fournisseurs** ; p. 11 ; 3.A.1-EI/EE ; 3.A.2-EI/EE ; 3.B.1-EI/EE ; 3.B.2-EI/EE | GridSoft, CloudPeak, RéseauTech et interconnexions. Cartographier prestation, interconnexions et contact ; obtenir garanties contractuelles et vérifier périodiquement le service. | Contrat CloudPeak absent ; garanties et contacts non fournis. Preuve : cartographie, contrat, revue/audit fournisseur. | DSI/Production, RSSI/juridique proposés : lancement J+7 ; PR-ST-01/02. | Art. 21 §2 d/i |
+| **R-04 — Sécurité et ressources humaines** ; p. 12 ; 4.1-EI/EE ; 4.2-EI/EE ; 4.3-EE ; 4.4-EI/EE ; 4.5-EI/EE | Personnels et tiers, de l’arrivée au départ. Charte, sensibilisation continue, clauses pertinentes et formation selon rôles ; gérer droits et restitution lors des mouvements. | Non documenté. Preuve : charte, formation, dossiers arrivée/mobilité/départ anonymisés. | RSSI/RH et DSI proposés : vérifier existant J+30, planifier formation. | Art. 21 §2 g |
+| **R-05 — Cartographie et maintien des SI** ; p. 13–14 ; 5.A.1-EI/EE ; 5.B.1-EE ; 5.B.3-EI/EE ; 5.B.4-EI/EE ; 5.B.5-EE ; 5.B.7-EI/EE ; 5.B.9-EI/EE | Tous EA, logiciels et matériels confirmés. Cartographie exploitable en incident ; veille, correctifs et versions supportées ; tester puis appliquer sans retard injustifié selon les MAC ; atténuer les impossibilités. | Versions/support non fournis ; inventaire incomplet déclaré. Preuve : versions, avis, essais et changements. | DSI/Production : inventaire J+30, correction planifiée selon risque et fenêtres. | Art. 21 §2 e/i |
+| **R-06 — Accès physiques** ; p. 15 ; 6.1-EI/EE ; 6.2-EE ; 6.3-EE ; 6.4-EI/EE | Locaux, salles et équipements concernés. Limiter droits au besoin ; autoriser/accompagner visiteurs ; protection permettant prévention, surveillance et réaction aux accès indus. | Non documenté ; absence non démontrée. Preuve : zones, habilitations et contrôle d’un accès autorisé/refusé. | Production/DSI, rôles à confirmer : revue J+30 sans intrusion non autorisée. | Art. 21 §2 |
+| **R-07 — Architecture des SI** ; p. 16–17 ; 7.A.1-EI/EE ; 7.A.3-EE ; 7.A.4-EE ; 7.B.1-EI/EE ; 7.B.3-EI/EE ; 7.B.5-EI/EE | EA-01 à EA-05, sous-systèmes et frontières cloud. Cloisonner SI/sous-systèmes, documenter flux nécessaires, bloquer les autres par défaut et revoir techniquement le filtrage annuellement. | Topologie/règles inconnues. Preuve : cartographie, matrice de flux, règles chargées et tests autorisé/refusé. | DSI/Production : étudier flux avant pilote/migration ; accès SCADA sans approfondissement industriel. | Art. 21 §2 e/h |
+| **R-08 — Accès distants** ; p. 18 ; 8.1-EI/EE ; 8.2-EI/EE ; 8.3-EE ; 8.4-EE ; 8.5-EE | VPN EA-05 et terminaux distants autorisés. Chiffrer l’accès ; en EE, MFA comportant au moins un facteur de connaissance ; chiffrer les supports des postes distants ; impossibilité MFA à traiter selon 8.4-EE. | VPN sans MFA déclaré ; chiffrement/terminaux non évalués. Preuve : paramètres, test du facteur de connaissance et second facteur, refus et secours. | DSI avec Production/RSSI : étude J+7 ; fenêtre après essai, exception motivée et compensée. | Art. 21 §2 e/h/j |
+| **R-09 — Protection contre les codes malveillants** ; p. 19 ; 9.1-EI/EE ; 9.2-EE ; 9.4-EE ; 9.5-EI/EE ; 9.6-EI/EE ; 9.7-EI/EE | Terminaux, serveurs, supports et données entrantes. En EE, ressources gérées par entité/prestataire mandaté ; empêcher autres connexions ; limiter supports et analyser les entrées selon MAC. | Non documenté ; ni antivirus ni BYOD autorisé présumés. Preuve : parc autorisé, protection active et test d’entrée contrôlé. | DSI/Production : vérifier compatibilité des ressources et planifier contrôle J+30. | Art. 21 §2 e |
+| **R-10 — Identités et droits utilisateurs** ; p. 20–21 ; 10.A.1-EI/EE ; 10.A.5-EI/EE ; 10.A.6-EI/EE ; 10.B.2-EI/EE ; 10.C.2-EI/EE ; 10.C.4-EI/EE | Comptes internes, processus et prestataires. Comptes individuels, secrets par défaut changés, retrait des comptes inutiles ; moindre privilège ; revues comptes/droits au moins annuelles. | Revues tiers non documentées déclarées. Preuve : droits, approbations, revue et refus après retrait. | DSI/Production : première revue J+15 ; trimestre proposé localement, plus fréquent que minimum annuel. | Art. 21 §2 e/i/j |
+| **R-11 — Administration des SI** ; p. 22–23 ; 11.A.1-EI/EE ; 11.A.2-EI/EE ; 11.A.6-EE ; 11.A.7-EE ; 11.B.1-EI/EE | Administration interne et prestataires. Comptes dédiés et autorisés, liste des administrateurs, contrôle des droits lors des changements ; maintenir la sécurité des annuaires. | Non documenté. Preuve : liste/comptes dédiés, habilitations et contrôle de séparation des usages. | DSI/Production : vérifier existant J+30 et prévoir retrait des comptes non justifiés. | Art. 21 §2 e/i |
+| **R-12 — Identification et réaction aux incidents** ; p. 24–25 ; 12.1-EE ; 12.2-EE ; 12.3-EI/EE ; 12.4-EE ; 12.5-EE ; 12.7-EE | Tous EA et signalements des tiers/clients. Collecter signalements, qualifier et réagir ; procédure, analyse des causes après incident et protection des relevés. | Non documenté ; journal VPN mentionné ne démontre pas gestion d’incident. Preuve : événement, ticket, procédure et REX. | RSSI/DSI/Production : vérifier existant J+30 et exercice, sans notification externe simulée comme réelle. | Art. 21 §2 b |
+| **R-13 — Continuité et reprise** ; p. 26 ; 13.1-EI/EE ; 13.2-EI/EE ; 13.3-EI/EE ; 13.4-EE ; 13.5-EI/EE ; 13.6-EE | EA-01/03 prioritaires, ensemble des activités. Sauvegarder, protéger copies et tester restauration au moins annuellement ; définir DMIA et PRD par activité/service ; PCA/PRA cohérents. | Continuité requise par scénario ; moyens non documentés. Preuve : objectifs métiers, restauration mesurée et plans. | DSI/Production et métiers : objectifs avant migration ; test semestriel proposé localement. | Art. 21 §2 c |
+| **R-14 — Crise cyber** ; p. 27–28 ; 14.1-EI/EE ; 14.2-EI/EE ; 14.3-EI/EE ; 14.4-EI/EE ; 14.6-EE ; 14.8-EE ; 14.10-EE | Entité, cloud et prestataires. Procédure et critères d’activation ; annuaires utilisables SI indisponible, dont liste imprimée ; isolement/reconstruction et communication de secours. | Non documenté. Preuve : procédure, annuaires protégés, exercice de mobilisation et sortie de crise. | RSSI/direction et tiers : prévoir crise CloudPeak et contacts avant migration. | Art. 21 §2 c/j |
+| **R-15 — Exercices et entraînements** ; p. 29 ; 15.1-EI/EE ; 15.2-EE ; 15.3-EE ; 15.4-EE | Incidents, continuité et crise. Exercice sur table ; en EE stratégie et programme triennal avec acteurs, scénarios, objectifs et évaluation. | Aucun exercice attesté ; débrief non réalisé sur preuves. Preuve : programme, rapports et actions. | RSSI et métiers : planifier après revue J+30 ; résultats à recueillir. | Art. 21 §2 b/c/g |
+| **R-16 — Approche par les risques** ; p. 30–31 ; 16.1-EE ; 16.2-EE ; 16.3-EE ; 16.4-EE | Chaque activité/service et SI ; CRM/analytics. Analyser risque par activité et SI supports, décider traitements et accepter risques résiduels ; réexaminer au moins tous les trois ans et après évolution/incident. | Analyse cloud absente ; RC-01 à RC-05 préparatoires, probabilités non établies. Preuve : analyse validée et décisions résiduelles. | Direction et responsables métier avec RSSI : lancement J+7, orientation J+30. | Art. 21 §2 a |
+| **R-17 — Audit de sécurité** ; p. 32–33 ; 17.1-EE ; 17.2-EE ; 17.3-EE ; 17.4-EE ; 17.5-EE | SI selon criticité et exposition. Programme d’audit proportionné ; couvrir organisation/physique, architecture, configuration et intrusion selon périmètre ; rapport et actions. | Aucun audit réel attesté. Preuve : programme, mandat, rapport et recontrôle. | RSSI/direction : planifier après analyse ; aucun scan de production non autorisé. | Art. 21 §2 f |
+| **R-18 — Configuration des ressources** ; p. 34 ; 18.1-EE ; 18.2-EE ; 18.3-EE ; 18.4-EE | Ressources de tous EA, y compris cibles cloud. Limiter logiciels/services nécessaires, durcir selon recommandations, compenser impossibilités et revoir configurations. | Non documenté. Preuve : configuration effective, référence de durcissement et contrôle des écarts. | DSI/Production : baseline et test avant pilote ; revue selon risque. | Art. 21 §2 e |
+| **R-19 — Ressources dédiées à l’administration** ; p. 35–36 ; 19.1-EE ; 19.4-EE ; 19.6-EE ; 19.7-EE ; 19.9-EE ; 19.10-EE ; 19.11-EE | Postes, réseaux et flux d’administration des EA. Administration sur réseau/poste dédiés ; liaisons dédiées et protocoles protégés ; alternatives prévues aux MAC si impossibilité justifiée, sans exemption générale. | Non documenté. Preuve : schéma et tests d’isolement, poste et protocoles d’administration. | DSI/Production : concevoir chemin d’administration avant bascule, avec fournisseur. | Art. 21 §2 e |
+| **R-20 — Supervision de sécurité** ; p. 37–38 ; 20.1-EE ; 20.2-EE ; 20.3-EE ; 20.4-EE ; 20.5-EE ; 20.6-EE | Journaux/événements utiles et SI de supervision. Dimensionner collecte/traitement et scénarios, conserver au moins trois mois sans préjudice des autres obligations, protéger les données et améliorer la couverture. | Couverture/traitement inconnus. Preuve : sources, événement retracé, délai mesuré, rétention et protection. | DSI/RSSI : cible prudente de prise en compte sous 24 h ; divergence de rédaction objectif/MAC signalée ci-dessous. | Art. 21 §2 b |
+
+**Points précis à intégrer aux contrôles et à la politique :**
+
+- **8.3-EE :** le MFA des accès distants comporte au moins un facteur de connaissance ; le test doit vérifier ce point, pas seulement la présence de deux étapes de connexion. En cas d’impossibilité, traiter 8.4-EE et justifier les réductions de risque.
+- **1.3-EI/EE, 7.B.5-EI/EE, 10.A.6-EI/EE, 10.C.4-EI/EE et 13.2-EI/EE :** reprendre leurs revues/tests au moins annuels ; les fréquences trimestrielles ou semestrielles proposées dans la politique sont des choix locaux plus fréquents, pas des délais cités du référentiel.
+- **13.4-EE :** définir **DMIA** (durée maximale d’interruption admissible) et **PRD** (point de rétablissement des données) par activité/service, puis dimensionner PCA/PRA ; ne pas présenter les notes D du registre comme ces objectifs validés.
+- **15.4-EE et 16.4-EE :** programme d’exercice triennal ; analyse de risque revue au minimum tous les trois ans et selon événements. Le rythme d’un exercice donné reste à définir dans ce programme.
+- **20.5-EE :** conserver les données de supervision et événements au moins trois mois, avec respect des autres obligations, notamment de protection des données.
+- **20.1-EE :** le MAC, p. 37, mentionne « 24h ouvrés », tandis que l’objectif, sur la même page, mentionne 24 heures. Consigner cette différence ; cible locale prudente proposée : prise en compte au maximum sous 24 h calendaires, sans déclarer une interprétation officielle. Ce délai de supervision est distinct de l’alerte NIS2 de l’article 23.
+
+P-DOS-01 reste la seule source des faits du scénario. Les références R et MAC sont les critères de contrôle ; les preuves P-01 à P-16 sont des preuves attendues et non recueillies. Les actions J+7/J+15/J+30 sont des échéances locales proposées à partir d’une approbation future.
+
+### 3.3. Correspondance juridique — examen article par article
 
 #### Articles 1 à 16
 
@@ -117,7 +163,7 @@ Référence : directive (UE) 2022/2555. Les motifs ci-dessous expliquent la sél
 | 45 | Entrée en vigueur | H | Repère temporel européen ; ne vaut pas preuve de mise en œuvre nationale. |
 | 46 | Destinataires | H | Directive adressée aux États membres ; exigences opérationnelles à lire avec transposition. |
 
-### 3.3. Exigences, applicabilité et état
+### 3.4. Déclinaison NIS2 et contrôles associés
 
 Les identifiants **M-01 à M-05** prolongent la matrice du jour 1. **M-06 à M-16** complètent l’analyse. Sauf mention contraire, les exigences sont retenues dans l’hypothèse EE. Les articles sont décomposés en contrôles adaptés au scénario ; les configurations choisies sont des moyens proposés, sans prétendre être des commandes imposées par la directive.
 
@@ -142,7 +188,7 @@ Les identifiants **M-01 à M-05** prolongent la matrice du jour 1. **M-06 à M-1
 
 **Article 23 :** pour un incident significatif, distinguer alerte précoce sous 24 h, notification sous 72 h à compter de la prise de connaissance, rapport intermédiaire sur demande et rapport final généralement au plus tard un mois après la notification. Si l’incident est encore en cours, appliquer les dispositions de rapport d’avancement puis de rapport final du texte. Identifier les impacts, la gravité, les destinataires et les personnes à informer selon les conditions de l’article ; une simple alerte technique ne déclenche pas automatiquement toutes les notifications. Articuler séparément avec les articles 33–34 du RGPD si des données personnelles sont concernées. [Source : directive NIS2, art. 23](https://eur-lex.europa.eu/eli/dir/2022/2555/oj).
 
-### 3.4. Traduction en configurations et tests attendus
+### 3.5. Traduction en configurations et tests attendus
 
 | Contrôles liés | Configuration ou procédure cible proposée | Vérification et condition de réussite |
 | --- | --- | --- |
@@ -158,7 +204,7 @@ Les identifiants **M-01 à M-05** prolongent la matrice du jour 1. **M-06 à M-1
 
 Aucun produit, port, algorithme ou réglage chiffré n’est présenté comme observé : les versions et architectures ne sont pas fournies. Les détails techniques devront être précisés par la DSI et Production après analyse et essais.
 
-### 3.5. Plan d’action associé
+### 3.6. Plan d’action associé
 
 **J = date future d’approbation du plan.** Les échéances sont proposées ; elles ne sont pas des délais légaux. Pour toute intervention sur supervision ou SI clientèle : fenêtre validée, nuit/hors pics sauf urgence de sécurité avérée, critères de réussite et retour arrière. Seul le RSSI valide une dérogation de sécurité.
 
@@ -199,6 +245,20 @@ Le chiffrement au repos géré par le fournisseur ne garantit pas qu’il ne pui
 
 ## 5. Comparer les offres et argumenter une décision
 
+### 5.0. Critères de conception tirés du ReCyF
+
+SecNumCloud et Cloud Act sont des sujets distincts du ReCyF : ils éclairent le choix d’hébergement et les risques, sans fournir une équivalence automatique pour les vingt objectifs. Une qualification de l’offre ne démontre pas les contrôles de l’application cliente.
+
+| Risque / décision | Mesures ReCyF utilisées | Conséquence pour comparaison et migration |
+| --- | --- | --- |
+| RC-01 / RC-05 | 3.A.1-EI/EE ; 3.B.1-EI/EE ; 16.2-EE ; 16.3-EE | Juridiction, dépendances et accès réels dans l’analyse ; contrat et décision de traitement ; Cloud Act étudié avec sources juridiques distinctes. |
+| RC-02 / RC-03 | 7.B.1-EI/EE ; 7.B.3-EI/EE ; 8.1-EI/EE ; 8.3-EE ; 10.C.2-EI/EE | Limiter flux et droits, chiffrer accès, MFA distant ; examiner contrôle des clés et du clair ; minimisation/anonymisation à démontrer. |
+| RC-04 | 13.1-EI/EE ; 13.2-EI/EE ; 13.4-EE ; 13.6-EE ; 15.4-EE | Définir DMIA/PRD et tester restauration, continuité et réversibilité ; inclure migration et sortie dans les exercices. |
+| Cible et administration | 5.A.1-EI/EE ; 11.A.1-EI/EE ; 18.3-EE ; 19.1-EE ; 19.10-EE | Cartographier, durcir et séparer administration ; tester compte dédié, chemin d’administration et protection des communications. |
+| Surveillance fournisseur | 3.B.2-EI/EE ; 17.4-EE ; 17.5-EE ; 20.4-EE ; 20.5-EE | Revue des engagements, audits et correction ; traces pertinentes et conservation au moins trois mois selon obligations applicables. |
+
+Les pièces de comparaison doivent identifier fournisseur, offre, périmètre, responsabilité client/fournisseur et preuves disponibles. La recette doit contrôler ces critères, sans présumer de conformité globale d’un fournisseur.
+
 ### 5.1. Grille de comparaison à appliquer aux offres précises
 
 | Critère | Offre d’un hyperscaler américain : question à instruire | Offre revendiquant une souveraineté : question à instruire | Pièce de décision |
@@ -235,45 +295,67 @@ Si des faits établissent une non-conformité juridique nécessitant une action 
 
 ### 1 — Objet et périmètre
 
+**ReCyF : 1.1-EI/EE ; 1.2-EI/EE ; 1.3-EI/EE.**
+
 - Protéger l’exploitation électrique, les services clients et les données sur EA-01 à EA-05 et leurs dépendances confirmées ; intégrer cloud et accès des prestataires. **Direction** approuve le périmètre proposé par DSI/Production avec RSSI. **Contrôle :** rapprochement annuel et après changement majeur entre politique, registre et matrice. **Liens : M-03, M-06, M-16 ; A-04/A-06.**
 
 ### 2 — Organisation de la sécurité
+
+**ReCyF : 2.A.1-EI/EE ; 2.A.2-EE ; 2.B.3-EI/EE.**
 
 - **Direction :** approuver politique, moyens et arbitrages ; suivre les écarts et se former. **RSSI :** coordonner risques, incidents et contrôles ; valider seul les dérogations de sécurité, avec motif, périmètre, mesures compensatoires et date de fin. **DSI :** porter CRM, VPN et analytics ; **Responsable Production :** porter supervision ; propriétaire des compteurs à désigner. **Utilisateurs :** respecter habilitations et signaler les événements suspects. **Contrôle :** responsabilités nominatives, décisions et revue du suivi proposée trimestrielle. **Liens : M-06/M-10 ; A-06.**
 
 ### 3 — Gestion des actifs
 
+**ReCyF : 1.3-EI/EE ; 5.A.1-EI/EE ; 16.2-EE.**
+
 - **DSI/Production** tiennent le registre avec identifiant, propriétaire, données, dépendances, criticité justifiée, version/support et emplacement ; ajout ou retrait déclenche une mise à jour. Toute cotation est validée par le métier concerné. **Contrôle :** rapprochement proposé trimestriel et après changement ; conserver historique et exclusions. **Liens : EA-01 à EA-05 ; M-03/M-09 ; registre incomplet, A-04.**
 
 ### 4 — Contrôle des accès
 
-- **DSI**, après accord du responsable du système, attribue des accès nominatifs limités au besoin ; applique MFA aux accès VPN sensibles après essais, sépare administration/usages et retire les droits en fin de mission. Les accès tiers ont une date de fin et une revue proposée trimestrielle. **Contrôle :** approbations, tests autorisé/refusé, expiration et retrait ; exceptions bornées validées par RSSI. **Liens : M-01/M-04 ; VPN sans MFA et revues absentes, A-01/A-03.**
+**ReCyF : 8.3-EE ; 10.A.6-EI/EE ; 10.C.4-EI/EE ; 11.A.1-EI/EE ; 19.1-EE.**
+
+- **DSI**, après accord du responsable du système, attribue des accès nominatifs limités au besoin ; applique aux accès VPN sensibles un MFA comprenant au moins un facteur de connaissance, après essais, sépare administration/usages et retire les droits en fin de mission. Les accès tiers ont une date de fin et une revue proposée trimestrielle. **Contrôle :** approbations, tests autorisé/refusé, expiration et retrait ; exceptions bornées validées par RSSI. **Liens : M-01/M-04 ; VPN sans MFA et revues absentes, A-01/A-03.**
 
 ### 5 — Sécurité physique des sites et équipements
+
+**ReCyF : 6.1-EI/EE ; 6.3-EE ; 6.4-EI/EE.**
 
 - **Production** pour supervision/terrain et **DSI** pour locaux SI, rôles proposés à confirmer, réservent l’accès physique aux personnes habilitées ; définissent accueil des visiteurs, protection des équipements et mesures face aux pertes d’énergie et risques environnementaux. **Contrôle :** liste des zones et droits, revue proposée trimestrielle et contrôle d’un scénario autorisé. **Liens : M-07/M-13 ; contrôles non documentés, A-04.**
 
 ### 6 — Gestion des incidents
 
+**ReCyF : 12.1-EE ; 12.3-EI/EE ; 12.5-EE ; 20.1-EE.**
+
 - **Utilisateurs et prestataires** signalent rapidement les événements au contact interne désigné ; **DSI/Production** préservent les traces, qualifient avec **RSSI** et appliquent l’escalade. Le RSSI organise les notifications requises avec la direction et les rôles formalisés, selon critères et délais de l’article 23 et modalités nationales vérifiées. **Contrôle :** procédure, annuaire, chronologie et exercice proposé semestriel ; distinguer incidents significatifs, autres événements et violation de données personnelles. **Liens : M-05/M-14 ; procédure non décrite, A-05.**
 
 ### 7 — Continuité et reprise d’activité
+
+**ReCyF : 13.2-EI/EE ; 13.4-EE ; 13.6-EE ; 14.2-EI/EE ; 14.10-EE.**
 
 - **DSI/Production avec les métiers** définissent les objectifs de reprise et perte admissible par actif, organisent sauvegardes, restauration et modes dégradés ; planifient les changements selon les fenêtres du dossier. Toute modification prévoit tests et retour arrière. **Contrôle :** restauration isolée proposée semestrielle et après changement majeur, mesures comparées aux objectifs approuvés, exercice de crise. **Liens : EA-01/EA-03 prioritaires ; M-08 ; reprise non documentée, A-05.**
 
 ### 8 — Gestion des sous-traitants
 
+**ReCyF : 3.A.1-EI/EE ; 3.B.1-EI/EE ; 3.B.2-EI/EE ; 16.2-EE.**
+
 - **Responsable interne du service**, avec RSSI et appui juridique proposé, évalue le fournisseur avant engagement ou changement ; formalise accès, sécurité, incidents, sous-prestataires, continuité et sortie dans les engagements appropriés. Relier GridSoft, CloudPeak et RéseauTech aux actifs et aux risques RC-01 à RC-05, puis à la future matrice des risques fournisseurs. **Contrôle :** dossier fournisseur proposé annuel, revue des accès trimestrielle et après changement ; PR-ST-01 à PR-ST-04 ci-dessous. **Liens : M-02/M-04/M-09 ; contrat et analyse cloud absents, A-02/A-03.**
 
 ### 9 — Sensibilisation et formation du personnel
+
+**ReCyF : 4.1-EI/EE ; 4.2-EI/EE ; 4.4-EI/EE ; 4.5-EI/EE.**
 
 - **RSSI**, avec RH proposée et responsables opérationnels, organise accueil sécurité avant accès, rappel annuel et formation adaptée aux administrateurs, utilisateurs, direction et tiers selon leur mission. Inclure signalement d’incident, accès distant et protection des données. **Contrôle :** programme, participation et évaluation ; formation complémentaire selon difficultés observées. **Liens : M-11 ; formation non documentée, A-06.**
 
 ### 10 — Conformité et audit
 
-- **RSSI avec appui juridique proposé** tient la matrice d’applicabilité et les sources à jour ; **DSI/Production** fournissent les preuves des contrôles, corrigent les écarts et testent l’efficacité avant clôture. Réduire exposition et vulnérabilités selon le risque, maîtriser chiffrement et clés ; coopérer aux demandes habilitées des autorités. **Contrôle :** revue proposée trimestrielle du plan et annuelle de la matrice, contrôle après incident/changement majeur ; aucune conformité déclarée sans preuve. **Liens : M-09/M-10/M-12/M-15/M-16 ; A-06.**
+**ReCyF : 2.C.1-EI/EE ; 2.C.2-EI/EE ; 17.1-EE ; 18.3-EE ; 20.5-EE.**
+
+- **RSSI avec appui juridique proposé** tient la matrice d’applicabilité et les sources à jour ; **DSI/Production** fournissent les preuves des contrôles, corrigent les écarts et testent l’efficacité avant clôture. Réduire exposition et vulnérabilités selon le risque, maîtriser chiffrement et clés ; coopérer aux demandes habilitées des autorités. Conserver les données de supervision au moins trois mois selon 20.5-EE, sous réserve des autres obligations, et tracer la différence de formulation du délai 20.1-EE. **Contrôle :** revue proposée trimestrielle du plan et annuelle de la matrice, contrôle après incident/changement majeur ; aucune conformité déclarée sans preuve. **Liens : M-09/M-10/M-12/M-15/M-16 ; A-06.**
 
 ### 11 — Revue et mise à jour de la politique
+
+**ReCyF : 1.3-EI/EE ; 2.B.3-EI/EE ; 16.4-EE.**
 
 - **RSSI** propose une révision annuelle et après incident significatif, changement fournisseur/architecture ou évolution juridique ; **direction** approuve, les responsables diffusent et organisent l’application. **Contrôle :** version, auteur, date, motifs, approbation et diffusion ; dérogations revues à leur échéance. La V0 reste conservée pour retracer les choix. **Liens : M-06/M-10/M-16 ; A-06.**
 
@@ -309,7 +391,7 @@ Conserver la production initiale, les commentaires attribués à leurs auteurs l
 | Livrable | Disponible dans cette fiche | Reste à compléter sur preuves |
 | --- | --- | --- |
 | Registre et débrief | V0 liée, questions de méthode identifiées | Retours du groupe et validation des cotations |
-| Matrice NIS2 | 46 articles examinés, M-01 à M-16, contrôles et actions associés | Sources nationales, exports/tests, décisions et états de conformité |
+| Matrice ReCyF / NIS2 | Vingt objectifs ReCyF, MAC sélectionnés, correspondance des 46 articles et M-01 à M-16 | Sources nationales, exports/tests, décisions et états de conformité |
 | Analyse Cloud Act | RC-01 à RC-05, comparaison et orientation conditionnelle | Réponses CloudPeak, offres/devis, analyse juridique et décision direction |
 | Politique simplifiée | Onze rubriques et quatre procédures tiers proposées | Revue croisée, approbation, diffusion et application |
 

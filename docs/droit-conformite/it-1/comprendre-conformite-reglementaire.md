@@ -1,5 +1,9 @@
 # Comprendre la conformité réglementaire
 
+!!! info "Cadrage corrigé — exercice fondé sur le ReCyF"
+    Le ReCyF v2.5 du 17 mars 2026 est le référentiel principal demandé pour l’exercice. Les articles NIS2 ci-dessous restent les correspondances juridiques. Voir la [matrice ReCyF et ses mesures précises](../it-2/debrief-matrice-cloud-act-politique-securite.md#32-referentiel-principal-de-lexercice-recyf). Les cotations C/I/D/T sont une méthode pédagogique locale, pas une échelle imposée par le ReCyF. Le recensement doit couvrir toutes les activités, services et SI (1.1-EI/EE), avec revue au moins annuelle (1.3-EI/EE), cartographie (5.A.1-EI/EE) et analyse des risques en hypothèse EE (16.2-EE).
+
+
 **Module : Droit et conformité — Itération 1 — 3 h 30 — Présentiel.**
 
 ## Objectif et résultat attendu
