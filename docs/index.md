@@ -25,6 +25,8 @@ Ce mémo est découpé en plusieurs parties :
 - **[Intégration distribuée — Cloud & IAM](integration-distribuee-cloud-iam/README.md)** : migration vers OVHcloud et Infomaniak, automatisation OpenTofu et Ansible, gestion des identités, des accès et des secrets.
 - **[Supervision et optimisation des performances](supervision-optimisation-performances/README.md)** : observabilité avec Prometheus, Grafana et ELK, supervision Linux et Windows, alertes, diagnostic et optimisation.
 
+- **[Droit et conformité](droit-conformite/README.md)** : GRC, applicabilité réglementaire, NIS2, [registre des actifs critiques](droit-conformite/it-2/registre-actifs-critiques.md), [Cloud Act et politique de sécurité](droit-conformite/it-2/debrief-matrice-cloud-act-politique-securite.md), préparation d’une simulation d’audit ANSSI avec le cas ÉnergieAlp.
+
 ## Objectif
 
 Ce support ne remplace pas un cours complet.
