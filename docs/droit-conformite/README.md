@@ -32,6 +32,15 @@ Sur trois jours, vous intégrez l'équipe Conformité d'**ÉnergieAlp**, gestion
 - [Débrief, matrice d’applicabilité, Cloud Act et politique de sécurité](it-2/debrief-matrice-cloud-act-politique-securite.md)
 - [Pense-bête de l’itération](../pense-bete/glossaire/droit-conformite/it-2.md)
 
+## Itération 3 — Risques fournisseurs et préparation de l’audit
+
+**Jour 3 — Travail en autonomie**, puis débrief et préparation de la défense du dossier. ReCyF reste le référentiel principal de l’exercice.
+
+- [Sommaire de l’itération](it-3/index.md)
+- [Matrice des risques et préparation de l’audit](it-3/matrice-risques-sous-traitants-preparation-audit.md) : auto-évaluation des jours 1/2, neuf scénarios, quatre procédures tiers, plan et indicateurs.
+- [Simulation d’audit ANSSI, plan de remédiation et fermeture du module](it-3/simulation-audit-anssi-remediation-cloture.md) : entretien collectif, rapport, suivi des écarts, dossier unique et REX Speedboat.
+- [Pense-bête de l’itération](../pense-bete/glossaire/droit-conformite/it-3.md)
+
 ## Livrables annoncés pour les trois jours
 
 | Livrable | Finalité | État dans le mémo |
@@ -41,6 +50,7 @@ Sur trois jours, vous intégrez l'équipe Conformité d'**ÉnergieAlp**, gestion
 | Audit organisationnel et plan de remédiation | Relier les écarts aux obligations et aux contraintes d'exploitation | Matrice fondée sur les vingt objectifs ReCyF, MAC sélectionnés, correspondances NIS2 et plan d’action proposés en itération 2 ; preuves et validations à recueillir |
 | Analyse Cloud Act | Étudier le fournisseur, les accès aux données et les garanties | Première analyse et orientation conditionnelle proposées en itération 2 |
 | Politique de sécurité simplifiée | Relier onze rubriques aux actifs, exigences et actions | V0 rédigée pour revue croisée ; non adoptée |
-| Dossier de simulation d'audit ANSSI | Présenter exigences, décisions et preuves attendues | À construire ; simulation pédagogique |
+| Dossier de simulation d'audit ANSSI | Présenter exigences, décisions et preuves attendues | Index, réponses et trame de rapport préparés en itération 3 ; simulation non attestée |
+| Risques et gestion des sous-traitants | Relier prestations, accès, scénarios, actions et contrôles | V0 qualitative en itération 3, quatre procédures proposées ; mise en œuvre non attestée |
 
 Ces livrables sont annoncés à partir du programme fourni. Les consignes détaillées des activités suivantes seront intégrées lorsqu'elles seront disponibles. Aucun audit réel ni conformité opérationnelle n'est attesté par ces pages.

@@ -590,6 +590,10 @@ nav:
           - Vue d'ensemble: droit-conformite/it-2/index.md
           - Registre des actifs critiques: droit-conformite/it-2/registre-actifs-critiques.md
           - Débrief, matrice, Cloud Act et politique de sécurité: droit-conformite/it-2/debrief-matrice-cloud-act-politique-securite.md
+      - Itération 3 - Risques fournisseurs et préparation de l’audit:
+          - Vue d'ensemble: droit-conformite/it-3/index.md
+          - Matrice des risques et préparation de l’audit: droit-conformite/it-3/matrice-risques-sous-traitants-preparation-audit.md
+          - Simulation d’audit ANSSI, remédiation et clôture: droit-conformite/it-3/simulation-audit-anssi-remediation-cloture.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
@@ -681,3 +685,4 @@ nav:
       - Droit et conformité:
           - Itération 1 - Comprendre la conformité réglementaire: pense-bete/glossaire/droit-conformite/it-1.md
           - Itération 2 - Actifs critiques, matrice et politique de sécurité: pense-bete/glossaire/droit-conformite/it-2.md
+          - Itération 3 - Risques fournisseurs et préparation de l’audit: pense-bete/glossaire/droit-conformite/it-3.md

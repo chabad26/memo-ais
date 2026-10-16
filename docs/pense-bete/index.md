@@ -32,6 +32,7 @@ Il ne remplace pas les pages de cours : il sert à retrouver rapidement les term
 
 | Droit et conformité | [Itération 1 - Comprendre la conformité réglementaire](glossaire/droit-conformite/it-1.md) |
 | Droit et conformité | [Itération 2 - Actifs critiques, matrice et politique de sécurité](glossaire/droit-conformite/it-2.md) |
+| Droit et conformité | [Itération 3 - Risques fournisseurs et préparation de l’audit](glossaire/droit-conformite/it-3.md) |
 
 !!! info "Méthode"
     Quand une nouvelle notion revient souvent, elle va dans **Termes à retenir**. Quand une action a été validée en TP, elle va dans **Manipulations faites**. Une procédure prévue ou un rappel va dans **Gestes et commandes à retenir**, sans être présenté comme exécuté. Le cours complet reste lié dans **Docs associées**.
