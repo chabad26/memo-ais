@@ -27,6 +27,8 @@ Ce mémo est découpé en plusieurs parties :
 
 - **[Droit et conformité](droit-conformite/README.md)** : GRC, applicabilité réglementaire, NIS2, [registre des actifs critiques](droit-conformite/it-2/registre-actifs-critiques.md), [Cloud Act et politique de sécurité](droit-conformite/it-2/debrief-matrice-cloud-act-politique-securite.md), [risques fournisseurs et préparation de l’audit](droit-conformite/it-3/matrice-risques-sous-traitants-preparation-audit.md) et [simulation et clôture](droit-conformite/it-3/simulation-audit-anssi-remediation-cloture.md) avec le cas ÉnergieAlp.
 
+- **[IA et Cybersécurité](ia-cybersecurite/README.md)** : usages de l'IA et shadow AI, risques pour le SI, détection d'anomalies avec Scikit-learn, évaluation du modèle, traitement d'incident et politique d'utilisation sécurisée articulée avec la PSSI.
+
 ## Objectif
 
 Ce support ne remplace pas un cours complet.

@@ -595,8 +595,22 @@ nav:
           - Matrice des risques et préparation de l’audit: droit-conformite/it-3/matrice-risques-sous-traitants-preparation-audit.md
           - Simulation d’audit ANSSI, remédiation et clôture: droit-conformite/it-3/simulation-audit-anssi-remediation-cloture.md
 
+  - IA et Cybersécurité:
+      - Vue d'ensemble: ia-cybersecurite/README.md
+      - Itération 1 - Sous le capot de l'IA:
+          - Vue d'ensemble: ia-cybersecurite/it-1/index.md
+          - Le message de Nadia: ia-cybersecurite/it-1/le-message-de-nadia.md
+          - 70 ans d'intelligence artificielle: ia-cybersecurite/it-1/70-ans-intelligence-artificielle.md
+          - Les différents types d'IA: ia-cybersecurite/it-1/differents-types-ia.md
+          - "Le Machine Learning : apprendre à partir d'exemples": ia-cybersecurite/it-1/machine-learning-apprendre-exemples.md
+          - Le Deep Learning: ia-cybersecurite/it-1/deep-learning.md
+          - Comment fonctionne un LLM: ia-cybersecurite/it-1/comment-fonctionne-llm.md
+          - Les risques derrière les LLM: ia-cybersecurite/it-1/risques-derriere-llm.md
+
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
+      - IA et Cybersécurité:
+          - Itération 1 - Sous le capot de l'IA: pense-bete/glossaire/ia-cybersecurite/it-1.md
       - Inventaire mots de passe et tokens: pense-bete/inventaire-mots-de-passe-tokens-formation.md
       - Liens utiles: pense-bete/liens-utiles.md
       - Commandes Linux PDF: pense-bete/commandes-linux.md

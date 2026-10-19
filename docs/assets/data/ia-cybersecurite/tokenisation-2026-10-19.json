@@ -1,0 +1,410 @@
+{
+  "date": "2026-10-19",
+  "tool": "tiktoken",
+  "version": "0.14.0",
+  "scope": "Texte seul, sans messages ni instructions systeme, sans saut de ligne final",
+  "observations": [
+    {
+      "label": "Français",
+      "text": "Le serveur est indisponible depuis ce matin.",
+      "encodings": {
+        "o200k_base": {
+          "count": 10,
+          "token_ids": [
+            2486,
+            112161,
+            893,
+            93209,
+            716,
+            1430,
+            16277,
+            2357,
+            45978,
+            13
+          ],
+          "pieces": [
+            "Le",
+            " serveur",
+            " est",
+            " indis",
+            "pon",
+            "ible",
+            " depuis",
+            " ce",
+            " matin",
+            "."
+          ]
+        },
+        "cl100k_base": {
+          "count": 11,
+          "token_ids": [
+            2356,
+            8854,
+            324,
+            1826,
+            83975,
+            97951,
+            41199,
+            3846,
+            5634,
+            258,
+            13
+          ],
+          "pieces": [
+            "Le",
+            " serve",
+            "ur",
+            " est",
+            " indis",
+            "ponible",
+            " depuis",
+            " ce",
+            " mat",
+            "in",
+            "."
+          ]
+        }
+      }
+    },
+    {
+      "label": "Anglais",
+      "text": "The server has been unavailable since this morning.",
+      "encodings": {
+        "o200k_base": {
+          "count": 9,
+          "token_ids": [
+            976,
+            6017,
+            853,
+            1339,
+            50818,
+            3630,
+            495,
+            8709,
+            13
+          ],
+          "pieces": [
+            "The",
+            " server",
+            " has",
+            " been",
+            " unavailable",
+            " since",
+            " this",
+            " morning",
+            "."
+          ]
+        },
+        "cl100k_base": {
+          "count": 9,
+          "token_ids": [
+            791,
+            3622,
+            706,
+            1027,
+            36087,
+            2533,
+            420,
+            6693,
+            13
+          ],
+          "pieces": [
+            "The",
+            " server",
+            " has",
+            " been",
+            " unavailable",
+            " since",
+            " this",
+            " morning",
+            "."
+          ]
+        }
+      }
+    },
+    {
+      "label": "Log SSH fictif",
+      "text": "Oct 19 08:52:00 sshd[1234]: Failed password for invalid user test from 192.0.2.10 port 54321 ssh2",
+      "encodings": {
+        "o200k_base": {
+          "count": 36,
+          "token_ids": [
+            18764,
+            220,
+            858,
+            220,
+            3062,
+            25,
+            6283,
+            25,
+            504,
+            70225,
+            67,
+            58,
+            7633,
+            19,
+            12433,
+            46843,
+            6088,
+            395,
+            15796,
+            1825,
+            1746,
+            591,
+            220,
+            8145,
+            13,
+            15,
+            13,
+            17,
+            13,
+            702,
+            3135,
+            220,
+            38038,
+            2040,
+            70225,
+            17
+          ],
+          "pieces": [
+            "Oct",
+            " ",
+            "19",
+            " ",
+            "08",
+            ":",
+            "52",
+            ":",
+            "00",
+            " ssh",
+            "d",
+            "[",
+            "123",
+            "4",
+            "]:",
+            " Failed",
+            " password",
+            " for",
+            " invalid",
+            " user",
+            " test",
+            " from",
+            " ",
+            "192",
+            ".",
+            "0",
+            ".",
+            "2",
+            ".",
+            "10",
+            " port",
+            " ",
+            "543",
+            "21",
+            " ssh",
+            "2"
+          ]
+        },
+        "cl100k_base": {
+          "count": 36,
+          "token_ids": [
+            18544,
+            220,
+            777,
+            220,
+            2318,
+            25,
+            4103,
+            25,
+            410,
+            30330,
+            67,
+            58,
+            4513,
+            19,
+            5787,
+            22092,
+            3636,
+            369,
+            8482,
+            1217,
+            1296,
+            505,
+            220,
+            5926,
+            13,
+            15,
+            13,
+            17,
+            13,
+            605,
+            2700,
+            220,
+            19642,
+            1691,
+            30330,
+            17
+          ],
+          "pieces": [
+            "Oct",
+            " ",
+            "19",
+            " ",
+            "08",
+            ":",
+            "52",
+            ":",
+            "00",
+            " ssh",
+            "d",
+            "[",
+            "123",
+            "4",
+            "]:",
+            " Failed",
+            " password",
+            " for",
+            " invalid",
+            " user",
+            " test",
+            " from",
+            " ",
+            "192",
+            ".",
+            "0",
+            ".",
+            "2",
+            ".",
+            "10",
+            " port",
+            " ",
+            "543",
+            "21",
+            " ssh",
+            "2"
+          ]
+        }
+      }
+    },
+    {
+      "label": "Adresse IP de documentation",
+      "text": "192.0.2.10",
+      "encodings": {
+        "o200k_base": {
+          "count": 7,
+          "token_ids": [
+            8145,
+            13,
+            15,
+            13,
+            17,
+            13,
+            702
+          ],
+          "pieces": [
+            "192",
+            ".",
+            "0",
+            ".",
+            "2",
+            ".",
+            "10"
+          ]
+        },
+        "cl100k_base": {
+          "count": 7,
+          "token_ids": [
+            5926,
+            13,
+            15,
+            13,
+            17,
+            13,
+            605
+          ],
+          "pieces": [
+            "192",
+            ".",
+            "0",
+            ".",
+            "2",
+            ".",
+            "10"
+          ]
+        }
+      }
+    },
+    {
+      "label": "Jeton fictif",
+      "text": "sk-test-4f9a2b7c1e",
+      "encodings": {
+        "o200k_base": {
+          "count": 13,
+          "token_ids": [
+            3817,
+            31542,
+            12,
+            19,
+            69,
+            24,
+            64,
+            17,
+            65,
+            22,
+            66,
+            16,
+            68
+          ],
+          "pieces": [
+            "sk",
+            "-test",
+            "-",
+            "4",
+            "f",
+            "9",
+            "a",
+            "2",
+            "b",
+            "7",
+            "c",
+            "1",
+            "e"
+          ]
+        },
+        "cl100k_base": {
+          "count": 13,
+          "token_ids": [
+            4991,
+            17261,
+            12,
+            19,
+            69,
+            24,
+            64,
+            17,
+            65,
+            22,
+            66,
+            16,
+            68
+          ],
+          "pieces": [
+            "sk",
+            "-test",
+            "-",
+            "4",
+            "f",
+            "9",
+            "a",
+            "2",
+            "b",
+            "7",
+            "c",
+            "1",
+            "e"
+          ]
+        }
+      }
+    }
+  ]
+}
