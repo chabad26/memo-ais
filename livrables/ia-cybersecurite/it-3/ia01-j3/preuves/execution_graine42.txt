@@ -1,0 +1,79 @@
+Graine=42, profondeur=3, contamination=0.03
+1704 observations brutes, du 2026-09-14 au 2026-09-27
+Hors couverture : 90 volumes manquants, dont 9 attaques de référence
+Après nettoyage : 1614 lignes, 108 attaques
+Entraînement : (1129, 7) ; test : (485, 7)
+|--- comptes_distincts <= 3.50
+|   |--- duree_session_min <= 0.50
+|   |   |--- class: 1
+|   |--- duree_session_min >  0.50
+|   |   |--- duree_session_min <= 64.00
+|   |   |   |--- class: 0
+|   |   |--- duree_session_min >  64.00
+|   |   |   |--- class: 1
+|--- comptes_distincts >  3.50
+|   |--- externe <= 0.50
+|   |   |--- heure <= 19.50
+|   |   |   |--- class: 1
+|   |   |--- heure >  19.50
+|   |   |   |--- class: 0
+|   |--- externe >  0.50
+|   |   |--- class: 1
+
+
+=== Arbre, test indépendant de son ajustement ===
+              precision    recall  f1-score   support
+
+      normal       0.99      1.00      1.00       453
+     attaque       1.00      0.88      0.93        32
+
+    accuracy                           0.99       485
+   macro avg       1.00      0.94      0.96       485
+weighted avg       0.99      0.99      0.99       485
+
+VN=453 FP=0 FN=4 VP=28
+
+=== fail2ban historique, mêmes lignes test ===
+              precision    recall  f1-score   support
+
+      normal       0.97      1.00      0.98       453
+     attaque       1.00      0.53      0.69        32
+
+    accuracy                           0.97       485
+   macro avg       0.98      0.77      0.84       485
+weighted avg       0.97      0.97      0.96       485
+
+VN=453 FP=0 FN=15 VP=17
+
+=== Isolation Forest, toutes les données d'ajustement ===
+              precision    recall  f1-score   support
+
+      normal       0.96      1.00      0.98      1506
+     attaque       0.90      0.41      0.56       108
+
+    accuracy                           0.96      1614
+   macro avg       0.93      0.70      0.77      1614
+weighted avg       0.96      0.96      0.95      1614
+
+VN=1501 FP=5 FN=64 VP=44
+Attention : avis_arbre sur tout X inclut ses lignes d'entraînement.
+
+111 alertes écrites dans alertes_a_qualifier.csv
+
+=== Union descriptive sur toutes les lignes, pas test indépendant ===
+              precision    recall  f1-score   support
+
+      normal       1.00      1.00      1.00      1506
+     attaque       0.95      0.98      0.97       108
+
+    accuracy                           1.00      1614
+   macro avg       0.98      0.99      0.98      1614
+weighted avg       1.00      1.00      1.00      1614
+
+VN=1501 FP=5 FN=2 VP=106
+Alertes union par semaine (lundi-dimanche) :
+semaine
+2026-09-14/2026-09-20    45
+2026-09-21/2026-09-27    66
+BUDGET DÉPASSÉ : 30 alertes/semaine. Revue humaine et arbitrage requis.
+Aucune action de blocage ; revue SOC/astreinte obligatoire.

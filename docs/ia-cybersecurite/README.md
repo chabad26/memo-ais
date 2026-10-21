@@ -12,6 +12,38 @@
 - [Les risques derrière les LLM](it-1/risques-derriere-llm.md) : secrets, injections, permissions et retour sur les usages ; essais Trippy Planner et Thingularity niveau 1 documentés, fiches renseignées.
 - [Pense-bête de l'itération](../pense-bete/glossaire/ia-cybersecurite/it-1.md)
 
+## Itération 2 — Shadow IA
+
+**Travail individuel en autonomie — 1 jour.** Méthode d'analyse le matin, puis application au dossier de Nadia l'après-midi.
+
+- [Sommaire, objectifs et livrables prévus](it-2/index.md)
+- [Le recensement de Nadia](it-2/le-recensement-de-nadia.md) : retour sur les usages du J1 et définition initiale proposée.
+- [Shadow IA : de quoi parle-t-on ?](it-2/shadow-ia-de-quoi-parle-t-on.md) : classement renseigné, définition corrigée, cas Samsung et méthode en sept étapes.
+- [Quel compte, quel fournisseur ?](it-2/quel-compte-quel-fournisseur.md) : tableau OpenAI rempli, sources datées et réponses sur les comptes, l’API et le local.
+- [Quelles données sont envoyées ?](it-2/quelles-donnees-sont-envoyees.md) : données sensibles du WMS classées, extrait caviardé et tableaux renseignés.
+- [Les connecteurs : quand l’IA a les clés](it-2/connecteurs-quand-ia-a-les-cles.md) : permissions InboxPilot renseignées, révocation et analyse EchoLeak.
+- [Ce que dit la PSSI](it-2/ce-que-dit-la-pssi.md) : tableau des dix situations, angles morts et analyse du délai de réponse.
+- [Qualifier le risque et choisir une mesure](it-2/qualifier-risque-choisir-mesure.md) : trois risques qualifiés, mesures proposées et continuité du travail.
+- [Le dossier Hexalp](it-2/le-dossier-hexalp.md) : livrable en quatre parties, dix fiches croisées sur les dix pièces et limites de preuve.
+- [Pense-bête de l'itération](../pense-bete/glossaire/ia-cybersecurite/it-2.md)
+
+## Itération 3 — Détecter : votre premier modèle
+
+**Travail individuel, guidé puis en autonomie — 1 jour.** Environnement Python, préparation de journaux SSH fictifs, classification et détection d'anomalies avec Scikit-learn, puis script d'alertes pour l'analyste.
+
+- [Contexte, objectifs, kit reçu et livrables](it-3/index.md)
+- [Le projet de la supervision](it-3/le-projet-de-la-supervision.md) : cinq scénarios renseignés, limites de fail2ban et conditions du projet — 15 min.
+- [Mettre en place un classifieur](it-3/mettre-en-place-classifieur.md) : chaîne du J1 et tableau classification/anomalies renseignés ; carnet J3 commencé — 45 min.
+- [Installer son environnement](it-3/installer-son-environnement.md) : installation guidée et réponses théoriques ; six captures VM commentées et preuves restantes — 45 min.
+- [Python de survie](it-3/python-de-survie.md) : tableaux et exercices corrigés, analyse de la machine nocturne — 1 h.
+- [Explorer et préparer les journaux](it-3/explorer-preparer-journaux.md) : exploration renseignée, choix de nettoyage et caractéristiques — 45 min.
+- [Le classifieur supervisé](it-3/le-classifieur-supervise.md) : entraînement attesté en captures, règles, C1–C6 et limites de l’arbre — 1 h.
+- [La détection d’anomalies](it-3/la-detection-anomalies.md) : cellules dans l’ordre, quatre captures et analyse des résultats observés — 1 h.
+- [Le script de détection](it-3/le-script-de-detection.md) : script et CSV produits, deux graines testées et fiche du modèle renseignée — 1 h.
+- [Pense-bête de l'itération](../pense-bete/glossaire/ia-cybersecurite/it-3.md)
+
+Les cinq fichiers du kit sont disponibles dans `livrables/ia-cybersecurite/it-3/ia01-j3/`. Les consignes détaillées suivantes sont attendues ; l’entraînement supervisé est désormais documenté par les captures de la partie C ; les autres résultats sont suivis dans le sommaire.
+
 ## 🎯 Objectifs
 
 ### Objectif global

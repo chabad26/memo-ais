@@ -1,0 +1,6 @@
+# IA-01 · Jour 3 — environnement Python (Python 3.11 ou plus récent)
+# Versions figées : tout le monde obtient les mêmes résultats.
+jupyterlab==4.6.4
+pandas==3.0.6
+scikit-learn==1.9.1
+matplotlib==3.11.2

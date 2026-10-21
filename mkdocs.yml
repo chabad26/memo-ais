@@ -606,11 +606,34 @@ nav:
           - Le Deep Learning: ia-cybersecurite/it-1/deep-learning.md
           - Comment fonctionne un LLM: ia-cybersecurite/it-1/comment-fonctionne-llm.md
           - Les risques derrière les LLM: ia-cybersecurite/it-1/risques-derriere-llm.md
+      - Itération 2 - Shadow IA:
+          - Vue d'ensemble: ia-cybersecurite/it-2/index.md
+          - Le recensement de Nadia: ia-cybersecurite/it-2/le-recensement-de-nadia.md
+          - "Shadow IA : de quoi parle-t-on ?": ia-cybersecurite/it-2/shadow-ia-de-quoi-parle-t-on.md
+          - "Quel compte, quel fournisseur ?": ia-cybersecurite/it-2/quel-compte-quel-fournisseur.md
+          - "Quelles données sont envoyées ?": ia-cybersecurite/it-2/quelles-donnees-sont-envoyees.md
+          - "Les connecteurs : quand l’IA a les clés": ia-cybersecurite/it-2/connecteurs-quand-ia-a-les-cles.md
+          - Ce que dit la PSSI: ia-cybersecurite/it-2/ce-que-dit-la-pssi.md
+          - Qualifier le risque et choisir une mesure: ia-cybersecurite/it-2/qualifier-risque-choisir-mesure.md
+          - Le dossier Hexalp: ia-cybersecurite/it-2/le-dossier-hexalp.md
+
+      - "Itération 3 - Détecter : votre premier modèle":
+          - Vue d’ensemble: ia-cybersecurite/it-3/index.md
+          - Le projet de la supervision: ia-cybersecurite/it-3/le-projet-de-la-supervision.md
+          - Mettre en place un classifieur: ia-cybersecurite/it-3/mettre-en-place-classifieur.md
+          - Installer son environnement: ia-cybersecurite/it-3/installer-son-environnement.md
+          - Python de survie: ia-cybersecurite/it-3/python-de-survie.md
+          - Explorer et préparer les journaux: ia-cybersecurite/it-3/explorer-preparer-journaux.md
+          - Le classifieur supervisé: ia-cybersecurite/it-3/le-classifieur-supervise.md
+          - La détection d’anomalies: ia-cybersecurite/it-3/la-detection-anomalies.md
+          - Le script de détection: ia-cybersecurite/it-3/le-script-de-detection.md
 
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
       - IA et Cybersécurité:
           - Itération 1 - Sous le capot de l'IA: pense-bete/glossaire/ia-cybersecurite/it-1.md
+          - Itération 2 - Shadow IA: pense-bete/glossaire/ia-cybersecurite/it-2.md
+          - "Itération 3 - Détecter : votre premier modèle": pense-bete/glossaire/ia-cybersecurite/it-3.md
       - Inventaire mots de passe et tokens: pense-bete/inventaire-mots-de-passe-tokens-formation.md
       - Liens utiles: pense-bete/liens-utiles.md
       - Commandes Linux PDF: pense-bete/commandes-linux.md
