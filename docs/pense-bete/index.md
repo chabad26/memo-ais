@@ -34,7 +34,7 @@ Il ne remplace pas les pages de cours : il sert à retrouver rapidement les term
 | Droit et conformité | [Itération 2 - Actifs critiques, matrice et politique de sécurité](glossaire/droit-conformite/it-2.md) |
 | Droit et conformité | [Itération 3 - Risques fournisseurs et préparation de l’audit](glossaire/droit-conformite/it-3.md) |
 
-| IA et Cybersécurité | [Itération 1 - Sous le capot de l'IA](glossaire/ia-cybersecurite/it-1.md), [Itération 2 - Shadow IA](glossaire/ia-cybersecurite/it-2.md), [Itération 3 - Détecter](glossaire/ia-cybersecurite/it-3.md) |
+| IA et Cybersécurité | [Itération 1 - Sous le capot de l'IA](glossaire/ia-cybersecurite/it-1.md), [Itération 2 - Shadow IA](glossaire/ia-cybersecurite/it-2.md), [Itération 3 - Détecter](glossaire/ia-cybersecurite/it-3.md), [Itération 4 - Critiquer](glossaire/ia-cybersecurite/it-4.md) |
 
 !!! info "Méthode"
     Quand une nouvelle notion revient souvent, elle va dans **Termes à retenir**. Quand une action a été validée en TP, elle va dans **Manipulations faites**. Une procédure prévue ou un rappel va dans **Gestes et commandes à retenir**, sans être présenté comme exécuté. Le cours complet reste lié dans **Docs associées**.

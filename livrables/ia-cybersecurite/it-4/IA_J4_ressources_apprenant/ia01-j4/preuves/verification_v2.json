@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-22",
+  "origine": "Tests assistant distincts de la VM apprenant",
+  "python": "3.14.4",
+  "pandas": "3.0.6",
+  "scikit_learn": "1.9.1",
+  "numpy": "2.5.4",
+  "tests": {
+    "deux_executions_csv_identiques": true,
+    "predictions_identiques_sans_etiquette_octobre": true,
+    "schema_inconnu_refuse_sans_export": true,
+    "manques_refuses_au_seuil_zero": true
+  },
+  "sha256": {
+    "detection_ssh_v2.py": "b4d340e60e320d92f3f954d8f23a291535eed28a72be44c074b3b2023e4674dc",
+    "hexalp_ssh_sept2026.csv": "8f9565ee5b5b9e1d034cd6171d9e68ac3a7307af0f64b3ccda096e0badb1c126",
+    "hexalp_ssh_oct2026.csv": "44ee1d5d2d4271a75562b9c33381eab65f517ce6d8c36cd4182b1ad07869f7db",
+    "alertes_octobre.csv": "9ece569a46ee65e36d620dff800b05880c05f5915e2d3206321cbef627206f5f"
+  }
+}

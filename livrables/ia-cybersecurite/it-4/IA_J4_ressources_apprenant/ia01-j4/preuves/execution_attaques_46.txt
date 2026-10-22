@@ -1,0 +1,354 @@
+CELLULE 2
+Modèle d'Hexalp prêt.
+
+CELLULE 3
+Arbre : normal   | Isolation Forest : +0.261 (rien)  →  ✅ aucune alerte
+
+CELLULE 7
+Requête n°1 : 32 comptes à 14 h → REPÉRÉ
+Requête n°2 : 16 comptes à 14 h → REPÉRÉ
+Requête n°3 : 8 comptes à 14 h → REPÉRÉ
+Requête n°4 : 4 comptes à 14 h → REPÉRÉ
+Requête n°5 : 2 comptes à 14 h → pas repéré
+Requête n°6 : 3 comptes à 14 h → pas repéré
+
+CELLULE 9
+Requête n°7 : 2 comptes à 12 h → pas repéré
+Requête n°8 : 2 comptes à 6 h → REPÉRÉ
+Requête n°9 : 2 comptes à 9 h → pas repéré
+Requête n°10 : 2 comptes à 8 h → REPÉRÉ
+
+CELLULE 10
+|--- comptes_distincts <= 3.50
+|   |--- externe <= 0.50
+|   |   |--- class: 0
+|   |--- externe >  0.50
+|   |   |--- heure <= 8.50
+|   |   |   |--- class: 1
+|   |   |--- heure >  8.50
+|   |   |   |--- class: 0
+|--- comptes_distincts >  3.50
+|   |--- externe <= 0.50
+|   |   |--- echecs_auth <= 100.50
+|   |   |   |--- class: 1
+|   |   |--- echecs_auth >  100.50
+|   |   |   |--- class: 0
+|   |--- externe >  0.50
+|   |   |--- class: 1
+
+
+CELLULE 13
+Arbre : normal   | Isolation Forest : +0.071 (rien)  →  ✅ aucune alerte
+
+CELLULE 14
+Heures sans alerte : [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+Essais par jour et par IP : 150
+
+CELLULE 16
+Arbre : normal   | Isolation Forest : -0.028 (anomalie)  →  🚨 ALERTE
+
+CELLULE 17
+ 1 h : alerte à partir de 2000 Mo
+ 3 h : alerte à partir de 3000 Mo
+10 h : aucune alerte, même à 4 000 Mo
+
+CELLULE 17
+14 h : aucune alerte, même à 4 000 Mo
+23 h : alerte à partir de 2000 Mo
+Plan 5 x 1000 Mo, heures 9 à 13 :
+9 False
+10 False
+11 False
+12 False
+
+CELLULE 17
+13 False
+
+CELLULE 20
+Alertes avant la liste blanche : 185
+Alertes supprimées             : 19
+Alertes après la liste blanche : 166
+Suppressions par semaine :
+date
+2026-09-28/2026-10-04    10
+2026-10-05/2026-10-11     9
+Freq: W-SUN, Name: alerte, dtype: int64
+
+CELLULE 21
+Ce que dirait le modèle :
+Arbre : normal   | Isolation Forest : -0.024 (anomalie)  →  🚨 ALERTE
+Ce que verra l'analyste : rien, l'adresse est dans la liste blanche.
+
+CELLULE 24
+Arbre : ATTAQUE  | Isolation Forest : +0.074 (rien)  →  🚨 ALERTE
+
+CELLULE 25
+0 fausses lignes, soit 0.0 % des données d'entraînement
+L'attaque préparée est classée : ATTAQUE
+
+Sur le jeu de test de septembre :
+              precision    recall  f1-score   support
+
+      normal       0.99      1.00      0.99       477
+     attaque       0.94      0.89      0.91        35
+
+    accuracy                           0.99       512
+   macro avg       0.97      0.94      0.95       512
+weighted avg       0.99      0.99      0.99       512
+
+2 fausses lignes, soit 0.2 % des données d'entraînement
+L'attaque préparée est classée : ATTAQUE
+
+Sur le jeu de test de septembre :
+              precision    recall  f1-score   support
+
+      normal       0.99      0.99      0.99       477
+     attaque       0.91      0.86      0.88        35
+
+    accuracy                           0.98       512
+   macro avg       0.95      0.93      0.94       512
+weighted avg       0.98      0.98      0.98       512
+
+4 fausses lignes, soit 0.3 % des données d'entraînement
+L'attaque préparée est classée : ATTAQUE
+
+Sur le jeu de test de septembre :
+
+CELLULE 25
+              precision    recall  f1-score   support
+
+      normal       0.99      0.99      0.99       477
+     attaque       0.91      0.86      0.88        35
+
+    accuracy                           0.98       512
+   macro avg       0.95      0.93      0.94       512
+weighted avg       0.98      0.98      0.98       512
+
+5 fausses lignes, soit 0.4 % des données d'entraînement
+L'attaque préparée est classée : normal
+
+Sur le jeu de test de septembre :
+
+CELLULE 25
+              precision    recall  f1-score   support
+
+      normal       0.99      0.99      0.99       477
+     attaque       0.90      0.80      0.85        35
+
+    accuracy                           0.98       512
+   macro avg       0.94      0.90      0.92       512
+weighted avg       0.98      0.98      0.98       512
+
+10 fausses lignes, soit 0.8 % des données d'entraînement
+L'attaque préparée est classée : normal
+
+Sur le jeu de test de septembre :
+              precision    recall  f1-score   support
+
+      normal       0.98      0.99      0.99       477
+     attaque       0.90      0.74      0.81        35
+
+    accuracy                           0.98       512
+   macro avg       0.94      0.87      0.90       512
+weighted avg       0.98      0.98      0.98       512
+
+20 fausses lignes, soit 1.7 % des données d'entraînement
+L'attaque préparée est classée : normal
+
+Sur le jeu de test de septembre :
+              precision    recall  f1-score   support
+
+      normal       0.98      1.00      0.99       477
+     attaque       1.00      0.77      0.87        35
+
+    accuracy                           0.98       512
+   macro avg       0.99      0.89      0.93       512
+weighted avg       0.98      0.98      0.98       512
+
+
+CELLULE 27
+Exfiltrations VPN repérées par l'Isolation Forest d'origine    : 9 sur 9
+Exfiltrations VPN repérées par l'Isolation Forest empoisonné : 9 sur 9
+
+CELLULE 27
+Exfiltrations VPN repérées par l'Isolation Forest d'origine    : 9 sur 9
+
+CELLULE 27
+Exfiltrations VPN repérées par l'Isolation Forest empoisonné : 9 sur 9
+
+CELLULE 27
+Exfiltrations VPN repérées par l'Isolation Forest d'origine    : 9 sur 9
+Exfiltrations VPN repérées par l'Isolation Forest empoisonné : 5 sur 9
+
+CELLULE 27
+Exfiltrations VPN repérées par l'Isolation Forest d'origine    : 9 sur 9
+Exfiltrations VPN repérées par l'Isolation Forest empoisonné : 6 sur 9
+
+CELLULE 27
+Exfiltrations VPN repérées par l'Isolation Forest d'origine    : 9 sur 9
+Exfiltrations VPN repérées par l'Isolation Forest empoisonné : 2 sur 9
+
+CELLULE 30
+hexalp_ssh_sept2026.csv : 1704 brutes ; 90 sans volume après conversion
+hexalp_ssh_oct2026.csv : 2119 brutes ; 14 sans volume après conversion
+
+CELLULE 30
+{
+  "origine": "Assistant, notebook exécuté localement hors VM",
+  "python": "3.14.4",
+  "protocole": "V2 : exclusion, ordre J3, contamination0.03, graine42",
+  "spraying_2_comptes_10_echecs_par_heure": {
+    "0": true,
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true,
+    "5": true,
+    "6": true,
+    "7": true,
+    "8": true,
+    "9": true,
+    "10": true,
+    "11": true,
+    "12": true,
+    "13": true,
+    "14": true,
+    "15": true,
+    "16": true,
+    "17": true,
+    "18": true,
+    "19": true,
+    "20": true,
+    "21": true,
+    "22": true,
+    "23": true
+  },
+  "plan_exfiltration_1000_mo_9_a_13": {
+    "9": false,
+    "10": false,
+    "11": false,
+    "12": false,
+    "13": false
+  },
+  "9000_mo_1h": true,
+  "liste_blanche_suppressions": 10,
+  "empoisonnement_etiquettes": [
+    {
+      "lignes": 0,
+      "attaque_classee": 1,
+      "union_alerte": true,
+      "matrice_test": [
+        [
+          453,
+          0
+        ],
+        [
+          4,
+          28
+        ]
+      ]
+    },
+    {
+      "lignes": 2,
+      "attaque_classee": 1,
+      "union_alerte": true,
+      "matrice_test": [
+        [
+          452,
+          1
+        ],
+        [
+          4,
+          28
+        ]
+      ]
+    },
+    {
+      "lignes": 4,
+      "attaque_classee": 0,
+      "union_alerte": false,
+      "matrice_test": [
+        [
+          452,
+          1
+        ],
+        [
+          7,
+          25
+        ]
+      ]
+    },
+    {
+      "lignes": 5,
+      "attaque_classee": 0,
+      "union_alerte": false,
+      "matrice_test": [
+        [
+          452,
+          1
+        ],
+        [
+          6,
+          26
+        ]
+      ]
+    },
+    {
+      "lignes": 10,
+      "attaque_classee": 0,
+      "union_alerte": false,
+      "matrice_test": [
+        [
+          452,
+          1
+        ],
+        [
+          9,
+          23
+        ]
+      ]
+    },
+    {
+      "lignes": 20,
+      "attaque_classee": 0,
+      "union_alerte": false,
+      "matrice_test": [
+        [
+          453,
+          0
+        ],
+        [
+          4,
+          28
+        ]
+      ]
+    }
+  ],
+  "empoisonnement_comportement": [
+    {
+      "nuits_synthetiques": 0,
+      "vpn_detectes_IF": 5,
+      "vpn_total": 9
+    },
+    {
+      "nuits_synthetiques": 10,
+      "vpn_detectes_IF": 8,
+      "vpn_total": 9
+    },
+    {
+      "nuits_synthetiques": 20,
+      "vpn_detectes_IF": 5,
+      "vpn_total": 9
+    },
+    {
+      "nuits_synthetiques": 40,
+      "vpn_detectes_IF": 5,
+      "vpn_total": 9
+    },
+    {
+      "nuits_synthetiques": 80,
+      "vpn_detectes_IF": 0,
+      "vpn_total": 9
+    }
+  ]
+}

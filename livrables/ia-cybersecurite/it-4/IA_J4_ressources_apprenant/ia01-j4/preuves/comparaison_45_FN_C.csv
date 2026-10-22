@@ -1,0 +1,5 @@
+date,heure,ip_source,origine,echecs_auth,succes_auth,comptes_distincts,duree_session_min,octets_sortants_mo,octets_sortants_ko,fail2ban_ban,etiquette,externe,prediction
+2026-10-01,14,10.20.3.50,interne,30,1,3,5,1.1123046875,1139.0,0,attaque,0,0
+2026-10-05,8,198.51.100.67,externe,0,2,1,48,70.783203125,72482.0,0,attaque,1,0
+2026-10-05,10,10.20.3.118,interne,6,0,3,14,3.5791015625,3665.0,1,attaque,0,0
+2026-10-09,11,10.20.3.57,interne,12,1,3,13,4.13671875,4236.0,0,attaque,0,0

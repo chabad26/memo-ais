@@ -1,0 +1,84 @@
+Graine=42, profondeur=3, contamination=0.03
+hexalp_ssh_sept2026.csv : 1704 brutes ; 90 sans volume après conversion
+hexalp_ssh_oct2026.csv : 2119 brutes ; 14 sans volume après conversion
+|--- comptes_distincts <= 3.50
+|   |--- duree_session_min <= 0.50
+|   |   |--- class: 1
+|   |--- duree_session_min >  0.50
+|   |   |--- duree_session_min <= 64.00
+|   |   |   |--- class: 0
+|   |   |--- duree_session_min >  64.00
+|   |   |   |--- class: 1
+|--- comptes_distincts >  3.50
+|   |--- externe <= 0.50
+|   |   |--- heure <= 19.50
+|   |   |   |--- class: 1
+|   |   |--- heure >  19.50
+|   |   |   |--- class: 0
+|   |--- externe >  0.50
+|   |   |--- class: 1
+
+
+Arbre, contrôle septembre : VN=453 FP=0 FN=4 VP=28
+              precision    recall  f1-score   support
+
+      normal     0.9912    1.0000    0.9956       453
+     attaque     1.0000    0.8750    0.9333        32
+
+    accuracy                         0.9918       485
+   macro avg     0.9956    0.9375    0.9645       485
+weighted avg     0.9918    0.9918    0.9915       485
+
+
+Arbre octobre : VN=1868 FP=26 FN=17 VP=194
+              precision    recall  f1-score   support
+
+      normal     0.9910    0.9863    0.9886      1894
+     attaque     0.8818    0.9194    0.9002       211
+
+    accuracy                         0.9796      2105
+   macro avg     0.9364    0.9529    0.9444      2105
+weighted avg     0.9800    0.9796    0.9798      2105
+
+
+Isolation Forest octobre : VN=1883 FP=11 FN=175 VP=36
+              precision    recall  f1-score   support
+
+      normal     0.9150    0.9942    0.9529      1894
+     attaque     0.7660    0.1706    0.2791       211
+
+    accuracy                         0.9116      2105
+   macro avg     0.8405    0.5824    0.6160      2105
+weighted avg     0.9000    0.9116    0.8854      2105
+
+
+Union octobre : VN=1857 FP=37 FN=9 VP=202
+              precision    recall  f1-score   support
+
+      normal     0.9952    0.9805    0.9878      1894
+     attaque     0.8452    0.9573    0.8978       211
+
+    accuracy                         0.9781      2105
+   macro avg     0.9202    0.9689    0.9428      2105
+weighted avg     0.9801    0.9781    0.9787      2105
+
+
+fail2ban historique : VN=1894 FP=0 FN=150 VP=61
+              precision    recall  f1-score   support
+
+      normal     0.9266    1.0000    0.9619      1894
+     attaque     1.0000    0.2891    0.4485       211
+
+    accuracy                         0.9287      2105
+   macro avg     0.9633    0.6445    0.7052      2105
+weighted avg     0.9340    0.9287    0.9104      2105
+
+
+Alertes par semaine :
+date
+2026-09-28/2026-10-04    104
+2026-10-05/2026-10-11    135
+239 alertes écrites dans alertes_octobre.csv
+BUDGET DÉPASSÉ : 30 alertes/semaine ; arbitrage requis
+Hors couverture : 90 lignes septembre, 14 octobre
+Aucun blocage, aucune connexion externe : l'analyste décide

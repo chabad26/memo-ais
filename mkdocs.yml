@@ -628,12 +628,24 @@ nav:
           - La détection d’anomalies: ia-cybersecurite/it-3/la-detection-anomalies.md
           - Le script de détection: ia-cybersecurite/it-3/le-script-de-detection.md
 
+      - "Itération 4 - Critiquer : ce que vaut votre modèle":
+          - Vue d’ensemble: ia-cybersecurite/it-4/index.md
+          - "99 %": ia-cybersecurite/it-4/99-pour-cent.md
+          - Relancer et réparer: ia-cybersecurite/it-4/relancer-et-reparer.md
+          - Évaluer en conditions réelles: ia-cybersecurite/it-4/evaluer-en-conditions-reelles.md
+          - Le rapport d’évaluation: ia-cybersecurite/it-4/le-rapport-evaluation.md
+          - Le mur des matrices: ia-cybersecurite/it-4/le-mur-des-matrices.md
+          - Attaquer son modèle: ia-cybersecurite/it-4/attaquer-son-modele.md
+          - Et le Deep Learning ?: ia-cybersecurite/it-4/et-le-deep-learning.md
+          - Exploiter sans se fier aveuglément: ia-cybersecurite/it-4/exploiter-sans-se-fier-aveuglement.md
+
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
       - IA et Cybersécurité:
           - Itération 1 - Sous le capot de l'IA: pense-bete/glossaire/ia-cybersecurite/it-1.md
           - Itération 2 - Shadow IA: pense-bete/glossaire/ia-cybersecurite/it-2.md
           - "Itération 3 - Détecter : votre premier modèle": pense-bete/glossaire/ia-cybersecurite/it-3.md
+          - "Itération 4 - Critiquer : ce que vaut votre modèle": pense-bete/glossaire/ia-cybersecurite/it-4.md
       - Inventaire mots de passe et tokens: pense-bete/inventaire-mots-de-passe-tokens-formation.md
       - Liens utiles: pense-bete/liens-utiles.md
       - Commandes Linux PDF: pense-bete/commandes-linux.md

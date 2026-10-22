@@ -44,6 +44,23 @@
 
 Les cinq fichiers du kit sont disponibles dans `livrables/ia-cybersecurite/it-3/ia01-j3/`. Les consignes détaillées suivantes sont attendues ; l’entraînement supervisé est désormais documenté par les captures de la partie C ; les autres résultats sont suivis dans le sommaire.
 
+## Itération 4 — Critiquer : ce que vaut votre modèle
+
+**Travail individuel, autonome le matin et guidé l’après-midi — 1 jour.** Évaluation temporelle sur les deux semaines suivantes, adaptation aux changements et analyse critique avant exploitation.
+
+- [Contexte, objectifs, kit reçu et livrables](it-4/index.md)
+- [99 %](it-4/99-pour-cent.md) : trois hypothèses sur le score trompeur, les données et la généralisation ; carnet J4 commencé.
+- [Relancer et réparer](it-4/relancer-et-reparer.md) : section 4.2 du PDF, journal des changements, comparaison et contrôles de préparation renseignés.
+- [Évaluer en conditions réelles](it-4/evaluer-en-conditions-reelles.md) : V2 fonctionnelle, tableaux renseignés, 239 alertes et limites de charge ; 4.3.
+- [Le rapport d’évaluation](it-4/le-rapport-evaluation.md) : rapport du matin rédigé, décision argumentée et charge de qualification — 4.4.
+- [Le mur des matrices](it-4/le-mur-des-matrices.md) : tableaux calculés, fatigue d’alerte et comparaison des profils manqués — 4.5.
+- [Attaquer son modèle](it-4/attaquer-son-modele.md) : simulations exécutées localement, réponses A1–D4, mesures et responsabilités proposées — 4.6.
+- [Et le Deep Learning ?](it-4/et-le-deep-learning.md) : autoencodeur vérifié puis utilisé localement en inférence ; tableau comparatif renseigné — 4.7.
+- [Exploiter sans se fier aveuglément](it-4/exploiter-sans-se-fier-aveuglement.md) : chaîne de détection, conditions et recommandation finale — 4.8.
+- [Pense-bête de l’itération](../pense-bete/glossaire/ia-cybersecurite/it-4.md)
+
+Les sept fichiers sont repérés ; la première fiche et le carnet sont intégrés. Les résultats anticipés du notebook02 sont distingués d’un protocole J3 définitivement vérifié.
+
 ## 🎯 Objectifs
 
 ### Objectif global

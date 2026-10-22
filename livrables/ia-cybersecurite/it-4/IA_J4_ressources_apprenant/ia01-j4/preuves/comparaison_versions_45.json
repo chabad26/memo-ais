@@ -1,0 +1,59 @@
+{
+  "origine": "Assistant, environnement local distinct de la VM",
+  "observations": 2105,
+  "protocole": "V2, septembre seul, graine42, profondeur3, ordre des 7 variables J3",
+  "versions": {
+    "A": {
+      "VN": 1868,
+      "FP": 26,
+      "FN": 17,
+      "VP": 194,
+      "FN_internes": 12,
+      "FN_externes": 5,
+      "alertes_par_semaine": {
+        "2026-09-28/2026-10-04": 93,
+        "2026-10-05/2026-10-11": 127
+      },
+      "exfiltration_9_oct_3h_detectee": false
+    },
+    "B": {
+      "VN": 1839,
+      "FP": 55,
+      "FN": 48,
+      "VP": 163,
+      "FN_internes": 5,
+      "FN_externes": 43,
+      "alertes_par_semaine": {
+        "2026-09-28/2026-10-04": 96,
+        "2026-10-05/2026-10-11": 122
+      },
+      "exfiltration_9_oct_3h_detectee": true
+    },
+    "C": {
+      "VN": 1843,
+      "FP": 51,
+      "FN": 4,
+      "VP": 207,
+      "FN_internes": 3,
+      "FN_externes": 1,
+      "alertes_par_semaine": {
+        "2026-09-28/2026-10-04": 111,
+        "2026-10-05/2026-10-11": 147
+      },
+      "exfiltration_9_oct_3h_detectee": true
+    },
+    "D": {
+      "VN": 1894,
+      "FP": 0,
+      "FN": 211,
+      "VP": 0,
+      "FN_internes": 16,
+      "FN_externes": 195,
+      "alertes_par_semaine": {
+        "2026-09-28/2026-10-04": 0,
+        "2026-10-05/2026-10-11": 0
+      },
+      "exfiltration_9_oct_3h_detectee": false
+    }
+  }
+}

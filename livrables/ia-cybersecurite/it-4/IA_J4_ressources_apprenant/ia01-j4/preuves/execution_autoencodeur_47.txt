@@ -1,0 +1,199 @@
+CELLULE 2
+Empreinte du fichier : 01464c560c949742a4b832c1b615194971ce56e29c93f39fd98bda3169e38b00
+✅ Empreinte conforme
+
+CELLULE 3
+Autoencodeur Hexalp — entraîné le 30/09/2026 par Hugo (SOC) sur les 1 587 connexions SSH de septembre étiquetées normales. Seuil : 95e centile de l'erreur de reconstruction sur septembre.
+
+CELLULE 5
+Neurones par couche : [7, 8, 3, 8, 7]
+Nombre de paramètres : 186
+
+CELLULE 6
+                    neurone 1  neurone 2  neurone 3  neurone 4  neurone 5  \
+echecs_auth              0.04      -0.03      -0.22      -0.07      -0.08   
+succes_auth              0.07       0.07      -0.07       0.03       0.16   
+comptes_distincts        0.06      -0.07      -0.20       0.01       0.01   
+duree_session_min        0.11      -0.02      -0.31      -0.24       0.05   
+octets_sortants_mo      -0.04      -0.09       0.12       0.13       0.13   
+heure                    0.14      -0.04      -0.03       0.06       0.09   
+externe                  0.34       0.07       0.77       0.01       1.07   
+
+                    neurone 6  neurone 7  neurone 8  
+echecs_auth             -0.19       0.01       0.12  
+succes_auth              0.09      -0.20      -0.01  
+comptes_distincts       -0.19      -0.01       0.11  
+duree_session_min       -0.14      -0.22      -0.26  
+octets_sortants_mo      -0.03       0.16      -0.02  
+heure                    0.02      -0.27      -0.10  
+externe                  0.40      -0.23       0.40  
+CELLULE 9
+etiquette    attaque  normal
+anomalie_ae                 
+0                145    1898
+1                 70       6
+CELLULE 10
+                                 lignes  signalées par l'Isolation Forest  \
+Sauvegarde nocturne (normal)         28                                19   
+Proxy Zabbix (normal)               278                                 0   
+Exfiltrations par VPN (attaque)       9                                 9   
+Brute force (attaque)                50                                40   
+Toutes les attaques                 215                                61   
+Toutes les lignes normales         1904                                22   
+
+                                 signalées par l'autoencodeur  
+Sauvegarde nocturne (normal)                                4  
+Proxy Zabbix (normal)                                       0  
+Exfiltrations par VPN (attaque)                             9  
+Brute force (attaque)                                      50  
+Toutes les attaques                                        70  
+Toutes les lignes normales                                  6  
+CELLULE 13
+                         valeur  erreur de reconstruction
+echecs_auth            1.000000                      0.26
+succes_auth            1.000000                      0.08
+comptes_distincts      1.000000                      0.60
+duree_session_min     50.000000                      0.52
+octets_sortants_mo  8690.075195                    928.97
+heure                  3.000000                      0.27
+externe                0.000000                      0.08
+CELLULE 14
+                     valeur  erreur de reconstruction
+echecs_auth            0.00                      0.00
+succes_auth            2.00                      0.04
+comptes_distincts      1.00                      0.01
+duree_session_min     51.00                      0.00
+octets_sortants_mo  1666.53                      0.15
+heure                  1.00                      0.03
+externe                0.00                      0.00
+CELLULE 17
+{
+  "origine": "Assistant, inférence locale hors VM",
+  "python": "3.14.4",
+  "scikit_learn": "1.9.1",
+  "pandas": "3.0.6",
+  "empreinte_reference_PDF": "01464c560c949742a4b832c1b615194971ce56e29c93f39fd98bda3169e38b00",
+  "empreinte_apres_inference": "01464c560c949742a4b832c1b615194971ce56e29c93f39fd98bda3169e38b00",
+  "couches": [
+    7,
+    8,
+    3,
+    8,
+    7
+  ],
+  "parametres": 186,
+  "seuil": 2.7615,
+  "caracteristiques": [
+    "echecs_auth",
+    "succes_auth",
+    "comptes_distincts",
+    "duree_session_min",
+    "octets_sortants_mo",
+    "heure",
+    "externe"
+  ],
+  "description": "Autoencodeur Hexalp — entraîné le 30/09/2026 par Hugo (SOC) sur les 1 587 connexions SSH de septembre étiquetées normales. Seuil : 95e centile de l'erreur de reconstruction sur septembre.",
+  "bilan_AE_2119": {
+    "VN": 1898,
+    "FP": 6,
+    "FN": 145,
+    "VP": 70,
+    "precision": 0.9210526315789473,
+    "rappel": 0.32558139534883723,
+    "alertes": 76
+  },
+  "bilan_IF_2119": {
+    "VN": 1882,
+    "FP": 22,
+    "FN": 154,
+    "VP": 61,
+    "precision": 0.7349397590361446,
+    "rappel": 0.2837209302325581,
+    "alertes": 83
+  },
+  "bilan_AE_2105": {
+    "VN": 1888,
+    "FP": 6,
+    "FN": 141,
+    "VP": 70,
+    "precision": 0.9210526315789473,
+    "rappel": 0.33175355450236965,
+    "alertes": 76
+  },
+  "groupes_2119": {
+    "Sauvegarde nocturne (normal)": {
+      "lignes": 28,
+      "IF": 19,
+      "AE": 4
+    },
+    "Proxy Zabbix (normal)": {
+      "lignes": 278,
+      "IF": 0,
+      "AE": 0
+    },
+    "Exfiltrations par VPN (attaque)": {
+      "lignes": 9,
+      "IF": 9,
+      "AE": 9
+    },
+    "Brute force (attaque)": {
+      "lignes": 50,
+      "IF": 40,
+      "AE": 50
+    },
+    "Toutes les attaques": {
+      "lignes": 215,
+      "IF": 61,
+      "AE": 70
+    },
+    "Toutes les lignes normales": {
+      "lignes": 1904,
+      "IF": 22,
+      "AE": 6
+    }
+  },
+  "attaques_IF_seul": 3,
+  "attaques_AE_seul": 12,
+  "detail_exfiltration": {
+    "valeur": {
+      "echecs_auth": 1.0,
+      "succes_auth": 1.0,
+      "comptes_distincts": 1.0,
+      "duree_session_min": 50.0,
+      "octets_sortants_mo": 8690.0751953125,
+      "heure": 3.0,
+      "externe": 0.0
+    },
+    "erreur de reconstruction": {
+      "echecs_auth": 0.26,
+      "succes_auth": 0.08,
+      "comptes_distincts": 0.6,
+      "duree_session_min": 0.52,
+      "octets_sortants_mo": 928.97,
+      "heure": 0.27,
+      "externe": 0.08
+    }
+  },
+  "detail_premiere_sauvegarde": {
+    "valeur": {
+      "echecs_auth": 0.0,
+      "succes_auth": 2.0,
+      "comptes_distincts": 1.0,
+      "duree_session_min": 51.0,
+      "octets_sortants_mo": 1666.53,
+      "heure": 1.0,
+      "externe": 0.0
+    },
+    "erreur de reconstruction": {
+      "echecs_auth": 0.0,
+      "succes_auth": 0.04,
+      "comptes_distincts": 0.01,
+      "duree_session_min": 0.0,
+      "octets_sortants_mo": 0.15,
+      "heure": 0.03,
+      "externe": 0.0
+    }
+  },
+  "date_premiere_sauvegarde": "2026-09-28",
+  "heure_premiere_sauvegarde": 1
+}

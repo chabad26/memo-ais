@@ -1,0 +1,159 @@
+{
+  "origine": "Assistant, notebook exécuté localement hors VM",
+  "python": "3.14.4",
+  "protocole": "V2 : exclusion, ordre J3, contamination0.03, graine42",
+  "spraying_2_comptes_10_echecs_par_heure": {
+    "0": true,
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true,
+    "5": true,
+    "6": true,
+    "7": true,
+    "8": true,
+    "9": true,
+    "10": true,
+    "11": true,
+    "12": true,
+    "13": true,
+    "14": true,
+    "15": true,
+    "16": true,
+    "17": true,
+    "18": true,
+    "19": true,
+    "20": true,
+    "21": true,
+    "22": true,
+    "23": true
+  },
+  "plan_exfiltration_1000_mo_9_a_13": {
+    "9": false,
+    "10": false,
+    "11": false,
+    "12": false,
+    "13": false
+  },
+  "9000_mo_1h": true,
+  "liste_blanche_suppressions": 10,
+  "empoisonnement_etiquettes": [
+    {
+      "lignes": 0,
+      "attaque_classee": 1,
+      "union_alerte": true,
+      "matrice_test": [
+        [
+          453,
+          0
+        ],
+        [
+          4,
+          28
+        ]
+      ]
+    },
+    {
+      "lignes": 2,
+      "attaque_classee": 1,
+      "union_alerte": true,
+      "matrice_test": [
+        [
+          452,
+          1
+        ],
+        [
+          4,
+          28
+        ]
+      ]
+    },
+    {
+      "lignes": 4,
+      "attaque_classee": 0,
+      "union_alerte": false,
+      "matrice_test": [
+        [
+          452,
+          1
+        ],
+        [
+          7,
+          25
+        ]
+      ]
+    },
+    {
+      "lignes": 5,
+      "attaque_classee": 0,
+      "union_alerte": false,
+      "matrice_test": [
+        [
+          452,
+          1
+        ],
+        [
+          6,
+          26
+        ]
+      ]
+    },
+    {
+      "lignes": 10,
+      "attaque_classee": 0,
+      "union_alerte": false,
+      "matrice_test": [
+        [
+          452,
+          1
+        ],
+        [
+          9,
+          23
+        ]
+      ]
+    },
+    {
+      "lignes": 20,
+      "attaque_classee": 0,
+      "union_alerte": false,
+      "matrice_test": [
+        [
+          453,
+          0
+        ],
+        [
+          4,
+          28
+        ]
+      ]
+    }
+  ],
+  "empoisonnement_comportement": [
+    {
+      "nuits_synthetiques": 0,
+      "vpn_detectes_IF": 5,
+      "vpn_total": 9
+    },
+    {
+      "nuits_synthetiques": 10,
+      "vpn_detectes_IF": 8,
+      "vpn_total": 9
+    },
+    {
+      "nuits_synthetiques": 20,
+      "vpn_detectes_IF": 5,
+      "vpn_total": 9
+    },
+    {
+      "nuits_synthetiques": 40,
+      "vpn_detectes_IF": 5,
+      "vpn_total": 9
+    },
+    {
+      "nuits_synthetiques": 80,
+      "vpn_detectes_IF": 0,
+      "vpn_total": 9
+    }
+  ]
+}
