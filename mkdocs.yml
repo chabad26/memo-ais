@@ -639,6 +639,15 @@ nav:
           - Et le Deep Learning ?: ia-cybersecurite/it-4/et-le-deep-learning.md
           - Exploiter sans se fier aveuglément: ia-cybersecurite/it-4/exploiter-sans-se-fier-aveuglement.md
 
+      - Itération 5 - Incident et politique IA:
+          - Vue d’ensemble: ia-cybersecurite/it-5/index.md
+          - L’alerte: ia-cybersecurite/it-5/l-alerte.md
+          - Ce qu’un incident IA a de particulier: ia-cybersecurite/it-5/incident-ia-particularites.md
+          - Le dossier d’incident: ia-cybersecurite/it-5/le-dossier-incident.md
+          - Ce qui arrive: ia-cybersecurite/it-5/ce-qui-arrive.md
+          - La politique d’utilisation de l’IA: ia-cybersecurite/it-5/la-politique-utilisation-ia.md
+          - Convaincre le comité et revenir sur ses usages: ia-cybersecurite/it-5/convaincre-comite-retour-usages.md
+
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
       - IA et Cybersécurité:
@@ -646,6 +655,7 @@ nav:
           - Itération 2 - Shadow IA: pense-bete/glossaire/ia-cybersecurite/it-2.md
           - "Itération 3 - Détecter : votre premier modèle": pense-bete/glossaire/ia-cybersecurite/it-3.md
           - "Itération 4 - Critiquer : ce que vaut votre modèle": pense-bete/glossaire/ia-cybersecurite/it-4.md
+          - Itération 5 - Incident et politique IA: pense-bete/glossaire/ia-cybersecurite/it-5.md
       - Inventaire mots de passe et tokens: pense-bete/inventaire-mots-de-passe-tokens-formation.md
       - Liens utiles: pense-bete/liens-utiles.md
       - Commandes Linux PDF: pense-bete/commandes-linux.md

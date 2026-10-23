@@ -61,6 +61,21 @@ Les cinq fichiers du kit sont disponibles dans `livrables/ia-cybersecurite/it-3/
 
 Les sept fichiers sont repérés ; la première fiche et le carnet sont intégrés. Les résultats anticipés du notebook02 sont distingués d’un protocole J3 définitivement vérifié.
 
+## Itération 5 — Incident et politique d’utilisation de l’IA
+
+**Matin individuel, après-midi en groupe.** Analyse de l’incident lié à la conversation de Julien, puis politique IA articulée avec la PSSI et relue en groupe. Aucun nouveau fichier fourni ni installation demandée.
+
+- [Mise en situation, objectifs, références et livrables](it-5/index.md)
+- [L’alerte](it-5/l-alerte.md) : cinq premières actions, relecture du risque critique de Julien et limites de preuve — 5.1.
+- [Ce qu’un incident IA a de particulier](it-5/incident-ia-particularites.md) : comparaison renseignée, ordre des huit actions et références vérifiées — 5.2.
+- [Le dossier d’incident](it-5/le-dossier-incident.md) : huit pièces croisées, compte rendu caviardé, délais et mesures distingués —5.3.
+- [Ce qui arrive](it-5/ce-qui-arrive.md) : cinq sujets, fiche C0062 sourcée, règle proposée et carte 2025–2026 — 5.4, 1 h.
+- [La politique d’utilisation de l’IA](it-5/la-politique-utilisation-ia.md) : quinze rubriques, listes A/B/C, alternatives métier et PDF de quatre pages — 5.5.
+- [Convaincre le comité et revenir sur ses usages](it-5/convaincre-comite-retour-usages.md) : trame orale de trois minutes, deux usages Codex à valider et bilan proposé — 5.6.
+- [Pense-bête de l’itération](../pense-bete/glossaire/ia-cybersecurite/it-5.md)
+
+Le dossier `livrables/ia-cybersecurite/it-5/ia01-j5/` est préparé et le carnet initialisé. Les activités5.1–5.6 sont intégrées ; la mention du crash-test dans les consignes était une coquille, confirmée par l’apprenant. Le compte rendu est rédigé sur les pièces ; la politique V0.1 est rédigée ; relecture collective et approbation restent à confirmer.
+
 ## 🎯 Objectifs
 
 ### Objectif global

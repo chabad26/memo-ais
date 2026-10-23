@@ -45,10 +45,12 @@ flowchart TB
     chatgpt["<b>30 NOVEMBRE 2022 · CHATGPT</b><br/>Ouverture d'une interface conversationnelle au public<br/>APPRENTISSAGE · modèle déjà entraîné"]
     agents["<b>22 OCTOBRE 2024 · AGIR SUR UN ORDINATEUR</b><br/>Claude computer use : bêta publique pour développeurs<br/>MODÈLE ET OUTILS · écran, clics et clavier"]
 
+    agentThreat["<b>2025–2026 · DES AGENTS UTILISÉS POUR ATTAQUER</b><br/>Campagne septembre 2025, révélée le 13 novembre<br/>APPRENTISSAGE ET OUTILS · droits à contrôler"]
+
     turing --> dartmouth --> perceptron --> eliza
     eliza --> winterOne --> experts --> denning --> winterTwo
     winterTwo --> deepBlue --> spam --> lecun --> alexnet --> alphago
-    alphago --> transformer --> react --> chatgpt --> agents
+    alphago --> transformer --> react --> chatgpt --> agents --> agentThreat
 
     classDef context fill:#f1f5f9,stroke:#64748b,color:#0f172a,stroke-width:2px,rx:12px,ry:12px;
     classDef rules fill:#fff7ed,stroke:#c2410c,color:#7c2d12,stroke-width:2px,rx:12px,ry:12px;
@@ -59,12 +61,14 @@ flowchart TB
     class turing,dartmouth context;
     class eliza,experts,deepBlue rules;
     class perceptron,spam,lecun,alexnet,transformer,chatgpt learning;
-    class denning,alphago,react,agents hybrid;
+    class denning,alphago,react,agents,agentThreat hybrid;
     class winterOne,winterTwo winter;
 ```
 
 !!! note "Pourquoi ces nuances de dates et de classement ?"
     Le terme « intelligence artificielle » figure déjà dans la proposition du **31 août 1955**, avant l'atelier de **1956**. Pour le Perceptron, **1957** correspond aux premiers travaux et **1958** à une publication majeure. Les hivers sont des périodes de recul inégales selon les pays et les secteurs : leurs bornes ne sont pas des dates universelles. Enfin, les agents ne naissent pas en 2024 : ReAct illustre dès 2022 le couplage entre modèle de langage et actions. Le jalon de 2024 concerne une bêta publique précise de contrôle d'ordinateur.
+
+**Carte ajoutée au J5 — 2025–2026 :** campagne assistée par agents en septembre 2025, révélée le 13 novembre ; fiche MITRE C0062 créée en avril 2026. Modèle issu de l’apprentissage, outils et orchestration ; pas preuve d’un réapprentissage pendant l’attaque. Voir [Ce qui arrive — fiche sourcée et règle proposée](../it-5/ce-qui-arrive.md).
 
 ### Dates, approches et double vérification
 
