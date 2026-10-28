@@ -3,3 +3,7 @@ Pare-Feu - PFSENSE/
 reports/backups/
 backups/
 exports/
+
+# Caches Python des laboratoires
+__pycache__/
+*.py[cod]

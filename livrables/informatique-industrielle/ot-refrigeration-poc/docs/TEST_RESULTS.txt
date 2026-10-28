@@ -1,0 +1,17 @@
+test_server_client_dashboard_and_gateway (test_integration.CLITests.test_server_client_dashboard_and_gateway) ... ok
+test_allow_reads_block_writes (test_lab.GatewayTests.test_allow_reads_block_writes) ... ok
+test_dangerous_setpoint (test_lab.NetworkTests.test_dangerous_setpoint) ... ok
+test_exception (test_lab.NetworkTests.test_exception) ... ok
+test_modbus_roundtrip (test_lab.NetworkTests.test_modbus_roundtrip) ... ok
+test_real_tcp_mbap (test_lab.NetworkTests.test_real_tcp_mbap) ... ok
+test_alarm_delay (test_lab.PlantTests.test_alarm_delay) ... ok
+test_compressor_cools (test_lab.PlantTests.test_compressor_cools) ... ok
+test_door_accelerates_heat (test_lab.PlantTests.test_door_accelerates_heat) ... ok
+test_failsafe (test_lab.PlantTests.test_failsafe) ... ok
+test_invalid_register (test_lab.PlantTests.test_invalid_register) ... ok
+test_invalid_setpoint (test_lab.PlantTests.test_invalid_setpoint) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 4.140s
+
+OK
