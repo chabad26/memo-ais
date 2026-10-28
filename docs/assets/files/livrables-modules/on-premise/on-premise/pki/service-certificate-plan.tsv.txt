@@ -1,0 +1,8 @@
+# service	subject	sans separated by commas	usage
+openldap	ldap.embedded.local	ldap.embedded.local	LDAPS or StartTLS
+postfix	smtp.embedded.local	smtp.embedded.local,mail.embedded.local	SMTP TLS
+dovecot	imap.embedded.local	imap.embedded.local,mail.embedded.local	IMAPS
+roundcube	webmail.embedded.local	webmail.embedded.local	HTTPS
+lam	lam.embedded.local	lam.embedded.local	HTTPS
+kibana	kibana.embedded.local	kibana.embedded.local	HTTPS
+elasticsearch	elasticsearch.embedded.local	elasticsearch.embedded.local	HTTPS API

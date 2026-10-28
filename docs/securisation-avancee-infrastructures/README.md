@@ -351,3 +351,7 @@ CV12 incidents ajoutée. V1 conservée ; adoption et mise en œuvre à valider.
 [Finaliser le fragment de PSSI — 1 h](it-10/finaliser-fragment-pssi.md) :
 V2 finalisée pour la formation, cas File Browser depuis 2021 et vérification
 d’applicabilité/contrôlabilité. Adoption organisationnelle non établie.
+
+## Livrables du dossier Modules
+
+[Documents et fichiers techniques classés](../livrables-modules/securisation.md) : copies de consultation des livrables fournis, avec leurs sources et limites. L’import documentaire ne constitue pas une nouvelle exécution ou validation.

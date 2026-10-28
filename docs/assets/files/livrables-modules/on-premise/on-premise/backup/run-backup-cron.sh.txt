@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+BACKUP_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+LOG_DIR="${BACKUP_DIR}/logs"
+STATUS_FILE="${LOG_DIR}/last-run.status"
+LOCK_FILE="/tmp/embedded-infra-borg-backup.lock"
+
+mkdir -p "${LOG_DIR}"
+
+write_status() {
+  local status=$1
+  local exit_code=$2
+  local ended_at
+  local ended_epoch
+  local temporary_file
+
+  ended_at=$(date --iso-8601=seconds)
+  ended_epoch=$(date +%s)
+  temporary_file=$(mktemp "${LOG_DIR}/last-run.status.XXXXXX")
+
+  {
+    printf 'status=%s\n' "${status}"
+    printf 'started_at=%s\n' "${STARTED_AT}"
+    printf 'ended_at=%s\n' "${ended_at}"
+    printf 'ended_epoch=%s\n' "${ended_epoch}"
+    printf 'exit_code=%s\n' "${exit_code}"
+    printf 'host=%s\n' "$(hostname)"
+  } > "${temporary_file}"
+
+  mv "${temporary_file}" "${STATUS_FILE}"
+}
+
+STARTED_AT=$(date --iso-8601=seconds)
+
+exec 9>"${LOCK_FILE}"
+if ! flock -n 9; then
+  printf 'Sauvegarde ignorée : une autre exécution est déjà active.\n' >&2
+  write_status SKIPPED 75
+  exit 75
+fi
+
+"${BACKUP_DIR}/backup.sh"
+exit_code=$?
+
+if ((exit_code == 0)); then
+  write_status SUCCESS 0
+  printf 'État de l’automatisation : SUCCESS\n'
+else
+  write_status FAILURE "${exit_code}"
+  printf 'État de l’automatisation : FAILURE (code %s)\n' "${exit_code}" >&2
+fi
+
+exit "${exit_code}"

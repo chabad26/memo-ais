@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root_dir="$(cd "$(dirname "$0")/.." && pwd)"
+source_dir="$root_dir/pki/issued/openldap"
+
+for file in openldap.fullchain.crt openldap.key; do
+  test -r "$source_dir/$file" || {
+    echo "Fichier TLS manquant ou illisible : $source_dir/$file" >&2
+    exit 1
+  }
+done
+
+docker volume create openldap_tls >/dev/null
+
+docker run --rm \
+  -v "$source_dir:/source:ro" \
+  -v openldap_tls:/target \
+  alpine:3.20 sh -eu -c '
+    rm -f /target/openldap.fullchain.crt /target/openldap.key
+    cp /source/openldap.fullchain.crt /target/openldap.fullchain.crt
+    cp /source/openldap.key /target/openldap.key
+    chown 911:911 /target/openldap.fullchain.crt /target/openldap.key
+    chmod 644 /target/openldap.fullchain.crt
+    chmod 600 /target/openldap.key
+  '

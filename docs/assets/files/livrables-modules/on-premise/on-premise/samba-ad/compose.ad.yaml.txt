@@ -1,0 +1,43 @@
+services:
+  samba:
+    image: nowsci/samba-domain:20260801025201
+    container_name: samba-ad-dc
+    hostname: dc1
+    dns:
+      - ${HOSTIP}
+      - ${DNSFORWARDER}
+    dns_search:
+      - ad.embedded.local
+    privileged: true
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN}
+      DOMAIN_DC: ${DOMAIN_DC}
+      DOMAINPASS: ${DOMAINPASS}
+      HOSTIP: ${HOSTIP}
+      DNSFORWARDER: ${DNSFORWARDER}
+      JOIN: "false"
+    volumes:
+      - samba_data:/var/lib/samba
+      - samba_config:/etc/samba/external
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "${HOSTIP}:53:53/tcp"
+      - "${HOSTIP}:53:53/udp"
+      - "${HOSTIP}:88:88/tcp"
+      - "${HOSTIP}:88:88/udp"
+      - "${HOSTIP}:135:135/tcp"
+      - "${HOSTIP}:137-138:137-138/udp"
+      - "${HOSTIP}:139:139/tcp"
+      - "${HOSTIP}:389:389/tcp"
+      - "${HOSTIP}:389:389/udp"
+      - "${HOSTIP}:445:445/tcp"
+      - "${HOSTIP}:464:464/tcp"
+      - "${HOSTIP}:464:464/udp"
+      - "${HOSTIP}:636:636/tcp"
+      - "${HOSTIP}:3268:3268/tcp"
+      - "${HOSTIP}:3269:3269/tcp"
+
+volumes:
+  samba_data:
+  samba_config:

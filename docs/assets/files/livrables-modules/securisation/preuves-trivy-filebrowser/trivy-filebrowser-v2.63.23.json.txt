@@ -1,0 +1,2052 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.74.0"
+  },
+  "ReportID": "01a0fbb4-7251-75b6-8576-168e603d892a",
+  "CreatedAt": "2026-10-02T10:21:42.097375663+02:00",
+  "ArtifactID": "sha256:992e0e89edf9dd6f39c8e4b60610a8c8d2324044bc6ff9331ae76c4ddbb1638c",
+  "ArtifactName": "/home/oliv/Documents/entreprise/AIS/Modules/preuves-trivy-filebrowser/filebrowser-v2.63.23.tar",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "Size": 38862336,
+    "ImageID": "sha256:b3983274c0375dda1722f8e2b65c30d1b9001435e441f0a34855c2e5f8da462e",
+    "DiffIDs": [
+      "sha256:cdb90b3acfad4e427a5bb3dc46cef97d9b63942f7c572d385ac61eb545a7cef2",
+      "sha256:4beb248f1d04b16648da073b30b9376d41b166cea531238de9019d9f7f506f56",
+      "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200",
+      "sha256:ef531026295c933f02c2d8c3c772ed3615b17167fd3dbdc6ffe6fdbbae56b3d7",
+      "sha256:31bcedb20147bbe4e9c892fea6854c364e1cfdfa898682851ea265b71f394dda",
+      "sha256:0745219652da010f04fb8da4b6514307386ddcbb329ac3ea16bfd057cc663ad8",
+      "sha256:216eeb270cba07ef25a8868fa8f0ca182f863ae3e8b28249dc72b9cdd1146f1e",
+      "sha256:4ba45a673af98e9f5c0a58e9c6e02c89ea1a462dcec47846b4677d56aa0de042",
+      "sha256:bd1e37c330f04b98f61f68d2f34c4125533b494011df2cff874d784df2948b18",
+      "sha256:34ab48aafe4e0c9ab69a85dea62db31a3bb68ebb26fb26aa19e991b29064b3d2",
+      "sha256:c4e0d66c7aa266727f7f81f9f915a22c33adc88372d40d8e99ad3b43fd188fb3",
+      "sha256:543c27274797b62193e8613ff321e8732dc1fe6cb4c78ebd579df00d56b3becd"
+    ],
+    "RepoTags": [
+      "filebrowser/filebrowser:v2.63.23"
+    ],
+    "Reference": "filebrowser/filebrowser:v2.63.23",
+    "ImageConfig": {
+      "architecture": "amd64",
+      "created": "2026-07-27T20:01:15.620470564Z",
+      "history": [
+        {
+          "created": "2024-09-26T21:31:42Z",
+          "created_by": "BusyBox 1.37.0 (musl), Alpine 3.23.4"
+        },
+        {
+          "created": "2026-07-27T20:01:10.464236061Z",
+          "created_by": "ENV UID=1000",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-07-27T20:01:10.464236061Z",
+          "created_by": "ENV GID=1000",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-07-27T20:01:10.464236061Z",
+          "created_by": "RUN /bin/sh -c addgroup -g $GID user \u0026\u0026     adduser -D -u $UID -G user user # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:12.515213163Z",
+          "created_by": "COPY --chown=user:user filebrowser /bin/filebrowser # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:12.767086167Z",
+          "created_by": "COPY --chown=user:user docker/common/ / # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:12.998578741Z",
+          "created_by": "COPY --chown=user:user docker/alpine/ / # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:13.236203599Z",
+          "created_by": "COPY --chown=user:user /sbin/tini-static /bin/tini # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:14.198439332Z",
+          "created_by": "COPY /JSON.sh /JSON.sh # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:14.743955639Z",
+          "created_by": "COPY /etc/ca-certificates.conf /etc/ca-certificates.conf # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:14.765769865Z",
+          "created_by": "COPY /etc/ca-certificates /etc/ca-certificates # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:15.010076175Z",
+          "created_by": "COPY /etc/mime.types /etc/mime.types # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:15.135390282Z",
+          "created_by": "COPY /etc/ssl /etc/ssl # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:15.620470564Z",
+          "created_by": "RUN /bin/sh -c mkdir -p /config /database /srv \u0026\u0026     chown -R user:user /config /database /srv     \u0026\u0026 chmod +x /healthcheck.sh # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-07-27T20:01:15.620470564Z",
+          "created_by": "HEALTHCHECK {Test:[CMD-SHELL /healthcheck.sh] Interval:5s Timeout:3s StartPeriod:2s StartInterval:0s Retries:0}",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-07-27T20:01:15.620470564Z",
+          "created_by": "USER user",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-07-27T20:01:15.620470564Z",
+          "created_by": "VOLUME [/srv /config /database]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-07-27T20:01:15.620470564Z",
+          "created_by": "EXPOSE [80/tcp]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-07-27T20:01:15.620470564Z",
+          "created_by": "ENTRYPOINT [\"tini\" \"--\" \"/init.sh\"]",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        }
+      ],
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:cdb90b3acfad4e427a5bb3dc46cef97d9b63942f7c572d385ac61eb545a7cef2",
+          "sha256:4beb248f1d04b16648da073b30b9376d41b166cea531238de9019d9f7f506f56",
+          "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200",
+          "sha256:ef531026295c933f02c2d8c3c772ed3615b17167fd3dbdc6ffe6fdbbae56b3d7",
+          "sha256:31bcedb20147bbe4e9c892fea6854c364e1cfdfa898682851ea265b71f394dda",
+          "sha256:0745219652da010f04fb8da4b6514307386ddcbb329ac3ea16bfd057cc663ad8",
+          "sha256:216eeb270cba07ef25a8868fa8f0ca182f863ae3e8b28249dc72b9cdd1146f1e",
+          "sha256:4ba45a673af98e9f5c0a58e9c6e02c89ea1a462dcec47846b4677d56aa0de042",
+          "sha256:bd1e37c330f04b98f61f68d2f34c4125533b494011df2cff874d784df2948b18",
+          "sha256:34ab48aafe4e0c9ab69a85dea62db31a3bb68ebb26fb26aa19e991b29064b3d2",
+          "sha256:c4e0d66c7aa266727f7f81f9f915a22c33adc88372d40d8e99ad3b43fd188fb3",
+          "sha256:543c27274797b62193e8613ff321e8732dc1fe6cb4c78ebd579df00d56b3becd"
+        ]
+      },
+      "config": {
+        "Healthcheck": {
+          "Test": [
+            "CMD-SHELL",
+            "/healthcheck.sh"
+          ],
+          "Interval": 5000000000,
+          "Timeout": 3000000000,
+          "StartPeriod": 2000000000
+        },
+        "Entrypoint": [
+          "tini",
+          "--",
+          "/init.sh"
+        ],
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "UID=1000",
+          "GID=1000"
+        ],
+        "Labels": {
+          "org.opencontainers.image.created": "2026-07-27T19:53:35Z",
+          "org.opencontainers.image.name": "filebrowser",
+          "org.opencontainers.image.revision": "e8a388f840173580116f2743813d03b22286e44e",
+          "org.opencontainers.image.source": "https://github.com/filebrowser/filebrowser",
+          "org.opencontainers.image.version": "2.63.23"
+        },
+        "User": "user",
+        "Volumes": {
+          "/config": {},
+          "/database": {},
+          "/srv": {}
+        },
+        "ExposedPorts": {
+          "80/tcp": {}
+        }
+      }
+    },
+    "Layers": [
+      {
+        "Size": 1730560,
+        "DiffID": "sha256:cdb90b3acfad4e427a5bb3dc46cef97d9b63942f7c572d385ac61eb545a7cef2"
+      },
+      {
+        "Size": 9728,
+        "DiffID": "sha256:4beb248f1d04b16648da073b30b9376d41b166cea531238de9019d9f7f506f56"
+      },
+      {
+        "Size": 36616704,
+        "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+      },
+      {
+        "Size": 3584,
+        "DiffID": "sha256:ef531026295c933f02c2d8c3c772ed3615b17167fd3dbdc6ffe6fdbbae56b3d7"
+      },
+      {
+        "Size": 4096,
+        "DiffID": "sha256:31bcedb20147bbe4e9c892fea6854c364e1cfdfa898682851ea265b71f394dda"
+      },
+      {
+        "Size": 62976,
+        "DiffID": "sha256:0745219652da010f04fb8da4b6514307386ddcbb329ac3ea16bfd057cc663ad8"
+      },
+      {
+        "Size": 6656,
+        "DiffID": "sha256:216eeb270cba07ef25a8868fa8f0ca182f863ae3e8b28249dc72b9cdd1146f1e"
+      },
+      {
+        "Size": 7168,
+        "DiffID": "sha256:4ba45a673af98e9f5c0a58e9c6e02c89ea1a462dcec47846b4677d56aa0de042"
+      },
+      {
+        "Size": 3584,
+        "DiffID": "sha256:bd1e37c330f04b98f61f68d2f34c4125533b494011df2cff874d784df2948b18"
+      },
+      {
+        "Size": 77312,
+        "DiffID": "sha256:34ab48aafe4e0c9ab69a85dea62db31a3bb68ebb26fb26aa19e991b29064b3d2"
+      },
+      {
+        "Size": 336384,
+        "DiffID": "sha256:c4e0d66c7aa266727f7f81f9f915a22c33adc88372d40d8e99ad3b43fd188fb3"
+      },
+      {
+        "Size": 3584,
+        "DiffID": "sha256:543c27274797b62193e8613ff321e8732dc1fe6cb4c78ebd579df00d56b3becd"
+      }
+    ]
+  },
+  "Results": [
+    {
+      "Target": "bin/filebrowser",
+      "Class": "lang-pkgs",
+      "Type": "gobinary",
+      "Packages": [
+        {
+          "ID": "stdlib@v1.26.5",
+          "Name": "stdlib",
+          "Identifier": {
+            "PURL": "pkg:golang/stdlib@v1.26.5",
+            "UID": "fce0a7def2f73179"
+          },
+          "Version": "v1.26.5",
+          "Relationship": "direct",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/STARRY-S/zip@v0.2.3",
+          "Name": "github.com/STARRY-S/zip",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/starry-s/zip@v0.2.3",
+            "UID": "ed3ddbf73bc8fde1"
+          },
+          "Version": "v0.2.3",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/andybalholm/brotli@v1.2.2",
+          "Name": "github.com/andybalholm/brotli",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/andybalholm/brotli@v1.2.2",
+            "UID": "9aa411f754fe0708"
+          },
+          "Version": "v1.2.2",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/asdine/storm/v3@v3.2.1",
+          "Name": "github.com/asdine/storm/v3",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/asdine/storm/v3@v3.2.1",
+            "UID": "dc551e4cbf898a78"
+          },
+          "Version": "v3.2.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/asticode/go-astikit@v0.59.0",
+          "Name": "github.com/asticode/go-astikit",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/asticode/go-astikit@v0.59.0",
+            "UID": "e6e10c56d5575504"
+          },
+          "Version": "v0.59.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/asticode/go-astisub@v0.42.0",
+          "Name": "github.com/asticode/go-astisub",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/asticode/go-astisub@v0.42.0",
+            "UID": "c55d3451a97232a"
+          },
+          "Version": "v0.42.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/asticode/go-astits@v1.15.0",
+          "Name": "github.com/asticode/go-astits",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/asticode/go-astits@v1.15.0",
+            "UID": "c5a86ba50c1f862d"
+          },
+          "Version": "v1.15.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/bodgit/plumbing@v1.3.0",
+          "Name": "github.com/bodgit/plumbing",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/bodgit/plumbing@v1.3.0",
+            "UID": "3da199645efb6bef"
+          },
+          "Version": "v1.3.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/bodgit/sevenzip@v1.6.5",
+          "Name": "github.com/bodgit/sevenzip",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/bodgit/sevenzip@v1.6.5",
+            "UID": "5d119da25775e06"
+          },
+          "Version": "v1.6.5",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/bodgit/windows@v1.0.1",
+          "Name": "github.com/bodgit/windows",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/bodgit/windows@v1.0.1",
+            "UID": "175bdb5dc6ebe4b4"
+          },
+          "Version": "v1.0.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/cespare/xxhash/v2@v2.3.0",
+          "Name": "github.com/cespare/xxhash/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/cespare/xxhash/v2@v2.3.0",
+            "UID": "21f7e307528407a3"
+          },
+          "Version": "v2.3.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/cpuguy83/go-md2man/v2@v2.0.7",
+          "Name": "github.com/cpuguy83/go-md2man/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/cpuguy83/go-md2man/v2@v2.0.7",
+            "UID": "e4852a6a101bd263"
+          },
+          "Version": "v2.0.7",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/disintegration/imaging@v1.6.2",
+          "Name": "github.com/disintegration/imaging",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/disintegration/imaging@v1.6.2",
+            "UID": "807431b5d58bb239"
+          },
+          "Version": "v1.6.2",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/dsnet/compress@v0.0.2-0.20230904184137-39efe44ab707",
+          "Name": "github.com/dsnet/compress",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/dsnet/compress@v0.0.2-0.20230904184137-39efe44ab707",
+            "UID": "6af81a625f3668cf"
+          },
+          "Version": "v0.0.2-0.20230904184137-39efe44ab707",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/dsoprea/go-exif/v3@v3.0.1",
+          "Name": "github.com/dsoprea/go-exif/v3",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/dsoprea/go-exif/v3@v3.0.1",
+            "UID": "10daa8a2e5c39408"
+          },
+          "Version": "v3.0.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/dsoprea/go-logging@v0.0.0-20200710184922-b02d349568dd",
+          "Name": "github.com/dsoprea/go-logging",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/dsoprea/go-logging@v0.0.0-20200710184922-b02d349568dd",
+            "UID": "ff95f46058a5c75c"
+          },
+          "Version": "v0.0.0-20200710184922-b02d349568dd",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/dsoprea/go-utility/v2@v2.0.0-20221003172846-a3e1774ef349",
+          "Name": "github.com/dsoprea/go-utility/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/dsoprea/go-utility/v2@v2.0.0-20221003172846-a3e1774ef349",
+            "UID": "47b30e56375c299d"
+          },
+          "Version": "v2.0.0-20221003172846-a3e1774ef349",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/filebrowser/filebrowser/v2",
+          "Name": "github.com/filebrowser/filebrowser/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/filebrowser/filebrowser/v2",
+            "UID": "c063179134846589"
+          },
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/flynn/go-shlex@v0.0.0-20150515145356-3f9db97f8568",
+          "Name": "github.com/flynn/go-shlex",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/flynn/go-shlex@v0.0.0-20150515145356-3f9db97f8568",
+            "UID": "ce23c2b29ec493ce"
+          },
+          "Version": "v0.0.0-20150515145356-3f9db97f8568",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/fsnotify/fsnotify@v1.10.1",
+          "Name": "github.com/fsnotify/fsnotify",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/fsnotify/fsnotify@v1.10.1",
+            "UID": "5ef0d9b83326a02b"
+          },
+          "Version": "v1.10.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/go-errors/errors@v1.5.1",
+          "Name": "github.com/go-errors/errors",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/go-errors/errors@v1.5.1",
+            "UID": "c15da3b824489a5c"
+          },
+          "Version": "v1.5.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/go-viper/mapstructure/v2@v2.5.0",
+          "Name": "github.com/go-viper/mapstructure/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/go-viper/mapstructure/v2@v2.5.0",
+            "UID": "f192b8e628374f3f"
+          },
+          "Version": "v2.5.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/golang-jwt/jwt/v5@v5.3.1",
+          "Name": "github.com/golang-jwt/jwt/v5",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/golang-jwt/jwt/v5@v5.3.1",
+            "UID": "3bc94da0cf49cfeb"
+          },
+          "Version": "v5.3.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/golang/geo@v0.0.0-20260713102120-857a528af641",
+          "Name": "github.com/golang/geo",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/golang/geo@v0.0.0-20260713102120-857a528af641",
+            "UID": "5869750dae46914f"
+          },
+          "Version": "v0.0.0-20260713102120-857a528af641",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/gorilla/mux@v1.8.1",
+          "Name": "github.com/gorilla/mux",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/gorilla/mux@v1.8.1",
+            "UID": "1c129a63feaf05c3"
+          },
+          "Version": "v1.8.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/gorilla/websocket@v1.5.3",
+          "Name": "github.com/gorilla/websocket",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/gorilla/websocket@v1.5.3",
+            "UID": "9baa2b955a331b5e"
+          },
+          "Version": "v1.5.3",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/hashicorp/golang-lru/v2@v2.0.7",
+          "Name": "github.com/hashicorp/golang-lru/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/hashicorp/golang-lru/v2@v2.0.7",
+            "UID": "8d17a53ad84754a7"
+          },
+          "Version": "v2.0.7",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/jellydator/ttlcache/v3@v3.4.1",
+          "Name": "github.com/jellydator/ttlcache/v3",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/jellydator/ttlcache/v3@v3.4.1",
+            "UID": "21e802fe2fcf102f"
+          },
+          "Version": "v3.4.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/klauspost/compress@v1.19.1",
+          "Name": "github.com/klauspost/compress",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/klauspost/compress@v1.19.1",
+            "UID": "72fd9b58bd4bd73f"
+          },
+          "Version": "v1.19.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/klauspost/pgzip@v1.2.6",
+          "Name": "github.com/klauspost/pgzip",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/klauspost/pgzip@v1.2.6",
+            "UID": "b91185bf3cd557f8"
+          },
+          "Version": "v1.2.6",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/maruel/natural@v1.3.0",
+          "Name": "github.com/maruel/natural",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/maruel/natural@v1.3.0",
+            "UID": "a56d15b18f32fd35"
+          },
+          "Version": "v1.3.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/marusama/semaphore/v2@v2.5.0",
+          "Name": "github.com/marusama/semaphore/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/marusama/semaphore/v2@v2.5.0",
+            "UID": "79ecb5d5b895724a"
+          },
+          "Version": "v2.5.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/mholt/archives@v0.1.5",
+          "Name": "github.com/mholt/archives",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/mholt/archives@v0.1.5",
+            "UID": "c4f1a1606a9491be"
+          },
+          "Version": "v0.1.5",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/mikelolasagasti/xz@v1.0.1",
+          "Name": "github.com/mikelolasagasti/xz",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/mikelolasagasti/xz@v1.0.1",
+            "UID": "73524e3c8460bb00"
+          },
+          "Version": "v1.0.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/minio/minlz@v1.2.0",
+          "Name": "github.com/minio/minlz",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/minio/minlz@v1.2.0",
+            "UID": "37a8697505f53671"
+          },
+          "Version": "v1.2.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/mitchellh/go-homedir@v1.1.0",
+          "Name": "github.com/mitchellh/go-homedir",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/mitchellh/go-homedir@v1.1.0",
+            "UID": "92b43b62bcd687ed"
+          },
+          "Version": "v1.1.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/nwaples/rardecode/v2@v2.2.5",
+          "Name": "github.com/nwaples/rardecode/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/nwaples/rardecode/v2@v2.2.5",
+            "UID": "47269085275bbb4f"
+          },
+          "Version": "v2.2.5",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/pelletier/go-toml/v2@v2.4.3",
+          "Name": "github.com/pelletier/go-toml/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/pelletier/go-toml/v2@v2.4.3",
+            "UID": "e1f164842efa57b"
+          },
+          "Version": "v2.4.3",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/pierrec/lz4/v4@v4.1.27",
+          "Name": "github.com/pierrec/lz4/v4",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/pierrec/lz4/v4@v4.1.27",
+            "UID": "471a2edbb628c30"
+          },
+          "Version": "v4.1.27",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/redis/go-redis/v9@v9.21.0",
+          "Name": "github.com/redis/go-redis/v9",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/redis/go-redis/v9@v9.21.0",
+            "UID": "76dccbbef825ba5"
+          },
+          "Version": "v9.21.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/russross/blackfriday/v2@v2.1.0",
+          "Name": "github.com/russross/blackfriday/v2",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/russross/blackfriday/v2@v2.1.0",
+            "UID": "62021e28235cf712"
+          },
+          "Version": "v2.1.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/sagikazarmark/locafero@v0.12.0",
+          "Name": "github.com/sagikazarmark/locafero",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/sagikazarmark/locafero@v0.12.0",
+            "UID": "a5552bebf0aefdde"
+          },
+          "Version": "v0.12.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/samber/lo@v1.53.0",
+          "Name": "github.com/samber/lo",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/samber/lo@v1.53.0",
+            "UID": "617d1779aed893d5"
+          },
+          "Version": "v1.53.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/shirou/gopsutil/v4@v4.26.6",
+          "Name": "github.com/shirou/gopsutil/v4",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/shirou/gopsutil/v4@v4.26.6",
+            "UID": "52a241e6710dfcbf"
+          },
+          "Version": "v4.26.6",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/sorairolake/lzip-go@v0.3.8",
+          "Name": "github.com/sorairolake/lzip-go",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/sorairolake/lzip-go@v0.3.8",
+            "UID": "96fcaae084366d6"
+          },
+          "Version": "v0.3.8",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/spf13/afero@v1.15.0",
+          "Name": "github.com/spf13/afero",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/spf13/afero@v1.15.0",
+            "UID": "bd5a78c6538661ea"
+          },
+          "Version": "v1.15.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/spf13/cast@v1.10.0",
+          "Name": "github.com/spf13/cast",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/spf13/cast@v1.10.0",
+            "UID": "e96670a702cf016"
+          },
+          "Version": "v1.10.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/spf13/cobra@v1.10.2",
+          "Name": "github.com/spf13/cobra",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/spf13/cobra@v1.10.2",
+            "UID": "bd827078d17d4bac"
+          },
+          "Version": "v1.10.2",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/spf13/pflag@v1.0.10",
+          "Name": "github.com/spf13/pflag",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/spf13/pflag@v1.0.10",
+            "UID": "31abc092ae3c6660"
+          },
+          "Version": "v1.0.10",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/spf13/viper@v1.21.0",
+          "Name": "github.com/spf13/viper",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/spf13/viper@v1.21.0",
+            "UID": "fdc5be995bdeff76"
+          },
+          "Version": "v1.21.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/stangelandcl/ppmd@v0.1.1",
+          "Name": "github.com/stangelandcl/ppmd",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/stangelandcl/ppmd@v0.1.1",
+            "UID": "a9278a27d3206ad7"
+          },
+          "Version": "v0.1.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/subosito/gotenv@v1.6.0",
+          "Name": "github.com/subosito/gotenv",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/subosito/gotenv@v1.6.0",
+            "UID": "416be670e92e28dc"
+          },
+          "Version": "v1.6.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/tomasen/realip@v0.0.0-20180522021738-f0c99a92ddce",
+          "Name": "github.com/tomasen/realip",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/tomasen/realip@v0.0.0-20180522021738-f0c99a92ddce",
+            "UID": "67734f26f9527ccb"
+          },
+          "Version": "v0.0.0-20180522021738-f0c99a92ddce",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "github.com/ulikunitz/xz@v0.5.16",
+          "Name": "github.com/ulikunitz/xz",
+          "Identifier": {
+            "PURL": "pkg:golang/github.com/ulikunitz/xz@v0.5.16",
+            "UID": "81bbdbbaf36f1aff"
+          },
+          "Version": "v0.5.16",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "go.etcd.io/bbolt@v1.5.0",
+          "Name": "go.etcd.io/bbolt",
+          "Identifier": {
+            "PURL": "pkg:golang/go.etcd.io/bbolt@v1.5.0",
+            "UID": "7c076d318652b544"
+          },
+          "Version": "v1.5.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "go.uber.org/atomic@v1.11.0",
+          "Name": "go.uber.org/atomic",
+          "Identifier": {
+            "PURL": "pkg:golang/go.uber.org/atomic@v1.11.0",
+            "UID": "fa62280d70087baf"
+          },
+          "Version": "v1.11.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "go.yaml.in/yaml/v3@v3.0.4",
+          "Name": "go.yaml.in/yaml/v3",
+          "Identifier": {
+            "PURL": "pkg:golang/go.yaml.in/yaml/v3@v3.0.4",
+            "UID": "14ec33b5c920283"
+          },
+          "Version": "v3.0.4",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "go4.org@v0.0.0-20260112195520-a5071408f32f",
+          "Name": "go4.org",
+          "Identifier": {
+            "PURL": "pkg:golang/go4.org@v0.0.0-20260112195520-a5071408f32f",
+            "UID": "5b720a9f7ee8af7"
+          },
+          "Version": "v0.0.0-20260112195520-a5071408f32f",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "golang.org/x/crypto@v0.54.0",
+          "Name": "golang.org/x/crypto",
+          "Identifier": {
+            "PURL": "pkg:golang/golang.org/x/crypto@v0.54.0",
+            "UID": "ed8ee126b728d9c"
+          },
+          "Version": "v0.54.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "golang.org/x/image@v0.44.0",
+          "Name": "golang.org/x/image",
+          "Identifier": {
+            "PURL": "pkg:golang/golang.org/x/image@v0.44.0",
+            "UID": "daf70bae892afc4c"
+          },
+          "Version": "v0.44.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "golang.org/x/net@v0.57.0",
+          "Name": "golang.org/x/net",
+          "Identifier": {
+            "PURL": "pkg:golang/golang.org/x/net@v0.57.0",
+            "UID": "6bc2dbf7136925a6"
+          },
+          "Version": "v0.57.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "golang.org/x/sync@v0.22.0",
+          "Name": "golang.org/x/sync",
+          "Identifier": {
+            "PURL": "pkg:golang/golang.org/x/sync@v0.22.0",
+            "UID": "5f1e48dd0b0e5b61"
+          },
+          "Version": "v0.22.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "golang.org/x/sys@v0.47.0",
+          "Name": "golang.org/x/sys",
+          "Identifier": {
+            "PURL": "pkg:golang/golang.org/x/sys@v0.47.0",
+            "UID": "66e511f38ae39fe5"
+          },
+          "Version": "v0.47.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "golang.org/x/text@v0.40.0",
+          "Name": "golang.org/x/text",
+          "Identifier": {
+            "PURL": "pkg:golang/golang.org/x/text@v0.40.0",
+            "UID": "c5ff3e56504cb7d4"
+          },
+          "Version": "v0.40.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "gopkg.in/natefinch/lumberjack.v2@v2.2.1",
+          "Name": "gopkg.in/natefinch/lumberjack.v2",
+          "Identifier": {
+            "PURL": "pkg:golang/gopkg.in/natefinch/lumberjack.v2@v2.2.1",
+            "UID": "89b7ac920167f4d5"
+          },
+          "Version": "v2.2.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "gopkg.in/yaml.v2@v2.4.0",
+          "Name": "gopkg.in/yaml.v2",
+          "Identifier": {
+            "PURL": "pkg:golang/gopkg.in/yaml.v2@v2.4.0",
+            "UID": "2ec5250a31fe4c86"
+          },
+          "Version": "v2.4.0",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        },
+        {
+          "ID": "gopkg.in/yaml.v3@v3.0.1",
+          "Name": "gopkg.in/yaml.v3",
+          "Identifier": {
+            "PURL": "pkg:golang/gopkg.in/yaml.v3@v3.0.1",
+            "UID": "b96a1f57df3a646"
+          },
+          "Version": "v3.0.1",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "AnalyzedBy": "gobinary"
+        }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2026-56854",
+          "VendorIDs": [
+            "GO-2026-6303"
+          ],
+          "PkgID": "golang.org/x/crypto@v0.54.0",
+          "PkgName": "golang.org/x/crypto",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/golang.org/x/crypto@v0.54.0",
+            "UID": "ed8ee126b728d9c"
+          },
+          "InstalledVersion": "v0.54.0",
+          "FixedVersion": "0.55.0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56854",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:30ca8cb82d0bb7cf1d21f2f9fbdd08151d0ebd47049f04341235dc97f5b9ddf8",
+          "Title": "golang.org/x/crypto/ssh: golang.org/x/crypto/ssh: Authentication bypass due to unenforced source-address restrictions",
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-863"
+          ],
+          "VendorSeverity": {
+            "amazon": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 6.8
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-56854",
+            "https://go.dev/cl/797040",
+            "https://go.dev/issue/80213",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-56854",
+            "https://pkg.go.dev/vuln/GO-2026-6303",
+            "https://www.cve.org/CVERecord?id=CVE-2026-56854"
+          ],
+          "PublishedDate": "2026-08-28T16:18:17.607Z",
+          "LastModifiedDate": "2026-09-03T16:37:52.17Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-46603",
+          "VendorIDs": [
+            "GO-2026-6222"
+          ],
+          "PkgID": "golang.org/x/image@v0.44.0",
+          "PkgName": "golang.org/x/image",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/golang.org/x/image@v0.44.0",
+            "UID": "daf70bae892afc4c"
+          },
+          "InstalledVersion": "v0.44.0",
+          "FixedVersion": "0.45.0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-46603",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:818110294f567e86ea17ea9cf35e7b2e8375c7dd3d2d7d0101a224f826240812",
+          "Title": "golang.org/x/image/vp8l: golang.org/x/image/vp8l: Denial of Service via excessive memory allocation",
+          "Description": "VP8L decoding in golang.org/x/image/vp8l can allocate an excessive amount of memory when processing a crafted VP8L image containing many unused Huffman tree groups. This allows a remote attacker to cause a denial of service via memory exhaustion.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-789"
+          ],
+          "VendorSeverity": {
+            "amazon": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-46603",
+            "https://go.dev/cl/793460",
+            "https://go.dev/issue/80069",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-46603",
+            "https://pkg.go.dev/vuln/GO-2026-6222",
+            "https://www.cve.org/CVERecord?id=CVE-2026-46603"
+          ],
+          "PublishedDate": "2026-08-14T17:18:15.307Z",
+          "LastModifiedDate": "2026-09-03T16:37:52.17Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-33818",
+          "VendorIDs": [
+            "GO-2026-5972"
+          ],
+          "PkgID": "stdlib@v1.26.5",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.26.5",
+            "UID": "fce0a7def2f73179"
+          },
+          "InstalledVersion": "v1.26.5",
+          "FixedVersion": "1.25.13, 1.26.6, 1.27.0-rc.3",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-33818",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:3893c444bdde0014dce8152e12c611fff398100a98f93279b1af54d9a5e86354",
+          "Title": "encoding/asn1: golang: Go encoding/asn1: Denial of Service via excessive recursion in Unmarshal",
+          "Description": "Enforce a recursion limit in Unmarshal to prevent stack exhaustion when parsing deeply-nested, recursive structures.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "bitnami": 3,
+            "oracle-oval": 3,
+            "photon": 3,
+            "redhat": 3,
+            "rocky": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:70641",
+            "https://access.redhat.com/security/cve/CVE-2026-33818",
+            "https://bugzilla.redhat.com/2515815",
+            "https://bugzilla.redhat.com/2515820",
+            "https://bugzilla.redhat.com/2515827",
+            "https://bugzilla.redhat.com/2515838",
+            "https://bugzilla.redhat.com/2515839",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2402034",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515815",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515820",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515827",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515838",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515839",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-11395",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-33818",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56853",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56858",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56860",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56862",
+            "https://errata.almalinux.org/9/ALSA-2026-70641.html",
+            "https://errata.rockylinux.org/RLSA-2026:70641",
+            "https://go.dev/cl/814980",
+            "https://go.dev/issue/80405",
+            "https://groups.google.com/g/golang-announce/c/94pEornpRlI",
+            "https://linux.oracle.com/cve/CVE-2026-33818.html",
+            "https://linux.oracle.com/errata/ELSA-2026-70641.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-33818",
+            "https://pkg.go.dev/vuln/GO-2026-5972",
+            "https://www.cve.org/CVERecord?id=CVE-2026-33818"
+          ],
+          "PublishedDate": "2026-08-13T22:17:19.84Z",
+          "LastModifiedDate": "2026-09-03T16:37:52.17Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-39821",
+          "VendorIDs": [
+            "GO-2026-5026"
+          ],
+          "PkgID": "stdlib@v1.26.5",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.26.5",
+            "UID": "fce0a7def2f73179"
+          },
+          "InstalledVersion": "v1.26.5",
+          "FixedVersion": "1.25.13, 1.26.6, 1.27.0-rc.3",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-39821",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:0ed8d5b4d82d85b60338f48e2bac7d9f3f0d90ae965d7d5c7198ac62c093a6c1",
+          "Title": "golang.org/x/net/idna: golang: net/http: golang.org/x/net/idna: Privilege escalation via incorrect Punycode label processing",
+          "Description": "The ToASCII and ToUnicode functions incorrectly accept Punycode-encoded labels that decode to an ASCII-only label. For example, ToUnicode(\"xn--example-.com\") incorrectly returns the name \"example.com\" rather than an error. This behavior can lead to privilege escalation in programs using the idna package. For example, a program which performs privilege checks on the ASCII hostname may reject \"example.com\" but permit \"xn--example-.com\". If that program subsequently converts the ASCII hostname to Unicode, it will inadvertently permits access to the Unicode name \"example.com\".",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-1289"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "azure": 4,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "rocky": 3,
+            "ubuntu": 3
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:C/C:H/I:H/A:N",
+              "V3Score": 8.2
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:23262",
+            "https://access.redhat.com/errata/RHSA-2026:23264",
+            "https://access.redhat.com/errata/RHSA-2026:26546",
+            "https://access.redhat.com/errata/RHSA-2026:26547",
+            "https://access.redhat.com/errata/RHSA-2026:30650",
+            "https://access.redhat.com/errata/RHSA-2026:30651",
+            "https://access.redhat.com/errata/RHSA-2026:30853",
+            "https://access.redhat.com/errata/RHSA-2026:30854",
+            "https://access.redhat.com/errata/RHSA-2026:30855",
+            "https://access.redhat.com/errata/RHSA-2026:33155",
+            "https://access.redhat.com/errata/RHSA-2026:33160",
+            "https://access.redhat.com/errata/RHSA-2026:33163",
+            "https://access.redhat.com/errata/RHSA-2026:33173",
+            "https://access.redhat.com/errata/RHSA-2026:33183",
+            "https://access.redhat.com/errata/RHSA-2026:33524",
+            "https://access.redhat.com/errata/RHSA-2026:33531",
+            "https://access.redhat.com/errata/RHSA-2026:34342",
+            "https://access.redhat.com/errata/RHSA-2026:34357",
+            "https://access.redhat.com/errata/RHSA-2026:34359",
+            "https://access.redhat.com/errata/RHSA-2026:34364",
+            "https://access.redhat.com/errata/RHSA-2026:34789",
+            "https://access.redhat.com/errata/RHSA-2026:35826",
+            "https://access.redhat.com/errata/RHSA-2026:35827",
+            "https://access.redhat.com/errata/RHSA-2026:35828",
+            "https://access.redhat.com/errata/RHSA-2026:35829",
+            "https://access.redhat.com/errata/RHSA-2026:35830",
+            "https://access.redhat.com/errata/RHSA-2026:35831",
+            "https://access.redhat.com/errata/RHSA-2026:35993",
+            "https://access.redhat.com/errata/RHSA-2026:35994",
+            "https://access.redhat.com/errata/RHSA-2026:36105",
+            "https://access.redhat.com/errata/RHSA-2026:36167",
+            "https://access.redhat.com/errata/RHSA-2026:36207",
+            "https://access.redhat.com/errata/RHSA-2026:36648",
+            "https://access.redhat.com/errata/RHSA-2026:36651",
+            "https://access.redhat.com/errata/RHSA-2026:36796",
+            "https://access.redhat.com/errata/RHSA-2026:36797",
+            "https://access.redhat.com/errata/RHSA-2026:36808",
+            "https://access.redhat.com/errata/RHSA-2026:36820",
+            "https://access.redhat.com/errata/RHSA-2026:36883",
+            "https://access.redhat.com/errata/RHSA-2026:37387",
+            "https://access.redhat.com/errata/RHSA-2026:37435",
+            "https://access.redhat.com/errata/RHSA-2026:37436",
+            "https://access.redhat.com/errata/RHSA-2026:38995",
+            "https://access.redhat.com/errata/RHSA-2026:39005",
+            "https://access.redhat.com/errata/RHSA-2026:39573",
+            "https://access.redhat.com/errata/RHSA-2026:39879",
+            "https://access.redhat.com/errata/RHSA-2026:40118",
+            "https://access.redhat.com/errata/RHSA-2026:40262",
+            "https://access.redhat.com/errata/RHSA-2026:40945",
+            "https://access.redhat.com/errata/RHSA-2026:41019",
+            "https://access.redhat.com/errata/RHSA-2026:41030",
+            "https://access.redhat.com/errata/RHSA-2026:41031",
+            "https://access.redhat.com/errata/RHSA-2026:41036",
+            "https://access.redhat.com/errata/RHSA-2026:41055",
+            "https://access.redhat.com/errata/RHSA-2026:41066",
+            "https://access.redhat.com/errata/RHSA-2026:41928",
+            "https://access.redhat.com/errata/RHSA-2026:41930",
+            "https://access.redhat.com/errata/RHSA-2026:42043",
+            "https://access.redhat.com/errata/RHSA-2026:42047",
+            "https://access.redhat.com/errata/RHSA-2026:42048",
+            "https://access.redhat.com/errata/RHSA-2026:42049",
+            "https://access.redhat.com/errata/RHSA-2026:42050",
+            "https://access.redhat.com/errata/RHSA-2026:42051",
+            "https://access.redhat.com/errata/RHSA-2026:42078",
+            "https://access.redhat.com/errata/RHSA-2026:42079",
+            "https://access.redhat.com/errata/RHSA-2026:42080",
+            "https://access.redhat.com/errata/RHSA-2026:42082",
+            "https://access.redhat.com/errata/RHSA-2026:42132",
+            "https://access.redhat.com/errata/RHSA-2026:42142",
+            "https://access.redhat.com/errata/RHSA-2026:42146",
+            "https://access.redhat.com/errata/RHSA-2026:42150",
+            "https://access.redhat.com/errata/RHSA-2026:42151",
+            "https://access.redhat.com/errata/RHSA-2026:42240",
+            "https://access.redhat.com/errata/RHSA-2026:42644",
+            "https://access.redhat.com/errata/RHSA-2026:42796",
+            "https://access.redhat.com/errata/RHSA-2026:42852",
+            "https://access.redhat.com/errata/RHSA-2026:43038",
+            "https://access.redhat.com/errata/RHSA-2026:43052",
+            "https://access.redhat.com/errata/RHSA-2026:43692",
+            "https://access.redhat.com/errata/RHSA-2026:44622",
+            "https://access.redhat.com/errata/RHSA-2026:44624",
+            "https://access.redhat.com/errata/RHSA-2026:46395",
+            "https://access.redhat.com/errata/RHSA-2026:47149",
+            "https://access.redhat.com/errata/RHSA-2026:47735",
+            "https://access.redhat.com/errata/RHSA-2026:47737",
+            "https://access.redhat.com/errata/RHSA-2026:47952",
+            "https://access.redhat.com/errata/RHSA-2026:49702",
+            "https://access.redhat.com/errata/RHSA-2026:49712",
+            "https://access.redhat.com/errata/RHSA-2026:50300",
+            "https://access.redhat.com/errata/RHSA-2026:50843",
+            "https://access.redhat.com/errata/RHSA-2026:51033",
+            "https://access.redhat.com/errata/RHSA-2026:51112",
+            "https://access.redhat.com/errata/RHSA-2026:51187",
+            "https://access.redhat.com/errata/RHSA-2026:51194",
+            "https://access.redhat.com/errata/RHSA-2026:51341",
+            "https://access.redhat.com/errata/RHSA-2026:52826",
+            "https://access.redhat.com/errata/RHSA-2026:53374",
+            "https://access.redhat.com/errata/RHSA-2026:53412",
+            "https://access.redhat.com/errata/RHSA-2026:53413",
+            "https://access.redhat.com/errata/RHSA-2026:53415",
+            "https://access.redhat.com/errata/RHSA-2026:53530",
+            "https://access.redhat.com/errata/RHSA-2026:54191",
+            "https://access.redhat.com/errata/RHSA-2026:54274",
+            "https://access.redhat.com/errata/RHSA-2026:54283",
+            "https://access.redhat.com/errata/RHSA-2026:54284",
+            "https://access.redhat.com/errata/RHSA-2026:54285",
+            "https://access.redhat.com/errata/RHSA-2026:54286",
+            "https://access.redhat.com/errata/RHSA-2026:54287",
+            "https://access.redhat.com/errata/RHSA-2026:54395",
+            "https://access.redhat.com/errata/RHSA-2026:54401",
+            "https://access.redhat.com/errata/RHSA-2026:54435",
+            "https://access.redhat.com/errata/RHSA-2026:54441",
+            "https://access.redhat.com/errata/RHSA-2026:54531",
+            "https://access.redhat.com/errata/RHSA-2026:54580",
+            "https://access.redhat.com/errata/RHSA-2026:54757",
+            "https://access.redhat.com/errata/RHSA-2026:56143",
+            "https://access.redhat.com/errata/RHSA-2026:56223",
+            "https://access.redhat.com/errata/RHSA-2026:56340",
+            "https://access.redhat.com/errata/RHSA-2026:56431",
+            "https://access.redhat.com/errata/RHSA-2026:57194",
+            "https://access.redhat.com/errata/RHSA-2026:57541",
+            "https://access.redhat.com/errata/RHSA-2026:57649",
+            "https://access.redhat.com/errata/RHSA-2026:57845",
+            "https://access.redhat.com/errata/RHSA-2026:59546",
+            "https://access.redhat.com/errata/RHSA-2026:59549",
+            "https://access.redhat.com/errata/RHSA-2026:59562",
+            "https://access.redhat.com/errata/RHSA-2026:60315",
+            "https://access.redhat.com/errata/RHSA-2026:60354",
+            "https://access.redhat.com/errata/RHSA-2026:60387",
+            "https://access.redhat.com/errata/RHSA-2026:60520",
+            "https://access.redhat.com/errata/RHSA-2026:61245",
+            "https://access.redhat.com/errata/RHSA-2026:61253",
+            "https://access.redhat.com/errata/RHSA-2026:62549",
+            "https://access.redhat.com/errata/RHSA-2026:63134",
+            "https://access.redhat.com/errata/RHSA-2026:65126",
+            "https://access.redhat.com/errata/RHSA-2026:65153",
+            "https://access.redhat.com/errata/RHSA-2026:65359",
+            "https://access.redhat.com/errata/RHSA-2026:65534",
+            "https://access.redhat.com/errata/RHSA-2026:65851",
+            "https://access.redhat.com/errata/RHSA-2026:65886",
+            "https://access.redhat.com/errata/RHSA-2026:66016",
+            "https://access.redhat.com/errata/RHSA-2026:66022",
+            "https://access.redhat.com/errata/RHSA-2026:66350",
+            "https://access.redhat.com/errata/RHSA-2026:66432",
+            "https://access.redhat.com/errata/RHSA-2026:67149",
+            "https://access.redhat.com/errata/RHSA-2026:67159",
+            "https://access.redhat.com/errata/RHSA-2026:67160",
+            "https://access.redhat.com/errata/RHSA-2026:67287",
+            "https://access.redhat.com/errata/RHSA-2026:67319",
+            "https://access.redhat.com/errata/RHSA-2026:67517",
+            "https://access.redhat.com/errata/RHSA-2026:68504",
+            "https://access.redhat.com/security/cve/CVE-2026-39821",
+            "https://bugzilla.redhat.com/2467809",
+            "https://bugzilla.redhat.com/2467820",
+            "https://bugzilla.redhat.com/2480756",
+            "https://bugzilla.redhat.com/2484204",
+            "https://bugzilla.redhat.com/2515815",
+            "https://bugzilla.redhat.com/2515820",
+            "https://bugzilla.redhat.com/2515827",
+            "https://bugzilla.redhat.com/2515838",
+            "https://bugzilla.redhat.com/2515839",
+            "https://bugzilla.redhat.com/2515840",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2456333",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2456339",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2467809",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2467820",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2467822",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2480756",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2484204",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515815",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515820",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515827",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515838",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515839",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515840",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-32280",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-32281",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-33811",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-33818",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-39820",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-39821",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42499",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-42504",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56853",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56858",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56859",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56860",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56862",
+            "https://errata.almalinux.org/9/ALSA-2026-65153.html",
+            "https://errata.rockylinux.org/RLSA-2026:65886",
+            "https://github.com/golang/go/issues/78760",
+            "https://go.dev/cl/767220",
+            "https://go.dev/issue/78760",
+            "https://groups.google.com/g/golang-announce/c/94pEornpRlI",
+            "https://groups.google.com/g/golang-announce/c/iI-mYSI0lu8",
+            "https://linux.oracle.com/cve/CVE-2026-39821.html",
+            "https://linux.oracle.com/errata/ELSA-2026-66432-0.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-39821",
+            "https://pkg.go.dev/vuln/GO-2026-5026",
+            "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-39821.json",
+            "https://ubuntu.com/security/notices/USN-8416-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-39821"
+          ],
+          "PublishedDate": "2026-05-22T16:16:20.41Z",
+          "LastModifiedDate": "2026-09-17T12:18:05.767Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-46600",
+          "VendorIDs": [
+            "GO-2026-5942"
+          ],
+          "PkgID": "stdlib@v1.26.5",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.26.5",
+            "UID": "fce0a7def2f73179"
+          },
+          "InstalledVersion": "v1.26.5",
+          "FixedVersion": "1.26.6, 1.27.0-rc.3",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-46600",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:1052117f93e930cc51a4e4ec96fd8adb8d131d9595fb2feb220a7b63332639eb",
+          "Title": "golang.org/x/net/dns/dnsmessage: golang.org/x/net/dns/dnsmessage: Denial of Service via invalid DNS record parsing",
+          "Description": "Parsing an invalid SVCB or HTTPS RR can panic when the size of a parameter value overflows the message buffer.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-125"
+          ],
+          "VendorSeverity": {
+            "azure": 2,
+            "bitnami": 3,
+            "redhat": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-46600",
+            "https://go.dev/cl/786345",
+            "https://go.dev/issue/79795",
+            "https://groups.google.com/g/golang-announce/c/94pEornpRlI",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-46600",
+            "https://pkg.go.dev/vuln/GO-2026-5942",
+            "https://www.cve.org/CVERecord?id=CVE-2026-46600"
+          ],
+          "PublishedDate": "2026-07-21T20:17:01.213Z",
+          "LastModifiedDate": "2026-08-14T16:16:55.673Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-56853",
+          "VendorIDs": [
+            "GO-2026-6089"
+          ],
+          "PkgID": "stdlib@v1.26.5",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.26.5",
+            "UID": "fce0a7def2f73179"
+          },
+          "InstalledVersion": "v1.26.5",
+          "FixedVersion": "1.25.13, 1.26.6, 1.27.0-rc.3",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56853",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:b52b222e0da7352647e12779e6144c5d517957de4dcee8e4f2b80a306e4daf68",
+          "Title": "net/http: golang: Go net/http: Unencrypted HTTP/2 connections vulnerable to Denial of Service",
+          "Description": "When a server is configured to support unencrypted HTTP/2, it reads a few bytes from each new connection to see if they contain the HTTP/2 client preface. ReadHeaderTimeout is unexpectedly not being applied when doing this.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "bitnami": 3,
+            "oracle-oval": 3,
+            "photon": 3,
+            "redhat": 3,
+            "rocky": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:70641",
+            "https://access.redhat.com/security/cve/CVE-2026-56853",
+            "https://bugzilla.redhat.com/2515815",
+            "https://bugzilla.redhat.com/2515820",
+            "https://bugzilla.redhat.com/2515827",
+            "https://bugzilla.redhat.com/2515838",
+            "https://bugzilla.redhat.com/2515839",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2402034",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515815",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515820",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515827",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515838",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515839",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-11395",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-33818",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56853",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56858",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56860",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56862",
+            "https://errata.almalinux.org/9/ALSA-2026-70641.html",
+            "https://errata.rockylinux.org/RLSA-2026:70641",
+            "https://go.dev/cl/795540",
+            "https://go.dev/issue/80205",
+            "https://groups.google.com/g/golang-announce/c/94pEornpRlI",
+            "https://linux.oracle.com/cve/CVE-2026-56853.html",
+            "https://linux.oracle.com/errata/ELSA-2026-70641.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-56853",
+            "https://pkg.go.dev/vuln/GO-2026-6089",
+            "https://www.cve.org/CVERecord?id=CVE-2026-56853"
+          ],
+          "PublishedDate": "2026-08-13T22:17:22.093Z",
+          "LastModifiedDate": "2026-09-03T16:37:52.17Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-56858",
+          "VendorIDs": [
+            "GO-2026-6091"
+          ],
+          "PkgID": "stdlib@v1.26.5",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.26.5",
+            "UID": "fce0a7def2f73179"
+          },
+          "InstalledVersion": "v1.26.5",
+          "FixedVersion": "1.25.13, 1.26.6, 1.27.0-rc.3",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56858",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:91e6dc78e8be75888129cf6002ed79669c63a04e05bd8f8ec3c38c8b0e3fa6c5",
+          "Title": "html/template: golang: Go html/template: Cross-Site Scripting via pathological input",
+          "Description": "Previously, pathological inputs could close an unescaped '/' early, allowing for attack-controlled data to inject arbitrary content, potentially leading to XSS.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-79"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "bitnami": 2,
+            "oracle-oval": 3,
+            "photon": 2,
+            "redhat": 3,
+            "rocky": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+              "V3Score": 6.1
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:N",
+              "V3Score": 8.1
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:70641",
+            "https://access.redhat.com/security/cve/CVE-2026-56858",
+            "https://bugzilla.redhat.com/2515815",
+            "https://bugzilla.redhat.com/2515820",
+            "https://bugzilla.redhat.com/2515827",
+            "https://bugzilla.redhat.com/2515838",
+            "https://bugzilla.redhat.com/2515839",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2402034",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515815",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515820",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515827",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515838",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515839",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-11395",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-33818",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56853",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56858",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56860",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56862",
+            "https://errata.almalinux.org/9/ALSA-2026-70641.html",
+            "https://errata.rockylinux.org/RLSA-2026:70641",
+            "https://go.dev/cl/807100",
+            "https://go.dev/issue/80435",
+            "https://groups.google.com/g/golang-announce/c/94pEornpRlI",
+            "https://linux.oracle.com/cve/CVE-2026-56858.html",
+            "https://linux.oracle.com/errata/ELSA-2026-70641.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-56858",
+            "https://pkg.go.dev/vuln/GO-2026-6091",
+            "https://www.cve.org/CVERecord?id=CVE-2026-56858"
+          ],
+          "PublishedDate": "2026-08-13T22:17:22.207Z",
+          "LastModifiedDate": "2026-09-03T16:37:52.17Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-56859",
+          "VendorIDs": [
+            "GO-2026-6088"
+          ],
+          "PkgID": "stdlib@v1.26.5",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.26.5",
+            "UID": "fce0a7def2f73179"
+          },
+          "InstalledVersion": "v1.26.5",
+          "FixedVersion": "1.25.13, 1.26.6, 1.27.0-rc.3",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56859",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:12f5dada2eb84cc0fca3a06f4642b3352d1818828374d58871102bd4d543a9e2",
+          "Title": "encoding/xml: golang: Go: Denial of Service via XML decoding recursion depth issue",
+          "Description": "Previously, DecodeElement would reset the depth counter causing it to never fire; this could lead to stack exhaustion.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "bitnami": 3,
+            "oracle-oval": 3,
+            "photon": 3,
+            "redhat": 3,
+            "rocky": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:69961",
+            "https://access.redhat.com/security/cve/CVE-2026-56859",
+            "https://bugzilla.redhat.com/2480684",
+            "https://bugzilla.redhat.com/2508234",
+            "https://bugzilla.redhat.com/2515815",
+            "https://bugzilla.redhat.com/2515820",
+            "https://bugzilla.redhat.com/2515827",
+            "https://bugzilla.redhat.com/2515838",
+            "https://bugzilla.redhat.com/2515839",
+            "https://bugzilla.redhat.com/2515840",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2480684",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2508234",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515815",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515820",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515827",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515838",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515839",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515840",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2518147",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-17106",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-19730",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-33818",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-39830",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56853",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56858",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56859",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56860",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56862",
+            "https://errata.almalinux.org/9/ALSA-2026-69961.html",
+            "https://errata.rockylinux.org/RLSA-2026:69961",
+            "https://go.dev/cl/803320",
+            "https://go.dev/issue/80481",
+            "https://groups.google.com/g/golang-announce/c/94pEornpRlI",
+            "https://linux.oracle.com/cve/CVE-2026-56859.html",
+            "https://linux.oracle.com/errata/ELSA-2026-70201.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-56859",
+            "https://pkg.go.dev/vuln/GO-2026-6088",
+            "https://www.cve.org/CVERecord?id=CVE-2026-56859"
+          ],
+          "PublishedDate": "2026-08-13T22:17:22.32Z",
+          "LastModifiedDate": "2026-09-03T16:37:52.17Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-56860",
+          "VendorIDs": [
+            "GO-2026-6218"
+          ],
+          "PkgID": "stdlib@v1.26.5",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.26.5",
+            "UID": "fce0a7def2f73179"
+          },
+          "InstalledVersion": "v1.26.5",
+          "FixedVersion": "1.25.13, 1.26.6, 1.27.0-rc.3",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56860",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:93cdbb81750ba218de87ad8ede7a058324f12da73e4873bd69d444fa2f429f96",
+          "Title": "net/url: golang: golang net/url: Denial of Service from quadratic complexity in path resolution",
+          "Description": "Previously, resolving relative paths containing parent directory ('..') segments performed string conversions and buffer rewrites on each step, resulting in quadratic time complexity and high memory allocation overhead. Now, path resolution operates on a byte buffer using index-based backtracking for '..' segments, eliminating the quadratic time complexity and significantly reducing memory allocations.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-407"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "bitnami": 2,
+            "oracle-oval": 3,
+            "photon": 2,
+            "redhat": 3,
+            "rocky": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:70641",
+            "https://access.redhat.com/security/cve/CVE-2026-56860",
+            "https://bugzilla.redhat.com/2515815",
+            "https://bugzilla.redhat.com/2515820",
+            "https://bugzilla.redhat.com/2515827",
+            "https://bugzilla.redhat.com/2515838",
+            "https://bugzilla.redhat.com/2515839",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2402034",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515815",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515820",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515827",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515838",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515839",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-11395",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-33818",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56853",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56858",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56860",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56862",
+            "https://errata.almalinux.org/9/ALSA-2026-70641.html",
+            "https://errata.rockylinux.org/RLSA-2026:70641",
+            "https://go.dev/cl/803681",
+            "https://go.dev/issue/80494",
+            "https://groups.google.com/g/golang-announce/c/94pEornpRlI",
+            "https://linux.oracle.com/cve/CVE-2026-56860.html",
+            "https://linux.oracle.com/errata/ELSA-2026-70641.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-56860",
+            "https://pkg.go.dev/vuln/GO-2026-6218",
+            "https://www.cve.org/CVERecord?id=CVE-2026-56860"
+          ],
+          "PublishedDate": "2026-08-13T22:17:22.44Z",
+          "LastModifiedDate": "2026-09-03T16:37:52.17Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-56862",
+          "VendorIDs": [
+            "GO-2026-6090"
+          ],
+          "PkgID": "stdlib@v1.26.5",
+          "PkgName": "stdlib",
+          "PkgIdentifier": {
+            "PURL": "pkg:golang/stdlib@v1.26.5",
+            "UID": "fce0a7def2f73179"
+          },
+          "InstalledVersion": "v1.26.5",
+          "FixedVersion": "1.25.13, 1.26.6, 1.27.0-rc.3",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:4f2b02105f3366fa1d91affdc2c89c3eb9d9be8d1e74b1f275ecad08eb3b9200"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-56862",
+          "DataSource": {
+            "ID": "govulndb",
+            "Name": "The Go Vulnerability Database",
+            "URL": "https://pkg.go.dev/vuln/"
+          },
+          "Fingerprint": "sha256:3ac6331181d95015c6d3d7e6ad2a00d7b112953d4cf74dcd754bf3b1e4840b6d",
+          "Title": "crypto/tls: golang: Golang crypto/tls: Denial of Service via indefinite KeyUpdate messages",
+          "Description": "Handshake messages, such as KeyUpdate, are always considered as state-advancing, regardless of whether a handshake has been completed or not. As a result, a malicious client can keep sending KeyUpdate messages to force the server to keep performing key derivation operations indefinitely.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "bitnami": 3,
+            "oracle-oval": 3,
+            "photon": 3,
+            "redhat": 3,
+            "rocky": 3
+          },
+          "CVSS": {
+            "bitnami": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:70641",
+            "https://access.redhat.com/security/cve/CVE-2026-56862",
+            "https://bugzilla.redhat.com/2515815",
+            "https://bugzilla.redhat.com/2515820",
+            "https://bugzilla.redhat.com/2515827",
+            "https://bugzilla.redhat.com/2515838",
+            "https://bugzilla.redhat.com/2515839",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2402034",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515815",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515820",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515827",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515838",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2515839",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-11395",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-33818",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56853",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56858",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56860",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-56862",
+            "https://errata.almalinux.org/9/ALSA-2026-70641.html",
+            "https://errata.rockylinux.org/RLSA-2026:70641",
+            "https://go.dev/cl/804261",
+            "https://go.dev/issue/80528",
+            "https://groups.google.com/g/golang-announce/c/94pEornpRlI",
+            "https://linux.oracle.com/cve/CVE-2026-56862.html",
+            "https://linux.oracle.com/errata/ELSA-2026-70641.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-56862",
+            "https://pkg.go.dev/vuln/GO-2026-6090",
+            "https://www.cve.org/CVERecord?id=CVE-2026-56862"
+          ],
+          "PublishedDate": "2026-08-13T22:17:22.55Z",
+          "LastModifiedDate": "2026-09-03T16:37:52.17Z"
+        }
+      ]
+    }
+  ]
+}

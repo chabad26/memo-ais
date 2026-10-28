@@ -1,0 +1,4 @@
+FROM roundcube/roundcubemail:1.6.x-apache
+
+COPY pki/certs/Campus-CA-root.crt /usr/local/share/ca-certificates/Campus-CA-root.crt
+RUN update-ca-certificates

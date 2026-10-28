@@ -1,0 +1,23 @@
+services:
+  lam:
+    image: ghcr.io/ldapaccountmanager/lam:9.6
+    container_name: lam
+    hostname: lam.embedded.local
+    restart: unless-stopped
+    environment:
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+      LAM_LANG: fr_FR
+      LDAP_SERVER: ${LDAP_SERVER}
+      LDAP_DOMAIN: ${LDAP_DOMAIN}
+      LDAP_BASE_DN: ${LDAP_BASE_DN}
+      LDAP_USERS_DN: ${LDAP_USERS_DN}
+      LDAP_GROUPS_DN: ${LDAP_GROUPS_DN}
+      LDAP_ADMIN_USER: ${LDAP_ADMIN_USER}
+    ports:
+      - "8081:80"
+    networks:
+      - openldap_default
+
+networks:
+  openldap_default:
+    external: true

@@ -10,3 +10,7 @@ Les notions  vue dans ce module seront les suivants :
 - Diagnostiquer une panne réseau avec une démarche méthodique par couches OSI (Open Systems Interconnection).
 - Documenter une configuration réseau au standard professionnel (en-tête, commentaires, réimportable).
 - Écrire un script Bash d'automatisation documenté et réexécutable.
+
+## Livrables du dossier Modules
+
+[Documents et fichiers techniques classés](../livrables-modules/reseaux.md) : copies de consultation des livrables fournis, avec leurs sources et limites. L’import documentaire ne constitue pas une nouvelle exécution ou validation.

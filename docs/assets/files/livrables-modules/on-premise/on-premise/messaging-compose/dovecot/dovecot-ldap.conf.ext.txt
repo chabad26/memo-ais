@@ -1,0 +1,13 @@
+uris = ldaps://ldap.embedded.local:6360
+tls_ca_cert_file = /usr/local/share/ca-certificates/Campus-CA-root.crt
+tls_require_cert = hard
+base = ou=People,dc=embedded,dc=local
+
+auth_bind = yes
+auth_bind_userdn = uid=%n,ou=People,dc=embedded,dc=local
+
+user_filter = (&(objectClass=posixAccount)(uid=%n))
+pass_filter = (&(objectClass=posixAccount)(uid=%n))
+
+iterate_filter = (objectClass=posixAccount)
+iterate_attrs = uid=user

@@ -1,0 +1,319 @@
+=== Résumé par sévérité ===
+[
+  {
+    "severity": "CRITICAL",
+    "count": 13
+  },
+  {
+    "severity": "HIGH",
+    "count": 143
+  },
+  {
+    "severity": "LOW",
+    "count": 14
+  },
+  {
+    "severity": "MEDIUM",
+    "count": 121
+  },
+  {
+    "severity": "UNKNOWN",
+    "count": 3
+  }
+]
+
+=== Détail des vulnérabilités ===
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	apk-tools	2.12.4-r0	CVE-2021-36159	CRITICAL	2.12.6-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-36159
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	apk-tools	2.12.4-r0	CVE-2021-30139	HIGH	2.12.5-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-30139
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42378	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42378
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42379	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42379
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42380	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42380
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42381	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42381
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42382	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42382
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42383	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42383
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42384	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42384
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42385	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42385
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42386	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42386
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2022-28391	HIGH	1.32.1-r8	fixed	https://avd.aquasec.com/nvd/cve-2022-28391
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2022-30065	HIGH	1.32.1-r9	fixed	https://avd.aquasec.com/nvd/cve-2022-30065
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42374	MEDIUM	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42374
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	busybox	1.32.1-r5	CVE-2021-42375	MEDIUM	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42375
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22945	CRITICAL	7.79.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22945
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-32207	CRITICAL	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-32207
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22901	HIGH	7.77.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22901
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22946	HIGH	7.79.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22946
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-22576	HIGH	7.79.1-r1	fixed	https://avd.aquasec.com/nvd/cve-2022-22576
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-27775	HIGH	7.79.1-r1	fixed	https://avd.aquasec.com/nvd/cve-2022-27775
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-27781	HIGH	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-27781
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-27782	HIGH	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-27782
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22876	MEDIUM	7.76.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22876
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22922	MEDIUM	7.78.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22922
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22923	MEDIUM	7.78.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22923
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22925	MEDIUM	7.78.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22925
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22947	MEDIUM	7.79.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22947
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-27774	MEDIUM	7.79.1-r1	fixed	https://avd.aquasec.com/nvd/cve-2022-27774
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-27776	MEDIUM	7.79.1-r1	fixed	https://avd.aquasec.com/nvd/cve-2022-27776
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-32205	MEDIUM	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-32205
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-32206	MEDIUM	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-32206
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-32208	MEDIUM	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-32208
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22890	LOW	7.76.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22890
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22898	LOW	7.77.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22898
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2021-22924	LOW	7.78.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22924
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	curl	7.74.0-r1	CVE-2022-35252	LOW	7.79.1-r3	fixed	https://avd.aquasec.com/nvd/cve-2022-35252
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcrypto1.1	1.1.1k-r0	CVE-2021-3711	CRITICAL	1.1.1l-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-3711
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcrypto1.1	1.1.1k-r0	CVE-2021-3712	HIGH	1.1.1l-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-3712
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcrypto1.1	1.1.1k-r0	CVE-2022-0778	HIGH	1.1.1n-r0	fixed	https://avd.aquasec.com/nvd/cve-2022-0778
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcrypto1.1	1.1.1k-r0	CVE-2022-2097	MEDIUM	1.1.1q-r0	fixed	https://avd.aquasec.com/nvd/cve-2022-2097
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22945	CRITICAL	7.79.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22945
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-32207	CRITICAL	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-32207
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22901	HIGH	7.77.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22901
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22946	HIGH	7.79.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22946
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-22576	HIGH	7.79.1-r1	fixed	https://avd.aquasec.com/nvd/cve-2022-22576
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-27775	HIGH	7.79.1-r1	fixed	https://avd.aquasec.com/nvd/cve-2022-27775
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-27781	HIGH	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-27781
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-27782	HIGH	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-27782
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22876	MEDIUM	7.76.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22876
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22922	MEDIUM	7.78.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22922
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22923	MEDIUM	7.78.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22923
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22925	MEDIUM	7.78.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22925
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22947	MEDIUM	7.79.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22947
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-27774	MEDIUM	7.79.1-r1	fixed	https://avd.aquasec.com/nvd/cve-2022-27774
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-27776	MEDIUM	7.79.1-r1	fixed	https://avd.aquasec.com/nvd/cve-2022-27776
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-32205	MEDIUM	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-32205
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-32206	MEDIUM	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-32206
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-32208	MEDIUM	7.79.1-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-32208
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22890	LOW	7.76.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22890
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22898	LOW	7.77.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22898
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2021-22924	LOW	7.78.0-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-22924
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libcurl	7.74.0-r1	CVE-2022-35252	LOW	7.79.1-r3	fixed	https://avd.aquasec.com/nvd/cve-2022-35252
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libssl1.1	1.1.1k-r0	CVE-2021-3711	CRITICAL	1.1.1l-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-3711
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libssl1.1	1.1.1k-r0	CVE-2021-3712	HIGH	1.1.1l-r0	fixed	https://avd.aquasec.com/nvd/cve-2021-3712
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libssl1.1	1.1.1k-r0	CVE-2022-0778	HIGH	1.1.1n-r0	fixed	https://avd.aquasec.com/nvd/cve-2022-0778
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	libssl1.1	1.1.1k-r0	CVE-2022-2097	MEDIUM	1.1.1q-r0	fixed	https://avd.aquasec.com/nvd/cve-2022-2097
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42378	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42378
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42379	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42379
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42380	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42380
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42381	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42381
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42382	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42382
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42383	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42383
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42384	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42384
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42385	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42385
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42386	HIGH	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42386
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2022-28391	HIGH	1.32.1-r8	fixed	https://avd.aquasec.com/nvd/cve-2022-28391
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2022-30065	HIGH	1.32.1-r9	fixed	https://avd.aquasec.com/nvd/cve-2022-30065
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42374	MEDIUM	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42374
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	ssl_client	1.32.1-r5	CVE-2021-42375	MEDIUM	1.32.1-r7	fixed	https://avd.aquasec.com/nvd/cve-2021-42375
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	zlib	1.2.11-r3	CVE-2022-37434	CRITICAL	1.2.12-r2	fixed	https://avd.aquasec.com/nvd/cve-2022-37434
+/home/oliv/preuves-trivy-filebrowser/filebrowser-v2.15.0-image.tar (alpine 3.13.4)	zlib	1.2.11-r3	CVE-2018-25032	HIGH	1.2.12-r0	fixed	https://avd.aquasec.com/nvd/cve-2018-25032
+filebrowser	github.com/caddyserver/caddy	v1.0.3	CVE-2026-52844	HIGH		affected	https://avd.aquasec.com/nvd/cve-2026-52844
+filebrowser	github.com/caddyserver/caddy	v1.0.3	CVE-2026-52845	HIGH		affected	https://avd.aquasec.com/nvd/cve-2026-52845
+filebrowser	github.com/caddyserver/caddy	v1.0.3	CVE-2022-29718	MEDIUM	2.5.0	fixed	https://avd.aquasec.com/nvd/cve-2022-29718
+filebrowser	github.com/caddyserver/caddy	v1.0.3	CVE-2026-52846	MEDIUM		affected	https://avd.aquasec.com/nvd/cve-2026-52846
+filebrowser	github.com/dgrijalva/jwt-go	v3.2.0+incompatible	CVE-2020-26160	HIGH		affected	https://avd.aquasec.com/nvd/cve-2020-26160
+filebrowser	github.com/disintegration/imaging	v1.6.2	CVE-2023-36308	LOW		affected	https://avd.aquasec.com/nvd/cve-2023-36308
+filebrowser	github.com/go-acme/lego	v2.5.0+incompatible	CVE-2026-40611	HIGH		affected	https://avd.aquasec.com/nvd/cve-2026-40611
+filebrowser	github.com/go-acme/lego	v2.5.0+incompatible	CVE-2025-54799	LOW		affected	https://avd.aquasec.com/nvd/cve-2025-54799
+filebrowser	github.com/gorilla/websocket	v1.4.1	GHSA-w67g-5rqw-f597	MEDIUM	1.5.3	fixed	https://github.com/advisories/GHSA-w67g-5rqw-f597
+filebrowser	github.com/mholt/archiver	v3.1.1+incompatible	CVE-2025-3445	HIGH		affected	https://avd.aquasec.com/nvd/cve-2025-3445
+filebrowser	github.com/mholt/archiver	v3.1.1+incompatible	CVE-2019-10743	MEDIUM	3.3.2	fixed	https://avd.aquasec.com/nvd/cve-2019-10743
+filebrowser	github.com/mholt/archiver	v3.1.1+incompatible	CVE-2024-0406	MEDIUM		affected	https://avd.aquasec.com/nvd/cve-2024-0406
+filebrowser	github.com/miekg/dns	v1.1.3	CVE-2019-19794	MEDIUM	1.1.25	fixed	https://avd.aquasec.com/nvd/cve-2019-19794
+filebrowser	github.com/nwaples/rardecode	v1.0.0	CVE-2025-11579	MEDIUM		affected	https://avd.aquasec.com/nvd/cve-2025-11579
+filebrowser	github.com/ulikunitz/xz	v0.5.6	CVE-2021-29482	HIGH	0.5.8	fixed	https://avd.aquasec.com/nvd/cve-2021-29482
+filebrowser	github.com/ulikunitz/xz	v0.5.6	CVE-2025-58058	MEDIUM	0.5.15	fixed	https://avd.aquasec.com/nvd/cve-2025-58058
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2020-29652	HIGH	0.0.0-20201216223049-8b5274cf687f	fixed	https://avd.aquasec.com/nvd/cve-2020-29652
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2021-43565	HIGH	0.0.0-20211202192323-5770296d904e	fixed	https://avd.aquasec.com/nvd/cve-2021-43565
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2022-27191	HIGH	0.0.0-20220314234659-1baeb1ce4c0b	fixed	https://avd.aquasec.com/nvd/cve-2022-27191
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2024-45337	HIGH	0.31.0	fixed	https://avd.aquasec.com/nvd/cve-2024-45337
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2025-22869	HIGH	0.35.0	fixed	https://avd.aquasec.com/nvd/cve-2025-22869
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2025-47913	HIGH	0.43.0	fixed	https://avd.aquasec.com/nvd/cve-2025-47913
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-39828	HIGH	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39828
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-39829	HIGH	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39829
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-39830	HIGH	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39830
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-39831	HIGH	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39831
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-39832	HIGH	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39832
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-39835	HIGH	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39835
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-42508	HIGH	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-42508
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-46595	HIGH	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-46595
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-46597	HIGH	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-46597
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-56854	HIGH	0.55.0	fixed	https://avd.aquasec.com/nvd/cve-2026-56854
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2023-48795	MEDIUM	0.17.0	fixed	https://avd.aquasec.com/nvd/cve-2023-48795
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2025-47914	MEDIUM	0.45.0	fixed	https://avd.aquasec.com/nvd/cve-2025-47914
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2025-58181	MEDIUM	0.45.0	fixed	https://avd.aquasec.com/nvd/cve-2025-58181
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-39827	MEDIUM	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39827
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-39833	MEDIUM	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39833
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-39834	MEDIUM	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39834
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-46598	MEDIUM	0.52.0	fixed	https://avd.aquasec.com/nvd/cve-2026-46598
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-56855	MEDIUM	0.56.0	fixed	https://avd.aquasec.com/nvd/cve-2026-56855
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2026-78662	MEDIUM	0.56.0	fixed	https://avd.aquasec.com/nvd/cve-2026-78662
+filebrowser	golang.org/x/crypto	v0.0.0-20200510223506-06a226fb4e37	CVE-2022-30636	UNKNOWN	0.0.0-20220525230936-793ad666bf5e	fixed	https://avd.aquasec.com/nvd/cve-2022-30636
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2026-46602	HIGH	0.43.0	fixed	https://avd.aquasec.com/nvd/cve-2026-46602
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2026-46603	HIGH	0.45.0	fixed	https://avd.aquasec.com/nvd/cve-2026-46603
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2022-41727	MEDIUM	0.5.0	fixed	https://avd.aquasec.com/nvd/cve-2022-41727
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2023-29407	MEDIUM	0.10.0	fixed	https://avd.aquasec.com/nvd/cve-2023-29407
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2023-29408	MEDIUM	0.10.0	fixed	https://avd.aquasec.com/nvd/cve-2023-29408
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2026-33809	MEDIUM	0.38.0	fixed	https://avd.aquasec.com/nvd/cve-2026-33809
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2026-33812	MEDIUM	0.39.0	fixed	https://avd.aquasec.com/nvd/cve-2026-33812
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2026-33813	MEDIUM	0.42.0	fixed	https://avd.aquasec.com/nvd/cve-2026-33813
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2026-42500	MEDIUM	0.41.0	fixed	https://avd.aquasec.com/nvd/cve-2026-42500
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2026-46599	MEDIUM	0.41.0	fixed	https://avd.aquasec.com/nvd/cve-2026-46599
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2026-46601	MEDIUM	0.43.0	fixed	https://avd.aquasec.com/nvd/cve-2026-46601
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2026-46604	MEDIUM	0.43.0	fixed	https://avd.aquasec.com/nvd/cve-2026-46604
+filebrowser	golang.org/x/image	v0.0.0-20191009234506-e7c1f5e7dbb8	CVE-2024-24792	UNKNOWN	0.18.0	fixed	https://avd.aquasec.com/nvd/cve-2024-24792
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2021-33194	HIGH	0.0.0-20210520170846-37e1c6afe023	fixed	https://avd.aquasec.com/nvd/cve-2021-33194
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2021-44716	HIGH	0.0.0-20211209124913-491a49abca63	fixed	https://avd.aquasec.com/nvd/cve-2021-44716
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2022-27664	HIGH	0.0.0-20220906165146-f3363e06e74c	fixed	https://avd.aquasec.com/nvd/cve-2022-27664
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2022-41723	HIGH	0.7.0	fixed	https://avd.aquasec.com/nvd/cve-2022-41723
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2023-39325	HIGH	0.17.0	fixed	https://avd.aquasec.com/nvd/cve-2023-39325
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2023-45288	HIGH	0.23.0	fixed	https://avd.aquasec.com/nvd/cve-2023-45288
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2024-45338	HIGH	0.33.0	fixed	https://avd.aquasec.com/nvd/cve-2024-45338
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2026-25681	HIGH	0.55.0	fixed	https://avd.aquasec.com/nvd/cve-2026-25681
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2026-27136	HIGH	0.55.0	fixed	https://avd.aquasec.com/nvd/cve-2026-27136
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2026-33814	HIGH	0.53.0	fixed	https://avd.aquasec.com/nvd/cve-2026-33814
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2026-39821	HIGH	0.55.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39821
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2026-46600	HIGH	0.56.0	fixed	https://avd.aquasec.com/nvd/cve-2026-46600
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2021-31525	MEDIUM	0.0.0-20210428140749-89ef3d95e781	fixed	https://avd.aquasec.com/nvd/cve-2021-31525
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2022-41717	MEDIUM	0.4.0	fixed	https://avd.aquasec.com/nvd/cve-2022-41717
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2023-3978	MEDIUM	0.13.0	fixed	https://avd.aquasec.com/nvd/cve-2023-3978
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2025-22870	MEDIUM	0.36.0	fixed	https://avd.aquasec.com/nvd/cve-2025-22870
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2025-22872	MEDIUM	0.38.0	fixed	https://avd.aquasec.com/nvd/cve-2025-22872
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2025-47911	MEDIUM	0.45.0	fixed	https://avd.aquasec.com/nvd/cve-2025-47911
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2025-58190	MEDIUM	0.45.0	fixed	https://avd.aquasec.com/nvd/cve-2025-58190
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2026-25680	MEDIUM	0.55.0	fixed	https://avd.aquasec.com/nvd/cve-2026-25680
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2026-42502	MEDIUM	0.55.0	fixed	https://avd.aquasec.com/nvd/cve-2026-42502
+filebrowser	golang.org/x/net	v0.0.0-20200528225125-3c3fba18258b	CVE-2026-42506	MEDIUM	0.55.0	fixed	https://avd.aquasec.com/nvd/cve-2026-42506
+filebrowser	golang.org/x/sys	v0.0.0-20200523222454-059865788121	CVE-2022-29526	MEDIUM	0.0.0-20220412211240-33da011f77ad	fixed	https://avd.aquasec.com/nvd/cve-2022-29526
+filebrowser	golang.org/x/sys	v0.0.0-20200523222454-059865788121	CVE-2026-39824	UNKNOWN	0.44.0	fixed	https://avd.aquasec.com/nvd/cve-2026-39824
+filebrowser	golang.org/x/text	v0.3.2	CVE-2020-14040	HIGH	0.3.3	fixed	https://avd.aquasec.com/nvd/cve-2020-14040
+filebrowser	golang.org/x/text	v0.3.2	CVE-2021-38561	HIGH	0.3.7	fixed	https://avd.aquasec.com/nvd/cve-2021-38561
+filebrowser	golang.org/x/text	v0.3.2	CVE-2022-32149	HIGH	0.3.8	fixed	https://avd.aquasec.com/nvd/cve-2022-32149
+filebrowser	golang.org/x/text	v0.3.2	CVE-2026-56852	HIGH	0.39.0	fixed	https://avd.aquasec.com/nvd/cve-2026-56852
+filebrowser	gopkg.in/square/go-jose.v2	v2.2.2	CVE-2024-28180	MEDIUM		affected	https://avd.aquasec.com/nvd/cve-2024-28180
+filebrowser	stdlib	v1.16.2	CVE-2022-23806	CRITICAL	1.16.14, 1.17.7	fixed	https://avd.aquasec.com/nvd/cve-2022-23806
+filebrowser	stdlib	v1.16.2	CVE-2023-24538	CRITICAL	1.19.8, 1.20.3	fixed	https://avd.aquasec.com/nvd/cve-2023-24538
+filebrowser	stdlib	v1.16.2	CVE-2023-24540	CRITICAL	1.19.9, 1.20.4	fixed	https://avd.aquasec.com/nvd/cve-2023-24540
+filebrowser	stdlib	v1.16.2	CVE-2024-24790	CRITICAL	1.21.11, 1.22.4	fixed	https://avd.aquasec.com/nvd/cve-2024-24790
+filebrowser	stdlib	v1.16.2	CVE-2025-68121	CRITICAL	1.24.13, 1.25.7, 1.26.0-rc.3	fixed	https://avd.aquasec.com/nvd/cve-2025-68121
+filebrowser	stdlib	v1.16.2	CVE-2021-33195	HIGH	1.15.13, 1.16.5	fixed	https://avd.aquasec.com/nvd/cve-2021-33195
+filebrowser	stdlib	v1.16.2	CVE-2021-33196	HIGH	1.15.13, 1.16.5	fixed	https://avd.aquasec.com/nvd/cve-2021-33196
+filebrowser	stdlib	v1.16.2	CVE-2021-33198	HIGH	1.15.13, 1.16.5	fixed	https://avd.aquasec.com/nvd/cve-2021-33198
+filebrowser	stdlib	v1.16.2	CVE-2021-39293	HIGH	1.16.8, 1.17.1	fixed	https://avd.aquasec.com/nvd/cve-2021-39293
+filebrowser	stdlib	v1.16.2	CVE-2021-41771	HIGH	1.16.10, 1.17.3	fixed	https://avd.aquasec.com/nvd/cve-2021-41771
+filebrowser	stdlib	v1.16.2	CVE-2021-41772	HIGH	1.16.10, 1.17.3	fixed	https://avd.aquasec.com/nvd/cve-2021-41772
+filebrowser	stdlib	v1.16.2	CVE-2021-44716	HIGH	1.16.12, 1.17.5	fixed	https://avd.aquasec.com/nvd/cve-2021-44716
+filebrowser	stdlib	v1.16.2	CVE-2022-23772	HIGH	1.16.14, 1.17.7	fixed	https://avd.aquasec.com/nvd/cve-2022-23772
+filebrowser	stdlib	v1.16.2	CVE-2022-24675	HIGH	1.17.9, 1.18.1	fixed	https://avd.aquasec.com/nvd/cve-2022-24675
+filebrowser	stdlib	v1.16.2	CVE-2022-24921	HIGH	1.16.15, 1.17.8	fixed	https://avd.aquasec.com/nvd/cve-2022-24921
+filebrowser	stdlib	v1.16.2	CVE-2022-27664	HIGH	1.18.6, 1.19.1	fixed	https://avd.aquasec.com/nvd/cve-2022-27664
+filebrowser	stdlib	v1.16.2	CVE-2022-28131	HIGH	1.17.12, 1.18.4	fixed	https://avd.aquasec.com/nvd/cve-2022-28131
+filebrowser	stdlib	v1.16.2	CVE-2022-28327	HIGH	1.17.9, 1.18.1	fixed	https://avd.aquasec.com/nvd/cve-2022-28327
+filebrowser	stdlib	v1.16.2	CVE-2022-2879	HIGH	1.18.7, 1.19.2	fixed	https://avd.aquasec.com/nvd/cve-2022-2879
+filebrowser	stdlib	v1.16.2	CVE-2022-2880	HIGH	1.18.7, 1.19.2	fixed	https://avd.aquasec.com/nvd/cve-2022-2880
+filebrowser	stdlib	v1.16.2	CVE-2022-29804	HIGH	1.17.11, 1.18.3	fixed	https://avd.aquasec.com/nvd/cve-2022-29804
+filebrowser	stdlib	v1.16.2	CVE-2022-30580	HIGH	1.17.11, 1.18.3	fixed	https://avd.aquasec.com/nvd/cve-2022-30580
+filebrowser	stdlib	v1.16.2	CVE-2022-30630	HIGH	1.17.12, 1.18.4	fixed	https://avd.aquasec.com/nvd/cve-2022-30630
+filebrowser	stdlib	v1.16.2	CVE-2022-30631	HIGH	1.17.12, 1.18.4	fixed	https://avd.aquasec.com/nvd/cve-2022-30631
+filebrowser	stdlib	v1.16.2	CVE-2022-30632	HIGH	1.17.12, 1.18.4	fixed	https://avd.aquasec.com/nvd/cve-2022-30632
+filebrowser	stdlib	v1.16.2	CVE-2022-30633	HIGH	1.17.12, 1.18.4	fixed	https://avd.aquasec.com/nvd/cve-2022-30633
+filebrowser	stdlib	v1.16.2	CVE-2022-30634	HIGH	1.17.11, 1.18.3	fixed	https://avd.aquasec.com/nvd/cve-2022-30634
+filebrowser	stdlib	v1.16.2	CVE-2022-30635	HIGH	1.17.12, 1.18.4	fixed	https://avd.aquasec.com/nvd/cve-2022-30635
+filebrowser	stdlib	v1.16.2	CVE-2022-32189	HIGH	1.17.13, 1.18.5	fixed	https://avd.aquasec.com/nvd/cve-2022-32189
+filebrowser	stdlib	v1.16.2	CVE-2022-41715	HIGH	1.18.7, 1.19.2	fixed	https://avd.aquasec.com/nvd/cve-2022-41715
+filebrowser	stdlib	v1.16.2	CVE-2022-41716	HIGH	1.18.8, 1.19.3	fixed	https://avd.aquasec.com/nvd/cve-2022-41716
+filebrowser	stdlib	v1.16.2	CVE-2022-41720	HIGH	1.18.9, 1.19.4	fixed	https://avd.aquasec.com/nvd/cve-2022-41720
+filebrowser	stdlib	v1.16.2	CVE-2022-41722	HIGH	1.19.6, 1.20.1	fixed	https://avd.aquasec.com/nvd/cve-2022-41722
+filebrowser	stdlib	v1.16.2	CVE-2022-41723	HIGH	1.19.6, 1.20.1	fixed	https://avd.aquasec.com/nvd/cve-2022-41723
+filebrowser	stdlib	v1.16.2	CVE-2022-41724	HIGH	1.19.6, 1.20.1	fixed	https://avd.aquasec.com/nvd/cve-2022-41724
+filebrowser	stdlib	v1.16.2	CVE-2022-41725	HIGH	1.19.6, 1.20.1	fixed	https://avd.aquasec.com/nvd/cve-2022-41725
+filebrowser	stdlib	v1.16.2	CVE-2023-24534	HIGH	1.19.8, 1.20.3	fixed	https://avd.aquasec.com/nvd/cve-2023-24534
+filebrowser	stdlib	v1.16.2	CVE-2023-24536	HIGH	1.19.8, 1.20.3	fixed	https://avd.aquasec.com/nvd/cve-2023-24536
+filebrowser	stdlib	v1.16.2	CVE-2023-24537	HIGH	1.19.8, 1.20.3	fixed	https://avd.aquasec.com/nvd/cve-2023-24537
+filebrowser	stdlib	v1.16.2	CVE-2023-24539	HIGH	1.19.9, 1.20.4	fixed	https://avd.aquasec.com/nvd/cve-2023-24539
+filebrowser	stdlib	v1.16.2	CVE-2023-29400	HIGH	1.19.9, 1.20.4	fixed	https://avd.aquasec.com/nvd/cve-2023-29400
+filebrowser	stdlib	v1.16.2	CVE-2023-29403	HIGH	1.19.10, 1.20.5	fixed	https://avd.aquasec.com/nvd/cve-2023-29403
+filebrowser	stdlib	v1.16.2	CVE-2023-39325	HIGH	1.20.10, 1.21.3	fixed	https://avd.aquasec.com/nvd/cve-2023-39325
+filebrowser	stdlib	v1.16.2	CVE-2023-45283	HIGH	1.20.11, 1.21.4, 1.20.12, 1.21.5	fixed	https://avd.aquasec.com/nvd/cve-2023-45283
+filebrowser	stdlib	v1.16.2	CVE-2023-45287	HIGH	1.20.0	fixed	https://avd.aquasec.com/nvd/cve-2023-45287
+filebrowser	stdlib	v1.16.2	CVE-2023-45288	HIGH	1.21.9, 1.22.2	fixed	https://avd.aquasec.com/nvd/cve-2023-45288
+filebrowser	stdlib	v1.16.2	CVE-2024-34156	HIGH	1.22.7, 1.23.1	fixed	https://avd.aquasec.com/nvd/cve-2024-34156
+filebrowser	stdlib	v1.16.2	CVE-2025-61726	HIGH	1.24.12, 1.25.6	fixed	https://avd.aquasec.com/nvd/cve-2025-61726
+filebrowser	stdlib	v1.16.2	CVE-2025-61729	HIGH	1.24.11, 1.25.5	fixed	https://avd.aquasec.com/nvd/cve-2025-61729
+filebrowser	stdlib	v1.16.2	CVE-2026-25679	HIGH	1.25.8, 1.26.1	fixed	https://avd.aquasec.com/nvd/cve-2026-25679
+filebrowser	stdlib	v1.16.2	CVE-2026-27145	HIGH	1.25.11, 1.26.4	fixed	https://avd.aquasec.com/nvd/cve-2026-27145
+filebrowser	stdlib	v1.16.2	CVE-2026-32280	HIGH	1.25.9, 1.26.2	fixed	https://avd.aquasec.com/nvd/cve-2026-32280
+filebrowser	stdlib	v1.16.2	CVE-2026-32281	HIGH	1.25.9, 1.26.2	fixed	https://avd.aquasec.com/nvd/cve-2026-32281
+filebrowser	stdlib	v1.16.2	CVE-2026-32283	HIGH	1.25.9, 1.26.2	fixed	https://avd.aquasec.com/nvd/cve-2026-32283
+filebrowser	stdlib	v1.16.2	CVE-2026-33811	HIGH	1.25.10, 1.26.3	fixed	https://avd.aquasec.com/nvd/cve-2026-33811
+filebrowser	stdlib	v1.16.2	CVE-2026-33814	HIGH	1.25.10, 1.26.3	fixed	https://avd.aquasec.com/nvd/cve-2026-33814
+filebrowser	stdlib	v1.16.2	CVE-2026-33818	HIGH	1.25.13, 1.26.6, 1.27.0-rc.3	fixed	https://avd.aquasec.com/nvd/cve-2026-33818
+filebrowser	stdlib	v1.16.2	CVE-2026-39820	HIGH	1.25.10, 1.26.3	fixed	https://avd.aquasec.com/nvd/cve-2026-39820
+filebrowser	stdlib	v1.16.2	CVE-2026-39821	HIGH	1.25.13, 1.26.6, 1.27.0-rc.3	fixed	https://avd.aquasec.com/nvd/cve-2026-39821
+filebrowser	stdlib	v1.16.2	CVE-2026-39822	HIGH	1.25.12, 1.26.5, 1.27.0-rc.2	fixed	https://avd.aquasec.com/nvd/cve-2026-39822
+filebrowser	stdlib	v1.16.2	CVE-2026-39836	HIGH	1.25.10, 1.26.3	fixed	https://avd.aquasec.com/nvd/cve-2026-39836
+filebrowser	stdlib	v1.16.2	CVE-2026-42499	HIGH	1.25.10, 1.26.3	fixed	https://avd.aquasec.com/nvd/cve-2026-42499
+filebrowser	stdlib	v1.16.2	CVE-2026-42504	HIGH	1.25.11, 1.26.4	fixed	https://avd.aquasec.com/nvd/cve-2026-42504
+filebrowser	stdlib	v1.16.2	CVE-2026-56853	HIGH	1.25.13, 1.26.6, 1.27.0-rc.3	fixed	https://avd.aquasec.com/nvd/cve-2026-56853
+filebrowser	stdlib	v1.16.2	CVE-2026-56858	HIGH	1.25.13, 1.26.6, 1.27.0-rc.3	fixed	https://avd.aquasec.com/nvd/cve-2026-56858
+filebrowser	stdlib	v1.16.2	CVE-2026-56859	HIGH	1.25.13, 1.26.6, 1.27.0-rc.3	fixed	https://avd.aquasec.com/nvd/cve-2026-56859
+filebrowser	stdlib	v1.16.2	CVE-2026-56860	HIGH	1.25.13, 1.26.6, 1.27.0-rc.3	fixed	https://avd.aquasec.com/nvd/cve-2026-56860
+filebrowser	stdlib	v1.16.2	CVE-2026-56862	HIGH	1.25.13, 1.26.6, 1.27.0-rc.3	fixed	https://avd.aquasec.com/nvd/cve-2026-56862
+filebrowser	stdlib	v1.16.2	CVE-2021-31525	MEDIUM	1.15.12, 1.16.4	fixed	https://avd.aquasec.com/nvd/cve-2021-31525
+filebrowser	stdlib	v1.16.2	CVE-2021-33197	MEDIUM	1.15.13, 1.16.5	fixed	https://avd.aquasec.com/nvd/cve-2021-33197
+filebrowser	stdlib	v1.16.2	CVE-2021-34558	MEDIUM	1.15.14, 1.16.6	fixed	https://avd.aquasec.com/nvd/cve-2021-34558
+filebrowser	stdlib	v1.16.2	CVE-2021-36221	MEDIUM	1.15.15, 1.16.7	fixed	https://avd.aquasec.com/nvd/cve-2021-36221
+filebrowser	stdlib	v1.16.2	CVE-2021-44717	MEDIUM	1.16.12, 1.17.5	fixed	https://avd.aquasec.com/nvd/cve-2021-44717
+filebrowser	stdlib	v1.16.2	CVE-2022-1705	MEDIUM	1.17.12, 1.18.4	fixed	https://avd.aquasec.com/nvd/cve-2022-1705
+filebrowser	stdlib	v1.16.2	CVE-2022-1962	MEDIUM	1.17.12, 1.18.4	fixed	https://avd.aquasec.com/nvd/cve-2022-1962
+filebrowser	stdlib	v1.16.2	CVE-2022-29526	MEDIUM	1.17.10, 1.18.2	fixed	https://avd.aquasec.com/nvd/cve-2022-29526
+filebrowser	stdlib	v1.16.2	CVE-2022-32148	MEDIUM	1.17.12, 1.18.4	fixed	https://avd.aquasec.com/nvd/cve-2022-32148
+filebrowser	stdlib	v1.16.2	CVE-2022-41717	MEDIUM	1.18.9, 1.19.4	fixed	https://avd.aquasec.com/nvd/cve-2022-41717
+filebrowser	stdlib	v1.16.2	CVE-2023-24532	MEDIUM	1.19.7, 1.20.2	fixed	https://avd.aquasec.com/nvd/cve-2023-24532
+filebrowser	stdlib	v1.16.2	CVE-2023-29406	MEDIUM	1.19.11, 1.20.6	fixed	https://avd.aquasec.com/nvd/cve-2023-29406
+filebrowser	stdlib	v1.16.2	CVE-2023-29409	MEDIUM	1.19.12, 1.20.7, 1.21.0-rc.4	fixed	https://avd.aquasec.com/nvd/cve-2023-29409
+filebrowser	stdlib	v1.16.2	CVE-2023-39318	MEDIUM	1.20.8, 1.21.1	fixed	https://avd.aquasec.com/nvd/cve-2023-39318
+filebrowser	stdlib	v1.16.2	CVE-2023-39319	MEDIUM	1.20.8, 1.21.1	fixed	https://avd.aquasec.com/nvd/cve-2023-39319
+filebrowser	stdlib	v1.16.2	CVE-2023-39326	MEDIUM	1.20.12, 1.21.5	fixed	https://avd.aquasec.com/nvd/cve-2023-39326
+filebrowser	stdlib	v1.16.2	CVE-2023-45284	MEDIUM	1.20.11, 1.21.4	fixed	https://avd.aquasec.com/nvd/cve-2023-45284
+filebrowser	stdlib	v1.16.2	CVE-2023-45289	MEDIUM	1.21.8, 1.22.1	fixed	https://avd.aquasec.com/nvd/cve-2023-45289
+filebrowser	stdlib	v1.16.2	CVE-2023-45290	MEDIUM	1.21.8, 1.22.1	fixed	https://avd.aquasec.com/nvd/cve-2023-45290
+filebrowser	stdlib	v1.16.2	CVE-2024-24783	MEDIUM	1.21.8, 1.22.1	fixed	https://avd.aquasec.com/nvd/cve-2024-24783
+filebrowser	stdlib	v1.16.2	CVE-2024-24784	MEDIUM	1.21.8, 1.22.1	fixed	https://avd.aquasec.com/nvd/cve-2024-24784
+filebrowser	stdlib	v1.16.2	CVE-2024-24785	MEDIUM	1.21.8, 1.22.1	fixed	https://avd.aquasec.com/nvd/cve-2024-24785
+filebrowser	stdlib	v1.16.2	CVE-2024-24789	MEDIUM	1.21.11, 1.22.4	fixed	https://avd.aquasec.com/nvd/cve-2024-24789
+filebrowser	stdlib	v1.16.2	CVE-2024-24791	MEDIUM	1.21.12, 1.22.5	fixed	https://avd.aquasec.com/nvd/cve-2024-24791
+filebrowser	stdlib	v1.16.2	CVE-2024-34155	MEDIUM	1.22.7, 1.23.1	fixed	https://avd.aquasec.com/nvd/cve-2024-34155
+filebrowser	stdlib	v1.16.2	CVE-2024-34158	MEDIUM	1.22.7, 1.23.1	fixed	https://avd.aquasec.com/nvd/cve-2024-34158
+filebrowser	stdlib	v1.16.2	CVE-2024-45336	MEDIUM	1.22.11, 1.23.5, 1.24.0-rc.2	fixed	https://avd.aquasec.com/nvd/cve-2024-45336
+filebrowser	stdlib	v1.16.2	CVE-2025-0913	MEDIUM	1.23.10, 1.24.4	fixed	https://avd.aquasec.com/nvd/cve-2025-0913
+filebrowser	stdlib	v1.16.2	CVE-2025-22866	MEDIUM	1.22.12, 1.23.6, 1.24.0-rc.3	fixed	https://avd.aquasec.com/nvd/cve-2025-22866
+filebrowser	stdlib	v1.16.2	CVE-2025-22870	MEDIUM	1.23.7, 1.24.1	fixed	https://avd.aquasec.com/nvd/cve-2025-22870
+filebrowser	stdlib	v1.16.2	CVE-2025-22871	MEDIUM	1.23.8, 1.24.2	fixed	https://avd.aquasec.com/nvd/cve-2025-22871
+filebrowser	stdlib	v1.16.2	CVE-2025-22873	MEDIUM	1.23.9, 1.24.3	fixed	https://avd.aquasec.com/nvd/cve-2025-22873
+filebrowser	stdlib	v1.16.2	CVE-2025-4673	MEDIUM	1.23.10, 1.24.4	fixed	https://avd.aquasec.com/nvd/cve-2025-4673
+filebrowser	stdlib	v1.16.2	CVE-2025-47906	MEDIUM	1.23.12, 1.24.6	fixed	https://avd.aquasec.com/nvd/cve-2025-47906
+filebrowser	stdlib	v1.16.2	CVE-2025-47907	MEDIUM	1.23.12, 1.24.6	fixed	https://avd.aquasec.com/nvd/cve-2025-47907
+filebrowser	stdlib	v1.16.2	CVE-2025-47912	MEDIUM	1.24.8, 1.25.2	fixed	https://avd.aquasec.com/nvd/cve-2025-47912
+filebrowser	stdlib	v1.16.2	CVE-2025-58183	MEDIUM	1.24.8, 1.25.2	fixed	https://avd.aquasec.com/nvd/cve-2025-58183
+filebrowser	stdlib	v1.16.2	CVE-2025-58185	MEDIUM	1.24.8, 1.25.2	fixed	https://avd.aquasec.com/nvd/cve-2025-58185
+filebrowser	stdlib	v1.16.2	CVE-2025-58187	MEDIUM	1.24.9, 1.25.3	fixed	https://avd.aquasec.com/nvd/cve-2025-58187
+filebrowser	stdlib	v1.16.2	CVE-2025-58188	MEDIUM	1.24.8, 1.25.2	fixed	https://avd.aquasec.com/nvd/cve-2025-58188
+filebrowser	stdlib	v1.16.2	CVE-2025-58189	MEDIUM	1.24.8, 1.25.2	fixed	https://avd.aquasec.com/nvd/cve-2025-58189
+filebrowser	stdlib	v1.16.2	CVE-2025-61723	MEDIUM	1.24.8, 1.25.2	fixed	https://avd.aquasec.com/nvd/cve-2025-61723
+filebrowser	stdlib	v1.16.2	CVE-2025-61724	MEDIUM	1.24.8, 1.25.2	fixed	https://avd.aquasec.com/nvd/cve-2025-61724
+filebrowser	stdlib	v1.16.2	CVE-2025-61725	MEDIUM	1.24.8, 1.25.2	fixed	https://avd.aquasec.com/nvd/cve-2025-61725
+filebrowser	stdlib	v1.16.2	CVE-2025-61727	MEDIUM	1.24.11, 1.25.5	fixed	https://avd.aquasec.com/nvd/cve-2025-61727
+filebrowser	stdlib	v1.16.2	CVE-2025-61728	MEDIUM	1.24.12, 1.25.6	fixed	https://avd.aquasec.com/nvd/cve-2025-61728
+filebrowser	stdlib	v1.16.2	CVE-2025-61730	MEDIUM	1.24.12, 1.25.6	fixed	https://avd.aquasec.com/nvd/cve-2025-61730
+filebrowser	stdlib	v1.16.2	CVE-2026-27142	MEDIUM	1.25.8, 1.26.1	fixed	https://avd.aquasec.com/nvd/cve-2026-27142
+filebrowser	stdlib	v1.16.2	CVE-2026-32282	MEDIUM	1.25.9, 1.26.2	fixed	https://avd.aquasec.com/nvd/cve-2026-32282
+filebrowser	stdlib	v1.16.2	CVE-2026-32288	MEDIUM	1.25.9, 1.26.2	fixed	https://avd.aquasec.com/nvd/cve-2026-32288
+filebrowser	stdlib	v1.16.2	CVE-2026-32289	MEDIUM	1.25.9, 1.26.2	fixed	https://avd.aquasec.com/nvd/cve-2026-32289
+filebrowser	stdlib	v1.16.2	CVE-2026-39823	MEDIUM	1.25.10, 1.26.3	fixed	https://avd.aquasec.com/nvd/cve-2026-39823
+filebrowser	stdlib	v1.16.2	CVE-2026-39825	MEDIUM	1.25.10, 1.26.3	fixed	https://avd.aquasec.com/nvd/cve-2026-39825
+filebrowser	stdlib	v1.16.2	CVE-2026-39826	MEDIUM	1.25.10, 1.26.3	fixed	https://avd.aquasec.com/nvd/cve-2026-39826
+filebrowser	stdlib	v1.16.2	CVE-2026-42505	MEDIUM	1.25.12, 1.26.5, 1.27.0-rc.2	fixed	https://avd.aquasec.com/nvd/cve-2026-42505
+filebrowser	stdlib	v1.16.2	CVE-2026-42507	MEDIUM	1.25.11, 1.26.4	fixed	https://avd.aquasec.com/nvd/cve-2026-42507
+filebrowser	stdlib	v1.16.2	CVE-2022-30629	LOW	1.17.11, 1.18.3	fixed	https://avd.aquasec.com/nvd/cve-2022-30629
+filebrowser	stdlib	v1.16.2	CVE-2024-45341	LOW	1.22.11, 1.23.5, 1.24.0-rc.2	fixed	https://avd.aquasec.com/nvd/cve-2024-45341
+filebrowser	stdlib	v1.16.2	CVE-2025-58186	LOW	1.24.8, 1.25.2	fixed	https://avd.aquasec.com/nvd/cve-2025-58186
+filebrowser	stdlib	v1.16.2	CVE-2026-27139	LOW	1.25.8, 1.26.1	fixed	https://avd.aquasec.com/nvd/cve-2026-27139

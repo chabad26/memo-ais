@@ -1,0 +1,31 @@
+[ovh]
+dist01b-ovh ansible_host=135.125.57.223 ansible_user=ubuntu private_ip=10.42.10.123
+# Remplacer les valeurs ansible_host par les IP publiques issues de tofu output.
+files-ovh ansible_host=51.83.112.41 ansible_user=ubuntu private_ip=10.42.10.42
+mail-ovh ansible_host=54.36.253.197 ansible_user=ubuntu private_ip=10.42.10.139
+
+[web]
+dist01b-ovh
+
+[directory]
+dist01b-ovh
+
+[files]
+files-ovh
+
+[mail]
+mail-ovh
+
+[monitoring]
+dist01b-ovh
+
+# Adresses privées OVH utilisees par les services inter-hotes :
+# dist01b-ovh = 10.42.10.123
+# files-ovh   = 10.42.10.42
+# mail-ovh    = 10.42.10.139
+# Les IP publiques restent necessaires pour SSH depuis le poste local.
+
+[ovh:vars]
+ansible_python_interpreter=/usr/bin/python3
+admin_ssh_cidr=90.38.162.195/32
+private_network_cidr=10.42.10.0/24

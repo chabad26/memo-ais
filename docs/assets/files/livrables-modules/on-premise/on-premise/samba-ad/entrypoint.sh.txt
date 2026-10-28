@@ -1,0 +1,71 @@
+#!/bin/sh
+set -eu
+
+CONFIG_SOURCE_DIR=/usr/local/share/samba-config
+CONFIG_PERSISTENT_DIR=/var/lib/samba-config
+
+seed_config() {
+    source_file=$1
+    destination_file=$2
+    mode=$3
+
+    if [ ! -f "${destination_file}" ]; then
+        install -m "${mode}" "${source_file}" "${destination_file}"
+        printf 'Configuration initialisée : %s\n' "${destination_file}"
+    fi
+}
+
+mkdir -p \
+    "${CONFIG_PERSISTENT_DIR}" \
+    /var/lib/samba/private \
+    /var/log/samba \
+    /srv/samba/partage \
+    /srv/samba/commun \
+    /srv/samba/developpement \
+    /srv/samba/bureau-etudes \
+    /srv/samba/administration
+
+chown -R nobody:nogroup /srv/samba
+find /srv/samba -type d -exec chmod 2770 {} \;
+
+seed_config \
+    "${CONFIG_SOURCE_DIR}/smb.conf" \
+    "${CONFIG_PERSISTENT_DIR}/smb.conf" \
+    0644
+seed_config \
+    "${CONFIG_SOURCE_DIR}/nslcd.conf.template" \
+    "${CONFIG_PERSISTENT_DIR}/nslcd.conf.template" \
+    0600
+seed_config \
+    "${CONFIG_SOURCE_DIR}/nsswitch.conf" \
+    "${CONFIG_PERSISTENT_DIR}/nsswitch.conf" \
+    0644
+
+install -m 0644 "${CONFIG_PERSISTENT_DIR}/smb.conf" /etc/samba/smb.conf
+install -m 0644 "${CONFIG_PERSISTENT_DIR}/nsswitch.conf" /etc/nsswitch.conf
+
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+    < "${CONFIG_PERSISTENT_DIR}/nslcd.conf.template" \
+    > /etc/nslcd.conf
+chmod 0600 /etc/nslcd.conf
+
+testparm -s /etc/samba/smb.conf >/dev/null
+
+if ! ldapwhoami \
+    -x \
+    -H ldap://openldap:3890 \
+    -D cn=admin,dc=embedded,dc=local \
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+    >/dev/null 2>&1; then
+    printf '%s\n' \
+        'ERREUR : liaison LDAP administrateur refusée.' \
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+    exit 3
+fi
+
+nslcd
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+
+printf 'Configuration Samba chargée depuis le volume persistant.\n'
+exec smbd --foreground --no-process-group --configfile=/etc/samba/smb.conf

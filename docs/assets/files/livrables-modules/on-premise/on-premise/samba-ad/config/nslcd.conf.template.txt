@@ -1,0 +1,7 @@
+uid nslcd
+gid nslcd
+uri ldap://openldap:3890
+base dc=embedded,dc=local
+binddn cn=admin,dc=embedded,dc=local
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+ssl off

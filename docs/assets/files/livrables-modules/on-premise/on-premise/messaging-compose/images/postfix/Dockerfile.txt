@@ -1,0 +1,4 @@
+FROM boky/postfix:latest
+
+COPY pki/certs/Campus-CA-root.crt /usr/local/share/ca-certificates/Campus-CA-root.crt
+RUN update-ca-certificates

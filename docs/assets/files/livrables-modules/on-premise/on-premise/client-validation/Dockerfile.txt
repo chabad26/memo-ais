@@ -1,0 +1,16 @@
+FROM debian:bookworm-slim
+
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        openssl \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY pki/certs/Campus-CA-root.crt /usr/local/share/ca-certificates/Campus-CA-root.crt
+RUN update-ca-certificates
+
+COPY client-validation/validate-tls.sh /usr/local/bin/validate-tls
+RUN chmod 0755 /usr/local/bin/validate-tls
+
+ENTRYPOINT ["validate-tls"]

@@ -1,0 +1,178 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+umask 077
+
+BACKUP_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+PROJECT_DIR=$(cd -- "${BACKUP_DIR}/.." && pwd)
+ENV_FILE="${BACKUP_DIR}/.env"
+LOG_DIR="${BACKUP_DIR}/logs"
+
+if [[ -f "${ENV_FILE}" ]]; then
+  # shellcheck disable=SC1090
+  source "${ENV_FILE}"
+fi
+
+BORG_REPO=${BORG_REPO:-/home/oliv/borg-infrastructure-backup}
+BORG_ARCHIVE_PREFIX=${BORG_ARCHIVE_PREFIX:-embedded-infra}
+
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+  printf '\n'
+fi
+
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+
+mkdir -p "${LOG_DIR}"
+LOG_FILE="${LOG_DIR}/backup-$(date +%Y-%m-%dT%H-%M-%S).log"
+exec > >(tee -a "${LOG_FILE}") 2>&1
+
+STAGING_DIR=$(mktemp -d /tmp/embedded-backup.XXXXXX)
+PAUSED_CONTAINERS=()
+
+cleanup() {
+  local container
+
+  for container in "${PAUSED_CONTAINERS[@]}"; do
+    docker unpause "${container}" >/dev/null 2>&1 || true
+  done
+
+  rm -rf -- "${STAGING_DIR}"
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+}
+
+trap cleanup EXIT INT TERM
+
+require_command() {
+  command -v "$1" >/dev/null 2>&1 || {
+    printf 'Commande requise absente : %s\n' "$1" >&2
+    exit 2
+  }
+}
+
+container_running() {
+  [[ "$(docker inspect -f '{{.State.Running}}' "$1" 2>/dev/null || true)" == "true" ]]
+}
+
+volume_exists() {
+  docker volume inspect "$1" >/dev/null 2>&1
+}
+
+pause_container() {
+  local container=$1
+
+  if container_running "${container}"; then
+    docker pause "${container}" >/dev/null
+    PAUSED_CONTAINERS+=("${container}")
+  fi
+}
+
+unpause_container() {
+  local container=$1
+  local remaining=()
+  local current
+
+  docker unpause "${container}" >/dev/null
+
+  for current in "${PAUSED_CONTAINERS[@]}"; do
+    [[ "${current}" == "${container}" ]] || remaining+=("${current}")
+  done
+  PAUSED_CONTAINERS=("${remaining[@]}")
+}
+
+backup_volume() {
+  local volume=$1
+  local destination="${STAGING_DIR}/volumes/${volume}.tar.gz"
+
+  if ! volume_exists "${volume}"; then
+    printf 'Volume absent, ignoré : %s\n' "${volume}"
+    return
+  fi
+
+  mkdir -p "${STAGING_DIR}/volumes"
+  docker run --rm \
+    --volume "${volume}:/source:ro" \
+    --volume "${STAGING_DIR}/volumes:/backup" \
+    alpine:3.20 \
+    tar -C /source -czf "/backup/$(basename "${destination}")" .
+}
+
+require_command borg
+require_command docker
+
+printf 'Début de la sauvegarde : %s\n' "$(date --iso-8601=seconds)"
+printf 'Dépôt Borg : %s\n' "${BORG_REPO}"
+
+mkdir -p "${STAGING_DIR}/exports"
+
+if container_running openldap; then
+  docker exec openldap slapcat -n 1 > "${STAGING_DIR}/exports/openldap-data.ldif"
+  docker exec openldap slapcat -n 0 > "${STAGING_DIR}/exports/openldap-config.ldif"
+else
+  printf 'OpenLDAP indisponible : exports LDIF non créés.\n' >&2
+  exit 2
+fi
+
+if container_running mail-db; then
+  docker exec mail-db sh -c \
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+    > "${STAGING_DIR}/exports/roundcube-all-databases.sql"
+else
+  printf 'MariaDB Roundcube indisponible : export SQL non créé.\n' >&2
+  exit 2
+fi
+
+pause_container openldap
+backup_volume openldap_ldap_data
+backup_volume openldap_ldap_config
+backup_volume openldap_ldap_backups
+unpause_container openldap
+
+pause_container samba-ldap
+backup_volume samba-ad_samba_config
+backup_volume samba-ad_samba_share
+backup_volume samba-ad_samba_state
+unpause_container samba-ldap
+
+pause_container mail-dovecot
+backup_volume messaging-compose_dovecot_mail
+unpause_container mail-dovecot
+
+backup_volume messaging-compose_roundcube_config
+backup_volume wordpress-compose_db_data
+
+if [[ ! -f "${BORG_REPO}/config" ]]; then
+  mkdir -p "${BORG_REPO}"
+  borg init --encryption=repokey "${BORG_REPO}"
+fi
+
+ARCHIVE_NAME="${BORG_ARCHIVE_PREFIX}-$(hostname)-$(date +%Y-%m-%dT%H-%M-%S)"
+
+borg create \
+  --stats \
+  --show-rc \
+  --compression lz4 \
+  --exclude "${PROJECT_DIR}/.git" \
+  --exclude "${PROJECT_DIR}/borg-demo" \
+  --exclude "${BACKUP_DIR}/.env" \
+  --exclude "${BACKUP_DIR}/logs" \
+  "${BORG_REPO}::${ARCHIVE_NAME}" \
+  "${PROJECT_DIR}" \
+  "${STAGING_DIR}"
+
+borg prune \
+  --list \
+  --glob-archives "${BORG_ARCHIVE_PREFIX}-*" \
+  --keep-daily 7 \
+  --keep-weekly 4 \
+  --keep-monthly 6 \
+  "${BORG_REPO}"
+
+borg compact "${BORG_REPO}"
+borg check "${BORG_REPO}"
+borg list "${BORG_REPO}"
+borg info "${BORG_REPO}::${ARCHIVE_NAME}"
+
+printf 'Sauvegarde terminée : %s\n' "$(date --iso-8601=seconds)"
+printf 'Archive créée : %s\n' "${ARCHIVE_NAME}"
+printf 'Journal : %s\n' "${LOG_FILE}"

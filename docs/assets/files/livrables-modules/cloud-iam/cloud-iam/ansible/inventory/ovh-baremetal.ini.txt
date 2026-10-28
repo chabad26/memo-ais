@@ -1,0 +1,14 @@
+[baremetal]
+ovh-baremetal-01 ansible_host=51.255.196.223 ansible_user=ubuntu
+
+[baremetal:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+[directory]
+ovh-baremetal-01 private_ip=51.255.196.223
+
+[mail]
+ovh-baremetal-01 private_ip=51.255.196.223
+
+[files]
+ovh-baremetal-01 private_ip=51.255.196.223

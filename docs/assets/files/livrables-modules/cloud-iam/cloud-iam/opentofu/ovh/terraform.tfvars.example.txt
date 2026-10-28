@@ -1,0 +1,16 @@
+region               = "GRA9"
+instance_name        = "d2-4-2026_08_31-09-17"
+flavor_name          = "d2-4"
+small_instance_names = [
+  "d2-2-2026_08_31-01",
+  "d2-2-2026_08_31-02",
+]
+small_flavor_name    = "d2-2"
+image_name           = "Ubuntu 26.04 - UEFI"
+ssh_key_name         = "laptop"
+ssh_public_key_path  = "~/.ssh/id_ed25519.pub"
+ssh_user             = "ubuntu"
+public_network_name  = "Ext-Net"
+private_network_name = "pn-GRA9-31082026"
+private_cidr         = "10.42.10.0/24"
+admin_ssh_cidr       = "90.38.162.195/32"

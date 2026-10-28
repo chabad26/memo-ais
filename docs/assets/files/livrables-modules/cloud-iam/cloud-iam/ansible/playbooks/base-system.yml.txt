@@ -1,0 +1,109 @@
+---
+- name: Configurer le socle systeme cloud
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Mettre a jour le cache APT
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Installer les paquets de base
+      ansible.builtin.apt:
+        name:
+          - curl
+          - git
+          - htop
+          - ufw
+          - ca-certificates
+          - docker.io
+          - docker-compose-v2
+        state: present
+
+    - name: Activer Docker
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Ajouter ubuntu au groupe Docker
+      ansible.builtin.user:
+        name: ubuntu
+        groups: docker
+        append: true
+
+    - name: Supprimer l'ancienne autorisation SSH generale
+      community.general.ufw:
+        rule: allow
+        delete: true
+        port: "22"
+        proto: tcp
+
+    - name: Autoriser SSH depuis le poste admin
+      community.general.ufw:
+        rule: allow
+        from_ip: "{{ admin_ssh_cidr }}"
+        port: "22"
+        proto: tcp
+
+    - name: Activer le pare-feu
+      community.general.ufw:
+        state: enabled
+        policy: deny
+
+    - name: Autoriser HTTP pour la page web
+      community.general.ufw:
+        rule: allow
+        port: "80"
+        proto: tcp
+
+    - name: Autoriser les communications entre les VM sur le réseau privé
+      community.general.ufw:
+        rule: allow
+        from_ip: "{{ private_network_cidr }}"
+      when: private_network_cidr | default('') | length > 0
+
+    - name: Autoriser les services entre les VM sans réseau privé
+      community.general.ufw:
+        rule: allow
+        from_ip: "{{ item.0 }}"
+        port: "{{ service_port }}"
+        proto: tcp
+      vars:
+        service_port: "{{ item.1 }}"
+      when:
+        - cloud_peer_ips_csv | default('') | length > 0
+        - item.0 != ansible_host
+      with_nested:
+        - "{{ cloud_peer_ips_csv.split(',') | map('trim') | list }}"
+        - ["25", "139", "143", "389", "445", "587", "636", "993", "8081", "8085", "8443"]
+
+    - name: Autoriser les ports des services sur le reseau prive
+      community.general.ufw:
+        rule: allow
+        from_ip: "{{ private_network_cidr }}"
+        port: "{{ item }}"
+        proto: tcp
+      loop:
+        - "25"
+        - "139"
+        - "143"
+        - "389"
+        - "445"
+        - "636"
+        - "587"
+        - "993"
+        - "8081"
+        - "8085"
+        - "8443"
+      when: private_network_cidr | default('') | length > 0
+
+- name: Deployer le site web sur la VM principale
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Deployer le site web
+      ansible.builtin.include_role:
+        name: web

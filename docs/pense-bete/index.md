@@ -37,6 +37,7 @@ Il ne remplace pas les pages de cours : il sert à retrouver rapidement les term
 | IA et Cybersécurité | [Itération 1 - Sous le capot de l'IA](glossaire/ia-cybersecurite/it-1.md), [Itération 2 - Shadow IA](glossaire/ia-cybersecurite/it-2.md), [Itération 3 - Détecter](glossaire/ia-cybersecurite/it-3.md), [Itération 4 - Critiquer](glossaire/ia-cybersecurite/it-4.md), [Itération 5 - Incident et politique IA](glossaire/ia-cybersecurite/it-5.md) |
 
 | Informatique industrielle | [Itération 1 - Découvrir une installation industrielle automatisée](glossaire/informatique-industrielle/it-1.md) |
+| Informatique industrielle | [Itération 2 — J3 : Spécificités de l’OT](glossaire/informatique-industrielle/it-2.md) |
 
 !!! info "Méthode"
     Quand une nouvelle notion revient souvent, elle va dans **Termes à retenir**. Quand une action a été validée en TP, elle va dans **Manipulations faites**. Une procédure prévue ou un rappel va dans **Gestes et commandes à retenir**, sans être présenté comme exécuté. Le cours complet reste lié dans **Docs associées**.

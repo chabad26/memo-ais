@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+pki_dir="$(cd "$script_dir/.." && pwd)"
+plan_file="${1:-$pki_dir/service-certificate-plan.tsv}"
+ca_url="${CA_URL:-https://ca.campus.test}"
+root_cert="${CA_ROOT_CERT:-$pki_dir/certs/Campus-CA-root.crt}"
+intermediate_cert="${CA_INTERMEDIATE_CERT:-$(step path)/certs/intermediate_ca.crt}"
+provisioner="${STEP_CA_PROVISIONER:-admin}"
+issued_dir="$pki_dir/issued"
+
+if [[ ! -r "$plan_file" || ! -r "$root_cert" || ! -r "$intermediate_cert" ]]; then
+  printf 'Plan, certificat racine ou certificat intermédiaire introuvable.\n' >&2
+  exit 1
+fi
+
+write_fullchain() {
+  local certificate="$1"
+  local fullchain="$2"
+
+  cat "$certificate" "$intermediate_cert" > "$fullchain"
+  chmod 644 "$fullchain"
+}
+
+while IFS=$'\t' read -r service subject sans usage; do
+  [[ -z "$service" || "$service" == \#* ]] && continue
+
+  service_dir="$issued_dir/$service"
+  certificate="$service_dir/$service.crt"
+  private_key="$service_dir/$service.key"
+  fullchain="$service_dir/$service.fullchain.crt"
+  inspect_file="$service_dir/$service.inspect.txt"
+  mkdir -p "$service_dir"
+  chmod 700 "$service_dir"
+
+  if [[ -e "$certificate" || -e "$private_key" ]]; then
+    if [[ ! -r "$certificate" || ! -r "$private_key" ]]; then
+      printf 'Fichiers incomplets pour %s ; vérifier %s.\n' "$service" "$service_dir" >&2
+      exit 1
+    fi
+
+    printf 'Certificat %s déjà présent : chaîne et validation mises à jour.\n' "$service"
+    write_fullchain "$certificate" "$fullchain"
+    step certificate inspect "$certificate" | tee "$inspect_file"
+    openssl verify -CAfile "$root_cert" -untrusted "$intermediate_cert" "$certificate"
+    continue
+  fi
+
+  args=(--ca-url "$ca_url" --root "$root_cert" --provisioner "$provisioner")
+  IFS=',' read -r -a san_values <<< "$sans"
+  for san in "${san_values[@]}"; do
+    args+=(--san "$san")
+  done
+  if [[ -n "${CERT_NOT_AFTER:-}" ]]; then
+    args+=(--not-after "$CERT_NOT_AFTER")
+  fi
+
+  printf 'Délivrance du certificat %s pour %s (%s)\n' "$service" "$subject" "$usage"
+  step ca certificate "$subject" "$certificate" "$private_key" "${args[@]}"
+  chmod 600 "$private_key"
+  write_fullchain "$certificate" "$fullchain"
+  step certificate inspect "$certificate" | tee "$inspect_file"
+  openssl verify -CAfile "$root_cert" -untrusted "$intermediate_cert" "$certificate"
+done < "$plan_file"

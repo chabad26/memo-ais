@@ -50,6 +50,13 @@ markdown_extensions:
 
 nav:
   - Accueil: index.md
+  - Livrables:
+      - Catalogue: livrables-modules/index.md
+      - Infrastructure on-premise: livrables-modules/on-premise.md
+      - Cloud et IAM: livrables-modules/cloud-iam.md
+      - Supervision et observabilité: livrables-modules/observabilite.md
+      - Audits Greenbone et Trivy: livrables-modules/securisation.md
+      - Configurations GNS3: livrables-modules/reseaux.md
   - Socle AIS:
     - Intro à l'AIS:
         - Présentation: intro-ais/index.md
@@ -670,10 +677,22 @@ nav:
               - 2.6 — Valider les comportements du jumeau numérique: informatique-industrielle/it-1/valider-comportements-jumeau-numerique.md
               - 2.7 — Dossier de validation du jumeau numérique: informatique-industrielle/it-1/J2-validation-jumeau-numerique.md
 
+      - Itération 2 - J3 - Spécificités de l’OT:
+          - Vue d’ensemble: informatique-industrielle/it-2/index.md
+          - 3.1 — Analyser les exigences d’exploitation OT: informatique-industrielle/it-2/analyser-exigences-exploitation-ot.md
+          - 3.2 — Traduire les exigences OT en besoins informatiques: informatique-industrielle/it-2/traduire-exigences-ot-besoins-informatiques.md
+          - 3.3 — Organiser l’installation avec le modèle Purdue: informatique-industrielle/it-2/organiser-installation-modele-purdue.md
+          - 3.4 — Mettre en commun les exigences et leurs conséquences IT: informatique-industrielle/it-2/mettre-en-commun-exigences-consequences-it.md
+          - 3.5 — Concevoir l’architecture IT/OT de Montval: informatique-industrielle/it-2/concevoir-architecture-it-ot-montval.md
+          - 3.6 — Décider d’une intervention selon les contraintes OT: informatique-industrielle/it-2/decider-intervention-contraintes-ot.md
+          - 3.7 — Finaliser le dossier d’analyse IT/OT: informatique-industrielle/it-2/finaliser-dossier-analyse-it-ot.md
+          - Manuel Montval — MAN-OT-01: informatique-industrielle/it-2/MAN-OT-01_Manuel_exploitation_installation_frigorifique.md
+
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
       - Informatique industrielle:
           - Itération 1 - Découvrir une installation industrielle automatisée: pense-bete/glossaire/informatique-industrielle/it-1.md
+          - Itération 2 - J3 - Spécificités de l’OT: pense-bete/glossaire/informatique-industrielle/it-2.md
       - IA et Cybersécurité:
           - Itération 1 - Sous le capot de l'IA: pense-bete/glossaire/ia-cybersecurite/it-1.md
           - Itération 2 - Shadow IA: pense-bete/glossaire/ia-cybersecurite/it-2.md

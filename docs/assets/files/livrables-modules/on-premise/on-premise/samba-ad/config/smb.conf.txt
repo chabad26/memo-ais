@@ -1,0 +1,83 @@
+[global]
+   workgroup = EMBEDDED
+   netbios name = SAMBAFILE
+   server string = Embedded Solutions - Serveur de fichiers LDAP
+   server role = standalone server
+   security = user
+   map to guest = never
+   passdb backend = ldapsam:ldap://openldap:3890
+
+   ldap suffix = dc=embedded,dc=local
+   ldap user suffix = ou=People
+   ldap group suffix = ou=Groups
+   ldap machine suffix = ou=Computers
+   ldap idmap suffix = ou=Idmap
+   ldap admin dn = cn=admin,dc=embedded,dc=local
+   ldap ssl = no
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+   ldap delete dn = no
+
+   server min protocol = SMB2
+   client min protocol = SMB2
+   log file = /var/log/samba/log.%m
+   max log size = 1000
+
+[partage]
+   comment = Partage Embedded Solutions
+   path = /srv/samba/partage
+   browseable = yes
+   read only = no
+   guest ok = no
+   valid users = amartin bdupont cdurand dbernard erobert oadmin
+   create mask = 0660
+   directory mask = 0770
+   force user = nobody
+   force group = nogroup
+
+[Commun]
+   comment = Espace commun Embedded Solutions
+   path = /srv/samba/commun
+   browseable = yes
+   read only = no
+   guest ok = no
+   valid users = @grp-direction @grp-administration @grp-bureau-etudes @grp-developpement @grp-integration @grp-informatique
+   create mask = 0660
+   directory mask = 0770
+   force user = nobody
+   force group = nogroup
+
+[Developpement]
+   comment = Espace de partage du developpement logiciel
+   path = /srv/samba/developpement
+   browseable = yes
+   read only = no
+   guest ok = no
+   valid users = @grp-developpement
+   create mask = 0660
+   directory mask = 0770
+   force user = nobody
+   force group = nogroup
+
+[Bureau-etudes]
+   comment = Espace de partage du bureau d'etudes
+   path = /srv/samba/bureau-etudes
+   browseable = yes
+   read only = no
+   guest ok = no
+   valid users = @grp-bureau-etudes
+   create mask = 0660
+   directory mask = 0770
+   force user = nobody
+   force group = nogroup
+
+[Administration]
+   comment = Espace de partage de l'administration
+   path = /srv/samba/administration
+   browseable = yes
+   read only = no
+   guest ok = no
+   valid users = @grp-administration
+   create mask = 0660
+   directory mask = 0770
+   force user = nobody
+   force group = nogroup

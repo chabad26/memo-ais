@@ -144,3 +144,7 @@ La compétence visée n'est pas seulement de "faire marcher" une plateforme clou
 - [Itération 3](../pense-bete/glossaire/integration-distribuee-cloud-iam/it-3.md)
 - [Itération 4](../pense-bete/glossaire/integration-distribuee-cloud-iam/it-4.md)
 - [Itération 5](../pense-bete/glossaire/integration-distribuee-cloud-iam/it-5.md)
+
+## Livrables du dossier Modules
+
+[Documents et fichiers techniques classés](../livrables-modules/cloud-iam.md) : copies de consultation des livrables fournis, avec leurs sources et limites. L’import documentaire ne constitue pas une nouvelle exécution ou validation.

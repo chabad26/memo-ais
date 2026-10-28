@@ -1,0 +1,26 @@
+[infomaniak]
+dist01b-infomaniak ansible_host=195.15.207.138 ansible_user=ubuntu private_ip=195.15.207.138
+files-infomaniak ansible_host=195.15.207.59 ansible_user=ubuntu private_ip=195.15.207.59
+mail-infomaniak ansible_host=195.15.207.187 ansible_user=ubuntu private_ip=195.15.207.187
+
+[web]
+dist01b-infomaniak
+
+[directory]
+dist01b-infomaniak
+
+[files]
+files-infomaniak
+
+[mail]
+mail-infomaniak
+
+[monitoring]
+dist01b-infomaniak
+
+[infomaniak:vars]
+ansible_python_interpreter=/usr/bin/python3
+admin_ssh_cidr=90.38.162.195/32
+private_network_cidr=
+cloud_peer_ips_csv=195.15.207.138,195.15.207.59,195.15.207.187
+cloud_compose_override=compose.infomaniak.yaml

@@ -1,0 +1,49 @@
+filebeat.inputs:
+  - type: filestream
+    id: docker-containers
+    enabled: true
+    paths:
+      - /var/lib/docker/containers/*/*.log
+    parsers:
+      - container:
+          stream: all
+          format: docker
+    fields_under_root: true
+    fields:
+      log_source: docker
+      event.dataset: docker.container
+
+  - type: filestream
+    id: borgbackup-files
+    enabled: true
+    paths:
+      - /var/log/borgbackup/*.log
+      - /var/log/borgbackup/last-run.status
+    fields_under_root: true
+    fields:
+      log_source: borgbackup
+      service.name: borgbackup
+      event.dataset: borgbackup.log
+
+processors:
+  - add_docker_metadata:
+      host: unix:///var/run/docker.sock
+  - drop_event:
+      when:
+        equals:
+          container.name: monitoring-filebeat
+
+setup.template.name: logs-infrastructure
+setup.template.pattern: logs-infrastructure*
+setup.template.overwrite: true
+setup.ilm.enabled: false
+
+setup.kibana:
+  host: ${KIBANA_HOST}
+
+output.elasticsearch:
+  hosts: ["${ELASTICSEARCH_HOSTS}"]
+  index: logs-infrastructure
+  preset: balanced
+
+logging.level: info

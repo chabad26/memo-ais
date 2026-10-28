@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+root_cert="${1:-$script_dir/../certs/Campus-CA-root.crt}"
+target_cert="/usr/local/share/ca-certificates/Campus-CA-root.crt"
+
+if [[ ! -r "$root_cert" ]]; then
+  printf 'Certificat racine introuvable : %s\n' "$root_cert" >&2
+  exit 1
+fi
+
+openssl x509 -in "$root_cert" -noout -subject -issuer -dates
+sudo install -m 0644 "$root_cert" "$target_cert"
+sudo update-ca-certificates
+openssl verify -CAfile /etc/ssl/certs/ca-certificates.crt "$target_cert"

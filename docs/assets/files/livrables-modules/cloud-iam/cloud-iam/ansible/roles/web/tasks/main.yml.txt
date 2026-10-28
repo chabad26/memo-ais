@@ -1,0 +1,24 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for ansible/roles/web
+
+- name: Installer Nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: true
+
+- name: Deployer le site Olidev
+  ansible.builtin.copy:
+    src: site/
+    dest: /var/www/html/
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Redémarrer Nginx
+
+- name: Activer et démarrer Nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true

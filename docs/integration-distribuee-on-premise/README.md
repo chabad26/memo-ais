@@ -93,3 +93,7 @@ Les livrables attendus doivent montrer :
 Tu devrais être capable d'expliquer comment une infrastructure on-premise moderne est construite, pourquoi ses services sont interdépendants, comment vérifier son bon fonctionnement et comment réagir lorsqu'un incident oblige à restaurer les services critiques.
 
 Ce module sert surtout à développer une posture d'intégrateur : ne pas seulement installer un service, mais le relier proprement au reste de l'infrastructure, le documenter et prévoir sa reprise en cas de problème.
+
+## Livrables du dossier Modules
+
+[Documents et fichiers techniques classés](../livrables-modules/on-premise.md) : copies de consultation des livrables fournis, avec leurs sources et limites. L’import documentaire ne constitue pas une nouvelle exécution ou validation.

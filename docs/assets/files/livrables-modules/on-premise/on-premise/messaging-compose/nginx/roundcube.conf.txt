@@ -1,0 +1,12 @@
+server {
+    listen 443 ssl;
+    server_name webmail.embedded.local;
+    ssl_certificate     /etc/nginx/tls/roundcube.fullchain.crt;
+    ssl_certificate_key /etc/nginx/tls/roundcube.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    location / {
+        proxy_pass http://roundcube:80;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto https;
+    }
+}

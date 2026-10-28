@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd "$(dirname "$0")"
+
+if docker compose run --rm --no-deps --user root --entrypoint /bin/sh openldap -lc \
+  "grep -q '^olcTLSCertificateFile:' /etc/openldap/slapd.d/cn=config.ldif"; then
+  echo "La configuration TLS OpenLDAP est deja presente."
+  exit 0
+fi
+
+docker compose stop openldap
+
+docker compose run --rm --no-deps --user root --entrypoint /bin/sh openldap -lc '
+set -eu
+cat > /tmp/openldap-tls.ldif <<"EOF"
+dn: cn=config
+changetype: modify
+add: olcTLSCertificateFile
+olcTLSCertificateFile: /container/services/openldap/assets/certs/openldap.fullchain.crt
+-
+add: olcTLSCertificateKeyFile
+olcTLSCertificateKeyFile: /container/services/openldap/assets/certs/openldap.key
+-
+add: olcTLSCACertificateFile
+olcTLSCACertificateFile: /container/services/openldap/assets/ca/Campus-CA-root.crt
+-
+add: olcTLSVerifyClient
+olcTLSVerifyClient: allow
+-
+add: olcTLSProtocolMin
+olcTLSProtocolMin: 3.4
+EOF
+slapmodify -F /etc/openldap/slapd.d -n 0 -l /tmp/openldap-tls.ldif
+slaptest -F /etc/openldap/slapd.d
+chown -R ldap:ldap /etc/openldap/slapd.d
+'
+
+docker compose up -d openldap

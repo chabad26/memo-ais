@@ -30,6 +30,10 @@ Ce mémo est découpé en plusieurs parties :
 - **[IA et Cybersécurité](ia-cybersecurite/README.md)** : usages de l'IA et shadow AI, risques pour le SI, détection d'anomalies avec Scikit-learn, évaluation du modèle, traitement d'incident et politique d'utilisation sécurisée articulée avec la PSSI.
 - **[Informatique industrielle](informatique-industrielle/README.md)** : culture OT, architectures et protocoles industriels, segmentation IT/OT, réponse aux incidents et recommandations à la direction avec le cas IndustriAlp — dernier module spécialisé du parcours.
 
+## Livrables de formation
+
+[Consulter les livrables classés par module](livrables-modules/index.md) : documents, configurations, scripts et rapports issus du dossier local `Modules`, avec inventaire et copies de consultation expurgées.
+
 ## Objectif
 
 Ce support ne remplace pas un cours complet.

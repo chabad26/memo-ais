@@ -1,0 +1,8 @@
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# Sauvegarde quotidienne à 02 h 00.
+0 2 * * * /home/oliv/on-premise/backup/run-backup-cron.sh >> /home/oliv/on-premise/backup/logs/cron.log 2>&1
+
+# Contrôle quotidien à 08 h 15.
+15 8 * * * /home/oliv/on-premise/backup/check-backup.sh >> /home/oliv/on-premise/backup/logs/daily-check.log 2>&1

@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+cat > /etc/postfix/ldap-users.cf <<EOF
+server_host = ldaps://ldap.embedded.local:6360
+version = 3
+tls_ca_cert_file = /usr/local/share/ca-certificates/Campus-CA-root.crt
+tls_require_cert = yes
+search_base = ${LDAP_BASE_DN}
+bind = yes
+bind_dn = ${LDAP_BIND_DN}
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+query_filter = (&(objectClass=posixAccount)(uid=%u))
+result_attribute = uid
+EOF
+
+postconf -e 'virtual_mailbox_maps = ldap:/etc/postfix/ldap-users.cf'
+postconf -P 'submission/inet/smtpd_client_restrictions=permit_sasl_authenticated,reject'
+postconf -P 'submission/inet/smtpd_recipient_restrictions=permit_sasl_authenticated,reject'
+postconf -P 'submission/inet/smtpd_relay_restrictions=permit_sasl_authenticated,reject'

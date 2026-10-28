@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+BACKUP_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+ENV_FILE="${BACKUP_DIR}/.env"
+LOG_DIR="${BACKUP_DIR}/logs"
+STATUS_FILE="${LOG_DIR}/last-run.status"
+
+if [[ ! -f "${ENV_FILE}" ]]; then
+  printf 'ERREUR : fichier de paramètres absent : %s\n' "${ENV_FILE}" >&2
+  exit 2
+fi
+
+# shellcheck disable=SC1090
+source "${ENV_FILE}"
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+
+MAX_BACKUP_AGE_SECONDS=${MAX_BACKUP_AGE_SECONDS:-129600}
+
+if [[ ! -f "${STATUS_FILE}" ]]; then
+  printf 'ERREUR : aucun état d’exécution trouvé : %s\n' "${STATUS_FILE}" >&2
+  exit 2
+fi
+
+# Le fichier est produit localement par run-backup-cron.sh.
+# shellcheck disable=SC1090
+source "${STATUS_FILE}"
+
+latest_log=$(find "${LOG_DIR}" -maxdepth 1 -type f \
+  -name 'backup-*.log' -printf '%T@ %p\n' |
+  sort -nr |
+  head -n 1 |
+  cut -d' ' -f2-)
+
+latest_archive=$(borg list --last 1 --format '{archive}{NL}' "${BORG_REPO}")
+age_seconds=$(($(date +%s) - ended_epoch))
+
+printf '%s\n' '=== Contrôle quotidien BorgBackup ==='
+printf 'État : %s\n' "${status}"
+printf 'Dernière fin : %s\n' "${ended_at}"
+printf 'Âge : %s secondes\n' "${age_seconds}"
+printf 'Dernière archive : %s\n' "${latest_archive:-aucune}"
+printf 'Dernier journal : %s\n' "${latest_log:-aucun}"
+
+if [[ "${status}" != "SUCCESS" || "${exit_code}" != "0" ]]; then
+  printf 'ERREUR : la dernière exécution n’est pas conforme.\n' >&2
+  exit 1
+fi
+
+if ((age_seconds > MAX_BACKUP_AGE_SECONDS)); then
+  printf 'ERREUR : la dernière sauvegarde a plus de 36 heures.\n' >&2
+  exit 1
+fi
+
+if [[ -z "${latest_archive}" || -z "${latest_log}" ]]; then
+  printf 'ERREUR : archive ou journal introuvable.\n' >&2
+  exit 1
+fi
+
+if ! grep -q '^Sauvegarde terminée :' "${latest_log}"; then
+  printf 'ERREUR : marqueur de fin absent du dernier journal.\n' >&2
+  exit 1
+fi
+
+printf 'CONFORME : la dernière sauvegarde est récente et terminée avec succès.\n'

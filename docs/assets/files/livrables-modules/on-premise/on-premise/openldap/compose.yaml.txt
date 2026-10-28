@@ -1,0 +1,41 @@
+services:
+  openldap:
+    image: osixia/openldap:2.6.10-alpha
+    container_name: openldap
+    hostname: ldap.embedded.local
+    restart: unless-stopped
+    environment:
+      OPENLDAP_BOOTSTRAP_ORGANIZATION: "${OPENLDAP_BOOTSTRAP_ORGANIZATION}"
+      OPENLDAP_BOOTSTRAP_SUFFIX: "${OPENLDAP_BOOTSTRAP_SUFFIX}"
+      OPENLDAP_BOOTSTRAP_TLS: "true"
+      OPENLDAP_BOOTSTRAP_TLS_CERT: /container/services/openldap/assets/certs/openldap.fullchain.crt
+      OPENLDAP_BOOTSTRAP_TLS_CERT_KEY: /container/services/openldap/assets/certs/openldap.key
+      OPENLDAP_BOOTSTRAP_TLS_CA_CERT: /container/services/openldap/assets/ca/Campus-CA-root.crt
+      OPENLDAP_BOOTSTRAP_TLS_VERIFY_CLIENT: allow
+      OPENLDAP_BOOTSTRAP_TLS_PROTOCOL_MIN: "3.4"
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+      OPENLDAP_BOOTSTRAP_SCHEMAS: "core.ldif cosine.ldif inetorgperson.ldif rfc2307bis.ldif samba.ldif"
+      OPENLDAP_CUSTOM_SCHEMAS_DIR: /container/services/openldap/assets/schema
+    ports:
+      - "389:3890"
+      - "636:6360"
+    volumes:
+      - ldap_data:/var/lib/openldap/openldap-data
+      - ldap_config:/etc/openldap/slapd.d
+      - ldap_backups:/var/lib/openldap/openldap-backups
+      - ../samba-ldap/schema:/container/services/openldap/assets/schema:ro
+      - ldap_tls:/container/services/openldap/assets/certs:ro
+      - ../pki/certs:/container/services/openldap/assets/ca:ro
+    networks:
+      default:
+        aliases:
+          - ldap.embedded.local
+
+volumes:
+  ldap_data:
+  ldap_config:
+  ldap_backups:
+  ldap_tls:
+    name: openldap_tls
+    external: true

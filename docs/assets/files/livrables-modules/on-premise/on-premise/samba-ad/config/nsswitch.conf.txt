@@ -1,0 +1,14 @@
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+group:          files ldap
+shadow:         files
+gshadow:        files
+
+hosts:          files dns
+networks:       files
+
+protocols:      db files
+services:       db files
+ethers:         db files
+rpc:            db files
+
+netgroup:       nis

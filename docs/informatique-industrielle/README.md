@@ -35,6 +35,18 @@ La journée porte sur une installation frigorifique fictive de grande surface. L
 - [2.6 — Valider les comportements du jumeau numérique](it-1/valider-comportements-jumeau-numerique.md) : six scénarios, six captures commentées, critères et limites de transposition au réel.
 - [2.7 — Finaliser le dossier de validation du jumeau numérique](it-1/J2-validation-jumeau-numerique.md) : dossier C2 unique et PDF formateur de 7 pages.
 
+## Itération 2 — J3 : Spécificités de l’OT
+
+- [Objectifs de la journée et sommaire](it-2/index.md).
+- [3.1 — Analyser les exigences d’exploitation d’une installation OT](it-2/analyser-exigences-exploitation-ot.md) : Montval, manuel intégré, matrice sourcée EXP/MAI/ORG et six réponses ; limites documentaires identifiées.
+- [3.2 — Traduire les exigences OT en besoins informatiques](it-2/traduire-exigences-ot-besoins-informatiques.md) : matrice OT → IT, six interventions et cinq demandes documentaires.
+- [3.3 — Organiser Montval avec le modèle Purdue](it-2/organiser-installation-modele-purdue.md) : schéma modifiable, flux, DMZ et bastion proposés ; distinction entre cible et état documenté.
+- [3.4 — Mettre en commun les exigences et leurs conséquences IT](it-2/mettre-en-commun-exigences-consequences-it.md) : synthèse documentaire pour le débrief, solutions à confronter et trace des arbitrages à compléter.
+- [3.5 — Concevoir l’architecture IT/OT de Montval](it-2/concevoir-architecture-it-ot-montval.md) : schéma SVG/draw.io, zones, flux lecture/modification et dépendances ; référence proposée pour J4.
+- [3.6 — Décider d’une intervention selon les contraintes OT](it-2/decider-intervention-contraintes-ot.md) : quatre situations Montval, vérifications, coordination, reports et décisions courtes proposées.
+- [3.7 — Finaliser le dossier d’analyse IT/OT](it-2/finaliser-dossier-analyse-it-ot.md) : fiche Markdown et dossier PDF C3 consolidé de 12 pages pour le formateur.
+- [Pense-bête de l’itération 2](../pense-bete/glossaire/informatique-industrielle/it-2.md).
+
 ## Livrable formateur
 
 **Version V3 — présentation verticale par niveaux Purdue, selon l’exemple du formateur :** [dossier PDF, 3 pages](../assets/files/informatique-industrielle/it-1/Schema-architecture-OT-J1-Olivier-HIMBLOT-V3.pdf) · [schéma A3 portrait](../assets/files/informatique-industrielle/it-1/Schema-architecture-OT-J1-Olivier-HIMBLOT-Purdue.pdf) · [source draw.io](../assets/files/informatique-industrielle/it-1/Schema-architecture-OT-J1-Olivier-HIMBLOT-Purdue.drawio).

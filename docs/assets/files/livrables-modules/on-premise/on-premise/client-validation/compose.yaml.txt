@@ -1,0 +1,11 @@
+services:
+  tls-client:
+    build:
+      context: ..
+      dockerfile: client-validation/Dockerfile
+    image: campus-tls-client:latest
+    extra_hosts:
+      - "ldap.embedded.local:host-gateway"
+      - "imap.embedded.local:host-gateway"
+      - "smtp.embedded.local:host-gateway"
+      - "webmail.embedded.local:host-gateway"

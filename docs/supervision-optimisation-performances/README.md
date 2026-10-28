@@ -107,3 +107,7 @@ Chaque activité permettra de conserver les configurations utiles, les vérifica
 - [Itération 2](../pense-bete/glossaire/supervision-optimisation-performances/it-2.md)
 
 - [Itération 3](../pense-bete/glossaire/supervision-optimisation-performances/it-3.md)
+
+## Livrables du dossier Modules
+
+[Documents et fichiers techniques classés](../livrables-modules/observabilite.md) : copies de consultation des livrables fournis, avec leurs sources et limites. L’import documentaire ne constitue pas une nouvelle exécution ou validation.

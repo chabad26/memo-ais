@@ -1,0 +1,290 @@
+---
+- name: Deployer le socle annuaire et supervision sur la VM principale
+  hosts: directory
+  become: false
+  vars:
+    on_premise_source: /home/oliv/on-premise
+    on_premise_target: /home/ubuntu/on-premise
+  tasks:
+    - name: Creer le repertoire cible
+      ansible.builtin.file:
+        path: "{{ on_premise_target }}"
+        state: directory
+        mode: "0750"
+
+    - name: Copier les fichiers OpenLDAP et LAM
+      ansible.posix.synchronize:
+        src: "{{ on_premise_source }}/infrastructure-compose/"
+        dest: "{{ on_premise_target }}/infrastructure-compose/"
+        archive: true
+
+    - name: Copier le schema LDAP necessaire
+      ansible.posix.synchronize:
+        src: "{{ on_premise_source }}/samba-ldap/"
+        dest: "{{ on_premise_target }}/samba-ldap/"
+        archive: true
+        rsync_opts:
+          - "--include=schema/"
+          - "--include=schema/samba.ldif"
+          - "--exclude=*"
+
+    - name: Copier les certificats OpenLDAP
+      ansible.posix.synchronize:
+        src: "{{ on_premise_source }}/pki/"
+        dest: "{{ on_premise_target }}/pki/"
+        archive: true
+        rsync_opts:
+          - "--include=certs/"
+          - "--include=certs/Campus-CA-root.crt"
+          - "--include=issued/"
+          - "--include=issued/openldap/"
+          - "--include=issued/openldap/openldap.fullchain.crt"
+          - "--include=issued/openldap/openldap.key"
+          - "--exclude=*"
+
+    - name: Copier la supervision et le repertoire de journaux
+      ansible.posix.synchronize:
+        src: "{{ on_premise_source }}/monitoring-compose/"
+        dest: "{{ on_premise_target }}/monitoring-compose/"
+        archive: true
+
+    - name: Creer le repertoire de journaux Borg
+      ansible.builtin.file:
+        path: "{{ on_premise_target }}/backup/logs"
+        state: directory
+        mode: "0750"
+
+    - name: Creer le reseau et les volumes OpenLDAP
+      become: true
+      ansible.builtin.shell: |
+        set -eu
+        docker network inspect openldap_default >/dev/null 2>&1 || docker network create openldap_default
+        for volume in openldap_ldap_data openldap_ldap_config openldap_ldap_backups; do
+          docker volume inspect "$volume" >/dev/null 2>&1 || docker volume create "$volume" >/dev/null
+        done
+      args:
+        executable: /bin/bash
+        creates: /var/lib/docker/volumes/openldap_ldap_data
+
+    - name: Installer les certificats TLS OpenLDAP dans le volume
+      become: true
+      ansible.builtin.command:
+        cmd: ./prepare-openldap-tls.sh
+        chdir: "{{ on_premise_target }}/infrastructure-compose"
+
+    - name: Demarrer OpenLDAP et LAM
+      become: true
+      community.docker.docker_compose_v2:
+        project_src: "{{ on_premise_target }}/infrastructure-compose"
+        state: present
+        build: always
+
+    - name: Demarrer la supervision
+      become: true
+      community.docker.docker_compose_v2:
+        project_src: "{{ on_premise_target }}/monitoring-compose"
+        state: present
+        build: always
+
+- name: Deployer Samba et WordPress sur la VM fichiers
+  hosts: files
+  become: false
+  vars:
+    on_premise_source: /home/oliv/on-premise
+    on_premise_target: /home/ubuntu/on-premise
+    ldap_private_ip: "{{ hostvars[groups['directory'][0]].private_ip }}"
+    compose_override_filename: "{{ cloud_compose_override | default('compose.ovh.yaml') }}"
+  tasks:
+    - name: Creer le repertoire cible
+      ansible.builtin.file:
+        path: "{{ on_premise_target }}"
+        state: directory
+        mode: "0750"
+
+    - name: Copier Samba LDAP
+      ansible.posix.synchronize:
+        src: "{{ on_premise_source }}/samba-ad/"
+        dest: "{{ on_premise_target }}/samba-ad/"
+        archive: true
+
+    - name: Copier WordPress
+      ansible.posix.synchronize:
+        src: "{{ on_premise_source }}/wordpress-compose/"
+        dest: "{{ on_premise_target }}/wordpress-compose/"
+        archive: true
+
+    - name: Ajouter la resolution LDAP privee a Samba
+      ansible.builtin.copy:
+        dest: "{{ on_premise_target }}/samba-ad/{{ compose_override_filename }}"
+        mode: "0644"
+        content: |
+          services:
+            samba:
+              extra_hosts:
+                - "openldap:{{ ldap_private_ip }}"
+
+    - name: Creer le reseau externe attendu par Samba
+      become: true
+      ansible.builtin.command:
+        cmd: docker network create openldap_default
+      register: samba_network
+      changed_when: samba_network.rc == 0
+      failed_when: samba_network.rc != 0 and 'already exists' not in samba_network.stderr
+
+    - name: Ecouter Samba sur toutes les interfaces cloud
+      ansible.builtin.lineinfile:
+        path: "{{ on_premise_target }}/samba-ad/.env"
+        regexp: '^HOSTIP='
+        line: HOSTIP=0.0.0.0
+        create: true
+        mode: "0600"
+
+    - name: Adapter les ports LDAP publies pour Samba
+      ansible.builtin.replace:
+        path: "{{ item }}"
+        regexp: 'openldap:3890'
+        replace: 'openldap:389'
+      loop:
+        - "{{ on_premise_target }}/samba-ad/config/smb.conf"
+        - "{{ on_premise_target }}/samba-ad/config/nslcd.conf.template"
+        - "{{ on_premise_target }}/samba-ad/entrypoint.sh"
+
+    - name: Construire l'image Samba avant l'adaptation persistante
+      become: true
+      community.docker.docker_compose_v2:
+        project_src: "{{ on_premise_target }}/samba-ad"
+        files:
+          - compose.yaml
+          - "{{ compose_override_filename }}"
+        state: present
+        build: always
+
+    - name: Adapter la configuration persistante Samba
+      become: true
+      ansible.builtin.command:
+        cmd: >-
+          docker run --rm
+          --volume samba-ad_samba_config:/config
+          --entrypoint /bin/sh embedded-samba-ldap:1.0
+          -c "sed -i 's/openldap:3890/openldap:389/g'
+          /config/smb.conf /config/nslcd.conf.template"
+      changed_when: true
+
+    - name: Construire et demarrer Samba
+      become: true
+      community.docker.docker_compose_v2:
+        project_src: "{{ on_premise_target }}/samba-ad"
+        files:
+          - compose.yaml
+          - "{{ compose_override_filename }}"
+        state: present
+        build: always
+
+    - name: Demarrer WordPress
+      become: true
+      community.docker.docker_compose_v2:
+        project_src: "{{ on_premise_target }}/wordpress-compose"
+        state: present
+        build: always
+
+- name: Deployer la messagerie sur la VM mail
+  hosts: mail
+  become: false
+  vars:
+    on_premise_source: /home/oliv/on-premise
+    on_premise_target: /home/ubuntu/on-premise
+    ldap_private_ip: "{{ hostvars[groups['directory'][0]].private_ip }}"
+    files_private_ip: "{{ hostvars[groups['files'][0]].private_ip }}"
+    compose_override_filename: "{{ cloud_compose_override | default('compose.ovh.yaml') }}"
+  tasks:
+    - name: Creer le repertoire cible
+      ansible.builtin.file:
+        path: "{{ on_premise_target }}"
+        state: directory
+        mode: "0750"
+
+    - name: Copier la messagerie
+      ansible.posix.synchronize:
+        src: "{{ on_premise_source }}/messaging-compose/"
+        dest: "{{ on_premise_target }}/messaging-compose/"
+        archive: true
+
+    - name: Copier la CA et les certificats de messagerie
+      ansible.posix.synchronize:
+        src: "{{ on_premise_source }}/pki/"
+        dest: "{{ on_premise_target }}/pki/"
+        archive: true
+        rsync_opts:
+          - "--include=certs/"
+          - "--include=certs/Campus-CA-root.crt"
+          - "--include=issued/"
+          - "--include=issued/postfix/"
+          - "--include=issued/postfix/postfix.fullchain.crt"
+          - "--include=issued/postfix/postfix.key"
+          - "--include=issued/dovecot/"
+          - "--include=issued/dovecot/dovecot.fullchain.crt"
+          - "--include=issued/dovecot/dovecot.key"
+          - "--include=issued/roundcube/"
+          - "--include=issued/roundcube/roundcube.fullchain.crt"
+          - "--include=issued/roundcube/roundcube.key"
+          - "--exclude=*"
+
+    - name: Ajouter la resolution LDAP privee a la messagerie
+      ansible.builtin.copy:
+        dest: "{{ on_premise_target }}/messaging-compose/{{ compose_override_filename }}"
+        mode: "0644"
+        content: |
+          services:
+            postfix:
+              extra_hosts:
+                - "ldap.embedded.local:{{ ldap_private_ip }}"
+            dovecot:
+              extra_hosts:
+                - "ldap.embedded.local:{{ ldap_private_ip }}"
+
+    - name: Adapter les ports LDAP publies pour la messagerie
+      ansible.builtin.replace:
+        path: "{{ item }}"
+        regexp: ':6360'
+        replace: ':636'
+      loop:
+        - "{{ on_premise_target }}/messaging-compose/dovecot/dovecot-ldap.conf.ext"
+        - "{{ on_premise_target }}/messaging-compose/postfix-init.sh"
+
+    - name: Utiliser LDAP sur le port TLS de la VM annuaire
+      ansible.builtin.lineinfile:
+        path: "{{ on_premise_target }}/messaging-compose/.env"
+        regexp: '^LDAP_URI='
+        line: LDAP_URI=ldaps://ldap.embedded.local:636
+        create: true
+        mode: "0600"
+
+    - name: Retablir les ports mail publies par Docker
+      ansible.builtin.replace:
+        path: "{{ on_premise_target }}/messaging-compose/docker-compose.yml"
+        regexp: "{{ files_private_ip | regex_escape }}:"
+        replace: ''
+
+    - name: Creer le reseau externe attendu par la messagerie
+      become: true
+      ansible.builtin.command:
+        cmd: docker network create openldap_default
+      register: mail_network
+      changed_when: mail_network.rc == 0
+      failed_when: mail_network.rc != 0 and 'already exists' not in mail_network.stderr
+
+    - name: Installer les certificats TLS de la messagerie
+      become: true
+      ansible.builtin.command:
+        cmd: ./prepare-tls-volumes.sh
+        chdir: "{{ on_premise_target }}/messaging-compose"
+
+    - name: Construire et demarrer la messagerie
+      become: true
+      community.docker.docker_compose_v2:
+        project_src: "{{ on_premise_target }}/messaging-compose"
+        files:
+          - docker-compose.yml
+          - "{{ compose_override_filename }}"
+        state: present
+        build: always

@@ -1,0 +1,28 @@
+services:
+  samba:
+    build: .
+    image: embedded-samba-ldap:1.0
+    container_name: samba-ldap
+    hostname: samba-file
+    restart: unless-stopped
+    environment:
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+    networks:
+      - openldap
+    ports:
+      - "${HOSTIP}:139:139/tcp"
+      - "${HOSTIP}:445:445/tcp"
+    volumes:
+      - samba_config:/var/lib/samba-config
+      - samba_state:/var/lib/samba
+      - samba_share:/srv/samba/partage
+
+networks:
+  openldap:
+    external: true
+    name: openldap_default
+
+volumes:
+  samba_config:
+  samba_state:
+  samba_share:

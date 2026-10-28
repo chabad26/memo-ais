@@ -1,0 +1,3 @@
+creation_rules:
+[LIGNE RETIRÉE : identifiant, secret ou référence sensible potentielle]
+    age: age1g5dps6gkg8exp6fvzfzug8rsgp8772r788vedwz7has2ha2tk3aswnfjrp

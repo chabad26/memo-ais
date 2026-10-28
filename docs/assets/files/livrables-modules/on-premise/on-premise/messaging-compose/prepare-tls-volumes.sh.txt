@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root_dir="$(cd "$(dirname "$0")/.." && pwd)"
+
+for service in postfix dovecot roundcube; do
+  source_dir="$root_dir/pki/issued/$service"
+  certificate="$source_dir/$service.fullchain.crt"
+  key="$source_dir/$service.key"
+  volume="mail_${service}_tls"
+
+  test -r "$certificate" && test -r "$key" || {
+    echo "Fichiers TLS manquants ou illisibles pour $service" >&2
+    exit 1
+  }
+
+  docker volume create "$volume" >/dev/null
+  docker run --rm \
+    -v "$source_dir:/source:ro" \
+    -v "$volume:/target" \
+    alpine:3.20 sh -eu -c "
+      rm -f /target/$service.fullchain.crt /target/$service.key
+      cp /source/$service.fullchain.crt /target/$service.fullchain.crt
+      cp /source/$service.key /target/$service.key
+      chown root:root /target/$service.fullchain.crt /target/$service.key
+      chmod 644 /target/$service.fullchain.crt
+      chmod 600 /target/$service.key
+    "
+done
