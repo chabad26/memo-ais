@@ -38,6 +38,7 @@ Il ne remplace pas les pages de cours : il sert à retrouver rapidement les term
 
 | Informatique industrielle | [Itération 1 - Découvrir une installation industrielle automatisée](glossaire/informatique-industrielle/it-1.md) |
 | Informatique industrielle | [Itération 2 — J3 : Spécificités de l’OT](glossaire/informatique-industrielle/it-2.md) |
+| Informatique industrielle | [Itération 3 — J4 : Protections réseau](glossaire/informatique-industrielle/it-3.md) |
 
 !!! info "Méthode"
     Quand une nouvelle notion revient souvent, elle va dans **Termes à retenir**. Quand une action a été validée en TP, elle va dans **Manipulations faites**. Une procédure prévue ou un rappel va dans **Gestes et commandes à retenir**, sans être présenté comme exécuté. Le cours complet reste lié dans **Docs associées**.

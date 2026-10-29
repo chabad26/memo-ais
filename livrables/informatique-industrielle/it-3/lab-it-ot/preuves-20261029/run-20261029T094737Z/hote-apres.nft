@@ -1,0 +1,48 @@
+table ip nat { # handle 1
+	chain DOCKER { # handle 1
+		iifname "docker0" counter packets 0 bytes 0 return # handle 10
+	}
+
+	chain POSTROUTING { # handle 2
+		type nat hook postrouting priority srcnat; policy accept;
+		ip saddr 172.17.0.0/16 oifname != "docker0" counter packets 0 bytes 0 masquerade # handle 9
+	}
+
+	chain PREROUTING { # handle 5
+		type nat hook prerouting priority dstnat; policy accept;
+		fib daddr type local counter packets 6 bytes 360 jump DOCKER # handle 6
+	}
+
+	chain OUTPUT { # handle 7
+		type nat hook output priority dstnat; policy accept;
+		ip daddr != 127.0.0.0/8 fib daddr type local counter packets 0 bytes 0 jump DOCKER # handle 8
+	}
+}
+table ip filter { # handle 2
+	chain DOCKER { # handle 1
+	}
+
+	chain DOCKER-ISOLATION-STAGE-1 { # handle 2
+		iifname "docker0" oifname != "docker0" counter packets 0 bytes 0 jump DOCKER-ISOLATION-STAGE-2 # handle 19
+		counter packets 0 bytes 0 return # handle 4
+	}
+
+	chain DOCKER-ISOLATION-STAGE-2 { # handle 3
+		oifname "docker0" counter packets 0 bytes 0 drop # handle 20
+		counter packets 0 bytes 0 return # handle 5
+	}
+
+	chain FORWARD { # handle 6
+		type filter hook forward priority filter; policy drop;
+		counter packets 0 bytes 0 jump DOCKER-USER # handle 23
+		counter packets 0 bytes 0 jump DOCKER-ISOLATION-STAGE-1 # handle 18
+		oifname "docker0" ct state related,established counter packets 0 bytes 0 accept # handle 17
+		oifname "docker0" counter packets 0 bytes 0 jump DOCKER # handle 16
+		iifname "docker0" oifname != "docker0" counter packets 0 bytes 0 accept # handle 15
+		iifname "docker0" oifname "docker0" counter packets 0 bytes 0 accept # handle 14
+	}
+
+	chain DOCKER-USER { # handle 21
+		counter packets 0 bytes 0 return # handle 22
+	}
+}

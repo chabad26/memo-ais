@@ -1,0 +1,193 @@
+{
+  "date_utc": "2026-10-29T10:36:51.713725+00:00",
+  "phase": "after",
+  "resultats": [
+    {
+      "test": "T01",
+      "attendu": "GW lit le serveur OT",
+      "conforme": true,
+      "observation": {
+        "commande": [
+          "ip",
+          "netns",
+          "exec",
+          "ais45-gw",
+          "python3",
+          "-m",
+          "lab.client",
+          "status",
+          "--host",
+          "10.77.30.2",
+          "--port",
+          "15020"
+        ],
+        "retour": 0,
+        "stdout": "temp=3.9 C; setpoint=4.0 C; compressor=1; alarm=0; door=0; sensor_fault=0; auto=1\n",
+        "stderr": ""
+      }
+    },
+    {
+      "test": "T02",
+      "attendu": "IT lit par la passerelle",
+      "conforme": true,
+      "observation": {
+        "commande": [
+          "ip",
+          "netns",
+          "exec",
+          "ais45-it",
+          "python3",
+          "-m",
+          "lab.client",
+          "status",
+          "--host",
+          "10.77.20.2",
+          "--port",
+          "15021"
+        ],
+        "retour": 0,
+        "stdout": "temp=3.9 C; setpoint=4.0 C; compressor=1; alarm=0; door=0; sensor_fault=0; auto=1\n",
+        "stderr": ""
+      }
+    },
+    {
+      "test": "T03",
+      "attendu": "FC06 via passerelle rejeté avec exception 01",
+      "conforme": true,
+      "observation": {
+        "commande": [
+          "ip",
+          "netns",
+          "exec",
+          "ais45-it",
+          "python3",
+          "-m",
+          "lab.client",
+          "setpoint",
+          "6",
+          "--host",
+          "10.77.20.2",
+          "--port",
+          "15021"
+        ],
+        "retour": 1,
+        "stdout": "",
+        "stderr": "Modbus operation failed: Modbus exception code 1\n"
+      }
+    },
+    {
+      "test": "T05",
+      "attendu": "FC05 via passerelle rejeté avec exception 01",
+      "conforme": true,
+      "observation": {
+        "commande": [
+          "ip",
+          "netns",
+          "exec",
+          "ais45-it",
+          "python3",
+          "-m",
+          "lab.client",
+          "door",
+          "1",
+          "--host",
+          "10.77.20.2",
+          "--port",
+          "15021"
+        ],
+        "retour": 1,
+        "stdout": "",
+        "stderr": "Modbus operation failed: Modbus exception code 1\n"
+      }
+    },
+    {
+      "test": "T04",
+      "attendu": "Direct IT/OT impossible et compteur de refus augmenté, avec OT disponible",
+      "conforme": true,
+      "observation": {
+        "client": {
+          "commande": [
+            "ip",
+            "netns",
+            "exec",
+            "ais45-it",
+            "python3",
+            "-m",
+            "lab.client",
+            "status",
+            "--host",
+            "10.77.30.2",
+            "--port",
+            "15020"
+          ],
+          "retour": 1,
+          "stdout": "",
+          "stderr": "Traceback (most recent call last):\n  File \"<frozen runpy>\", line 198, in _run_module_as_main\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/oliv/ais-it-ot-j4/poc/lab/client.py\", line 25, in <module>\n    main()\n    ~~~~^^\n  File \"/home/oliv/ais-it-ot-j4/poc/lab/client.py\", line 13, in main\n    hr=c.request(3,0,3); ir=c.request(4,0,4); coils=c.request(1,0,2)\n  File \"/home/oliv/ais-it-ot-j4/poc/lab/modbus.py\", line 84, in request\n    with socket.create_connection((self.host,self.port),self.timeout) as s:\n         ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.13/socket.py\", line 864, in create_connection\n    raise exceptions[0]\n  File \"/usr/lib/python3.13/socket.py\", line 849, in create_connection\n    sock.connect(sa)\n    ~~~~~~~~~~~~^^^^\nTimeoutError: timed out\n"
+        },
+        "compteur_avant": 21,
+        "compteur_apres": 24
+      }
+    },
+    {
+      "test": "T03-T05-relecture",
+      "attendu": "Consigne et porte inchangées après les tentatives refusées",
+      "conforme": true,
+      "observation": {
+        "commande": [
+          "ip",
+          "netns",
+          "exec",
+          "ais45-it",
+          "python3",
+          "-m",
+          "lab.client",
+          "status",
+          "--host",
+          "10.77.20.2",
+          "--port",
+          "15021"
+        ],
+        "retour": 0,
+        "stdout": "temp=3.8 C; setpoint=4.0 C; compressor=1; alarm=0; door=0; sensor_fault=0; auto=1\n",
+        "stderr": ""
+      }
+    },
+    {
+      "test": "T07",
+      "attendu": "Supervision HTTP et collecte via GW disponibles",
+      "conforme": true,
+      "observation": {
+        "commande": [
+          "ip",
+          "netns",
+          "exec",
+          "ais45-it",
+          "python3",
+          "-c",
+          "import urllib.request; r=urllib.request.urlopen(\"http://10.77.20.2:18080/api\",timeout=4); print(r.status); print(r.read().decode())"
+        ],
+        "retour": 0,
+        "stdout": "200\n{\"temperature\": 3.8, \"setpoint\": 4.0, \"compressor\": true, \"alarm\": false, \"door\": false}\n",
+        "stderr": ""
+      }
+    },
+    {
+      "test": "COUNTERS",
+      "attendu": "Règles de consultation et GW/OT réellement traversées",
+      "conforme": true,
+      "observation": {
+        "it_gateway_accept": 240,
+        "gateway_ot_accept": 288,
+        "replies_accept": 356
+      }
+    }
+  ],
+  "conforme": true,
+  "non_testes": [
+    "T06 source supplémentaire",
+    "T08 panne du GW",
+    "T09 révocation session persistante",
+    "T10 reprise GW",
+    "REG-02 réel et GW-02 industriel"
+  ]
+}

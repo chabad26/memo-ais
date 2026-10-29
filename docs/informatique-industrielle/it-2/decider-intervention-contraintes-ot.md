@@ -10,6 +10,9 @@ Analyser des demandes d’intervention informatique et déterminer les condition
 !!! info "Statut des décisions"
     Réponses techniques proposées à partir du manuel **v1.0 du 14 octobre 2022**. Les situations sont ouvertes dans le scénario : aucune autorisation, intervention, restauration ou validation collective n’est attestée. Les actions « immédiates » ci-dessous sont des propositions de préparation ou de constat sans modification du contrôle. Cette fiche n’est ni une analyse de risques formelle ni un dossier de conformité réglementaire.
 
+!!! note "Évolution du scénario en J4"
+    SIT-03 ci-dessous traite l’annonce d’un correctif dans le scénario J3. La [nouvelle fiche REG-02 de l’atelier 4.3](../it-3/proteger-regulateur-industriel-obsolete.md) indique ensuite une fin de support sans nouveau correctif et sans remplacement financé cette année. Les protections compensatoires remplacent donc l’option de déploiement d’un correctif pour ce nouvel état ; le dossier J3 reste la trace de l’analyse antérieure.
+
 ## 1 — Identifier les enjeux des quatre demandes
 
 | Situation | Composants et fonctions concernés | Exigences principales | Informations nécessaires et participants à la décision |

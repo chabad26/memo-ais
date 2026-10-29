@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-29",
+  "statut": "préparé, non appliqué ; sudo demande une saisie locale",
+  "sha256": {
+    "lab-it-ot.sh": "5423b37eccecdc5db3aa7ce41947a141459e2fb79257c1f1797ed577bb580299",
+    "filtrage-it-ot.nft": "8ab578f632b57362c660d9be047aed786095d499b2f024db416bfb8bbdb23038",
+    "verify.py": "ea6a88633170bf784aeb3ff2fe3148c26ef6688c20cb1ee18443a9329eff1ad0",
+    "README.md": "8f2a473e0610d1dd40f7718ad339863791b67e0ac9a3b861756e9d7834788966",
+    "poc/README.md": "cf26636615582230ca6ea02483d9af1edc9f3f4a6b95b3b5a37995042bad8f6b",
+    "poc/LICENSE": "0769788435e5fe6ce36b57d12c1a9ed206fa5c57d29800f6ec2e33dd817f94dc",
+    "poc/lab/__init__.py": "f1499ffa12d487878852b0a80c7ebf3bb34b8ac7d0d082ac304da3c35e8122f9",
+    "poc/lab/modbus.py": "837b71322dc6f342186db1813190d23d69e93bcb63900d149f0447d6b9dddd2a",
+    "poc/lab/dashboard.py": "a80169875e4d6b0a96bba24eb12809646f1240989f2202cd73ca1580139818f6",
+    "poc/lab/model.py": "76b5f3a741bf2ac9dca845e1116a6f03a776369370b751400ffc736dcc480e27",
+    "poc/lab/server.py": "b6653fec36a14f11370e24f0eaf7ca0c1077d1f8bc7198e51df7bc19355f784e",
+    "poc/lab/client.py": "e28a424ae920edbe6ab3fbe89cc9b2cc1e986fd5b4d2b7a136dadebc2361630e",
+    "poc/lab/gateway.py": "8244b40866664909d152327ee6c547c53c4b962e83769b9b1d7a7d137bd047de"
+  },
+  "vm": "192.168.122.105",
+  "utilisateur": "oliv",
+  "plateforme_observee": "Debian 13.7 ; Python 3.13 ; nftables 1.1.3 ; iproute2 6.15.0",
+  "namespace_avant_preparation": "aucun namespace de TP observé",
+  "application": "non exécutée par l’agent : sudo interactif nécessaire"
+}

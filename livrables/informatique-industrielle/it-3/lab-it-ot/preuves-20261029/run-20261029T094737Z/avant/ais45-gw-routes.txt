@@ -1,0 +1,2 @@
+default via 10.77.20.1 dev dmz0 
+10.77.20.0/24 dev dmz0 proto kernel scope link src 10.77.20.2 

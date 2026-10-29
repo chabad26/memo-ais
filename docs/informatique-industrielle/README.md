@@ -47,6 +47,18 @@ La journée porte sur une installation frigorifique fictive de grande surface. L
 - [3.7 — Finaliser le dossier d’analyse IT/OT](it-2/finaliser-dossier-analyse-it-ot.md) : fiche Markdown et dossier PDF C3 consolidé de 12 pages pour le formateur.
 - [Pense-bête de l’itération 2](../pense-bete/glossaire/informatique-industrielle/it-2.md).
 
+## Itération 3 — J4 : Protections réseau
+
+- [Objectifs de J4 et sommaire](it-3/index.md).
+- [4.1 — Intégrer les services informatiques du magasin](it-3/integrer-services-informatiques-magasin.md) : STOCK, ORDER, fournisseurs, IT-ADMIN et BACKUP ; données, initiateurs et architecture étendue proposée.
+- [4.2 — Définir les accès et les règles de pare-feu](it-3/definir-acces-regles-pare-feu.md) : matrice et liste ordonnée CSV, hypothèses explicites, maintenance temporaire et refus par défaut.
+- [4.3 — Protéger un régulateur industriel obsolète](it-3/proteger-regulateur-industriel-obsolete.md) : REG-02 en fin de support, protection compensatoire via GW proposée, limites et politique consolidée.
+- [4.4 — Préparer les essais de segmentation](it-3/preparer-essais-segmentation.md) : briefing, composants Python/Modbus, topologie à confirmer et plan d’essais CSV.
+- [4.5 — Mettre en œuvre le filtrage IT/OT](it-3/mettre-en-oeuvre-filtrage-it-ot.md) : TP appliqué sur Debian 192.168.122.105 ; 8 contrôles conformes, douze captures, scripts et exports nft réels ; refus par défaut confirmé et PCAP de 39 trames.
+- [4.6 — Tester les protections et le fonctionnement](it-3/tester-protections-fonctionnement.md) : sept captures, tests conformes, régulation locale observée pendant coupure et reprise des lectures/API attestée.
+- [4.7 — Documenter les protections et leurs limites](it-3/documenter-protections-limites.md) : dossier C4 unique et PDF formateur ; architecture et 32 règles proposées, configuration appliquée, preuves et limites.
+- [Pense-bête de l’itération 3](../pense-bete/glossaire/informatique-industrielle/it-3.md).
+
 ## Livrable formateur
 
 **Version V3 — présentation verticale par niveaux Purdue, selon l’exemple du formateur :** [dossier PDF, 3 pages](../assets/files/informatique-industrielle/it-1/Schema-architecture-OT-J1-Olivier-HIMBLOT-V3.pdf) · [schéma A3 portrait](../assets/files/informatique-industrielle/it-1/Schema-architecture-OT-J1-Olivier-HIMBLOT-Purdue.pdf) · [source draw.io](../assets/files/informatique-industrielle/it-1/Schema-architecture-OT-J1-Olivier-HIMBLOT-Purdue.drawio).

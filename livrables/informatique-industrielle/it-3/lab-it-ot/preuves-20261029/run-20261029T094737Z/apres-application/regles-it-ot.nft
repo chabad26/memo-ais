@@ -1,0 +1,35 @@
+table inet ais45 { # handle 4
+	counter it_direct_drop { # handle 2
+		packets 0 bytes 0
+	}
+
+	counter it_gateway_accept { # handle 3
+		packets 0 bytes 0
+	}
+
+	counter gateway_ot_accept { # handle 4
+		packets 0 bytes 0
+	}
+
+	counter replies_accept { # handle 5
+		packets 0 bytes 0
+	}
+
+	counter other_drop { # handle 6
+		packets 0 bytes 0
+	}
+
+	chain forward { # handle 1
+		type filter hook forward priority filter; policy drop;
+		ct state invalid counter packets 0 bytes 0 drop comment "Paquets invalides" # handle 7
+		meta nfproto ipv6 counter name "other_drop" drop comment "TP IPv4 seulement" # handle 8
+		iifname "fw-it" oifname "fw-ot" counter name "it_direct_drop" drop comment "Direct IT vers OT interdit, tous états" # handle 9
+		iifname "fw-ot" oifname "fw-it" counter name "it_direct_drop" drop comment "Aucun retour direct OT vers IT" # handle 10
+		iifname "fw-it" oifname "fw-dmz" ip saddr 10.77.10.2 ip daddr 10.77.20.2 tcp dport { 15021, 18080 } ct state { established, new } counter name "it_gateway_accept" accept comment "Consultation Modbus via GW et HTTP du TP" # handle 13
+		iifname "fw-dmz" oifname "fw-it" ip saddr 10.77.20.2 ip daddr 10.77.10.2 tcp sport { 15021, 18080 } ct state established counter name "replies_accept" accept comment "Réponses GW vers IT seulement" # handle 15
+		iifname "fw-dmz" oifname "fw-ot" ip saddr 10.77.20.2 ip daddr 10.77.30.2 tcp dport 15020 ct state { established, new } counter name "gateway_ot_accept" accept comment "Passerelle seule vers serveur OT" # handle 17
+		iifname "fw-ot" oifname "fw-dmz" ip saddr 10.77.30.2 ip daddr 10.77.20.2 tcp sport 15020 ct state established counter name "replies_accept" accept comment "Réponses serveur vers GW" # handle 18
+		ct state related icmp type { destination-unreachable, time-exceeded, parameter-problem } counter packets 0 bytes 0 accept comment "Erreurs liées aux connexions suivies" # handle 20
+		counter name "other_drop" drop comment "Autres communications interzones refusées" # handle 21
+	}
+}

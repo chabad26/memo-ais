@@ -1,0 +1,4 @@
+lo               UNKNOWN        127.0.0.1/8 
+fw-it@if2        UP             10.77.10.1/24 
+fw-dmz@if2       UP             10.77.20.1/24 
+fw-ot@if2        UP             10.77.30.1/24 

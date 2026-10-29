@@ -1,0 +1,2 @@
+default via 10.77.10.1 dev it0 
+10.77.10.0/24 dev it0 proto kernel scope link src 10.77.10.2 

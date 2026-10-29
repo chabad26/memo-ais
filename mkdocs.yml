@@ -688,11 +688,22 @@ nav:
           - 3.7 — Finaliser le dossier d’analyse IT/OT: informatique-industrielle/it-2/finaliser-dossier-analyse-it-ot.md
           - Manuel Montval — MAN-OT-01: informatique-industrielle/it-2/MAN-OT-01_Manuel_exploitation_installation_frigorifique.md
 
+      - Itération 3 - J4 - Protections réseau:
+          - Vue d’ensemble: informatique-industrielle/it-3/index.md
+          - 4.1 — Intégrer les services informatiques du magasin: informatique-industrielle/it-3/integrer-services-informatiques-magasin.md
+          - 4.2 — Définir les accès et les règles de pare-feu: informatique-industrielle/it-3/definir-acces-regles-pare-feu.md
+          - 4.3 — Protéger un régulateur industriel obsolète: informatique-industrielle/it-3/proteger-regulateur-industriel-obsolete.md
+          - 4.4 — Préparer les essais de segmentation: informatique-industrielle/it-3/preparer-essais-segmentation.md
+          - 4.5 — Mettre en œuvre le filtrage IT/OT: informatique-industrielle/it-3/mettre-en-oeuvre-filtrage-it-ot.md
+          - 4.6 — Tester les protections et le fonctionnement: informatique-industrielle/it-3/tester-protections-fonctionnement.md
+          - 4.7 — Documenter les protections et leurs limites: informatique-industrielle/it-3/documenter-protections-limites.md
+
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
       - Informatique industrielle:
           - Itération 1 - Découvrir une installation industrielle automatisée: pense-bete/glossaire/informatique-industrielle/it-1.md
           - Itération 2 - J3 - Spécificités de l’OT: pense-bete/glossaire/informatique-industrielle/it-2.md
+          - Itération 3 - J4 - Protections réseau: pense-bete/glossaire/informatique-industrielle/it-3.md
       - IA et Cybersécurité:
           - Itération 1 - Sous le capot de l'IA: pense-bete/glossaire/ia-cybersecurite/it-1.md
           - Itération 2 - Shadow IA: pense-bete/glossaire/ia-cybersecurite/it-2.md

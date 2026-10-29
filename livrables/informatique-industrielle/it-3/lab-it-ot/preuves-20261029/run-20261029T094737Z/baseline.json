@@ -1,0 +1,86 @@
+{
+  "date_utc": "2026-10-29T09:47:38.272032+00:00",
+  "phase": "before",
+  "resultats": [
+    {
+      "test": "T01",
+      "attendu": "GW lit le serveur OT",
+      "conforme": true,
+      "observation": {
+        "commande": [
+          "ip",
+          "netns",
+          "exec",
+          "ais45-gw",
+          "python3",
+          "-m",
+          "lab.client",
+          "status",
+          "--host",
+          "10.77.30.2",
+          "--port",
+          "15020"
+        ],
+        "retour": 0,
+        "stdout": "temp=5.0 C; setpoint=4.0 C; compressor=1; alarm=0; door=0; sensor_fault=0; auto=1\n",
+        "stderr": ""
+      }
+    },
+    {
+      "test": "T02",
+      "attendu": "IT lit par la passerelle",
+      "conforme": true,
+      "observation": {
+        "commande": [
+          "ip",
+          "netns",
+          "exec",
+          "ais45-it",
+          "python3",
+          "-m",
+          "lab.client",
+          "status",
+          "--host",
+          "10.77.20.2",
+          "--port",
+          "15021"
+        ],
+        "retour": 0,
+        "stdout": "temp=5.0 C; setpoint=4.0 C; compressor=1; alarm=0; door=0; sensor_fault=0; auto=1\n",
+        "stderr": ""
+      }
+    },
+    {
+      "test": "B00",
+      "attendu": "Avant filtrage, direct IT/OT joignable dans le seul réseau privé du TP",
+      "conforme": true,
+      "observation": {
+        "commande": [
+          "ip",
+          "netns",
+          "exec",
+          "ais45-it",
+          "python3",
+          "-m",
+          "lab.client",
+          "status",
+          "--host",
+          "10.77.30.2",
+          "--port",
+          "15020"
+        ],
+        "retour": 0,
+        "stdout": "temp=5.0 C; setpoint=4.0 C; compressor=1; alarm=0; door=0; sensor_fault=0; auto=1\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "conforme": true,
+  "non_testes": [
+    "T06 source supplémentaire",
+    "T08 panne du GW",
+    "T09 révocation session persistante",
+    "T10 reprise GW",
+    "REG-02 réel et GW-02 industriel"
+  ]
+}

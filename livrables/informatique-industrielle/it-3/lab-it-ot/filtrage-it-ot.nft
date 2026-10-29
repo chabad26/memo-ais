@@ -1,0 +1,25 @@
+# Laboratoire isolé : charger uniquement dans ais45-fw, jamais sur l’hôte.
+# IT 10.77.10.2 -> GW 10.77.20.2:15021/18080 -> OT 10.77.30.2:15020.
+table inet ais45 {
+    counter it_direct_drop { }
+    counter it_gateway_accept { }
+    counter gateway_ot_accept { }
+    counter replies_accept { }
+    counter other_drop { }
+
+    chain forward {
+        type filter hook forward priority filter; policy drop;
+        ct state invalid counter drop comment "Paquets invalides"
+        meta nfproto ipv6 counter name other_drop drop comment "TP IPv4 seulement"
+        iifname "fw-it" oifname "fw-ot" counter name it_direct_drop drop comment "Direct IT vers OT interdit, tous états"
+        iifname "fw-ot" oifname "fw-it" counter name it_direct_drop drop comment "Aucun retour direct OT vers IT"
+
+        iifname "fw-it" oifname "fw-dmz" ip saddr 10.77.10.2 ip daddr 10.77.20.2 tcp dport { 15021, 18080 } ct state { new, established } counter name it_gateway_accept accept comment "Consultation Modbus via GW et HTTP du TP"
+        iifname "fw-dmz" oifname "fw-it" ip saddr 10.77.20.2 ip daddr 10.77.10.2 tcp sport { 15021, 18080 } ct state established counter name replies_accept accept comment "Réponses GW vers IT seulement"
+        iifname "fw-dmz" oifname "fw-ot" ip saddr 10.77.20.2 ip daddr 10.77.30.2 tcp dport 15020 ct state { new, established } counter name gateway_ot_accept accept comment "Passerelle seule vers serveur OT"
+        iifname "fw-ot" oifname "fw-dmz" ip saddr 10.77.30.2 ip daddr 10.77.20.2 tcp sport 15020 ct state established counter name replies_accept accept comment "Réponses serveur vers GW"
+
+        ct state related meta l4proto icmp icmp type { destination-unreachable, time-exceeded, parameter-problem } counter accept comment "Erreurs liées aux connexions suivies"
+        counter name other_drop drop comment "Autres communications interzones refusées"
+    }
+}
