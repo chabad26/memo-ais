@@ -1,0 +1,28 @@
+flush table ip lab
+table ip lab {
+    counter blocked { }
+    counter gateway_reads { }
+    counter gateway_to_plc { }
+    counter direct_test { }
+    chain prerouting {
+        type nat hook prerouting priority dstnat; policy accept;
+        ip saddr 172.30.81.10 ip daddr 172.30.81.254 tcp dport 15021 dnat to 172.30.82.10:15021
+        ip saddr 172.30.81.10 ip daddr 172.30.81.254 tcp dport 15020 dnat to 172.30.83.10:15020
+        ip saddr 172.30.82.10 ip daddr 172.30.82.254 tcp dport 15020 dnat to 172.30.83.10:15020
+    }
+    chain postrouting {
+        type nat hook postrouting priority srcnat; policy accept;
+        ip daddr { 172.30.82.10, 172.30.83.10 } masquerade
+    }
+    chain forward {
+        type filter hook forward priority filter; policy drop;
+        ct state established,related accept
+        ip saddr 172.30.81.10 ip daddr 172.30.82.10 tcp dport 15021 counter name gateway_reads accept
+        ip saddr 172.30.82.10 ip daddr 172.30.83.10 tcp dport 15020 counter name gateway_to_plc accept
+        jump exercise
+        counter name blocked drop
+    }
+    chain exercise {
+        # Vide par défaut. Une règle temporaire peut ouvrir IT -> automate.
+    }
+}

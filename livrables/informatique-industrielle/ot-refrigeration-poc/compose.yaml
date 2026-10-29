@@ -1,0 +1,108 @@
+# Labo IT/DMZ/OT : seul HTTP est publié sur l'hôte.
+x-lab: &lab
+  image: ais-ot-refrigeration:local
+  build: .
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+
+services:
+  plc:
+    <<: *lab
+    command: [python, -m, lab.server, --host, 0.0.0.0]
+    networks:
+      ot:
+        ipv4_address: 172.30.83.10
+    healthcheck:
+      test: [CMD, python, -m, lab.client, status]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  firewall:
+    image: ais-ot-network:local
+    build:
+      context: .
+      dockerfile: Dockerfile.network
+    command: [sh, /app/network/firewall.sh]
+    read_only: true
+    cap_drop: [ALL]
+    cap_add: [NET_ADMIN, NET_RAW]
+    security_opt: [no-new-privileges:true]
+    sysctls:
+      net.ipv4.ip_forward: "1"
+    networks:
+      it:
+        ipv4_address: 172.30.81.254
+      dmz:
+        ipv4_address: 172.30.82.254
+      ot:
+        ipv4_address: 172.30.83.254
+    healthcheck:
+      test: [CMD, nft, list, chain, ip, lab, forward]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  gateway:
+    <<: *lab
+    command: [python, -m, lab.gateway, --listen-host, 0.0.0.0, --upstream-host, "172.30.82.254"]
+    networks:
+      dmz:
+        ipv4_address: 172.30.82.10
+    depends_on:
+      plc:
+        condition: service_healthy
+      firewall:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, python, -m, lab.client, status, --port, "15021"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  dashboard:
+    <<: *lab
+    command: [python, -m, lab.dashboard, --host, 0.0.0.0, --plc-host, gateway, --plc-port, "15021"]
+    ports:
+      - "127.0.0.1:18080:18080"
+    networks: [dmz]
+    depends_on:
+      gateway:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:18080/api', timeout=2).read()"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  maintenance:
+    image: ais-ot-network:local
+    build:
+      context: .
+      dockerfile: Dockerfile.network
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks:
+      it:
+        ipv4_address: 172.30.81.10
+    depends_on:
+      gateway:
+        condition: service_healthy
+
+networks:
+  it:
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.30.81.0/24
+  dmz:
+    ipam:
+      config:
+        - subnet: 172.30.82.0/24
+  ot:
+    internal: true
+    ipam:
+      config:
+        - subnet: 172.30.83.0/24

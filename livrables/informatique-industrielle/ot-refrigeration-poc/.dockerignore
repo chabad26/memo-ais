@@ -1,0 +1,9 @@
+*
+!lab/
+!lab/**
+!tests/
+!tests/**
+**/__pycache__/
+**/*.pyc
+!network/
+!network/**

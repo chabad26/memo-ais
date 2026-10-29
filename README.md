@@ -38,6 +38,20 @@ La progression prévisionnelle comprend six itérations, un cadrage du laboratoi
 des modèles de preuves et une fiche pense-bête par itération. Les activités
 sont présentées comme préparatoires jusqu'à leur réalisation documentée.
 
+## Labo OT / réfrigération avec Docker
+
+Le [guide du labo](livrables/informatique-industrielle/ot-refrigeration-poc/README.md#lancer-le-labo-avec-docker-linux-windows-ou-macos)
+permet de construire les images et de lancer l'automate simulé, la passerelle
+Modbus, la supervision, le pare-feu nftables et le poste de maintenance IT
+avec Docker Compose V2 :
+
+```bash
+cd livrables/informatique-industrielle/ot-refrigeration-poc
+docker compose up --build -d --wait
+```
+
+Supervision : <http://127.0.0.1:18080>.
+
 ## Prérequis
 
 Avant de commencer, il faut avoir :
