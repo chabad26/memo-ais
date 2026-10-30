@@ -1,0 +1,7 @@
+timestamp_horloge_vpn,compte,ip_publique_documentation,evenement,destination,commentaire
+2026-10-08T08:41:10+02:00,maint-shared,198.51.100.44,SESSION_OPEN,MAINT-01,FM-426 déclaré
+2026-10-08T08:54:10+02:00,maint-shared,198.51.100.44,SESSION_CLOSE,MAINT-01,fin session
+2026-10-08T09:14:10+02:00,maint-shared,203.30.113.77,SESSION_OPEN,MAINT-01,ticket non fourni dans le journal VPN
+2026-10-08T09:21:10+02:00,maint-shared,203.30.113.77,SESSION_CLOSE,MAINT-01,fin session
+2026-10-08T10:21:10+02:00,maint-oncall,198.51.100.51,SESSION_OPEN,MAINT-01,INC-881
+2026-10-08T10:28:10+02:00,maint-oncall,198.51.100.51,SESSION_CLOSE,MAINT-01,fin session

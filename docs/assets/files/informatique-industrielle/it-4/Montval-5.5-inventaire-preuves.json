@@ -1,0 +1,52 @@
+{
+  "date_analyse": "2026-10-30",
+  "source_nft_identique_au_fichier_prepare": true,
+  "fichiers_dossier_utilisateur": [
+    {
+      "nom": "Montval-5.5-journalisation.nft",
+      "octets": 680,
+      "sha256": "c1a5d1b059a22cc78e3b5bd2dc3c8f13aa332082f77ce51405b1353097069ce7",
+      "statut": "source C01 fournie"
+    },
+    {
+      "nom": "etat-final.txt",
+      "octets": 82,
+      "sha256": "f42f8df5ce7b37dada656aa13aa6426212d3b8e7f12da9e95b14c389868aef5f",
+      "statut": "ancien relevé 5.4, pas export final C01"
+    },
+    {
+      "nom": "fin.txt",
+      "octets": 26,
+      "sha256": "04a48139da4d411a8a5c182ebab3ff8aed41ad1e313e7d60d6943af7342adb74",
+      "statut": "ancien relevé 5.4, pas export final C01"
+    },
+    {
+      "nom": "regles-apres.nft",
+      "octets": 2022,
+      "sha256": "16d0fc12a86a0c06cfc329b7f761279b56099dba2bc3634273a50f7896db9f6e",
+      "statut": "ancien relevé 5.4, pas export final C01"
+    },
+    {
+      "nom": "regles-apres-c01.nft",
+      "octets": 2664,
+      "sha256": "4bd8de18d850d08f3d70d82262d94803fdf7dad412d0a5c1fd7ed212bd2a74f7",
+      "statut": "Export réel après C01 : tables ais45 et ais55_trace, compteur it_ot_refus 3 paquets/180 octets ; sans horodatage interne"
+    }
+  ],
+  "nflog": {
+    "origine": "Copie récupérée en lecture seule sur VM, chemin visible dans la capture utilisateur",
+    "nom": "j5-55-nflog-20261030T113304Z.pcap",
+    "sha256": "76928690f414494d3bba156c6122d69112ca76e329d40ec48ea4eb0c28274376",
+    "octets": 624,
+    "type_liaison": "NFLOG (239)",
+    "paquets": 3,
+    "periode_locale": "2026-10-30 12:33:22.183218–12:33:24.215799+01:00",
+    "chemin": "10.77.10.2:55196 → 10.77.30.2:15020, SYN répétés"
+  },
+  "limites": [
+    "Source, tables et tests attestés par captures ; source fournie identique à celle préparée",
+    "Contrôle local observé par états ponctuels, pas un cycle complet",
+    "Retour arrière non démontré",
+    "Export après C01 fourni ensuite ; pas d’horodatage interne, distinct du repère fin.txt de 10:26"
+  ]
+}

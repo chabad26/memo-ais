@@ -1,0 +1,42 @@
+{
+  "date_inventaire": "2026-10-30",
+  "provenance": "Dossier pédagogique fourni par l’utilisateur : Incident_dossier",
+  "statut": "Sources fictives ; empreinte de la copie reçue, pas preuve d’authenticité antérieure",
+  "fichiers": [
+    {
+      "nom": "01_mission.md",
+      "octets": 1746,
+      "sha256": "f85e6e7295e13ff6024cfe183ded5a80f6c75d1acd77b0e155888b28100c4fec"
+    },
+    {
+      "nom": "02_sources_et_horloges.md",
+      "octets": 1914,
+      "sha256": "f77b71f55b551499ccfa065e6029389d931e050c0edcf1a76ff24bc0132d19c8"
+    },
+    {
+      "nom": "acces_distants_VPN.csv",
+      "octets": 648,
+      "sha256": "3c84c6934b7c61ffee9fc2d3d934c6cfff658fc87ecbbc2ce2b11b5164a970c0"
+    },
+    {
+      "nom": "evenements_SUP01.csv",
+      "octets": 1100,
+      "sha256": "1e622b12937eacebfd2cc09e7f1e4f517d2154473424b22cdd505b66211298d4"
+    },
+    {
+      "nom": "maintenance_FrigoMaint.csv",
+      "octets": 1175,
+      "sha256": "0d713fe553404140324f79fe9ff0bf260250722653184758ed3e2922ae0fbdf6"
+    },
+    {
+      "nom": "modbus_REG02_capture.pcap",
+      "octets": 1494,
+      "sha256": "7881738323e12ab626e6d2f6d37f1dd6498b8335b62de461d8e0db0ea2acf97e"
+    },
+    {
+      "nom": "temperatures_ZF02_2026-10-08.csv",
+      "octets": 7977,
+      "sha256": "b92558f5748d1a8f301d10c60eb36596383d15449eae957fd292323b08352913"
+    }
+  ]
+}

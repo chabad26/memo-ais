@@ -1,0 +1,3 @@
+2026-10-30 12:33:22.183218 IP 10.77.10.2.55196 > 10.77.30.2.15020: Flags [S], seq 2646875801, win 64240, options [mss 1460,sackOK,TS val 2358446051 ecr 0,nop,wscale 7], length 0
+2026-10-30 12:33:23.191399 IP 10.77.10.2.55196 > 10.77.30.2.15020: Flags [S], seq 2646875801, win 64240, options [mss 1460,sackOK,TS val 2358447060 ecr 0,nop,wscale 7], length 0
+2026-10-30 12:33:24.215799 IP 10.77.10.2.55196 > 10.77.30.2.15020: Flags [S], seq 2646875801, win 64240, options [mss 1460,sackOK,TS val 2358448084 ecr 0,nop,wscale 7], length 0

@@ -1,0 +1,1 @@
+temp=4.4 C; setpoint=4.0 C; compressor=1; alarm=0; door=0; sensor_fault=0; auto=1

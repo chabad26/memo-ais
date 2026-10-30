@@ -698,12 +698,23 @@ nav:
           - 4.6 — Tester les protections et le fonctionnement: informatique-industrielle/it-3/tester-protections-fonctionnement.md
           - 4.7 — Documenter les protections et leurs limites: informatique-industrielle/it-3/documenter-protections-limites.md
 
+      - Itération 4 - J5 - Incident de cybersécurité OT:
+          - Vue d’ensemble: informatique-industrielle/it-4/index.md
+          - 5.1 — Prendre connaissance de l’incident: informatique-industrielle/it-4/prendre-connaissance-incident.md
+          - 5.2 — Analyser les traces et reconstituer les événements: informatique-industrielle/it-4/analyser-traces-reconstituer-evenements.md
+          - 5.3 — Déterminer les premières actions de réponse: informatique-industrielle/it-4/determiner-premieres-actions-reponse.md
+          - 5.4 — Reproduire l’incident sur le jumeau numérique: informatique-industrielle/it-4/reproduire-incident-jumeau-numerique.md
+          - 5.5 — Choisir et valider les mesures correctives: informatique-industrielle/it-4/choisir-valider-mesures-correctives.md
+          - 5.6 — Vérifier le retour à un fonctionnement maîtrisé: informatique-industrielle/it-4/verifier-retour-fonctionnement-maitrise.md
+          - 5.7 — Finaliser le compte-rendu d’investigation et de remédiation: informatique-industrielle/it-4/finaliser-compte-rendu-investigation-remediation.md
+
   - Pense-bête:
       - Vue d'ensemble: pense-bete/index.md
       - Informatique industrielle:
           - Itération 1 - Découvrir une installation industrielle automatisée: pense-bete/glossaire/informatique-industrielle/it-1.md
           - Itération 2 - J3 - Spécificités de l’OT: pense-bete/glossaire/informatique-industrielle/it-2.md
           - Itération 3 - J4 - Protections réseau: pense-bete/glossaire/informatique-industrielle/it-3.md
+          - Itération 4 - J5 - Incident de cybersécurité OT: pense-bete/glossaire/informatique-industrielle/it-4.md
       - IA et Cybersécurité:
           - Itération 1 - Sous le capot de l'IA: pense-bete/glossaire/ia-cybersecurite/it-1.md
           - Itération 2 - Shadow IA: pense-bete/glossaire/ia-cybersecurite/it-2.md

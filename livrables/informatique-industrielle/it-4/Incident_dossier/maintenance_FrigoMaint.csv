@@ -1,0 +1,9 @@
+timestamp_local,ticket,acteur_declare,statut,commentaire
+2026-10-08T08:22:00+02:00,FM-426,Service maintenance Montval,OUVERT,Contrôle périodique à distance : lecture paramètres ZF-02 ; autorisation 08:30-09:00
+2026-10-08T08:39:00+02:00,FM-426,Technicien FrigoMaint A,EN_COURS,Connexion MAINT-01 ; contrôle consigne et réponse REG-02
+2026-10-08T08:46:00+02:00,FM-426,Technicien FrigoMaint A,NOTE,Réécriture sans changement : consigne 4.0 °C pour essai de communication
+2026-10-08T08:51:00+02:00,FM-426,Technicien FrigoMaint A,CLOTURE,Intervention terminée ; aucun changement planifié au-delà de 09:00
+2026-10-08T09:50:00+02:00,INC-881,Responsable magasin,OUVERT,Température de ZF-02 signalée anormale ; demande de vérification
+2026-10-08T10:11:00+02:00,INC-881,FrigoMaint astreinte,NOTE,Aucune modification de consigne à 12 °C déclarée ; enquête interne en cours
+2026-10-08T10:18:00+02:00,INC-881,Responsable exploitation,AUTORISATION,"Rétablissement consigne 4.0 °C autorisé, contrôle sur place requis"
+2026-10-08T10:21:00+02:00,INC-881,Technicien FrigoMaint B,ACTION,Retour à 4.0 °C réalisé depuis MAINT-01 ; suivi température demandé

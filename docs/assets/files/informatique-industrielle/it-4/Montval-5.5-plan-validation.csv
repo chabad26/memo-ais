@@ -1,0 +1,8 @@
+Test,Objet,Résultat attendu,Résultat observé,Preuve
+V01,IT direct,"Timeout, OT disponible, compteur ais55_trace en hausse et trace NFLOG","Confirmé : timeout, OT disponible, compteur 0 → 3 et PCAP NFLOG trois SYN.",Captures 12:33–12:35 et NFLOG récupéré en lecture seule ; anciens exports 10:26 distincts
+V02,Consultation proxy,Lecture autorisée,Confirmé en capture 12:35:18 : lecture IT → proxy réussie.,Captures 12:33–12:35 et NFLOG récupéré en lecture seule ; anciens exports 10:26 distincts
+V03,Écriture proxy,"Exception 01, consigne 4 inchangée",Confirmé : exception 01 et consigne 4 °C inchangée.,Captures 12:33–12:35 et NFLOG récupéré en lecture seule ; anciens exports 10:26 distincts
+V04,API supervision,HTTP200 et données fraîches,"Confirmé en capture 12:35:28 : HTTP200, consigne 4 °C et mesures.",Captures 12:33–12:35 et NFLOG récupéré en lecture seule ; anciens exports 10:26 distincts
+V05,Contrôle local,"Observations répétées cohérentes, sans défaut induit","Partiel : états locaux exposés disponibles, aucun défaut visible ; suivi continu et cycle complet non fournis.",Captures 12:33–12:35 et NFLOG récupéré en lecture seule ; anciens exports 10:26 distincts
+V06,Intervention pédagogique,Réécriture 4 °C depuis GW acceptée et relue,Confirmé : réécriture nominale 4 °C depuis GW acceptée puis relue.,Captures 12:33–12:35 et NFLOG récupéré en lecture seule ; anciens exports 10:26 distincts
+V07,État final,Paramètres nominaux et exports des deux tables,"Configuration et paramètres attestés : nouvel export ais45 + ais55_trace, compteur C01 3/180 ; états nominaux visibles. Retour arrière non exécuté.",regles-apres-c01.nft reçu et captures 12:33–12:35 ; export sans horodatage interne

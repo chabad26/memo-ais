@@ -1,0 +1,32 @@
+{
+  "date_analyse": "2026-10-30",
+  "provenance": "Fichiers du TP 5.4 déposés par utilisateur dans livrables/informatique-industrielle/it-4",
+  "pcap": {
+    "format": "PCAP classique",
+    "octets": 24,
+    "paquets": 0,
+    "limite": "En-tête seul, aucun échange ni absence de trafic ne peut être démontré"
+  },
+  "fichiers": [
+    {
+      "nom": "fin.txt",
+      "octets": 26,
+      "sha256": "04a48139da4d411a8a5c182ebab3ff8aed41ad1e313e7d60d6943af7342adb74"
+    },
+    {
+      "nom": "etat-final.txt",
+      "octets": 82,
+      "sha256": "f42f8df5ce7b37dada656aa13aa6426212d3b8e7f12da9e95b14c389868aef5f"
+    },
+    {
+      "nom": "regles-apres.nft",
+      "octets": 2022,
+      "sha256": "16d0fc12a86a0c06cfc329b7f761279b56099dba2bc3634273a50f7896db9f6e"
+    },
+    {
+      "nom": "j5-54-modbus-20261030T091746Z.pcap",
+      "octets": 24,
+      "sha256": "704e5e5b3234433c01fcfd1b20a306e77e985038120492dc53965c3edd38a4ea"
+    }
+  ]
+}

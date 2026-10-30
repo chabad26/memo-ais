@@ -1,0 +1,53 @@
+{
+  "source": "temperatures_ZF02_2026-10-08.csv",
+  "statut": "Source fictive du 8 octobre 2026 ; pas le PoC du 30 octobre",
+  "mesures": 181,
+  "debut": "2026-10-08T08:30:00+02:00",
+  "fin": "2026-10-08T11:30:00+02:00",
+  "intervalles_secondes": [
+    60.0
+  ],
+  "qualites_declarees": [
+    "OK"
+  ],
+  "echantillons_strictement_superieurs_8": 63,
+  "premier": {
+    "timestamp_local": "2026-10-08T09:42:00+02:00",
+    "temperature_c": "8.13",
+    "consigne_c": "12.0",
+    "compresseur_cmd": "0",
+    "alarme_temp_haute": "0",
+    "qualite_mesure": "OK"
+  },
+  "dernier": {
+    "timestamp_local": "2026-10-08T10:44:00+02:00",
+    "temperature_c": "8.14",
+    "consigne_c": "4.0",
+    "compresseur_cmd": "1",
+    "alarme_temp_haute": "1",
+    "qualite_mesure": "OK"
+  },
+  "avant": {
+    "timestamp_local": "2026-10-08T09:41:00+02:00",
+    "temperature_c": "7.98",
+    "consigne_c": "12.0",
+    "compresseur_cmd": "0",
+    "alarme_temp_haute": "0",
+    "qualite_mesure": "OK"
+  },
+  "apres": {
+    "timestamp_local": "2026-10-08T10:45:00+02:00",
+    "temperature_c": "8.00",
+    "consigne_c": "4.0",
+    "compresseur_cmd": "1",
+    "alarme_temp_haute": "1",
+    "qualite_mesure": "OK"
+  },
+  "ecart_entre_premier_et_dernier_minutes": 62.0,
+  "limites": [
+    "Échantillonnage minute ; aucun franchissement exact entre mesures",
+    "Marqueur qualité OK déclaré par la source, pas étalonnage indépendant",
+    "Seuil >8 choisi pour l’alarme du manuel ; pas critère de conformité des produits",
+    "Pas de données avant08:30/après11:30 ni de température produit"
+  ]
+}

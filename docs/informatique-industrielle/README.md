@@ -59,6 +59,18 @@ La journée porte sur une installation frigorifique fictive de grande surface. L
 - [4.7 — Documenter les protections et leurs limites](it-3/documenter-protections-limites.md) : dossier C4 unique et PDF formateur ; architecture et 32 règles proposées, configuration appliquée, preuves et limites.
 - [Pense-bête de l’itération 3](../pense-bete/glossaire/informatique-industrielle/it-3.md).
 
+## Itération 4 — J5 : Incident de cybersécurité OT
+
+- [Objectifs de J5 et sommaire](it-4/index.md).
+- [5.1 — Prendre connaissance de l’incident](it-4/prendre-connaissance-incident.md) : dossier fictif, sources et horloges, enjeux, questions et premières vérifications ; aucune attribution prématurée.
+- [5.2 — Analyser les traces et reconstituer les événements](it-4/analyser-traces-reconstituer-evenements.md) : 18 trames, huit captures commentées, chronologie, VPN corrigé et diagnostic provisoire ; limites FC03 et affichage Wireshark explicites.
+- [5.3 — Déterminer les premières actions de réponse](it-4/determiner-premieres-actions-reponse.md) : huit actions évaluées, proposition de confinement coordonnée, continuité OT et responsabilités ; aucune action exécutée.
+- [5.4 — Reproduire l’incident sur le jumeau numérique](it-4/reproduire-incident-jumeau-numerique.md) : 24 captures et PCAP de 2 630 trames : tests IT/proxy au premier essai, montée à 12,1 °C, alarme et correction au second ; séquences distinctes.
+- [5.5 — Choisir et valider les mesures correctives](it-4/choisir-valider-mesures-correctives.md) : C01 appliquée, cinq captures, NFLOG trois paquets, export des deux tables et tests utiles confirmés ; continuité complète et retour arrière non attestés.
+- [5.6 — Vérifier le retour à un fonctionnement maîtrisé](it-4/verifier-retour-fonctionnement-maitrise.md) : liste de contrôle, réserves labo/Montval, transmission exploitation et retour d’expérience ; aucune clôture opérationnelle supposée.
+- [5.7 — Finaliser le compte-rendu d’investigation et de remédiation](it-4/finaliser-compte-rendu-investigation-remediation.md) : compte-rendu C5 unique, PDF formatrice, restitution et archive Markdown/PDF/annexes ; faits, propositions et limites distingués.
+- [Pense-bête de l’itération 4](../pense-bete/glossaire/informatique-industrielle/it-4.md).
+
 ## Livrable formateur
 
 **Version V3 — présentation verticale par niveaux Purdue, selon l’exemple du formateur :** [dossier PDF, 3 pages](../assets/files/informatique-industrielle/it-1/Schema-architecture-OT-J1-Olivier-HIMBLOT-V3.pdf) · [schéma A3 portrait](../assets/files/informatique-industrielle/it-1/Schema-architecture-OT-J1-Olivier-HIMBLOT-Purdue.pdf) · [source draw.io](../assets/files/informatique-industrielle/it-1/Schema-architecture-OT-J1-Olivier-HIMBLOT-Purdue.drawio).

@@ -1,0 +1,36 @@
+{
+  "date_analyse": "2026-10-30",
+  "pcap_sha256": "7881738323e12ab626e6d2f6d37f1dd6498b8335b62de461d8e0db0ea2acf97e",
+  "trames": 18,
+  "clients_observes": [
+    "10.30.20.10",
+    "10.30.20.15"
+  ],
+  "fonctions": [
+    3,
+    6
+  ],
+  "lectures_incoherentes": 6,
+  "mesures": 181,
+  "pic_mesure": {
+    "timestamp_local": "2026-10-08T10:07:00+02:00",
+    "temperature_c": "11.55",
+    "consigne_c": "12.0",
+    "compresseur_cmd": "0",
+    "alarme_temp_haute": "1",
+    "qualite_mesure": "OK"
+  },
+  "premier_echantillon_superieur_8": {
+    "timestamp_local": "2026-10-08T09:42:00+02:00",
+    "temperature_c": "8.13",
+    "consigne_c": "12.0",
+    "compresseur_cmd": "0",
+    "alarme_temp_haute": "0",
+    "qualite_mesure": "OK"
+  },
+  "limites": [
+    "Trace synthétique partielle, pas de réassemblage TCP nécessaire pour ce fichier",
+    "Quantités FC03 incompatibles avec les réponses à un registre",
+    "Pas d’attribution humaine, pas de preuve de température des produits"
+  ]
+}

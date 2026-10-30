@@ -1,0 +1,165 @@
+{
+  "document": "J5-investigation-remediation-OT",
+  "date_preparation": "2026-10-30",
+  "auteur": "Olivier HIMBLOT",
+  "statut": "Compte-rendu pédagogique : scénario fictif et tests de laboratoire ; pas validation opérationnelle Montval",
+  "mode_emploi": "Décompresser puis ouvrir J5-investigation-remediation-OT.md ; liens et images relatifs aux annexes. Scripts sources à exécuter dans le dépôt d’origine, pas directement depuis le ZIP.",
+  "empreintes": "SHA-256 des contenus annexés et du rapport ; cet inventaire ne se hache pas lui-même et ne certifie pas les faits historiques.",
+  "fichiers": [
+    {
+      "chemin": "J5-investigation-remediation-OT-Olivier-HIMBLOT.pdf",
+      "octets": 635771,
+      "sha256": "93a5f1cbc9cac62f6bb3c4e01226d8328c649b2164193622f9ae0ea83ad1f92f"
+    },
+    {
+      "chemin": "J5-investigation-remediation-OT.md",
+      "octets": 32696,
+      "sha256": "8648fd9fffa9790aba4859b296314a3995a2ba528917bf6e5781df8c0eedb53b"
+    },
+    {
+      "chemin": "annexes/captures/Capture d’écran du 2026-10-30 11-05-19.png",
+      "octets": 79018,
+      "sha256": "c3ade933e57b0ef60e1b27014eae2105967e0357a050266308cbdab9115a806c"
+    },
+    {
+      "chemin": "annexes/captures/Capture d’écran du 2026-10-30 11-05-25.png",
+      "octets": 84498,
+      "sha256": "579ab6b0c5d58559b6e6e13676aaf65f88bf8a487920cc1d9531fa33da1e3e06"
+    },
+    {
+      "chemin": "annexes/captures/Capture d’écran du 2026-10-30 11-05-56.png",
+      "octets": 95553,
+      "sha256": "84157a9041e840f3757e7cdf645d009b814f44a8f241f9490eb9f1212a1490f9"
+    },
+    {
+      "chemin": "annexes/captures/Capture d’écran du 2026-10-30 11-06-02.png",
+      "octets": 95348,
+      "sha256": "93ab6dea4f024cd0edd974a06a749aad69914d7963cc4f7dea4af3821ca094c4"
+    },
+    {
+      "chemin": "annexes/captures/Capture d’écran du 2026-10-30 12-33-48.png",
+      "octets": 103179,
+      "sha256": "774d21fce01efe433f0bc4b113c9f9796b604e193c17fcbc017da1dc1379a899"
+    },
+    {
+      "chemin": "annexes/captures/Capture d’écran du 2026-10-30 12-34-24.png",
+      "octets": 42651,
+      "sha256": "051cd68c255cc884a4b7eac932f70299e5db7f02bc8aba3355d7d12de8b19d6a"
+    },
+    {
+      "chemin": "annexes/captures/Capture d’écran du 2026-10-30 12-35-18.png",
+      "octets": 51300,
+      "sha256": "7f430690b19617e54d980d7b012fdba6f767b6103bcc8380468051358b23f363"
+    },
+    {
+      "chemin": "annexes/captures/Capture d’écran du 2026-10-30 12-35-28.png",
+      "octets": 27232,
+      "sha256": "199128be09444707cc8bbfe4d13f1325ba706dfc7a4eef0aec5c246932d175fc"
+    },
+    {
+      "chemin": "annexes/fichiers/MAN-OT-01_Manuel_exploitation_installation_frigorifique.md",
+      "octets": 16893,
+      "sha256": "9d35f5c034b109b0a6c5ec7c4cf4ca67ed3011368540894e6b44e2eb30c76d1b"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.2-chronologie.csv",
+      "octets": 2980,
+      "sha256": "cddff2389aedb54a0d83b78bd93e61c50461b1501c05c1cc0cdd2ca1894f1163"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.2-evolution-ZF02.svg",
+      "octets": 8075,
+      "sha256": "d8111ba60df2102b862b16c922f7db1f90d72242ecf45deac350550cd3e825a0"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.2-modbus-decode.csv",
+      "octets": 3123,
+      "sha256": "cb072826810bd4ab4e74fcf6d3acfc17c122813b9a65a8b25a7b04c7da584018"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.2-vpn-normalise.csv",
+      "octets": 1188,
+      "sha256": "5b2f59c37ddb92a8e7dc1ef638d6e85a75291298e575a0c8a5418585153dcd0f"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.4-reproduction-complete-analyse.json",
+      "octets": 230145,
+      "sha256": "15fb192df1830c1ac8dd389770725aabae26020db020325f343cd9226d36c814"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.4-reproduction-complete-decode.csv",
+      "octets": 64938,
+      "sha256": "61a816180fe2e154264e3bdd4690dbd53c45433f1fb03f7e4fed031ef161f241"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.4-reproduction-complete-evolution.svg",
+      "octets": 3473,
+      "sha256": "13b23758c601c1be6b68c8235108712d0c06db310addbd5b8f4745d515a23122"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.4-reproduction-complete.pcap",
+      "octets": 226726,
+      "sha256": "f68acc9508c0f5a7f7c3761db6d2f786f87859fd7abbb154de90354ea96b1a8c"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.5-inventaire-preuves.json",
+      "octets": 2054,
+      "sha256": "e7b9835b6225392433bf1329164ebe4c4dc843f36245b624fa7882d2bf6d618d"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.5-journalisation.nft",
+      "octets": 680,
+      "sha256": "c1a5d1b059a22cc78e3b5bd2dc3c8f13aa332082f77ce51405b1353097069ce7"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.5-nflog-decode.txt",
+      "octets": 534,
+      "sha256": "0740b77ec1ed47b708257b7f630dcc3231db302a9f8bb6cb5cd8ad4951fb2bf3"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.5-nflog.pcap",
+      "octets": 624,
+      "sha256": "76928690f414494d3bba156c6122d69112ca76e329d40ec48ea4eb0c28274376"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.5-plan-validation.csv",
+      "octets": 1789,
+      "sha256": "e83bf12bf5ac77d5dea278a8ac974ea409775ce2879906f49c604786d50de0ef"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.5-regles-apres-c01.nft",
+      "octets": 2664,
+      "sha256": "4bd8de18d850d08f3d70d82262d94803fdf7dad412d0a5c1fd7ed212bd2a74f7"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.6-liste-controle.csv",
+      "octets": 2887,
+      "sha256": "c7dfc88fb79531fb090493dc623206d98c0b8a1cfb2b97912dff6dc09f46acff"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-5.6-periode-haute-scenario.json",
+      "octets": 1583,
+      "sha256": "04d5e78209f15940b72f2f526ae40a92d08953ec1959681c8282b138a5b892fc"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-J5-Incident_dossier.zip",
+      "octets": 5926,
+      "sha256": "2e2b229fe7216dc5f30304ed874ed5c049057d13d6679ebc580a3f1ae26493d1"
+    },
+    {
+      "chemin": "annexes/fichiers/Montval-J5-inventaire-sources.json",
+      "octets": 1356,
+      "sha256": "376c9154c5cff62dbca07a1cc0bf50e78081047ca38c60104a0df60d1bd5b229"
+    },
+    {
+      "chemin": "annexes/scripts-sources/analyser_capture_poc_54.py",
+      "octets": 6255,
+      "sha256": "08fc563f92f4d7b29ff3beae1d1481ca0eb6c52bc2bb0d9c6d13278d65b703c6"
+    },
+    {
+      "chemin": "annexes/scripts-sources/analyser_traces_j5.py",
+      "octets": 9883,
+      "sha256": "e315c2e4b749ad0c78812ab953b4c8fc7667f3394a3ae2f29ef86eae1610d53e"
+    }
+  ]
+}
