@@ -115,6 +115,24 @@ Les six requêtes FC03 demandent **40 ou 120 registres**, mais les réponses ne 
 
 Erreurs d’outil/saisie, usage non autorisé d’un accès légitime, automatisation, autorisation non transmise et compromission restent des hypothèses à départager. Une IP publique, un compte partagé ou une session proche ne suffisent pas à attribuer la commande.
 
+### Connexion externe et compte de maintenance partagé : ce qui est traçable
+
+Le journal VPN enregistre une connexion **depuis l’adresse externe `203.30.113.77` vers MAINT-01**, sous le compte **`maint-shared`**, de **09:12 à 09:19 après correction de l’horloge**. Les heures brutes sont 09:14:10–09:21:10. La source est différente de celle de l’intervention précédente (`198.51.100.44`, session corrigée 08:39–08:52). **Adresse externe ne signifie ni attaquant identifié, ni accès direct du régulateur depuis Internet.** Le journal décrit un accès VPN au poste de maintenance ; le PCAP décrit un second segment, de ce poste vers REG-02.
+
+L’adresse est reproduite exactement telle que fournie : **`203.30.113.77`, pas `203.0.113.77`**. Il ne faut pas la corriger ni attribuer un pays, un opérateur, une réputation ou une personne sans vérification distincte. Les adresses appartiennent ici au dossier pédagogique ; aucune recherche ni action sur une adresse Internet réelle n’a été effectuée.
+
+| Trace laissée dans les pièces | Ce qu’elle établit | Ce qu’elle ne permet pas d’affirmer |
+| --- | --- | --- |
+| VPN lignes 4–5 : adresse externe, compte, ouverture/fermeture, cible MAINT-01 | Une session enregistrée sous `maint-shared` pendant la fenêtre corrigée 09:12–09:19. | Identité humaine, équipement d’origine, authentification MFA, IP attribuée dans le tunnel et détail des actions : non fournis. Une IP peut représenter une sortie partagée ou un relais. |
+| VPN précédent et FM-426 | Le même compte partagé est utilisé dans une intervention antérieure déclarée par le technicien A. | Que le technicien A a réalisé la seconde session : le partage du compte empêche cette déduction. |
+| PCAP trames 9/10, 09:14 : `10.30.20.15:41002 → 10.30.10.22:502`, FC06, PDU 0 = 120 | MAINT-01 est l’origine réseau visible d’une écriture à 12 °C, acceptée par REG-02 ; transaction 5, unité 1, réponse à +30 ms. | Que l’IP externe a envoyé directement ce paquet, ou que la session VPN en est la cause : il manque la liaison session/processus/commande sur MAINT-01. |
+| SUP et historique des mesures | Changement de consigne, évolution thermique, alarme et correction corroborent l’effet sur le processus représenté. | Identité de l’utilisateur, intention ou état sanitaire des marchandises. |
+| Ticket absent de cette fenêtre et déclaration FrigoMaint à 10:11 | Aucune justification de cette modification n’est fournie dans les pièces reçues ; FM-426 connu se termine avant cette session. | Absence exhaustive d’une autre autorisation ou preuve suffisante d’une compromission. |
+
+**Qui a utilisé la maintenance partagée ?** Le compte utilisé est connu ; **la personne reste inconnue**. Ni le nom du compte, ni l’identité déclarée pour une autre intervention ne permettent de la désigner. Un tiers utilisant les accès, un technicien, un programme automatique ou une action locale sur MAINT-01 restent à départager. Le rapprochement temporel justifie une investigation prioritaire de cette session, pas une attribution certaine.
+
+**Traces complémentaires à obtenir, sans les présenter comme déjà disponibles :** journaux complets de la passerelle VPN et de l’authentification (identifiant de session, résultat, facteur utilisé, éventuel certificat et IP de tunnel), traces d’accès au poste (protocole réel à identifier), sessions et processus de MAINT-01, outil de maintenance et commandes si journalisés, connexions sortantes vers REG-02, journaux pare-feu/NAT et éventuel bastion. Demander au prestataire les intervenants, équipements, IP de sortie et tickets correspondants. Conserver les fuseaux, écarts d’horloge et identifiants afin de relier les segments ; l’historique de commandes seul serait incomplet et ne suffirait pas à identifier l’auteur. Le PCAP fourni ne contient ni la négociation VPN ni un enregistrement de session distante.
+
 ### Chemins et protections
 
 La capture documente SUP-01 et MAINT-01 communiquant directement avec REG-02. La cible J4 prévoit pour REG-02 une source aval GW-02 obligatoire et des rôles distincts de collecte/maintenance. **La topologie réellement déployée le 8 octobre n’est pas fournie** : aucune conclusion de contournement d’un bastion ou de GW-02 déjà installé n’est étayée.
@@ -135,6 +153,28 @@ Sur le **PoC réellement testé**, IT direct est bloqué et le proxy 15021 refus
 Le manuel EXP-01 attend la continuité locale si régulateur, capteurs, groupe et alimentation fonctionnent. La perte de SUP n’arrête donc pas nécessairement le froid mais peut supprimer la visibilité. EXP-04/08/11, MAI-01/02/05/08 et ORG-01/02 imposent vérifications et coordination. Les interventions urgentes restent possibles selon les procédures, pas par réouverture générale d’un compte partagé.
 
 **Validation collective ou autorisation réelle non reçue :** les propositions d’intervention ne sont pas des décisions déjà acceptées par l’exploitation, le prestataire ou le formateur.
+
+### À l’instant T : contenir sans perdre la visibilité OT
+
+Les actions ci-dessous sont **proposées pour Montval**, pas réalisées sur un VPN ou un poste de production. Elles sont à coordonner avec exploitation, maintenance, IT et FrigoMaint ; la protection des personnes et du processus prime sur une collecte exhaustive.
+
+1. **Vérifier immédiatement le processus et l’état courant** : consigne lue, température indépendante si possible, commande du groupe, alarmes et lots concernés. Identifier un responsable de décision et maintenir une surveillance sur place si la supervision devient indisponible. Le responsable d’exploitation décide des produits et de la poursuite d’activité.
+2. **Préserver les éléments disponibles en parallèle** : exporter les journaux VPN, SUP, pare-feu, tickets et configurations, noter heure brute/fuseau/écart, calculer les empreintes et tracer collecteur/date/source. Préserver les données volatiles utiles de MAINT-01 avec un intervenant compétent si cela reste compatible avec l’urgence ; éviter redémarrage, nettoyage ou effacement des journaux. Conserver les originaux avec accès limité.
+3. **Contenir la session et l’accès suspects** : rechercher d’abord les sessions encore actives, puis, sur décision coordonnée, fermer celles concernées, suspendre l’usage de `maint-shared` et révoquer les accès/tokens associés selon les possibilités réelles. La session fournie se termine à 09:19 : ne pas prétendre interrompre rétroactivement cette session. Une désactivation du compte peut ne pas couper les sessions existantes. Le blocage de la seule IP externe ne couvre pas une reconnexion depuis une autre adresse.
+4. **Limiter MAINT-01 si nécessaire**, après préservation et vérification des dépendances : restreindre son chemin vers les régulateurs et ses accès distants, sans couper indistinctement la collecte SUP ni redémarrer REG-02. Si MAINT-01 sert aussi d’autres interventions essentielles, organiser un moyen local ou nominatif temporaire contrôlé. Ne pas saisir de nouveaux secrets sur un poste dont l’intégrité reste douteuse ; renouveler les accès concernés depuis un environnement de confiance et vérifier les sessions résiduelles.
+5. **Rétablir le paramètre avec autorisation** : enregistrer la valeur avant/après et le chemin utilisé, puis suivre le refroidissement et les alarmes. Dans l’historique reçu, cette action est déjà documentée à 10:21 ; ne pas la refaire pour fabriquer une preuve. Sur incident en cours, son urgence est appréciée avec l’exploitation, sans attendre la fin de l’investigation.
+6. **Vérifier l’efficacité et communiquer** : accès suspect fermé ou limité, accès de secours autorisé maîtrisé, lectures et supervision disponibles, consigne cohérente et évolution thermique suivie. Transmettre les incertitudes et les pièces aux responsables ; ne pas annoncer l’incident résolu sur la seule baisse de température.
+
+### Ensuite : attribution, accès individualisés et surveillance durable
+
+| Horizon / mesure proposée | Travail à mener et preuve de validation attendue |
+| --- | --- |
+| Investigation complémentaire | Rapprocher session VPN, accès au poste, processus et commande ; obtenir les éléments FrigoMaint et les autorisations. Vérifier l’intégrité de MAINT-01 avant réutilisation ou décider d’une reconstruction depuis une source de confiance. Documenter aussi les hypothèses écartées et les pièces manquantes. |
+| Accès de maintenance | Remplacer l’usage courant du compte partagé par des comptes nominatifs, MFA et accès temporaires liés à un ticket, depuis un environnement maîtrisé. Prévoir une procédure d’urgence tracée. Tester révocation, expiration et fermeture effective des sessions ; aucun de ces mécanismes n’est prouvé déployé ici. |
+| Chemin d’accès contrôlé | Prévoir VPN puis bastion en DMZ industrielle, cibles et droits limités, consultation séparée des modifications. Confirmer les fonctions réelles des équipements et tester le refus des chemins directs ; un bastion proposé ne prouve pas qu’il existait lors de l’incident. |
+| Traces et détection | Centraliser horodatage et journaux avec conservation adaptée et accès restreints ; corréler connexion hors fenêtre, changement d’origine et écriture de consigne avec un ticket. Journaliser si possible les sessions et opérations en respectant les règles internes. Tester une alerte et sa prise en charge : C01 prouve seulement les refus IT directs du PoC, pas la détection de cette écriture autorisée au niveau réseau. |
+| Contrôle industriel et pérennité | Qualifier les opérations et valeurs permises par la passerelle avec automaticien/exploitation ; préserver maintenance utile et fonctionnement en panne. Préparer le remplacement de REG-02 et tester les sauvegardes/restaurations possibles. Les restrictions externes ne corrigent pas ses défauts internes. |
+| Clôture et retour d’expérience | Vérifier sécurité, supervision et froid avec exploitation/maintenance, consigner les décisions sur les lots et la remise en service, puis suivre les actions restantes avec responsables et échéances. Une validation sur PoC ne vaut pas réception de Montval. |
 
 ## 5 — Mesures correctives proposées et appliquées
 
