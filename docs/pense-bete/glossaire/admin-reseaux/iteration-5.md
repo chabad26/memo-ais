@@ -36,3 +36,7 @@ Analyse de trafic, diagnostic OSI, simulation de pannes, Wireshark et automatisa
 - [Synthèse automatisation Bash](../../../admin-reseaux/iteration-5/synthese-automatisation-bash.md)
 - [Automatisation connectivité et sauvegarde](../../../admin-reseaux/iteration-5/automatisation-connectivite-sauvegarde.md)
 
+
+## Reprise L5 — diagnostic descendant
+
+La [fiche Packet Tracer](../../../admin-reseaux/iteration-5/tp-diagnostic-packet-tracer.md) suit L7 → L1 après inventaire préalable. Formuler chaque hypothèse avant le test ; noter les résultats réels, une correction à la fois et l’accès HTTPS final sur Laptop4 et Laptop5. Les pannes AlpesNet précédentes ne sont pas les causes présumées de ce nouveau projet.

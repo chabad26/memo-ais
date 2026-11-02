@@ -14,3 +14,7 @@ Les notions  vue dans ce module seront les suivants :
 ## Livrables du dossier Modules
 
 [Documents et fichiers techniques classés](../livrables-modules/reseaux.md) : copies de consultation des livrables fournis, avec leurs sources et limites. L’import documentaire ne constitue pas une nouvelle exécution ou validation.
+
+## Reprise de validation L5
+
+[Diagnostic descendant OSI — Packet Tracer](iteration-5/tp-diagnostic-packet-tracer.md) : fiche structurée pour le TP `https://tracer.co`, distinct des pannes AlpesNet préparées.

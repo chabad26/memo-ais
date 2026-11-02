@@ -14,3 +14,7 @@
 📌 Au programme de ce bloc
 
 Dernier jour du module : Autonomie 3 (diagnostic d'une panne inconnue, livrable RNCP L5) → débrief collectif → TP Bash de production (livrable RNCP L6) → CC-01 mémo personnel de synthèse (1h30 sans IA) → rétrospective Speed Boat → archivage du dossier projet RNCP complet. À la fin de la journée, ton dossier RES-01a est constitué : 7 livrables L1 à L6 archivés sur ton espace personnel.
+
+## Reprise de validation — diagnostic Packet Tracer
+
+[Fiche de dépannage dédiée](tp-diagnostic-packet-tracer.md) : cartographie du projet fourni, journal L7 → L1, causes et corrections à établir, validation HTTPS sur Laptop4 et Laptop5. Investigation préparée, résultats à recueillir.

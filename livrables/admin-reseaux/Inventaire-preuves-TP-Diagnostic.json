@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-02",
+  "copie_corrigee_source": "/home/oliv/Documents/entreprise/AIS/memo-ais/livrables/admin-reseaux/TP Diagnostic corrigé.pkt",
+  "statut": "Fichiers conservés ; projet corrigé non réouvert ici.",
+  "fichiers": [
+    {
+      "nom": "TP Diagnostic.pdf",
+      "octets": 131516,
+      "sha256": "259bfc9615b653d56a52302f890d23dc57aa24b241568905d60c402d32bb59c4"
+    },
+    {
+      "nom": "TP Diagnostic.pkt",
+      "octets": 198958,
+      "sha256": "dd5015025896f35940dfe0b1b0466eb47dfe181aeea223e12d3922c3b92f860a"
+    },
+    {
+      "nom": "TP Diagnostic corrigé.pkt",
+      "octets": 195791,
+      "sha256": "920dea370f54fbeda93cbfcfc1f72e8a5f31df49ff5ebe9e9a1b06ad5df770fd"
+    }
+  ]
+}
